@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table) {
-            $table->id();
-            $table->string('setting_type');
-            $table->string('name');
-            $table->string('value');
-            $table->string('comment')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('settings', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('setting_type');
+        //     $table->string('name');
+        //     $table->string('value');
+        //     $table->string('comment')->nullable();
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('settings');
+        // Schema::dropIfExists('settings');
     }
 };

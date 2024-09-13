@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.2",
         "ext-simplexml": "*",
+        "anayarojo/shoppingcart": "^4.2",
         "deployer/deployer": "^7.4",
         "jeroennoten/laravel-adminlte": "^3.13",
         "laravel/framework": "^11.9",

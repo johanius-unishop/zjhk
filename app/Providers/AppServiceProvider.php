@@ -8,7 +8,7 @@ use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\Schema;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,16 +24,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
-            return (new MailMessage)
-                ->subject('Verify Email Address')
-                ->line('Click the button below to verify your email address.')
-                ->action('Verify Email Address', $url);
-        });
+        // VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
+        //     return (new MailMessage)
+        //         ->subject('Verify Email Address')
+        //         ->line('Click the button below to verify your email address.')
+        //         ->action('Verify Email Address', $url);
+        // });
 
-        Event::listen(
-            ProductStockUpdated::class,
-            UpdateCompositeStock::class,
-        );
+        // Event::listen(
+        //     ProductStockUpdated::class,
+        //     UpdateCompositeStock::class,
+        // );
+
+        Schema::defaultStringLength(191);
     }
 }
