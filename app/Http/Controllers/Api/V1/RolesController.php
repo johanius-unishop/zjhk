@@ -15,11 +15,11 @@ class RolesController extends Controller
 
     public function index(Request $request)
     {
-        $res = array();
+        $res = [];
         $inventory = Role::all();
 
         $inventory->transform(function (Role $inventory) {
-            return (new RoleAdminListResource($inventory));
+            return new RoleAdminListResource($inventory);
         });
         $res['total'] = Role::count();
         $res['items'] = $inventory;

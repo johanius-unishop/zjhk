@@ -14,10 +14,10 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $offset = 0; // start row index.
-        $limit = 10; // no of records to fetch/ get .
+        $limit  = 10; // no of records to fetch/ get .
 
         $sortDirection = 'desc';
-        $sortField = 'created_at';
+        $sortField     = 'created_at';
         if ($request->filled('offset')) {
             $offset = $request->offset;
         }
@@ -26,11 +26,11 @@ class UserController extends Controller
             $limit = $request->limit;
         }
 
-        $res = array();
+        $res = [];
 
         if ($request->filled('search')) {
 
-            $items = User::with('roles')->search($request->search)->orderBy('id', 'asc')->get();
+            $items        = User::with('roles')->search($request->search)->orderBy('id', 'asc')->get();
             $res['total'] = $items->count();
         } else {
             $items = User::with('roles')->offset($offset)->limit($limit)->orderBy('id', 'asc')->get();
@@ -38,7 +38,7 @@ class UserController extends Controller
             $res['total'] = User::count();
         }
         $items->transform(function (User $items) {
-            return (new UserResource($items));
+            return new UserResource($items);
         });
 
         $res['items'] = $items;

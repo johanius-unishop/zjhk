@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\UserController;
 
+use App\Http\Controllers\Admin\ProductController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,9 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         ->name('logout');
 
     Route::get('content', [ContentController::class, 'index'])->name('content.index');
-    Route::resource('user', controller: UserController::class);
+    Route::get('model', [ContentController::class, 'model'])->name('content.model');
 
+    Route::resource(name: 'user', controller: UserController::class);
+    Route::resource(name: 'product', controller: ProductController::class);
+    Route::get('product_statistic', [ProductController::class, 'statistic'])->name('product_statistic');
 });
