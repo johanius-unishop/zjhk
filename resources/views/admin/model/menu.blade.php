@@ -95,7 +95,7 @@
             <div class="icon">
                 <i class="fas fa-newspaper"></i>
             </div>
-            {{-- <a href="{{ route('admin.product_type.index') }}" class="small-box-footer">
+            {{-- <a href="{{ route('admin.category.index') }}" class="small-box-footer">
                 Перейти <i class="fas fa-arrow-circle-right"></i>
             </a> --}}
         </div>

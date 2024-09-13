@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\Admin\ProductController;
-
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
@@ -47,4 +47,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource(name: 'user', controller: UserController::class);
     Route::resource(name: 'product', controller: ProductController::class);
     Route::get('product_statistic', [ProductController::class, 'statistic'])->name('product_statistic');
+    Route::resource(name: 'category', controller: CategoryController::class);
+
+
 });

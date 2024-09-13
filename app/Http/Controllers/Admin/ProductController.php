@@ -57,51 +57,7 @@ class ProductController extends Controller
 
         return view('admin.product.index');
     }
-    public function gerenerate_hash()
-    {
-        Log::info('Запустим регенерацию ХЭША у всех товаров');
-        // Artisan::call('media-library:regenerate "App\Models\ProductLocation" --with-responsive-images');
-        Artisan::call('app:generate-image-hash');
 
-        session()->flash('success', 'Генерация ХЭША запущена');
-        return redirect()->back()->with('success', 'Генерация ХЭША запущена');
-    }
-    public function gerenerate()
-    {
-        Log::info('Запустим регенерацию превью у всех товаров');
-        // Artisan::call('media-library:regenerate "App\Models\ProductLocation" --with-responsive-images');
-        Artisan::call('media-library:regenerate  ');
-
-        session()->flash('success', 'Генерация превью запущена');
-        return redirect()->back()->with('success', 'Генерация превью запущена');
-    }
-    public function set_moderated()
-    {
-        Log::info('Запустим установку модерирования у всех товаров');
-        Artisan::call('app:generate-moderated');
-        session()->flash('success', 'Установка признака модерирования запущена');
-        return redirect()->back()->with('success', 'Установка признака модерирования запущена');
-    }
-
-    public function product_without_media()
-    {
-        if (!Gate::allows('manage content')) {
-            return abort(401);
-        }
-
-        return view('admin.product.nomedia');
-    }
-
-    public function product_without_description()
-    {
-        if (!Gate::allows('manage content')) {
-            return abort(401);
-        }
-
-        return view('admin.product.nodescription');
-    }   /**
-        * Show the form for creating a new resource.
-        */
     public function create()
     {
         if (!Gate::allows('manage content')) {
