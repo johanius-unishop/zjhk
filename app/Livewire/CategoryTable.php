@@ -37,8 +37,8 @@ final class CategoryTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Category::query()->where('root_id' ,0 );
-    //
+        return Category::query()->where('root_id', 0);
+        //
     }
 
     public function relationSearch(): array
@@ -66,7 +66,7 @@ final class CategoryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+            Column::action('Action'),
         ];
     }
 
@@ -79,17 +79,21 @@ final class CategoryTable extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->js('alert(' . $rowId . ')');
     }
 
     public function actions(Category $row): array
     {
         return [
-            Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+
+            Button::add('view')
+                ->slot('<i class="fas fa-folder"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.category.show', ['category' => $row->id]),
+            Button::add('view')
+                ->slot('<i class="fas fa-edit"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.category.edit', ['category' => $row->id]),
         ];
     }
 
