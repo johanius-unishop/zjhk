@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Gate;
 class CategoryController extends Controller
 {
     /**
@@ -22,8 +23,20 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        // $
+
     }
 
+    public function createNew(Category $category)
+    {
+        //
+
+        // if (!Gate::allows('manage content')) {
+        //     return abort(401);
+        // }
+
+        return view('admin.category.create', ['category' => $category]);
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -35,23 +48,26 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Category $category)
     {
-        //
+
+        return view('admin.category.show', ['parent_category' => $category]);
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit', ['category' => $category]);
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
         //
     }

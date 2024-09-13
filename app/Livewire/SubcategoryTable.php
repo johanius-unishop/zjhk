@@ -15,10 +15,11 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
-final class CategoryTable extends PowerGridComponent
+
+final class SubcategoryTable extends PowerGridComponent
 {
     use WithExport;
+    public string $parent_category;
     public $delete_id;
     public function setUp(): array
     {
@@ -37,8 +38,7 @@ final class CategoryTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Category::query()->where('root_id', 0);
-        //
+        return Category::query()->where('root_id', $this->parent_category);
     }
 
     public function relationSearch(): array
@@ -58,15 +58,17 @@ final class CategoryTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name'),
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
+            Column::make('Name', 'name')
+                ->sortable()
+                ->searchable(),
+
+
 
             Column::make('Created at', 'created_at')
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action'),
+            Column::action('Action')
         ];
     }
 
@@ -79,9 +81,18 @@ final class CategoryTable extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert(' . $rowId . ')');
+        $this->js('alert('.$rowId.')');
     }
-
+    #[\Livewire\Attributes\On('post_delete')]
+    public function post_delete($rowId): void
+    {
+        $this->delete_id = $rowId;
+        $this->confirm('Вы действительно хотите удалить эту запись?', [
+            'onConfirmed' => 'confirmed',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'Нет',
+        ]);
+    }
     public function actions(Category $row): array
     {
         return [
@@ -94,7 +105,7 @@ final class CategoryTable extends PowerGridComponent
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.category.edit', ['category' => $row->id]),
-            Button::add('Delete')
+                Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
                 ->dispatch('post_delete', ['rowId' => $row->id]),

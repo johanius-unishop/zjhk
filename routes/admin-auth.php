@@ -48,6 +48,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource(name: 'product', controller: ProductController::class);
     Route::get('product_statistic', [ProductController::class, 'statistic'])->name('product_statistic');
     Route::resource(name: 'category', controller: CategoryController::class);
+    Route::get('category/createNew/{category}', [CategoryController::class, 'createNew'])->name('category.createNew');
 
 
 });
