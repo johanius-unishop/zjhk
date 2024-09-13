@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ContentController;
+use App\Http\Controllers\Admin\UserController;
+
+
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
@@ -29,9 +32,15 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
+    Route::prefix('/rap')->name('rap.')->group(function () {
+        Route::resource('roles', App\Http\Controllers\Admin\RolesController::class);
+        Route::resource('permissions', App\Http\Controllers\Admin\PermissionsController::class);
+        Route::get('/', [App\Http\Controllers\Admin\RolesController::class, 'rap'])->name('rap.list');
+    });
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
     Route::get('content', [ContentController::class, 'index'])->name('content.index');
+    Route::resource('user', controller: UserController::class);
 
 });
