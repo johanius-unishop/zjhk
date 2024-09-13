@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Мебель',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,9 +63,13 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>Admin</b>',
+    // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+
+    'logo_img' => 'img//logo/logo_white.svg',
+    'logo_img_class' => 'brand-image  elevation-3',
+    //  'logo_img_class' => 'brand-image img-circle elevation-3',
+
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Admin Logo',
@@ -110,7 +114,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'mode' => 'fullscreen',
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
@@ -257,7 +261,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -297,8 +301,11 @@ return [
         // Navbar items:
         [
             'type' => 'navbar-search',
-            'text' => 'search',
+            'text' => 'Поиск по товарам',
             'topnav_right' => true,
+            'url' => 'admin/search',
+            'method' => 'get',
+            'input_name' => 'searchTerm',
         ],
         [
             'type' => 'fullscreen-widget',
@@ -306,87 +313,167 @@ return [
         ],
 
         // Sidebar items:
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'Поиск2',
+        //     'url' => 'admin/search',
+        //     'method' => 'post',
+        //     'input_name' => 'searchVal',
+        // ],
+
+        // [
+        //     'text' => 'pages',
+        //     'url' => 'admin/pages',
+        //     'icon' => 'far fa-fw fa-file',
+        //     'label' => 4,
+        //     'label_color' => 'success',
+
+        // ],
+
+        ['header' => 'information'],
         [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'Контент',
+            'url' => 'admin/content',
+            'icon' => 'fas  fa-fw fa-newspaper',
+            // 'can' => 'manage content', TODO
         ],
         [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
+            'text' => 'Справочники',
+            'url' => 'admin/model',
+            'icon' => 'fas  fa-fw fa-folder',
+            // 'can' => 'manage content', TODO
         ],
+
+
+
+        ['header' => 'orders'],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
+            'text' => 'Заказы и сообщения',
+            'url' => 'admin/all_orders',
+            'icon' => 'fas  fa-fw fa-newspaper',
+            // 'can' => 'manage content', TODO
+        ],
+
+
+        // [
+        //     'text' => 'Справочники ',
+        //     'icon' => 'fas fa-fw fa-share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Ценовой сегмент',
+        //             'url' => 'admin/price_segment',
+        //         ],
+        //         [
+        //             'text' => 'Расположение товаров',
+        //             'url' => 'admin/product_location',
+        //         ],
+
+        //         [
+        //             'text' => 'Фабрики',
+        //             'url' => 'admin/vendor',
+        //         ],
+        //     ],
+        // ],
+
+
+
+
+        // [
+        //     'text' => 'multilevel',
+        //     'icon' => 'fas fa-fw fa-share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'level_one',
+        //             'url' => '#',
+        //         ],
+        //         [
+        //             'text' => 'level_one',
+        //             'url' => '#',
+        //             'submenu' => [
+        //                 [
+        //                     'text' => 'level_two',
+        //                     'url' => '#',
+        //                 ],
+        //                 [
+        //                     'text' => 'level_two',
+        //                     'url' => '#',
+        //                     'submenu' => [
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url' => '#',
+        //                         ],
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url' => '#',
+        //                         ],
+        //                     ],
+        //                 ],
+        //             ],
+        //         ],
+        //         [
+        //             'text' => 'level_one',
+        //             'url' => '#',
+        //         ],
+        //     ],
+        // ],
+        ['header' => 'important'],
+        [
+            'text' => 'Импорт данных',
+            'url' => 'admin/import',
+            'icon' => 'fas fa-fw fa-bug ',
+            'can' => 'manage content',
+        ],
+
+        [
+            'text' => 'Роли и доступы',
+            'url' => 'admin/rap',
             'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
+            'can' => 'manage roles',
         ],
+        [
+            'text' => 'Пользователи',
+            'url' => 'admin/user',
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'manage users',
+        ],
+
+
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url' => 'admin/settings',
+            'url' => 'profile',
             'icon' => 'fas fa-fw fa-user',
+            'target' => '_blank',
         ],
+        // [
+        //     'text' => 'change_password',
+        //     'url' => 'admin/profile',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
         [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Logs',
+            'url' => 'log-viewer',
+            'icon' => 'fas fa-fw fa-bug ',
+            'target' => '_blank',
+            'can' => 'manage users',
         ],
-        [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
-        ],
+        // ['header' => 'labels'],
+        // [
+        //     'text' => 'important',
+        //     'icon_color' => 'red',
+        //     'url' => '#',
+        // ],
+        // [
+        //     'text' => 'warning',
+        //     'icon_color' => 'yellow',
+        //     'url' => '#',
+        // ],
+        // [
+        //     'text' => 'information',
+        //     'icon_color' => 'cyan',
+        //     'url' => '#',
+        // ],
+
     ],
 
     /*
@@ -541,5 +628,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

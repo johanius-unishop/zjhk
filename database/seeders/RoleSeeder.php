@@ -18,7 +18,7 @@ class RoleSeeder extends Seeder
         // Super Admin
         $role = Role::create([
             'name' => 'super-admin',
-            'guard_name' => 'web',
+            'guard_name' => 'admin',
         ]);
         $role->givePermissionTo(Permission::all());
 
@@ -34,7 +34,7 @@ class RoleSeeder extends Seeder
         // content editor
         $role = Role::create([
             'name' => 'content-editor',
-            'guard_name' => 'web',
+            'guard_name' => 'admin',
         ]);
         $role->givePermissionTo('manage content', 'create content', 'display content', 'edit content', 'create content');
 
@@ -50,14 +50,14 @@ class RoleSeeder extends Seeder
 
         $role = Role::create([
             'name' => 'product-editor',
-            'guard_name' => 'web',
+            'guard_name' => 'admin',
         ]);
         $role->givePermissionTo('manage product', 'display product', 'edit product', 'create product', 'delete product');
 
 
         $role = Role::create([
             'name' => 'image-editor',
-            'guard_name' => 'web',
+            'guard_name' => 'admin',
         ]);
         $role->givePermissionTo('manage image', 'display image', 'edit image', 'create image', 'delete image');
 
