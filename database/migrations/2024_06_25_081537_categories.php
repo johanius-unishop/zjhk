@@ -14,15 +14,19 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
-            $table->text('image');
-            $table->tinyInteger('published');
-            $table->integer('sorting');
+            $table->bigInteger('root_id')->nullable();
+            $table->text('description')->nullable();
+            $table->string('custom_title')->nullable();
+            $table->integer('order_column')->nullable();
             $table->text('slug');
-            $table->string('custom_title');
-            $table->bigInteger('category_Id');
+
+            $table->tinyInteger('published');
             $table->timestamps();
         });
+
+        Schema::table('categories',function (Blueprint $table){
+            $table->foreign('root_id')->references('id')->on('categories');
+    });
     }
 
     /**

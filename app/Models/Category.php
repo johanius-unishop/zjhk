@@ -11,18 +11,26 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 class Category extends Model implements Sortable, HasMedia
 {
     use HasFactory;
     use HasSearch;
     use SortableTrait;
     use InteractsWithMedia;
-
+    use HasSEO;
+    use HasSlug;
+    // https://github.com/ralphjsmit/laravel-seo
     protected $fillable = [
         'name',
-        'body_description',
-        'active',
-        'show',
+        'description',
+        'root_id',
+        'published',
+        'slug',
+        'custom_title',
+        'order_column',
     ];
     public $sortable = [
         'order_column_name' => 'order_column',
@@ -48,6 +56,15 @@ class Category extends Model implements Sortable, HasMedia
         ];
     }
 
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
@@ -66,8 +83,13 @@ class Category extends Model implements Sortable, HasMedia
     {
         $this->addMediaCollection('images');
     }
-    public function parentCategory()
+    public function parent()
     {
-        return $this->belongsTo(Category::class, 'category_Id');
+        return $this->belongsTo(Category::class, 'root_id');
+    }
+
+    public function childrens()
+    {
+        return $this->hasMany(Category::class, 'root_id');
     }
 }

@@ -238,7 +238,7 @@
                                         data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да"
                                         data-off="Нет" {!! @$product->active ? '
                                     checked ' : ' ' !!} >
-                                    <label class="form-check-label" for="exampleCheck1">Активная </label>
+                                    <label class="form-check-label" for="exampleCheck1">Опубликовано </label>
                                 </div>
                             </div>
                             <div class="col-3">

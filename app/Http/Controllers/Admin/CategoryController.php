@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+
+use App\Http\Requests\Admin\StoreCategoryRequest;
 class CategoryController extends Controller
 {
     /**
@@ -22,8 +24,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
-        // $
+        return view('admin.category.create');
+        // , ['parent_category' => $category]
 
     }
 
@@ -40,9 +42,34 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        //
+        // dd($request->all());
+
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+
+        $input = $request->all();
+        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
+
+
+        $record = Category::create($input);
+
+        $record->seo->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'keywords' => $request->keywords,
+            'canonical_url' => $request->canonical_url,
+        ]);
+
+        // Cache::forget('front_vendors_list');
+        session()->flash('success', 'Фабрика успешно создана');
+
+        if ($request->action == 'save-exit') {
+            return redirect(route('admin.category.index'));
+        }
+        return redirect(route('admin.category.edit', $record->id));
     }
 
     /**

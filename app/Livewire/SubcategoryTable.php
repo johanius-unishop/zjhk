@@ -15,10 +15,12 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 final class SubcategoryTable extends PowerGridComponent
 {
     use WithExport;
+    use LivewireAlert;
     public string $parent_category;
     public $delete_id;
     public function setUp(): array
@@ -31,14 +33,14 @@ final class SubcategoryTable extends PowerGridComponent
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput(),
             Footer::make()
-                ->showPerPage()
+                // ->showPerPage()
                 ->showRecordCount(),
         ];
     }
 
     public function datasource(): Builder
     {
-        return Category::query()->where('root_id', $this->parent_category);
+        return Category::query()->where('root_id', $this->parent_category)->withCount('childrens');
     }
 
     public function relationSearch(): array
@@ -50,7 +52,9 @@ final class SubcategoryTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name')
+            ->add('name', function ($dish) {
+                return $dish->name . ' (' . $dish->childrens_count . ')';
+            })
             ->add('created_at');
     }
 
@@ -58,7 +62,7 @@ final class SubcategoryTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Name', 'name')
+            Column::make('Наименование', 'name')
                 ->sortable()
                 ->searchable(),
 
@@ -68,7 +72,7 @@ final class SubcategoryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+            Column::action('Действия')
         ];
     }
 
@@ -78,11 +82,7 @@ final class SubcategoryTable extends PowerGridComponent
         ];
     }
 
-    #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
-    {
-        $this->js('alert('.$rowId.')');
-    }
+
     #[\Livewire\Attributes\On('post_delete')]
     public function post_delete($rowId): void
     {
@@ -92,6 +92,14 @@ final class SubcategoryTable extends PowerGridComponent
             'showCancelButton' => true,
             'cancelButtonText' => 'Нет',
         ]);
+    }
+
+    #[\Livewire\Attributes\On('confirmed')]
+    public function confirmed()
+    {
+        // TODO Удаление
+        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
+
     }
     public function actions(Category $row): array
     {

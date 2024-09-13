@@ -189,7 +189,7 @@
                             <input type="checkbox" class="form-check-input" name="active" id="active"
                                 data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да"
                                 data-off="Нет">
-                            <label class="form-check-label" for="exampleCheck1">Активная </label>
+                            <label class="form-check-label" for="exampleCheck1">Опубликовано </label>
                         </div>
 
                         <div class=" py-3 form-row justify-content-center">

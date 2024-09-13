@@ -19,6 +19,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 final class CategoryTable extends PowerGridComponent
 {
     use WithExport;
+    use LivewireAlert;
     public $delete_id;
     public function setUp(): array
     {
@@ -37,7 +38,7 @@ final class CategoryTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Category::query()->where('root_id', 0);
+        return Category::query()->where('root_id', null)->withCount('childrens');
         //
     }
 
@@ -50,7 +51,9 @@ final class CategoryTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name')
+            ->add('name', function ($dish) {
+                return $dish->name . ' (' . $dish->childrens_count . ')';
+            })
             ->add('created_at');
     }
 
@@ -59,14 +62,12 @@ final class CategoryTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name'),
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
 
             Column::make('Created at', 'created_at')
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action'),
+            Column::action('Действия'),
         ];
     }
 
@@ -76,12 +77,25 @@ final class CategoryTable extends PowerGridComponent
         ];
     }
 
-    #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
+
+    #[\Livewire\Attributes\On('post_delete')]
+    public function post_delete($rowId): void
     {
-        $this->js('alert(' . $rowId . ')');
+        $this->delete_id = $rowId;
+        $this->confirm('Вы действительно хотите удалить эту запись?', [
+            'onConfirmed' => 'confirmed',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'Нет',
+        ]);
     }
 
+    #[\Livewire\Attributes\On('confirmed')]
+    public function confirmed()
+    {
+        // TODO Удаление
+        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
+
+    }
     public function actions(Category $row): array
     {
         return [
