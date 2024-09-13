@@ -16,8 +16,10 @@
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
+        "livewire/livewire": "^3.5",
         "opcodesio/log-viewer": "^3.11",
         "phpoffice/phpspreadsheet": "*",
+        "power-components/livewire-powergrid": "^5.10",
         "predis/predis": "^2.2",
         "spatie/laravel-permission": "^6.9"
     },
