@@ -10,9 +10,10 @@
 {{-- Content body: main page content --}}
 
 @section('content')
-<a class="btn btn-primary" href="{{ route('admin.category.create') }}" role="button">Добавить</a>
-
-<livewire:category-table/>
+<div class=" py-3  ">
+    <a class="btn btn-primary" href="{{ route('admin.category.create') }}" role="button">Добавить</a>
+</div>
+<livewire:category-table />
 @stop
 
 {{-- Push extra CSS --}}

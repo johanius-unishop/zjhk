@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 use App\Http\Requests\Admin\StoreCategoryRequest;
+use App\Http\Requests\Admin\UpdateCategoryRequest;
+
+
 class CategoryController extends Controller
 {
     /**
@@ -94,9 +97,34 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+
+        // dd($request->all());
+
+
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        $input = $request->all();
+
+        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
+        $category->update($input);
+
+        $category->seo->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'keywords' => $request->keywords,
+            'canonical_url' => $request->canonical_url,
+        ]);
+        // Cache::forget('front_vendors_list');
+        session()->flash('success', 'Категория  успешно обновлена');
+
+
+        if ($request->action == 'save') {
+            return redirect(route('admin.category.index'));
+        }
+        return redirect(route('admin.category.edit', $category->id));
     }
 
     /**

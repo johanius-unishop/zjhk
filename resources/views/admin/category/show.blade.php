@@ -10,9 +10,10 @@
 {{-- Content body: main page content --}}
 
 @section('content')
-<a class="btn btn-primary" href="{{ route('admin.category.createNew', $parent_category->id) }}" role="button">Добавить</a>
-
-
+ 
+<div class=" py-3 ">
+    <a class="btn btn-primary" href="{{ route('admin.category.createNew', $parent_category->id) }}" role="button">Добавить</a>
+</div>
 
 <livewire:subcategory-table :parent_category="$parent_category->id" />
 
