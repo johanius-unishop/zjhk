@@ -15,6 +15,7 @@
         "deployer/deployer": "^7.4",
         "jantinnerezo/livewire-alert": "^3.0",
         "jeroennoten/laravel-adminlte": "^3.13",
+        "kalnoy/nestedset": "^6.0",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",

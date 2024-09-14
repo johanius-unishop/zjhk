@@ -43,6 +43,24 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="row">
+                                <div class="col-12 mt-2">
+                                    <label for="parent" class="form-label">Parent</label>
+                                    <div class="input-group">
+                                        <select name="parent_id" id="parent" class="form-control">
+                                            <option value="">Корневая категория</option>
+                                            @foreach ($parentCategories as $category)
+                                            @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
+                                            ''])
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="row">
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">

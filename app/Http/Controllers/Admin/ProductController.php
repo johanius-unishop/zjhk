@@ -83,7 +83,7 @@ class ProductController extends Controller
             return abort(401);
         }
 
-        $input = $request->all();
+        $input                    = $request->all();
         $input['product_type_id'] = ProductSubtype::where('id', $input['product_subtype_id'])->first()->product_type_id;
 
         $request->filled('is_moderated') ? $input['is_moderated'] = 1 : $input['is_moderated'] = 0;
@@ -99,7 +99,7 @@ class ProductController extends Controller
             'canonical_url' => $request->canonical_url,
         ]);
 
-        session()->flash('success', 'Продукт успешно создан');
+        session()->flash('success', 'Запись успешно создана');
         if ($request->action == 'save-exit') {
             return redirect(route('admin.product.index'));
         }
@@ -160,8 +160,8 @@ class ProductController extends Controller
             'keywords' => $request->keywords,
             'canonical_url' => $request->canonical_url,
         ]);
-
-        session()->flash('success', 'Товар ' . $product->name . ' успешно обновлен');
+        //  ' . $product->name . '
+        session()->flash('success', 'Запись успешно обновлена');
 
         if ($request->action == 'save-exit') {
             return redirect(route('admin.product.index'));

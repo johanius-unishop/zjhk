@@ -4,23 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Cache;
+use App\Http\Requests\Admin\StoreVendorRequest;
+use App\Http\Requests\Admin\UpdateVendorRequest;
 
-use App\Http\Requests\Admin\StoreCategoryRequest;
-use App\Http\Requests\Admin\UpdateCategoryRequest;
 
-
-class CategoryController extends Controller
+class VendorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        return view('admin.category.index');
+
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        return view('admin.vendor.index');
     }
 
     /**
@@ -28,29 +31,24 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $parentCategories = Category::getCategoriesAsTree();
-        return view('admin.category.create', ['parentCategories' => $parentCategories]);
-        //
+
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        return view('admin.vendor.create');
+
 
     }
 
-    public function createNew(Category $category)
-    {
-        //
-
-        // if (!Gate::allows('manage content')) {
-        //     return abort(401);
-        // }
-
-        return view('admin.category.create', ['category' => $category]);
-    }
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreVendorRequest $request)
     {
-        // dd($request->all());
 
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
@@ -58,8 +56,7 @@ class CategoryController extends Controller
         $input = $request->all();
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
 
-
-        $record = Category::create($input);
+        $record = Vendor::create($input);
 
         $record->seo->update([
             'title' => $request->title,
@@ -68,44 +65,49 @@ class CategoryController extends Controller
             'canonical_url' => $request->canonical_url,
         ]);
 
-        // Cache::forget('front_vendors_list');
-        Cache::forget('CategoriesAsTree');
+        Cache::forget('front_vendors_list');
         session()->flash('success', 'Запись успешно создана');
 
         if ($request->action == 'save-exit') {
-            return redirect(route('admin.category.index'));
+            return redirect(route('admin.vendor.index'));
         }
-        return redirect(route('admin.category.edit', $record->id));
+        return redirect(route('admin.vendor.edit', $record->id));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Vendor $vendor)
     {
 
-        return view('admin.category.show', ['parent_category' => $category]);
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        return view('admin.vendor.show', ['vendor' => $vendor]);
 
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Vendor $vendor)
     {
-        $parentCategories = Category::getCategoriesAsTree();
-
-        return view('admin.category.edit', ['category' => $category, 'parentCategories' => $parentCategories]);
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        return view('admin.vendor.edit', );
 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateVendorRequest $request, Vendor $vendor)
     {
 
-        // dd($request->all());
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
 
 
         if (!Gate::allows('manage content')) {
@@ -114,23 +116,21 @@ class CategoryController extends Controller
         $input = $request->all();
 
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
-        $category->update($input);
+        $vendor->update($input);
 
-        $category->seo->update([
+        $vendor->seo->update([
             'title' => $request->title,
             'description' => $request->description,
             'keywords' => $request->keywords,
             'canonical_url' => $request->canonical_url,
         ]);
-        // Cache::forget('front_vendors_list');
-
-        Cache::forget('CategoriesAsTree');
+        Cache::forget('front_vendors_list');
         session()->flash('success', 'Запись успешно обновлена');
 
         if ($request->action == 'save') {
-            return redirect(route('admin.category.index'));
+            return redirect(route('admin.vendor.index'));
         }
-        return redirect(route('admin.category.edit', $category->id));
+        return redirect(route('admin.vendor.edit', $vendor->id));
     }
 
     /**

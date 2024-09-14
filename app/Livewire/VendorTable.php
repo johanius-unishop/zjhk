@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Category;
+use App\Models\Vendor;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -16,12 +16,10 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-
-final class SubcategoryTable extends PowerGridComponent
+final class VendorTable extends PowerGridComponent
 {
     use WithExport;
     use LivewireAlert;
-    public string $parent_category;
     public $delete_id;
     public function setUp(): array
     {
@@ -33,17 +31,15 @@ final class SubcategoryTable extends PowerGridComponent
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput(),
             Footer::make()
-                // ->showPerPage()
+                ->showPerPage()
                 ->showRecordCount(),
         ];
     }
 
     public function datasource(): Builder
     {
-       // return Category::query()->descendantsOf( $this->parent_category)->toFlatTree() ;
-        // $result = Category::whereDescendantOf($node)->get();
-         return Category::query()->where('parent_id', $this->parent_category)->withCount('childrens');
-
+        return Vendor::query();
+        // return Category::query()->where('root_id', null)->withCount('childrens');
 
     }
 
@@ -56,9 +52,7 @@ final class SubcategoryTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name', function ($dish) {
-                return $dish->name . ' (' . $dish->childrens_count . ')';
-            })
+            ->add('name')
             ->add('created_at');
     }
 
@@ -66,17 +60,11 @@ final class SubcategoryTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name')
-                ->sortable()
-                ->searchable(),
-
-
-
+            Column::make('Наименование', 'name'),
             Column::make('Created at', 'created_at')
                 ->sortable()
                 ->searchable(),
-
-            Column::action('Действия')
+            Column::action('Действия'),
         ];
     }
 
@@ -105,7 +93,7 @@ final class SubcategoryTable extends PowerGridComponent
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
 
     }
-    public function actions(Category $row): array
+    public function actions(Vendor $row): array
     {
         return [
 
@@ -117,22 +105,10 @@ final class SubcategoryTable extends PowerGridComponent
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.category.edit', ['category' => $row->id]),
-                Button::add('Delete')
+            Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
                 ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }

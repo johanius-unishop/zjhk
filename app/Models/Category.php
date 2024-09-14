@@ -14,6 +14,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Kalnoy\Nestedset\NodeTrait;
+use Kalnoy\Nestedset\NestedSet;
 class Category extends Model implements Sortable, HasMedia
 {
     use HasFactory;
@@ -22,6 +24,7 @@ class Category extends Model implements Sortable, HasMedia
     use InteractsWithMedia;
     use HasSEO;
     use HasSlug;
+    use NodeTrait;
     // https://github.com/ralphjsmit/laravel-seo
     protected $fillable = [
         'name',
@@ -38,7 +41,7 @@ class Category extends Model implements Sortable, HasMedia
     ];
     public function buildSortQuery()
     {
-        return static::query()->where('root_id', $this->root_id);
+        return static::query()->where('parent_id', $this->root_id);
     }
     /**
      * Get the model's searchable attributes.
@@ -85,11 +88,36 @@ class Category extends Model implements Sortable, HasMedia
     }
     public function parent()
     {
-        return $this->belongsTo(Category::class, 'root_id');
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 
     public function childrens()
     {
-        return $this->hasMany(Category::class, 'root_id');
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+    /**
+     * Get all categories as nested tree
+     *
+     * @return \Kalnoy\Nestedset\Collection
+     */
+    public static function getCategoriesAsTree()
+    {
+        $cache_name = 'CategoriesAsTree';
+        $res        = cache()->remember($cache_name, env('CACHE_LIFETIME'), function () {
+            return Category::select(['id', 'name', NestedSet::PARENT_ID, NestedSet::LFT, NestedSet::RGT])
+                ->with(['children'])
+                ->get(array('id', 'name', NestedSet::PARENT_ID, NestedSet::LFT, NestedSet::RGT))
+                ->toTree();
+        });
+
+        return $res;
+    }
+    public function getCanDeletedAttribute()
+    {
+        // TODO Доделать проверку
+        if ($this->product_count   > 0) {
+            return false;
+        }
+        return true;
     }
 }

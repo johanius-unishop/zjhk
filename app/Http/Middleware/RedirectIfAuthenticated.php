@@ -40,9 +40,9 @@ class RedirectIfAuthenticated
     protected function redirectTo(Request $request): ?string
     {
 
-        if($request->routeIs('teacher.*')){
-            return route('teacher.dashboard');
-        }
+        // if($request->routeIs('teacher.*')){
+        //     return route('teacher.dashboard');
+        // }
         if($request->routeIs('admin.*')){
             return route('admin.dashboard');
         }

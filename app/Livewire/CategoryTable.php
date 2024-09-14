@@ -38,8 +38,9 @@ final class CategoryTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Category::query()->where('root_id', null)->withCount('childrens');
-        //
+        return Category::query()->whereIsRoot() ->withCount('childrens');
+        //        return Category::query()->where('root_id', null)->withCount('childrens');
+
     }
 
     public function relationSearch(): array
