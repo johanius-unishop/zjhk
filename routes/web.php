@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminProductKindController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Models\Product_kind_prop;
@@ -27,8 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::prefix('test')->name('test.')->group(function () {
+    Route::get('/test_vendor_product', [TestController::class, 'test_vendor_product'])->name('test_vendor_product');
 
-
+});
 require __DIR__ . '/admin-auth.php';
 require __DIR__ . '/auth.php';
 

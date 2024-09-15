@@ -39,7 +39,7 @@ final class VendorTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Vendor::query();
+        return Vendor::query()->withCount('product');
         // return Category::query()->where('root_id', null)->withCount('childrens');
 
     }
@@ -53,7 +53,11 @@ final class VendorTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name')
+            // ->add('name')
+
+            ->add('name', function ($item) {
+                return $item->name . ' (' . $item->product_count . ')';
+            })
             ->add('country')
             ->add('delivery_time')
             ->add('country')
@@ -66,6 +70,8 @@ final class VendorTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name')->sortable(),
+
+
             Column::make('Страна', 'country')->sortable(),
             Column::make('Время доставки', 'delivery_time')->sortable(),
             Column::make('Гарантия', 'warranty')->sortable(),
@@ -96,9 +102,21 @@ final class VendorTable extends PowerGridComponent
     #[\Livewire\Attributes\On('confirmed')]
     public function confirmed()
     {
-        // TODO Удаление
-        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
 
+        $deleted_record = Vendor::where('id', $this->delete_id)->withCount('product')->firstOrFail();
+        if ($deleted_record->product_count > 0) {
+            $this->dispatch('toast', message: 'У этого производителя есть товары. Вначале удалите их!', notify: 'error');
+            return;
+        }
+
+        if ($deleted_record->seo()->exists()) {
+            $deleted_record->seo()->delete();
+        }
+        if ($deleted_record->media()->exists()) {
+            $deleted_record->media()->delete();
+        }
+        $deleted_record->delete();
+        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
     }
     public function actions(Vendor $row): array
     {

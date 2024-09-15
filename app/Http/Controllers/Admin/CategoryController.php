@@ -127,7 +127,7 @@ class CategoryController extends Controller
         Cache::forget('CategoriesAsTree');
         session()->flash('success', 'Запись успешно обновлена');
 
-        if ($request->action == 'save') {
+        if ($request->action == 'save-exit') {
             return redirect(route('admin.category.index'));
         }
         return redirect(route('admin.category.edit', $category->id));

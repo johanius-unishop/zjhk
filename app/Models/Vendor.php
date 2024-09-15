@@ -74,9 +74,9 @@ class Vendor extends Model implements Sortable, HasMedia
     {
         return $this->hasMany(Product::class, 'vendor_id', 'id');
     }
-    public function getCanDeletedAttribute()
+    public function getCanBeDeletedAttribute()
     {
-        if ($this->product_count > 0) {
+        if ($this->product->count() > 0) {
             return false;
         }
         return true;

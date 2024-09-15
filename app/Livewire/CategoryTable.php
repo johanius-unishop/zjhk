@@ -52,8 +52,8 @@ final class CategoryTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name', function ($dish) {
-                return $dish->name . ' (' . $dish->childrens_count . ')';
+            ->add('name', function ($item) {
+                return $item->name . ' (' . $item->childrens_count . ')';
             })
             ->add('created_at');
     }

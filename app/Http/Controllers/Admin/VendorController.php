@@ -66,8 +66,7 @@ class VendorController extends Controller
 
         Cache::forget('front_vendors_list');
         session()->flash('success', 'Запись успешно создана');
-
-        if ($request->action == 'save-exit') {
+         if ($request->action == 'save-exit') {
             return redirect(route('admin.vendor.index'));
         }
         return redirect(route('admin.vendor.edit', $record->id));
@@ -120,7 +119,7 @@ class VendorController extends Controller
         Cache::forget('front_vendors_list');
         session()->flash('success', 'Запись успешно обновлена');
 
-        if ($request->action == 'save') {
+        if ($request->action == 'save-exit') {
             return redirect(route('admin.vendor.index'));
         }
         return redirect(route('admin.vendor.edit', $vendor->id));

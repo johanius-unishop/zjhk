@@ -184,7 +184,6 @@
                                 id="summernote">{{   old ('body_description' ) }}</textarea>
                         </div>
 
-
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" name="published" id="published"
                                 data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да"
