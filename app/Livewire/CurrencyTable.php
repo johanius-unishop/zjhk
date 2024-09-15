@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Category;
+use App\Models\Currency;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -16,30 +16,30 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-final class CategoryTable extends PowerGridComponent
+final class CurrencyTable extends PowerGridComponent
 {
     use WithExport;
     use LivewireAlert;
     public $delete_id;
+
+    // public bool $deferLoading = true;
     public function setUp(): array
     {
-        $this->showCheckBox();
+        // $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+
             Header::make()->showSearchInput()->withoutLoading(),
             Footer::make()
-                ->showPerPage()
+                // ->showPerPage()
                 ->showRecordCount(),
         ];
     }
 
     public function datasource(): Builder
     {
-        return Category::query()->whereIsRoot() ->withCount('childrens');
-        //        return Category::query()->where('root_id', null)->withCount('childrens');
+        return Currency::query();
+        // ->whereIsRoot() ->withCount('childrens')       return Category::query()->where('root_id', null)->withCount('childrens');
 
     }
 
@@ -52,9 +52,7 @@ final class CategoryTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name', function ($item) {
-                return $item->name . ' (' . $item->childrens_count . ')';
-            })
+            ->add('name')
             ->add('created_at');
     }
 
@@ -97,18 +95,18 @@ final class CategoryTable extends PowerGridComponent
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
 
     }
-    public function actions(Category $row): array
+    public function actions(Currency $row): array
     {
         return [
 
             Button::add('view')
                 ->slot('<i class="fas fa-folder"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.category.show', ['category' => $row->id]),
+                ->route('admin.currency.show', ['currency' => $row->id]),
             Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.category.edit', ['category' => $row->id]),
+                ->route('admin.currency.edit', ['currency' => $row->id]),
             Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')

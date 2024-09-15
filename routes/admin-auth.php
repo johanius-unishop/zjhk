@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
+use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\UserController;
@@ -53,5 +54,6 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     Route::resource(name: 'vendor', controller: VendorController::class);
     Route::post('/images/upload', [ContentController::class, 'imagesUpload'])->name('images_upload');
+    Route::resource(name: 'currency', controller: CurrencyController::class);
 
 });

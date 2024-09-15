@@ -19,14 +19,14 @@
             <div class="inner">
                 <h3>TODO</h3>
                 {{-- <h3>{{ @$price_segment_count }}</h3> --}}
-                <h4> Ценовой сегмент</h4>
+                <h4>Валюты</h4>
             </div>
             <div class="icon">
                 <i class="fas fa-newspaper"></i>
             </div>
-            {{-- <a href="{{ route('admin.price_segment.index') }}" class="small-box-footer">
+            <a href="{{ route('admin.currency.index') }}" class="small-box-footer">
             Перейти <i class="fas fa-arrow-circle-right"></i>
-            </a> --}}
+            </a>
         </div>
     </div>
 
@@ -39,12 +39,12 @@
             <div class="inner">
                 <h3>TODO</h3>
                 {{-- <h3>{{ @$product_style_count }}</h3> --}}
-                <h4> Стили товаров</h4>
+                <h4>Курсы валют</h4>
             </div>
             <div class="icon">
                 <i class="fas fa-newspaper"></i>
             </div>
-            {{-- <a href="{{ route('admin.product_style.index') }}" class="small-box-footer">
+            {{-- <a href="{{ route('admin.currency_rate.index') }}" class="small-box-footer">
             Перейти <i class="fas fa-arrow-circle-right"></i>
             </a> --}}
         </div>
