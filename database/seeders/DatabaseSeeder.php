@@ -18,10 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(class: AdminTableSeeder::class);
 
-        // User::factory(10)->create();
 
-  
         $this->call(CategoriesTableSeeder::class);
         $this->call(CurrenciesTableSeeder::class);
+        $this->call(VendorsTableSeeder::class);
     }
 }

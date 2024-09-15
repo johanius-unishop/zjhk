@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
+
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use Spatie\MediaLibrary\HasMedia;
@@ -50,7 +52,14 @@ class Vendor extends Model implements Sortable, HasMedia
             ->usingLanguage('ru');
     }
 
+    // public function getDynamicSEOData(): SEOData
+    // {
+    //     return new SEOData(
+    //         title: $this->title,
+    //         description: $this->description,
 
+    //     );
+    // }
 
     public function registerMediaConversions(?Media $media = null): void
     {

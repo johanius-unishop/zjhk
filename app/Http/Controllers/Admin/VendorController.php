@@ -57,6 +57,8 @@ class VendorController extends Controller
 
         $record = Vendor::create($input);
 
+
+
         $record->seo->update([
             'title' => $request->title,
             'description' => $request->description,
@@ -66,7 +68,7 @@ class VendorController extends Controller
 
         Cache::forget('front_vendors_list');
         session()->flash('success', 'Запись успешно создана');
-         if ($request->action == 'save-exit') {
+        if ($request->action == 'save-exit') {
             return redirect(route('admin.vendor.index'));
         }
         return redirect(route('admin.vendor.edit', $record->id));
@@ -90,6 +92,10 @@ class VendorController extends Controller
      */
     public function edit(Vendor $vendor)
     {
+        // Fix to seeded records
+        if ($vendor->seo->count() == 0) {
+            $vendor->addSEO();
+        }
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
@@ -106,9 +112,10 @@ class VendorController extends Controller
             return abort(401);
         }
         $input = $request->all();
-// dd( $input );
+        // dd( $input );
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
         $vendor->update($input);
+
         $vendor->seo->update([
             'title' => $request->title,
             'description' => $request->description,

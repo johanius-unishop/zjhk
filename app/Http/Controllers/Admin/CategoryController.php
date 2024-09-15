@@ -93,6 +93,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        // Fix to seeded records
+        if ($category->seo->count() == 0) {
+            $category->addSEO();
+        }
         $parentCategories = Category::getCategoriesAsTree();
 
         return view('admin.category.edit', ['category' => $category, 'parentCategories' => $parentCategories]);
@@ -115,6 +119,16 @@ class CategoryController extends Controller
 
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
         $category->update($input);
+
+        // $category->seo->update([
+        //     'title' => $request->title,
+        //     'description' => $request->description,
+        //     'keywords' => $request->keywords,
+        //     'canonical_url' => $request->canonical_url,
+        // ]);
+
+
+        // dd($category->seo->count());
 
         $category->seo->update([
             'title' => $request->title,

@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 Route::prefix('test')->name('test.')->group(function () {
     Route::get('/test_vendor_product', [TestController::class, 'test_vendor_product'])->name('test_vendor_product');
+    Route::get('/test_currency_seed', [TestController::class, 'test_currency_seed'])->name('test_currency_seed');
 
 });
 require __DIR__ . '/admin-auth.php';

@@ -19,4 +19,14 @@ class TestController extends Controller
         );
 
     }
+
+    public function test_currency_seed()
+    {
+        $vendor = Vendor::findOrFail(1);
+        dd(
+            $vendor,
+            $vendor->can_be_deleted,
+        );
+
+    }
 }
