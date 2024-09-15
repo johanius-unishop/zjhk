@@ -50,19 +50,42 @@ class ContentController extends Controller
         return view('admin.content.index');
 
 
-     }
+    }
 
-     public function model()
-     {
-         //
-         // $news_count = News::count();
-         // $blog_count = Blog::count();
-         // $page_count = Page::count();
+    public function model()
+    {
+        //
+        // $news_count = News::count();
+        // $blog_count = Blog::count();
+        // $page_count = Page::count();
 
-         // return view('admin.content.index', compact('news_count', 'blog_count', 'page_count', 'portfolio_count', 'opinion_count'));
-         return view('admin.model.menu');
+        // return view('admin.content.index', compact('news_count', 'blog_count', 'page_count', 'portfolio_count', 'opinion_count'));
+        return view('admin.model.menu');
 
 
-      }
+    }
+
+
+    public function imagesUpload(Request $request)
+    {
+
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            try {
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                Storage::disk('images')->putFileAs('images/editor/', $file, $fileName);
+                $filePath = Storage::disk('images')->url('/images/editor/' . $fileName);
+                echo $filePath;
+
+            }
+            catch (\Throwable $th) {
+                echo '<br>' . $th->getMessage();
+                Log::error($th->getMessage());
+            }
+
+        }
+
+
+    }
 
 }

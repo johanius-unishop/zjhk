@@ -52,5 +52,6 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('category/createNew/{category}', [CategoryController::class, 'createNew'])->name('category.createNew');
 
     Route::resource(name: 'vendor', controller: VendorController::class);
+    Route::post('/images/upload', [ContentController::class, 'imagesUpload'])->name('images_upload');
 
 });

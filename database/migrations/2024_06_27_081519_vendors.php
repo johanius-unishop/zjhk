@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('logo');
-            $table->string('description');
-            $table->string('country');
+            $table->integer('order_column')->nullable();
+            $table->text('slug');
+            $table->string('logo')->nullable();
+            $table->text('description')->nullable();
+            $table->string('country')->nullable();
             $table->string('delivery_time')->nullable();
             $table->string('warranty')->nullable();
+            $table->tinyInteger('published');
+
             $table->timestamps();
         });
     }

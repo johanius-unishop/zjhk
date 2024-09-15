@@ -186,7 +186,7 @@
 
 
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="active" id="active"
+                            <input type="checkbox" class="form-check-input" name="published" id="published"
                                 data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да"
                                 data-off="Нет">
                             <label class="form-check-label" for="exampleCheck1">Опубликовано </label>

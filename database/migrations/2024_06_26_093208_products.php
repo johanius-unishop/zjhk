@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(Product_kind::class);
             $table->string('title');
             $table->string('article');
-            $table->string('short_description');
+            $table->text('short_description');
             $table->text('description');
             $table->string('barcode');
             $table->float('supplier_price');

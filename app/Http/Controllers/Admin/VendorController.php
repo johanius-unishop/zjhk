@@ -49,11 +49,10 @@ class VendorController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-        if (!Gate::allows('manage content')) {
-            return abort(401);
-        }
+
 
         $input = $request->all();
+        // dd($input);
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
 
         $record = Vendor::create($input);
@@ -95,7 +94,7 @@ class VendorController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-        return view('admin.vendor.edit', );
+        return view('admin.vendor.edit', ['vendor' => $vendor]);
 
     }
 
@@ -104,26 +103,20 @@ class VendorController extends Controller
      */
     public function update(UpdateVendorRequest $request, Vendor $vendor)
     {
-
-        if (!Gate::allows('manage content')) {
-            return abort(401);
-        }
-
-
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
         $input = $request->all();
-
+// dd( $input );
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
         $vendor->update($input);
-
         $vendor->seo->update([
             'title' => $request->title,
             'description' => $request->description,
             'keywords' => $request->keywords,
             'canonical_url' => $request->canonical_url,
         ]);
+
         Cache::forget('front_vendors_list');
         session()->flash('success', 'Запись успешно обновлена');
 

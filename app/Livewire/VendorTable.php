@@ -21,15 +21,16 @@ final class VendorTable extends PowerGridComponent
     use WithExport;
     use LivewireAlert;
     public $delete_id;
+    public ?string $primaryKeyAlias = 'slug';
     public function setUp(): array
     {
-        $this->showCheckBox();
+        // $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            Header::make()->showSearchInput()->withoutLoading(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -53,17 +54,23 @@ final class VendorTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('created_at');
+            ->add('country')
+            ->add('delivery_time')
+            ->add('country')
+            ->add('warranty');
     }
 
     public function columns(): array
     {
+        // ->searchable()
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name'),
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
+            Column::make('Наименование', 'name')->sortable(),
+            Column::make('Страна', 'country')->sortable(),
+            Column::make('Время доставки', 'delivery_time')->sortable(),
+            Column::make('Гарантия', 'warranty')->sortable(),
+            Column::make('Создано', 'created_at')
+                ->sortable(),
             Column::action('Действия'),
         ];
     }
@@ -97,14 +104,14 @@ final class VendorTable extends PowerGridComponent
     {
         return [
 
-            Button::add('view')
-                ->slot('<i class="fas fa-folder"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.category.show', ['category' => $row->id]),
+            // Button::add('view')
+            //     ->slot('<i class="fas fa-folder"></i>')
+            //     ->class('btn btn-primary')
+            //     ->route('admin.category.show', ['category' => $row->id]),
             Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.category.edit', ['category' => $row->id]),
+                ->route('admin.vendor.edit', ['vendor' => $row->id]),
             Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
