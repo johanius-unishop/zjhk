@@ -93,7 +93,9 @@ class VendorController extends Controller
     public function edit(Vendor $vendor)
     {
         // Fix to seeded records
-        if ($vendor->seo->count() == 0) {
+
+        // dd($vendor->seo );
+        if ($vendor->seo->title== '') {
             $vendor->addSEO();
         }
         if (!Gate::allows('manage content')) {

@@ -53,9 +53,7 @@ class Category extends Model implements Sortable, HasMedia
         return [
             'name' => 5, // Model attribute
             'body_description' => 2,
-            // 'tags.name', // Relationship attribute
-            // 'tags.description.*', // All json keys of a relationship attribute
-            // DB::raw("CONCAT(creator_name, ' ', creator_surname)"), // Raw expressions are supported too
+          
         ];
     }
 

@@ -94,7 +94,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         // Fix to seeded records
-        if ($category->seo->count() == 0) {
+        if ($category->seo->title== '') {
             $category->addSEO();
         }
         $parentCategories = Category::getCategoriesAsTree();
