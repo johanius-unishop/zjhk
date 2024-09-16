@@ -2,9 +2,9 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Редактирование валюты')
+@section('title', 'Создание валюты')
 @section('content_header')
-<h1>Редактирование валюты</h1>
+<h1>Создание валюты</h1>
 @stop
 
 {{-- Content body: main page content --}}
@@ -13,11 +13,8 @@
 
 @include('admin.blocks.error')
 
-<form action="{{ route('admin.currency.update', $currency->id) }}" method="POST">
-
+<form action="{{ route('admin.product-type.store')  }}" method="POST">
     @csrf
-    @method('PATCH')
-    <input type="hidden" name="id" value="{{ $currency->id }}">
     <div class="row">
         <div class="col-12 ">
             <div class="card card-primary card-outline card-outline-tabs">
@@ -37,40 +34,36 @@
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
                                         <label for="name">Название</label>
-                                        <input type="text" class="form-control" name="name" value="{{   $currency->name  }}">
+                                        <input type="text" class="form-control" name="name" value="{{  old('name') }}">
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
-                                        <label for="charcode">Символ</label>
-                                        <input type="text" class="form-control" name="charcode" value="{{   $currency->charcode  }}">
-                                        @error('charcode')
+                                        <label for="name_plural">Множественное число</label>
+                                        <input type="text" class="form-control" name="charcode" value="{{  old('name_plural') }}">
+                                        @error('name_plural')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-12">
-                                    <div class="form-group">
-                                        <label for="numcode">Код</label>
-                                        <input type="text" class="form-control" name="numcode" value="{{   $currency->numcode  }}">
-                                        @error('numcode')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
+
                             </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="published" id="published" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product_type->composite ? 'checked ' : ' ' !!}>
+                                <label class="form-check-label" for="exampleCheck1">Опубликовано</label>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
             <div class=" py-3 form-row justify-content-center">
-                <a class="btn   btn-success " href="{{ route('admin.currency.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a> &nbsp;
+                <a class="btn   btn-success " href="{{ route('admin.product-type.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a> &nbsp;
                 <button type="submit" class="btn btn-primary">Сохранить</button> &nbsp;
                 <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и
                     закрыть</button>

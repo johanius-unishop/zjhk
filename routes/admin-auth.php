@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\AnalogVendorController;
+use App\Http\Controllers\Admin\ProductTypeController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
@@ -58,5 +60,6 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource(name: 'currency', controller: CurrencyController::class);
     Route::resource(name: 'delivery', controller: DeliveryController::class);
     Route::resource(name: 'analog-vendor', controller: AnalogVendorController::class);
+    Route::resource(name: 'product-type', controller: ProductTypeController::class);
 
 });

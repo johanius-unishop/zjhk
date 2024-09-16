@@ -9,5 +9,10 @@ class DeliveryMethod extends Model
 {
     use HasFactory;
 
-    
+    protected $fillable = [
+        'name',
+        'comment',
+        'published',
+
+    ];
 }

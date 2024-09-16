@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('name_plural');
+            $table->boolean('composite')->default(0);
             $table->timestamps();
         });
 

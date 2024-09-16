@@ -310,9 +310,9 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property string $title
- * @property string $comment
- * @property string $picture
+ * @property string $name
+ * @property string|null $comment
+ * @property int $published
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMethod newModelQuery()
@@ -321,8 +321,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMethod whereComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMethod whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMethod whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMethod wherePicture($value)
- * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMethod whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMethod whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMethod wherePublished($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMethod whereUpdatedAt($value)
  */
 	class DeliveryMethod extends \Eloquent {}
@@ -601,6 +601,33 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereWidth($value)
  */
 	class Product extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $name_plural
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_kind_composite_element> $compositeElements
+ * @property-read int|null $composite_elements_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_kind_prop> $props
+ * @property-read int|null $props_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Related_product_type> $relatedTypes
+ * @property-read int|null $related_types_count
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductType whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductType whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductType whereNamePlural($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductType whereUpdatedAt($value)
+ */
+	class ProductType extends \Eloquent {}
 }
 
 namespace App\Models{

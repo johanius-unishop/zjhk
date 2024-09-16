@@ -25,7 +25,7 @@
                 <i class="fas fa-newspaper"></i>
             </div>
             <a href="{{ route('admin.currency.index') }}" class="small-box-footer">
-            Перейти <i class="fas fa-arrow-circle-right"></i>
+                Перейти <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
     </div>
@@ -65,7 +65,7 @@
                 <i class="fas fa-newspaper"></i>
             </div>
             <a href="{{ route('admin.vendor.index') }}" class="small-box-footer">
-            Перейти <i class="fas fa-arrow-circle-right"></i>
+                Перейти <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
     </div>
@@ -82,7 +82,7 @@
                 <i class="fas fa-newspaper"></i>
             </div>
             <a href="{{ route('admin.analog-vendor.index') }}" class="small-box-footer">
-            Перейти <i class="fas fa-arrow-circle-right"></i>
+                Перейти <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
     </div>
@@ -118,6 +118,43 @@
                 <i class="fas fa-newspaper"></i>
             </div>
             <a href="{{ route('admin.category.index') }}" class="small-box-footer">
+                Перейти <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="col-lg-3 col-6">
+        <!-- small card -->
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>Доставка</h3>
+                {{-- <h3>{{ @$product_count }}</h3> --}}
+                <h4>Способы доставки товаров </h4>
+            </div>
+            <div class="icon">
+                <i class="fas fa-newspaper"></i>
+            </div>
+            <a href="{{ route('admin.delivery.index') }}" class="small-box-footer">
+                Перейти <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+
+    </div>
+
+
+
+    <div class="col-lg-3 col-6">
+        <!-- small card -->
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>TODO</h3>
+                {{-- <h3>{{ @$product_count }}</h3> --}}
+                <h4>Типы товаров </h4>
+            </div>
+            <div class="icon">
+                <i class="fas fa-newspaper"></i>
+            </div>
+            <a href="{{ route('admin.product-type.index') }}" class="small-box-footer">
                 Перейти <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
