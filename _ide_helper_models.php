@@ -610,6 +610,7 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $name_plural
+ * @property int $composite
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_kind_composite_element> $compositeElements
@@ -621,6 +622,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ProductType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductType newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductType whereComposite($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductType whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductType whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductType whereName($value)
@@ -703,6 +705,7 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $name_plural
+ * @property int $composite
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_kind_composite_element> $compositeElements
@@ -714,6 +717,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product_kind whereComposite($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind whereName($value)

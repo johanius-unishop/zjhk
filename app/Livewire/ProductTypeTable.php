@@ -53,9 +53,7 @@ final class ProductTypeTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('comment')
-            ->add('composite', fn($item) => $item->active ? '✅' : '❌')
-
+            ->add('composite', fn($item) => $item->composite ? '✅' : '❌')
             ->add('created_at');
     }
 
@@ -63,13 +61,11 @@ final class ProductTypeTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name'),
+            Column::make('Наименование', 'name')->searchable(),
             Column::make('Составной', 'composite'),
-
             Column::make('Created at', 'created_at')
                 ->sortable()
                 ->searchable(),
-
             Column::action('Действия'),
         ];
     }
@@ -97,19 +93,13 @@ final class ProductTypeTable extends PowerGridComponent
     {
         // TODO Удаление
 
-        $deleted_record = ProductType::where('id', $this->delete_id)-> firstOrFail();
-        // if ($deleted_record->product_count > 0) {
-        //     $this->dispatch('toast', message: 'У этого производителя есть товары. Вначале удалите их!', notify: 'error');
-        //     return;
-        // }
+        // $deleted_record = ProductType::where('id', $this->delete_id)-> firstOrFail();
+        // // if ($deleted_record->product_count > 0) {
+        // //     $this->dispatch('toast', message: 'У этого производителя есть товары. Вначале удалите их!', notify: 'error');
+        // //     return;
+        // // }
 
-        // if ($deleted_record->seo()->exists()) {
-        //     $deleted_record->seo()->delete();
-        // }
-        // if ($deleted_record->media()->exists()) {
-        //     $deleted_record->media()->delete();
-        // }
-        $deleted_record->delete();
+        // $deleted_record->delete();
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
 
     }

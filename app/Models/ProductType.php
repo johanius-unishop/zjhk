@@ -11,11 +11,11 @@ class ProductType extends Model
     protected $table = 'product_kinds';
     protected $fillable = [
         'name',
-        'plural_namen',
+        'name_plural',
         'composite',
         'slug',
         'published',
-   
+
         'delivery_time',
 
     ];

@@ -63,9 +63,9 @@ final class CurrencyTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name'),
-            Column::make('Символ', 'charcode'),
-            Column::make('Код', 'numcode'),
+            Column::make('Наименование', 'name')->searchable(),
+            Column::make('Символ', 'charcode')->searchable(),
+            Column::make('Код', 'numcode')->searchable(), 
             Column::make('Created at', 'created_at')
                 ->sortable()
                 ->searchable(),

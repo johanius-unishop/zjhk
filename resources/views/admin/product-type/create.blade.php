@@ -2,9 +2,9 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Создание валюты')
+@section('title', 'Создание типа товаров')
 @section('content_header')
-<h1>Создание валюты</h1>
+<h1>Создание типа товаров</h1>
 @stop
 
 {{-- Content body: main page content --}}
@@ -45,7 +45,7 @@
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
                                         <label for="name_plural">Множественное число</label>
-                                        <input type="text" class="form-control" name="charcode" value="{{  old('name_plural') }}">
+                                        <input type="text" class="form-control" name="name_plural" value="{{  old('name_plural') }}">
                                         @error('name_plural')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -54,8 +54,8 @@
 
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" name="published" id="published" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product_type->composite ? 'checked ' : ' ' !!}>
-                                <label class="form-check-label" for="exampleCheck1">Опубликовано</label>
+                                <input type="checkbox" class="form-check-input" name="composite" id="composite" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product_type->composite ? 'checked ' : ' ' !!}>
+                                <label class="form-check-label" for="exampleCheck1">Композитный</label>
                             </div>
 
                         </div>

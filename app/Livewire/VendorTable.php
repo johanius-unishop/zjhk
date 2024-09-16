@@ -69,10 +69,10 @@ final class VendorTable extends PowerGridComponent
         // ->searchable()
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name')->sortable(),
+            Column::make('Наименование', 'name')->searchable(), ,
 
 
-            Column::make('Страна', 'country')->sortable(),
+            Column::make('Страна', 'country')->searchable(), ,
             Column::make('Время доставки', 'delivery_time')->sortable(),
             Column::make('Гарантия', 'warranty')->sortable(),
             Column::make('Создано', 'created_at')

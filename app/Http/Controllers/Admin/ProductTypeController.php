@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+
+use App\Http\Requests\Admin\StoreProductTypeRequest;
+use App\Http\Requests\Admin\UpdateProductTypeRequest;
 class ProductTypeController extends Controller
 {
     /**
@@ -29,15 +32,29 @@ class ProductTypeController extends Controller
             return abort(401);
         }
 
-        return view('admin.product-type.create'  );
+        return view('admin.product-type.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductTypeRequest $request)
     {
-        //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        $input = $request->all();
+        // dd(    $input);
+        $request->filled('composite') ? $input['composite'] = 1 : $input['composite'] = 0;
+        $record = ProductType::create($input);
+
+        session()->flash('success', 'Запись успешно создана');
+        if ($request->action == 'save-exit') {
+            return redirect(route('admin.product-type.index'));
+        }
+        return redirect(route('admin.product-type.edit', $record->id));
+
+
     }
 
     /**
@@ -56,16 +73,28 @@ class ProductTypeController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-        dd($productType);
-        return view('admin.product-type.edit' ,  ['product_type' => $productType]);
+
+        return view('admin.product-type.edit', ['product_type' => $productType]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductType $productType)
+    public function update(UpdateProductTypeRequest $request, ProductType $productType)
     {
-        //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        $input = $request->all();
+        $request->filled('composite') ? $input['composite'] = 1 : $input['composite'] = 0;
+        $productType->update($input);
+
+        session()->flash('success', 'Запись успешно обновлена');
+
+        if ($request->action == 'save-exit') {
+            return redirect(route('admin.product-type.index'));
+        }
+        return redirect(route('admin.product-type.edit', $productType->id));
     }
 
     /**
