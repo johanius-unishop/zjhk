@@ -26,13 +26,13 @@ class UserTableSeeder extends Seeder
         // $all_roles_in_database = Role::all()->pluck('name');
 
         $user = User::create([
-            'name' =>   'Иван',
+            'name' => 'Иван',
 
-            'last_name' =>   'Иванов',
-            'patronymic' =>   'Иванович',
+            'last_name' => 'Иванов',
+            'patronymic' => 'Иванович',
             'email' => 'admin@admin.com',
-            'password' =>  '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
-            'phone_number' =>    '790231323123',
+            'password' => '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
+            'phone_number' => '790231323123',
             'is_admin' => '1',
             'created_at' => now(),
             'updated_at' => now(),
@@ -41,17 +41,17 @@ class UserTableSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         User::find(1)->assignRole('super-admin');
 
-       app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         // $all_roles_in_database = Role::all()->pluck('name');
 
         $user = User::create([
-            'name' =>   'gordi2001@mail.ru',
+            'name' => 'gordi2001@mail.ru',
 
-            'last_name' =>   'gordi2001@mail.ru',
-            'patronymic' =>   'gordi2001@mail.ru',
+            'last_name' => 'gordi2001@mail.ru',
+            'patronymic' => 'gordi2001@mail.ru',
             'email' => 'gordi2001@mail.ru',
-            'password' =>   Hash::make('gordi2001@mail.ru'),
-            'phone_number' =>    '790231323123',
+            'password' => Hash::make('gordi2001@mail.ru'),
+            'phone_number' => '790231323123',
             'is_admin' => '1',
             'created_at' => now(),
             'updated_at' => now(),
@@ -63,13 +63,13 @@ class UserTableSeeder extends Seeder
         for ($i = 1; $i < 6; $i++) {
 
             $user = User::create([
-                'name' =>  $faker->firstName,
+                'name' => $faker->firstName,
 
                 'last_name' => $faker->lastName,
                 'patronymic' => $faker->middleName,
                 'email' => 'user' . $i . '@admin.com',
-                'password' =>  '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
-                'phone_number' =>   $faker->numerify('+79#########'),
+                'password' => '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
+                'phone_number' => $faker->numerify('+79#########'),
                 'is_admin' => '0',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -82,12 +82,12 @@ class UserTableSeeder extends Seeder
         for ($i = 7; $i < 10; $i++) {
 
             $user = User::create([
-                'name' =>  $faker->firstName,
+                'name' => $faker->firstName,
                 'last_name' => $faker->lastName,
                 'patronymic' => $faker->middleName,
                 'email' => 'user' . $i . '@admin.com',
-                'password' =>  '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
-                'phone_number' =>   $faker->numerify('+79#########'),
+                'password' => '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
+                'phone_number' => $faker->numerify('+79#########'),
                 'is_admin' => '0',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -95,15 +95,15 @@ class UserTableSeeder extends Seeder
             $user->assignRole('product-editor');
 
         }
-                for ($i = 11; $i < 13; $i++) {
+        for ($i = 11; $i < 13; $i++) {
 
             $user = User::create([
-                'name' =>  $faker->firstName,
+                'name' => $faker->firstName,
                 'last_name' => $faker->lastName,
                 'patronymic' => $faker->middleName,
                 'email' => 'user' . $i . '@admin.com',
-                'password' =>  '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
-                'phone_number' =>   $faker->numerify('+79#########'),
+                'password' => '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
+                'phone_number' => $faker->numerify('+79#########'),
                 'is_admin' => '0',
                 'created_at' => now(),
                 'updated_at' => now(),

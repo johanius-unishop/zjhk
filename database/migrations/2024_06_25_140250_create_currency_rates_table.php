@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('currency_rate', function (Blueprint $table) {
+        Schema::create('currency_rates', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(  Currency::class);
             $table->float('rate')->nullable();
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('currency_rate');
+        Schema::dropIfExists('currency_rates');
     }
 };

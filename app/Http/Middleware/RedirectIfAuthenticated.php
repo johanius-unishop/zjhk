@@ -24,6 +24,8 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
+
+        // dd( $request ,$guards );
         $guards = empty($guards) ? [null] : $guards;
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
@@ -40,9 +42,7 @@ class RedirectIfAuthenticated
     protected function redirectTo(Request $request): ?string
     {
 
-        // if($request->routeIs('teacher.*')){
-        //     return route('teacher.dashboard');
-        // }
+
         if($request->routeIs('admin.*')){
             return route('admin.dashboard');
         }
