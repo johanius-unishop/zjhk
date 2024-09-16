@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('analog_vendors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->tinyInteger('published');
+            $table->tinyInteger(column: 'published');
             $table->timestamps();
         });
     }

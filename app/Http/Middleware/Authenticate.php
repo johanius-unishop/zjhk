@@ -114,7 +114,7 @@ class Authenticate implements AuthenticatesRequests
      */
     protected function redirectTo(Request $request)
     {
-dd($request);
+// dd($request);
 
         if($request->routeIs('admin.*')){
             return route('admin.login');

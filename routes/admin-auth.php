@@ -6,15 +6,16 @@ use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\UserController;
-
+use App\Http\Controllers\Admin\DeliveryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Admin\AnalogVendorController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register');
+    // Route::get('register', [RegisteredUserController::class, 'create'])
+    //     ->name('register');
 
     // Route::post('register', [RegisteredUserController::class, 'store']);
 
@@ -55,5 +56,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource(name: 'vendor', controller: VendorController::class);
     Route::post('/images/upload', [ContentController::class, 'imagesUpload'])->name('images_upload');
     Route::resource(name: 'currency', controller: CurrencyController::class);
+    Route::resource(name: 'delivery', controller: DeliveryController::class);
+    Route::resource(name: 'analog-vendor', controller: AnalogVendorController::class);
 
 });

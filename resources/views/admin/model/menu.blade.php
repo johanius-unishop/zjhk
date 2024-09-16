@@ -69,6 +69,23 @@
             </a>
         </div>
     </div>
+
+    <div class="col-lg-3 col-6">
+        <!-- small card -->
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>TODO</h3>
+                {{-- <h3>{{ @$vendor_count }}</h3> --}}
+                <h4> Производители АНАЛОГОВ </h4>
+            </div>
+            <div class="icon">
+                <i class="fas fa-newspaper"></i>
+            </div>
+            <a href="{{ route('admin.analog-vendor.index') }}" class="small-box-footer">
+            Перейти <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
     <div class="col-lg-3 col-6">
         <!-- small card -->
         <div class="small-box bg-info">

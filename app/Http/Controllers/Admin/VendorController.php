@@ -50,14 +50,9 @@ class VendorController extends Controller
             return abort(401);
         }
 
-
         $input = $request->all();
-        // dd($input);
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
-
         $record = Vendor::create($input);
-
-
 
         $record->seo->update([
             'title' => $request->title,
@@ -79,7 +74,6 @@ class VendorController extends Controller
      */
     public function show(Vendor $vendor)
     {
-
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
@@ -92,9 +86,10 @@ class VendorController extends Controller
      */
     public function edit(Vendor $vendor)
     {
-        // Fix to seeded records
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
 
-        // dd($vendor->seo );
         if ($vendor->seo->title== '') {
             $vendor->addSEO();
         }

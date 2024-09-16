@@ -3,26 +3,25 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Currency;
+use App\Models\AnalogVendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Cache;
-use App\Http\Requests\Admin\StoreCurrencyRequest;
-use App\Http\Requests\Admin\UpdateCurrencyRequest;
 
-
-class CurrencyController extends Controller
+use App\Http\Requests\Admin\StoreAnalogVendorRequest;
+use App\Http\Requests\Admin\UpdateAnalogVendorRequest;
+class AnalogVendorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
+        //analog-vendor
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-        return view('admin.currency.index');
+        return view('admin.analog-vendor.index');
+
     }
 
     /**
@@ -30,81 +29,80 @@ class CurrencyController extends Controller
      */
     public function create()
     {
-
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-        return view('admin.currency.create');
-
-
+        return view('admin.analog-vendor.create' );
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCurrencyRequest $request)
+    public function store(StoreAnalogVendorRequest $request)
     {
-
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
 
-
         $input = $request->all();
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
-        $record = Currency::create($input);
+        $record = AnalogVendor::create($input);
 
-        session()->flash('success', 'Запись успешно создана');
+         session()->flash('success', 'Запись успешно создана');
         if ($request->action == 'save-exit') {
-            return redirect(route('admin.currency.index'));
+            return redirect(route('admin.analog-vendor.index'));
         }
-        return redirect(route('admin.currency.edit', $record->id));
+        return redirect(route('admin.analog-vendor.edit', $record->id));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Currency $currency)
+    public function show(AnalogVendor $analogVendor)
     {
-
-        if (!Gate::allows('manage content')) {
-            return abort(401);
-        }
-        return view('admin.currency.show', ['currency' => $currency]);
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Currency $currency)
+    public function edit(AnalogVendor $analogVendor)
     {
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-        return view('admin.currency.edit', ['currency' => $currency]);
-
+        return view('admin.analog-vendor.edit', ['analogVendor' => $analogVendor]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCurrencyRequest $request, Currency $currency)
+    public function update(UpdateAnalogVendorRequest $request, AnalogVendor $analogVendor)
     {
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
+
+
         $input = $request->all();
+        // dd( $input );
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
-        $currency->update($input);
+        $analogVendor->update($input);
+
 
         session()->flash('success', 'Запись успешно обновлена');
 
         if ($request->action == 'save-exit') {
-            return redirect(route('admin.currency.index'));
+            return redirect(route('admin.analog-vendor.index'));
         }
-        return redirect(route('admin.currency.edit', $currency->id));
+        return redirect(route('admin.analog-vendor.edit', $analogVendor->id));
     }
 
-
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(AnalogVendor $analogVendor)
+    {
+        //
+    }
 }
