@@ -2,12 +2,13 @@
 
 namespace App\Livewire;
 
-use App\Models\OrderItem;
+
+use App\Models\Category;
 use App\Models\Product;
-use App\Models\ProductStyle;
-use App\Models\ProductSubtype;
-use App\Models\ProductType;
 use App\Models\Vendor;
+
+use App\Models\ProductType;
+
 
 use Livewire\Attributes\On;
 use Illuminate\Support\Carbon;
@@ -30,7 +31,7 @@ final class ProductTable extends PowerGridComponent
     use LivewireAlert;
 
     public string $sortField = 'products.id';
-    public $delete_id;
+    public $deleteId;
     public string $productTypeId;
     public bool $deferLoading = true;
     public bool $showFilters = true;
@@ -105,7 +106,9 @@ final class ProductTable extends PowerGridComponent
     // }
     public function datasource(): Builder
     {
-        return Product::query()->with('vendor', 'media', 'vendor.price_segment', 'product_style', 'product_type', 'product_subtype');
+        return Product::query()->with('vendor', 'category');
+
+        // return Product::query()->with('vendor', 'media', 'vendor.price_segment', 'product_style', 'product_type', 'product_subtype');
     }
     // 'price_segment',
     public function relationSearch(): array
@@ -118,7 +121,11 @@ final class ProductTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('active', fn($item) => $item->active ? '✅' : '❌')
+            //   ->add('category')
+            ->add('category', fn($item) => e(@$item->category->name))
+            ->add('vendor', fn($item) => e(@$item->vendor->name))
+
+            // ->add('published', fn($item) => $item->published ? '✅' : '❌')
             // ->add('is_moderated', fn($item) => $item->is_moderated ? '✅' : '❌')
             // ->add('link')
             // ->add('vendor_name', fn($dish) => e(@$dish->vendor->name))
@@ -134,14 +141,17 @@ final class ProductTable extends PowerGridComponent
         return [
             Column::add()
                 ->title('ID')
-                ->field('id', 'products.id')
-                ->searchable()
+                ->field('id', 'id')
+
                 ->sortable(),
             Column::make('Наименование', 'name')
+                ->bodyAttribute('any-class', 'min-width: 200px; max-width: 600px ;white-space:normal;')
+
                 ->sortable()
                 ->searchable()
-                ->bodyAttribute('any-class', 'min-width: 600px; max-width: 600px ;white-space:normal;'),
-
+                ->bodyAttribute('any-class', 'min-width: 200px; max-width: 600px ;white-space:normal;'),
+            Column::make('Категория', 'category'),
+            Column::make('Производитель', 'vendor'),
             Column::make('Активно', 'active')
                 ->sortable()
                 ->searchable()->bodyAttribute('text-center'),
@@ -174,11 +184,15 @@ final class ProductTable extends PowerGridComponent
             Filter::boolean('active')
                 ->label('✅', '❌'),
             // Filter::boolean('is_moderated')
-                // ->label('✅', '❌'),
-            // Filter::select('vendor_name', 'vendor_id')
-            //     ->dataSource(Vendor::all())
-            //     ->optionLabel('name')
-            //     ->optionValue('id'),
+            // ->label('✅', '❌'),
+            Filter::select('vendor_name', 'vendor_id')
+                ->dataSource(Vendor::all())
+                ->optionLabel('name')
+                ->optionValue('id'),
+            Filter::select('category_name', 'category_id')
+                ->dataSource(Category::all())
+                ->optionLabel('name')
+                ->optionValue('id'),
             // Filter::select('product_style_name', 'product_style_id')
             //     ->dataSource(ProductStyle::all())
             //     ->optionLabel('name')
@@ -197,7 +211,7 @@ final class ProductTable extends PowerGridComponent
     #[\Livewire\Attributes\On('post_delete')]
     public function post_delete($rowId): void
     {
-        $this->delete_id = $rowId;
+        $this->deleteId = $rowId;
         $this->confirm('Вы действительно хотите удалить эту запись?', [
             'onConfirmed' => 'confirmed',
             'showCancelButton' => true,
@@ -208,13 +222,13 @@ final class ProductTable extends PowerGridComponent
     #[\Livewire\Attributes\On('confirmed')]
     public function confirmed()
     {
-
+        // TODO проверка на наличие товара в заказе
         // dd(auth()->user()->can('delete content'));
         if (!auth()->user()->can('delete content')) {
             $this->dispatch('toast', message: 'У ввас нет права удалять товар!', notify: 'error');
             return;
         }
-        // $item = OrderItem::where('product_id', $this->delete_id)->first();
+        $item = Product::where('id', $this->deleteId)->first();
 
         // if ($item) {
         //     $this->dispatch('toast', message: 'Этот товар использован в заказе. Вначале удалите их!', notify: 'error');
@@ -222,7 +236,7 @@ final class ProductTable extends PowerGridComponent
         // }
 
 
-        // $item = Product::where('id', $this->delete_id)->with('variant')->first();
+        // $item = Product::where('id', $this->deleteId)->with('variant')->first();
 
 
         // $item->variant()->each(function ($variant) {
@@ -230,14 +244,14 @@ final class ProductTable extends PowerGridComponent
         // });
 
 
-        // if ($item->seo()->exists()) {
-        //     $item->seo()->delete();
-        // }
-        // if ($item->media()->exists()) {
-        //     $item->media()->delete();
-        // }
+        if ($item->seo()->exists()) {
+            $item->seo()->delete();
+        }
+        if (@$item->media()->exists()) {
+            $item->media()->delete();
+        }
 
-        // $item->delete();
+        $item->delete();
 
 
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');

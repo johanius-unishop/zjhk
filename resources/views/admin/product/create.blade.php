@@ -68,10 +68,10 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-12 ">
+                            <div class="col-6 ">
                                 <label for="parent" class="form-label">Категория товара</label>
                                 <div class="input-group">
-                                    <select name="parent_id" id="parent" class="form-control">
+                                    <select name="category_id" id="parent" class="form-control">
                                         <option value="">Корневая категория</option>
                                         @foreach ($parentCategories as $category)
                                         @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
@@ -80,16 +80,43 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-6 ">
+                                <label for="parent" class="form-label">Тип товара</label>
+                                <select class="form-control  " id="product_kind_id" name="product_kind_id">
+                                    <option value="0">Выберите тип товара</option>
+                                    @foreach ($product_types as $product_type)
+                                    <option value="{{ $product_type->id }}" {{ $product_type->id ==
+                                    @$product->product_type_id ? 'selected' : '' }}>{{
+                                    $product_type->name }}
+                                    </option>
+
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 ">                                 <label for=" " class="form-label">Тип  товара</label>
-                            </div> </div>
+                            <div class="col-12 "> <label for=" " class="form-label">Тип товара</label>
+                            </div>
+                        </div>
                         <div class="row">
+                            <div class="col-6 ">
+                                <label for="vendor_id" class="form-label">Производитель</label>
+                                <select class="form-control  " id="vendor_id" name="vendor_id">
+                                    <option value="0">Выберите тип товара</option>
+                                    @foreach ($vendors as $vendor)
+                                    <option value="{{ $vendor->id }}" {{ $vendor->id ==
+                                    @$product->vendor_id ? 'selected' : '' }}>{{
+                                    $vendor->name }}
+                                    </option>
+
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="col-lg-3 col-6  ">
                                 <div class="form-group">
-                                    <label for="name">Модель</label>
-                                    <input type="text" class="form-control" name="model" value="">
-                                    @error('model')
+                                    <label for="article">Артикул</label>
+                                    <input type="text" class="form-control" name="article" value="{{  old('article') }}">
+                                    @error('article')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -106,12 +133,18 @@
 
                         </div>
                         <div class="row">
+                            <div class="col-12">
+                                <div class="form-group"> <label for="short_description">Краткое описание</label>
+                                    <textarea class="form-control" name="short_description" row="3">{{ old ('short_description' ) }}</textarea>
+
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="body_description">Описание</label>
-                                    <textarea class="form-control" name="body_description" row="5" id="summernote">{{ old ('body_description' ) }}</textarea>
+                                    <label for="description">Описание</label>
+                                    <textarea class="form-control" name="description" row="5" id="summernote">{{ old ('description' ) }}</textarea>
                                 </div>
                             </div>
                             <div class="col-12">

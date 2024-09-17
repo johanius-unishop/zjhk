@@ -10,6 +10,10 @@ use App\Http\Requests\Admin\StoreProductRequest;
 use App\Http\Requests\Admin\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\ProductType;
+use App\Models\Vendor;
+
+
+
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
@@ -67,10 +71,12 @@ class ProductController extends Controller
         // $categories = ProductType::with('subtypes')->orderBy('id', 'asc')->get();
         // foreach ($categories as $category) {
         //     $subtypes[$category->name] = $category->subtypes->pluck('name', 'id');
-        // }
+        // }        $product_styles = ProductStyle::get(array('name', 'id'));
 
+        $product_types = ProductType::get(array('name', 'id'));
+        $vendors = Vendor::get(array('name', 'id'));
         // $product_styles = ProductStyle::get(array('name', 'id'));
-        return view('admin.product.create', compact( 'parentCategories'));
+        return view('admin.product.create', compact('parentCategories', 'product_types' , 'vendors'));
 
     }
 
@@ -83,7 +89,7 @@ class ProductController extends Controller
             return abort(401);
         }
 
-        $input                    = $request->all();
+        $input = $request->all();
         // $input['product_type_id'] = ProductSubtype::where('id', $input['product_subtype_id'])->first()->product_type_id;
 
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;

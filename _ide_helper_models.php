@@ -543,11 +543,11 @@ namespace App\Models{
  * @property float|null $package_length
  * @property int $category_id
  * @property int $vendor_id
- * @property int $currency_id
+ * @property int|null $currency_id
  * @property int $chip_dip
  * @property int $elec_ru
- * @property int $moq_supplier
- * @property int $composite_product
+ * @property int|null $moq_supplier
+ * @property int|null $composite_product
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Analog> $analogies
@@ -563,6 +563,7 @@ namespace App\Models{
  * @property-read int|null $parent_complectation_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Property> $properties
  * @property-read int|null $properties_count
+ * @property-read \RalphJSmit\Laravel\SEO\Models\SEO $seo
  * @property-read \App\Models\ProductType|null $type
  * @property-read \App\Models\Vendor|null $vendor
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()

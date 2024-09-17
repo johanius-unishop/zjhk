@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
- 
+
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('order_column')->nullable();
-            $table->text('slug');
+            $table->string('slug');
             $table->string('logo')->nullable();
             $table->text('description')->nullable();
             $table->string('country')->nullable();
