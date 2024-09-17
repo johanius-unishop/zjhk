@@ -14,12 +14,12 @@ class ProductKindsTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('product_kinds')->delete();
-        
-        \DB::table('product_kinds')->insert(array (
-            0 => 
+
+        \DB::table('product_types')->delete();
+
+        \DB::table('product_types')->insert(array (
+            0 =>
             array (
                 'id' => 1,
                 'name' => 'Винт с гнездом в головке для прямоугольных промышленных разъемов',
@@ -28,7 +28,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
                 'name' => 'Винт с накатанной головкой для прямоугольных промышленных разъемов',
@@ -37,7 +37,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 3,
                 'name' => 'Герметичный кабельный ввод для многожильного кабеля',
@@ -46,7 +46,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 4,
                 'name' => 'Герметичный кабельный ввод с внешней разгрузкой от натяжения',
@@ -55,7 +55,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 5,
             'name' => 'Герметичный кабельный ввод с заземлением (EMC)',
@@ -64,7 +64,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 6,
                 'name' => 'Герметичный кабельный ввод металлический',
@@ -73,7 +73,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            6 => 
+            6 =>
             array (
                 'id' => 7,
                 'name' => 'Герметичный кабельный ввод пластиковый ',
@@ -82,7 +82,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            7 => 
+            7 =>
             array (
                 'id' => 8,
                 'name' => 'Держатель коаксиального экранированного модуля прямоугольного промышленного разъема',
@@ -91,7 +91,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            8 => 
+            8 =>
             array (
                 'id' => 9,
                 'name' => 'Заглушка металлическая',
@@ -100,7 +100,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            9 => 
+            9 =>
             array (
                 'id' => 10,
                 'name' => 'Заглушка пластиковая',
@@ -109,7 +109,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            10 => 
+            10 =>
             array (
                 'id' => 11,
                 'name' => 'Инструмент для извлечения обжимных контактов ',
@@ -118,7 +118,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            11 => 
+            11 =>
             array (
                 'id' => 12,
                 'name' => 'Коаксиальный экранированный модуль прямоугольного промышленного разъема',
@@ -127,7 +127,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            12 => 
+            12 =>
             array (
                 'id' => 13,
                 'name' => 'Кодировочное гнездо для прямоугольных промышленных разъемов',
@@ -136,7 +136,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            13 => 
+            13 =>
             array (
                 'id' => 14,
                 'name' => 'Кодировочный стопор для прямоугольных промышленных разъемов',
@@ -145,7 +145,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            14 => 
+            14 =>
             array (
                 'id' => 15,
                 'name' => 'Кодировочный штырь для прямоугольных промышленных разъемов',
@@ -154,7 +154,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            15 => 
+            15 =>
             array (
                 'id' => 16,
                 'name' => 'Комплект контактных вставок прямоугольного промышленного разъема',
@@ -163,7 +163,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            16 => 
+            16 =>
             array (
                 'id' => 17,
                 'name' => 'Контактная вставка прямоугольного промышленного разъема',
@@ -172,7 +172,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            17 => 
+            17 =>
             array (
                 'id' => 18,
                 'name' => 'Контргайка металлическая',
@@ -181,7 +181,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            18 => 
+            18 =>
             array (
                 'id' => 19,
                 'name' => 'Контргайка пластиковая',
@@ -190,7 +190,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            19 => 
+            19 =>
             array (
                 'id' => 20,
                 'name' => 'Корпус прямоугольного промышленного разъема',
@@ -199,7 +199,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            20 => 
+            20 =>
             array (
                 'id' => 21,
                 'name' => 'Корпус прямоугольного промышленного разъема с крышкой',
@@ -208,7 +208,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            21 => 
+            21 =>
             array (
                 'id' => 22,
                 'name' => 'Крышка для прямоугольного промышленного разъема',
@@ -217,7 +217,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            22 => 
+            22 =>
             array (
                 'id' => 23,
                 'name' => 'Модульная вставка-заглушка прямоугольного промышленного разъема',
@@ -226,7 +226,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            23 => 
+            23 =>
             array (
                 'id' => 24,
                 'name' => 'Модульная контактная вставка прямоугольного промышленного разъема',
@@ -235,7 +235,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            24 => 
+            24 =>
             array (
                 'id' => 25,
                 'name' => 'Модульная рамка прямоугольного промышленного разъема',
@@ -244,7 +244,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            25 => 
+            25 =>
             array (
                 'id' => 26,
                 'name' => 'Модульное кодировочное гнездо для прямоугольных промышленных разъемов',
@@ -253,7 +253,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            26 => 
+            26 =>
             array (
                 'id' => 27,
                 'name' => 'Модульный держатель пневмосоединения для прямоугольного промышленного разъема ',
@@ -262,7 +262,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            27 => 
+            27 =>
             array (
                 'id' => 28,
                 'name' => 'Модульный кодировочный стопор для прямоугольных промышленных разъемов',
@@ -271,7 +271,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            28 => 
+            28 =>
             array (
                 'id' => 29,
                 'name' => 'Модульный кодировочный штырь для прямоугольных промышленных разъемов',
@@ -280,7 +280,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            29 => 
+            29 =>
             array (
                 'id' => 30,
                 'name' => 'Монтажная рамка для прямоугольного промышленного разъема',
@@ -289,7 +289,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            30 => 
+            30 =>
             array (
                 'id' => 31,
                 'name' => 'Муфта для металлорукава прямая металлическая',
@@ -298,7 +298,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            31 => 
+            31 =>
             array (
                 'id' => 32,
             'name' => 'Муфта для металлорукава прямая пластиковая (быстрого монтажа)',
@@ -307,7 +307,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            32 => 
+            32 =>
             array (
                 'id' => 33,
                 'name' => 'Обжимной контакт',
@@ -316,7 +316,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            33 => 
+            33 =>
             array (
                 'id' => 34,
             'name' => 'Обжимные клещи (кримпер)',
@@ -325,7 +325,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            34 => 
+            34 =>
             array (
                 'id' => 35,
                 'name' => 'Переходник металлический',
@@ -334,7 +334,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            35 => 
+            35 =>
             array (
                 'id' => 36,
                 'name' => 'Переходник пластиковый',
@@ -343,7 +343,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            36 => 
+            36 =>
             array (
                 'id' => 37,
                 'name' => 'Пневматический наконечник для модульных прямоугольных промышленных разъемов',
@@ -352,7 +352,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            37 => 
+            37 =>
             array (
                 'id' => 38,
             'name' => 'Прямоугольный промышленный соединитель (комплект)',
@@ -361,7 +361,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            38 => 
+            38 =>
             array (
                 'id' => 39,
             'name' => 'Прямоугольный промышленный соединитель (полукомплект)',
@@ -370,7 +370,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            39 => 
+            39 =>
             array (
                 'id' => 40,
                 'name' => 'Футорка металлическая',
@@ -379,7 +379,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            40 => 
+            40 =>
             array (
                 'id' => 41,
                 'name' => 'Футорка пластиковая',
@@ -388,7 +388,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            41 => 
+            41 =>
             array (
                 'id' => 42,
                 'name' => 'Стыковочная рамка для прямоугольного промышленного разъема',
@@ -397,7 +397,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            42 => 
+            42 =>
             array (
                 'id' => 43,
                 'name' => 'Штифт механического кодирования',
@@ -406,7 +406,7 @@ class ProductKindsTableSeeder extends Seeder
                 'created_at' => '2024-06-28 15:58:45',
                 'updated_at' => '2024-06-28 15:58:47',
             ),
-            43 => 
+            43 =>
             array (
                 'id' => 44,
                 'name' => 'Контактная вставка RJ45 в корпусе',
@@ -416,7 +416,7 @@ class ProductKindsTableSeeder extends Seeder
                 'updated_at' => '2024-08-23 11:36:04',
             ),
         ));
-        
-        
+
+
     }
 }

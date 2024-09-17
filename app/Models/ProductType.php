@@ -8,20 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class ProductType extends Model
 {
     use HasFactory;
-    protected $table = 'product_kinds';
+    protected $table = 'product_types';
     protected $fillable = [
         'name',
         'name_plural',
         'composite',
         'slug',
         'published',
-
         'delivery_time',
 
     ];
     public function props()
     {
-        return $this->hasMany(Product_kind_prop::class, 'product_kind_id');
+        return $this->hasMany(ProductTypeProperty::class, 'product_kind_id');
     }
 
     public function relatedTypes(){

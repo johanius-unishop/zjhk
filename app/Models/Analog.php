@@ -12,6 +12,6 @@ class Analog extends Model
 
     public function vendor()
     {
-        return $this->belongsTo(Analog_vendor::class, 'analog_vendor_id');
+        return $this->belongsTo(AnalogVendor::class, 'analog_vendor_id');
     }
 }

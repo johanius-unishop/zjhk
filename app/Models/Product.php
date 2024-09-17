@@ -11,6 +11,11 @@ class Product extends Model
     protected $table = 'products';
     protected $guarded = ['id'];
 
+    public function type()
+    {
+        return $this->belongsTo(ProductType::class, 'product_kind_id');
+    }
+
     public function kinds()
     {
         return $this->belongsTo(Product_kind::class, 'product_kind_id');

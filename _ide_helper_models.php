@@ -74,6 +74,7 @@ namespace App\Models{
  * @property int $analog_vendor_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\AnalogVendor|null $vendor
  * @method static \Illuminate\Database\Eloquent\Builder|Analog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Analog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Analog query()
@@ -522,33 +523,33 @@ namespace App\Models{
  * @property string $article
  * @property string $short_description
  * @property string $description
- * @property string $barcode
- * @property float $supplier_price
- * @property float $price
- * @property float $special_price
- * @property int $pieces_per_pack
- * @property int $composite_product
- * @property int $moq_supplier
- * @property int $stock
- * @property int $minimum_stock
- * @property int $sorting
- * @property string $tn_ved
+ * @property string|null $barcode
+ * @property float|null $supplier_price
+ * @property float|null $price
+ * @property float|null $special_price
+ * @property int|null $pieces_per_pack
+ * @property int|null $stock
+ * @property int|null $minimum_stock
+ * @property int|null $sorting
+ * @property string|null $tn_ved
  * @property int $published
- * @property float $weight
- * @property float $width
- * @property float $height
- * @property float $length
- * @property float $package_weight
- * @property float $package_width
- * @property float $package_height
- * @property float $package_length
+ * @property float|null $weight
+ * @property float|null $width
+ * @property float|null $height
+ * @property float|null $length
+ * @property float|null $package_weight
+ * @property float|null $package_width
+ * @property float|null $package_height
+ * @property float|null $package_length
  * @property int $category_id
  * @property int $vendor_id
  * @property int $currency_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int $chip_dip
  * @property int $elec_ru
+ * @property int $moq_supplier
+ * @property int $composite_product
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Analog> $analogies
  * @property-read int|null $analogies_count
  * @property-read \App\Models\Category|null $category
@@ -562,6 +563,7 @@ namespace App\Models{
  * @property-read int|null $parent_complectation_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Property> $properties
  * @property-read int|null $properties_count
+ * @property-read \App\Models\ProductType|null $type
  * @property-read \App\Models\Vendor|null $vendor
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
@@ -615,7 +617,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_kind_composite_element> $compositeElements
  * @property-read int|null $composite_elements_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_kind_prop> $props
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductTypeProperty> $props
  * @property-read int|null $props_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Related_product_type> $relatedTypes
  * @property-read int|null $related_types_count
@@ -630,6 +632,35 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ProductType whereUpdatedAt($value)
  */
 	class ProductType extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $sorting
+ * @property int $section
+ * @property int $product_kind_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\ProductType|null $productType
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Property> $values
+ * @property-read int|null $values_count
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty ordered(string $direction = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereProductKindId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereSection($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereSorting($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereUpdatedAt($value)
+ */
+	class ProductTypeProperty extends \Eloquent implements \Spatie\EloquentSortable\Sortable {}
 }
 
 namespace App\Models{
