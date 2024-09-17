@@ -38,8 +38,9 @@ final class ProductTypeTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return ProductType::query();
+        // return ProductType::query();
         // ->whereIsRoot() ->withCount('childrens')       return Category::query()->where('root_id', null)->withCount('childrens');
+        return ProductType::query()->withCount('props');
 
     }
 
@@ -52,7 +53,9 @@ final class ProductTypeTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name')
+            ->add('name', function ($item) {
+                return $item->name . ' (' . $item->props_count . ')';
+            })
             ->add('composite', fn($item) => $item->composite ? '✅' : '❌')
             ->add('created_at');
     }

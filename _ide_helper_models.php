@@ -617,6 +617,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_kind_composite_element> $compositeElements
  * @property-read int|null $composite_elements_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductTypeProperty> $old_props
+ * @property-read int|null $old_props_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductTypeProperty> $props
  * @property-read int|null $props_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Related_product_type> $relatedTypes

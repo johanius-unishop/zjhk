@@ -11,6 +11,17 @@ class ProductTypeProperty extends Model implements Sortable
     use HasFactory;
     use SortableTrait;
     protected $table = 'product_kinds_props';
+
+    protected $fillable = [
+        'name',
+        'product_kind_id',
+        'sorting',
+        'section',
+
+    ];
+
+
+
     public $sortable = [
         'order_column_name' => 'order_column',
         'sort_when_creating' => true,

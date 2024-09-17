@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 
 use App\Models\{PriceSegment, Product, ProductClass, ProductStyle, Filter};
 
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
-use App\Models\ProductSubtype;
+use App\Http\Requests\Admin\StoreProductRequest;
+use App\Http\Requests\Admin\UpdateProductRequest;
+use App\Models\Category;
 use App\Models\ProductType;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Gate;
@@ -63,14 +63,14 @@ class ProductController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
+        $parentCategories = Category::getCategoriesAsTree();
+        // $categories = ProductType::with('subtypes')->orderBy('id', 'asc')->get();
+        // foreach ($categories as $category) {
+        //     $subtypes[$category->name] = $category->subtypes->pluck('name', 'id');
+        // }
 
-        $categories = ProductType::with('subtypes')->orderBy('id', 'asc')->get();
-        foreach ($categories as $category) {
-            $subtypes[$category->name] = $category->subtypes->pluck('name', 'id');
-        }
-
-        $product_styles = ProductStyle::get(array('name', 'id'));
-        return view('admin.product.create', compact('product_styles', 'subtypes'));
+        // $product_styles = ProductStyle::get(array('name', 'id'));
+        return view('admin.product.create', compact( 'parentCategories'));
 
     }
 
@@ -84,11 +84,11 @@ class ProductController extends Controller
         }
 
         $input                    = $request->all();
-        $input['product_type_id'] = ProductSubtype::where('id', $input['product_subtype_id'])->first()->product_type_id;
+        // $input['product_type_id'] = ProductSubtype::where('id', $input['product_subtype_id'])->first()->product_type_id;
 
-        $request->filled('is_moderated') ? $input['is_moderated'] = 1 : $input['is_moderated'] = 0;
-        $request->filled('active') ? $input['active'] = 1 : $input['active'] = 0;
-        $request->filled('in_stock') ? $input['in_stock'] = 1 : $input['in_stock'] = 0;
+        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
+        // $request->filled('active') ? $input['active'] = 1 : $input['active'] = 0;
+        // $request->filled('in_stock') ? $input['in_stock'] = 1 : $input['in_stock'] = 0;
 
         $record = Product::create($input);
 

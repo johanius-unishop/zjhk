@@ -23,6 +23,12 @@ class ProductType extends Model
         return $this->hasMany(ProductTypeProperty::class, 'product_kind_id');
     }
 
+    public function old_props()
+    {
+        return $this->hasMany(ProductTypeProperty::class, 'product_kind_id');
+    }
+
+
     public function relatedTypes(){
         return $this->hasMany(Related_product_type::class, 'product_kind_id');
     }
