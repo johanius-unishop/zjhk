@@ -11,7 +11,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Product extends Model implements HasMedia
 {
@@ -112,9 +112,6 @@ class Product extends Model implements HasMedia
 
     public static function storeAnalog(Product $product, $analogs)
     {
-
-
-        // 'product_id' => $product->id,'analog_vendor_id' =>  $analog['vendor_id'],
         try {
             foreach ($analogs as $analog) {
                 Analog::upsert([
@@ -124,11 +121,15 @@ class Product extends Model implements HasMedia
         }
         catch (\Throwable $th) {
             throw $th;
-
         }
-
         return true;
      }
 
+     protected function frontUrl(): Attribute
+     {
+         return new Attribute(
+             get: fn() =>  config('app.url') . '/' . "items" . '/' . $this->id ,
 
+         );
+     }
 }

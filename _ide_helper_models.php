@@ -564,6 +564,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_composite_element> $composite
  * @property-read int|null $composite_count
  * @property-read \App\Models\Currency|null $currency
+ * @property-read mixed $front_url
  * @property-read \App\Models\Product_kind|null $kinds
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count

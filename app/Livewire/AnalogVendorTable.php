@@ -53,8 +53,8 @@ final class AnalogVendorTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name');
-
+            ->add('name')
+        ->add('published', fn($item) => $item->published ? '✅' : '❌');
         // ->add('name', function ($item) {
         //     return $item->name . ' (' . $item->product_count . ')';
         // });
@@ -70,7 +70,7 @@ final class AnalogVendorTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name')->sortable(),
-
+             Column::make('Опубликовано ', 'published'),
 
             // Column::make('Страна', 'country')->sortable(),
             // Column::make('Время доставки', 'delivery_time')->sortable(),

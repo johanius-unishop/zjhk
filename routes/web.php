@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\AdminOrderController;
 // use App\Http\Controllers\AdminProductController;
 // use App\Http\Controllers\AdminProductKindController;
-// use App\Http\Controllers\ProductController;
+  use App\Http\Controllers\ProductController;
 // use App\Http\Controllers\ProfileController;
 
   use App\Http\Controllers\TestController;
@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/items/{product}', [ProductController::class, 'testShow'])->name('testShow');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
