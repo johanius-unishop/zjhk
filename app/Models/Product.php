@@ -7,17 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+ 
 
-
-class Product extends Model
+class Product extends Model implements HasMedia
 {
 
+    use HasFactory;
+
+
+    use InteractsWithMedia;
     use HasSEO;
     use HasSlug;
-    use HasFactory;
     protected $table = 'products';
     protected $guarded = ['id'];
-/**
+    /**
      * Get the options for generating the slug.
      */
     public function getSlugOptions(): SlugOptions
@@ -25,6 +32,26 @@ class Product extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(368)
+            ->height(232)
+            ->nonQueued();
+
+        // $this
+        //     ->addMediaConversion('responsive')
+        //     ->format('webp')
+        //     ->quality(80)
+        //     ->withResponsiveImages()
+        //     ->nonQueued();
+    }
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('images');
     }
     public function type()
     {

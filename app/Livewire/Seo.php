@@ -18,8 +18,8 @@ class Seo extends Component
     public function mount($record = null)
     {
 
-        $this->record = $record;
-        $this->seo = @$this->record->seo;
+        $this->record        = $record;
+        $this->seo           = @$this->record->seo;
         $this->title         = @$this->seo->title;
         $this->keywords      = @$this->seo->keywords;
         $this->description   = @$this->seo->description;
@@ -38,24 +38,20 @@ class Seo extends Component
                 // 'robots' => 'index, follow',
                 'canonical_url' => $this->canonical_url,
             ]);
-            $this->dispatch('toast', message: 'SEO обновлено.' , notify: 'success');
+            $this->dispatch('toast', message: 'SEO обновлено.', notify: 'success');
             //   dd($this->record ,$this->record->seo , $this->title, $this->keywords, $this->description, $this->canonical_url);
         }
         catch (\Throwable $th) {
-            //throw $th;
-            $this->dispatch('toast', message: 'Ошибка! SEO не обновлено.'  . $th->getMessage(),  notify: 'error');
+            $this->dispatch('toast', message: 'Ошибка! SEO не обновлено.' . $th->getMessage(), notify: 'error');
         }
-
-          $this->updateSeo($this->record);
+        $this->updateSeo($this->record);
     }
 
 
-    public function updateSeo( $record)
+    public function updateSeo($record)
     {
 
-
         $this->seo           = $record->seo;
-        //  dd($this->record ,$this->seo);
         $this->title         = $this->seo->title;
         $this->keywords      = $this->seo->keywords;
         $this->description   = $this->seo->description;

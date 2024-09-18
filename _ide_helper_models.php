@@ -519,7 +519,8 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $product_kind_id
- * @property string $title
+ * @property string $name
+ * @property string|null $slug
  * @property string $article
  * @property string $short_description
  * @property string $description
@@ -532,7 +533,7 @@ namespace App\Models{
  * @property int|null $minimum_stock
  * @property int|null $sorting
  * @property string|null $tn_ved
- * @property int $published
+ * @property int|null $published
  * @property float|null $weight
  * @property float|null $width
  * @property float|null $height
@@ -546,6 +547,10 @@ namespace App\Models{
  * @property int|null $currency_id
  * @property int $chip_dip
  * @property int $elec_ru
+ * @property int $ozon
+ * @property int $ym
+ * @property int $vi
+ * @property int|null $priority
  * @property int|null $moq_supplier
  * @property int|null $composite_product
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -559,6 +564,8 @@ namespace App\Models{
  * @property-read int|null $composite_count
  * @property-read \App\Models\Currency|null $currency
  * @property-read \App\Models\Product_kind|null $kinds
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Product> $parentComplectation
  * @property-read int|null $parent_complectation_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Property> $properties
@@ -583,27 +590,32 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereLength($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereMinimumStock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereMoqSupplier($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereOzon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePackageHeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePackageLength($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePackageWeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePackageWidth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePiecesPerPack($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePriority($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereProductKindId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePublished($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereShortDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSorting($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSpecialPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereStock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSupplierPrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereTnVed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereVendorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereVi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereWeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereWidth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereYm($value)
  */
-	class Product extends \Eloquent {}
+	class Product extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
 
 namespace App\Models{

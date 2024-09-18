@@ -74,9 +74,9 @@ class ProductController extends Controller
         // }        $product_styles = ProductStyle::get(array('name', 'id'));
 
         $product_types = ProductType::get(array('name', 'id'));
-        $vendors = Vendor::get(array('name', 'id'));
+        $vendors       = Vendor::get(array('name', 'id'));
         // $product_styles = ProductStyle::get(array('name', 'id'));
-        return view('admin.product.create', compact('parentCategories', 'product_types' , 'vendors'));
+        return view('admin.product.create', compact('parentCategories', 'product_types', 'vendors'));
 
     }
 
@@ -123,23 +123,23 @@ class ProductController extends Controller
         if (!Gate::allows('manage content') && !Gate::allows('manage image')) {
             return abort(401);
         }
-        $product->load('product_style', 'vendor', 'product_subtype');
 
-        $price_segments = PriceSegment::get(['name', 'id']);
-
-        $categories = ProductType::with('subtypes')->orderBy('id', 'asc')->get();
-        foreach ($categories as $category) {
-            $subtypes[$category->name] = $category->subtypes->pluck('name', 'id');
+        // Fix to seeded records
+        if ($product->seo->title == '') {
+            $product->addSEO();
         }
-        $product_styles = ProductStyle::get(['name', 'id']);
+        $product->load('vendor', 'type');
+        // 'product_style',
+        $parentCategories = Category::getCategoriesAsTree();
+        // $categories = ProductType::with('subtypes')->orderBy('id', 'asc')->get();
+        // foreach ($categories as $category) {
+        //     $subtypes[$category->name] = $category->subtypes->pluck('name', 'id');
+        // }        $product_styles = ProductStyle::get(array('name', 'id'));
 
-        $product_filters = Filter::where('product_subtype_id', $product->product_subtype_id)->get(['name', 'id']);
-        if (!Gate::allows('manage content')) {
-            return view('admin.product.edit_picture', compact('product', 'price_segments', 'product_styles', 'subtypes', 'product_filters'));
+        $product_types = ProductType::get(array('name', 'id'));
+        $vendors       = Vendor::get(array('name', 'id'));
 
-        }
-
-        return view('admin.product.edit', compact('product', 'price_segments', 'product_styles', 'subtypes', 'product_filters'));
+        return view('admin.product.edit', compact('product', 'vendors', 'product_types', 'parentCategories'));
     }
 
     /**
