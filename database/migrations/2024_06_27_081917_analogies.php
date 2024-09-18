@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('analogies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('article');
+            $table->string('name')->nullable();
+            $table->text('article')->nullable();
             $table->foreignIdFor(Product::class);
             $table->foreignIdFor(AnalogVendor::class); //analog_vendor_id
             $table->timestamps();
+            $table->unique(['product_id','analog_vendor_id']);
         });
     }
 

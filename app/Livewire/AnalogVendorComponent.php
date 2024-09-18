@@ -22,12 +22,12 @@ class AnalogVendorComponent extends Component
 
         $analogTable = [];
         foreach ($analogVendors as $analogVendor) {
-            $analogTable[$analogVendor->id]['vendor_id'] = $analogVendor->id;
+            $analogTable[$analogVendor->id]['vendor_id']   = $analogVendor->id;
             $analogTable[$analogVendor->id]['vendor_name'] = $analogVendor->name;
-            $analogTable[$analogVendor->id]['name']    = @$analogs->first(function ($item) use ($analogVendor) {
+            $analogTable[$analogVendor->id]['name']        = @$analogs->first(function ($item) use ($analogVendor) {
                 return $item->analog_vendor_id === $analogVendor->id;
             })->name;
-            $analogTable[$analogVendor->id]['article'] = @$analogs->first(function ($item) use ($analogVendor) {
+            $analogTable[$analogVendor->id]['article']     = @$analogs->first(function ($item) use ($analogVendor) {
                 return $item->analog_vendor_id === $analogVendor->id;
             })->article;
         }
@@ -60,17 +60,18 @@ class AnalogVendorComponent extends Component
     {
 
 
-        dd($this->analogTable  );
+        // dd($this->analogTable);
 
         try {
-
+            Product::storeAnalog($this->record, $this->analogTable);
             $this->dispatch('toast', message: 'Аналоги  обновлены.', notify: 'success');
             //   dd($this->record ,$this->record->seo , $this->title, $this->keywords, $this->description, $this->canonical_url);
         }
         catch (\Throwable $th) {
             $this->dispatch('toast', message: 'Ошибка! Не удалось обновить аналоги.' . $th->getMessage(), notify: 'error');
         }
-        $this->updateSeo($this->record);
+        $this->dispatch('$refresh');
+
     }
 
 }

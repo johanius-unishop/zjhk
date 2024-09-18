@@ -11,7 +11,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
- 
+
 
 class Product extends Model implements HasMedia
 {
@@ -110,6 +110,25 @@ class Product extends Model implements HasMedia
         return $this->hasMany(Product_composite_element::class, 'product_element_id', 'id');
     }
 
+    public static function storeAnalog(Product $product, $analogs)
+    {
+
+
+        // 'product_id' => $product->id,'analog_vendor_id' =>  $analog['vendor_id'],
+        try {
+            foreach ($analogs as $analog) {
+                Analog::upsert([
+                    ['product_id' => $product->id,'analog_vendor_id' =>  $analog['vendor_id'],  'name' => $analog['name'], 'article' => $analog['article']],
+                ], uniqueBy: ['product_id', 'analog_vendor_id'], update: ['name', 'article']);
+            }
+        }
+        catch (\Throwable $th) {
+            throw $th;
+
+        }
+
+        return true;
+     }
 
 
 }

@@ -68,12 +68,13 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property string $name
- * @property string $article
+ * @property string|null $name
+ * @property string|null $article
  * @property int $product_id
  * @property int $analog_vendor_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Product|null $product
  * @property-read \App\Models\AnalogVendor|null $vendor
  * @method static \Illuminate\Database\Eloquent\Builder|Analog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Analog newQuery()
