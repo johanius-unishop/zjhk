@@ -3,10 +3,10 @@
     // Summernote
     $(function () {
       $('#summernote').summernote({
-        height:300,
+        height:200,
         lang:'ru-RU',
-        minHeight:500,
-        maxHeight:800,
+        minHeight:200,
+        maxHeight:500,
         placeholder: 'Введите текст',
         callbacks: {
             onImageUpload: function(image) {
