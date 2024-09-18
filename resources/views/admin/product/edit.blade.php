@@ -30,6 +30,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Характеристики</a>
+                        </li>        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-four-analog-tab" data-toggle="pill" href="#custom-tabs-four-analog" role="tab" aria-controls="custom-tabs-four-analog" aria-selected="false">Аналоги</a>
                         </li>
                         {{-- <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-five-settings-tab" data-toggle="pill"
@@ -168,6 +170,12 @@
                         <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
                             {{-- <livewire:product-variant-component :record="@$product" /> --}}
                             <livewire:test-component :record="@$product" />
+
+                        </div>
+
+                        <div class="tab-pane fade" id="custom-tabs-four-analog" role="tabpanel" aria-labelledby="custom-tabs-four-analog-tab">
+                            {{-- <livewire:product-variant-component :record="@$product" /> --}}
+                            <livewire:analog-vendor-component :record="@$product" />
 
                         </div>
                     </div>
