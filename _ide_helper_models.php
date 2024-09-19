@@ -657,14 +657,12 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
- * @property int $sorting
+ * @property int|null $sorting
+ * @property int|null $order_column
+ * @property int|null $product_type_id
  * @property int $section
- * @property int $product_kind_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\ProductType|null $productType
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Property> $values
- * @property-read int|null $values_count
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty ordered(string $direction = 'asc')
@@ -672,7 +670,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereProductKindId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereOrderColumn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereProductTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereSection($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereSorting($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereUpdatedAt($value)
@@ -756,12 +755,6 @@ namespace App\Models{
  * @property int $composite
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_kind_composite_element> $compositeElements
- * @property-read int|null $composite_elements_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_kind_prop> $props
- * @property-read int|null $props_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Related_product_type> $relatedTypes
- * @property-read int|null $related_types_count
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind query()
@@ -803,6 +796,7 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property int $sorting
+ * @property int|null $order_column
  * @property int $section
  * @property int $product_kind_id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -815,6 +809,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereOrderColumn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereProductKindId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereSection($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereSorting($value)

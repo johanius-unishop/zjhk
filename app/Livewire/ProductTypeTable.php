@@ -118,7 +118,7 @@ final class ProductTypeTable extends PowerGridComponent
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.product-type.edit', ['product_type' => $row->id]),
-            Button::add('delivery')
+              Button::add('delivery')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
                 ->dispatch('post_delete', ['rowId' => $row->id]),

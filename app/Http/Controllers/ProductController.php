@@ -7,6 +7,9 @@ class ProductController extends Controller
 {
     public function show(Product $product)
     {
+
+
+
         $viewModel = new ProductViewModel($product);
 
         return view('product-card', compact('viewModel'));
@@ -15,8 +18,9 @@ class ProductController extends Controller
 
     public function testShow(Product $product)
     {
-        $viewModel = new ProductViewModel($product);
+        $analogs =(Product::getAnalogies($product));
+        // /$viewModel = new ProductViewModel($product);
 
-        return view('front.product.test_show', compact('viewModel'));
+        return view('front.product.test_show', compact('analogs'));
     }
 }

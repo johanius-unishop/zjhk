@@ -55,12 +55,12 @@ class Product extends Model implements HasMedia
     }
     public function type()
     {
-        return $this->belongsTo(ProductType::class, 'product_kind_id');
+        return $this->belongsTo(ProductType::class, 'product_type_id');
     }
 
     public function kinds()
     {
-        return $this->belongsTo(Product_kind::class, 'product_kind_id');
+        return $this->belongsTo(Product_kind::class, 'product_type_id');
     }
 
     public function properties()
@@ -110,6 +110,26 @@ class Product extends Model implements HasMedia
         return $this->hasMany(Product_composite_element::class, 'product_element_id', 'id');
     }
 
+
+
+
+    public static function getAnalogies($product): array
+    {
+        // Аналоги товара
+        $analogies = [];
+
+        // Получаем аналоги товара с предзагрузкой вендора
+        foreach ($product->analogies()->with('vendor')->get() as $analog) {
+            // Если есть имя или артикул и вендор опубликован
+            if (($analog->name || $analog->article) && $analog->vendor->published) {
+                // Формируем строку "название (артикул)" или просто название/артикул, если чего-то нет
+                $analogies[$analog->vendor->name] = $analog->name
+                    ? ($analog->article ? "$analog->name ($analog->article)" : $analog->name)
+                    : $analog->article;
+            }
+        }
+        return $analogies;
+    }
     public static function storeAnalog(Product $product, $analogs)
     {
         try {
@@ -132,4 +152,7 @@ class Product extends Model implements HasMedia
 
          );
      }
+
+
+
 }

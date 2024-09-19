@@ -61,5 +61,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource(name: 'delivery', controller: DeliveryController::class);
     Route::resource(name: 'analog-vendor', controller: AnalogVendorController::class);
     Route::resource(name: 'product-type', controller: ProductTypeController::class);
-
+ 
+    Route::get('product-type/{product-type}/up', [ProductTypeController::class, 'up'])->name('product-type.up');
+    Route::get('product-type/{product-type}/down', [ProductTypeController::class, 'down'])->name('product-type.down');
 });

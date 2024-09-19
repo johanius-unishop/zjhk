@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('sorting')->nullable();
- 
+           $table->integer(column: 'order_column')->nullable();
             $table->foreignId('product_type_id')->nullable()->index();
             $table->boolean('section')->default(0);
 

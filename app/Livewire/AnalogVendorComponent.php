@@ -41,11 +41,7 @@ class AnalogVendorComponent extends Component
         $this->analogs       = Analog::where('product_id', $this->record->id)->get();
         $this->analogTable   = $this->fillAnalogTable($this->analogVendors, $this->analogs);
 
-
-        // dd($this->record, $this->analogs, $this->analogTable);
-        // $this->productType = ProductType::where('id', $this->record->product_kind_id)->with('props')->first();
-        // $this->props       = $this->productType->props;
-        // dd($this->record, $this->productType, $this->props);
+ 
     }
 
     public function render()

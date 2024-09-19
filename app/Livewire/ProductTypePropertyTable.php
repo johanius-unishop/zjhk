@@ -16,6 +16,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Illuminate\Support\Facades\Log;
 
 final class ProductTypePropertyTable extends PowerGridComponent
 {
@@ -23,14 +24,15 @@ final class ProductTypePropertyTable extends PowerGridComponent
     use LivewireAlert;
     public string $parent_category;
     public $delete_id;
+    public $property_id;
     public function setUp(): array
     {
- 
+
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput()->withoutLoading(),
             Footer::make()
 
@@ -41,7 +43,7 @@ final class ProductTypePropertyTable extends PowerGridComponent
     public function datasource(): Builder
     {
         // return ProductTypeProperty::query();->withCount('childrens')
-        return ProductTypeProperty::query()->where('product_kind_id', $this->parent_category);
+        return ProductTypeProperty::query()->where('product_type_id', $this->parent_category);
     }
 
     public function relationSearch(): array
@@ -78,10 +80,64 @@ final class ProductTypePropertyTable extends PowerGridComponent
     }
 
 
+    #[\Livewire\Attributes\On('up')]
+    public function property_up($rowId): void
+    {
+        // $this->property_id = $rowId;
+        try {
+            $property = ProductTypeProperty::find($rowId);
 
+            // dd( $property);
+            $property->moveOrderUp();
+            $this->dispatch('toast', message: 'Запись успешно поднята вверх.', notify: 'success');
+
+        }
+        catch (\Throwable $th) {
+            //throw $th;
+
+            Log::info('Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
+
+            $this->dispatch('toast', message: ' Не удалось поднять  запись.' . $th->getMessage(), notify: 'error');
+        }
+    }
+
+
+    #[\Livewire\Attributes\On(event: 'down')]
+    public function property_down($rowId): void
+    {
+        // $this->property_id = $rowId;
+        try {
+            $property = ProductTypeProperty::find($rowId);
+
+            // dd( $property);
+            $property->moveOrderDown();
+            $this->dispatch('toast', message: 'Запись успешно опущена вниз.', notify: 'success');
+
+        }
+        catch (\Throwable $th) {
+            throw $th;
+
+            Log::info($property->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
+
+            $this->dispatch('toast', message: ' Не удалось опустить  запись.' . $th->getMessage(), notify: 'error');
+        }
+
+    }
     public function actions(ProductTypeProperty $row): array
     {
         return [
+            // Button::add('view')
+            //     ->slot('<i class="fas fa-edit"></i>')
+            //     ->class('btn btn-primary')
+            //     ->route('admin.product-type.edit', ['product-type' => $row->id]),
+            Button::add('up')
+                ->slot('<i class="fas fa-arrow-up"></i>')
+                ->class('btn btn-success')
+                ->dispatch('up', ['rowId' => $row->id]),
+            Button::add('down')
+                ->slot('<i class="fas fa-arrow-down"></i>')
+                ->class('btn btn-success')
+                ->dispatch('down', ['rowId' => $row->id]),
             Button::add('edit')
                 ->slot('Edit: ' . $row->id)
                 ->id()
@@ -90,15 +146,37 @@ final class ProductTypePropertyTable extends PowerGridComponent
         ];
     }
 
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
+    // public function down($catalog_id)
+    // {
+    //     try {
+    //         $catalog = ProductVariant::find($catalog_id);
+    //         $catalog->moveOrderDown();
+    //         $this->dispatch('toast', message: 'Запись успешно опущена вниз.', notify: 'success');
+
+    //     }
+    //     catch (\Throwable $th) {
+    //         //throw $th;
+    //         $this->dispatch('toast', message: ' Не удалось поднять вариант.' . $th->getMessage(), notify: 'error');
+    //     }
+    //     $this->record->load('variant');
+    //     $this->variants = $this->record->variant->sortBy('order_column');
+    //     $this->dispatch('$refresh');
+    // }
+
+
+    // public function up($catalog_id)
+    // {
+    //     try {
+    //         $catalog = ProductVariant::find($catalog_id);
+    //         $catalog->moveOrderUp();
+    //         $this->dispatch('toast', message: 'Запись успешно поднята вверх.', notify: 'success');
+    //     }
+    //     catch (\Throwable $th) {
+    //         //throw $th;
+    //         $this->dispatch('toast', message: ' Не удалось поднять вариант.' . $th->getMessage(), notify: 'error');
+    //     }
+    //     $this->record->load('variant');
+    //     $this->variants = $this->record->variant->sortBy('order_column');
+    //     $this->dispatch('$refresh');
+    // }
 }

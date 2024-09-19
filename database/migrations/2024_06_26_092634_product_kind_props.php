@@ -16,6 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('sorting');
+            $table->integer(column: 'order_column')->nullable();
+
             $table->boolean('section')->default(0);
             $table->foreignIdFor(Product_kind::class);
             $table->timestamps();
