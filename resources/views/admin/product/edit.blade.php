@@ -89,12 +89,10 @@
                                     <label for="product_type_id" class="form-label">Тип товара</label>
                                     <select class="form-control  " id="product_type_id" name="product_type_id">
                                         <option value="0">Выберите тип товара</option>
-                                        @foreach ($product_types as $product_type)
-                                        <option value="{{ $product_type->id }}" {{ $product_type->id ==
-                                    @$product->product_type_id	 ? 'selected' : '' }}>{{
-                                    $product_type->name }}
+                                        @foreach ($productTypes as $productType)
+                                        <option value="{{ $productType->id }}" {{ $productType->id == @$product->product_type_id	 ? 'selected' : '' }}>{{
+                                    $productType->name }}
                                         </option>
-
                                         @endforeach
                                     </select>
                                 </div>
@@ -106,11 +104,9 @@
                                         <select class="form-control  " id="currency_id" name="currency_id">
                                             <option value="0">Выберите валюту</option>
                                             @foreach ($currencies as $currency)
-                                            <option value="{{ $product_type->id }}" {{ $product_type->id ==
-                                        @$product->currency_id ? 'selected' : '' }}>{{
+                                            <option value="{{ $currency->id }}" {{ $currency->id == @$product->currency_id ? 'selected' : '' }}>{{
                                         $currency->name }}
                                             </option>
-
                                             @endforeach
                                         </select>
                                     </div>
@@ -122,8 +118,7 @@
                                     <select class="form-control  " id="vendor_id" name="vendor_id">
                                         <option value="0">Выберите тип товара</option>
                                         @foreach ($vendors as $vendor)
-                                        <option value="{{ $vendor->id }}" {{ $vendor->id ==
-                                    @$product->vendor_id ? 'selected' : '' }}>{{
+                                        <option value="{{ $vendor->id }}" {{ $vendor->id ==@$product->vendor_id ? 'selected' : '' }}>{{
                                     $vendor->name }}
                                         </option>
 
@@ -186,9 +181,7 @@
                         </div>
 
                         <div class="tab-pane fade" id="custom-tabs-four-files" role="tabpanel" aria-labelledby="custom-tabs-four-files-tab">
-
-                            Файлы для загрузки
-
+                            <livewire: product-file-upload-component :record="@$product" />
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
                             {{-- <livewire:product-variant-component :record="@$product" /> --}}

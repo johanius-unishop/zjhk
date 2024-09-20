@@ -84,10 +84,10 @@
                                 <label for="product_type_id" class="form-label">Тип товара</label>
                                 <select class="form-control  " id="product_type_id" name="product_type_id">
                                     <option value="0">Выберите тип товара</option>
-                                    @foreach ($product_types as $product_type)
-                                    <option value="{{ $product_type->id }}" {{ $product_type->id ==
+                                    @foreach ($productTypes as $productType)
+                                    <option value="{{ $productType->id }}" {{ $productType->id ==
                                     @$product->product_type_id ? 'selected' : '' }}>{{
-                                    $product_type->name }}
+                                    $productType->name }}
                                     </option>
 
                                     @endforeach
@@ -101,7 +101,7 @@
                                     <select class="form-control  " id="currency_id" name="currency_id">
                                         <option value="0">Выберите валюту</option>
                                         @foreach ($currencies as $currency)
-                                        <option value="{{ $product_type->id }}" {{ $product_type->id ==
+                                        <option value="{{ $currency->id }}" {{ $currency->id ==
                                     @$product->currency_id ? 'selected' : '' }}>{{
                                     $currency->name }}
                                         </option>

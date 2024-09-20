@@ -52,6 +52,10 @@ class Product extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('images');
+        $this->addMediaCollection('specifications')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Технические характеристики
+        $this->addMediaCollection('dimensionalDrawing')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Габаритный чертеж
+        $this->addMediaCollection('overviewInformation')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Обзорная информация
+
     }
     public function type()
     {
@@ -135,7 +139,7 @@ class Product extends Model implements HasMedia
         try {
             foreach ($analogs as $analog) {
                 Analog::upsert([
-                    ['product_id' => $product->id,'analog_vendor_id' =>  $analog['vendor_id'],  'name' => $analog['name'], 'article' => $analog['article']],
+                    ['product_id' => $product->id, 'analog_vendor_id' => $analog['vendor_id'], 'name' => $analog['name'], 'article' => $analog['article']],
                 ], uniqueBy: ['product_id', 'analog_vendor_id'], update: ['name', 'article']);
             }
         }
@@ -143,15 +147,15 @@ class Product extends Model implements HasMedia
             throw $th;
         }
         return true;
-     }
+    }
 
-     protected function frontUrl(): Attribute
-     {
-         return new Attribute(
-             get: fn() =>  config('app.url') . '/' . "items" . '/' . $this->id ,
+    protected function frontUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => config('app.url') . '/' . "items" . '/' . $this->id,
 
-         );
-     }
+        );
+    }
 
 
 

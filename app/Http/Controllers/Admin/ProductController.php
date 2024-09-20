@@ -71,15 +71,10 @@ class ProductController extends Controller
             return abort(401);
         }
         $parentCategories = Category::getCategoriesAsTree();
-        // $categories = ProductType::with('subtypes')->orderBy('id', 'asc')->get();
-        // foreach ($categories as $category) {
-        //     $subtypes[$category->name] = $category->subtypes->pluck('name', 'id');
-        // }        $product_styles = ProductStyle::get(array('name', 'id'));
-        $currencies    = Currency::get(array('name', 'id'));
-        $product_types = ProductType::get(array('name', 'id'));
-        $vendors       = Vendor::get(array('name', 'id'));
-        // $product_styles = ProductStyle::get(array('name', 'id'));
-        return view('admin.product.create', compact('parentCategories', 'product_types', 'vendors' ,'currencies'));
+        $currencies       = Currency::get(array('name', 'id'));
+        $productTypes      = ProductType::get(array('name', 'id'));
+        $vendors          = Vendor::get(array('name', 'id'));
+        return view('admin.product.create', compact('parentCategories', 'productTypes', 'vendors', 'currencies'));
 
     }
 
@@ -94,8 +89,6 @@ class ProductController extends Controller
 
         $input = $request->all();
 
-        //   dd( $input);
-        // $input['product_type_id'] = ProductSubtype::where('id', $input['product_subtype_id'])->first()->product_type_id;
 
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
         // $request->filled('active') ? $input['active'] = 1 : $input['active'] = 0;
@@ -134,35 +127,14 @@ class ProductController extends Controller
             $product->addSEO();
         }
         $currencies    = Currency::get(array('name', 'id'));
-        $product_types = ProductType::get(array('name', 'id'));
+        $productTypes = ProductType::get(columns: array('name', 'id'));
         $vendors       = Vendor::get(array('name', 'id'));
-        // $product->load('vendor', 'type');
-        // // 'product_style',
+
         $parentCategories = Category::getCategoriesAsTree();
-        // // $categories = ProductType::with('subtypes')->orderBy('id', 'asc')->get();
-        // // foreach ($categories as $category) {
-        // //     $subtypes[$category->name] = $category->subtypes->pluck('name', 'id');
-        // // }        $product_styles = ProductStyle::get(array('name', 'id'));
 
-        // $product_types = ProductType::get(array('name', 'id'));
-        // $vendors       = Vendor::get(array('name', 'id'));
 
-        return view('admin.product.edit', compact('product','parentCategories', 'product_types', 'vendors', 'currencies'));
-        //         $currencies    = Currency::get(array('name', 'id'));
-        // $product_types = ProductType::get(array('name', 'id'));
-        // $vendors       = Vendor::get(array('name', 'id'));
-        // // $product->load('vendor', 'type');
-        // // // 'product_style',
-        // // $parentCategories = Category::getCategoriesAsTree();
-        // // // $categories = ProductType::with('subtypes')->orderBy('id', 'asc')->get();
-        // // // foreach ($categories as $category) {
-        // // //     $subtypes[$category->name] = $category->subtypes->pluck('name', 'id');
-        // // // }        $product_styles = ProductStyle::get(array('name', 'id'));
+        return view('admin.product.edit', compact('product', 'parentCategories', 'productTypes', 'vendors', 'currencies'));
 
-        // // $product_types = ProductType::get(array('name', 'id'));
-        // // $vendors       = Vendor::get(array('name', 'id'));
-
-        // return view('admin.product.edit', compact('product', 'vendors', 'product_types', 'parentCategories'));
     }
 
     /**

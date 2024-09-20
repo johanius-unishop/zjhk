@@ -519,7 +519,6 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property int $product_kind_id
  * @property string $name
  * @property string|null $slug
  * @property string $article
@@ -533,6 +532,7 @@ namespace App\Models{
  * @property int|null $stock
  * @property int|null $minimum_stock
  * @property int|null $sorting
+ * @property int|null $order_column
  * @property string|null $tn_ved
  * @property int|null $published
  * @property float|null $weight
@@ -545,7 +545,8 @@ namespace App\Models{
  * @property float|null $package_length
  * @property int $category_id
  * @property int $vendor_id
- * @property int|null $currency_id
+ * @property int $product_type_id
+ * @property int $currency_id
  * @property int $chip_dip
  * @property int $elec_ru
  * @property int $ozon
@@ -593,6 +594,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereMinimumStock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereMoqSupplier($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereOrderColumn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereOzon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePackageHeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePackageLength($value)
@@ -601,7 +603,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePiecesPerPack($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePriority($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereProductKindId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereProductTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePublished($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereShortDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSlug($value)
@@ -1217,6 +1219,7 @@ namespace App\Models{
  * @property int $published
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $front_url
  * @property-read mixed $can_be_deleted
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count

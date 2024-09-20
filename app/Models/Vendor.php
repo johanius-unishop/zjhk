@@ -8,6 +8,7 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
@@ -89,5 +90,10 @@ class Vendor extends Model implements Sortable, HasMedia
         }
         return true;
     }
-
+    protected function frontUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => config('app.url') . '/' . "vendors" . '/' . $this->id,
+        );
+    }
 }

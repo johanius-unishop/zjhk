@@ -1,4 +1,3 @@
-{{-- <div wire:poll="$refresh"> --}}
 <div wire:poll.visible>
     <div class="row">
         @if (count((array)$images) > 0)
@@ -15,27 +14,16 @@
                         <td>Загружено:</td>
                         <td>{{ $image->created_at }}</td>
                     </tr>
-                    {{-- <tr>
-                            <td>Высота :</td>
-                            <td>{{ $image->created_at }}</td>
-                    </tr>
-                    <tr>
-                        <td>Ширина:</td>
-                        <td>{{ $image->created_at }}</td>
-                    </tr> --}}
                 </table>
-                {{-- Размер: {{ $image->human_readable_size }} --}}
                 <figcaption class="figure-caption">
                     @if (!Auth::user()->can('manage product' ))
 
                         @if ($image->created_at->diffInDays(now()) < 1)
                         <a class="btn btn-danger " wire:confirm="Вы действительно хотите удалить этот файл ?" wire:click="delete({{ $image->id }})" href="#"><i class="fa fa-trash"></i></a>
-
                         @endif
-                    @else
+                        @else
                         <a class="btn btn-danger " wire:confirm="Вы действительно хотите удалить этот файл ?" wire:click="delete({{ $image->id }})" href="#"><i class="fa fa-trash"></i></a>
-
-                    @endif
+                        @endif
                         <a class="btn btn-success " wire:click="download({{ $image->id }})" href="#"><i class="fa fa-download"></i></a>
                 </figcaption>
             </figure>
@@ -48,16 +36,11 @@
         @endif
     </div>
 
-
     @if ( $flag== 0)
-    {{-- wire:loading.remove --}}
     <div><input type="file" wire:model="photos" name="photos" {{ $multiple==true ? 'multiple' : '' }}>
         @error('photos') <span class="error">{{ $message }}</span> @enderror
-        {{-- <a class="btn {{ $flag==0 ? 'btn-primary ' : 'btn-danger' }} " {{ $flag==1 ? ' aria-disabled="true" '
-                : '' }} wire:click="uploadFiles" href="#"> Загрузить фото </a> --}}
         <a class="btn {{ $flag==0 ? 'btn-primary ' : 'btn-danger' }} " wire:loading.attr="disabled" wire:click="uploadFiles" href="#"> Загрузить фото </a>
     </div>
-
     @else
     <div class="col-md-12 text-center">
         Загрузка ...
