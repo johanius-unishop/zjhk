@@ -181,7 +181,7 @@
                         </div>
 
                         <div class="tab-pane fade" id="custom-tabs-four-files" role="tabpanel" aria-labelledby="custom-tabs-four-files-tab">
-                            <livewire: product-file-upload-component :record="@$product" />
+                            <livewire:product-file-upload-component :record="@$product" />
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
                             {{-- <livewire:product-variant-component :record="@$product" /> --}}
