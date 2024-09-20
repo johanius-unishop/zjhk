@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductType;
 use App\Models\ProductTypeProperty;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\StoreProductTypePropertyRequest;
@@ -30,12 +31,40 @@ class ProductTypePropertyController extends Controller
         return view('admin.product-type-property.create');
     }
 
+
+
+    public function createNew(ProductType $product_type)
+    {
+        //
+
+        // if (!Gate::allows('manage content')) {
+        //     return abort(401);
+        // }
+
+        return view('admin.product-type-property.create', ['productType' => $product_type]);
+    }
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreProductTypePropertyRequest $request)
     {
-        //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        $input = $request->all();
+        // dd(    $input);
+        $request->filled('composite') ? $input['composite'] = 1 : $input['composite'] = 0;
+        $record = ProductTypeProperty::create($input);
+
+        session()->flash('success', 'Запись успешно создана');
+        if ($request->action == 'save-exit') {
+            return redirect(route('admin.product_type.show', $record->product_type_id));
+        }
+        return redirect(route('admin.product_type_property.edit', $record->id));
     }
 
     /**
@@ -51,7 +80,11 @@ class ProductTypePropertyController extends Controller
      */
     public function edit(ProductTypeProperty $productTypeProperty)
     {
-        //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+
+        return view('admin.product-type-property.edit', ['productTypeProperty' => $productTypeProperty]);
     }
 
     /**
@@ -59,7 +92,18 @@ class ProductTypePropertyController extends Controller
      */
     public function update(UpdateProductTypePropertyRequest $request, ProductTypeProperty $productTypeProperty)
     {
-        //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        $input = $request->all();
+        // $request->filled(key: 'composite') ? $input['composite'] = 1 : $input['composite'] = 0;
+        $productTypeProperty->update($input);
+        session()->flash('success', 'Запись успешно обновлена');
+
+        if ($request->action == 'save-exit') {
+            return redirect(route('admin.product_type.show', $productTypeProperty->product_type_id));
+        }
+        return redirect(route('admin.product_type_property.edit', $productTypeProperty->id));
     }
 
     /**

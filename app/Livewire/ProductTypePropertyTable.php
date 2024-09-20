@@ -43,7 +43,6 @@ final class ProductTypePropertyTable extends PowerGridComponent
     public function datasource(): Builder
     {
         // return ProductTypeProperty::query();->withCount('childrens')        return ProductTypeProperty::query()->where('product_type_id', operator: $this->parent_category)->ordered();
-
         return ProductTypeProperty::query()->where('product_type_id', operator: $this->parent_category)->orderBy('order_column');
     }
 
@@ -65,7 +64,6 @@ final class ProductTypePropertyTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Id', 'name'),
-
             Column::make('Created at', 'created_at')
                 ->sortable()
                 ->searchable(),
@@ -80,26 +78,41 @@ final class ProductTypePropertyTable extends PowerGridComponent
         ];
     }
 
+    #[\Livewire\Attributes\On('post_delete')]
+    public function post_delete($rowId): void
+    {
+        $this->delete_id = $rowId;
+        $this->confirm('Вы действительно хотите удалить эту запись?', [
+            'onConfirmed' => 'confirmed',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'Нет',
+        ]);
+    }
+
+    #[\Livewire\Attributes\On('confirmed')]
+    public function confirmed()
+    {
+        // TODO Удаление
+        // $deleted_record = ProductType::where('id', $this->delete_id)-> firstOrFail();
+        // // if ($deleted_record->product_count > 0) {
+        // //     $this->dispatch('toast', message: 'У этого производителя есть товары. Вначале удалите их!', notify: 'error');
+        // //     return;
+        // // }
+        // $deleted_record->delete();
+        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
+
+    }
 
     #[\Livewire\Attributes\On('up')]
     public function property_up($rowId): void
     {
-        // $this->property_id = $rowId;
         try {
             $property = ProductTypeProperty::findOrFail($rowId);
-
-            // dd( $property);
             $property->moveOrderUp();
-
-
             $this->dispatch('toast', message: 'Запись успешно поднята вверх.', notify: 'success');
-
         }
         catch (\Throwable $th) {
-            //
-
             Log::info('Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
-
             $this->dispatch('toast', message: ' Не удалось поднять  запись.' . $th->getMessage(), notify: 'error');
             throw $th;
         }
@@ -110,22 +123,15 @@ final class ProductTypePropertyTable extends PowerGridComponent
     #[\Livewire\Attributes\On(event: 'down')]
     public function property_down($rowId): void
     {
-        // $this->property_id = $rowId;
         try {
             $property = ProductTypeProperty::findOrFail($rowId);
-
-            // dd($property);
             $property->moveOrderDown();
-
             $this->dispatch('toast', message: 'Запись успешно опущена вниз.', notify: 'success');
-
         }
         catch (\Throwable $th) {
             Log::info($property->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
-
             $this->dispatch('toast', message: ' Не удалось опустить  запись.' . $th->getMessage(), notify: 'error');
             throw $th;
-
         }
         $this->dispatch('$refresh');
 
@@ -133,10 +139,6 @@ final class ProductTypePropertyTable extends PowerGridComponent
     public function actions(ProductTypeProperty $row): array
     {
         return [
-            // Button::add('view')
-            //     ->slot('<i class="fas fa-edit"></i>')
-            //     ->class('btn btn-primary')
-            //     ->route('admin.product-type.edit', ['product-type' => $row->id]),
             Button::add('up')
                 ->slot('<i class="fas fa-arrow-up"></i>')
                 ->class('btn btn-success')
@@ -145,45 +147,16 @@ final class ProductTypePropertyTable extends PowerGridComponent
                 ->slot('<i class="fas fa-arrow-down"></i>')
                 ->class('btn btn-success')
                 ->dispatch('down', ['rowId' => $row->id]),
-            Button::add('edit')
-                ->slot('Edit: ' . $row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id]),
+            Button::add('view')
+                ->slot('<i class="fas fa-edit"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.product_type_property.edit', ['product_type_property' => $row->id]),
+            Button::add('delivery')
+                ->slot('<i class="fas fa-trash"></i>')
+                ->class('btn btn-danger')
+                ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
     }
 
-    // public function down($catalog_id)
-    // {
-    //     try {
-    //         $catalog = ProductVariant::find($catalog_id);
-    //         $catalog->moveOrderDown();
-    //         $this->dispatch('toast', message: 'Запись успешно опущена вниз.', notify: 'success');
 
-    //     }
-    //     catch (\Throwable $th) {
-    //         //throw $th;
-    //         $this->dispatch('toast', message: ' Не удалось поднять вариант.' . $th->getMessage(), notify: 'error');
-    //     }
-    //     $this->record->load('variant');
-    //     $this->variants = $this->record->variant->sortBy('order_column');
-    //     $this->dispatch('$refresh');
-    // }
-
-
-    // public function up($catalog_id)
-    // {
-    //     try {
-    //         $catalog = ProductVariant::find($catalog_id);
-    //         $catalog->moveOrderUp();
-    //         $this->dispatch('toast', message: 'Запись успешно поднята вверх.', notify: 'success');
-    //     }
-    //     catch (\Throwable $th) {
-    //         //throw $th;
-    //         $this->dispatch('toast', message: ' Не удалось поднять вариант.' . $th->getMessage(), notify: 'error');
-    //     }
-    //     $this->record->load('variant');
-    //     $this->variants = $this->record->variant->sortBy('order_column');
-    //     $this->dispatch('$refresh');
-    // }
 }

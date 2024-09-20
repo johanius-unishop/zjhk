@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('article');
             $table->text('short_description');
-            $table->text('description');
+            $table->text('body_description');
             $table->string('barcode')->nullable();
             $table->float('supplier_price')->nullable();
             $table->float('price')->nullable();

@@ -12,6 +12,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\AnalogVendorController;
 use App\Http\Controllers\Admin\ProductTypeController;
+use App\Http\Controllers\Admin\ProductTypePropertyController;
+
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -60,8 +63,10 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource(name: 'currency', controller: CurrencyController::class);
     Route::resource(name: 'delivery', controller: DeliveryController::class);
     Route::resource(name: 'analog-vendor', controller: AnalogVendorController::class);
-    Route::resource(name: 'product-type', controller: ProductTypeController::class);
- 
-    Route::get('product-type/{product-type}/up', [ProductTypeController::class, 'up'])->name('product-type.up');
-    Route::get('product-type/{product-type}/down', [ProductTypeController::class, 'down'])->name('product-type.down');
+    Route::resource(name: 'product_type', controller: ProductTypeController::class);
+
+
+    Route::resource(name: 'product_type_property', controller: ProductTypePropertyController::class);
+    Route::get('product_type_property/createNew/{product_type}', [ProductTypePropertyController::class, 'createNew'])->name('product_type_property.createNew');
+
 });

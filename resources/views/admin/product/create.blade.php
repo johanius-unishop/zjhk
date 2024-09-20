@@ -143,8 +143,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="description">Описание</label>
-                                    <textarea class="form-control" name="description" row="5" id="summernote">{{ old ('description' ) }}</textarea>
+                                    <label for="body_description">Описание</label>
+                                    <textarea class="form-control" name="body_description" row="5" id="summernote">{{ old ('body_description' ) }}</textarea>
                                 </div>
                             </div>
                             <div class="col-12">

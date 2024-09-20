@@ -2,9 +2,9 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Создание подтипа товаров')
+@section('title', 'Редактирование  значения характеристики')
 @section('content_header')
-<h1>Создание подтипа товара для типа товара " {{ $productType->name }}"</h1>
+<h1>Редактирование значения характеристики </h1>
 @stop
 
 {{-- Content body: main page content --}}
@@ -13,10 +13,11 @@
 
 @include('admin.blocks.error')
 
-<form action="{{ route('admin.product_type_property.store')  }}" method="POST">
-    @csrf
-    <input type="hidden" name="product_type_id" value="{{ $productType->id }}">
+<form action="{{ route('admin.product_type_property.update', $productTypeProperty->id) }}" method="POST">
 
+    @csrf
+    @method('PATCH')
+    <input type="hidden" name="id" value="{{ $productTypeProperty->id }}">
     <div class="row">
         <div class="col-12 ">
             <div class="card card-primary card-outline card-outline-tabs">
@@ -36,35 +37,40 @@
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
                                         <label for="name">Название</label>
-                                        <input type="text" class="form-control" name="name" value="{{  old('name') }}">
+                                        <input type="text" class="form-control" name="name" value="{{   $productTypeProperty->name  }}">
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
+
                             {{-- <div class="row">
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
-                                        <label for="name_plural">test</label>
-                                         @error('name_plural')
+                                        <label for="charcode">Символ</label>
+                                        <input type="text" class="form-control" name="charcode" value="{{   $currency->charcode  }}">
+                                        @error('charcode')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" name="composite" id="composite" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product_type->composite ? 'checked ' : ' ' !!}>
-                                <label class="form-check-label" for="exampleCheck1">Композитный</label>
+                                <div class="col-lg-6 col-12">
+                                    <div class="form-group">
+                                        <label for="numcode">Код</label>
+                                        <input type="text" class="form-control" name="numcode" value="{{   $currency->numcode  }}">
+                                        @error('numcode')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div> --}}
-
                         </div>
                     </div>
                 </div>
             </div>
             <div class=" py-3 form-row justify-content-center">
-                <a class="btn   btn-success " href="{{ route('admin.product_type.show', $productType) }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a> &nbsp;
+                <a class="btn   btn-success " href="{{ route('admin.product_type.show',  $productTypeProperty->product_type_id) }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a> &nbsp;
                 <button type="submit" class="btn btn-primary">Сохранить</button> &nbsp;
                 <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и
                     закрыть</button>

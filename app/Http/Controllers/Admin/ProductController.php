@@ -151,12 +151,12 @@ class ProductController extends Controller
             return abort(401);
         }
 
-        $input                    = $request->all();
-        $input['product_type_id'] = ProductSubtype::where('id', $input['product_subtype_id'])->first()->product_type_id;
+        $input = $request->all();
+        // $input['product_type_id'] = ProductSubtype::where('id', $input['product_subtype_id'])->first()->product_type_id;
 
-        $request->filled('is_moderated') ? $input['is_moderated'] = 1 : $input['is_moderated'] = 0;
-        $request->filled('active') ? $input['active'] = 1 : $input['active'] = 0;
-        $request->filled('in_stock') ? $input['in_stock'] = 1 : $input['in_stock'] = 0;
+        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
+        // $request->filled('active') ? $input['active'] = 1 : $input['active'] = 0;
+        // $request->filled('in_stock') ? $input['in_stock'] = 1 : $input['in_stock'] = 0;
 
         $product->update($input);
 

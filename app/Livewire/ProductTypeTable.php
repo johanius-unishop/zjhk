@@ -38,8 +38,7 @@ final class ProductTypeTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        // return ProductType::query();
-        // ->whereIsRoot() ->withCount('childrens')       return Category::query()->where('root_id', null)->withCount('childrens');
+         // ->whereIsRoot() ->withCount('childrens')       return Category::query()->where('root_id', null)->withCount('childrens');
         return ProductType::query()->withCount('props');
 
     }
@@ -113,11 +112,11 @@ final class ProductTypeTable extends PowerGridComponent
             Button::add('view')
                 ->slot('<i class="fas fa-folder"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.product-type.show', ['product_type' => $row->id]),
+                ->route('admin.product_type.show', ['product_type' => $row->id]),
             Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.product-type.edit', ['product_type' => $row->id]),
+                ->route('admin.product_type.edit', ['product_type' => $row->id]),
               Button::add('delivery')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
@@ -125,15 +124,5 @@ final class ProductTypeTable extends PowerGridComponent
         ];
     }
 
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
+
 }

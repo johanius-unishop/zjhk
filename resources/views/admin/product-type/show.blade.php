@@ -9,13 +9,12 @@
 
 {{-- Content body: main page content --}}
 @section('content')
-<a class="btn btn-primary" href="{{ route('admin.product-type.create') }}" role="button">Добавить</a>
-{{-- <livewire:product-type-list-table /> --}}
-
+<a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_category) }}" role="button">Добавить</a>
+ 
 <livewire:product-type-property-table  :parent_category="$parent_category->id"/>
 
 <div class=" py-3 form-row justify-content-center">
-    <a class="btn .btn-lg btn-success " href="{{ route('admin.product-type.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>
+    <a class="btn .btn-lg btn-success " href="{{ route('admin.product_type.index' ) }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>
 </div>
 @stop
 

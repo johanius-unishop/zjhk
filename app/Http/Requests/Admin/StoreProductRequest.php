@@ -23,6 +23,8 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'name'       => 'required|min:2|max:120',
+            'short_description' => 'required|min:2',
+            'body_description' => 'required|min:2',
         ];
     }
 }

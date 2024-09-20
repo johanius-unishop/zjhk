@@ -50,9 +50,9 @@ class ProductTypeController extends Controller
 
         session()->flash('success', 'Запись успешно создана');
         if ($request->action == 'save-exit') {
-            return redirect(route('admin.product-type.index'));
+            return redirect(route('admin.product_type.index'));
         }
-        return redirect(route('admin.product-type.edit', $record->id));
+        return redirect(route('admin.product_type.edit', $record->id));
 
 
     }
@@ -77,7 +77,7 @@ class ProductTypeController extends Controller
             return abort(401);
         }
 
-        return view('admin.product-type.edit', ['product_type' => $productType]);
+        return view('admin.product_type.edit', ['product_type' => $productType]);
     }
 
     /**
@@ -95,9 +95,9 @@ class ProductTypeController extends Controller
         session()->flash('success', 'Запись успешно обновлена');
 
         if ($request->action == 'save-exit') {
-            return redirect(route('admin.product-type.index'));
+            return redirect(route('admin.product_type.index'));
         }
-        return redirect(route('admin.product-type.edit', $productType->id));
+        return redirect(route('admin.product_type.edit', $productType->id));
     }
 
     /**
