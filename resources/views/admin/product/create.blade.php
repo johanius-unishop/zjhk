@@ -71,7 +71,7 @@
                             <div class="col-6 ">
                                 <label for="parent" class="form-label">Категория товара</label>
                                 <div class="input-group">
-                                    <select name="category_id" id="parent" class="form-control">
+                                    <select name="category_id" id="category_id" class="form-control">
                                         <option value="">Корневая категория</option>
                                         @foreach ($parentCategories as $category)
                                         @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
@@ -81,8 +81,8 @@
                                 </div>
                             </div>
                             <div class="col-6 ">
-                                <label for="parent" class="form-label">Тип товара</label>
-                                <select class="form-control  " id="product_kind_id" name="product_kind_id">
+                                <label for="product_type_id" class="form-label">Тип товара</label>
+                                <select class="form-control  " id="product_type_id" name="product_type_id">
                                     <option value="0">Выберите тип товара</option>
                                     @foreach ($product_types as $product_type)
                                     <option value="{{ $product_type->id }}" {{ $product_type->id ==
@@ -95,7 +95,20 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 "> <label for=" " class="form-label">Тип товара</label>
+                            <div class="col-4 ">
+                                <div class="form-group">
+                                    <label for="currency_id" class="form-label">Валюта</label>
+                                    <select class="form-control  " id="currency_id" name="currency_id">
+                                        <option value="0">Выберите валюту</option>
+                                        @foreach ($currencies as $currency)
+                                        <option value="{{ $product_type->id }}" {{ $product_type->id ==
+                                    @$product->currency_id ? 'selected' : '' }}>{{
+                                    $currency->name }}
+                                        </option>
+
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="row">

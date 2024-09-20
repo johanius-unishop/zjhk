@@ -4,7 +4,7 @@
 {!! Breadcrumbs::render($breadcrumb, @$item) !!}
 @endsection --}}
 
-@section('title', 'Редактирование товара  '.$product->name  )
+@section('title', 'Редактирование товара '.$product->name )
 @section('content_header')
 <h1>Редактирование товара {{ $product->name }}</h1>
 <a class="btn btn-primary" href="{{ $product->front_url }}" role="button" target="_blank"><i class="fas fa-globe"></i>
@@ -29,8 +29,12 @@
                             <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Изображения</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-four-files-tab" data-toggle="pill" href="#custom-tabs-four-files" role="tab" aria-controls="custom-tabs-four-files" aria-selected="false">Файлы для загрузки</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Характеристики</a>
-                        </li>        <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-four-analog-tab" data-toggle="pill" href="#custom-tabs-four-analog" role="tab" aria-controls="custom-tabs-four-analog" aria-selected="false">Аналоги</a>
                         </li>
                         {{-- <li class="nav-item">
@@ -82,12 +86,12 @@
                                     </div>
                                 </div>
                                 <div class="col-6 ">
-                                    <label for="parent" class="form-label">Тип товара</label>
-                                    <select class="form-control  " id="product_kind_id" name="product_kind_id">
+                                    <label for="product_type_id" class="form-label">Тип товара</label>
+                                    <select class="form-control  " id="product_type_id" name="product_type_id">
                                         <option value="0">Выберите тип товара</option>
                                         @foreach ($product_types as $product_type)
                                         <option value="{{ $product_type->id }}" {{ $product_type->id ==
-                                    @$product->product_kind_id	 ? 'selected' : '' }}>{{
+                                    @$product->product_type_id	 ? 'selected' : '' }}>{{
                                     $product_type->name }}
                                         </option>
 
@@ -96,7 +100,20 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 "> <label for=" " class="form-label">Тип товара</label>
+                                <div class="col-4 ">
+                                    <div class="form-group">
+                                        <label for="currency_id" class="form-label">Валюта</label>
+                                        <select class="form-control  " id="currency_id" name="currency_id">
+                                            <option value="0">Выберите валюту</option>
+                                            @foreach ($currencies as $currency)
+                                            <option value="{{ $product_type->id }}" {{ $product_type->id ==
+                                        @$product->currency_id ? 'selected' : '' }}>{{
+                                        $currency->name }}
+                                            </option>
+
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -145,7 +162,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="description">Описание</label>
-                                        <textarea class="form-control" name="body_description" row="5" id="summernote">{{  $product->body_description}}</textarea>
+                                        <textarea class="form-control" name="body_description" row="5" id="summernote">{{ $product->body_description}}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -167,9 +184,15 @@
                             <livewire:gallery :record="$product" />
 
                         </div>
+
+                        <div class="tab-pane fade" id="custom-tabs-four-files" role="tabpanel" aria-labelledby="custom-tabs-four-files-tab">
+
+                            Файлы для загрузки
+
+                        </div>
                         <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
                             {{-- <livewire:product-variant-component :record="@$product" /> --}}
-                            <livewire:test-component :record="@$product" />
+                            {{-- <livewire:test-component :record="@$product" /> --}}
 
                         </div>
 
