@@ -42,8 +42,9 @@ final class ProductTypePropertyTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        // return ProductTypeProperty::query();->withCount('childrens')
-        return ProductTypeProperty::query()->where('product_type_id', $this->parent_category);
+        // return ProductTypeProperty::query();->withCount('childrens')        return ProductTypeProperty::query()->where('product_type_id', operator: $this->parent_category)->ordered();
+
+        return ProductTypeProperty::query()->where('product_type_id', operator: $this->parent_category)->orderBy('order_column');
     }
 
     public function relationSearch(): array
@@ -85,20 +86,24 @@ final class ProductTypePropertyTable extends PowerGridComponent
     {
         // $this->property_id = $rowId;
         try {
-            $property = ProductTypeProperty::find($rowId);
+            $property = ProductTypeProperty::findOrFail($rowId);
 
             // dd( $property);
             $property->moveOrderUp();
+
+
             $this->dispatch('toast', message: 'Запись успешно поднята вверх.', notify: 'success');
 
         }
         catch (\Throwable $th) {
-            //throw $th;
+            //
 
             Log::info('Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
 
             $this->dispatch('toast', message: ' Не удалось поднять  запись.' . $th->getMessage(), notify: 'error');
+            throw $th;
         }
+        $this->dispatch('$refresh');
     }
 
 
@@ -107,20 +112,22 @@ final class ProductTypePropertyTable extends PowerGridComponent
     {
         // $this->property_id = $rowId;
         try {
-            $property = ProductTypeProperty::find($rowId);
+            $property = ProductTypeProperty::findOrFail($rowId);
 
-            // dd( $property);
+            // dd($property);
             $property->moveOrderDown();
+
             $this->dispatch('toast', message: 'Запись успешно опущена вниз.', notify: 'success');
 
         }
         catch (\Throwable $th) {
-            throw $th;
-
             Log::info($property->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
 
             $this->dispatch('toast', message: ' Не удалось опустить  запись.' . $th->getMessage(), notify: 'error');
+            throw $th;
+
         }
+        $this->dispatch('$refresh');
 
     }
     public function actions(ProductTypeProperty $row): array

@@ -663,6 +663,7 @@ namespace App\Models{
  * @property int $section
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\ProductType|null $productType
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty ordered(string $direction = 'asc')
