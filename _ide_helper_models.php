@@ -524,7 +524,7 @@ namespace App\Models{
  * @property string|null $slug
  * @property string $article
  * @property string $short_description
- * @property string $description
+ * @property string $body_description
  * @property string|null $barcode
  * @property float|null $supplier_price
  * @property float|null $price
@@ -580,12 +580,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product query()
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereArticle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereBarcode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereBodyDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereChipDip($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereCompositeProduct($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereCurrencyId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereElecRu($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereHeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
@@ -657,7 +657,6 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
- * @property int|null $sorting
  * @property int|null $order_column
  * @property int|null $product_type_id
  * @property int $section
@@ -674,7 +673,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereOrderColumn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereProductTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereSection($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereSorting($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty whereUpdatedAt($value)
  */
 	class ProductTypeProperty extends \Eloquent implements \Spatie\EloquentSortable\Sortable {}
@@ -942,6 +940,32 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Question whereUserId($value)
  */
 	class Question extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $sorting
+ * @property int $product_kind_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Related_product> $relatedProducts
+ * @property-read int|null $related_products_count
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType ordered(string $direction = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereProductKindId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereSorting($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereUpdatedAt($value)
+ */
+	class RelatedProductType extends \Eloquent implements \Spatie\EloquentSortable\Sortable {}
 }
 
 namespace App\Models{

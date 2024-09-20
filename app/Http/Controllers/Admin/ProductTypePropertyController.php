@@ -72,7 +72,8 @@ class ProductTypePropertyController extends Controller
      */
     public function show(ProductTypeProperty $productTypeProperty)
     {
-        //
+        return view('admin.product-type-property.show', ['parentCategory' => $productTypeProperty]);
+
     }
 
     /**

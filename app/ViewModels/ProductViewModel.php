@@ -2,7 +2,7 @@
 
 namespace App\ViewModels;
 
-use App\Models\Delivery_method;
+use App\Models\DeliveryMethod;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Product_kind;
@@ -165,7 +165,7 @@ class ProductViewModel
     public function getDeliveryMethods()
     {
         // Возвращаем все способы доставки
-        return Delivery_method::all();
+        return DeliveryMethod::all();
     }
 
     public function getCatalogTree(): array

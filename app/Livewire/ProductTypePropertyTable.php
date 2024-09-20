@@ -32,8 +32,8 @@ final class ProductTypePropertyTable extends PowerGridComponent
         return [
             // Exportable::make('export')
             //     ->striped()
-            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput()->withoutLoading(),
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),->showSearchInput()
+            Header::make()->withoutLoading(),
             Footer::make()
 
                 ->showRecordCount(),
@@ -139,6 +139,15 @@ final class ProductTypePropertyTable extends PowerGridComponent
     public function actions(ProductTypeProperty $row): array
     {
         return [
+            Button::add('view')
+                ->slot('<i class="fas fa-folder"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.product_type_property.show', ['product_type_property' => $row->id]),
+
+            Button::add('view')
+                ->slot('<i class="fas fa-edit"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.product_type_property.edit', ['product_type_property' => $row->id]),
             Button::add('up')
                 ->slot('<i class="fas fa-arrow-up"></i>')
                 ->class('btn btn-success')
@@ -147,10 +156,6 @@ final class ProductTypePropertyTable extends PowerGridComponent
                 ->slot('<i class="fas fa-arrow-down"></i>')
                 ->class('btn btn-success')
                 ->dispatch('down', ['rowId' => $row->id]),
-            Button::add('view')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.product_type_property.edit', ['product_type_property' => $row->id]),
             Button::add('delivery')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')

@@ -21,21 +21,7 @@
                 }}>Сохранить </button></div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group"> <label for="short_description">Характеристики </label>
 
-
-            </div>
-        </div>
-
-        <div class="col-6">
-            <div class="form-group"> <label for="short_description">Значения </label>
-
-
-            </div>
-        </div>
-    </div>
     {{-- @foreach ($productType->props as $prop)
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" name="published" id="published" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$prop->active ? '
