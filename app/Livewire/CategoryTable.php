@@ -64,7 +64,7 @@ final class CategoryTable extends PowerGridComponent
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name'),
 
-            Column::make('Created at', 'created_at')
+            Column::make('Создано', 'created_at')
                 ->sortable()
                 ->searchable(),
 

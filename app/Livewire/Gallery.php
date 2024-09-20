@@ -53,7 +53,7 @@ class Gallery extends Component
             $this->dispatch('toast', message: ' Не удалось удалить фото.' . $th->getMessage(), notify: 'error');
         }
         $this->dispatch('galleryModalPhoto');
-        $this->dispatch('$refresh');
+        $this->dispatch(  '$refresh');
     }
 
     public function uploadFiles()

@@ -29,9 +29,14 @@ use Spatie\EloquentSortable\SortableTrait;
     {
         return static::query()->where('product_type_id', $this->product_type_id);
     }
+
+    public function productType()
+    {
+        return $this->belongsTo (ProductType::class);
+    }
     public function relatedProducts()
     {
-        return $this->hasMany(Related_product::class);
+        return $this->hasMany(RelatedProduct::class);
     }
 
 

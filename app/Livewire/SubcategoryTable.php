@@ -72,7 +72,7 @@ final class SubcategoryTable extends PowerGridComponent
 
 
 
-            Column::make('Created at', 'created_at')
+            Column::make('Создано', 'created_at')
                 ->sortable()
                 ->searchable(),
 

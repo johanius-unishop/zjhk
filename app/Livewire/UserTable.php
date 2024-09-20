@@ -71,10 +71,10 @@ final class UserTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            // Column::make('Created at', 'created_at_formatted', 'created_at')
+            // Column::make('Создано', 'created_at_formatted', 'created_at')
             //     ->sortable(),
 
-            Column::make('Created at', 'created_at')
+            Column::make('Создано', 'created_at')
                 ->sortable()
                 ->searchable(),
 

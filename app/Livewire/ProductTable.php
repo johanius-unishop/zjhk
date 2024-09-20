@@ -169,7 +169,7 @@ final class ProductTable extends PowerGridComponent
             // Column::make('Стиль', 'product_style_name'),
             // Column::make('Предмет', 'product_type_name'),
             // Column::make('Расположение', 'product_subtype_name'),
-            // Column::make('Created at', 'created_at')
+            // Column::make('Создано', 'created_at')
             //     ->sortable(),
 
 

@@ -636,7 +636,7 @@ namespace App\Models{
  * @property-read int|null $old_props_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductTypeProperty> $props
  * @property-read int|null $props_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Related_product_type> $relatedTypes
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\RelatedProductType> $relatedTypes
  * @property-read int|null $related_types_count
  * @method static \Illuminate\Database\Eloquent\Builder|ProductType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductType newQuery()
@@ -947,12 +947,45 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property string $name
+ * @property int $id_product
  * @property int $sorting
- * @property int $product_kind_id
+ * @property string $comment_1
+ * @property string $comment_2
+ * @property string $comment_3
+ * @property int $product_id
+ * @property int $related_product_type_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Related_product> $relatedProducts
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $product
+ * @property-read int|null $product_count
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct query()
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct whereComment1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct whereComment2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct whereComment3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct whereIdProduct($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct whereRelatedProductTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct whereSorting($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProduct whereUpdatedAt($value)
+ */
+	class RelatedProduct extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $name
+ * @property int|null $order_column
+ * @property int $product_type_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\RelatedProduct> $relatedProducts
  * @property-read int|null $related_products_count
  * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType newQuery()
@@ -961,8 +994,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereProductKindId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereSorting($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereOrderColumn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereProductTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RelatedProductType whereUpdatedAt($value)
  */
 	class RelatedProductType extends \Eloquent implements \Spatie\EloquentSortable\Sortable {}
@@ -1007,8 +1040,8 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
- * @property int $sorting
- * @property int $product_kind_id
+ * @property int|null $order_column
+ * @property int $product_type_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Related_product> $relatedProducts
@@ -1019,8 +1052,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Related_product_type whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Related_product_type whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Related_product_type whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Related_product_type whereProductKindId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Related_product_type whereSorting($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Related_product_type whereOrderColumn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Related_product_type whereProductTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Related_product_type whereUpdatedAt($value)
  */
 	class Related_product_type extends \Eloquent {}

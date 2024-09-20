@@ -65,7 +65,7 @@ final class ProductTypeTable extends PowerGridComponent
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name')->searchable(),
             Column::make('Составной', 'composite'),
-            Column::make('Created at', 'created_at')
+            Column::make('Создано', 'created_at')
                 ->sortable()
                 ->searchable(),
             Column::action('Действия'),

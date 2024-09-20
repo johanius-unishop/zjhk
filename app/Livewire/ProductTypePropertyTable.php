@@ -64,11 +64,11 @@ final class ProductTypePropertyTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Id', 'name'),
-            Column::make('Created at', 'created_at')
+            Column::make('Создано', 'created_at')
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action'),
+            Column::action('Действия'),
         ];
     }
 

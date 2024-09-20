@@ -64,9 +64,9 @@ final class DeliveryTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name')->searchable(),
-            Column::make('Комментарий', 'comment')->searchable(), 
+            Column::make('Комментарий', 'comment')->searchable(),
 
-            Column::make('Created at', 'created_at')
+            Column::make('Создано', 'created_at')
                 ->sortable()
                 ->searchable(),
 
