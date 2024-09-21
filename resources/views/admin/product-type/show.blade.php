@@ -54,7 +54,7 @@
             закрыть</button>
     </div> --}}
 </div>
-</div>
+{{-- </div> --}}
 
 
 <div class=" py-3 form-row justify-content-center">

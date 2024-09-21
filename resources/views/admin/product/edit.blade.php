@@ -185,7 +185,7 @@
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
                             {{-- <livewire:product-variant-component :record="@$product" /> --}}
-                            {{-- <livewire:test-component :record="@$product" /> --}}
+                            <livewire:test-component :record="@$product" />
 
                         </div>
 

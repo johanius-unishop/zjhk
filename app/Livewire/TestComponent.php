@@ -18,7 +18,7 @@ class TestComponent extends Component
 
         $this->record = $record;
         // $this->productType = ProductType::where('id', $this->record->product_type_id)->with('props')->get();
-        $this->productType = ProductType::where('id', $this->record->product_kind_id)->with('props')->first();
+        $this->productType = ProductType::where('id', $this->record->product_type_id)->with('props')->first();
         $this->props       = $this->productType->props;
         // dd($this->record, $this->productType, $this->props);
     }
