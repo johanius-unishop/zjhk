@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use Illuminate\Support\Str;
 class CategoriesTableSeeder extends Seeder
 {
 
@@ -15,7 +16,7 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
 
-
+Str::slug('name');
         \DB::table('categories')->delete();
 
         \DB::table('categories')->insert(array (

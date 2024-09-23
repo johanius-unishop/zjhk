@@ -16,73 +16,98 @@ class ProductFileUploadComponent extends Component
     public $record;
     public $media_id;
 
-    public $file_specification;
-    public $file;
-    public $file_dimensional_drawing;
+    public $fileSpecification;
 
-    public $file_overview_information;
+    public $fileDimensionalDrawing;
 
-    public $file_specifications = [];
-    public $file_dimensionalDrawings = [];
-    public $file_overviewInformations = [];
+    public $fileOverviewInformation;
+
+    public $fileSpecifications = [];
+    public $fileDimensionalDrawings = [];
+    public $fileOverviewInformations = [];
 
     public $flag = 0;
+    public $multiple;
 
 
 
 
-
-    public function upload_file_specification()
+    public function uploadFileSpecification()
     {
         $this->validate([
-            // 'file_name' => 'required',
-            // 'image' => 'image|mimes:jpeg,png,jpg|max:102400', // 10MB Max
-            'file_specification' => 'file|mimes:pdf|max:10240000', // 10MB Max
+            'fileSpecification' => 'file|mimes:pdf|max:10240000', // 10MB Max
         ]);
-        $this->flag = 1;
-        $this->record
-            ->addMedia($this->file_specification)
-            ->toMediaCollection('specifications');
-        $this->dispatch('toast', message: 'Каталог успешно создан.', notify: 'success');
-        $this->flag = 0;
-        $this->reset(['file_specification', 'file_dimensional_drawing', 'file_overview_information']);
-        $this->loadFilesLists();
+        try {
+            $this->record
+                ->addMedia($this->fileSpecification)
+                ->toMediaCollection('specifications');
+            $this->dispatch('toast', message: 'Файл успешно загружен', notify: 'success');
+            $this->reset(['fileSpecification', 'fileDimensionalDrawing', 'fileOverviewInformation']);
+
+            $this->fileSpecifications = $this->record->getMedia('specifications');
+
+        }
+        catch (\Throwable $th) {
+            $this->dispatch('toast', message: ' Не удалось загрузить  файл.' . $th->getMessage(), notify: 'error');
+        }
         $this->dispatch('$refresh');
     }
 
     public function upload_dimensional_drawing()
     {
-        $this->validate([
 
-            'file_dimensional_drawing' => 'file|mimes:pdf|max:10240000', // 10MB Max
+        $this->validate([
+            'fileDimensionalDrawing' => 'file|mimes:pdf|max:10240000', // 10MB Max
         ]);
-        $this->flag = 1;
         $this->record
-            ->addMedia($this->file_dimensional_drawing)
+            ->addMedia($this->fileDimensionalDrawing)
             ->toMediaCollection('dimensionalDrawing');
-        $this->dispatch('toast', message: 'Каталог успешно создан.', notify: 'success');
-        $this->flag = 0;
+        $this->dispatch('toast', message: 'Файл успешно загружен', notify: 'success');
+        $this->fileDimensionalDrawings = $this->record->getMedia('dimensionalDrawing');
         $this->reset(['file_specification', 'file_dimensional_drawing', 'file_overview_information']);
-        $this->loadFilesLists();
+        $this->dispatch(event: '$refresh');
+
+
+
+
+        try {
+            $this->record
+                ->addMedia($this->fileSpecification)
+                ->toMediaCollection('specifications');
+            $this->dispatch('toast', message: 'Файл успешно загружен', notify: 'success');
+            $this->reset(['fileSpecification', 'fileDimensionalDrawing', 'fileOverviewInformation']);
+
+            $this->fileSpecifications = $this->record->getMedia('specifications');
+
+        }
+        catch (\Throwable $th) {
+            $this->dispatch('toast', message: ' Не удалось загрузить  файл.' . $th->getMessage(), notify: 'error');
+        }
         $this->dispatch('$refresh');
+
+
+
+
+
     }
 
-    public function upload_overview_information()
-    {
-        $this->validate([
+    // public function upload_overview_information()
+    // {
 
-            'file_overview_information' => 'file|mimes:pdf|max:10240000', // 10MB Max
-        ]);
-        $this->flag = 1;
-        $this->record
-            ->addMedia($this->file_overview_information)
-            ->toMediaCollection('overviewInformation');
-        $this->dispatch('toast', message: 'Каталог успешно создан.', notify: 'success');
-        $this->flag = 0;
-        $this->reset(['file_specification', 'file_dimensional_drawing', 'file_overview_information']);
-        $this->loadFilesLists();
-        $this->dispatch('$refresh');
-    }
+    //     $this->validate([
+    //         'file_overview_information' => 'file|mimes:pdf|max:10240000', // 10MB Max
+    //     ]);
+    //     $this->record
+    //         ->addMedia($this->file_overview_information)
+    //         ->toMediaCollection('overviewInformation');
+    //     $this->dispatch('toast', message: 'Файл успешно загружен', notify: 'success');
+    //     $this->fileOverviewInformations = $this->record->getMedia('overviewInformation');
+
+
+    //     $this->reset(['file_specification', 'file_dimensional_drawing', 'file_overview_information']);
+
+    //     $this->dispatch('$refresh');
+    // }
 
     public function download(Media $mediaItem)
     {
@@ -91,11 +116,8 @@ class ProductFileUploadComponent extends Component
 
     public function mount($record = null, $multiple = false)
     {
-        $this->item                      = @$record;
-        $this->file_specifications       = @$record->getMedia('specifications');
-        $this->file_dimensionalDrawings  = @$record->getMedia('dimensionalDrawing');
-        $this->file_overviewInformations = @$record->getMedia('overviewInformation');
-        $this->multiple                  = $multiple;
+
+        // $this->multiple                  = $multiple;
     }
 
     public function delete($media_id)
@@ -109,23 +131,17 @@ class ProductFileUploadComponent extends Component
         catch (\Throwable $th) {
             $this->dispatch('toast', message: ' Не удалось удалить файл.' . $th->getMessage(), notify: 'error');
         }
-        $this->loadFilesLists();
         $this->dispatch('$refresh');
 
     }
 
-
-
-
-    public function loadFilesLists()
-    {
-        $this->file_specifications       = $this->record->getMedia('specifications');
-        $this->file_dimensionalDrawings  = $this->record->getMedia('dimensionalDrawing');
-        $this->file_overviewInformations = $this->record->getMedia('overviewInformation');
-        $this->dispatch('$refresh');
-    }
     public function render()
     {
+
+        // $this->record                   = @$record;
+        $this->fileSpecifications       = @$this->record->getMedia('specifications');
+        $this->fileDimensionalDrawings  = @$this->record->getMedia('dimensionalDrawing');
+        $this->fileOverviewInformations = @$this->record->getMedia('overviewInformation');
         return view('livewire.product-file-upload-component');
     }
 }

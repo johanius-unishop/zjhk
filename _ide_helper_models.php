@@ -922,6 +922,21 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string|null $value
+ * @method static \Illuminate\Database\Eloquent\Builder|PropertyValue newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PropertyValue newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PropertyValue query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PropertyValue whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PropertyValue whereValue($value)
+ */
+	class PropertyValue extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property int $product_id
  * @property int $user_id
  * @property string $author

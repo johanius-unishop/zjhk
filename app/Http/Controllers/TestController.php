@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\ExchangeRate;
 use App\Models\ProductType;
 use App\Models\ProductTypeProperty;
+use App\Models\PropertyValue;
+use App\Models\Property;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +21,7 @@ class TestController extends Controller
         $product_type = ProductType::find(3);
         $product_type->load('old_props');
 
-        $records = DB::table('product_kinds_props')->where('product_kind_id', $product_type->id)  ->orderBy('sorting', 'asc')->get();
+        $records = DB::table('product_kinds_props')->where('product_kind_id', $product_type->id)->orderBy('sorting', 'asc')->get();
 
         dd($product_type, $records);
         //     foreach ($variable as $key => $value) {
@@ -38,7 +40,21 @@ class TestController extends Controller
         );
 
     }
+    public function props_value_seed()
+    {
 
+        $items = Property::select('value')->distinct()->orderBy('value')->get();
+
+        foreach ($items as $item) {
+            // dd($item);
+            # code...
+            PropertyValue::create([
+                'value' => $item->value,
+
+            ]);
+
+        }
+    }
     public function test_currency_seed()
     {
         $items = ExchangeRate::latest()->get();

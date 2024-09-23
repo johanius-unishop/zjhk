@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AnalogiesTableSeeder::class);
         $this->call(RelatedProductTypesTableSeeder::class);
         $this->call(PropertiesTableSeeder::class);
+        $this->call(PropertyValuesTableSeeder::class);
     }
 }

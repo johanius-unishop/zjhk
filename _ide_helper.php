@@ -20039,6 +20039,18 @@ namespace Barryvdh\Debugbar\Facades {
      * @see \Barryvdh\Debugbar\LaravelDebugbar
      */        class Debugbar {
                     /**
+         * Returns the HTTP driver
+         * 
+         * If no http driver where defined, a PhpHttpDriver is automatically created
+         *
+         * @return \DebugBar\HttpDriverInterface 
+         * @static 
+         */        public static function getHttpDriver()
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getHttpDriver();
+        }
+                    /**
          * Enable the Debugbar and boot, if not already booted.
          *
          * @static 
@@ -20189,6 +20201,27 @@ namespace Barryvdh\Debugbar\Facades {
         {
                         /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
                         return $instance->injectDebugbar($response);
+        }
+                    /**
+         * Checks if there is stacked data in the session
+         *
+         * @return boolean 
+         * @static 
+         */        public static function hasStackedData()
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->hasStackedData();
+        }
+                    /**
+         * Returns the data stacked in the session
+         *
+         * @param boolean $delete Whether to delete the data in the session
+         * @return array 
+         * @static 
+         */        public static function getStackedData($delete = true)
+        {
+                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
+                        return $instance->getStackedData($delete);
         }
                     /**
          * Disable the Debugbar
@@ -20356,18 +20389,6 @@ namespace Barryvdh\Debugbar\Facades {
                         return $instance->setHttpDriver($driver);
         }
                     /**
-         * Returns the HTTP driver
-         * 
-         * If no http driver where defined, a PhpHttpDriver is automatically created
-         *
-         * @return \DebugBar\HttpDriverInterface 
-         * @static 
-         */        public static function getHttpDriver()
-        {            //Method inherited from \DebugBar\DebugBar         
-                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
-                        return $instance->getHttpDriver();
-        }
-                    /**
          * Returns collected data
          * 
          * Will collect the data if none have been collected yet
@@ -20412,27 +20433,6 @@ namespace Barryvdh\Debugbar\Facades {
         {            //Method inherited from \DebugBar\DebugBar         
                         /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
                         return $instance->stackData();
-        }
-                    /**
-         * Checks if there is stacked data in the session
-         *
-         * @return boolean 
-         * @static 
-         */        public static function hasStackedData()
-        {            //Method inherited from \DebugBar\DebugBar         
-                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
-                        return $instance->hasStackedData();
-        }
-                    /**
-         * Returns the data stacked in the session
-         *
-         * @param boolean $delete Whether to delete the data in the session
-         * @return array 
-         * @static 
-         */        public static function getStackedData($delete = true)
-        {            //Method inherited from \DebugBar\DebugBar         
-                        /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
-                        return $instance->getStackedData($delete);
         }
                     /**
          * Sets the key to use in the $_SESSION array

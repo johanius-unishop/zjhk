@@ -5,12 +5,14 @@
             <div class=" py-3 form-row justify-content-center"> Тип товара - <b>{{ $productType->name }}</b></div>
             <table class="table table-striped">
                 <thead>
+                    <th>id</th>
                     <th>Характеристика</th>
                     <th>Значение</th>
                 </thead>
                 @foreach ($props as $prop)
                 <tr>
-                    <td>{{ $prop->name }}</td>
+                    <td>{{ $prop->id }} </td>
+                    <td> {{ $prop->name }}</td>
                     <td>Значение
                     </td>
                 </tr>
