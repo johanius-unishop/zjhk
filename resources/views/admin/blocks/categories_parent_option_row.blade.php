@@ -1,6 +1,6 @@
 @php /** @var \App\Models\Shop\Category $category @if(request()->get('parent_id') == $category->id) selected @endif*/ @endphp
 
-<option @if( @$product->parent_id == $category->id) selected @endif
+<option @if( @$product->category_id == $category->id) selected @endif
         value="{{ $category->id }}"
 >
     {{$padding ?? ''}}{{ $category->name  }}

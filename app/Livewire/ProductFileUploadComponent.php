@@ -59,34 +59,21 @@ class ProductFileUploadComponent extends Component
         $this->validate([
             'fileDimensionalDrawing' => 'file|mimes:pdf|max:10240000', // 10MB Max
         ]);
-        $this->record
-            ->addMedia($this->fileDimensionalDrawing)
-            ->toMediaCollection('dimensionalDrawing');
-        $this->dispatch('toast', message: 'Файл успешно загружен', notify: 'success');
-        $this->fileDimensionalDrawings = $this->record->getMedia('dimensionalDrawing');
-        $this->reset(['file_specification', 'file_dimensional_drawing', 'file_overview_information']);
-        $this->dispatch(event: '$refresh');
-
-
-
 
         try {
             $this->record
-                ->addMedia($this->fileSpecification)
-                ->toMediaCollection('specifications');
+                ->addMedia($this->fileDimensionalDrawing)
+                ->toMediaCollection('dimensionalDrawing');
             $this->dispatch('toast', message: 'Файл успешно загружен', notify: 'success');
             $this->reset(['fileSpecification', 'fileDimensionalDrawing', 'fileOverviewInformation']);
 
-            $this->fileSpecifications = $this->record->getMedia('specifications');
+            $this->fileDimensionalDrawings = $this->record->getMedia('dimensionalDrawing');
 
         }
         catch (\Throwable $th) {
             $this->dispatch('toast', message: ' Не удалось загрузить  файл.' . $th->getMessage(), notify: 'error');
         }
         $this->dispatch('$refresh');
-
-
-
 
 
     }
