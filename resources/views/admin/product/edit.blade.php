@@ -34,6 +34,13 @@
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Характеристики</a>
                         </li>
+
+                        @if ($product->composite_product)
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-four-complect-tab" data-toggle="pill" href="#custom-tabs-four-complect" role="tab" aria-controls="custom-tabs-four-complect" aria-selected="false">Состав комплекта</a>
+                        </li>
+                        @endif
+
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-four-analog-tab" data-toggle="pill" href="#custom-tabs-four-analog" role="tab" aria-controls="custom-tabs-four-analog" aria-selected="false">Аналоги</a>
                         </li>
@@ -198,28 +205,64 @@
                         <div class="tab-pane fade" id="custom-tabs-four-analog" role="tabpanel" aria-labelledby="custom-tabs-four-analog-tab">
                             <livewire:analog-vendor-component :record="@$product" />
                         </div>
+
+
+
+                        @if ($product->composite_product)
+
+                        <div class="tab-pane fade" id="custom-tabs-four-complect" role="tabpanel" aria-labelledby="custom-tabs-four-complect-tab">
+                            Комплектность набора
+                            <livewire:product-complect-component :record="@$product" />
+                        </div>
+                        @endif
+
+
+
+
                         <div class="tab-pane fade" id="custom-tabs-four-price" role="tabpanel" aria-labelledby="custom-tabs-four-price-tab">
                             Марккетплейсы, цены и прочее
 
                             <div class="row">
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <label for="barcode">barcode </label>
+                                        <label for="barcode">Штрих-код</label>
                                         <input type="text" class="form-control" name="barcode" value="{{ @$product->barcode }}">
                                         @error('barcode')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="tn_ved">tn_ved </label>
+                                        <label for="tn_ved">ТН ВЭД</label>
                                         <input type="text" class="form-control" name="tn_ved" value="{{ @$product->tn_ved }}">
                                         @error('tn_ved')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="form-group">
+                                        <label for="pieces_per_pack">pieces_per_pack</label>
+                                        <input type="text" class="form-control" name="pieces_per_pack" value="{{ @$product->pieces_per_pack }}">
+                                        @error('pieces_per_pack')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="stock"> stock</label>
+                                        <input type="text" class="form-control" name="stock" value="{{ @$product->stock }}">
+                                        @error('stock')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="minimum_stock"> minimum_stock</label>
+                                        <input type="text" class="form-control" name="minimum_stock" value="{{ @$product->minimum_stock }}">
+                                        @error('minimum_stock')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="col-3">
-
                                     <div class="form-group">
                                         <label for="supplier_price">supplier_price</label>
                                         <input type="text" class="form-control" name="supplier_price" value="{{ @$product->supplier_price }}">
@@ -227,7 +270,20 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-
+                                    <div class="form-group">
+                                        <label for="price">price</label>
+                                        <input type="text" class="form-control" name="price" value="{{ @$product->price }}">
+                                        @error('price')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="special_price">special_price</label>
+                                        <input type="text" class="form-control" name="special_price" value="{{ @$product->special_price }}">
+                                        @error('special_price')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                     <div class="form-group">
                                         <label for="moq_supplier">moq_supplier</label>
                                         <input type="text" class="form-control" name="moq_supplier" value="{{ @$product->moq_supplier }}">
@@ -243,8 +299,39 @@
                                 </div>
 
                                 <div class="col-3">
+                                    <h3>Размеры товара</h3>
+                                    <div class="form-group">
+                                        <label for="weight">Вес товара</label>
+                                        <input type="text" class="form-control" name="weight" value="{{ @$product->weight }}">
+                                        @error('weight')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="width">Ширина товара(единица измерения)</label>
+                                        <input type="text" class="form-control" name="width" value="{{ @$product->width }}">
+                                        @error('width')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="height">Высота товара(единица измерения)</label>
+                                        <input type="text" class="form-control" name="height" value="{{ @$product->height }}">
+                                        @error('height')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="length">Длина товара(единица измерения)</label>
+                                        <input type="text" class="form-control" name="length" value="{{ @$product->length }}">
+                                        @error('length')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="col-3">
+                                    <h3>Размеры упаковки </h3>
                                     <div class="form-group">
                                         <label for="package_weight">Вес упаковки (единица измерения???)</label>
                                         <input type="text" class="form-control" name="package_weight" value="{{ @$product->package_weight }}">
@@ -277,6 +364,15 @@
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>

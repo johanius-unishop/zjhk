@@ -26,10 +26,11 @@ class DatabaseSeeder extends Seeder
         $this->call(DeliveryMethodsTableSeeder::class);
         $this->call(ProductKindsTableSeeder::class);
         $this->call(ProductKindsPropsTableSeeder::class);
-        $this->call(ProductsOldTableSeeder::class);
+        // $this->call(ProductsOldTableSeeder::class);
         $this->call(AnalogiesTableSeeder::class);
         $this->call(RelatedProductTypesTableSeeder::class);
         $this->call(PropertiesTableSeeder::class);
         $this->call(PropertyValuesTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
     }
 }

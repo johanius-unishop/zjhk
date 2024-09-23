@@ -125,8 +125,8 @@ final class ProductTable extends PowerGridComponent
             ->add('category', fn($item) => e(@$item->category->name))
             ->add('vendor', fn($item) => e(@$item->vendor->name))
 
-            // ->add('published', fn($item) => $item->published ? '✅' : '❌')
-            // ->add('is_moderated', fn($item) => $item->is_moderated ? '✅' : '❌')
+            ->add('published', closure: fn($item) => $item->published ? '✅' : '❌')
+            ->add('composite_product', fn($item) => $item->composite_product ? '✅' : '❌')
             // ->add('link')
             // ->add('vendor_name', fn($dish) => e(@$dish->vendor->name))
             // ->add('price_segment_name', fn($dish) => e(@$dish->vendor->price_segment->name))
@@ -152,7 +152,10 @@ final class ProductTable extends PowerGridComponent
                 ->bodyAttribute('any-class', 'min-width: 200px; max-width: 600px ;white-space:normal;'),
             Column::make('Категория', 'category'),
             Column::make('Производитель', 'vendor'),
-            Column::make('Активно', 'active')
+            Column::make('Активно', 'published')
+                ->sortable()
+                ->searchable()->bodyAttribute('text-center'),
+            Column::make('Составной', 'composite_product')
                 ->sortable()
                 ->searchable()->bodyAttribute('text-center'),
             // Column::make('Одобрено', 'is_moderated')
@@ -181,9 +184,10 @@ final class ProductTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::boolean('active')
+            Filter::boolean('published')
                 ->label('✅', '❌'),
-            // Filter::boolean('is_moderated')
+            Filter::boolean('composite_product')
+                ->label('✅', '❌'),            // Filter::boolean('is_moderated')
             // ->label('✅', '❌'),
             Filter::select('vendor_name', 'vendor_id')
                 ->dataSource(Vendor::all())
@@ -252,15 +256,11 @@ final class ProductTable extends PowerGridComponent
         }
 
         $item->delete();
-
-
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
-
     }
 
     public function actions(Product $row): array
     {
-
 
         if (!auth()->user()->can('delete content')) {
             return [
