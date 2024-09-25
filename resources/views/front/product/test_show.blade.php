@@ -1,5 +1,5 @@
 АНАЛОГИ
-
+{{ Breadcrumbs::render('home') }}
 <table class="table table-striped">
 
     @foreach ($analogs as $analog => $value)

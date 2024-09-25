@@ -153,10 +153,8 @@ class Product extends Model implements HasMedia
     {
         return new Attribute(
             get: fn() => config('app.url') . '/' . "items" . '/' . $this->id,
-
         );
     }
-
 
 
 }

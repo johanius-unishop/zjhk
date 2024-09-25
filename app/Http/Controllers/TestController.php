@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\ExchangeRate;
 use App\Models\ProductType;
+use App\Models\Product;
 use App\Models\ProductTypeProperty;
 use App\Models\PropertyValue;
 use App\Models\Property;
@@ -15,6 +16,11 @@ class TestController extends Controller
     //
     public function product_kinds_props()
     {
+        $product = Product::find(1433);
+        $product->load('type' , 'properties');
+        dd($product);
+
+
         // $product_types = ProductType::all( );
         // foreach ($product_types as $product_type) {
         # code...

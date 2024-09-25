@@ -468,6 +468,30 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $value
+ * @property int $product_kind_prop_id
+ * @property int $product_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Product_kind_prop|null $kindProp
+ * @method static \Illuminate\Database\Eloquent\Builder|OldProperty newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OldProperty newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OldProperty query()
+ * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereProductKindPropId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereValue($value)
+ */
+	class OldProperty extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property int $order_number
  * @property string $order_date
  * @property int $received

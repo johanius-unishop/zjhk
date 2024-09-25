@@ -40,9 +40,9 @@ final class SubcategoryTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-       // return Category::query()->descendantsOf( $this->parent_category)->toFlatTree() ;
+        // return Category::query()->descendantsOf( $this->parent_category)->toFlatTree() ;
         // $result = Category::whereDescendantOf($node)->get();
-         return Category::query()->where('parent_id', $this->parent_category)->withCount('childrens');
+        return Category::query()->where('parent_id', $this->parent_category)->withCount('childrens');
 
 
     }
@@ -70,13 +70,10 @@ final class SubcategoryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-
-
             Column::make('Создано', 'created_at')
                 ->sortable()
                 ->searchable(),
-
-            Column::action('Действия')
+            Column::action('Действия'),
         ];
     }
 
@@ -117,7 +114,7 @@ final class SubcategoryTable extends PowerGridComponent
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.category.edit', ['category' => $row->id]),
-                Button::add('Delete')
+            Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
                 ->dispatch('post_delete', ['rowId' => $row->id]),

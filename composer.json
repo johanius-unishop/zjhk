@@ -13,6 +13,7 @@
         "anayarojo/shoppingcart": "^4.2",
         "artesaos/seotools": "^1.3",
         "deployer/deployer": "^7.4",
+        "diglactic/laravel-breadcrumbs": "^9.0",
         "jantinnerezo/livewire-alert": "^3.0",
         "jeroennoten/laravel-adminlte": "^3.13",
         "kalnoy/nestedset": "^6.0",

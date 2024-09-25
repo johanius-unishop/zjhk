@@ -211,12 +211,9 @@
                         @if ($product->composite_product)
 
                         <div class="tab-pane fade" id="custom-tabs-four-complect" role="tabpanel" aria-labelledby="custom-tabs-four-complect-tab">
-                            Комплектность набора
-                            <livewire:product-complect-component :record="@$product" />
+                             <livewire:product-complect-component :record="@$product" />
                         </div>
                         @endif
-
-
 
 
                         <div class="tab-pane fade" id="custom-tabs-four-price" role="tabpanel" aria-labelledby="custom-tabs-four-price-tab">
@@ -364,12 +361,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
 
 
 

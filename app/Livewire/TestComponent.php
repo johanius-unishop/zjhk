@@ -4,15 +4,47 @@ namespace App\Livewire;
 
 use App\Models\ProductType;
 use Livewire\Component;
-
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 class TestComponent extends Component
 {
-
+    use LivewireAlert;
+    public $delete_id;
     public $isDisabled = false;
     public $record = '';
 
     public $productType;
     public $props;
+
+
+
+
+    #[\Livewire\Attributes\On('deleteProperty')]
+    public function deleteProperty($rowId): void
+    {
+        $this->delete_id = $rowId;
+        $this->confirm('Вы действительно хотите очистить  эту запись?', [
+            'onConfirmed' => 'confirmed',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'Нет',
+        ]);
+    }
+
+    #[\Livewire\Attributes\On('confirmed')]
+    public function confirmed()
+    {
+        // TODO Удаление
+        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
+
+    }
+
+
+
+
+
+
+
+
+
     public function mount($record = null)
     {
 

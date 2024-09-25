@@ -153,7 +153,7 @@
 
     <div class="col-lg-3 col-6">
         <!-- small card -->
-        <div class="small-box bg-info">
+        <div class="small-box bg-success">
             <div class="inner">
                 <h3>TODO</h3>
                 {{-- <h3>{{ @$vendor_count }}</h3> --}}

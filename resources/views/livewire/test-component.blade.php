@@ -14,6 +14,10 @@
                     <td>{{ $prop->id }} </td>
                     <td> {{ $prop->name }}</td>
                     <td>Значение
+
+                        <button type="button" wire:click="editProperty({{$prop->id}} )"  class="btn btn-success"><i class="fas fa-edit"></i></button>
+                        <button type="button" wire:click="deleteProperty({{$prop->id}})"  class="btn btn-danger"><i class="fas fa-trash"></i></button>
+
                     </td>
                 </tr>
                 @endforeach
@@ -24,11 +28,5 @@
         </div>
     </div>
 
-    {{-- @foreach ($productType->props as $prop)
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="published" id="published" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$prop->active ? '
-                                    checked ' : ' ' !!} >
-                            <label class="form-check-label" for="exampleCheck1">{{ $prop->name }}</label>
-</div>
-@endforeach --}}
+
 </div>

@@ -51,6 +51,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     Route::get('content', [ContentController::class, 'index'])->name('content.index');
     Route::get('model', [ContentController::class, 'model'])->name('content.model');
+    Route::get('import', [ContentController::class, 'index'])->name('import.index');
 
     Route::resource(name: 'user', controller: UserController::class);
     Route::resource(name: 'product', controller: ProductController::class);
