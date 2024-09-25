@@ -44,7 +44,6 @@
                             <input type="file" wire:model="fileSpecification" name="fileSpecification" {{ $multiple==true ? 'multiple' : '' }}>
                             @error('fileSpecification') <div class="alert alert-danger"> {{ $message }}</div> @enderror
                             <a class="btn {{ $flag==0 ? 'btn-primary ' : 'btn-danger' }} "  wire:click="uploadFileSpecification" href="#"> Загрузить файл </a>
-                            wire:loading.attr="disabled"
                         </div>
                     </div>
                 </div>
@@ -95,7 +94,7 @@
                             <label for="fileDimensionalDrawing">Файл габаритного чертежа</label>
                             <input type="file" wire:model="fileDimensionalDrawing" name="fileDimensionalDrawing" {{ $multiple==true ? 'multiple' : '' }}>
                             @error('fileDimensionalDrawing') <div class="alert alert-danger"> {{ $message }}</div> @enderror
-                            <a class="btn {{ $flag==0 ? 'btn-primary ' : 'btn-danger' }} " wire:loading.attr="disabled" wire:click="upload_dimensional_drawing" href="#"> Загрузить файл </a>
+                            <a class="btn {{ $flag==0 ? 'btn-primary ' : 'btn-danger' }} " wire:loading.attr="disabled" wire:click="uploadDimensionalDrawing" href="#"> Загрузить файл </a>
                         </div>
                     </div>
                 </div>
@@ -143,10 +142,10 @@
                     @endif
                     <div class="col-md-12 text-center">
                         <div class="form-group">
-                            <label for="file_overview_information">Файл характеристики</label>
-                            <input type="file" wire:model="file_overview_information" name="file_overview_information" {{ $multiple==true ? 'multiple' : '' }}>
-                            @error('file_overview_information') <div class="alert alert-danger"> {{ $message }}</div> @enderror
-                            <a class="btn  btn-primary  "  wire:click="upload_overview_information" href="#"> Загрузить файл </a>
+                            <label for="fileOverviewInformation">Файл характеристики</label>
+                            <input type="file" wire:model="fileOverviewInformation" name="fileOverviewInformation" {{ $multiple==true ? 'multiple' : '' }}>
+                            @error('fileOverviewInformation') <div class="alert alert-danger"> {{ $message }}</div> @enderror
+                            <a class="btn  btn-primary  "  wire:click="uploadOverviewInformation" href="#"> Загрузить файл </a>
                         </div>
                     </div>
                 </div>

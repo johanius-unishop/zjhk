@@ -53,9 +53,8 @@ class ProductFileUploadComponent extends Component
         $this->dispatch('$refresh');
     }
 
-    public function upload_dimensional_drawing()
+    public function uploadDimensionalDrawing()
     {
-
         $this->validate([
             'fileDimensionalDrawing' => 'file|mimes:pdf|max:10240000', // 10MB Max
         ]);
@@ -78,23 +77,20 @@ class ProductFileUploadComponent extends Component
 
     }
 
-    // public function upload_overview_information()
-    // {
+    public function uploadOverviewInformation()
+    {
 
-    //     $this->validate([
-    //         'file_overview_information' => 'file|mimes:pdf|max:10240000', // 10MB Max
-    //     ]);
-    //     $this->record
-    //         ->addMedia($this->file_overview_information)
-    //         ->toMediaCollection('overviewInformation');
-    //     $this->dispatch('toast', message: 'Файл успешно загружен', notify: 'success');
-    //     $this->fileOverviewInformations = $this->record->getMedia('overviewInformation');
-
-
-    //     $this->reset(['file_specification', 'file_dimensional_drawing', 'file_overview_information']);
-
-    //     $this->dispatch('$refresh');
-    // }
+        $this->validate([
+            'fileOverviewInformation' => 'file|mimes:pdf|max:10240000', // 10MB Max
+        ]);
+        $this->record
+            ->addMedia($this->fileOverviewInformation)
+            ->toMediaCollection('overviewInformation');
+        $this->dispatch('toast', message: 'Файл успешно загружен', notify: 'success');
+        $this->fileOverviewInformations = $this->record->getMedia('overviewInformation');
+        $this->reset(['fileSpecification', 'fileDimensionalDrawing', 'fileOverviewInformation']);
+        $this->dispatch('$refresh');
+    }
 
     public function download(Media $mediaItem)
     {
