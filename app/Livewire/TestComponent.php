@@ -9,6 +9,7 @@ class TestComponent extends Component
 {
     use LivewireAlert;
     public $delete_id;
+    public $row_id;
     public $isDisabled = false;
     public $record = '';
 
@@ -16,13 +17,22 @@ class TestComponent extends Component
     public $props;
 
 
+ #[\Livewire\Attributes\On('editProperty')]
+    public function editProperty($rowId): void
+    {
+        // dd($rowId);
+        // $this->row_id = $rowId;
+        // $this->js(alert);
+
+        $this->dispatch('edit-property'  , rowId: $rowId );
+    }
 
 
     #[\Livewire\Attributes\On('deleteProperty')]
     public function deleteProperty($rowId): void
     {
         $this->delete_id = $rowId;
-        $this->confirm('Вы действительно хотите очистить  эту запись?', [
+        $this->confirm('Вы действительно хотите очистить эту запись?', [
             'onConfirmed' => 'confirmed',
             'showCancelButton' => true,
             'cancelButtonText' => 'Нет',
@@ -33,7 +43,7 @@ class TestComponent extends Component
     public function confirmed()
     {
         // TODO Удаление
-        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
+        $this->dispatch('toast', message: 'Запись очищена', notify: 'success');
 
     }
 

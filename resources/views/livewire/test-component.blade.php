@@ -13,9 +13,9 @@
                 <tr>
                     <td>{{ $prop->id }} </td>
                     <td> {{ $prop->name }}</td>
-                    <td>Значение
+                    <td><div class="test" id ="{{ $prop->id }}"></div>
 
-                        <button type="button" wire:click="editProperty({{$prop->id}} )"  class="btn btn-success"><i class="fas fa-edit"></i></button>
+                        <button type="button" wire:click="editProperty({{$prop->id}})"  class="btn btn-success"><i class="fas fa-edit"></i></button>
                         <button type="button" wire:click="deleteProperty({{$prop->id}})"  class="btn btn-danger"><i class="fas fa-trash"></i></button>
 
                     </td>
@@ -30,3 +30,16 @@
 
 
 </div>
+@script
+<script>
+    $wire.on('edit-property', (event ) => {
+        // let refreshPosts = event.detail.rowId;
+        console.log('test ' + event   );
+        console.log(JSON.stringify(event));
+        alert('test ' + event.rowId   );
+        // let refreshPosts = event.detail.rowId;
+
+        // alert('test ' + refreshPosts );
+    });
+</script>
+@endscript
