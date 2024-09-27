@@ -76,9 +76,38 @@
                 }
                 , placeholder: 'Select an option'
             , });
+
+
+            $('#select_{{ $prop->id }}').on('select2:select', function(e) {
+                event.preventDefault();
+                var data = e.params.data;
+                // alert("Changed: " + this.id);
+                console.log(data);
+
+
+                $.ajax({
+                    url: "/api/v1/admin/product_property_update"
+                    , method: 'POST'
+                    , data: {
+                        "_token": "{{ csrf_token() }}"
+                         ,"product_id": "{{   $productType->id }}"
+                        , property_id: this.id
+                        , value_id: data.id
+
+                    },
+
+                    success: function(response) {
+                        // $(form).trigger("reset");
+                        alert(response.success)
+                    }
+                    , error: function(response) {}
+                });
+            });
+
+
         });
 
     </script>
-      @endpush
+    @endpush
     @endforeach
 </div>

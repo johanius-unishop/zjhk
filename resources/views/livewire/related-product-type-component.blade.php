@@ -7,25 +7,20 @@
                     <th>ID</th>
                     <th>Наименование</th>
                     <th>Действия</th>
-
                 </tr>
             </thead>
             <tbody>
-
                 @forelse ($relatedProductTypes as $relatedProductType)
                 <tr>
-
                     <td> {{ $relatedProductType->id }}</td>
                     <td> {{ $relatedProductType->name }}</td>
                     <td>
-
                         <button type="button" wire:click="up" wire:model="rowId"  class="btn btn-success"><i class="fas fa-arrow-up"></i></button>
                         <button type="button" wire:click="down" wire:model="rowId"  class="btn btn-success"><i class="fas fa-arrow-down"></i></button>
                         <button type="button" wire:click="delete"  class="btn btn-danger"><i class="fas fa-trash"></i></button>
-
                     </td>
-
                     @empty
+
 
                     @endforelse
                 </tr>
@@ -53,3 +48,4 @@
             </div>
         </div>
     </div>
+</div>

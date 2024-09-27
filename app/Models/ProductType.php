@@ -20,7 +20,7 @@ class ProductType extends Model
     ];
     public function props()
     {
-        return $this->hasMany(ProductTypeProperty::class, 'product_type_id');
+        return $this->hasMany(ProductTypeProperty::class, 'product_type_id')->ordered();
     }
 
     public function old_props()

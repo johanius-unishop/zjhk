@@ -21,8 +21,10 @@ class ProductTypeController extends Controller
         return response()->json($vendors, 200);
     }
 
-
-
+    public function product_property_update(Request $request)
+    {
+        dd($request->all());
+    }
     public function property_list(Request $request)
     {
        //   dd($request->all());

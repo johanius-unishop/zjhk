@@ -54,7 +54,7 @@ class TestComponent extends Component
 
         $this->record      = $record;
         $this->productType = ProductType::where('id', $this->record->product_type_id)->with('props')->first();
-        $this->props       = $this->productType->props;
+        $this->props       = $this->productType->props  ;
         foreach ($this->props as $prop) {
             $this->property_show[$prop->id] = false;
             $this->property_test[$prop->id]      = " Пусто ";

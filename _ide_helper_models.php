@@ -681,11 +681,17 @@ namespace App\Models{
 /**
  * 
  *
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_composite_element> $elements
- * @property-read int|null $elements_count
+ * @property int $id
+ * @property int $product_type_id
+ * @property string $name
+ * @property int|null $order_column
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement whereOrderColumn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement whereProductTypeId($value)
  */
 	class ProductTypeCompositeElement extends \Eloquent {}
 }
