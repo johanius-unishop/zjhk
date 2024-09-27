@@ -15,16 +15,17 @@ class TestComponent extends Component
 
     public $productType;
     public $props;
+    public $property_test = [];
+    public $property_show = [];
+    public $showDiv = false;
 
-
- #[\Livewire\Attributes\On('editProperty')]
+    #[\Livewire\Attributes\On('editProperty')]
     public function editProperty($rowId): void
     {
-        // dd($rowId);
-        // $this->row_id = $rowId;
-        // $this->js(alert);
 
-        $this->dispatch('edit-property'  , rowId: $rowId );
+        $this->property_show[$rowId] = true;
+        //   $showDiv = false;
+        //     $this->dispatch('edit-property'  , rowId: $rowId );
     }
 
 
@@ -44,25 +45,21 @@ class TestComponent extends Component
     {
         // TODO Удаление
         $this->dispatch('toast', message: 'Запись очищена', notify: 'success');
-
     }
-
-
-
-
-
-
 
 
 
     public function mount($record = null)
     {
 
-        $this->record = $record;
-        // $this->productType = ProductType::where('id', $this->record->product_type_id)->with('props')->get();
+        $this->record      = $record;
         $this->productType = ProductType::where('id', $this->record->product_type_id)->with('props')->first();
         $this->props       = $this->productType->props;
-        // dd($this->record, $this->productType, $this->props);
+        foreach ($this->props as $prop) {
+            $this->property_show[$prop->id] = false;
+            $this->property_test[$prop->id]      = " Пусто ";
+        }
+        //   dd( $this->property_show);
     }
     public function render()
     {

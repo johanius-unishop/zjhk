@@ -390,12 +390,16 @@
 @push('css')
 {{-- Add here extra stylesheets --}}
 <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 @endpush
 
 {{-- Push extra scripts --}}
 
 @push('js')
 @include('admin.blocks.summernote')
+<script src="{{ asset('vendor/select2/js/select2.full.min.js') }}"></script>
 
 
 @endpush

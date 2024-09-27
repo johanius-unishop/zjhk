@@ -681,6 +681,19 @@ namespace App\Models{
 /**
  * 
  *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_composite_element> $elements
+ * @property-read int|null $elements_count
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement query()
+ */
+	class ProductTypeCompositeElement extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @property int $id
  * @property string $name
  * @property int|null $order_column
@@ -950,6 +963,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|PropertyValue newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PropertyValue newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PropertyValue query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PropertyValue search(string $search, bool $orderByWeight = true)
  * @method static \Illuminate\Database\Eloquent\Builder|PropertyValue whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PropertyValue whereValue($value)
  */

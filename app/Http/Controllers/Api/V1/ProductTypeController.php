@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\PropertyValue;
 use App\Models\ProductType;
 use App\Models\ProductSubtype;
 use Illuminate\Http\Request;
@@ -11,7 +11,33 @@ use Illuminate\Http\Request;
 class ProductTypeController extends Controller
 {
 
+    public function property(Request $request)
+    {
+        $vendors = PropertyValue::get(['id', 'value']);
+        foreach ($vendors as $vendor) {
+            $vendor->selected = true;
+        }
 
+        return response()->json($vendors, 200);
+    }
+
+
+
+    public function property_list(Request $request)
+    {
+       //   dd($request->all());
+        if (!$request->filled('q')) {
+            $vendors = PropertyValue::all(['id', 'value']); //->take(60);
+
+        } else {
+            $search  = $request->q;
+            $vendors = PropertyValue::query()
+                ->search($request->q)
+                ->get(array('id', 'value'))
+               ->take(60);
+        }
+        return response()->json($vendors, 200);
+    }
 
     public function test_json_group(Request $request)
     {

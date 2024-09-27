@@ -52,6 +52,7 @@ Route::prefix('test')->name('test.')->group(function () {
     Route::get('/props_value_seed', [TestController::class, 'props_value_seed'])->name('props_value_seed');
 
 });
+// require __DIR__ . '/api.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin-auth.php';
 

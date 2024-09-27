@@ -41,8 +41,9 @@ class CategoryController extends Controller
         // if (!Gate::allows('manage content')) {
         //     return abort(401);
         // }
-
-        return view('admin.category.create', ['category' => $category]);
+        $parentCategories = Category::getCategoriesAsTree();
+        return view('admin.category.create', ['parentCategories' => $parentCategories]);
+        // return view('admin.category.create', ['category' => $category]);
     }
     /**
      * Store a newly created resource in storage.
