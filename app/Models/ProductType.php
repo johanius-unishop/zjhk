@@ -36,9 +36,15 @@ class ProductType extends Model
         return $this->hasMany(RelatedProductType::class, 'product_type_id');
     }
 
-    public function compositeElements()
-    {
+    // public function compositeElements()
+    // {
 
-        return $this->hasMany(Product_kind_composite_element::class, 'product_type_id');
+    //     return $this->hasMany(Product_kind_composite_element::class, 'product_type_id');
+    // }
+
+    public function composites()
+    {
+        return $this->hasMany(ProductTypeCompositeElement::class, 'product_type_id')->ordered();
     }
 }
+ 

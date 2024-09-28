@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\AnalogVendorController;
 use App\Http\Controllers\Admin\ProductTypeController;
 use App\Http\Controllers\Admin\ProductTypePropertyController;
-
+use App\Http\Controllers\Admin\ImportController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -40,7 +40,10 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::prefix('/import')->name('import.')->group(function () {
+        Route::delete('/product', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    });
     Route::prefix('/rap')->name('rap.')->group(function () {
         Route::resource('roles', App\Http\Controllers\Admin\RolesController::class);
         Route::resource('permissions', App\Http\Controllers\Admin\PermissionsController::class);
@@ -51,7 +54,9 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     Route::get('content', [ContentController::class, 'index'])->name('content.index');
     Route::get('model', [ContentController::class, 'model'])->name('content.model');
-    Route::get('import', [ContentController::class, 'index'])->name('import.index');
+    Route::get('import', [ImportController::class, 'index'])->name('import.index');
+    Route::get('import_product_files', [ImportController::class, 'import_product_files'])->name('import.import_product_files');
+    Route::get('import_product_images', [ImportController::class, 'import_product_images'])->name('import.import_product_images');
 
     Route::resource(name: 'user', controller: UserController::class);
     Route::resource(name: 'product', controller: ProductController::class);

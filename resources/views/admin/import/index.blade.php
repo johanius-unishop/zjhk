@@ -12,6 +12,9 @@
 
 
  тест Импорт
+
+
+ <livewire:admin-queue />
 @endsection
 
 @section('scripts')

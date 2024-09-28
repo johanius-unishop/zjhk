@@ -590,7 +590,7 @@ namespace App\Models{
  * @property-read int|null $composite_count
  * @property-read \App\Models\Currency|null $currency
  * @property-read mixed $front_url
- * @property-read \App\Models\Product_kind|null $kinds
+ * @property-read \App\Models\ProductType|null $kinds
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Product> $parentComplectation
@@ -656,8 +656,8 @@ namespace App\Models{
  * @property int $composite
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_kind_composite_element> $compositeElements
- * @property-read int|null $composite_elements_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductTypeCompositeElement> $composites
+ * @property-read int|null $composites_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductTypeProperty> $old_props
  * @property-read int|null $old_props_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductTypeProperty> $props
@@ -685,15 +685,22 @@ namespace App\Models{
  * @property int $product_type_id
  * @property string $name
  * @property int|null $order_column
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\ProductType|null $completeProduct
+ * @property-read \App\Models\ProductType|null $productType
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement ordered(string $direction = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement whereOrderColumn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement whereProductTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeCompositeElement whereUpdatedAt($value)
  */
-	class ProductTypeCompositeElement extends \Eloquent {}
+	class ProductTypeCompositeElement extends \Eloquent implements \Spatie\EloquentSortable\Sortable {}
 }
 
 namespace App\Models{

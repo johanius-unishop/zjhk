@@ -211,7 +211,7 @@
                         @if ($product->composite_product)
 
                         <div class="tab-pane fade" id="custom-tabs-four-complect" role="tabpanel" aria-labelledby="custom-tabs-four-complect-tab">
-                             <livewire:product-complect-component :record="@$product" />
+                             <livewire:product-complect-component :product="@$product" />
                         </div>
                         @endif
 

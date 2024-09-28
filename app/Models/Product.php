@@ -64,7 +64,7 @@ class Product extends Model implements HasMedia
 
     public function kinds()
     {
-        return $this->belongsTo(Product_kind::class, 'product_type_id');
+        return $this->belongsTo(ProductType::class, 'product_type_id');
     }
 
     public function properties()

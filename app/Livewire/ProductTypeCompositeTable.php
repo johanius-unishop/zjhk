@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\ProductTypeProperty;
+use App\Models\ProductTypeCompositeElement;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -17,23 +17,20 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\Log;
-
-final class ProductTypePropertyTable extends PowerGridComponent
+final class ProductTypeCompositeTable extends PowerGridComponent
 {
-
+    use WithExport;
     use LivewireAlert;
     public string $parent_category;
     public $delete_id;
     public $property_id;
     public function setUp(): array
     {
-
+        // $this->showCheckBox();
 
         return [
-            // Exportable::make('export')
-            //     ->striped()
-            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),->showSearchInput()
-            Header::make()->withoutLoading(),
+
+            Header::make(),
             Footer::make()
 
                 ->showRecordCount(),
@@ -42,8 +39,10 @@ final class ProductTypePropertyTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        // return ProductTypeProperty::query();->withCount('childrens')        return ProductTypeProperty::query()->where('product_type_id', operator: $this->parent_category)->ordered();
-        return ProductTypeProperty::query()->where(column: 'product_type_id', operator: $this->parent_category)->orderBy('order_column');
+        //   /  return ProductTypeCompositeElement::query();
+
+        return ProductTypeCompositeElement::query()->where(column: 'product_type_id', operator: $this->parent_category)->orderBy('order_column');
+
     }
 
     public function relationSearch(): array
@@ -56,7 +55,8 @@ final class ProductTypePropertyTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('created_at');
+            ->add('product_type_id')
+            ->add('order_column');
     }
 
     public function columns(): array
@@ -64,9 +64,9 @@ final class ProductTypePropertyTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name'),
-            Column::make('Создано', 'created_at')
-                ->sortable()
-            ,
+            // Column::make('Создано', 'created_at')
+            //     ->sortable()
+            //     ->searchable(),
 
             Column::action('Действия'),
         ];
@@ -78,36 +78,11 @@ final class ProductTypePropertyTable extends PowerGridComponent
         ];
     }
 
-    #[\Livewire\Attributes\On('post_delete')]
-    public function post_delete($rowId): void
-    {
-        $this->delete_id = $rowId;
-        $this->confirm('Вы действительно хотите удалить эту запись?', [
-            'onConfirmed' => 'confirmed',
-            'showCancelButton' => true,
-            'cancelButtonText' => 'Нет',
-        ]);
-    }
-
-    #[\Livewire\Attributes\On('confirmed')]
-    public function confirmed()
-    {
-        // TODO Удаление
-        // $deleted_record = ProductType::where('id', $this->delete_id)-> firstOrFail();
-        // // if ($deleted_record->product_count > 0) {
-        // //     $this->dispatch('toast', message: 'У этого производителя есть товары. Вначале удалите их!', notify: 'error');
-        // //     return;
-        // // }
-        // $deleted_record->delete();
-        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
-
-    }
-
     #[\Livewire\Attributes\On('up')]
     public function property_up($rowId): void
     {
         try {
-            $property = ProductTypeProperty::findOrFail($rowId);
+            $property = ProductTypeCompositeElement::findOrFail($rowId);
             $property->moveOrderUp();
             $this->dispatch('toast', message: 'Запись успешно поднята вверх.', notify: 'success');
         }
@@ -124,7 +99,7 @@ final class ProductTypePropertyTable extends PowerGridComponent
     public function property_down($rowId): void
     {
         try {
-            $property = ProductTypeProperty::findOrFail($rowId);
+            $property = ProductTypeCompositeElement::findOrFail($rowId);
             $property->moveOrderDown();
             $this->dispatch('toast', message: 'Запись успешно опущена вниз.', notify: 'success');
         }
@@ -136,13 +111,10 @@ final class ProductTypePropertyTable extends PowerGridComponent
         $this->dispatch('$refresh');
 
     }
-    public function actions(ProductTypeProperty $row): array
+    public function actions(ProductTypeCompositeElement $row): array
     {
         return [
-            Button::add('view')
-                ->slot('<i class="fas fa-folder"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.product_type_property.show', ['product_type_property' => $row->id]),
+
 
             Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
@@ -161,7 +133,25 @@ final class ProductTypePropertyTable extends PowerGridComponent
                 ->class('btn btn-danger')
                 ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
+
+        // return [
+        //     Button::add('edit')
+        //         ->slot('Edit: '.$row->id)
+        //         ->id()
+        //         ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
+        //         ->dispatch('edit', ['rowId' => $row->id])
+        // ];
     }
 
-
+    /*
+    public function actionRules($row): array
+    {
+       return [
+            // Hide button edit for ID 1
+            Rule::button('edit')
+                ->when(fn($row) => $row->id === 1)
+                ->hide(),
+        ];
+    }
+    */
 }

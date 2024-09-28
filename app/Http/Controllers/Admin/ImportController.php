@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use App\Models\Portfolio;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use DOMDocument;
@@ -46,7 +47,28 @@ class ImportController extends Controller
 
     }
 
+   public function import_product_images( )
+    {
+        $images = DB::table('product_pdfs') ->all();
+    }
 
+    public function import_product_files( )
+    {
+
+        $types=[
+            1=> 'specifications',
+            2=>'dimensionalDrawing',
+            3=>'overviewInformation'
+        ];
+      $files = DB::table('product_pdfs') ->get();
+
+      foreach ($files as $file) {
+        dd($file , $types[$file->product_pdf_type_id] );
+      }
+
+
+
+    }
 
     public function imagesUpload(Request $request)
     {
