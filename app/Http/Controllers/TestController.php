@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\DB;
 class TestController extends Controller
 {
     //
+
+    public function product_composite()
+    {
+
+        $product = Product::find(7718);
+        // $product->load('type' , 'composite');
+
+        $product->load('type', 'composite', 'composite.compositeProduct');
+        dd($product ->composite);
+    }
     public function product_kinds_props()
     {
         $product = Product::find(1433);

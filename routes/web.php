@@ -47,6 +47,7 @@ Route::prefix('test')->name('test.')->group(function () {
     Route::get('/test_vendor_product', [TestController::class, 'test_vendor_product'])->name('test_vendor_product');
     Route::get('/test_currency_seed', [TestController::class, 'test_currency_seed'])->name('test_currency_seed');
     Route::get('/product_kinds_props', [TestController::class, 'product_kinds_props'])->name('product_kinds_props');
+    Route::get('/product_composite', [TestController::class, 'product_composite'])->name('product_composite');
 
     // Route::get('/product_kinds_props', [TestController::class, 'product_kinds_props'])->name('product_kinds_props');
 

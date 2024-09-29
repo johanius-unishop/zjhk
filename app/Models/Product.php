@@ -92,11 +92,15 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(Currency::class);
     }
 
-    public function composite()
-    {
-        return $this->hasMany(Product_composite_element::class);
-    }
+    // public function composite()
+    // {
+    //     return $this->hasMany(Product_composite_element::class);
+    // }
 
+   public function composite()
+    {
+        return $this->hasMany(ProductCompositeElement::class ,   'product_id');
+    }
 
     //к какому комплекту товар относится
     public function parentComplectation()

@@ -11,10 +11,10 @@ class ProductComplectComponent extends Component
 
     #[Modelable]
     public $product;
-
+    public $flag = 0;
     public function mount(Product $product)
     {
-        $product->load('type', 'type.composites', 'type.composites.product');
+        $product->load('type', 'composite', 'composite.compositeProduct', 'composite.compositeType');
         $this->product = $product;
         // dd( $this->product );
     }

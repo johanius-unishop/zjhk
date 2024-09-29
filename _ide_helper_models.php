@@ -586,7 +586,7 @@ namespace App\Models{
  * @property-read \App\Models\Category|null $category
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_composite_element> $complectationQuantity
  * @property-read int|null $complectation_quantity_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_composite_element> $composite
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductCompositeElement> $composite
  * @property-read int|null $composite_count
  * @property-read \App\Models\Currency|null $currency
  * @property-read mixed $front_url
@@ -650,12 +650,22 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property int $product_composite_element_id
+ * @property int $product_id
+ * @property int $product_element_id
+ * @property int $quantity
  * @property-read \App\Models\Product|null $compositeProduct
  * @property-read \App\Models\ProductTypeCompositeElement|null $compositeType
  * @property-read \App\Models\Product|null $product
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCompositeElement newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCompositeElement newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCompositeElement query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCompositeElement whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCompositeElement whereProductCompositeElementId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCompositeElement whereProductElementId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCompositeElement whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCompositeElement whereQuantity($value)
  */
 	class ProductCompositeElement extends \Eloquent {}
 }

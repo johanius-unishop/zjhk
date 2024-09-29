@@ -21,12 +21,9 @@ class PermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         // 'guard_name' =>  'admin'
 
-
         Permission::create(['name' => 'manage users', 'guard_name' =>  'admin']);
 
 
-
-        // ..
         Permission::create(['name' => 'manage roles', 'guard_name' =>  'admin']);
         Permission::create(['name' => 'create roles', 'guard_name' =>  'admin']);
         Permission::create(['name' => 'display roles', 'guard_name' =>  'admin']);
@@ -55,7 +52,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'delete content', 'guard_name' =>  'admin']);
 
         Permission::create(['name' => 'manage new item', 'guard_name' =>  'admin']);
-        Permission::create(['name' => 'create newitem', 'guard_name' =>  'admin']);
+        Permission::create(['name' => 'create new item', 'guard_name' =>  'admin']);
         Permission::create(['name' => 'display new item', 'guard_name' =>  'admin']);
         Permission::create(['name' => 'edit new item', 'guard_name' =>  'admin']);
         Permission::create(['name' => 'delete new item', 'guard_name' =>  'admin']);
