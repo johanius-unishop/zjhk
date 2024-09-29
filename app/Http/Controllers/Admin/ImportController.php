@@ -20,6 +20,7 @@ use App\Http\Controllers\Controller;
 
 // use App\Http\Requests\Admin\ImportProductFileRequest;
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use App\Models\Portfolio;
@@ -30,6 +31,9 @@ use Illuminate\Http\Request;
 use DOMDocument;
 use Illuminate\Support\Facades\Storage;
 use App\Services\CsvService;
+use App\Jobs\AttachFilesToProduct;
+
+use App\Jobs\AttachImagesToProduct;
 class ImportController extends Controller
 {
 
@@ -47,26 +51,51 @@ class ImportController extends Controller
 
     }
 
-   public function import_product_images( )
+    public function import_product_images()
     {
-        $images = DB::table('product_pdfs') ->all();
+        \Debugbar::disable();
+        $images = DB::table('product_images')->orderBy('product_id', 'asc')
+            ->orderBy('sorting', 'asc')->get();
+        $i      = 0;
+        foreach ($images as $file) {
+            // dd($file);
+            try {
+                $i++;
+                $product = Product::findOrFail($file->product_id);
+                AttachImagesToProduct::dispatch($product, 'images', $file->image);
+            }
+            catch (\Throwable $th) {
+                dd($file, );
+                throw $th;
+            }
+        }
+
+        echo ('Обработано ' . $i . ' товаров ');
     }
 
-    public function import_product_files( )
+    public function import_product_files()
     {
-
-        $types=[
-            1=> 'specifications',
-            2=>'dimensionalDrawing',
-            3=>'overviewInformation'
+        \Debugbar::disable();
+        $types = [
+            1 => 'specifications',
+            2 => 'dimensionalDrawing',
+            3 => 'overviewInformation',
         ];
-      $files = DB::table('product_pdfs') ->get();
+        $i      = 0;
+        $files = DB::table('product_pdfs')->get();
+        foreach ($files as $file) {
+            try {
 
-      foreach ($files as $file) {
-        dd($file , $types[$file->product_pdf_type_id] );
-      }
-
-
+                $i++;
+                $product = Product::findOrFail($file->product_id);
+                AttachFilesToProduct::dispatch($product, $types[$file->product_pdf_type_id], $file->pdf);
+            }
+            catch (\Throwable $th) {
+                dd($file, $types[$file->product_pdf_type_id]);
+                throw $th;
+            }
+        }
+        echo ('Обработано ' . $i . ' товаров ');
 
     }
 
