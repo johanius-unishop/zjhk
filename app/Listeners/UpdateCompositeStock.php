@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Events\ProductStockUpdated;
 use App\Models\Product;
-use App\Models\Product_composite_element;
+use App\Models\ProductCompositeElement;
 use App\ViewModels\ProductViewModel;
 use Illuminate\Support\Facades\DB;
 

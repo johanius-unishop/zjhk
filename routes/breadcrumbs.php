@@ -9,3 +9,9 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('home'));
 });
+
+// Home > Catalog
+Breadcrumbs::for('catalog', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Каталог', route('catalog'));
+});

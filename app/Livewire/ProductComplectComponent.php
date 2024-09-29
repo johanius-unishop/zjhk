@@ -14,7 +14,7 @@ class ProductComplectComponent extends Component
 
     public function mount(Product $product)
     {
-        $product->load('type', 'type.composites', 'type.composites');
+        $product->load('type', 'type.composites', 'type.composites.product');
         $this->product = $product;
         // dd( $this->product );
     }

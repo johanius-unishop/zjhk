@@ -12,6 +12,6 @@ class Product_kind_composite_element extends Model
 
     public function elements()
     {
-        return $this->hasMany(Product_composite_element::class, 'product_composite_element_id');
+        return $this->hasMany(ProductCompositeElement::class, 'product_composite_element_id');
     }
 }

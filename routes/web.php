@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 ;
+Route::get('/catalog}', [ProductController::class, 'catalog'])->name('catalog');
 
 
 Route::get('/items/{product}', [ProductController::class, 'testShow'])->name('testShow');

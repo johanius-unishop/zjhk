@@ -590,7 +590,7 @@ namespace App\Models{
  * @property-read int|null $composite_count
  * @property-read \App\Models\Currency|null $currency
  * @property-read mixed $front_url
- * @property-read \App\Models\ProductType|null $kinds
+ * @property-read \App\Models\Product_kind|null $kinds
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Product> $parentComplectation
@@ -644,6 +644,20 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereYm($value)
  */
 	class Product extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property-read \App\Models\Product|null $compositeProduct
+ * @property-read \App\Models\ProductTypeCompositeElement|null $compositeType
+ * @property-read \App\Models\Product|null $product
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCompositeElement newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCompositeElement newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCompositeElement query()
+ */
+	class ProductCompositeElement extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -827,7 +841,7 @@ namespace App\Models{
  * @property int $product_kind_id
  * @property string $element
  * @property int $sorting
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product_composite_element> $elements
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductCompositeElement> $elements
  * @property-read int|null $elements_count
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_composite_element newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_composite_element newQuery()
