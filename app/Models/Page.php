@@ -53,11 +53,10 @@ class Page extends Model implements Sortable, HasMedia
 
     protected $fillable = [
         'name',
-        'order_column',
         'body_description',
-        'anouncement',
-        'old_code',
-        'old_link',
+        'short_description',
+        'slug',
+        'order_column',
         'active',
         'protected',
 

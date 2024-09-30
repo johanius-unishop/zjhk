@@ -81,15 +81,9 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
         'name',
         'order_column',
         'body_description',
-        'anouncement',
-        'image_link',
-        'old_link',
-        'old_code',
+        'short_description',
         'slug',
-        'active',
-        'created_at',
-        'vendor_id',
-
+        'published',
     ];
     public function registerMediaConversions(?Media $media = null): void
     {
