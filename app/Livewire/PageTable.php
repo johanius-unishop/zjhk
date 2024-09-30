@@ -52,9 +52,8 @@ final class PageTable extends PowerGridComponent
             ->add('id')
             ->add('name')
             ->add('order_column')
-
             ->add('active')
-            ->add('protected')
+            ->add('protected', fn($item) => $item->protected ? '✅' : '❌')
             ->add('created_at');
     }
 
@@ -65,20 +64,21 @@ final class PageTable extends PowerGridComponent
             Column::make('Наименование', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Active', 'active')
-                ->sortable()
-                ->searchable(),
+            Column::make('Опубликовано ', 'published')
+                ->sortable(),
             Column::make('Protected', 'protected'),
             Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
-            Column::action('Action'),
+                ->sortable(),
+            Column::action('Действия'),
         ];
     }
 
     public function filters(): array
     {
         return [
+
+            Filter::boolean('protected')
+                ->label('✅', '❌'),
         ];
     }
 
@@ -96,15 +96,19 @@ final class PageTable extends PowerGridComponent
     #[\Livewire\Attributes\On('confirmed')]
     public function confirmed()
     {
-        // TODO Удаление
+        $deleted_record = Page::where('id', $this->delete_id)->firstOrFail();
 
-        // $deleted_record = ProductType::where('id', $this->delete_id)-> firstOrFail();
-        // // if ($deleted_record->product_count > 0) {
-        // //     $this->dispatch('toast', message: 'У этого производителя есть товары. Вначале удалите их!', notify: 'error');
-        // //     return;
-        // // }
-
-        // $deleted_record->delete();
+        if ($deleted_record->protected) {
+            $this->dispatch('toast', message: 'Данная страница не может быть удалена. Она используется в меню и защищена от удаления!', notify: 'error');
+            return;
+        }
+        if ($deleted_record->seo()->exists()) {
+            $deleted_record->seo()->delete();
+        }
+        if ($deleted_record->media()->exists()) {
+            $deleted_record->media()->delete();
+        }
+        $deleted_record->delete();
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
 
     }
@@ -121,6 +125,4 @@ final class PageTable extends PowerGridComponent
                 ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
     }
-
-
 }
