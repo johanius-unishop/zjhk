@@ -69,12 +69,12 @@ class Page extends Model implements Sortable, HasMedia
             ->height(282)
             ->nonQueued();
 
-        $this
-            ->addMediaConversion('responsive')
-            ->format('webp')
-            ->quality(80)
-            ->withResponsiveImages()
-            ->nonQueued();
+        // $this
+        //     ->addMediaConversion('responsive')
+        //     ->format('webp')
+        //     ->quality(80)
+        //     ->withResponsiveImages()
+        //     ->nonQueued();
     }
 
 

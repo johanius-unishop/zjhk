@@ -15,10 +15,13 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 final class NewsTable extends PowerGridComponent
 {
     use WithExport;
+    use LivewireAlert;
+    public $delete_id;
 
     public function setUp(): array
     {
@@ -50,10 +53,8 @@ final class NewsTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('order_column')
-            ->add('body_description')
-            ->add('slug')
-            ->add('created_at')
+
+
             ->add('created_at');
     }
 
@@ -62,34 +63,16 @@ final class NewsTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Name', 'name')
-                ->sortable()
-                ->searchable(),
+                 ->searchable(),
 
-            Column::make('Order column', 'order_column')
-                ->sortable()
-                ->searchable(),
 
-            Column::make('Body description', 'body_description')
-                ->sortable()
-                ->searchable(),
 
-            Column::make('Slug', 'slug')
-                ->sortable()
-                ->searchable(),
 
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
+ 
+
 
             Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
-
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
+                 ->searchable(),
 
             Column::action('Action')
         ];
@@ -100,33 +83,44 @@ final class NewsTable extends PowerGridComponent
         return [
         ];
     }
-
-    #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
+    #[\Livewire\Attributes\On('post_delete')]
+    public function post_delete($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->delete_id = $rowId;
+        $this->confirm('Вы действительно хотите удалить эту запись?', [
+            'onConfirmed' => 'confirmed',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'Нет',
+        ]);
     }
 
+    #[\Livewire\Attributes\On('confirmed')]
+    public function confirmed()
+    {
+        $deleted_record = News::where('id', $this->delete_id)->firstOrFail();
+
+
+        if ($deleted_record->seo()->exists()) {
+            $deleted_record->seo()->delete();
+        }
+        if ($deleted_record->media()->exists()) {
+            $deleted_record->media()->delete();
+        }
+        $deleted_record->delete();
+        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
+
+    }
     public function actions(News $row): array
     {
         return [
-            Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+            Button::add('view')
+                ->slot('<i class="fas fa-edit"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.news.edit', ['news' => $row->id]),
+            Button::add('delivery')
+                ->slot('<i class="fas fa-trash"></i>')
+                ->class('btn btn-danger')
+                ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }

@@ -29,7 +29,6 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
     use HasSlug;
     protected $appends = ['front_url'];
 
-
     public function toSitemapTag(): Url|string|array
     {
         // Simple return:
@@ -38,8 +37,8 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
         // Return with fine-grained control:
         return Url::create($this->front_url)
             ->setLastModificationDate(Carbon::create($this->updated_at))
-            ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
-            ->setPriority(0.1);
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+            ->setPriority(0.4);
     }
 
     /**
@@ -51,26 +50,8 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
-    // public function toSitemapTag(): Url | string | array
-    // {
-    //     // Simple return:
-    //     // return route('blog.post.show', $this);
 
-    //     // Return with fine-grained control:
-    //     return Url::create(route('blog.post.show', $this))
-    //         ->setLastModificationDate(Carbon::create($this->updated_at))
-    //         ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
-    //         ->setPriority(0.5);
-    // }
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    // public function getRouteKeyName()
-    // {
-    //     return 'slug';
-    // }
+
     public $sortable = [
         'order_column_name' => 'order_column',
         'sort_when_creating' => true,
@@ -91,12 +72,7 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
             ->fit(Fit::Crop, 396, 282)
             ->nonQueued();
 
-        // $this
-        //     ->addMediaConversion('responsive')
-        //     ->format('webp')
-        //     ->quality(80)
-        //     ->withResponsiveImages()
-        //     ->nonQueued();
+
     }
     public function registerMediaCollections(): void
     {
@@ -113,9 +89,6 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
     {
         return new Attribute(
             get: fn() => strlen($this->old_link) > 0 ? config('app.url') . DIRECTORY_SEPARATOR . $this->old_link : config('app.url') . DIRECTORY_SEPARATOR . "news" . DIRECTORY_SEPARATOR . $this->slug,
-
-            // get: fn() => strlen($this->old_link) > 0 ? config('app.url').DIRECTORY_SEPARATOR .$this->old_link : config('app.url').DIRECTORY_SEPARATOR . "news" . DIRECTORY_SEPARATOR . $this->slug,
-
         );
     }
 

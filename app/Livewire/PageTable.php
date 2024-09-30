@@ -53,7 +53,7 @@ final class PageTable extends PowerGridComponent
             ->add('name')
             ->add('order_column')
             ->add('active')
-            ->add('protected', fn($item) => $item->protected ? '✅' : '❌')
+            ->add('protected', closure: fn($item) => $item->protected ? '✅' : '❌')
             ->add('created_at');
     }
 

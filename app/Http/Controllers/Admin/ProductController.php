@@ -72,7 +72,7 @@ class ProductController extends Controller
         }
         $parentCategories = Category::getCategoriesAsTree();
         $currencies       = Currency::get(array('name', 'id'));
-        $productTypes      = ProductType::get(array('name', 'id'));
+        $productTypes     = ProductType::get(array('name', 'id'));
         $vendors          = Vendor::get(array('name', 'id'));
         return view('admin.product.create', compact('parentCategories', 'productTypes', 'vendors', 'currencies'));
 
@@ -89,11 +89,8 @@ class ProductController extends Controller
 
         $input = $request->all();
 
-
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
         $request->filled(key: 'composite_product') ? $input['composite_product'] = 1 : $input['composite_product'] = 0;
-
-        // $request->filled('in_stock') ? $input['in_stock'] = 1 : $input['in_stock'] = 0;
 
         $record = Product::create($input);
 
@@ -118,22 +115,17 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-
         if (!Gate::allows('manage content') && !Gate::allows('manage image')) {
             return abort(401);
         }
-
-        // Fix to seeded records
+        // !!!Fix to seeded records
         if ($product->seo->title == '') {
             $product->addSEO();
         }
-        $currencies    = Currency::get(array('name', 'id'));
-        $productTypes = ProductType::get(columns: array('name', 'id'));
-        $vendors       = Vendor::get(array('name', 'id'));
-
+        $currencies       = Currency::get(array('name', 'id'));
+        $productTypes     = ProductType::get(columns: array('name', 'id'));
+        $vendors          = Vendor::get(array('name', 'id'));
         $parentCategories = Category::getCategoriesAsTree();
-
-
         return view('admin.product.edit', compact('product', 'parentCategories', 'productTypes', 'vendors', 'currencies'));
 
     }
@@ -146,16 +138,10 @@ class ProductController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-
         $input = $request->all();
-        // $input['product_type_id'] = ProductSubtype::where('id', $input['product_subtype_id'])->first()->product_type_id;
 
         $request->filled(key: 'published') ? $input['published'] = 1 : $input['published'] = 0;
         $request->filled(key: 'composite_product') ? $input['composite_product'] = 1 : $input['composite_product'] = 0;
-
-
-        // $request->filled('active') ? $input['active'] = 1 : $input['active'] = 0;
-        // $request->filled('in_stock') ? $input['in_stock'] = 1 : $input['in_stock'] = 0;
 
         $product->update($input);
 
@@ -165,7 +151,7 @@ class ProductController extends Controller
             'keywords' => $request->keywords,
             'canonical_url' => $request->canonical_url,
         ]);
-        //  ' . $product->name . '
+
         session()->flash('success', 'Запись успешно обновлена');
 
         if ($request->action == 'save-exit') {
@@ -173,6 +159,4 @@ class ProductController extends Controller
         }
         return redirect(route('admin.product.edit', $product->id));
     }
-
-
 }
