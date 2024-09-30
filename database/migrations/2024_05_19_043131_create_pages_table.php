@@ -10,14 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->longText('body_description')->nullable();
             $table->string('slug')->unique()->nullable();
             $table->integer('order_column')->nullable();
-            $table->longText('body_description')->nullable();
-            $table->text('short_description')->nullable();
-            $table->tinyInteger('published')->nullable();
+
+            $table->boolean('active')->default(1);
+            $table->boolean('protected')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,7 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
-
+        Schema::dropIfExists('pages');
     }
 };

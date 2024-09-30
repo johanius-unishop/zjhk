@@ -443,31 +443,6 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property string $text
- * @property string $new_image
- * @property string $date_added
- * @property int $visible
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|News newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|News newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|News query()
- * @method static \Illuminate\Database\Eloquent\Builder|News whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereDateAdded($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereNewImage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereText($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereVisible($value)
- */
-	class News extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * 
- *
- * @property int $id
  * @property string $value
  * @property int $product_kind_prop_id
  * @property int $product_id
@@ -536,6 +511,42 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order_composition whereUpdatedAt($value)
  */
 	class Order_composition extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $name
+ * @property string|null $body_description
+ * @property string|null $slug
+ * @property int|null $order_column
+ * @property int $active
+ * @property int $protected
+ * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $front_url
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @property-read \RalphJSmit\Laravel\SEO\Models\SEO $seo
+ * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page ordered(string $direction = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|Page query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereBodyDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereOrderColumn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereProtected($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereUpdatedAt($value)
+ */
+	class Page extends \Eloquent implements \Spatie\EloquentSortable\Sortable, \Spatie\MediaLibrary\HasMedia {}
 }
 
 namespace App\Models{

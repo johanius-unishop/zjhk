@@ -37,9 +37,11 @@ before_script:
 
   - php artisan key:generate
   - php artisan config:cache
-  - php artisan migrate
+  - php artisan migrate --force
+  - php artisan log-viewer:publish
   - php artisan db:seed
-
+  - php artisan op:c
+  - php artisan queue:restart
 test:
   script:
     - php vendor/bin/phpunit --coverage-text --colors=never

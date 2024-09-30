@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 // use App\Models\Blog;
-// use App\Models\News;
-// use App\Models\Page;
+use App\Models\News;
+use App\Models\Page;
 // use App\Models\Product;
 // use App\Models\Consulting;
 // use App\Models\Vendor;
@@ -42,12 +42,12 @@ class ContentController extends Controller
     public function index()
     {
         //
-        // $news_count = News::count();
+        $news_count = News::count();
         // $blog_count = Blog::count();
-        // $page_count = Page::count();
+        $page_count = Page::count();
 
-        // return view('admin.content.index', compact('news_count', 'blog_count', 'page_count', 'portfolio_count', 'opinion_count'));
-        return view('admin.content.index');
+        return view('admin.content.index', compact('news_count', 'page_count'));
+        //  return view('admin.content.index');
 
 
     }

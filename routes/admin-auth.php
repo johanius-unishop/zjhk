@@ -14,7 +14,8 @@ use App\Http\Controllers\Admin\AnalogVendorController;
 use App\Http\Controllers\Admin\ProductTypeController;
 use App\Http\Controllers\Admin\ProductTypePropertyController;
 use App\Http\Controllers\Admin\ImportController;
-
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\PageController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -74,5 +75,10 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     Route::resource(name: 'product_type_property', controller: ProductTypePropertyController::class);
     Route::get('product_type_property/createNew/{product_type}', [ProductTypePropertyController::class, 'createNew'])->name('product_type_property.createNew');
+
+
+    Route::resource(name: 'news', controller: NewsController::class);
+    Route::resource(name: 'page', controller: PageController::class);
+
 
 });

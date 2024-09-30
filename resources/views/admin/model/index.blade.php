@@ -10,7 +10,7 @@
 @stop
 @section('content')
 
-
+<!--  .row -->
 <div class="row">
     <div class="col-lg-3 col-6">
         <!-- small card -->
@@ -28,22 +28,7 @@
             </a>
         </div>
     </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-        <!-- small card -->
-        <div class="small-box bg-success">
-            <div class="inner">
-                <h3>{{ $blog_count }}</h3>
-                <p>Статьи</p>
-            </div>
-            <div class="icon">
-                <i class="fas fa-newspaper"></i>
-            </div>
-            <a href="{{ route('admin.blog.index') }}" class="small-box-footer">
-                Перейти <i class="fas fa-arrow-circle-right"></i>
-            </a>
-        </div>
-    </div>
+
     <!-- ./col -->
     <div class="col-lg-3 col-6">
         <!-- small card -->
@@ -60,24 +45,7 @@
             </a>
         </div>
     </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-        <!-- small card -->
-        <div class="small-box bg-danger">
-            <div class="inner">
-                <h3> {{ $df }} <sup style="font-size: 20px">свободно</sup></h3>
 
-                <p>Файловый менеджер</p>
-            </div>
-            <div class="icon">
-                <i class="fas fa-chart-pie"></i>
-            </div>
-            <a href="{{ route('elfinder.index') }}" class="small-box-footer">
-                Смотреть <i class="fas fa-arrow-circle-right"></i>
-            </a>
-        </div>
-    </div>
-    <!-- ./col -->
 </div>
 <!-- /.row -->
 
