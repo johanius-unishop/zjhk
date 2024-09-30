@@ -35,49 +35,52 @@
 
 <script>
     window.addEventListener('galleryModalPhoto', event => {
-     new VenoBox({
-        selector: '.my-image-links',
-        numeration: true,
-        infinigall: true,
-        navigation	: true,
-        titleattr: 'data-title',
-        share: true,
-  // overlayClose: true,
-        spinner: 'plane',
-        spinColor: '#00B1F0',
-        maxWidth: '100%'
-      //            share: true,
-     //             spinner: 'rotating-plane'
-            });
-        })
+        new VenoBox({
+            selector: '.my-image-links'
+            , numeration: true
+            , infinigall: true
+            , navigation: true
+            , titleattr: 'data-title'
+            , share: true,
+            // overlayClose: true,
+            spinner: 'plane'
+            , spinColor: '#00B1F0'
+            , maxWidth: '100%'
+            //            share: true,
+            //             spinner: 'rotating-plane'
+        });
+    })
+
 </script>
 <script>
     document.addEventListener("livewire:init", () => {
         Livewire.on("toast", (event) => {
-           toastr[event.notify](event.message);
+            toastr[event.notify](event.message);
         });
     });
+
 </script>
 
 <script>
     // success message popup notification
     @if(Session::has('success'))
-        toastr.success("{{ Session::get('success') }}");
+    toastr.success("{{ Session::get('success') }}");
     @endif
 
     // info message popup notification
     @if(Session::has('info'))
-        toastr.info("{{ Session::get('info') }}");
+    toastr.info("{{ Session::get('info') }}");
     @endif
 
     // warning message popup notification
     @if(Session::has('warning'))
-        toastr.warning("{{ Session::get('warning') }}");
+    toastr.warning("{{ Session::get('warning') }}");
     @endif
 
     // error message popup notification
     @if(Session::has('error'))
-        toastr.error("{{ Session::get('error') }}");
+    toastr.error("{{ Session::get('error') }}");
     @endif
+
 </script>
 @stop
