@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\ProductTypePropertyController;
 use App\Http\Controllers\Admin\ImportController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PageController;
-
+use App\Http\Controllers\Admin\FaqController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
@@ -65,26 +65,27 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('import_product_files', [ImportController::class, 'import_product_files'])->name('import.import_product_files');
     Route::get('import_product_images', [ImportController::class, 'import_product_images'])->name('import.import_product_images');
 
-    Route::resource(name: 'user', controller: UserController::class);
-    Route::resource(name: 'product', controller: ProductController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('product', ProductController::class);
     Route::get('product_statistic', [ProductController::class, 'statistic'])->name('product_statistic');
-    Route::resource(name: 'category', controller: CategoryController::class);
+    Route::resource('category', CategoryController::class);
     Route::get('category/createNew/{category}', [CategoryController::class, 'createNew'])->name('category.createNew');
 
-    Route::resource(name: 'vendor', controller: VendorController::class);
+    Route::resource('vendor', VendorController::class);
     Route::post('/images/upload', [ContentController::class, 'imagesUpload'])->name('images_upload');
-    Route::resource(name: 'currency', controller: CurrencyController::class);
-    Route::resource(name: 'delivery', controller: DeliveryController::class);
-    Route::resource(name: 'analog-vendor', controller: AnalogVendorController::class);
-    Route::resource(name: 'product_type', controller: ProductTypeController::class);
+    Route::resource('currency', CurrencyController::class);
+    Route::resource('delivery', DeliveryController::class);
+    Route::resource('analog-vendor', AnalogVendorController::class);
+    Route::resource('product_type', ProductTypeController::class);
 
 
-    Route::resource(name: 'product_type_property', controller: ProductTypePropertyController::class);
+    Route::resource('product_type_property', ProductTypePropertyController::class);
     Route::get('product_type_property/createNew/{product_type}', [ProductTypePropertyController::class, 'createNew'])->name('product_type_property.createNew');
 
 
-    Route::resource(name: 'news', controller: NewsController::class);
-    Route::resource(name: 'page', controller: PageController::class);
+    Route::resource('news', NewsController::class);
+    Route::resource('page', PageController::class);
+    Route::resource('faq', FaqController::class);
 
 
 });

@@ -66,8 +66,8 @@ final class PageTable extends PowerGridComponent
                 ->searchable(),
             Column::make('Опубликовано ', 'published')
                 ->sortable(),
-            Column::make('Protected', 'protected'),
-            Column::make('Created at', 'created_at')
+            Column::make('Защита', 'protected'),
+            Column::make('Создано', 'created_at')
                 ->sortable(),
             Column::action('Действия'),
         ];

@@ -45,7 +45,22 @@
             </a>
         </div>
     </div>
-
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+        <!-- small card -->
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3> {{ $faq_count }}</h3>
+                <p>Faq (ЧаВо)</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-newspaper"></i>
+            </div>
+            <a href="{{ route('admin.faq.index') }}" class="small-box-footer">
+                Перейти <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
 </div>
 <!-- /.row -->
 @endsection

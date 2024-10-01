@@ -14,7 +14,7 @@ use App\Models\Page;
 // use App\Models\ProductType;
 // use App\Models\Opinion;
 use App\Models\Order;
-// use App\Models\Drawing;
+use App\Models\Faq;
 // use App\Models\Subscribe;
 // use App\Models\ModelRequest;
 
@@ -43,10 +43,10 @@ class ContentController extends Controller
     {
         //
         $news_count = News::count();
-        // $blog_count = Blog::count();
+        $faq_count  = Faq::count();
         $page_count = Page::count();
 
-        return view('admin.content.index', compact('news_count', 'page_count'));
+        return view('admin.content.index', compact('news_count', 'page_count' , 'faq_count'  ));
         //  return view('admin.content.index');
     }
 

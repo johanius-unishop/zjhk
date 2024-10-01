@@ -13,7 +13,7 @@ return new class extends Migration
 
             $table->morphs('model');
 
-            $table->longText('description')->nullable();
+            $table->longText(column: 'description')->nullable();
             $table->string('title')->nullable();
             $table->string('image')->nullable();
             $table->string('keywords')->nullable();
