@@ -15,7 +15,7 @@ use App\Http\Controllers\TestController;
 // use Illuminate\Support\Facades\Route;
 // use Symfony\Component\HttpFoundation\Request;
 // use App\Http\Middleware\CompleteProfile;
-use App\Http\Controllers\Front\{PageController , NewsController};
+use App\Http\Controllers\Front\{PageController , NewsController , CategoryController};
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -30,6 +30,7 @@ Route::get('/pages/{slug}', [PageController::class, 'show'])->name('page.show');
 
 
 Route::get('/catalog', [ProductController::class, 'catalog'])->name('catalog');
+Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 
 
 Route::get('/items/{product}', [ProductController::class, 'testShow'])->name('testShow');

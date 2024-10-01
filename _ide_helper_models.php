@@ -184,10 +184,13 @@ namespace App\Models{
  * @property-read int|null $children_count
  * @property-read \Kalnoy\Nestedset\Collection<int, Category> $childrens
  * @property-read int|null $childrens_count
+ * @property-read mixed $front_url
  * @property-read mixed $can_deleted
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read Category|null $parent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
  * @property-read \RalphJSmit\Laravel\SEO\Models\SEO $seo
  * @method static \Kalnoy\Nestedset\Collection<int, static> all($columns = ['*'])
  * @method static \Kalnoy\Nestedset\QueryBuilder|Category ancestorsAndSelf($id, array $columns = [])

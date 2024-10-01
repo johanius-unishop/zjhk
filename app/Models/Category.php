@@ -16,6 +16,8 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Kalnoy\Nestedset\NodeTrait;
 use Kalnoy\Nestedset\NestedSet;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 class Category extends Model implements Sortable, HasMedia
 {
     use HasFactory;
@@ -53,7 +55,7 @@ class Category extends Model implements Sortable, HasMedia
         return [
             'name' => 5, // Model attribute
             'body_description' => 2,
-          
+
         ];
     }
 
@@ -93,6 +95,13 @@ class Category extends Model implements Sortable, HasMedia
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id');
+    }
+
+
     /**
      * Get all categories as nested tree
      *
@@ -118,4 +127,13 @@ class Category extends Model implements Sortable, HasMedia
         }
         return true;
     }
+
+
+    protected function frontUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn() => config('app.url') . "/category/" . $this->slug,
+        );
+    }
+
 }

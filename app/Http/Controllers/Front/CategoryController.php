@@ -5,6 +5,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Artesaos\SEOTools\Facades\SEOMeta;
 
 
 class CategoryController extends Controller
@@ -12,16 +13,24 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-
-
-
-
-        return view('front.category.catalog', compact('categories'));
+        // $category = Category::where('slug', $slug)->firstOrFail();
+        return view('front.category.index', compact('categories'));
     }
 
-    public function show(Category $category)
+    public function show($slug)
     {
+        $category = Category::where('slug', $slug)->firstOrFail();
 
+        $childrens = $category->childrens;
+        $products  = $category->products;
+        dd($category, $products, $childrens);
+
+
+        SEOMeta::setTitle($category->seo->title);
+        SEOMeta::setDescription($category->seo->description);
+        SEOMeta::setKeywords($category->seo->keywords);
+
+        return view('front.category.show', compact('category'));
 
 
     }
