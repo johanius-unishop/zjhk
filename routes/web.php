@@ -15,12 +15,21 @@ use App\Http\Controllers\TestController;
 // use Illuminate\Support\Facades\Route;
 // use Symfony\Component\HttpFoundation\Request;
 // use App\Http\Middleware\CompleteProfile;
-
+use App\Http\Controllers\Front\{PageController , NewsController};
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 ;
-Route::get('/catalog}', [ProductController::class, 'catalog'])->name('catalog');
+
+
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+
+Route::get('/pages/{slug}', [PageController::class, 'show'])->name('page.show');
+
+
+
+Route::get('/catalog', [ProductController::class, 'catalog'])->name('catalog');
 
 
 Route::get('/items/{product}', [ProductController::class, 'testShow'])->name('testShow');

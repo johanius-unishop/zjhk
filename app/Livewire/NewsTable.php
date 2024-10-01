@@ -25,12 +25,9 @@ final class NewsTable extends PowerGridComponent
 
     public function setUp(): array
     {
-        $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+
             Header::make()->showSearchInput(),
             Footer::make()
                 ->showPerPage()
@@ -53,8 +50,6 @@ final class NewsTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-
-
             ->add('created_at');
     }
 
@@ -62,19 +57,12 @@ final class NewsTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Name', 'name')
+            Column::make('Наименование', 'name')
+                 ->searchable(),
+           Column::make('Created at', 'created_at')
                  ->searchable(),
 
-
-
-
- 
-
-
-            Column::make('Created at', 'created_at')
-                 ->searchable(),
-
-            Column::action('Action')
+            Column::action('Действия')
         ];
     }
 

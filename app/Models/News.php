@@ -88,7 +88,7 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
     protected function frontUrl(): Attribute
     {
         return new Attribute(
-            get: fn() => strlen($this->old_link) > 0 ? config('app.url') . DIRECTORY_SEPARATOR . $this->old_link : config('app.url') . DIRECTORY_SEPARATOR . "news" . DIRECTORY_SEPARATOR . $this->slug,
+            get: fn() => config('app.url') . "/news/" . $this->slug,
         );
     }
 
@@ -99,11 +99,11 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
 
         if ($next_record) {
             return new Attribute(
-                get: fn() => strlen(@$next_record->old_link) > 0 ? config('app.url') . DIRECTORY_SEPARATOR . @$next_record->old_link : config('app.url') . DIRECTORY_SEPARATOR . "news" . DIRECTORY_SEPARATOR . @$next_record->slug,
+                get: fn() => config('app.url') . "/news/" . @$next_record->slug,
             );
         }
         return new Attribute(
-            get: fn() => config('app.url') . DIRECTORY_SEPARATOR . "blog",
+            get: fn() => config('app.url') . "/news",
         );
 
     }
@@ -113,11 +113,11 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
 
         if ($previous_record) {
             return new Attribute(
-                get: fn() => strlen(@$previous_record->old_link) > 0 ? config('app.url') . DIRECTORY_SEPARATOR . @$previous_record->old_link : config('app.url') . DIRECTORY_SEPARATOR . "news" . DIRECTORY_SEPARATOR . @$previous_record->slug,
+                get: fn() => config('app.url') . "/news/" . @$previous_record->slug,
             );
         }
         return new Attribute(
-            get: fn() => config('app.url') . DIRECTORY_SEPARATOR . "blog",
+            get: fn() => config('app.url') . "/news",
         );
     }
 }

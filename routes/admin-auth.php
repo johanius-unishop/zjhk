@@ -33,9 +33,15 @@ Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(functio
 
 Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->middleware(['verified'])->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('admin.dashboard');
+    // })->middleware(['verified'])->name('dashboard');
+
+    Route::get('/dashboard', [ContentController::class, 'dashboard'])->name('dashboard');
+    Route::get('/regenerate_sitemap', [ContentController::class, 'regenerateSitemap'])->name('regenerate_sitemap');
+
+
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -546,7 +546,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereUpdatedAt($value)
  */
-	class Page extends \Eloquent implements \Spatie\EloquentSortable\Sortable, \Spatie\MediaLibrary\HasMedia {}
+	class Page extends \Eloquent implements \Spatie\EloquentSortable\Sortable, \Spatie\MediaLibrary\HasMedia, \Spatie\Sitemap\Contracts\Sitemapable {}
 }
 
 namespace App\Models{
