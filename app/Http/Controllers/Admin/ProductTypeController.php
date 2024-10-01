@@ -77,7 +77,7 @@ class ProductTypeController extends Controller
             return abort(401);
         }
 
-        return view('admin.product_type.edit', ['product_type' => $productType]);
+        return view('admin.product-type.edit', ['product_type' => $productType]);
     }
 
     /**
