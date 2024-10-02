@@ -20,7 +20,7 @@ jobs:
       with:
         HOST: 94.198.218.15
         USERNAME: root
-        PASSWORD: eY5bT9xT2r
+        PASSWORD: vKz+*1ewqe74FJ
         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         PORT: 22
         DEBUG: true
