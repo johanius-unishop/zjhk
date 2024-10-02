@@ -1,0 +1,51 @@
+name: Auto deploy test
+
+on: [push]
+
+jobs:
+
+  deploy-dev-to-site:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - name: Deploy project files to PROD site /opt/php82/bin/php
+      env:
+        SSH_USERNAME: root
+        SSH_HOST: 94.198.218.15
+        SSH_PORT: 22
+        dir: /var/www/html/parts-shop
+        PHP: /opt/php82/bin/php
+        ENV: ${{ vars.ENV }}
+      uses: appleboy/ssh-action@master
+      with:
+        HOST: 94.198.218.15
+        USERNAME: root
+        PASSWORD: eY5bT9xT2r
+        KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        PORT: 22
+        DEBUG: true
+        script: |
+          echo $dir
+          echo $PHP
+          echo $ENV
+          cd /var/www/html/parts-shop
+          echo "${{ vars.ENV }}" > ${{ vars.DIR }}/.env
+
+          /opt/php82/bin/php artisan down
+
+          git fetch origin main
+          git reset --hard origin/main
+          npm run prod
+
+          /opt/php82/bin/php -v
+          /opt/php82/bin/php /usr/local/bin/composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+          chmod -R 777 bootstrap/cache/
+          chmod -R 777 storage/
+
+          /opt/php82/bin/php artisan migrate --force
+          /opt/php82/bin/php artisan key:generate
+          /opt/php82/bin/php artisan log-viewer:publish
+          /opt/php82/bin/php artisan op:c
+
+          /opt/php82/bin/php artisan up
+          /opt/php82/bin/php artisan queue:restart
