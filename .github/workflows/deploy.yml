@@ -14,7 +14,7 @@ jobs:
         SSH_HOST: 94.198.218.15
         SSH_PORT: 22
         dir: /var/www/html/parts-shop
-        PHP: /opt/php82/bin/php
+        PHP: php
         ENV: ${{ vars.ENV }}
       uses: appleboy/ssh-action@master
       with:
@@ -31,21 +31,21 @@ jobs:
           cd /var/www/html/parts-shop
           echo "${{ vars.ENV }}" > ${{ vars.DIR }}/.env
 
-          /opt/php82/bin/php artisan down
+          php artisan down
 
           git fetch origin main
           git reset --hard origin/main
           npm run prod
 
-          /opt/php82/bin/php -v
-          /opt/php82/bin/php /usr/local/bin/composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+          php -v
+          /usr/local/bin/composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
           chmod -R 777 bootstrap/cache/
           chmod -R 777 storage/
 
-          /opt/php82/bin/php artisan migrate --force
-          /opt/php82/bin/php artisan key:generate
-          /opt/php82/bin/php artisan log-viewer:publish
-          /opt/php82/bin/php artisan op:c
+          php artisan migrate --force
+          php artisan key:generate
+          php artisan log-viewer:publish
+          php artisan op:c
 
-          /opt/php82/bin/php artisan up
-          /opt/php82/bin/php artisan queue:restart
+          php artisan up
+          php artisan queue:restart
