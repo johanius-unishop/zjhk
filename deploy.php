@@ -21,7 +21,7 @@ host('94.198.218.15')
     ->set('repository', 'https://github.com/johanius-unishop/kevtek.git')
     ->set('hostname', '94.198.218.15')
     ->set('remote_user', 'root')
-    ->set('deploy_path', '/usr/shop');
+    ->set('deploy_path', '/var/www/html/parts-shop');
 
 // Hooks
 
