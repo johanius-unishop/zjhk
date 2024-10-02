@@ -33,9 +33,9 @@ jobs:
 
           php artisan down
 
-          git fetch origin main
-          git reset --hard origin/main
-          npm run prod
+          git pull origin main
+          
+          npm run build
 
           php -v
           /usr/local/bin/composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
