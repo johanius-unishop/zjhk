@@ -1,7 +1,12 @@
 <?php
-namespace App\Http\Controllers;
+
+namespace App\Http\Controllers\Front;
+
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Http\Request;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use App\ViewModels\ProductViewModel;
 
 class ProductController extends Controller
@@ -9,26 +14,18 @@ class ProductController extends Controller
     public function show(Product $product)
     {
 
-
-
         $viewModel = new ProductViewModel($product);
-
         return view('product-card', compact('viewModel'));
     }
-
 
     public function testShow(Product $product)
     {
         $analogs = (Product::getAnalogies($product));
         // /$viewModel = new ProductViewModel($product);
-        $categories = $product->category->ancestors;
-        // dd($categories);
         $images = $product->getMedia('images');
-
         $breadcrumbs = Category::ancestorsAndSelf($product->category_id)->toArray();
 
 
-        //  dd($breadcrumbs);
         $data = [
 
             'breadcrumbs' => $breadcrumbs,
@@ -45,6 +42,6 @@ class ProductController extends Controller
         ];
 
         //    dd($data);
-        return view('front.product.test_show',  ['data' => $data]   );
+        return view('front.product.test_show', ['data' => $data]);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\AdminOrderController;
 // use App\Http\Controllers\AdminProductController;
 // use App\Http\Controllers\AdminProductKindController;
-use App\Http\Controllers\ProductController;
+// use App\Http\Controllers\ProductController;
 // use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\TestController;
@@ -15,7 +15,7 @@ use App\Http\Controllers\TestController;
 // use Illuminate\Support\Facades\Route;
 // use Symfony\Component\HttpFoundation\Request;
 // use App\Http\Middleware\CompleteProfile;
-use App\Http\Controllers\Front\{PageController , NewsController , CategoryController};
+use App\Http\Controllers\Front\{PageController, NewsController, CategoryController, ProductController ,CartController , FaqController};
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -24,16 +24,49 @@ Route::get('/', function () {
 
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
-
 Route::get('/pages/{slug}', [PageController::class, 'show'])->name('page.show');
-
-
 
 Route::get('/catalog', [ProductController::class, 'catalog'])->name('catalog');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 
-
 Route::get('/items/{product}', [ProductController::class, 'testShow'])->name('testShow');
+
+Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
+
+
+
+
+// Корзина и избранное
+Route::post('make_order', [CartController::class, 'make_order'])->name('make_order');
+Route::get('favorite', [CartController::class, 'show_favourites'])->name('favorite');
+
+
+Route::get('cart', [CartController::class, 'show_cart'])->name('cart');
+Route::get('/clear_cart', [CartController::class, 'clearCart'])->name('clear_cart');
+Route::get('/sub_from_cart', [CartController::class, 'subFromCart'])->name('sub_from_cart');
+
+Route::prefix('/cart')->name('cart.')->group(function () {
+
+    Route::get('/order_confirm', [CartController::class, 'order_confirm'])->name('order_confirm');
+    Route::get('/getCart', [CartController::class, 'getCart']);
+    Route::get('/addToCart', [CartController::class, 'addToCart']);
+    Route::get('/subToCart', [CartController::class, 'subToCart']);
+
+    Route::get('/getFavourite', [CartController::class, 'getFavourite']);
+    Route::get('/addToFavourite', [CartController::class, 'addToFavourite']);
+    Route::get('/subToFavourite', [CartController::class, 'subToFavourite']);
+});
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
