@@ -26,7 +26,7 @@ class CategoryController extends Controller
 
         $breadcrumbs = $category->ancestors->toArray();
 
-        $products = Product::where('category_id', $category->id)->paginate(12)->withQueryString();
+        $products = Product::where('category_id', $category->id)->with('media')->paginate(12)->withQueryString();
         // $products = $category->products->paginate(12);
         //   dd($category, $products, $childrens);
 

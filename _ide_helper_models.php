@@ -1252,24 +1252,22 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property string $setting_type
+ * @property string $group
  * @property string $name
- * @property string $value
- * @property string|null $comment
- * @property string $checkSumPriceElements
+ * @property int $locked
+ * @property string $payload
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Setting newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Setting query()
- * @method static \Illuminate\Database\Eloquent\Builder|Setting whereCheckSumPriceElements($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Setting whereComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereGroup($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereLocked($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Setting whereSettingType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting wherePayload($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Setting whereValue($value)
  */
 	class Setting extends \Eloquent {}
 }

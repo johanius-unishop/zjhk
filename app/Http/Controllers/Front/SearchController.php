@@ -12,20 +12,20 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
+        //  ->active()
         $searchTerm    = $request->searchTerm;
         $searchCount   = Product::query()
             ->search($searchTerm)
-            ->active()
-            ->moderated()->count();
+
+            ->published()->count();
         $search_result = Product::query()
             ->search($searchTerm)
-            ->active()
-            ->moderated()
+            ->published()
             ->paginate(12);
         $search_result = checkInFavourites($search_result);
         $search_result->appends(['searchTerm' => $searchTerm]);
         // return view('front.search.show', ['data' => $data]);
-
+// dd(   $search_result);
         return view('front.search.show', compact('search_result', 'searchTerm', 'searchCount'));
 
 

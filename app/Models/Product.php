@@ -94,8 +94,7 @@ class Product extends Model implements HasMedia, Sitemapable
     public function getSearchableAttributes(): array
     {
         return [
-
-            'model' => 8,
+            // 'model' => 8,
             'name' => 5, // Model attribute
             'body_description' => 4, // All json keys of a model attribute
             'vendor.name' => 3, // Relationship attribute
@@ -105,14 +104,10 @@ class Product extends Model implements HasMedia, Sitemapable
     }
 
 
-
-
-
     public function toSitemapTag(): Url|string|array
     {
         // Simple return:
         // return route('blog.post.show', $this);
-
         // Return with fine-grained control:
         return Url::create($this->front_url)
             ->setLastModificationDate(Carbon::create($this->updated_at))
@@ -126,7 +121,6 @@ class Product extends Model implements HasMedia, Sitemapable
             ->width(368)
             ->height(232)
             ->nonQueued();
-
         // $this
         //     ->addMediaConversion('responsive')
         //     ->format('webp')
@@ -136,7 +130,13 @@ class Product extends Model implements HasMedia, Sitemapable
     }
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('images');
+        $this->addMediaCollection('images')
+            ->useFallbackUrl('/images/default_image.jpg')
+            ->useFallbackPath(public_path('/images/default_image.jpg'))
+            ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
+            ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb');
+
+        ;
         $this->addMediaCollection('specifications')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Технические характеристики
         $this->addMediaCollection('dimensionalDrawing')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Габаритный чертеж
         $this->addMediaCollection('overviewInformation')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Обзорная информация
@@ -204,13 +204,10 @@ class Product extends Model implements HasMedia, Sitemapable
     }
 
 
-
-
     public static function getAnalogies($product): array
     {
         // Аналоги товара
         $analogies = [];
-
         // Получаем аналоги товара с предзагрузкой вендора
         foreach ($product->analogies()->with('vendor')->get() as $analog) {
             // Если есть имя или артикул и вендор опубликован
@@ -237,7 +234,6 @@ class Product extends Model implements HasMedia, Sitemapable
         }
         return true;
     }
-
 
 
     public function scopePublished(Builder $query): void

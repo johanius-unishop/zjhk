@@ -19,6 +19,11 @@ Breadcrumbs::for('catalog', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Каталог', route('catalog'));
 });
+// Home > Catalog
+Breadcrumbs::for('search_result', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Результаты поиска'  );
+});
 
 
 

@@ -32,6 +32,7 @@
         "spatie/eloquent-sortable": "^4.4",
         "spatie/laravel-medialibrary": "^11.9",
         "spatie/laravel-permission": "^6.9",
+        "spatie/laravel-settings": "^3.4",
         "spatie/laravel-sitemap": "^7.2",
         "spatie/laravel-sluggable": "^3.6"
     },

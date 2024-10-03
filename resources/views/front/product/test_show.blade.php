@@ -4,6 +4,7 @@
 {{ Breadcrumbs::render('front_product' , $data['breadcrumbs'] , $data['product']  ) }}
 
 
+<h1 class="font-bold text-3xl">{{$data['product']->name }} </h1>
 
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -19,6 +20,10 @@
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Отзывы</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="files-tab" data-bs-toggle="tab" data-bs-target="#files-tab-pane" type="button" role="tab" aria-controls="files-tab-pane" aria-selected="false">Файлы</button>
     </li>
 </ul>
 <div class="tab-content" id="myTabContent">
@@ -41,6 +46,15 @@
     </div>
     <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
 
+    </div>
+    <div class="tab-pane fade" id="files-tab-pane" role="tabpanel" aria-labelledby="files-tab" tabindex="0">
+        Список файлов
+
+        Технические характеристики
+
+        Габаритный чертеж
+
+        Обзорная информация
     </div>
 </div>
 
