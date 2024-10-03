@@ -3,6 +3,7 @@
 /public/build
 /public/images/editor
 /public/hot
+/public/sitemap.xml
 /public/storage
 /public/products
 /storage/*.key

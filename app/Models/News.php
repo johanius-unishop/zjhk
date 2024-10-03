@@ -120,4 +120,10 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
             get: fn() => config('app.url') . "/news",
         );
     }
+
+    public function scopePublished(Builder $query): void
+    {
+        $query->where('published', 1);
+    }
+
 }

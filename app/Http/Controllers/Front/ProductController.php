@@ -20,9 +20,16 @@ class ProductController extends Controller
 
     public function testShow(Product $product)
     {
+
+        if ($product->published !== true) {
+            return abort(404);
+
+        }
+
+
         $analogs = (Product::getAnalogies($product));
         // /$viewModel = new ProductViewModel($product);
-        $images = $product->getMedia('images');
+        $images      = $product->getMedia('images');
         $breadcrumbs = Category::ancestorsAndSelf($product->category_id)->toArray();
 
 

@@ -152,7 +152,7 @@ final class ProductTable extends PowerGridComponent
                 ->bodyAttribute('any-class', 'min-width: 200px; max-width: 600px ;white-space:normal;'),
             Column::make('Категория', 'category'),
             Column::make('Производитель', 'vendor'),
-            Column::make('Активно', 'published')
+            Column::make('Опубликовано', 'published')
                 ->sortable()
                 ->searchable()->bodyAttribute('text-center'),
             Column::make('Составной', 'composite_product')

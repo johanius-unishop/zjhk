@@ -69,11 +69,11 @@ class GenerateSitemap extends Command
         // }
 
         Sitemap::create()
-            ->add(News::all(['id', 'slug', 'updated_at']))
+            ->add(News::published()->get(['id',   'slug', 'updated_at']))
             // ->add(Blog::all(['id', 'old_link', 'slug', 'updated_at']))
             // ->add(Portfolio::all(['id', 'old_link', 'slug', 'updated_at']))
             // ->add(Vendor::all(['id', 'old_link', 'slug', 'updated_at']))
-            // ->add(Product::active()->moderated()->get(['id', 'old_link', 'slug', 'updated_at']))
+              ->add(Product::published()->get(['id',   'slug', 'updated_at']))
             // ->add(ProductType::all(['id', 'old_link', 'slug', 'updated_at']))
             // ->add(ProductSubtype::all(['id', 'old_link', 'slug', 'updated_at']))
             // ->add(Filter::all(['id', 'old_link', 'slug', 'updated_at']))
