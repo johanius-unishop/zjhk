@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function testShow(Product $product)
     {
 
-        if ($product->published !== true) {
+        if ($product->published !== 1) {
             return abort(404);
 
         }
@@ -48,6 +48,11 @@ class ProductController extends Controller
             // 'enableSale' => $enableSale,
         ];
 
+
+
+        SEOMeta::setTitle($product->seo->title);
+        SEOMeta::setDescription($product->seo->description);
+        SEOMeta::setKeywords($product->seo->keywords);
         //    dd($data);
         return view('front.product.test_show', ['data' => $data]);
     }
