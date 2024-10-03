@@ -4,6 +4,7 @@ use App\Models\Page;
 use App\Models\News;
 use App\Models\Vendor;
 use App\Models\Product;
+use App\Models\Category;
 // This import is also not required, and you could replace `BreadcrumbTrail $trail`
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
@@ -18,6 +19,22 @@ Breadcrumbs::for('catalog', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Каталог', route('catalog'));
 });
+
+
+
+// Home > Categories
+Breadcrumbs::for('categories', function (BreadcrumbTrail $trail, $parents, Category $item) {
+    $trail->parent('catalog');
+    if (isset($parents) && is_countable($parents) > 0) {
+        foreach ($parents as $category) {
+            $trail->push($category['name'], URL::to('/category/' . @$category['slug']));
+        }
+    }
+    $trail->push($item->name);
+    });
+
+
+
 // Home > News
 Breadcrumbs::for('news', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
@@ -43,8 +60,6 @@ Breadcrumbs::for('page', function (BreadcrumbTrail $trail, $page): void {
 //     $trail->push($vendor->name);
 // });
 
-
-
 // Home > Vendors
 Breadcrumbs::for('vendors', function (BreadcrumbTrail $trail) {
     $trail->parent('catalog');
@@ -56,10 +71,7 @@ Breadcrumbs::for('vendor', function (BreadcrumbTrail $trail, Vendor $vendor) {
     $trail->push($vendor->name);
 });
 
-
-
 // Home > Contact
-
 Breadcrumbs::for('contact', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Контакты');
@@ -82,15 +94,16 @@ Breadcrumbs::for('favourites', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Избранное');
 });
-// Home > Product
-Breadcrumbs::for('front_product', function (BreadcrumbTrail $trail , $parents, Product   $item) {
-	$trail->parent('catalog');
 
-	if (isset($parents) &&  is_countable($parents) > 0) {
-		foreach ($parents as $category) {
-			$trail->push($category['name'], URL::to('/category/' . @$category['slug']));
-		}
-	}
-	$trail->push($item->name);
-	// 	$breadcrumbs->push($item->name );
+// Home > Product
+Breadcrumbs::for('front_product', function (BreadcrumbTrail $trail, $parents, Product $item) {
+    $trail->parent('catalog');
+
+    if (isset($parents) && is_countable($parents) > 0) {
+        foreach ($parents as $category) {
+            $trail->push($category['name'], URL::to('/category/' . @$category['slug']));
+        }
+    }
+    $trail->push($item->name);
+    // 	$breadcrumbs->push($item->name );
 });

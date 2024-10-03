@@ -8,11 +8,7 @@ class ProductController extends Controller
 {
     public function show(Product $product)
     {
-
-
-
         $viewModel = new ProductViewModel($product);
-
         return view('product-card', compact('viewModel'));
     }
 
@@ -23,14 +19,10 @@ class ProductController extends Controller
         // /$viewModel = new ProductViewModel($product);
         $categories = $product->category->ancestors;
         // dd($categories);
-        $images = $product->getMedia('images');
-
+        $images      = $product->getMedia('images');
         $breadcrumbs = Category::ancestorsAndSelf($product->category_id)->toArray();
-
-
         //  dd($breadcrumbs);
         $data = [
-
             'breadcrumbs' => $breadcrumbs,
             'product' => $product,
             'analogs' => $analogs,
@@ -45,6 +37,6 @@ class ProductController extends Controller
         ];
 
         //    dd($data);
-        return view('front.product.test_show',  ['data' => $data]   );
+        return view('front.product.test_show', ['data' => $data]);
     }
 }

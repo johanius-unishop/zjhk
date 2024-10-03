@@ -13,7 +13,8 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        // $category = Category::where('slug', $slug)->firstOrFail();
+        $categories = Category::active()->get();
+
         return view('front.category.index', compact('categories'));
     }
 
@@ -22,25 +23,42 @@ class CategoryController extends Controller
         $category = Category::where('slug', $slug)->firstOrFail();
 
         $childrens = $category->childrens;
-        $products  = $category->products;
-        dd($category, $products, $childrens);
 
+        $breadcrumbs = $category->ancestors->toArray();
+
+        $products = Product::where('category_id', $category->id)->paginate(12);
+        // $products = $category->products->paginate(12);
+        //   dd($category, $products, $childrens);
+
+        $images = $category->getMedia('images');
 
         SEOMeta::setTitle($category->seo->title);
         SEOMeta::setDescription($category->seo->description);
         SEOMeta::setKeywords($category->seo->keywords);
 
-        return view('front.category.show', compact('category'));
+
+
+
+        $data = [
+            'category' => $category,
+            'breadcrumbs' => $breadcrumbs,
+            'products' => $products,
+            'childrens' => $childrens,
+            'images' => $images,
+            //
+            // 'files' => $files,
+            // 'price_categories' => $price_categories,
+            // 'stores' => $stores,
+            // 'enableQuestion' => $enableQuestion,
+            // 'enableFastBay' => $enableFastBay,
+            // 'enableSale' => $enableSale,
+        ];
+
+
+        return view('front.category.show', ['data' => $data]);
 
 
     }
 
 
-    public function testShow(Product $product)
-    {
-        $analogs = (Product::getAnalogies($product));
-        // /$viewModel = new ProductViewModel($product);
-
-        return view('front.product.test_show', compact('analogs'));
-    }
 }
