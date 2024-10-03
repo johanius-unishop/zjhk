@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
+
+use Illuminate\Database\Eloquent\Builder;
+
 class Faq extends Model implements Sortable
 {
     use HasFactory;
@@ -21,4 +24,10 @@ class Faq extends Model implements Sortable
         'order_column_name' => 'order_column',
         'sort_when_creating' => true,
     ];
+
+    public function scopePublished(Builder $query): void
+    {
+        $query->where('published', 1);
+    }
+
 }

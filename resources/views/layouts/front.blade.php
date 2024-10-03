@@ -30,8 +30,12 @@
                     <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-10тз mr-3 focus:outline-none focus:shadow-outline" type="button">
                         Каталог
                     </button>
-                    <form class="flex items-center w-full">
-                        <input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-l py-2 px-4 block w-full appearance-none leading-normal" type="text" placeholder="Поиск по каталогу">
+                    <form  action="{{ route('search') }}" method="GET" id="formSearch" class="flex items-center w-full">
+                        @csrf
+                        <input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-l py-2 px-4 block w-full appearance-none leading-normal" type="text" name="searchTerm"  placeholder="Поиск по каталогу">
+                        <button  class="btn btn-search" title="Поиск"  type="submit">
+                            искать
+                        </button>
                     </form>
                 </div>
                 <div class="flex items-center ml-20">

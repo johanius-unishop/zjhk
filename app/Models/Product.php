@@ -12,13 +12,20 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Builder;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Carbon\Carbon;
+use Spatie\Sitemap\Contracts\Sitemapable;
+use Spatie\Sitemap\Tags\Url;
+use Maize\Searchable\HasSearch;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 
-class Product extends Model implements HasMedia
+class Product extends Model implements HasMedia, Sitemapable
 {
 
     use HasFactory;
 
-
+    use HasSearch;
     use InteractsWithMedia;
     use HasSEO;
     use HasSlug;
@@ -33,7 +40,85 @@ class Product extends Model implements HasMedia
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+    /**
+     * Get the identifier of the Buyable item.
+     *
+     * @return int|string
+     */
+    public function getBuyableIdentifier($options = null)
+    {
+        return $this->id;
+    }
 
+    /**
+     * Get the description or title of the Buyable item.
+     *
+     * @return string
+     */
+    public function getBuyableDescription($options = null)
+    {
+        return $this->description;
+    }
+
+    /**
+     * Get the price of the Buyable item.
+     *
+     * @return float
+     */
+    public function getBuyablePrice($options = null)
+    {
+        return 1; // $this->price;
+    }
+
+
+
+    /**
+     * Get the weight of the Buyable item.
+     *
+     * @return float
+     */
+    public function getBuyableWeight($options = null)
+    {
+        return 0;
+    }
+
+
+
+
+
+    /**
+     * Get the model's searchable attributes.
+     *
+     * @return array
+     */
+    public function getSearchableAttributes(): array
+    {
+        return [
+
+            'model' => 8,
+            'name' => 5, // Model attribute
+            'body_description' => 4, // All json keys of a model attribute
+            'vendor.name' => 3, // Relationship attribute
+            // 'tags.description.*', // All json keys of a relationship attribute
+            // DB::raw("CONCAT(creator_name, ' ', creator_surname)"), // Raw expressions are supported too
+        ];
+    }
+
+
+
+
+
+    public function toSitemapTag(): Url|string|array
+    {
+        // Simple return:
+        // return route('blog.post.show', $this);
+
+        // Return with fine-grained control:
+        return Url::create($this->front_url)
+            ->setLastModificationDate(Carbon::create($this->updated_at))
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
+            ->setPriority(0.1);
+    }
 
     public function registerMediaConversions(?Media $media = null): void
     {
@@ -97,9 +182,9 @@ class Product extends Model implements HasMedia
     //     return $this->hasMany(Product_composite_element::class);
     // }
 
-   public function composite()
+    public function composite()
     {
-        return $this->hasMany(ProductCompositeElement::class ,   'product_id');
+        return $this->hasMany(ProductCompositeElement::class, 'product_id');
     }
 
     //к какому комплекту товар относится
@@ -153,6 +238,17 @@ class Product extends Model implements HasMedia
         return true;
     }
 
+
+
+    public function scopePublished(Builder $query): void
+    {
+        $query->where('published', 1);
+    }
+
+    public function scopeActive(Builder $query): void
+    {
+        $query->where('active', 1);
+    }
     protected function frontUrl(): Attribute
     {
         return new Attribute(

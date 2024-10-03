@@ -12,7 +12,8 @@ class FaqController extends Controller
 {
     public function show( )
     {
-        $data= Faq::ordered();
+        $data= Faq::published()->ordered()->get();
+        // dd($data);
         return view('front.faq.show', ['data' => $data]);
 
      }

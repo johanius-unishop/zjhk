@@ -15,7 +15,7 @@ use App\Http\Controllers\TestController;
 // use Illuminate\Support\Facades\Route;
 // use Symfony\Component\HttpFoundation\Request;
 // use App\Http\Middleware\CompleteProfile;
-use App\Http\Controllers\Front\{PageController, NewsController, CategoryController, ProductController ,CartController , FaqController};
+use App\Http\Controllers\Front\{PageController, NewsController, CategoryController, ProductController ,CartController , FaqController ,SearchController};
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -33,6 +33,7 @@ Route::get('/items/{product}', [ProductController::class, 'testShow'])->name('te
 
 Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
 
+Route::get('search', [SearchController::class, 'search'])->name('search');
 
 
 

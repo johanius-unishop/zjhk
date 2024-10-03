@@ -401,6 +401,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Faq newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Faq newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Faq ordered(string $direction = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|Faq published()
  * @method static \Illuminate\Database\Eloquent\Builder|Faq query()
  * @method static \Illuminate\Database\Eloquent\Builder|Faq whereAnswer($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Faq whereCreatedAt($value)
@@ -640,9 +641,12 @@ namespace App\Models{
  * @property-read \RalphJSmit\Laravel\SEO\Models\SEO $seo
  * @property-read \App\Models\ProductType|null $type
  * @property-read \App\Models\Vendor|null $vendor
+ * @method static \Illuminate\Database\Eloquent\Builder|Product active()
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product published()
  * @method static \Illuminate\Database\Eloquent\Builder|Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product search(string $search, bool $orderByWeight = true)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereArticle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereBarcode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereBodyDescription($value)
@@ -683,7 +687,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereWidth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereYm($value)
  */
-	class Product extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+	class Product extends \Eloquent implements \Spatie\MediaLibrary\HasMedia, \Spatie\Sitemap\Contracts\Sitemapable {}
 }
 
 namespace App\Models{

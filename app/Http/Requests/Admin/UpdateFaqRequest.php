@@ -22,8 +22,8 @@ class UpdateFaqRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'question'       => 'required|min:2|max:120',
-            'answer'       => 'required|min:2|max:120',
+            'question'       => 'required|min:2|max:200',
+            'answer'       => 'required|min:2',
         ];
     }
 }
