@@ -43,7 +43,7 @@ jobs:
           chmod -R 777 bootstrap/cache/
           chmod -R 777 storage/
 
-          php artisan mig:ref --seed
+          php artisan migrate
           php artisan key:generate
            php artisan op:c
 

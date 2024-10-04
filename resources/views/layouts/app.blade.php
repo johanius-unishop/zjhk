@@ -7,6 +7,8 @@
     <title>Laravel</title>
     <link rel="preload" as="style" href="http://94.198.218.15/build/assets/app-DbByt9ys.css" />
     <link rel="stylesheet" href="http://94.198.218.15/build/assets/app-DbByt9ys.css" />
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="flex flex-col min-h-screen min-w-screen">
