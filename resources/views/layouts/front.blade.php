@@ -41,9 +41,9 @@
                 <div class="flex items-center ml-20">
                     <a href="{{ route('login') }}" class="mr-2 text-gray-600">Войти</a>
                     <a href="#" class="mr-2 text-gray-600">Заказы</a>
-                    <a href="{{ route('favorite') }}" id="linkFavourites"  class="mr-2 text-gray-600" data-count="{{ Cart::instance('favourites')->count() }}" >Избранное <span class="count">{{ Cart::instance('favourites')->count()
+                    <a href="{{ route('favorite') }}" id="linkFavourites" class="mr-2 text-gray-600" data-count="{{ Cart::instance('favourites')->count() }}">Избранное <span class="count">{{ Cart::instance('favourites')->count()
                         }}</span></a>
-                    <a href="{{ route('cart') }}" id="linkCart" class="text-gray-600 btn-cart"  data-count="{{ Cart::instance('cart')->count()}}" title="Корзина" >Корзина <span class="count">{{ Cart::instance('cart')->count() }}</span></a>
+                    <a href="{{ route('cart') }}" id="linkCart" class="text-gray-600 btn-cart " data-count="{{ Cart::instance('cart')->count()}}" title="Корзина">Корзина <span class="count">{{ Cart::instance('cart')->count() }}</span></a>
                 </div>
             </div>
         </nav>
@@ -130,51 +130,104 @@
         const cartMobile = document.querySelector('.mobile-cart');
 
         if (document.querySelector('.btn-add-in-cart') != null) {
+            // alert(" dataset.product");
             const linkCart_count = linkCart.querySelector('.count');
             // const linkCartMobile_count = linkCartMobile.querySelector('.count');
-            const btnAddInCart = document.querySelector('.btn-add-in-cart');
+            const btnsAddInCarts = document.querySelectorAll('.btn-add-in-cart');
+            btnsAddInCarts.forEach(function(btn) {
+                btn.onclick = function() {
 
-            btnAddInCart.onclick = function() {
-                var count = linkCart.dataset.count;
+                    alert(btn.dataset.product);
+                    var count = linkCart.dataset.count;
 
-                const xhttp = new XMLHttpRequest();
+                    const xhttp = new XMLHttpRequest();
 
-                if (!btnAddInCart.classList.contains('in-cart')) {
+                    if (!btn.classList.contains('in-cart')) {
 
-                    xhttp.open("GET", "cart/addToCart?q=" + btnAddInCart.dataset.product);
+                        xhttp.open("GET", "/cart/addToCart?q=" + btn.dataset.product);
 
-                    xhttp.onload = () => {
-                        if (xhttp.status == 200) { // если код ответа 200
-                            console.log("Server response: 200 ", xhttp.responseText); // выводим полученный ответ на консоль браузера
-                            linkCart.dataset.count = xhttp.responseText;
-                            linkCart_count.innerHTML = xhttp.responseText;
-                            linkCartMobile.dataset.count = xhttp.responseText;
-                            linkCartMobile_count.innerHTML = xhttp.responseText;
-                        } else { // иначе выводим текст статуса
-                            console.log("Server response: 500 ", xhttp.statusText);
-                        }
-                    };
-                    xhttp.send();
+                        xhttp.onload = () => {
+                            if (xhttp.status == 200) { // если код ответа 200
+                                console.log("Server response: 200 ", xhttp.responseText); // выводим полученный ответ на консоль браузера
+                                linkCart.dataset.count = xhttp.responseText;
+                                linkCart_count.innerHTML = xhttp.responseText;
+                                linkCartMobile.dataset.count = xhttp.responseText;
+                                linkCartMobile_count.innerHTML = xhttp.responseText;
+                            } else { // иначе выводим текст статуса
+                                console.log("Server response: 500 ", xhttp.statusText);
+                            }
+                        };
+                        xhttp.send();
 
-                    btnAddInCart.classList.add('in-cart');
-                    btnAddInCart.querySelector('.text').innerHTML = 'В корзине';
+                        btn.classList.add('in-cart');
+                        btn.querySelector('.text').innerHTML = 'В корзине';
+                    }
                 }
-            };
+
+            });
+
         }
 
-        if (linkCart.dataset.count > 0) {
-            cartMobile.classList.add('show');
-        } else {
-            // cartMobile.classList.remove('show');
-        }
+
 
         // linkCart.dataset.count > 0 ? cartMobile.classList.add("show") : cartMobile.classList.remove("show");
-        const btnUpload = document.querySelector(".btn-upload");
-        if (null != btnUpload) {
-            const $ = document.querySelector("#uploadFile");
-            btnUpload.onclick = function() {
-                $.click();
-            };
+        // const btnUpload = document.querySelector(".btn-upload");
+        // if (null != btnUpload) {
+        //     const $ = document.querySelector("#uploadFile");
+        //     btnUpload.onclick = function() {
+        //         $.click();
+        //     };
+        // }
+        // favourites
+        if (document.querySelectorAll('.btn-favourites') != null) {
+            const linkFavourites = document.querySelector('#linkFavourites');
+            const linkFavourites_count = linkFavourites.querySelector('.count');
+            const btnsFavourites = document.querySelectorAll('.btn-favourites');
+
+            btnsFavourites.forEach(function(btn) {
+                btn.onclick = function() {
+                    const xhttp = new XMLHttpRequest();
+
+                    var count = linkFavourites.dataset.count;
+                    var new_count = 0;
+                    if (btn.classList.contains('active')) {
+                        btn.classList.remove('active');
+                        xhttp.open("GET", "/cart/subToFavourite?q=" + btn.dataset.favourite);
+
+                        xhttp.onload = () => {
+                            if (xhttp.status == 200) { // если код ответа 200
+                                console.log("Server response: 200 ", xhttp.responseText); // выводим полученный ответ на консоль браузера
+                                new_count = xhttp.responseText;
+                                linkFavourites.dataset.count = xhttp.responseText;
+                                linkFavourites_count.innerHTML = xhttp.responseText;
+                            } else { // иначе выводим текст статуса
+                                console.log("Server response: 500 ", xhttp.statusText);
+                            }
+                        };
+                        xhttp.send();
+
+                    } else {
+                        btn.classList.add('active');
+                        // count = +count + 1;
+                        btn.dataset.favourite;
+
+                        xhttp.open("GET", "/cart/addToFavourite?q=" + btn.dataset.favourite);
+                        xhttp.onload = () => {
+                            if (xhttp.status == 200) { // если код ответа 200
+                                console.log("Server response add: 200 ", xhttp.responseText); // выводим полученный ответ на консоль браузера
+                                new_count = xhttp.responseText;
+                                linkFavourites.dataset.count = xhttp.responseText;
+                                linkFavourites_count.innerHTML = xhttp.responseText;
+                            } else { // иначе выводим текст статуса
+                                console.log("Server response addToFavourite: 500 ", xhttp.statusText);
+                            }
+                        };
+                        xhttp.send();
+                    }
+                    // alert("Server response: 200 " +   new_count );
+
+                }
+            });
         }
 
     </script>

@@ -63,17 +63,19 @@ class CartController extends Controller
         }
         $products = Product::whereIn('id', $products_id)->get();
 
+
+        dd(  $products );
         $products_in_stock = $products->filter(function ($value, $key) {
             return $value->in_stock == 1;
         });
         $products_in_stock->all();
-        $products_in_stock->load('vendor', 'product_style', 'vendor.price_segment');
+        // $products_in_stock->load('vendor', 'product_style', 'vendor.price_segment');
 
         $products_to_order = $products->filter(function ($value, $key) {
             return $value->in_stock == 0;
         });
         $products_to_order->all();
-        $products_to_order->load('vendor', 'product_style', 'vendor.price_segment');
+        // $products_to_order->load('vendor', 'product_style', 'vendor.price_segment');
 
         $items_count_text = 'Корзина пуста';
         if ($favourites->count() > 0) {

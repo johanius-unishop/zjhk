@@ -6,5 +6,9 @@
 
 @section('content')
 {{ Breadcrumbs::render('cart'  ) }}
- Корзина
+Корзина
+
+
+
+
 @stop
