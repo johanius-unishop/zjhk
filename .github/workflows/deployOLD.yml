@@ -43,10 +43,9 @@ jobs:
           chmod -R 777 bootstrap/cache/
           chmod -R 777 storage/
 
-          php artisan migrate --force
+          php artisan mig:ref --seed
           php artisan key:generate
-          php artisan log-viewer:publish
-          php artisan op:c
+           php artisan op:c
 
           php artisan up
           php artisan queue:restart
