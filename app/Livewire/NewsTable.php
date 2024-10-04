@@ -50,6 +50,8 @@ final class NewsTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
+            ->add('published', closure: fn($item) => $item->published ? '✅' : '❌')
+
             ->add('created_at');
     }
 
@@ -58,17 +60,22 @@ final class NewsTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name')
-                 ->searchable(),
-           Column::make('Создано', 'created_at')
-                 ->searchable(),
+                ->searchable(),
 
-            Column::action('Действия')
+            Column::make('Опубликовано', 'published'),
+
+            Column::make('Создано', 'created_at')
+                ->searchable(),
+
+            Column::action('Действия'),
         ];
     }
 
     public function filters(): array
     {
         return [
+            Filter::boolean('published')
+            ->label('✅', '❌'),
         ];
     }
     #[\Livewire\Attributes\On('post_delete')]

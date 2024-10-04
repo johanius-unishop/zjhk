@@ -9,12 +9,12 @@
 <h1>Импорт</h1>
 @stop
 @section('content')
+<livewire:admin-queue />
+
+тест Импорт
 
 
- тест Импорт
 
-
- <livewire:admin-queue />
 @endsection
 
 @section('scripts')

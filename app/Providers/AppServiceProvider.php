@@ -9,6 +9,8 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Pagination\Paginator;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -35,7 +37,8 @@ class AppServiceProvider extends ServiceProvider
         //     ProductStockUpdated::class,
         //     UpdateCompositeStock::class,
         // );
-
+        // Paginator::defaultView('bootsrap-5');
+        Paginator::useBootstrapFive();
         Schema::defaultStringLength(191);
     }
 }

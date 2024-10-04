@@ -78,11 +78,10 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
     {
 
         $this->addMediaCollection('images')
-            ->useFallbackUrl('/img/product/prod_img_1.jpg')
-            ->useFallbackPath(public_path('/img/product/prod_img_1.jpg'))
-            ->useFallbackUrl('/img/product/prod_img_1_thumb.jpg', 'thumb')
-            ->useFallbackPath(public_path('/img/product/prod_img_1_thumb.jpg'), 'thumb');
-        ;
+            ->useFallbackUrl('/images/default_image.jpg')
+            ->useFallbackPath(public_path('/images/default_image.jpg'))
+            ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
+            ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb');
     }
 
     protected function frontUrl(): Attribute

@@ -86,7 +86,7 @@
                     <ul class="list-none">
                         <li><a href="#" class="text-gray-400 hover:text-white">Наши преимущества</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Бренды</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Новости</a></li>
+                        <li><a href="{{ route('news.index') }}" class="text-gray-400 hover:text-white">Новости</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Контакты</a></li>
                     </ul>
                 </div>

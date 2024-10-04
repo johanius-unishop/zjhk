@@ -17,22 +17,32 @@ class NewsController extends Controller
         SEOMeta::setTitle('Новости');
         SEOMeta::setDescription('Новости нашего сайта');
         SEOMeta::setKeywords('Новости новинки анонсы');
-        $news = News::active()->paginate(10);
-        return view('front.news.index', compact($news));
+        $news = News::published()->paginate(10)->withQueryString();
+        $news->load('media');
+        //   dd( $news);
+
+        $data = [
+            'news' => $news,
+        ];
+
+        return view('front.news.index', ['data' => $data]);
     }
 
 
     /**
      * Display the specified resource.
      */
-    public function show(News $news)
+    public function show(  $slug)
     {
-        // $new_item = News::where('slug', $slug)->firstOrFail();
+        $news = News::where('slug', $slug)->firstOrFail();
         SEOMeta::setTitle($news->seo->title);
         SEOMeta::setDescription($news->seo->description);
         SEOMeta::setKeywords($news->seo->keywords);
 
         SEOMeta::setCanonical(config('app.url') . DIRECTORY_SEPARATOR . $news->seo->canonical_url);
+
+// dd($news );
+
         return view('front.news.show', ['news' => $news]);
     }
 

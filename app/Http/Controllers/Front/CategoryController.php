@@ -54,6 +54,9 @@ class CategoryController extends Controller
             // 'enableSale' => $enableSale,
         ];
 
+        SEOMeta::setTitle($category->seo->title);
+        SEOMeta::setDescription($category->seo->description);
+        SEOMeta::setKeywords($category->seo->keywords);
 
         return view('front.category.show', ['data' => $data]);
 
