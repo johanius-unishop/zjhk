@@ -17,7 +17,7 @@ use Spatie\Sluggable\SlugOptions;
 use Kalnoy\Nestedset\NodeTrait;
 use Kalnoy\Nestedset\NestedSet;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-
+use Illuminate\Database\Eloquent\Builder;
 class Category extends Model implements Sortable, HasMedia
 {
     use HasFactory;
@@ -135,5 +135,8 @@ class Category extends Model implements Sortable, HasMedia
             get: fn() => config('app.url') . "/category/" . $this->slug,
         );
     }
-
+    public function scopePublished(Builder $query): void
+    {
+        $query->where('published', 1);
+    }
 }

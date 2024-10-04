@@ -32,8 +32,8 @@ use DOMDocument;
 use Illuminate\Support\Facades\Storage;
 use App\Services\CsvService;
 use App\Jobs\AttachFilesToProduct;
-
 use App\Jobs\AttachImagesToProduct;
+use Illuminate\Support\Facades\Queue;
 class ImportController extends Controller
 {
 
@@ -53,14 +53,22 @@ class ImportController extends Controller
 
     public function import_product_images()
     {
+        $queue_name = 'default';
+        $size       = Queue::size($queue_name);
+        if ($size > 0) {
+            session()->flash('error', 'В очереди находятся задания (' . $size . ')! Дождитесь их выполнения ');
+            return redirect()->route('admin.import.index');
+        }
+        $start = microtime(true);
+        Log::info('Старт Процесс import_product_images. ');
         \Debugbar::disable();
         $images = DB::table('product_images')->orderBy('product_id', 'asc')
             ->orderBy('sorting', 'asc')->get();
-        $i      = 0;
+        $count      = 0;
         foreach ($images as $file) {
             // dd($file);
             try {
-                $i++;
+                $count++;
                 $product = Product::findOrFail($file->product_id);
                 AttachImagesToProduct::dispatch($product, 'images', $file->image);
             }
@@ -69,24 +77,34 @@ class ImportController extends Controller
                 throw $th;
             }
         }
+        Log::info('Финиш  Процесс import_product_images. Время выполнения скрипта: ' . round(microtime(true) - $start, 4) . ' сек.   Кончил ' . $count . ' товаров ... и закурил');
 
-        echo ('Обработано ' . $i . ' товаров ');
+        echo ('Обработано ' . $count . ' товаров ');
     }
 
     public function import_product_files()
     {
+
+        $queue_name = 'default';
+        $size       = Queue::size($queue_name);
+        if ($size > 0) {
+            session()->flash('error', 'В очереди находятся задания (' . $size . ')! Дождитесь их выполнения ');
+            return redirect()->route('admin.import.index');
+        }
+        $start = microtime(true);
+        Log::info('Старт Процесс import_product_files. ');
         \Debugbar::disable();
         $types = [
             1 => 'specifications',
             2 => 'dimensionalDrawing',
             3 => 'overviewInformation',
         ];
-        $i      = 0;
+        $count      = 0;
         $files = DB::table('product_pdfs')->get();
         foreach ($files as $file) {
             try {
 
-                $i++;
+                $count++;
                 $product = Product::findOrFail($file->product_id);
                 AttachFilesToProduct::dispatch($product, $types[$file->product_pdf_type_id], $file->pdf);
             }
@@ -95,8 +113,10 @@ class ImportController extends Controller
                 throw $th;
             }
         }
-        echo ('Обработано ' . $i . ' товаров ');
 
+        Log::info('Финиш  Процесс import_product_images. Время выполнения скрипта: ' . round(microtime(true) - $start, 4) . ' сек.   Кончил ' . $count . ' товаров ... и закурил');
+
+        echo ('Обработано ' . $count . ' товаров ');
     }
 
     public function imagesUpload(Request $request)

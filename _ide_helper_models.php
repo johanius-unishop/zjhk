@@ -220,6 +220,7 @@ namespace App\Models{
  * @method static \Kalnoy\Nestedset\QueryBuilder|Category orWhereNodeBetween($values)
  * @method static \Kalnoy\Nestedset\QueryBuilder|Category orWhereNotDescendantOf($id)
  * @method static \Kalnoy\Nestedset\QueryBuilder|Category ordered(string $direction = 'asc')
+ * @method static \Kalnoy\Nestedset\QueryBuilder|Category published()
  * @method static \Kalnoy\Nestedset\QueryBuilder|Category query()
  * @method static \Kalnoy\Nestedset\QueryBuilder|Category rebuildSubtree($root, array $data, $delete = false)
  * @method static \Kalnoy\Nestedset\QueryBuilder|Category rebuildTree(array $data, $delete = false, $root = null)

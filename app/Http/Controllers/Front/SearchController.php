@@ -24,8 +24,12 @@ class SearchController extends Controller
             ->paginate(12);
         $search_result = checkInFavourites($search_result);
         $search_result->appends(['searchTerm' => $searchTerm]);
-        // return view('front.search.show', ['data' => $data]);
-// dd(   $search_result);
+        // dd(   $search_result);
+
+
+        SEOMeta::setTitle("Результаты поиска по сайту");
+        SEOMeta::setDescription("Результаты поиска по сайту");
+
         return view('front.search.show', compact('search_result', 'searchTerm', 'searchCount'));
 
 

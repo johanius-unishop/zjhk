@@ -11,9 +11,9 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 class CategoryController extends Controller
 {
 
-    public function index(Request $request)
+    public function catalog(Request $request)
     {
-        $categories = Category::active()->get();
+        $categories = Category::published()->get();
 
         return view('front.category.index', compact('categories'));
     }

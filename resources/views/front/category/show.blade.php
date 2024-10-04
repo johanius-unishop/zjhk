@@ -12,11 +12,8 @@
             <div class="col">
                 <div class="card shadow-sm">
                     <a href=" {{ $product->front_url }} ">
-                        <img src="{{ $product->getFirstMediaUrl('images' , 'thumb')  }}" loading="lazy" decoding="async" alt="{{ $product->name }} image 1">
-                        {{-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="20%" y="50%" fill="#eceeef" dy=".3em">{{ $product->name }} </text>
-                        </svg> --}}
+                        <img class="img-thumbnail  mx-auto d-block" src="{{ $product->getFirstMediaUrl('images' , 'thumb')  }}" loading="lazy" decoding="async" alt="{{ $product->name }} image 1">
+
                     </a>
                     <div class="card-body">
                         <a href=" {{ $product->front_url }} ">
@@ -25,8 +22,8 @@
                         <p class="card-text"> {{ ($product->short_description) }} </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Корзина </button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Избранное</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary btn-add-in-cart"    data-product="{{  $product->id  }}"   title="Добавить в корзину" >Корзина </button>
+                                <button type="button" class="btn btn-sm  btn-favourites bg-second "  @if ( $product->inFavourites ) active @endif    title="Добавить в избранное"  data-product="{{  $product->id  }}">Избранное</button>
                             </div>
                             {{-- <small class="text-body-secondary">9 mins</small> --}}
                         </div>

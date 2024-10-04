@@ -30,10 +30,10 @@
                     <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-10тз mr-3 focus:outline-none focus:shadow-outline" type="button">
                         Каталог
                     </button>
-                    <form  action="{{ route('search') }}" method="GET" id="formSearch" class="flex items-center w-full">
+                    <form action="{{ route('search') }}" method="GET" id="formSearch" class="flex items-center w-full">
                         @csrf
-                        <input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-l py-2 px-4 block w-full appearance-none leading-normal" type="text" name="searchTerm"  placeholder="Поиск по каталогу">
-                        <button  class="btn btn-search" title="Поиск"  type="submit">
+                        <input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-l py-2 px-4 block w-full appearance-none leading-normal" type="text" name="searchTerm" placeholder="Поиск по каталогу">
+                        <button class="btn btn-search" title="Поиск" type="submit">
                             искать
                         </button>
                     </form>
@@ -41,8 +41,9 @@
                 <div class="flex items-center ml-20">
                     <a href="{{ route('login') }}" class="mr-2 text-gray-600">Войти</a>
                     <a href="#" class="mr-2 text-gray-600">Заказы</a>
-                    <a href="{{ route('favorite') }}" class="mr-2 text-gray-600">Избранное</a>
-                    <a href="{{ route('cart') }}" class="text-gray-600">Корзина</a>
+                    <a href="{{ route('favorite') }}" id="linkFavourites"  class="mr-2 text-gray-600" data-count="{{ Cart::instance('favourites')->count() }}" >Избранное <span class="count">{{ Cart::instance('favourites')->count()
+                        }}</span></a>
+                    <a href="{{ route('cart') }}" id="linkCart" class="text-gray-600 btn-cart"  data-count="{{ Cart::instance('cart')->count()}}" title="Корзина" >Корзина <span class="count">{{ Cart::instance('cart')->count() }}</span></a>
                 </div>
             </div>
         </nav>
@@ -93,10 +94,10 @@
                 <div class="w-full md:w-1/3 mb-6 md:mb-0">
                     <h4 class="text-white text-lg font-bold mb-4">Покупателям</h4>
                     <ul class="list-none">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Каталог</a></li>
+                        <li><a href="{{ route('catalog') }}" class="text-gray-400 hover:text-white">Каталог</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Полезные статьи</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Доставка и оплата</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Вопросы и ответы</a></li>
+                        <li><a href="{{ route('faq.show') }}" class="text-gray-400 hover:text-white">Вопросы и ответы</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Обратная связь</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Возврат или обмен товара</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Гарантия</a></li>
@@ -122,7 +123,60 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // add in cart
+        const linkCart = document.querySelector('#linkCart');
+        const linkCartMobile = document.querySelector('#linkCartMobile');
+        const cartMobile = document.querySelector('.mobile-cart');
 
+        if (document.querySelector('.btn-add-in-cart') != null) {
+            const linkCart_count = linkCart.querySelector('.count');
+            // const linkCartMobile_count = linkCartMobile.querySelector('.count');
+            const btnAddInCart = document.querySelector('.btn-add-in-cart');
+
+            btnAddInCart.onclick = function() {
+                var count = linkCart.dataset.count;
+
+                const xhttp = new XMLHttpRequest();
+
+                if (!btnAddInCart.classList.contains('in-cart')) {
+
+                    xhttp.open("GET", "cart/addToCart?q=" + btnAddInCart.dataset.product);
+
+                    xhttp.onload = () => {
+                        if (xhttp.status == 200) { // если код ответа 200
+                            console.log("Server response: 200 ", xhttp.responseText); // выводим полученный ответ на консоль браузера
+                            linkCart.dataset.count = xhttp.responseText;
+                            linkCart_count.innerHTML = xhttp.responseText;
+                            linkCartMobile.dataset.count = xhttp.responseText;
+                            linkCartMobile_count.innerHTML = xhttp.responseText;
+                        } else { // иначе выводим текст статуса
+                            console.log("Server response: 500 ", xhttp.statusText);
+                        }
+                    };
+                    xhttp.send();
+
+                    btnAddInCart.classList.add('in-cart');
+                    btnAddInCart.querySelector('.text').innerHTML = 'В корзине';
+                }
+            };
+        }
+
+        if (linkCart.dataset.count > 0) {
+            cartMobile.classList.add('show');
+        } else {
+            // cartMobile.classList.remove('show');
+        }
+
+        // linkCart.dataset.count > 0 ? cartMobile.classList.add("show") : cartMobile.classList.remove("show");
+        const btnUpload = document.querySelector(".btn-upload");
+        if (null != btnUpload) {
+            const $ = document.querySelector("#uploadFile");
+            btnUpload.onclick = function() {
+                $.click();
+            };
+        }
+
+    </script>
 </body>
-
 </html>

@@ -95,8 +95,9 @@ class Product extends Model implements HasMedia, Sitemapable
     {
         return [
             // 'model' => 8,
-            'name' => 5, // Model attribute
-            'body_description' => 4, // All json keys of a model attribute
+            'name' => 8, // Model attribute
+            'body_description' => 4,
+            'short_description' => 4, // All json keys of a model attribute
             'vendor.name' => 3, // Relationship attribute
             // 'tags.description.*', // All json keys of a relationship attribute
             // DB::raw("CONCAT(creator_name, ' ', creator_surname)"), // Raw expressions are supported too

@@ -11,10 +11,12 @@
 @section('content')
 <livewire:admin-queue />
 
-тест Импорт
 
 
-
+<a href="{{ route('admin.import.import_product_images') }}" class="btn btn-primary"
+target="_blank">Импортировать productImages </a>
+<a href="{{ route('admin.import.import_product_files') }}" class="btn btn-primary"
+target="_blank">Импортировать productFiles </a>
 @endsection
 
 @section('scripts')
