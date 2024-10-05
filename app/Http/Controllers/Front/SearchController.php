@@ -22,7 +22,7 @@ class SearchController extends Controller
             ->search($searchTerm)
             ->published()
             ->paginate(12);
-        $search_result = checkInFavourites($search_result);
+        $search_result = checkInCartAndFavourites($search_result);
         $search_result->appends(['searchTerm' => $searchTerm]);
         // dd(   $search_result);
 

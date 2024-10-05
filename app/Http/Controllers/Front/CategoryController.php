@@ -13,13 +13,14 @@ class CategoryController extends Controller
 
     public function catalog(Request $request)
     {
-        $categories = Category::published()->get();
-
+        // $categories = Category::published()->get();
+        $childrens = Category::whereIsRoot( )->get();
+    //   dd($childrens );
         SEOMeta::setTitle( "Каталог товаров");
         SEOMeta::setDescription( "Каталог товаров");
         SEOMeta::setKeywords( "Каталог товаров");
 
-        return view('front.category.index', compact('categories'));
+        return view('front.category.index', ['childrens' => $childrens]);
     }
 
     public function show($slug)
@@ -30,6 +31,10 @@ class CategoryController extends Controller
 
         $products = Product::where('category_id', $category->id)->with('media')->paginate(12)->withQueryString();
         // $products = $category->products->paginate(12);
+
+        $products = checkInCartAndFavourites($products);
+
+
         //   dd($category, $products, $childrens);
 
         $images = $category->getMedia('images');

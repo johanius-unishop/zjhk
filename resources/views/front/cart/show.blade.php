@@ -1,14 +1,10 @@
 @extends('layouts.front')
 
 
-
-
-
 @section('content')
-{{ Breadcrumbs::render('cart'  ) }}
+{{ Breadcrumbs::render('cart') }}
 Корзина
 
-
-
+<livewire:cart-component />
 
 @stop

@@ -28,9 +28,47 @@ function checkInFavourites($products)
             // }
         }
     }
+    return $products;
+}
+
+function checkInCartAndFavourites($products)
+{
+    $cart = Cart::instance('cart')->content();
+    if ($cart->count() > 0) {
+        foreach ($products as $product) {
+            $res = $cart->search(function ($cartItem, $key) use ($product) {
+                return $cartItem->id === $product->id;
+            });
+            if ($res) {
+                $product->inCart = 1;
+            }
+            // else {
+            //     $product->inCart = 0;
+            // }
+        }
+    }
+
+
+    $favourites = Cart::instance('favourites')->content();
+    if ($favourites->count() > 0) {
+        foreach ($products as $product) {
+            $res = $favourites->search(function ($cartItem, $key) use ($product) {
+                return $cartItem->id === $product->id;
+            });
+            if ($res) {
+                $product->inFavourites = 1;
+            }
+            // else {
+            //     $product->inFavourites = 0;
+            // }
+        }
+    }
 
     return $products;
 }
+
+
+
 
 function findVendorByOldCode($old_code)
 {
@@ -54,7 +92,7 @@ function getFilter($querry, $request)
     }
     if (filled($request->category)) {
 
-// TODO Категория или фильтр не работает
+        // TODO Категория или фильтр не работает
         // $category_ids = array();
         // $querry->whereIn('product_subtype_id', $request->category);
         $querry->whereIn('product_subtype_id', $request->category);
@@ -131,33 +169,7 @@ function giveModelsArray()
 
 
 }
-function findProductClassByOldCode($old_code)
-{
 
-
-    $vendor = ProductClass::where('old_code', $old_code)->first();
-    if ($vendor) {
-        return $vendor->id;
-    }
-    return null;
-}
-function findProductStyleByOldCode($old_code)
-{
-    $vendor = ProductStyle::where('old_code', $old_code)->first();
-    if ($vendor) {
-        return $vendor->id;
-    }
-    return null;
-}
-
-function findPriceSegmentByOldCode($old_code)
-{
-    $vendor = PriceSegment::where('old_code', $old_code)->first();
-    if ($vendor) {
-        return $vendor->id;
-    }
-    return null;
-}
 
 function file_get_contents_curl($url)
 {

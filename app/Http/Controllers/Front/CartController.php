@@ -53,39 +53,40 @@ class CartController extends Controller
      */
     public function show_cart(Request $request)
     {
-        $data       = $request->session()->all();
-        $cartId     = session()->getId();
-        $favourites = Cart::instance('cart')->content();
+        // $data       = $request->session()->all();
+        // $cartId     = session()->getId();
+        // $favourites = Cart::instance('cart')->content();
 
-        $products_id = [];
-        foreach ($favourites as $key) {
-            $products_id[] = ($key->id);
-        }
-        $products = Product::whereIn('id', $products_id)->get();
+        // $products_id = [];
+        // foreach ($favourites as $key) {
+        //     $products_id[] = ($key->id);
+        // }
+        // $products = Product::whereIn('id', $products_id)->get();
 
 
-        dd(  $products );
-        $products_in_stock = $products->filter(function ($value, $key) {
-            return $value->in_stock == 1;
-        });
-        $products_in_stock->all();
-        // $products_in_stock->load('vendor', 'product_style', 'vendor.price_segment');
+        // dd(  $products );
+        // $products_in_stock = $products->filter(function ($value, $key) {
+        //     return $value->in_stock == 1;
+        // });
+        // $products_in_stock->all();
+        // // $products_in_stock->load('vendor', 'product_style', 'vendor.price_segment');
 
-        $products_to_order = $products->filter(function ($value, $key) {
-            return $value->in_stock == 0;
-        });
-        $products_to_order->all();
-        // $products_to_order->load('vendor', 'product_style', 'vendor.price_segment');
+        // $products_to_order = $products->filter(function ($value, $key) {
+        //     return $value->in_stock == 0;
+        // });
+        // $products_to_order->all();
+        // // $products_to_order->load('vendor', 'product_style', 'vendor.price_segment');
 
-        $items_count_text = 'Корзина пуста';
-        if ($favourites->count() > 0) {
-            $items_count_text = $favourites->count() . ' ' . pluralize($favourites->count(), array('товар', 'товара', 'товаров'));
-        }
+        // $items_count_text = 'Корзина пуста';
+        // if ($favourites->count() > 0) {
+        //     $items_count_text = $favourites->count() . ' ' . pluralize($favourites->count(), array('товар', 'товара', 'товаров'));
+        // }
 
         SEOMeta::setTitle('Корзина');
         SEOMeta::setDescription('Корзина товаров');
+        return view('front.cart.show');
 
-        return view('front.cart.show', compact('products_in_stock', 'products_to_order', 'items_count_text'));
+        // return view('front.cart.show', compact('products_in_stock', 'products_to_order', 'items_count_text'));
     }
 
     public function addToCart(Request $request)
