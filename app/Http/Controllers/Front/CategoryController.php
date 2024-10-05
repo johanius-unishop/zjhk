@@ -15,6 +15,10 @@ class CategoryController extends Controller
     {
         $categories = Category::published()->get();
 
+        SEOMeta::setTitle( "Каталог товаров");
+        SEOMeta::setDescription( "Каталог товаров");
+        SEOMeta::setKeywords( "Каталог товаров");
+
         return view('front.category.index', compact('categories'));
     }
 
@@ -36,9 +40,6 @@ class CategoryController extends Controller
         SEOMeta::setDescription($category->seo->description);
         SEOMeta::setKeywords($category->seo->keywords);
 
-
-
-
         $data = [
             'category' => $category,
             'breadcrumbs' => $breadcrumbs,
@@ -59,9 +60,6 @@ class CategoryController extends Controller
         SEOMeta::setKeywords($category->seo->keywords);
 
         return view('front.category.show', ['data' => $data]);
-
-
     }
-
 
 }

@@ -137,7 +137,7 @@ class Product extends Model implements HasMedia, Sitemapable
             ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
             ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb');
 
-        ;
+
         $this->addMediaCollection('specifications')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Технические характеристики
         $this->addMediaCollection('dimensionalDrawing')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Габаритный чертеж
         $this->addMediaCollection('overviewInformation')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Обзорная информация

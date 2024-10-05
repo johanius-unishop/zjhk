@@ -84,7 +84,12 @@ class Category extends Model implements Sortable, HasMedia
     }
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('images');
+        $this->addMediaCollection('images')
+        ->useFallbackUrl('/images/default_image.jpg')
+        ->useFallbackPath(public_path('/images/default_image.jpg'))
+        ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
+        ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb');
+
     }
     public function parent()
     {
