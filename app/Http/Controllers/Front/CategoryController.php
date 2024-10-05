@@ -25,9 +25,7 @@ class CategoryController extends Controller
     public function show($slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
-
         $childrens = $category->childrens;
-
         $breadcrumbs = $category->ancestors->toArray();
 
         $products = Product::where('category_id', $category->id)->with('media')->paginate(12)->withQueryString();

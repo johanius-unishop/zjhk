@@ -35,8 +35,8 @@
                     <form action="{{ route('search') }}" method="GET" id="formSearch" class="flex items-center w-full">
                         @csrf
                         <input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-l py-2 px-4 block w-full appearance-none leading-normal" type="text" name="searchTerm" placeholder="Поиск по каталогу">
-                        <button class="btn btn-search" title="Поиск" type="submit">
-                            искать
+                        <button class="btn btn-search btn-secondary" title="Поиск" type="submit">
+                            Поиск
                         </button>
                     </form>
                 </div>
