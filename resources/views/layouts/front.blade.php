@@ -128,8 +128,8 @@
     <script>
         // add in cart
         const linkCart = document.querySelector('#linkCart');
-        const linkCartMobile = document.querySelector('#linkCartMobile');
-        const cartMobile = document.querySelector('.mobile-cart');
+        // const linkCartMobile = document.querySelector('#linkCartMobile');
+        // const cartMobile = document.querySelector('.mobile-cart');
 
         if (document.querySelector('.btn-add-in-cart') != null) {
             // alert(" dataset.product");
@@ -138,38 +138,30 @@
             const btnsAddInCarts = document.querySelectorAll('.btn-add-in-cart');
             btnsAddInCarts.forEach(function(btn) {
                 btn.onclick = function() {
-
                     alert(btn.dataset.product);
                     var count = linkCart.dataset.count;
-
                     const xhttp = new XMLHttpRequest();
-
                     if (!btn.classList.contains('in-cart')) {
-
                         xhttp.open("GET", "/cart/addToCart?q=" + btn.dataset.product);
-
                         xhttp.onload = () => {
                             if (xhttp.status == 200) { // если код ответа 200
                                 console.log("Server response: 200 ", xhttp.responseText); // выводим полученный ответ на консоль браузера
                                 linkCart.dataset.count = xhttp.responseText;
                                 linkCart_count.innerHTML = xhttp.responseText;
-                                linkCartMobile.dataset.count = xhttp.responseText;
-                                linkCartMobile_count.innerHTML = xhttp.responseText;
+                                // linkCartMobile.dataset.count = xhttp.responseText;
+                                // linkCartMobile_count.innerHTML = xhttp.responseText;
                             } else { // иначе выводим текст статуса
                                 console.log("Server response: 500 ", xhttp.statusText);
                             }
                         };
                         xhttp.send();
-
                         btn.classList.add('in-cart');
-                        btn.querySelector('.text').innerHTML = 'В корзине';
+                        // btn.querySelector('.text').innerHTML = 'В корзине';
+                        btn.innerHTML = 'В корзине';
                     }
                 }
-
             });
-
         }
-
 
 
         // linkCart.dataset.count > 0 ? cartMobile.classList.add("show") : cartMobile.classList.remove("show");
@@ -185,16 +177,16 @@
             const linkFavourites = document.querySelector('#linkFavourites');
             const linkFavourites_count = linkFavourites.querySelector('.count');
             const btnsFavourites = document.querySelectorAll('.btn-favourites');
-
             btnsFavourites.forEach(function(btn) {
                 btn.onclick = function() {
+                    alert(btn.dataset.product);
                     const xhttp = new XMLHttpRequest();
 
                     var count = linkFavourites.dataset.count;
                     var new_count = 0;
                     if (btn.classList.contains('active')) {
                         btn.classList.remove('active');
-                        xhttp.open("GET", "/cart/subToFavourite?q=" + btn.dataset.favourite);
+                        xhttp.open("GET", "/cart/subToFavourite?q=" + btn.dataset.product);
 
                         xhttp.onload = () => {
                             if (xhttp.status == 200) { // если код ответа 200
@@ -211,9 +203,9 @@
                     } else {
                         btn.classList.add('active');
                         // count = +count + 1;
-                        btn.dataset.favourite;
+                        btn.dataset.product;
 
-                        xhttp.open("GET", "/cart/addToFavourite?q=" + btn.dataset.favourite);
+                        xhttp.open("GET", "/cart/addToFavourite?q=" + btn.dataset.product);
                         xhttp.onload = () => {
                             if (xhttp.status == 200) { // если код ответа 200
                                 console.log("Server response add: 200 ", xhttp.responseText); // выводим полученный ответ на консоль браузера
@@ -225,6 +217,9 @@
                             }
                         };
                         xhttp.send();
+                        btn.classList.add('in-cart');
+                        // btn.querySelector('.text').innerHTML = 'В корзине';
+                        btn.innerHTML = 'В избранном ';
                     }
                     // alert("Server response: 200 " +   new_count );
 
