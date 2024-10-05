@@ -93,7 +93,7 @@ class CartController extends Controller
     {
         // TODO проверка на наличие в избранном и в корзине
         $product = Product::findOrFail($request->get('q'));
-        Cart::instance('cart')->add($product->id, $product->name, 1, 1, 1);
+        Cart::instance('cart')->add($product->id, $product->name, 1,  $product->price , 1);
         $responseText = Cart::instance('cart')->count();
         return response()->json($responseText, 200);
     }

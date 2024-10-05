@@ -18,6 +18,7 @@ class CartComponent extends Component
     public function updateCart(): void
     {
         $items = Cart::instance('cart')->content();
+        $products_id = [];
         foreach ($items as $key) {
             $products_id[] = ($key->id);
         }
