@@ -52,7 +52,7 @@
                 </tbody>
             </table>
             <div class=" p-6 float-end">
-                <button wire:click="checkout()" class="btn btn-success">
+                <button wire:click="moveToCart()" class="btn btn-success">
                     Перенести в корзину и оформить заказ
                 </button>
             </div>

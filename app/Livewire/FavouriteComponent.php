@@ -40,6 +40,15 @@ class FavouriteComponent extends Component
     }
     public function moveToCart()
     {
+
+        $items = Cart::instance('favourites')->content();
+
+        foreach ($items as $key) {
+             $product = Product::findOrFail($key->id);
+            Cart::instance('cart')->add($product->id, $product->name, 1, $product->price, 1)->associate(Product::class);
+
+        }
+
         Cart::instance('favourites')->destroy();
         $this->dispatch('toast', message: 'Корзина очищена', notify: 'success');
         // $this->fillCart();
