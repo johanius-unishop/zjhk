@@ -6,19 +6,42 @@ use Livewire\Component;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-class CartComponent extends Component
+class CartComponentOLD extends Component
 {
     use LivewireAlert;
-    public $items;
+    public $cart;
+    public $cart_items;
     public $cart_total;
+    public $products_id = [];
+    public $products = [];
 
+    public function fillCart(): void
+    {
+        $items = Cart::instance('cart')->content();
+
+
+        // dd($items);
+
+        foreach ($items as $key) {
+            $this->cart_items[$key->rowId]['id']           = $key->id;
+            $this->cart_items[$key->rowId]['product_name'] = Product::findOrFail($key->id)->name;
+            $this->cart_items[$key->rowId]['rowId']        = $key->rowId;
+            $this->cart_items[$key->rowId]['qty']          = $key->qty;
+            $this->cart_items[$key->rowId]['price']        = $key->price;
+            $this->cart_items[$key->rowId]['sum']          = $key->price * $key->qty;
+
+
+        }
+        // $this->products   = Product::whereIn('id', $products_id)->get();
+        // $this->cart_total = Cart::instance('cart')->total();
+// dd($this->cart_items    );
+    }
 
     public function mount(): void
     {
-         $this->cart_total = Cart::instance('cart')->total();
-        $this->items = Cart::instance('cart')->content();
+        $this->cart_total = Cart::instance('cart')->total();
 
-        // $this->fillCart();
+        $this->fillCart();
     }
 
     public function removeFromCart($productId): void

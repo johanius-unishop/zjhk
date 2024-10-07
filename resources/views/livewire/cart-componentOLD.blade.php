@@ -7,7 +7,7 @@
 
 
     <div class="  mx-auto">
-        @if(Cart::count() > 0)
+        @if(count((array)$cart_items) > 0)
         <div class="  p-6 float-start">
             <button wire:click="clearCart" class="btn btn-danger">
                 Очистить корзину
@@ -17,7 +17,7 @@
 
 
         <div class="bg-white shadow-md rounded my-6">
-            @if(Cart::count() > 0)
+            @if(count((array)$cart_items) > 0)
             <table class="text-left w-full border-collapse">
                 <thead>
                     <tr>
@@ -29,23 +29,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach($cart_items as $product ) --}}
-                    @foreach(Cart::content() as $item)
+                    @foreach($cart_items as $product )
+
                     <tr class="hover:bg-grey-lighter">
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $item->model->name }} </td>
-                        <td class="py-4 px-6 border-b border-grey-light">
-
-                            <input type="number" min="1" value="{{ $item->qty }}" wire:click="updateQuantity({{ $item->rowId }}, $event.target.value)" />
-                        </td>
+                        <td class="py-4 px-6 border-b border-grey-light"> {{ $product['product_name']   }}</td>
+                        <td class="py-4 px-6 border-b border-grey-light"><input class="form-control" type="number" value="{{$product['qty']}}" min="1" max="1000" step="1" wire:click="updateQuantity({{$product['rowId'] }}, $event.target.value)"></td>
                         <td class="py-4 px-6 border-b border-grey-light">
 
 
+                            <input type="number" min="1" value="{{ $product['qty'] }}" wire:click="updateQuantity({{ $product['rowId'] }}, $event.target.value)" />
 
 
-                            {{ $item->price }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $item->subtotal  }}</td>
+
+
+                            {{ $product['price']  }}</td>
+                        <td class="py-4 px-6 border-b border-grey-light">{{ $product['sum'] }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">
-                            <a wire:click="removeFromCart({{ $item->rowId }})" class="text-green-600 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark cursor-pointer">Remove</a>
+                            <a wire:click="removeFromCart({{ $product['id'] }})" class="text-green-600 font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark cursor-pointer">Remove</a>
                         </td>
                     </tr>
                     @endforeach
