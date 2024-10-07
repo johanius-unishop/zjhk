@@ -145,7 +145,10 @@ class CartController extends Controller
     {
         // TODO проверка на наличие в избранном и в корзине
         $product = Product::findOrFail($request->get('q'));
-        Cart::instance('favourites')->add($product->id, $product->name, 1, 1, 1);
+        // Cart::instance('favourites')->add($product->id, $product->name, 1, 1, 1);
+
+        $cartItem =  Cart::instance('favourites')->add($product->id, $product->name, 1, $product->price, 1)->associate(Product::class);
+
         $responseText = Cart::instance('favourites')->count();
         return response()->json($responseText, 200);
     }

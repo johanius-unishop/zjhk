@@ -3,5 +3,6 @@
 
 @section('content')
 {{ Breadcrumbs::render('favourites'  ) }}
-favourites
+Избранное
+<livewire:favourite-component />
 @stop

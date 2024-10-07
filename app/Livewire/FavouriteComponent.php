@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-class CartComponent extends Component
+class FavouriteComponent extends Component
 {
     use LivewireAlert;
     public $items;
@@ -15,11 +15,11 @@ class CartComponent extends Component
     public function removeFromCart($productId): void
     {
         $product        = Product::findOrFail($productId);
-        $favourites     = Cart::instance('cart')->content();
+        $favourites     = Cart::instance('favourites')->content();
         $desired_object = $favourites->filter(function ($item) use ($product) {
             return $item->id == $product->id;
         })->first();
-        Cart::instance('cart')->remove($desired_object->rowId);
+        Cart::instance('favourites')->remove($desired_object->rowId);
         $this->dispatch('toast', message: 'Товар удален из корзины', notify: 'success');
         // $this->fillCart();
         $this->dispatch('$refresh');
@@ -30,24 +30,17 @@ class CartComponent extends Component
     {
         $this->dispatch('toast', message: 'Заказ оформлен', notify: 'success');
     }
-    public function updateQuantity($product_id, $quantity)
-    {
-        $product    = Product::findOrFail($product_id);
-        $favourites = Cart::instance('cart')->content();
-
-        $desired_object = $favourites->filter(function ($item) use ($product) {
-            return $item->id == $product->id;
-        })->first();
-        Cart::update($desired_object->rowId, $quantity); // Will update the quantity
-        // Cart::update($id, ['qty' => $quantity]);
-        session()->flash('alert-success', 'Quantity updated successfully!');
-        $this->dispatch('$refresh');
-    }
-
 
     public function clearCart()
     {
-        Cart::instance('cart')->destroy();
+        Cart::instance('favourites')->destroy();
+        $this->dispatch('toast', message: 'Избранное  очищено', notify: 'success');
+        // $this->fillCart();
+        $this->dispatch('$refresh');
+    }
+    public function moveToCart()
+    {
+        Cart::instance('favourites')->destroy();
         $this->dispatch('toast', message: 'Корзина очищена', notify: 'success');
         // $this->fillCart();
         $this->dispatch('$refresh');
@@ -55,7 +48,7 @@ class CartComponent extends Component
 
     public function render()
     {
-        $this->cart_total = Cart::instance('cart')->total();
-        return view('livewire.cart-component', ['cart_items', Cart::instance('cart')->content()]);
+        $this->cart_total = Cart::instance('favourites')->total();
+        return view('livewire.favourites-component', ['cart_items', Cart::instance('favourites')->content()]);
     }
 }
