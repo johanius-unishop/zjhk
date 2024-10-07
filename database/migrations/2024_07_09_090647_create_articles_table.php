@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->text('text');
-            $table->string('article_image');
-            $table->datetime('date_added');
-            $table->boolean('visible')->default(true);
+            $table->string('name');
+            $table->string('slug')->unique()->nullable();
+            $table->integer('order_column')->nullable();
+            $table->longText('body_description')->nullable();
+            $table->text('short_description')->nullable();
+            $table->tinyInteger('published')->nullable();
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ Faq
                 {{ $faq->question }}
             </button>
         </h2>
-        <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse @if ($loop->first) show @endif " data-bs-parent="#accordionExample">
+        <div id="collapse{{ $faq->id }}" class="accordion-collapse    @if ($loop->first) show   @endif " data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 {!! $faq->answer !!} </div>
         </div>

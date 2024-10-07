@@ -4,7 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
-
+use Illuminate\Validation\Rule;
+use App\Models\Admin;
 class StoreUserRequest extends FormRequest
 {
     /**
@@ -23,9 +24,11 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'fio' => ['required', 'string', 'max:255'],
-            'number' => ['required', "regex:/^(\+7|7|8)?[\s\-]?\(?\d{3}\)?[\s\-]?\d{1}[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/"],
-            'email' => ['required', 'email'],
+            'name' => ['required', 'string', 'max:255'],
+            'patronymic' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', "regex:/^(\+7|7|8)?[\s\-]?\(?\d{3}\)?[\s\-]?\d{1}[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/"],
+            'email' => ['required', 'email' , Rule::unique(Admin::class) ],
             'password' => ['required', Password::min(6), 'confirmed']
         ];
     }
@@ -33,8 +36,10 @@ class StoreUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'fio.required' => 'Вы забыли заполнить ФИО.',
-            'number.required' => 'Проверьте правильность номера телефона.',
+            'name.required' => 'Вы забыли заполнить имя.',
+            'patronymic.required' => 'Вы забыли заполнить отчество.',
+            'last_name.required' => 'Вы забыли заполнить фамилию',
+            'phone_number.required' => 'Проверьте правильность номера телефона.',
             'email.required' => 'Вы забыли указать email.',
             'password.required' => 'Вы забыли указать пароль.',
             'password.min' => 'Пароль должен быть 6 и более символов.',

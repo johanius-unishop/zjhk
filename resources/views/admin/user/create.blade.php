@@ -68,7 +68,7 @@
                     <div class="form-group">
                         <label for="phone_number">Телефон</label>
                         <input type="text" value="{{ old('phone_number') }}"
-                            data-inputmask='"mask": "+9 (999) 999-9999"' data-mask
+                            data-inputmask='"mask": "+9(999)9999999"' data-mask
                             class="form-control @error('phone_number') is-invalid @enderror" id="phone_number"
                             name="phone_number" />
                         @error('phone_number')

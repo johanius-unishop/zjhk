@@ -16,8 +16,22 @@
         <!-- small card -->
         <div class="small-box bg-info">
             <div class="inner">
+                <h3>{{ $article_count }}</h3>
+                <p>Статьи</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-newspaper"></i>
+            </div>
+            <a href="{{ route('admin.article.index') }}" class="small-box-footer">
+                Перейти <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <!-- small card -->
+        <div class="small-box bg-info">
+            <div class="inner">
                 <h3>{{ $news_count }}</h3>
-
                 <p>Новости</p>
             </div>
             <div class="icon">
@@ -28,7 +42,6 @@
             </a>
         </div>
     </div>
-
     <!-- ./col -->
     <div class="col-lg-3 col-6">
         <!-- small card -->

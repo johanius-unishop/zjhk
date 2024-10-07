@@ -36,5 +36,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductTypeCompositeElementsTableSeeder::class);
         $this->call(ProductPdfsTableSeeder::class);
         $this->call(ProductImagesTableSeeder::class);
+        $this->call(FaqsTableSeeder::class);
     }
 }

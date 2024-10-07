@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\ImportController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\ArticleController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
@@ -86,6 +88,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource('news', NewsController::class);
     Route::resource('page', PageController::class);
     Route::resource('faq', FaqController::class);
+    Route::resource('article', ArticleController::class);
 
 
 });

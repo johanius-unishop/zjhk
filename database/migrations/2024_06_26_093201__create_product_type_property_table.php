@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('product_type_property', function (Blueprint $table) {
+        Schema::create('product_type_properties', function (Blueprint $table) {
             $table->id();
             $table->string(column: 'name');
             // $table->integer(column: 'sorting')->nullable();
@@ -27,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_type_property');
+        Schema::dropIfExists('product_type_properties');
     }
 };

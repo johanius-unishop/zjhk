@@ -15,11 +15,11 @@ class ProductKindsPropsTableSeeder extends Seeder
     public function run()
     {
 
-        // \DB::table('product_type_property')->delete();
+        // \DB::table('product_type_properties')->delete();
 
-        \DB::table('product_type_property')->delete();
+        \DB::table('product_type_properties')->delete();
 
-        \DB::table('product_type_property')->insert(array (
+        \DB::table('product_type_properties')->insert(array (
             0 =>
             array (
                 'id' => 1,
