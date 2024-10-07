@@ -51,7 +51,16 @@ class ContentController extends Controller
         //  return view('admin.content.index');
     }
 
+  public function all_orders()
+    {
+        //
+        $news_count = News::count();
+        $faq_count  = Faq::count();
+        $page_count = Page::count();
+        $article_count = Article::count();
+        return view('admin.content.all_orders', compact('news_count', 'page_count' , 'faq_count'  , 'article_count'  ));
 
+    }
     public function regenerateSitemap()
     {
         Log::info('Генерация sitemap');

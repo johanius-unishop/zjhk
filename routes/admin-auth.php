@@ -18,6 +18,8 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\SiteOrdersController;
+use App\Http\Controllers\Admin\SearchController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -35,13 +37,15 @@ Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(functio
 
 Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
 
-    // Route::get('/dashboard', function () {
-    //     return view('admin.dashboard');
-    // })->middleware(['verified'])->name('dashboard');
+    Route::get('search', [SearchController::class, 'search'])->name('search');
+
+
 
     Route::get('/dashboard', [ContentController::class, 'dashboard'])->name('dashboard');
     Route::get('/regenerate_sitemap', [ContentController::class, 'regenerateSitemap'])->name('regenerate_sitemap');
 
+    Route::get('/all_orders', [ContentController::class, 'all_orders'])->name('all_orders');
+    Route::resource('orders', SiteOrdersController::class);
 
 
 

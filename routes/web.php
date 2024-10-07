@@ -34,6 +34,7 @@ Route::get('/items/{product}', [ProductController::class, 'testShow'])->name('te
 Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
 
 Route::get('search', [SearchController::class, 'search'])->name('search');
+Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
 
 
 
