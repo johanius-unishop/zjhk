@@ -96,6 +96,10 @@ final class CurrencyTable extends PowerGridComponent
     public function confirmed()
     {
         // TODO Удаление
+
+
+        $deleted_record = Currency::where('id', $this->delete_id)-> firstOrFail();
+        $deleted_record->delete();
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
 
     }
