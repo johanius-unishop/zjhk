@@ -2,9 +2,9 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Создание подтипа товаров')
+@section('title', 'Создание характеристики')
 @section('content_header')
-<h1>Создание подтипа товара для типа товара " {{ $productType->name }}"</h1>
+<h1>Создание характеристики для типа товара " {{ $productType->name }}"</h1>
 @stop
 
 {{-- Content body: main page content --}}

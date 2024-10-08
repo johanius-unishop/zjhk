@@ -7,10 +7,11 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use App\ViewModels\ProductViewModel;
+use App\Http\Requests\Front\SearchRequest;
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
+    public function search(SearchRequest $request)
     {
         //  ->active()
         $searchTerm    = $request->searchTerm;

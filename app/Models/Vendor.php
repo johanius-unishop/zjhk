@@ -9,6 +9,7 @@ use Spatie\Sluggable\SlugOptions;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Builder;
 
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
@@ -93,7 +94,13 @@ class Vendor extends Model implements Sortable, HasMedia
     protected function frontUrl(): Attribute
     {
         return new Attribute(
-            get: fn() => config('app.url') . '/' . "vendors" . '/' . $this->id,
+            get: fn() => config('app.url') . '/' . "vendors" . '/' . $this->slug,
         );
+    }
+
+
+    public function scopePublished(Builder $query): void
+    {
+        $query->where('published', 1);
     }
 }

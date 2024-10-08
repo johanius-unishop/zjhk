@@ -50,7 +50,7 @@
 
 
                     <div class="tab-pane fade" id="custom-tabs-four-composite" role="tabpanel" aria-labelledby="custom-tabs-four-composite-tab">
-                        <livewire:product-type-composite-table :parent_category="$parent_category->id" />
+                        {{-- <livewire:product-type-composite-table :parent_category="$parent_category->id" /> --}}
 
 
                     </div>

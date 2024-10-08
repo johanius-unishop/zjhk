@@ -67,7 +67,7 @@ Breadcrumbs::for('page', function (BreadcrumbTrail $trail, $page): void {
 
 // Home > Vendors
 Breadcrumbs::for('vendors', function (BreadcrumbTrail $trail) {
-    $trail->parent('catalog');
+    $trail->parent('home');
     $trail->push('Производители', route('vendors.index'));
 });
 // Home > Vendor

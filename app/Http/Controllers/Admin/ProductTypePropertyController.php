@@ -72,7 +72,12 @@ class ProductTypePropertyController extends Controller
      */
     public function show(ProductTypeProperty $productTypeProperty)
     {
-        return view('admin.product-type-property.show', ['parentCategory' => $productTypeProperty]);
+        $productType = $productTypeProperty->productType;
+
+        // dd(  $product_type , $productTypeProperty) ;
+
+        // return view('admin.product-type-property.show', ['parentCategory' => $productTypeProperty]);
+        return view('admin.product-type-property.show', ['productTypeProperty' => $productTypeProperty, 'productType' => $productType]);
 
     }
 
@@ -84,8 +89,9 @@ class ProductTypePropertyController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
+        $product_type = $productTypeProperty->productType;
 
-        return view('admin.product-type-property.edit', ['productTypeProperty' => $productTypeProperty]);
+        return view('admin.product-type-property.edit', ['productTypeProperty' => $productTypeProperty, 'productType' => $product_type]);
     }
 
     /**

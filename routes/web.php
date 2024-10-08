@@ -15,7 +15,7 @@ use App\Http\Controllers\TestController;
 // use Illuminate\Support\Facades\Route;
 // use Symfony\Component\HttpFoundation\Request;
 // use App\Http\Middleware\CompleteProfile;
-use App\Http\Controllers\Front\{PageController, NewsController, CategoryController, ProductController ,CartController , FaqController ,SearchController};
+use App\Http\Controllers\Front\{PageController, NewsController, CategoryController, ProductController ,CartController , FaqController ,SearchController , VendorController};
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -35,8 +35,9 @@ Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
 
 Route::get('search', [SearchController::class, 'search'])->name('search');
 // Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
-
-
+// Производители
+Route::get('/vendors', [VendorController::class, 'index'])->name('vendors.index');
+// Route::get('/vendors/{vendors:slug}',   function (Vendor $vendor ), [VendorController::class, 'show'])->name('vendors.show');
 
 // Корзина и избранное
 Route::post('make_order', [CartController::class, 'make_order'])->name('make_order');

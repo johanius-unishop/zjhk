@@ -2,9 +2,9 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Редактирование  значения характеристики')
+@section('title', 'Редактирование  характеристики')
 @section('content_header')
-<h1>Редактирование значения характеристики </h1>
+<h1>Редактирование характеристики для типа товара " {{ $productType->name }}"</h1>
 @stop
 
 {{-- Content body: main page content --}}

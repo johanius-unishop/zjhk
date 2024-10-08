@@ -143,22 +143,26 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property string $text
- * @property string $article_image
- * @property string $date_added
- * @property int $visible
+ * @property string $name
+ * @property string|null $slug
+ * @property int|null $order_column
+ * @property string|null $body_description
+ * @property string|null $short_description
+ * @property int|null $published
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Article newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Article newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Article query()
- * @method static \Illuminate\Database\Eloquent\Builder|Article whereArticleImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBodyDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Article whereDateAdded($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Article whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereOrderColumn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article wherePublished($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereShortDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Article whereVisible($value)
  */
 	class Article extends \Eloquent {}
 }
@@ -1362,6 +1366,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor ordered(string $direction = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|Vendor published()
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor query()
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereCreatedAt($value)

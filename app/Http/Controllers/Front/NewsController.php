@@ -17,7 +17,7 @@ class NewsController extends Controller
         SEOMeta::setTitle('Новости');
         SEOMeta::setDescription('Новости нашего сайта');
         SEOMeta::setKeywords('Новости новинки анонсы');
-        $news = News::published()->paginate(10)->withQueryString();
+        $news = News::published()->paginate(perPage: 10)->withQueryString();
         $news->load('media');
         //   dd( $news);
 
