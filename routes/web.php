@@ -37,7 +37,8 @@ Route::get('search', [SearchController::class, 'search'])->name('search');
 // Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
 // Производители
 Route::get('/vendors', [VendorController::class, 'index'])->name('vendors.index');
-// Route::get('/vendors/{vendors:slug}',   function (Vendor $vendor ), [VendorController::class, 'show'])->name('vendors.show');
+//   Route::get('/vendors/{vendor}',   function (Vendor $vendor ), [VendorController::class, 'show'])->name('vendors.show');
+  Route::get('/vendors/{vendor}', [VendorController::class, 'show'])->name('vendors.show');
 
 // Корзина и избранное
 Route::post('make_order', [CartController::class, 'make_order'])->name('make_order');

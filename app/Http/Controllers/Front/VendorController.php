@@ -34,10 +34,20 @@ class VendorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Vendor $vendor)
+    public function show(  $slug)
     {
         //
-        dd($vendor)    ;
+        // dd($slug)    ;
+        $vendor = Vendor::published()->where('slug', $slug)->firstOrFail();
+
+        $data = [
+            'vendor' => $vendor,
+        ];
+
+        SEOMeta::setTitle('Производители');
+        SEOMeta::setDescription('Список производителей');
+        SEOMeta::setKeywords('Производители бренды вендоры');
+        return view('front.vendor.show', ['data' => $data]);
     }
 
 

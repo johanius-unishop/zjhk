@@ -20,6 +20,8 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\SiteOrdersController;
 use App\Http\Controllers\Admin\SearchController;
+use App\Http\Controllers\Admin\SettingController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +48,9 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     Route::get('/all_orders', [ContentController::class, 'all_orders'])->name('all_orders');
     Route::resource('orders', SiteOrdersController::class);
+
+
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings');
 
 
 

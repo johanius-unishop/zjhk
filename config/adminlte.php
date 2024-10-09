@@ -423,7 +423,12 @@ return [
             'icon' => 'fas fa-fw fa-bug ',
             'can' => 'manage content',
         ],
-
+      [
+            'text' => 'Настройки сайта',
+            'url' => 'admin/settings',
+            'icon' => 'fas fa-fw fa-random ',
+            'can' => 'manage content',
+        ],
         [
             'text' => 'Роли и доступы',
             'url' => 'admin/rap',
