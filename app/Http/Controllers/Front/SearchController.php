@@ -17,15 +17,14 @@ class SearchController extends Controller
         $searchTerm    = $request->searchTerm;
         $searchCount   = Product::query()
             ->search($searchTerm)
-
             ->published()->count();
         $search_result = Product::query()
             ->search($searchTerm)
             ->published()
             ->paginate(12);
         $search_result = checkInCartAndFavourites($search_result);
-        $search_result->appends(['searchTerm' => $searchTerm]);
-        // dd(   $search_result);
+        // $search_result->appends(['searchTerm' => $searchTerm]);
+        //   dd(   $search_result);
 
 
         SEOMeta::setTitle("Результаты поиска по сайту");
