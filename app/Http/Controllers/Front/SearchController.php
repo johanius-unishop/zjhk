@@ -14,6 +14,8 @@ class SearchController extends Controller
     public function search(SearchRequest $request)
     {
         //  ->active()
+
+        // TODO оптимизировать! 
         $searchTerm    = $request->searchTerm;
         $searchCount   = Product::query()
             ->search($searchTerm)

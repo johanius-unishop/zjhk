@@ -112,3 +112,14 @@ Breadcrumbs::for('front_product', function (BreadcrumbTrail $trail, $parents, Pr
     $trail->push($item->name);
     // 	$breadcrumbs->push($item->name );
 });
+
+
+
+
+
+
+// ADMIN Home
+Breadcrumbs::for('admin_home', function (BreadcrumbTrail $trail) {
+    $trail->push('Главная', route('admin/dashboard'));
+});
+

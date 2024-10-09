@@ -97,7 +97,7 @@ class Page extends Model implements Sortable, HasMedia ,Sitemapable
     protected function frontUrl(): Attribute
     {
         return new Attribute(
-            get: fn() => strlen($this->old_link) > 0 ? config('app.url') . DIRECTORY_SEPARATOR . $this->old_link : config('app.url') . DIRECTORY_SEPARATOR . "pages" . DIRECTORY_SEPARATOR . $this->slug,
+            get: fn() => config('app.url') . DIRECTORY_SEPARATOR . "pages" . DIRECTORY_SEPARATOR . $this->slug,
 
             // get: fn() => strlen($this->old_link) > 0 ? config('app.url').DIRECTORY_SEPARATOR .$this->old_link : config('app.url').DIRECTORY_SEPARATOR . "news" . DIRECTORY_SEPARATOR . $this->slug,
 

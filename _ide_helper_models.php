@@ -151,9 +151,16 @@ namespace App\Models{
  * @property int|null $published
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $front_url
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @property-read \RalphJSmit\Laravel\SEO\Models\SEO $seo
  * @method static \Illuminate\Database\Eloquent\Builder|Article newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Article newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article ordered(string $direction = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|Article published()
  * @method static \Illuminate\Database\Eloquent\Builder|Article query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article search(string $search, bool $orderByWeight = true)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereBodyDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereId($value)
@@ -164,7 +171,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
  */
-	class Article extends \Eloquent {}
+	class Article extends \Eloquent implements \Spatie\MediaLibrary\HasMedia, \Spatie\Sitemap\Contracts\Sitemapable, \Spatie\EloquentSortable\Sortable {}
 }
 
 namespace App\Models{

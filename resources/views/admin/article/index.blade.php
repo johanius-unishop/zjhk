@@ -13,7 +13,7 @@
 <div class=" py-3  ">
     <a class="btn btn-primary" href="{{ route('admin.article.create') }}" role="button">Добавить</a>
 </div>
-<livewire:category-table />
+<livewire:article-table />
 @stop
 
 {{-- Push extra CSS --}}
