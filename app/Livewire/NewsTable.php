@@ -64,7 +64,7 @@ final class NewsTable extends PowerGridComponent
 
             Column::make('Опубликовано', 'published'),
 
-            Column::make('Создано', 'created_at')
+            Column::make('Создано', field: 'created_at')
                 ->searchable(),
 
             Column::action('Действия'),

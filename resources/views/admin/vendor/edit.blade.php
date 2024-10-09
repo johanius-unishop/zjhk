@@ -61,6 +61,8 @@
 
                                         <label for="slug">ЧПУ </label>
                                         <input type="text" class="form-control" name="slug" value="{{ @$vendor->slug }}">
+                                        <div id="slugHelp" class="form-text">Заполняется автоматически. Ручное заполнение не желательно.</div>
+
                                         @error('slug')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror

@@ -197,18 +197,7 @@ final class ProductTable extends PowerGridComponent
                 ->dataSource(Category::all())
                 ->optionLabel('name')
                 ->optionValue('id'),
-            // Filter::select('product_style_name', 'product_style_id')
-            //     ->dataSource(ProductStyle::all())
-            //     ->optionLabel('name')
-            //     ->optionValue('id'),
-            // Filter::select('product_type_name', 'product_type_id')
-            //     ->dataSource(ProductType::all())
-            //     ->optionLabel('name')
-            //     ->optionValue('id'),
-            // Filter::select('product_subtype_name', 'product_subtype_id')
-            //     ->dataSource(ProductSubtype::all())
-            //     ->optionLabel('name')
-            //     ->optionValue('id'),
+
         ];
     }
 

@@ -15,16 +15,15 @@ use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Illuminate\Support\Facades\Log;
 
 final class ArticleTable extends PowerGridComponent
 {
-
+    use LivewireAlert;
     public function setUp(): array
     {
-
-
         return [
-
             Header::make()->showSearchInput(),
             Footer::make()
                 ->showPerPage()
@@ -47,8 +46,7 @@ final class ArticleTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('order_column')
-            ->add('published')
+            ->add('published', closure: fn($item) => $item->published ? '✅' : '❌')
             ->add('created_at');
     }
 
@@ -56,58 +54,84 @@ final class ArticleTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Name', 'name')
+            Column::make('Наименование', 'name')
                 ->sortable()
                 ->searchable(),
+            Column::make('Опубликовано', 'published'),
+            Column::make('Создано', field: 'created_at'),
 
-            Column::make('Order column', 'order_column')
-                ->sortable()
-                ->searchable(),
 
-            Column::make('Published', 'published')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Created at', 'created_at')
-                ->sortable()
-                ->searchable(),
-
-            Column::action('Action'),
+            Column::action('Действия'),
         ];
     }
 
     public function filters(): array
     {
         return [
+            Filter::boolean('published')
+                ->label('✅', '❌'),
+          
+
         ];
     }
 
-    #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
+
+    #[\Livewire\Attributes\On('up')]
+    public function property_up($rowId): void
     {
-        $this->js('alert(' . $rowId . ')');
+        try {
+            $property = Article::findOrFail($rowId);
+            $property->moveOrderUp();
+            $this->dispatch('toast', message: 'Запись успешно поднята вверх.', notify: 'success');
+        }
+        catch (\Throwable $th) {
+            Log::info('Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
+            $this->dispatch('toast', message: ' Не удалось поднять  запись.' . $th->getMessage(), notify: 'error');
+            throw $th;
+        }
+        $this->dispatch('$refresh');
+    }
+
+
+    #[\Livewire\Attributes\On(event: 'down')]
+    public function property_down($rowId): void
+    {
+        try {
+            $property = Article::findOrFail($rowId);
+            $property->moveOrderDown();
+            $this->dispatch('toast', message: 'Запись успешно опущена вниз.', notify: 'success');
+        }
+        catch (\Throwable $th) {
+            Log::info($property->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
+            $this->dispatch('toast', message: ' Не удалось опустить  запись.' . $th->getMessage(), notify: 'error');
+            throw $th;
+        }
+        $this->dispatch('$refresh');
+
     }
 
     public function actions(Article $row): array
     {
         return [
-            Button::add('edit')
-                ->slot('Edit: ' . $row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id]),
+            Button::add('view')
+                ->slot('<i class="fas fa-edit"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.article.edit', ['article' => $row->id]),
+            Button::add('up')
+                ->slot('<i class="fas fa-arrow-up"></i>')
+                ->class('btn btn-success')
+                ->dispatch('up', ['rowId' => $row->id]),
+            Button::add('down')
+                ->slot('<i class="fas fa-arrow-down"></i>')
+                ->class('btn btn-success')
+                ->dispatch('down', ['rowId' => $row->id]),
+            Button::add('delivery')
+                ->slot('<i class="fas fa-trash"></i>')
+                ->class('btn btn-danger')
+                ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
+
+
     }
 
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }
