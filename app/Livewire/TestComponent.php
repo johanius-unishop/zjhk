@@ -12,7 +12,7 @@ class TestComponent extends Component
     public $row_id;
     public $isDisabled = false;
     public $record = '';
-
+    public $product;
     public $productType;
     public $props;
     public $property_test = [];
@@ -51,13 +51,13 @@ class TestComponent extends Component
 
     public function mount($record = null)
     {
-
+        $this->product     = $record;
         $this->record      = $record;
         $this->productType = ProductType::where('id', $this->record->product_type_id)->with('props')->first();
-        $this->props       = $this->productType->props  ;
+        $this->props       = $this->productType->props;
         foreach ($this->props as $prop) {
             $this->property_show[$prop->id] = false;
-            $this->property_test[$prop->id]      = " Пусто ";
+            $this->property_test[$prop->id] = " Пусто ";
         }
         //   dd( $this->property_show);
     }

@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Maize\Searchable\HasSearch;
 
 class ProductTypePropertyValues extends Model
 {
     use HasFactory;
-
+    use HasSearch;
     protected $table = 'product_type_property_values';
 
     protected $fillable = [
@@ -17,6 +18,19 @@ class ProductTypePropertyValues extends Model
 
     ];
 
+    /**
+     * Get the model's searchable attributes.
+     *
+     * @return array
+     */
+    public function getSearchableAttributes(): array
+    {
+        return [
+
+            'value' => 8, // Model attribute
+
+        ];
+    }
 
     public function productTypeProperty()
     {

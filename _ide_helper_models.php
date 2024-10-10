@@ -825,6 +825,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues search(string $search, bool $orderByWeight = true)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues whereProductTypePropertyId($value)

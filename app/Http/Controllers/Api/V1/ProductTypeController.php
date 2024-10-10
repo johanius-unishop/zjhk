@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\PropertyValue;
 use App\Models\ProductType;
-use App\Models\ProductSubtype;
+use App\Models\ProductTypePropertyValues;
 use Illuminate\Http\Request;
 
 class ProductTypeController extends Controller
@@ -24,22 +24,26 @@ class ProductTypeController extends Controller
     public function product_property_update(Request $request)
     {
         dd($request->all());
+
+
+
     }
     public function property_list(Request $request)
     {
-       //   dd($request->all());
+        // dd($request->all());
         if (!$request->filled('q')) {
-            $vendors = PropertyValue::all(['id', 'value']); //->take(60);
+            $vendors = ProductTypePropertyValues::where('product_type_property_id', $request->propertyId)->get(['id', 'value']); //->take(60);
 
         } else {
             $search  = $request->q;
-            $vendors = PropertyValue::query()
+            $vendors = ProductTypePropertyValues::query()->where('product_type_property_id', $request->propertyId)
                 ->search($request->q)
                 ->get(array('id', 'value'))
-               ->take(60);
+                ->take(20);
         }
         return response()->json($vendors, 200);
     }
+
 
     public function test_json_group(Request $request)
     {
@@ -65,21 +69,21 @@ class ProductTypeController extends Controller
         $item = ProductSubtype::where('id', $request->product_subtype_id)->where('product_type_id', $request->product_type_id)->get(['id', 'name']);
 
         //  dd($items);
-        foreach ($item  as $item) {
+        foreach ($item as $item) {
             //     if ($item->id == $request->product_subtype_id) {
             $item->selected = true;
         }
 
         // }
 
-        return response()->json($item , 200);
+        return response()->json($item, 200);
     }
 
 
 
     public function list(Request $request)
     {
-       //   dd($request->all());
+        //   dd($request->all());
         if (!$request->filled('q')) {
             $vendors = ProductType::all(['id', 'name']); //->take(60);
 
@@ -88,7 +92,7 @@ class ProductTypeController extends Controller
             $vendors = ProductType::query()
                 ->search($request->q)
                 ->get(array('id', 'name'))
-               ->take(60);
+                ->take(60);
         }
         return response()->json($vendors, 200);
     }
@@ -102,7 +106,7 @@ class ProductTypeController extends Controller
             $vendors = ProductSubtype::query()
                 ->search($request->q)
                 ->get(array('id', 'name'))
-               ->take(60);
+                ->take(60);
         }
 
         return response()->json($vendors, 200);

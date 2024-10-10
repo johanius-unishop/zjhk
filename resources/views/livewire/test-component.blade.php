@@ -46,13 +46,16 @@
     <script>
         $(document).ready(function() {
             $('#select_{{ $prop->id }}').select2({
-                tags: true
-                , ajax: {
+
+             tags: true ,
+                ajax: {
                     url: "/api/v1/admin/property_list"
                     , dataType: 'json'
                     , delay: 250
                     , data: function(params) {
                         return {
+                            productType: {{  $productType->id}} ,
+                            propertyId: {{ $prop->id }},
                             q: params.term, // search term
                             page: params.page
                         };
@@ -90,9 +93,9 @@
                     , method: 'POST'
                     , data: {
                         "_token": "{{ csrf_token() }}"
-                         ,"product_id": "{{   $productType->id }}"
-                        , property_id: this.id
-                        , value_id: data.id
+                        , "product_id": "{{   $product->id }}"
+                        , property_id: {{ $prop->id }}
+                        , value: data.id
 
                     },
 
