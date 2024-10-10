@@ -27,15 +27,9 @@ final class ProductTypePropertyTable extends PowerGridComponent
     public $property_id;
     public function setUp(): array
     {
-
-
         return [
-            // Exportable::make('export')
-            //     ->striped()
-            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),->showSearchInput()
             Header::make()->withoutLoading(),
             Footer::make()
-
                 ->showRecordCount(),
         ];
     }
@@ -43,7 +37,7 @@ final class ProductTypePropertyTable extends PowerGridComponent
     public function datasource(): Builder
     {
         // return ProductTypeProperty::query();->withCount('childrens')        return ProductTypeProperty::query()->where('product_type_id', operator: $this->parent_category)->ordered();
-        return ProductTypeProperty::query()->where(column: 'product_type_id', operator: $this->parent_category)->orderBy('order_column');
+        return ProductTypeProperty::query()->where(column: 'product_type_id', operator: $this->parent_category)->withCount('values') ->orderBy('order_column');
     }
 
     public function relationSearch(): array
@@ -55,7 +49,9 @@ final class ProductTypePropertyTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name')
+            ->add('name', function ($item) {
+                return $item->name . ' (' . $item->values_count . ')';
+            })
             ->add('created_at');
     }
 
@@ -64,9 +60,7 @@ final class ProductTypePropertyTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name'),
-            Column::make('Создано', 'created_at')
-                ->sortable()
-            ,
+            Column::make('Создано', 'created_at'),
 
             Column::action('Действия'),
         ];

@@ -4,7 +4,7 @@
         <div class="col-12 ">
 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Создать новое значение
+                Добавить новое значение
             </button>
         </div>
     </div>
@@ -24,7 +24,8 @@
                 <td>{{$product->value }}</td>
 
                 <td>
-                    <button @click="$dispatch('edit-mode',{id:{{$product->id}}})" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                    <button @click="$dispatch('edit-mode',{id:{{$product->id}}})" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit"></i></button>
+                    <a class="btn btn-danger " wire:confirm="Вы действительно хотите удалить эту запись?" wire:click="delete({{ $product->id }})" href="#"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
             @endforeach
@@ -42,15 +43,18 @@
     document.addEventListener('livewire:initialized', () => {
         @this.on('refresh-products', (event) => {
             // alert('product created/updated')
-            $this->dispatch('toast', message: 'Запись успешно создана (обновлена).', notify: 'success');
+            // $this->dispatch('toast', message: 'Запись успешно создана (обновлена).', notify: 'success');
 
             var myModalEl = document.querySelector('#exampleModal')
-            var modal = bootstrap.Modal.getOrCreateInstance(myModalEl)
-            setTimeout(() => {
-                modal.hide();
-                myModalEl.modal('hide') ;
-                @this.dispatch('reset-modal');
-            }, 5000);
+
+            $("#exampleModal").modal('hide');
+            this.dispatch('reset-modal');
+            // var modal = bootstrap.Modal.getOrCreateInstance(myModalEl)
+            // setTimeout(() => {
+            //     // modal.hide();
+            //     myModalEl.modal('hide') ;
+            //     @this.dispatch('reset-modal');
+            // }, 5000);
         })
         var mymodal = document.getElementById('exampleModal')
         mymodal.addEventListener('hidden.bs.modal', (event) => {

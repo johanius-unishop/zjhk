@@ -795,6 +795,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\ProductType|null $productType
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductTypePropertyValues> $values
+ * @property-read int|null $values_count
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty ordered(string $direction = 'asc')

@@ -4,8 +4,8 @@
 
 @section('title', 'Тип товара')
 @section('content_header')
-<h1>Тип товара {{ $productType->name }}</h1>
-<h2> Характеристика типа товара {{ $productTypeProperty->name }}</h2>
+<h1>Тип товара "{{ $productType->name }}"</h1>
+<h2> Характеристика типа товара "{{ $productTypeProperty->name }}"</h2>
 @stop
 
 {{-- Content body: main page content --}}

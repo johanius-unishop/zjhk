@@ -32,10 +32,10 @@ class ProductTypeProperty extends Model implements Sortable
     {
         return static::query()->where('product_type_id', $this->product_type_id);
     }
-    // public function values()
-    // {
-    //     return $this->hasMany(Property::class, 'product_kind_prop_id');
-    // }
+    public function values()
+    {
+        return $this->hasMany(ProductTypePropertyValues::class, 'product_type_property_id');
+    }
 
     public function productType()
     {

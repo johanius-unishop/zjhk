@@ -29,10 +29,16 @@ class CreateValueComponent extends Component
     {
         $validated                             = $this->validate();
         $validated['product_type_property_id'] = $this->productTypeProperty->id;
+
+        //  dd($validated, $this->value );
         ProductTypePropertyValues::create($validated);
+        // session()->flash('status', 'product created');
+
+        $this->dispatch('toast', message: 'Запись создана.', notify: 'status');
         $this->dispatch('refresh-products');
-        session()->flash('status', 'product created');
-        $this->reset();
+        $this->dispatch('$refresh');
+
+        // $this->reset();
     }
 
     #[On('reset-modal')]
@@ -44,14 +50,13 @@ class CreateValueComponent extends Component
     #[On('edit-mode')]
     public function edit($id)
     {
-        dd($id);
+        // dd($id);
         $this->editform                 = true;
         $this->formtitle                = 'Редактирование значения';
         $this->productTypePropertyValue = ProductTypePropertyValues::findOrfail($id);
         // $this->productTypePropertyValue     = ProductTypePropertyValues::findOrfail($id)->value;
         $this->value = $this->productTypePropertyValue->value;
-        // $this->description = $this->product->description;
-        // $this->price       = $this->product->price;
+
     }
 
     public function update()
@@ -67,7 +72,11 @@ class CreateValueComponent extends Component
         // dd($p, $validated, $this->value, $this->productTypePropertyValue);
 
         $this->dispatch('refresh-products');
-        session()->flash('status', 'Product updated succesfully');
+        $this->dispatch('$refresh');
+
+        // $this->reset();
+
+        // session()->flash('status', 'Product updated succesfully');
 
     }
 }

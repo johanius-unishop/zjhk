@@ -4,7 +4,7 @@
 
 @section('title', 'Тип товара')
 @section('content_header')
-<h1>Тип товара {{ $parent_category->name }}</h1>
+<h1>Тип товара "{{ $parent_category->name }}"</h1>
 @stop
 
 {{-- Content body: main page content --}}
