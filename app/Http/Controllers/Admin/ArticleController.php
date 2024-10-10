@@ -37,7 +37,17 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        $input = $request->all();
+        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
+        $record = Article::create($input);
+        session()->flash('success', 'Запись успешно создана');
+        if ($request->action == 'save-exit') {
+            return redirect(route('admin.article.index'));
+        }
+        return redirect(route('admin.article.edit', $record->id));
     }
 
     /**
@@ -53,7 +63,10 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        return view('admin.article.edit', ['article' => $article]);
     }
 
     /**
@@ -61,14 +74,20 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        $input = $request->all();
+        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
+        $article->update($input);
+
+        session()->flash('success', 'Запись успешно обновлена');
+
+        if ($request->action == 'save-exit') {
+            return redirect(route('admin.article.index'));
+        }
+        return redirect(route('admin.article.edit', $article->id));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Article $article)
-    {
-        //
-    }
+ 
 }

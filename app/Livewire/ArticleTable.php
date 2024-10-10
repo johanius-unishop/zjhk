@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Log;
 final class ArticleTable extends PowerGridComponent
 {
     use LivewireAlert;
+
+    public $delete_id;
     public function setUp(): array
     {
         return [
@@ -33,7 +35,7 @@ final class ArticleTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Article::query();
+        return Article::query()->orderBy('order_column');
     }
 
     public function relationSearch(): array
@@ -70,7 +72,7 @@ final class ArticleTable extends PowerGridComponent
         return [
             Filter::boolean('published')
                 ->label('✅', '❌'),
-          
+
 
         ];
     }
@@ -108,6 +110,24 @@ final class ArticleTable extends PowerGridComponent
         }
         $this->dispatch('$refresh');
 
+    }
+    #[\Livewire\Attributes\On('post_delete')]
+    public function post_delete($rowId): void
+    {
+        $this->delete_id = $rowId;
+        $this->confirm('Вы действительно хотите удалить эту запись?', [
+            'onConfirmed' => 'confirmed',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'Нет',
+        ]);
+    }
+
+    #[\Livewire\Attributes\On('confirmed')]
+    public function confirmed()
+    {
+        $deleted_record = Article::where('id', $this->delete_id)->firstOrFail();
+        $deleted_record->delete();
+        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
     }
 
     public function actions(Article $row): array
