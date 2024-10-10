@@ -12,8 +12,11 @@
 @section('content')
 @include('admin.blocks.error')
 
-<form action="{{ route('admin.product.store')  }}" method="POST">
+<form action="{{ route('admin.product.update', $product->id) }}" method="POST">
+
     @csrf
+    @method('PATCH')
+    <input type="hidden" name="id" value="{{ $product->id }}">
     <div class="row">
         <div class="col-12 ">
             <div class="card card-primary card-outline card-outline-tabs">
@@ -61,7 +64,7 @@
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
                                         <label for="name">Название</label>
-                                        <input type="text" class="form-control" name="name" value="{{ $product->name }}">
+                                        <input type="text" class="form-control" name="name" id="name"  value="{{ $product->name }}">
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -72,7 +75,7 @@
                                     <div class="form-group">
 
                                         <label for="slug">ЧПУ </label>
-                                        <input type="text" class="form-control" name="slug" value="{{ @$product->slug }}">
+                                        <input type="text" class="form-control" name="slug" id="slug" value="{{ @$product->slug }}">
                                         <div id="slugHelp" class="form-text">Заполняется автоматически. Ручное заполнение не желательно.</div>
 
                                         @error('slug')
@@ -139,7 +142,7 @@
                                 <div class="col-lg-3 col-6  ">
                                     <div class="form-group">
                                         <label for="article">Артикул</label>
-                                        <input type="text" class="form-control" name="article" value="{{ $product->article }}">
+                                        <input type="text" class="form-control" name="article" id="article" value="{{ $product->article }}">
                                         @error('article')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -225,21 +228,21 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="barcode">Штрих-код</label>
-                                        <input type="text" class="form-control" name="barcode" value="{{ @$product->barcode }}">
+                                        <input type="text" class="form-control" name="barcode" id="barcode" value="{{ @$product->barcode }}">
                                         @error('barcode')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="tn_ved">ТН ВЭД</label>
-                                        <input type="text" class="form-control" name="tn_ved" value="{{ @$product->tn_ved }}">
+                                        <input type="text" class="form-control" name="tn_ved"  id="tn_ved" value="{{ @$product->tn_ved }}">
                                         @error('tn_ved')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="pieces_per_pack">pieces_per_pack</label>
-                                        <input type="text" class="form-control" name="pieces_per_pack" value="{{ @$product->pieces_per_pack }}">
+                                        <input type="text" class="form-control" name="pieces_per_pack" id="pieces_per_pack" value="{{ @$product->pieces_per_pack }}">
                                         @error('pieces_per_pack')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -247,7 +250,7 @@
 
                                     <div class="form-group">
                                         <label for="stock"> stock</label>
-                                        <input type="text" class="form-control" name="stock" value="{{ @$product->stock }}">
+                                        <input type="text" class="form-control"  name="stock" id="stock" value="{{ @$product->stock }}">
                                         @error('stock')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -255,7 +258,7 @@
 
                                     <div class="form-group">
                                         <label for="minimum_stock"> minimum_stock</label>
-                                        <input type="text" class="form-control" name="minimum_stock" value="{{ @$product->minimum_stock }}">
+                                        <input type="text" class="form-control" name="minimum_stock" id="minimum_stock" value="{{ @$product->minimum_stock }}">
                                         @error('minimum_stock')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
