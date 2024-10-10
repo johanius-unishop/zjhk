@@ -15,12 +15,13 @@ use App\Http\Controllers\TestController;
 // use Illuminate\Support\Facades\Route;
 // use Symfony\Component\HttpFoundation\Request;
 // use App\Http\Middleware\CompleteProfile;
-use App\Http\Controllers\Front\{PageController, NewsController, CategoryController, ProductController ,CartController , FaqController ,SearchController , VendorController};
+use App\Http\Controllers\Front\{PageController, NewsController, CategoryController, ProductController ,CartController , FaqController ,SearchController , VendorController ,ArticleController};
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 ;
-
+Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
+Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
 
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');

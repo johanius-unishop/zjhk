@@ -815,6 +815,28 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int $product_type_property_id
+ * @property string|null $value
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\ProductTypeProperty|null $productTypeProperty
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues whereProductTypePropertyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductTypePropertyValues whereValue($value)
+ */
+	class ProductTypePropertyValues extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property int $product_composite_element_id
  * @property int $product_id
  * @property int $product_element_id

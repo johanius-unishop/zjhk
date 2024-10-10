@@ -97,7 +97,7 @@
                     <h4 class="text-white text-lg font-bold mb-4">Покупателям</h4>
                     <ul class="list-none">
                         <li><a href="{{ route('catalog') }}" class="text-gray-400 hover:text-white">Каталог</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Полезные статьи</a></li>
+                        <li><a href="{{ route('article.index') }}" class="text-gray-400 hover:text-white">Доставка и оплата</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Доставка и оплата</a></li>
                         <li><a href="{{ route('faq.show') }}" class="text-gray-400 hover:text-white">Вопросы и ответы</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Обратная связь</a></li>

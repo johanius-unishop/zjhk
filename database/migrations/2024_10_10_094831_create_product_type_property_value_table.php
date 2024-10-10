@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\ProductTypeProperty;
 
 return new class extends Migration
 {
@@ -11,11 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('property_values', function (Blueprint $table) {
+        Schema::create('product_type_property_values', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(ProductTypeProperty::class);
             $table->string(column: 'value')->nullable();
 
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('property_values');
+        Schema::dropIfExists('product_type_property_values');
     }
 };
