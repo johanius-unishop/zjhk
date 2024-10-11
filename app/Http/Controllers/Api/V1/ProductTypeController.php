@@ -68,7 +68,6 @@ class ProductTypeController extends Controller
     }
     public function property_list(Request $request)
     {
-        // dd($request->all());
         if (!$request->filled('q')) {
             $vendors = ProductTypePropertyValue::where('product_type_property_id', $request->propertyId)->get(['id', 'value']); //->take(60);
         } else {
@@ -78,6 +77,13 @@ class ProductTypeController extends Controller
                 ->get(array('id', 'value'))
                 ->take(20);
         }
+        // dd(  $request->all() ,      $vendors );
+        // ProductPropertyValue
+        // TODO проверка! Доделать select для сущейсвующей записи для  product_property_values
+        //     foreach ($vendors as $item) {
+        //         //     if ($item->id == $request->propertyId) {
+        //         $item->selected = true;
+        //     }
         return response()->json($vendors, 200);
     }
 
