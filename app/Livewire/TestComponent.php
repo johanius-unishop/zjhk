@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\ProductType;
+use App\Models\ProductPropertyValue;
+
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 class TestComponent extends Component
@@ -55,6 +57,10 @@ class TestComponent extends Component
         $this->record      = $record;
         $this->productType = ProductType::where('id', $this->record->product_type_id)->with('props')->first();
         $this->props       = $this->productType->props;
+
+        $properties =  ProductPropertyValue::where('product_id', $this->record->id)->with('value')->get();
+
+        // dd( $properties ,$this->props );
         foreach ($this->props as $prop) {
             $this->property_show[$prop->id] = false;
             $this->property_test[$prop->id] = " Пусто ";

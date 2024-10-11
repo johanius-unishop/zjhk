@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\Product;
 use App\Models\ProductTypeProperty;
 
-use App\Models\ProductTypePropertyValues;
+use App\Models\ProductTypePropertyValue;
 
 return new class extends Migration
 {
@@ -17,9 +17,11 @@ return new class extends Migration
     {
         Schema::create('product_property_values', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Product::class);
-            $table->foreignIdFor(model: ProductTypeProperty::class);
-            $table->foreignIdFor(model: ProductTypePropertyValues::class);
+            $table->foreignIdFor(Product::class) ;
+            $table->foreignIdFor(model: ProductTypeProperty::class) ;
+            $table->foreignIdFor(model: ProductTypePropertyValue::class)->nullable();
+            $table->unique(['product_id']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

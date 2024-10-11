@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(Product::class);
             $table->foreignIdFor(AnalogVendor::class); //analog_vendor_id
             $table->timestamps();
+            $table->softDeletes();
             $table->unique(['product_id','analog_vendor_id']);
         });
     }

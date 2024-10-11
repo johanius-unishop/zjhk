@@ -17,6 +17,7 @@ return new class extends Migration {
             // $table->integer('sorting')->nullable();
             $table->integer(column: 'order_column')->nullable();
             $table->foreignIdFor(ProductType::class);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

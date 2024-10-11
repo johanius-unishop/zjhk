@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('value');
             $table->foreignIdFor(Product_kind_prop::class);
             $table->foreignIdFor(Product::class);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

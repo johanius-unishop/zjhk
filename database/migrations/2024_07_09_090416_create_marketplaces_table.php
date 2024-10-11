@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('anons_text');
             $table->boolean('visible');
             $table->integer('sorting');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

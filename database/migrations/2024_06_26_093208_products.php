@@ -62,7 +62,7 @@ return new class extends Migration {
 
             $table->integer('moq_supplier')->nullable();
             $table->boolean('composite_product')->nullable();
-            ; //->after('column')
+            $table->softDeletes();
             $table->timestamps();
         });
     }

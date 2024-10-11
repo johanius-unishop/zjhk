@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('gbp_rate', total: 8, places: 2);
             $table->decimal('cny_rate', total: 8, places: 2);
             $table->decimal('try_rate', total: 8, places: 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

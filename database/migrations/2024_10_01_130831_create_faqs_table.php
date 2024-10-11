@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->longText('answer')->nullable();
             $table->integer('order_column')->nullable();
             $table->tinyInteger(column: 'published');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

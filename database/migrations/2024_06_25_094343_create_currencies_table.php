@@ -10,12 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
- 
+
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('charcode');
             $table->string('numcode')->nullable();;
+            $table->softDeletes();
             $table->timestamps();
         });
     }

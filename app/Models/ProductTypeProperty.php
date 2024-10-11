@@ -10,7 +10,7 @@ class ProductTypeProperty extends Model implements Sortable
 {
     use HasFactory;
     use SortableTrait;
-    protected $table = 'product_type_property';
+    protected $table = 'product_type_properties';
 
     protected $fillable = [
         'name',

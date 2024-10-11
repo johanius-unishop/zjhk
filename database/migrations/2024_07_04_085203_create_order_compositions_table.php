@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->foreignIdFor(Order::class);
             $table->foreignIdFor(Product::class);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('delivery_time')->nullable();
             $table->string('warranty')->nullable();
             $table->tinyInteger('published');
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

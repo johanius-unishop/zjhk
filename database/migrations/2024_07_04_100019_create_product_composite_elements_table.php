@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Product_composite_element::class);
             $table->foreignIdFor(Product::class);
             $table->foreignId('product_element_id'); //скорее всего, в будущем, нужно будет заменить на модель
+            $table->softDeletes();
             $table->integer('quantity');
         });
     }

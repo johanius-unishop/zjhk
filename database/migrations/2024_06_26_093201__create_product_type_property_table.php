@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->integer(column: 'order_column')->nullable();
             $table->foreignId(column: 'product_type_id')->nullable()->index();
             $table->boolean(column: 'section')->default(0);
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

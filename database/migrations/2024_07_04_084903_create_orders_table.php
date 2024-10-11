@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('order_number');
             $table->text('order_date');
             $table->tinyInteger('received');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

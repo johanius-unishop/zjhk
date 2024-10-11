@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('author');
             $table->text('text');
             $table->text('date_added');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

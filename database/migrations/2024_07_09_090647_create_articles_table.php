@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('body_description')->nullable();
             $table->text('short_description')->nullable();
             $table->tinyInteger('published')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

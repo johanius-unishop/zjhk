@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('property_values', function (Blueprint $table) {
             $table->id();
             $table->string(column: 'value')->nullable();
-
+            $table->softDeletes();
             // $table->timestamps();
         });
     }

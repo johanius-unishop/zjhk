@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\ProductTypePropertyValues;
+use App\Models\ProductTypePropertyValue;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\On;
 class CreateValueComponent extends Component
@@ -31,7 +31,7 @@ class CreateValueComponent extends Component
         $validated['product_type_property_id'] = $this->productTypeProperty->id;
 
         //  dd($validated, $this->value );
-        ProductTypePropertyValues::create($validated);
+        ProductTypePropertyValue::create($validated);
         // session()->flash('status', 'product created');
 
         $this->dispatch('toast', message: 'Запись создана.', notify: 'status');
@@ -53,9 +53,8 @@ class CreateValueComponent extends Component
         // dd($id);
         $this->editform                 = true;
         $this->formtitle                = 'Редактирование значения';
-        $this->productTypePropertyValue = ProductTypePropertyValues::findOrfail($id);
-        // $this->productTypePropertyValue     = ProductTypePropertyValues::findOrfail($id)->value;
-        $this->value = $this->productTypePropertyValue->value;
+        $this->productTypePropertyValue = ProductTypePropertyValue::findOrfail($id);
+         $this->value = $this->productTypePropertyValue->value;
 
     }
 
@@ -65,7 +64,7 @@ class CreateValueComponent extends Component
         $validated['product_type_property_id'] = $this->productTypeProperty->id;
 
         // dd($validated, $this->value, $this->productTypePropertyValue);
-        $p = ProductTypePropertyValues::findOrFail($this->productTypePropertyValue->id);
+        $p = ProductTypePropertyValue::findOrFail($this->productTypePropertyValue->id);
 
         // $this->productTypePropertyValue->update($validated);
         $p->update($validated);

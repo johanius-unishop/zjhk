@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(ProductTypeProperty::class);
             $table->string(column: 'value')->nullable();
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

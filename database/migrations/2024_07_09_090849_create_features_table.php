@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('text');
             $table->unsignedBigInteger(Article::class);
             $table->integer('sorting');
+            $table->softDeletes();
             $table->timestamps();
 
         });

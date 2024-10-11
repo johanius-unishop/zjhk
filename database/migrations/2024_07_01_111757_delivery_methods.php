@@ -16,7 +16,7 @@ return new class extends Migration {
 
             $table->string('comment')->nullable();
             $table->tinyInteger(column: 'published');
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

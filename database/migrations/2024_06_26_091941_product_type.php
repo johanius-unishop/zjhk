@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('name_plural');
             $table->boolean('composite')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
 

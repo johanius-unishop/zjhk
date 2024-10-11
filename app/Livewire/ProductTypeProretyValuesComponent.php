@@ -5,7 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Models\ProductTypeProperty;
-use App\Models\ProductTypePropertyValues;
+use App\Models\ProductTypePropertyValue;
 
 class ProductTypeProretyValuesComponent extends Component
 {
@@ -15,13 +15,13 @@ class ProductTypeProretyValuesComponent extends Component
     public function mount($productTypeProperty)
     {
         $this->productTypeProperty = $productTypeProperty;
-        $this->values              = ProductTypePropertyValues::where('product_type_property_id', $this->productTypeProperty->id)->get();
+        $this->values              = ProductTypePropertyValue::where('product_type_property_id', $this->productTypeProperty->id)->get();
 
     }
     public function delete($value_id)
     {
         try {
-            $value = ProductTypePropertyValues::find($value_id);
+            $value = ProductTypePropertyValue::find($value_id);
             $value->delete();
             $this->dispatch('toast', message: 'Запись удалена.', notify: 'error');
         }
@@ -34,7 +34,7 @@ class ProductTypeProretyValuesComponent extends Component
     public function refreshProducts()
     {
         $this->dispatch('toast', message: 'Запись обновлена.', notify: 'status');
-        $this->values = ProductTypePropertyValues::where('product_type_property_id', $this->productTypeProperty->id)->get();
+        $this->values = ProductTypePropertyValue::where('product_type_property_id', $this->productTypeProperty->id)->get();
     }
     public function render()
     {

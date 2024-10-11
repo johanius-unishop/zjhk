@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('comment_3');
             $table->foreignIdFor(Product::class);
             $table->foreignIdFor(Related_product_type::class); //related_product_type_id
+            $table->softDeletes();
             $table->timestamps();
         });
     }

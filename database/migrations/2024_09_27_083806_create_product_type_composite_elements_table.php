@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(ProductType::class);
             $table->string('name');
             $table->integer(column: 'order_column')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

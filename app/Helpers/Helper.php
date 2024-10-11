@@ -147,28 +147,7 @@ function getFilter($querry, $request)
     }
     return $querry;
 }
-function giveModelsArray()
-{
-    $product_classes    = array(); // ProductClass::get(array('id', 'name', 'old_code', 'product_type_id'))->toArray();
-    $product_subclasses = array(); // ProductSubclass::get(array('id', 'name', 'old_code', 'product_class_id'))->toArray();
-    $product_styles     = ProductStyle::get(array('id', 'name', 'old_code'))->toArray();
-    $product_locations  = array();
-    $price_segments     = PriceSegment::get(array('id', 'name', 'old_code'))->toArray();
-    $vendors            = Vendor::get(array('id', 'name', 'old_code'))->toArray();
-    // return array($product_classes, $product_styles, $product_locations, $price_segments, $vendors, $product_subclasses);
-    return array(
-        'product_classes' => $product_classes,
-        'product_styles' => $product_styles,
-        'product_locations' => $product_locations,
-        'price_segments' => $price_segments,
-        'vendors' => $vendors,
-        'product_subclasses' => $product_subclasses,
-    );
-
-    // return array($product_classes, $product_styles, $product_locations, $price_segments, $vendors, $product_subclasses);
-
-
-}
+ 
 
 
 function file_get_contents_curl($url)

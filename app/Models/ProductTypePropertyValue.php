@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Maize\Searchable\HasSearch;
 
-class ProductTypePropertyValues extends Model
+class ProductTypePropertyValue extends Model
 {
     use HasFactory;
     use HasSearch;
@@ -15,7 +15,6 @@ class ProductTypePropertyValues extends Model
     protected $fillable = [
         'value',
         'product_type_property_id',
-
     ];
 
     /**
@@ -26,9 +25,7 @@ class ProductTypePropertyValues extends Model
     public function getSearchableAttributes(): array
     {
         return [
-
             'value' => 8, // Model attribute
-
         ];
     }
 

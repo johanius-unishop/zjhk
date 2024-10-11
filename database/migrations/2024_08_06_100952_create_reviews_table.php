@@ -24,6 +24,7 @@ return new class extends Migration
             $table->tinyInteger('rating');
             $table->timestamp('date_added')->useCurrent();
             $table->boolean('public')->nullable()->default(null);
+            $table->softDeletes();
         });;
     }
 

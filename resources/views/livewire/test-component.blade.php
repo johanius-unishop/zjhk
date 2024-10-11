@@ -14,13 +14,12 @@
                 <tr>
                     <td>{{ $prop->id }} </td>
                     <td> {{ $prop->name }}</td>
-                    <td>
+                    <td> {{$prop->id}}
                         {{-- @if ($this->property_show[$prop->id] == true) --}}
                         {{-- <label for="select_{{ $prop->id }}">Выберите поле</label> --}}
                         <div class="mb-3">
                             <select class="form-control" id="select_{{ $prop->id }}">
                                 <option value="0">Выберите вариант</option>
-                                <!-- Здесь будут ваши опции wire:model= property_test. " -->
                             </select>
                         </div>
                         {{-- @endif --}}
@@ -46,7 +45,6 @@
     <script>
         $(document).ready(function() {
             $('#select_{{ $prop->id }}').select2({
-
              tags: true ,
                 ajax: {
                     url: "/api/v1/admin/property_list"
@@ -94,8 +92,8 @@
                     , data: {
                         "_token": "{{ csrf_token() }}"
                         , "product_id": "{{   $product->id }}"
-                        , property_id: {{ $prop->id }}
-                        , value: data.id
+                        , "product_type_property_id": {{ $prop->id }}
+                        , "product_type_property_value" : data.id
 
                     },
 

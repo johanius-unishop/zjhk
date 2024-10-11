@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(  Currency::class);
             $table->float('rate')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
