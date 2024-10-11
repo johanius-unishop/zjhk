@@ -10,7 +10,7 @@ class ProductTypePropertyValue extends Model
 {
     use HasFactory;
     use HasSearch;
-    protected $table = 'product_type_property_values';
+    // protected $table = 'product_type_property_values';
 
     protected $fillable = [
         'value',

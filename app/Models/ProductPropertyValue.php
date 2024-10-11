@@ -13,7 +13,7 @@ class ProductPropertyValue extends Model
     protected $fillable = [
         'product_id',
         'product_type_property_id',
-        'product_type_property_values_id',
+        'product_type_property_value_id',
     ];
 
 
@@ -23,7 +23,7 @@ class ProductPropertyValue extends Model
     }
     public function value()
     {
-        return $this->belongsTo(ProductTypePropertyValue::class, 'product_type_property_id');
+        return $this->hasOne(ProductTypePropertyValue::class, 'product_type_property_id');
     }
     public function product()
     {

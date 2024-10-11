@@ -77,8 +77,9 @@
                 }
                 , placeholder: 'Select an option'
             , });
-
-
+            // $('#select_{{ $prop->id }}').on('change', function(e) {
+            //     alert("Changed: " + this.id);
+            // });
             $('#select_{{ $prop->id }}').on('select2:select', function(e) {
                 event.preventDefault();
                 var data = e.params.data;
@@ -89,17 +90,22 @@
                 $.ajax({
                     url: "/api/v1/admin/product_property_update"
                     , method: 'POST'
+                    , dataType: 'json'
                     , data: {
                         "_token": "{{ csrf_token() }}"
                         , "product_id": "{{   $product->id }}"
                         , "product_type_property_id": {{ $prop->id }}
-                        , "product_type_property_value" : data.id
+                        , "product_type_property_value" : data.text
 
                     },
 
                     success: function(response) {
                         // $(form).trigger("reset");
-                        alert(response.success)
+                        // alert(response.success);
+
+                        this.dispatch('refresh');
+                        console.log('response');
+                        console.log(response);
                     }
                     , error: function(response) {}
                 });

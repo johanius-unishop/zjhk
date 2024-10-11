@@ -767,25 +767,25 @@ namespace App\Models{
  * @property int $id
  * @property int $product_id
  * @property int $product_type_property_id
- * @property int|null $product_type_property_values_id
+ * @property int|null $product_type_property_value_id
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Product|null $product
  * @property-read \App\Models\ProductTypeProperty|null $productTypeProperty
  * @property-read \App\Models\ProductTypePropertyValue|null $value
- * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValues newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValues newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValues query()
- * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValues whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValues whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValues whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValues whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValues whereProductTypePropertyId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValues whereProductTypePropertyValuesId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValues whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue whereProductTypePropertyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue whereProductTypePropertyValueId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue whereUpdatedAt($value)
  */
-	class ProductPropertyValues extends \Eloquent {}
+	class ProductPropertyValue extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -862,6 +862,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\ProductType|null $productType
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductTypePropertyValue> $values
+ * @property-read int|null $values_count
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductTypeProperty ordered(string $direction = 'asc')

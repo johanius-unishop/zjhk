@@ -98,6 +98,7 @@ Route::prefix('test')->name('test.')->group(function () {
     Route::get('/product_composite', [TestController::class, 'product_composite'])->name('product_composite');
 
     // Route::get('/product_kinds_props', [TestController::class, 'product_kinds_props'])->name('product_kinds_props');
+    Route::get('/product_values', [TestController::class, 'product_values'])->name('product_values');
 
     Route::get('/props_value_seed', [TestController::class, 'props_value_seed'])->name('props_value_seed');
 

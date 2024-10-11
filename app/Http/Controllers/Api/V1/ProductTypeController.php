@@ -24,32 +24,46 @@ class ProductTypeController extends Controller
 
     public function product_property_update(Request $request)
     {
-        // dd($request->all());
-        // 'product_id',
-        // 'product_type_property_id',
-        // 'product_type_property_value',
-        // TODO проверка на новое значение характеристики
-        $value_id = $request->product_type_property_value;
-        $result   = ProductTypePropertyValue::where('product_type_property_id', $request->product_type_property_id)->where('value', $request->product_type_property_value)->first();
-        // dd($result);
+        // dd($request->all() );
+
+        $result = ProductTypePropertyValue::where('product_type_property_id', $request->product_type_property_id)->where('value', $request->product_type_property_value)->first();
         if (!$result) {
             $value_id = ProductTypePropertyValue::create([
                 'product_type_property_id' => $request->product_type_property_id,
                 'value' => $request->product_type_property_value,
 
             ])->id;
+        } else {
+            $value_id = $result->id;
         }
 
-        ProductPropertyValue::upsert(
-            [
+        $res = ProductPropertyValue::where('product_type_property_id', $request->product_type_property_id)->where('product_id', $request->product_id)->first();
+
+        if (!$res) {
+            ProductPropertyValue::create([
                 'product_id' => $request->product_id,
                 'product_type_property_id' => $request->product_type_property_id,
-                'product_type_property_values_id' => $value_id,
-            ],
-            ['product_id', 'product_type_property_id'],
-            update: ['product_type_property_values_id'],
-        );
+                'product_type_property_value_id' => $request->value_id,
+            ]);
+        } else {
+            $res->product_type_property_value_id = $value_id;
+            $res->save();
 
+        }
+        //  Лимит на длину поля MYSQL!
+        // $res = ProductPropertyValue::upsert(
+        //     [
+        //         [
+        //             'product_id' => $request->product_id,
+        //             'product_type_property_id' => $request->product_type_property_id,
+        //             'product_type_property_value_id' => $value_id,
+        //         ],
+        //     ],
+        //     ['product_id', 'product_type_property_id'],
+        //     ['product_type_property_value_id'],
+        // );
+        // dd($res);
+        response()->json(['success' => 'success'], 200);
 
     }
     public function property_list(Request $request)
@@ -57,7 +71,7 @@ class ProductTypeController extends Controller
         // dd($request->all());
         if (!$request->filled('q')) {
             $vendors = ProductTypePropertyValue::where('product_type_property_id', $request->propertyId)->get(['id', 'value']); //->take(60);
-         } else {
+        } else {
             $search  = $request->q;
             $vendors = ProductTypePropertyValue::query()->where('product_type_property_id', $request->propertyId)
                 ->search($request->q)

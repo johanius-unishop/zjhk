@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(Product::class) ;
             $table->foreignIdFor(model: ProductTypeProperty::class) ;
             $table->foreignIdFor(model: ProductTypePropertyValue::class)->nullable();
-            $table->unique(['product_id']);
+            // $table->unique(['product_id']);
             $table->softDeletes();
             $table->timestamps();
         });

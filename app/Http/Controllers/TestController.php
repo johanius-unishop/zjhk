@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 use App\Models\ExchangeRate;
 use App\Models\ProductType;
 use App\Models\Product;
+use App\Models\ProductPropertyValue;
 use App\Models\ProductTypeProperty;
+
+
 use App\Models\PropertyValue;
 use App\Models\Property;
 use App\Models\Vendor;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +19,28 @@ class TestController extends Controller
 {
     //
 
+    public function product_values()
+    {
+
+// with('value')->
+        // $prop  = ProductTypeProperty::find(302);
+        // $prop->load('values'  );
+        // dd(   $prop   );
+
+        $properties =  ProductPropertyValue::where('product_id',  64149)->with('value')->get();
+        dd(   $properties   );
+        $product = Product::find(64149);
+
+
+       $product->load('type' , 'composite');
+       $productType = ProductType::where('id', $product->product_type_id)->with('props')->first();
+
+       $properties =  ProductPropertyValue::where('product_id',  $product->id)->with('value')->get();
+
+    //    $this->props       = $this->productType->props;
+        // $product->load('type', 'composite', 'composite.compositeProduct');
+        dd($productType  ,  $properties , $product );
+    }
     public function product_composite()
     {
 
