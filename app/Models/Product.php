@@ -40,6 +40,23 @@ class Product extends Model implements HasMedia, Sitemapable
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
+
+
+
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
+
+
+
     /**
      * Get the identifier of the Buyable item.
      *
@@ -249,7 +266,8 @@ class Product extends Model implements HasMedia, Sitemapable
     protected function frontUrl(): Attribute
     {
         return new Attribute(
-            get: fn() => config('app.url') . '/' . "items" . '/' . $this->id,
+             get: fn(): string => config(key: 'app.url') . "/items/" . $this->slug,
+
         );
     }
 

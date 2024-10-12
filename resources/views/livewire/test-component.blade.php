@@ -54,6 +54,7 @@
                         return {
                             productType: {{  $productType->id}} ,
                             propertyId: {{ $prop->id }},
+                            productId: {{  $product ->id}} ,
                             q: params.term, // search term
                             page: params.page
                         };

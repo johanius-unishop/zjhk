@@ -99,7 +99,9 @@ class Vendor extends Model implements Sortable, HasMedia
     protected function frontUrl(): Attribute
     {
         return new Attribute(
-            get: fn() => config('app.url') . '/' . "vendors" . '/' . $this->slug,
+
+            get: fn(): string => config(key: 'app.url') . "/vendors/" . $this->slug,
+
         );
     }
 

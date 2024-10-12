@@ -10,6 +10,7 @@ use App\Models\ProductTypeProperty;
 
 use App\Models\PropertyValue;
 use App\Models\Property;
+use App\Models\ProductTypePropertyValue;
 use App\Models\Vendor;
 
 use Illuminate\Http\Request;
@@ -21,25 +22,39 @@ class TestController extends Controller
 
     public function product_values()
     {
-
-// with('value')->
+        $propertyId = 302;
+        // with('value')->
         // $prop  = ProductTypeProperty::find(302);
         // $prop->load('values'  );
         // dd(   $prop   );
+        $properties = ProductTypePropertyValue::where('product_type_property_id', $propertyId)->get(['id', 'value'])->toArray(); //->take(60);
 
-        $properties =  ProductPropertyValue::where('product_id',  64149)->with('value')->get();
-        dd(   $properties   );
-        $product = Product::find(64149);
+        $productProperties = ProductPropertyValue::where('product_id', 64148)->with('value')->get()->toArray();
+                    $key = array_search(4, array_column($productProperties, 'product_type_property_value_id'));
+                    dd($productProperties, $properties ,$key);
+        // $key = array_search('100', array_column($userdb, 'uid'));
+        foreach ($properties as $item) {
+            if ($item->id == $propertyId) {
+
+                $item->selected = true;
+            }
+        }
+        dd($productProperties, $properties);
 
 
-       $product->load('type' , 'composite');
-       $productType = ProductType::where('id', $product->product_type_id)->with('props')->first();
 
-       $properties =  ProductPropertyValue::where('product_id',  $product->id)->with('value')->get();
 
-    //    $this->props       = $this->productType->props;
+        $product = Product::find(64148);
+
+
+        $product->load('type', 'composite');
+        $productType = ProductType::where('id', $product->product_type_id)->with('props')->first();
+
+        $properties = ProductPropertyValue::where('product_id', $product->id)->with('value')->get();
+
+        //    $this->props       = $this->productType->props;
         // $product->load('type', 'composite', 'composite.compositeProduct');
-        dd($productType  ,  $properties , $product );
+        dd($productType, $properties, $product);
     }
     public function product_composite()
     {
@@ -48,12 +63,12 @@ class TestController extends Controller
         // $product->load('type' , 'composite');
 
         $product->load('type', 'composite', 'composite.compositeProduct');
-        dd($product ->composite);
+        dd($product->composite);
     }
     public function product_kinds_props()
     {
         $product = Product::find(1433);
-        $product->load('type' , 'properties');
+        $product->load('type', 'properties');
         dd($product);
 
 

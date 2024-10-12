@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\PropertyValue;
 use App\Models\ProductType;
+use App\Models\Product;
 use App\Models\ProductTypePropertyValue;
 use App\Models\ProductPropertyValue;
 use Illuminate\Http\Request;
@@ -77,13 +78,16 @@ class ProductTypeController extends Controller
                 ->get(array('id', 'value'))
                 ->take(20);
         }
-        // dd(  $request->all() ,      $vendors );
-        // ProductPropertyValue
-        // TODO проверка! Доделать select для сущейсвующей записи для  product_property_values
-        //     foreach ($vendors as $item) {
-        //         //     if ($item->id == $request->propertyId) {
-        //         $item->selected = true;
-        //     }
+
+        // $product = Product::find($request->productId);
+
+        // dd($request->all(), $vendors);
+        // // ProductPropertyValue
+        // // TODO проверка! Доделать select для сущейсвующей записи для  product_property_values
+        // foreach ($vendors as $item) {
+        //     //     if ($item->id == $request->propertyId) {
+        //     $item->selected = true;
+        // }
         return response()->json($vendors, 200);
     }
 

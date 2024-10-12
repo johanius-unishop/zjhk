@@ -17,7 +17,7 @@ use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
-class Page extends Model implements Sortable, HasMedia ,Sitemapable
+class Page extends Model implements Sortable, HasMedia, Sitemapable
 {
 
     use SortableTrait;
@@ -49,9 +49,9 @@ class Page extends Model implements Sortable, HasMedia ,Sitemapable
 
 
 
-    public function toSitemapTag(): Url | string | array
+    public function toSitemapTag(): Url|string|array
     {
-         return Url::create(route('article.details', $this))
+        return Url::create(route('article.details', $this))
             ->setLastModificationDate(Carbon::create($this->updated_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
             ->setPriority(0.3);
@@ -97,9 +97,8 @@ class Page extends Model implements Sortable, HasMedia ,Sitemapable
     protected function frontUrl(): Attribute
     {
         return new Attribute(
-            get: fn() => config('app.url') . DIRECTORY_SEPARATOR . "pages" . DIRECTORY_SEPARATOR . $this->slug,
+            get: fn() => config(key: 'app.url') . "/pages/" . $this->slug,
 
-            // get: fn() => strlen($this->old_link) > 0 ? config('app.url').DIRECTORY_SEPARATOR .$this->old_link : config('app.url').DIRECTORY_SEPARATOR . "news" . DIRECTORY_SEPARATOR . $this->slug,
 
         );
     }

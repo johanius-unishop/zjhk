@@ -87,7 +87,7 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
     protected function frontUrl(): Attribute
     {
         return new Attribute(
-            get: fn() => config('app.url') . "/news/" . $this->slug,
+            get: fn() => config(key: 'app.url') . "/news/" . $this->slug,
         );
     }
 
