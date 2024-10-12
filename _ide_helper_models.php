@@ -775,6 +775,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Product|null $product
  * @property-read \App\Models\ProductTypeProperty|null $productTypeProperty
+ * @property-read \App\Models\ProductTypePropertyValue|null $propertyValue
  * @property-read \App\Models\ProductTypePropertyValue|null $value
  * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductPropertyValue newQuery()
@@ -863,6 +864,8 @@ namespace App\Models{
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductTypePropertyValue> $newValues
+ * @property-read int|null $new_values_count
  * @property-read \App\Models\ProductType|null $productType
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductTypePropertyValue> $values
  * @property-read int|null $values_count

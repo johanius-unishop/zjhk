@@ -21,13 +21,10 @@ class ProductController extends Controller
     // public function testShow(Product $product)
     public function testShow( $slug)
     {
-
         $product = Product::where('slug', $slug)->firstOrFail();
         if ($product->published !== 1) {
             return abort(404);
-
         }
-
 
         $analogs = (Product::getAnalogies($product));
         // /$viewModel = new ProductViewModel($product);

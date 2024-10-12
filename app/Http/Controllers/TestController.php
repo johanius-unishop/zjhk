@@ -26,16 +26,16 @@ class TestController extends Controller
 
 
 
-        $product = Product::find(1433);
-        $properties =   $product->product_property_values;
-
-dd($product, $properties);
+        $product    = Product::find(1433);
+        $properties = $product->product_property_values;
+        $properties->load('propertyValue');
+        // dd($product, $properties);
 
 
 
         $characteristics = [];
         // Проходимся по свойствам вида товара
-        foreach ($product->properties  as $property) {
+        foreach ( $properties as $property) {
 
             dd($property);
             // Если секция не равна 0, добавляем название секции

@@ -33,7 +33,10 @@ class ProductTypeProperty extends Model implements Sortable
     {
         return $this->hasMany(ProductTypePropertyValue::class, 'product_type_property_id');
     }
-
+    public function newValues()
+    {
+        return $this->hasMany(ProductTypePropertyValue::class, 'product_type_property_id');
+    }
     public function productType()
     {
         return $this->belongsTo(ProductType::class, 'product_type_id');

@@ -25,6 +25,10 @@ class ProductPropertyValue extends Model
     {
         return $this->hasOne(ProductTypePropertyValue::class, 'product_type_property_id');
     }
+    public function propertyValue()
+    {
+        return $this->hasOne(ProductTypePropertyValue::class  , 'id' , 'product_type_property_value_id');
+    }
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
