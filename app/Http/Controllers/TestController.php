@@ -22,26 +22,17 @@ class TestController extends Controller
 
     public function product_values()
     {
-        $propertyId = 302;
-        // with('value')->
-        // $prop  = ProductTypeProperty::find(302);
-        // $prop->load('values'  );
-        // dd(   $prop   );
-        $properties = ProductTypePropertyValue::where('product_type_property_id', $propertyId)->get(['id', 'value'])->toArray(); //->take(60);
-
+        $propertyId        = 302;
+        $properties        = ProductTypePropertyValue::where('product_type_property_id', $propertyId)->get(['id', 'value'])->toArray(); //->take(60);
         $productProperties = ProductPropertyValue::where('product_id', 64148)->with('value')->get()->toArray();
-                    $key = array_search(4, array_column($productProperties, 'product_type_property_value_id'));
-                    dd($productProperties, $properties ,$key);
-        // $key = array_search('100', array_column($userdb, 'uid'));
-        foreach ($properties as $item) {
-            if ($item->id == $propertyId) {
-
-                $item->selected = true;
+        // $key               = array_search(1, array_column($productProperties, 'product_type_property_value_id'));
+        foreach ($properties as $test => $item) {
+            $key = array_search($item['id'], array_column($productProperties, 'product_type_property_value_id'));
+            if ($key !== false) {
+                $properties[$test]['selected'] = true;
             }
         }
         dd($productProperties, $properties);
-
-
 
 
         $product = Product::find(64148);

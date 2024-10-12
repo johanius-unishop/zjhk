@@ -12,9 +12,9 @@
                 </thead>
                 @foreach ($props as $prop)
                 <tr>
-                    <td>{{ $prop->id }}</td>
-                    <td>{{ $prop->name }}</td>
-                    <td>
+                    <td>{{ $prop->id }} </td>
+                    <td> {{ $prop->name }}</td>
+                    <td> {{$prop->id}}
                         {{-- @if ($this->property_show[$prop->id] == true) --}}
                         {{-- <label for="select_{{ $prop->id }}">Выберите поле</label> --}}
                         <div class="mb-3">
@@ -81,29 +81,6 @@
             // $('#select_{{ $prop->id }}').on('change', function(e) {
             //     alert("Changed: " + this.id);
             // });
-
-            // Fetch the preselected item, and add to the control
-            // var studentSelect_{{$prop->id}} = $('#select_{{ $prop->id }}');
-            $.ajax({
-                type: 'GET'
-                , url: '/api/v1/admin/property_list/by_id?property_id={{ $prop->id }}&product_id={{ $product->id }}'
-
-            }).then(function(data) {
-                // create the option and append to Select2
-                var option = new Option(data.value, data.id, true, true);
-                $('#select_{{ $prop->id }}').append(option).trigger('change');
-                // manually trigger the `select2:select` event
-                $('#select_{{ $prop->id }}').trigger({
-                    type: 'select2:select'
-                    , params: {
-                        data: data
-                    }
-                });
-            });
-
-
-
-
             $('#select_{{ $prop->id }}').on('select2:select', function(e) {
                 event.preventDefault();
                 var data = e.params.data;
@@ -118,8 +95,8 @@
                     , data: {
                         "_token": "{{ csrf_token() }}"
                         , "product_id": "{{   $product->id }}"
-                        , "product_type_property_id": {{$prop->id}}
-                        , "product_type_property_value": data.text
+                        , "product_type_property_id": {{ $prop->id }}
+                        , "product_type_property_value" : data.text
 
                     },
 

@@ -27,6 +27,8 @@ Route::prefix('v1')->name('v1.')->group(function () {
         Route::get('/permissions', [App\Http\Controllers\Api\V1\PermissionsController::class, 'index']);
 
         Route::get('/property_list', [App\Http\Controllers\Api\V1\ProductTypeController::class, 'property_list']);
+        Route::get('/property_list/by_id', [App\Http\Controllers\Api\V1\ProductTypeController::class, 'property_list_by_id']);
+
         Route::post('/product_property_update', [App\Http\Controllers\Api\V1\ProductTypeController::class, 'product_property_update']);
 
 

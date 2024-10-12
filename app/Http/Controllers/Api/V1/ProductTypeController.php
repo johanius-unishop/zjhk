@@ -70,15 +70,23 @@ class ProductTypeController extends Controller
     public function property_list(Request $request)
     {
         if (!$request->filled('q')) {
-            $vendors = ProductTypePropertyValue::where('product_type_property_id', $request->propertyId)->get(['id', 'value']); //->take(60);
+            $properties = ProductTypePropertyValue::where('product_type_property_id', $request->propertyId)->get(['id', 'value']); //->take(60);
         } else {
-            $search  = $request->q;
-            $vendors = ProductTypePropertyValue::query()->where('product_type_property_id', $request->propertyId)
+            $search     = $request->q;
+            $properties = ProductTypePropertyValue::query()->where('product_type_property_id', $request->propertyId)
                 ->search($request->q)
                 ->get(array('id', 'value'))
                 ->take(20);
         }
+        $productProperties = ProductPropertyValue::where('product_id', $request->productId)->with('value')->get()->toArray();
 
+
+        foreach ($properties as $test => $item) {
+            $key = array_search($item['id'], array_column($productProperties, 'product_type_property_value_id'));
+            if ($key !== false) {
+                $properties[$test]['selected'] = true;
+            }
+        }
         // $product = Product::find($request->productId);
 
         // dd($request->all(), $vendors);
@@ -88,9 +96,20 @@ class ProductTypeController extends Controller
         //     //     if ($item->id == $request->propertyId) {
         //     $item->selected = true;
         // }
-        return response()->json($vendors, 200);
+        return response()->json($properties, 200);
     }
 
+
+    public function property_list_by_id(Request $request)
+    {
+
+        $item = ProductPropertyValue::where('product_id', $request->product_id)->where('product_type_property_id', $request->property_id)->get(['id', 'product_type_property_value_id']); //->take(60);
+        foreach ($item as $item) {
+            $item->selected = true;
+            $item->value    = ProductTypePropertyValue::query()->where('id', $item->product_type_property_value_id)->first()->value;
+        }
+        return response()->json($item, 200);
+    }
 
     public function test_json_group(Request $request)
     {
