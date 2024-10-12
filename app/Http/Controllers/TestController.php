@@ -22,6 +22,38 @@ class TestController extends Controller
 
     public function product_values()
     {
+
+
+
+
+        $product = Product::find(1433);
+        $properties =   $product->product_property_values;
+
+dd($product, $properties);
+
+
+
+        $characteristics = [];
+        // Проходимся по свойствам вида товара
+        foreach ($product->properties  as $property) {
+
+            dd($property);
+            // Если секция не равна 0, добавляем название секции
+            if ($property->section != 0) {
+                $characteristics["<b>" . $property->name . "</b>"] = "";
+                // Иначе, если значение свойства существует, добавляем название свойства и его значение
+            } else if ($property->values->where('product_id', $product->id)->first()?->value) {
+                $characteristics[$property->name] = ": " . $property->values->where('product_id', $product->id)->first()->value;
+            }
+        }
+        return $characteristics;
+
+
+
+
+
+
+
         $propertyId        = 302;
         $properties        = ProductTypePropertyValue::where('product_type_property_id', $propertyId)->get(['id', 'value'])->toArray(); //->take(60);
         $productProperties = ProductPropertyValue::where('product_id', 64148)->with('value')->get()->toArray();

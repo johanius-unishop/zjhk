@@ -41,18 +41,13 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     Route::get('search', [SearchController::class, 'search'])->name('search');
 
-
-
     Route::get('/dashboard', [ContentController::class, 'dashboard'])->name('dashboard');
     Route::get('/regenerate_sitemap', [ContentController::class, 'regenerateSitemap'])->name('regenerate_sitemap');
 
     Route::get('/all_orders', [ContentController::class, 'all_orders'])->name('all_orders');
     Route::resource('orders', SiteOrdersController::class);
 
-
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
-
-
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -60,13 +55,14 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     Route::prefix('/import')->name('import.')->group(function () {
         Route::delete('/product', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
     });
+
     Route::prefix('/rap')->name('rap.')->group(function () {
         Route::resource('roles', App\Http\Controllers\Admin\RolesController::class);
         Route::resource('permissions', App\Http\Controllers\Admin\PermissionsController::class);
         Route::get('/', [App\Http\Controllers\Admin\RolesController::class, 'rap'])->name('rap.list');
     });
+
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 

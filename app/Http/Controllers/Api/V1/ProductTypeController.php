@@ -103,8 +103,9 @@ class ProductTypeController extends Controller
     public function property_list_by_id(Request $request)
     {
 
-        $item = ProductPropertyValue::where('product_id', $request->product_id)->where('product_type_property_id', $request->property_id)->get(['id', 'product_type_property_value_id']); //->take(60);
-        foreach ($item as $item) {
+        $item = ProductPropertyValue::where('product_id', $request->product_id)->where('product_type_property_id', $request->property_id)->get(['id', 'product_type_property_value_id']) ; //->take(60);
+         foreach ($item as $item) {
+            // Да, бля! именно так почему-то!
             $item->selected = true;
             $item->value    = ProductTypePropertyValue::query()->where('id', $item->product_type_property_value_id)->first()->value;
         }

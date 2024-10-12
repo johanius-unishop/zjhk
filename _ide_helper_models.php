@@ -679,6 +679,8 @@ namespace App\Models{
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Product> $parentComplectation
  * @property-read int|null $parent_complectation_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductPropertyValue> $product_property_values
+ * @property-read int|null $product_property_values_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Property> $properties
  * @property-read int|null $properties_count
  * @property-read \RalphJSmit\Laravel\SEO\Models\SEO $seo

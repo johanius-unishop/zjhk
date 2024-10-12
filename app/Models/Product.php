@@ -42,7 +42,10 @@ class Product extends Model implements HasMedia, Sitemapable
     }
 
 
-
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 
 
     /**
@@ -154,7 +157,6 @@ class Product extends Model implements HasMedia, Sitemapable
             ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
             ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb');
 
-
         $this->addMediaCollection(name: 'specifications')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Технические характеристики
         $this->addMediaCollection('dimensionalDrawing')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Габаритный чертеж
         $this->addMediaCollection('overviewInformation')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Обзорная информация
@@ -173,6 +175,10 @@ class Product extends Model implements HasMedia, Sitemapable
     public function properties()
     {
         return $this->hasMany(Property::class);
+    }
+ public function  product_property_values()
+    {
+        return $this->hasMany(ProductPropertyValue::class);
     }
 
     public function analogies()
@@ -251,6 +257,23 @@ class Product extends Model implements HasMedia, Sitemapable
             throw $th;
         }
         return true;
+    }
+    public function getProperties()
+    {
+        // Массив характеристик
+        $characteristics = [];
+        // Проходимся по свойствам вида товара
+        foreach ($this->properties() as $property) {
+            // Если секция не равна 0, добавляем название секции
+            if ($property->section != 0) {
+                $characteristics["<b>" . $property->name . "</b>"] = "";
+                // Иначе, если значение свойства существует, добавляем название свойства и его значение
+            } else if ($property->values->where('product_id', $this->product->id)->first()?->value) {
+                $characteristics[$property->name] = ": " . $property->values->where('product_id', $this->product->id)->first()->value;
+            }
+        }
+        return $characteristics;
+
     }
 
 

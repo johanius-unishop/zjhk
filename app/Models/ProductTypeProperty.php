@@ -21,9 +21,6 @@ class ProductTypeProperty extends Model implements Sortable
 
     ];
 
-
-
-
     public $sortable = [
         'order_column_name' => 'order_column',
         'sort_when_creating' => true,

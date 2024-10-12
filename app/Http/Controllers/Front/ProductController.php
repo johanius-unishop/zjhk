@@ -18,9 +18,11 @@ class ProductController extends Controller
         return view('product-card', compact('viewModel'));
     }
 
-    public function testShow(Product $product)
+    // public function testShow(Product $product)
+    public function testShow( $slug)
     {
 
+        $product = Product::where('slug', $slug)->firstOrFail();
         if ($product->published !== 1) {
             return abort(404);
 
