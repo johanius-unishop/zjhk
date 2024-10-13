@@ -37,6 +37,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductPdfsTableSeeder::class);
         $this->call(ProductImagesTableSeeder::class);
         $this->call(FaqsTableSeeder::class);
-        $this->call(AdminsTableSeeder::class);
+        // $this->call(AdminsTableSeeder::class);
     }
 }
