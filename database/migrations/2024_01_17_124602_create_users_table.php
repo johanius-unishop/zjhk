@@ -14,14 +14,14 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('number')->unique();
-            $table->string('fio');
+            // $table->string('number')->unique();
+            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('delegate');
-            $table->string('birth_date');
-            $table->string('sex');
+            $table->boolean('delegate')->nullable();
+            $table->string('birth_date')->nullable();
+            $table->string('sex')->nullable();
             $table->foreignIdFor(UserGroup::class)->default(1);
             $table->foreignIdFor(Company::class)->nullable();
             $table->rememberToken();
