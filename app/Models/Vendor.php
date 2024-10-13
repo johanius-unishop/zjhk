@@ -30,6 +30,7 @@ class Vendor extends Model implements Sortable, HasMedia
 
     protected $fillable = [
         'name',
+        'short_name',
         'order_column',
         'description',
         'slug',
@@ -79,11 +80,11 @@ class Vendor extends Model implements Sortable, HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('logo')
-        ->useFallbackUrl('/images/default_image.jpg')
-        ->useFallbackPath(public_path('/images/default_image.jpg'))
-        ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
-        ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb')
-        ->singleFile();
+            ->useFallbackUrl('/images/default_image.jpg')
+            ->useFallbackPath(public_path('/images/default_image.jpg'))
+            ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
+            ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb')
+            ->singleFile();
     }
     public function product()
     {

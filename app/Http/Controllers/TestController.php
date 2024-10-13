@@ -29,22 +29,22 @@ class TestController extends Controller
         $product    = Product::find(1433);
         $properties = $product->product_property_values;
         $properties->load('propertyValue');
-        // dd($product, $properties);
+         dd($product, $properties);
 
 
 
         $characteristics = [];
         // Проходимся по свойствам вида товара
         foreach ( $properties as $property) {
-
-            dd($property);
-            // Если секция не равна 0, добавляем название секции
-            if ($property->section != 0) {
-                $characteristics["<b>" . $property->name . "</b>"] = "";
-                // Иначе, если значение свойства существует, добавляем название свойства и его значение
-            } else if ($property->values->where('product_id', $product->id)->first()?->value) {
-                $characteristics[$property->name] = ": " . $property->values->where('product_id', $product->id)->first()->value;
-            }
+           // $characteristics[$property->name] = ": " . $property->values->where('product_id', $product->id)->first()->value;
+             dd($property);
+            // // Если секция не равна 0, добавляем название секции
+            // if ($property->section != 0) {
+            //     $characteristics["<b>" . $property->name . "</b>"] = "";
+            //     // Иначе, если значение свойства существует, добавляем название свойства и его значение
+            // } else if ($property->values->where('product_id', $product->id)->first()?->value) {
+            //     $characteristics[$property->name] = ": " . $property->values->where('product_id', $product->id)->first()->value;
+            // }
         }
         return $characteristics;
 

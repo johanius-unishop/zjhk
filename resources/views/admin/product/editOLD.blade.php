@@ -1,1029 +1,410 @@
 @extends('admin')
-@section('title', 'Товары')
+
+{{-- @section('breadcrumbs')
+{!! Breadcrumbs::render($breadcrumb, @$item) !!}
+@endsection --}}
+
+@section('title', 'Редактирование товара '.$product->name )
 @section('content_header')
 <h1>Редактирование товара {{ $product->name }}</h1>
 <a class="btn btn-primary" href="{{ $product->front_url }}" role="button" target="_blank"><i class="fas fa-globe"></i>
-    Просмотреть на сайте</a>
-
-@stop
-
+    Просмотреть на сайте</a>@stop
 @section('content')
 @include('admin.blocks.error')
 
-<div class="col-12 ">
-    <div class="card card-primary card-outline card-outline-tabs">
-        <div class="card-header p-0 border-bottom-0">
-            <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill"
-                        href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home"
-                        aria-selected="true">Основное</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill"
-                        href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile"
-                        aria-selected="false">SEO</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill"
-                        href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages"
-                        aria-selected="false">Изображения</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill"
-                        href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings"
-                        aria-selected="false">Варианты продуктов </a>
-                </li>
-                <li class="nav-item">
+<form action="{{ route('admin.product.update', $product->id) }}" method="POST">
+
+    @csrf
+    @method('PATCH')
+    <input type="hidden" name="id" value="{{ $product->id }}">
+    <div class="row">
+        <div class="col-12 ">
+            <div class="card card-primary card-outline card-outline-tabs">
+                <div class="card-header p-0 border-bottom-0">
+                    <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Основное</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">SEO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Фото</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-four-files-tab" data-toggle="pill" href="#custom-tabs-four-files" role="tab" aria-controls="custom-tabs-four-files" aria-selected="false">Файлы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Характеристики</a>
+                        </li>
+
+                        @if ($product->composite_product)
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-four-complect-tab" data-toggle="pill" href="#custom-tabs-four-complect" role="tab" aria-controls="custom-tabs-four-complect" aria-selected="false">Состав комплекта</a>
+                        </li>
+                        @endif
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-four-analog-tab" data-toggle="pill" href="#custom-tabs-four-analog" role="tab" aria-controls="custom-tabs-four-analog" aria-selected="false">Аналоги</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-four-price-tab" data-toggle="pill" href="#custom-tabs-four-price" role="tab" aria-controls="custom-tabs-four-price" aria-selected="false">Торговля и цены</a>
+                        </li> {{-- <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-five-settings-tab" data-toggle="pill"
                         href="#custom-tabs-five-settings" role="tab" aria-controls="custom-tabs-five-settings"
-                        aria-selected="false">Архивная информация </a>
-                </li>
-                {{-- @if (config('app.programming_level') >= 2) --}}
-                <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-six-settings-tab" data-toggle="pill"
-                        href="#custom-tabs-six-settings" role="tab" aria-controls="custom-tabs-six-settings"
-                        aria-selected="false">Файлы для загрузки </a>
-                </li>
-                {{-- @endif --}}
-            </ul>
-        </div>
-        <div class="card-body">
-            <div class="tab-content" id="custom-tabs-four-tabContent">
-                <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel"
-                    aria-labelledby="custom-tabs-four-home-tab">
-                    <form action="{{ route('admin.product.update', $product->id) }}" method="POST">
-
-                        @csrf
-                        @method('PATCH')
-                        <input type="hidden" name="id" value="{{ $product->id }}">
-                        <div class="form-group">
-                            <label for="name">Название</label>
-                            <input type="text" class="form-control" name="name" value="{{ $product->name }}">
-                            @error('name')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-3 col-6  bg-success color-palette">
-                                <div class="form-group">
-                                    <label for="name">Модель</label>
-                                    <input type="text" class="form-control" name="model" value="{{ $product->model }}">
-                                    @error('model')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-6 bg-success color-palette">
-                                <div class="form-group">
-                                    <label for="name">Код товара </label>
-                                    <input type="text" class="form-control" name="old_code" id="old_code"
-                                        value="{{ $product->old_code }}">
-                                    @error('old_code')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-3 col-6">
-                                <label for="price">Цена</label>
-                                <input type="number" class="form-control" name="price" id="price"
-                                    value="{{ $product->price }}">
-                                @error('price')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-lg-3 col-6">
-                                <label for="price_discount">Цена скидка</label>
-                                <input type="number" class="form-control" name="price_discount" id="price_discount"
-                                    value="{{ $product->price_discount }}">
-                                @error('price_discount')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-lg-3 col-6">
-                                <label for="in_stock">Наличие</label>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="in_stock" id="in_stock"
-                                        data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да"
-                                        data-off="Нет" {!! @$product->in_stock ? '
-                                    checked ' : ' ' !!} >
-                                    <label class="form-check-label" for="exampleCheck1">В наличии </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-6">
-                                <div class="form-group">
-                                    <label for="price_segment_id">Ценовой сегмент</label>
-                                    </br>{{ @$product->vendor->price_segment->name }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3 col-6">
-
-                                <div class="form-group">
-                                    <label for="product_subtype_id">Вид продукта</label>
-
-
-                                    @error('product_subtype_id')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            {{-- <div class="col-lg-3 col-6">
-
-                                <div class="form-group">
-                                    <label for="product_type_id">Тип товара</label>
-                                    <select class="form-control select2  " name="product_type_id" id="product_type_id"
-                                        style="width: 100%;">
-                                    </select>
-
-                                </div>
-                            </div> --}}
-                            {{-- <div class="col-lg-3 col-6">
-
-                                <div class="form-group">
-                                    <label for="product_subtype_id">Подтип товара</label>
-                                    <select class="form-control select2  " name="product_subtype_id"
-                                        id="product_subtype_id" style="width: 100%;">
-                                    </select>
-
-                                </div>
-                            </div> --}}
-                            <div class="col-lg-3 col-6">
-
-
-                            </div>
-                            <div class="col-lg-3 col-6">
-
-
-                            </div>
-                            <div class="col-lg-3 col-6">
-
-                            </div>
-                            {{-- <div class="col-lg-3 col-6">
-                                <div class="form-group">
-                                    <label for="product_location_id">Расположение</label>
-                                    <select class="form-control" name="product_location_id">
-                                        <option value="">Выберите расположение</option>
-                                        </option>
-                                        @foreach ($product_locations as $product_location)
-                                        <option value="{{ $product_location->id }}" {{ $product_location->id ==
-                                            $product->product_location_id ? 'selected' : '' }}>{{
-                                            $product_location->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div> --}}
-
-                        </div>
-                        <div class="form-group">
-                            <label for="body_description">Описание</label>
-                            <textarea class="form-control" name="body_description" row="5"
-                                id="summernote">{{ $product->body_description }}</textarea>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="published" id="published"
-                                        data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да"
-                                        data-off="Нет" {!! @$product->active ? '
-                                    checked ' : ' ' !!} >
-                                    <label class="form-check-label" for="exampleCheck1">Опубликовано </label>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="is_moderated"
-                                        id="is_moderated" data-toggle="toggle" data-onstyle="success"
-                                        data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product->is_moderated ?
-                                    '
-                                    checked ' : ' ' !!} >
-                                    <label class="form-check-label" for="exampleCheck1">Модерировано </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" py-3 form-row justify-content-center">
-                            <button type="submit" name="action" value="save" class="btn btn-primary">Сохранить</button>
-                            &nbsp;
-                            <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и
-                                закрыть</button>
-                        </div>
-                    </form>
+                        aria-selected="false">Видео </a>
+                </li> --}}
+                    </ul>
                 </div>
-                <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel"
-                    aria-labelledby="custom-tabs-four-profile-tab">
-                    <livewire:seo :record="$product">
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-four-tabContent">
+                        <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
 
-                </div>
-                <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel"
-                    aria-labelledby="custom-tabs-four-messages-tab">
-                    <livewire:gallery :record="$product" :multiple=true />
-
-                </div>
-                <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel"
-                    aria-labelledby="custom-tabs-four-settings-tab">
-                    <livewire:product-variant-component :record="$product" />
-                </div>
-
-                <div class="tab-pane fade" id="custom-tabs-five-settings" role="tabpanel"
-                    aria-labelledby="custom-tabs-five-settings-tab">
-                    Архивная информация
-
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Имя</th>
-                                <th>Значение</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Код продукта</td>
-                                <td>{{ $product->old_code }}</td>
-                            </tr>
-                            <tr>
-                                <td>Ссылка на продукт в магазине</td>
-                                <td><a href="{{ $product->front_url  }}" target="_blank">{{ $product->front_url }}</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Строка данных all.db </td>
-                                <td> {{ $product->old_data }}</td>
-                            </tr>
-                            <tr>
-                                <td>Строка данных map.db </td>
-                                <td> {{ $product->old_map }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                {{-- @if (config('app.programming_level') >= 2) --}}
-                <div class="tab-pane fade" id="custom-tabs-six-settings" role="tabpanel"
-                    aria-labelledby="custom-tabs-six-settings-tab">
-
-                    {{-- <livewire:product-files-component :record="$product" /> --}}
-                </div>
-                {{-- @endif --}}
-            </div>
-        </div>
-    </div>
-</div>
-<div class=" py-3 form-row justify-content-center">
-    <a class="btn .btn-lg btn-success " href="{{ route('admin.product.index') }}" role="button"> <i
-            class="fa fa-arrow-left "></i> К списку</a>
-</div>
-
-@stop
-
-
-{{-- Push extra CSS --}}
-
-@push('css')
-{{-- Add here extra stylesheets --}}
-{{-- <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.min.css') }}"> --}}
-
-{{-- <link rel="stylesheet" href="{{ asset('vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}"> --}}
-
-<link rel="stylesheet" href="{{ asset('vendor/summernote/summernote.min.css') }}">
-@endpush
-
-{{-- Push extra scripts --}}
-
-@push('js')
-<script src="{{ asset('vendor/summernote/summernote.min.js') }}"></script>
-<script>
-    $(function () {
-      // Summernote
-      $('#summernote').summernote({
-        height:300,
-        lang:'ru-RU',
-        minHeight:500,
-        maxHeight:800,
-        placeholder: 'Введите текст'
-      })
-
-    })
-</script>
-
-
-<script src="{{ asset('vendor/select2/js/select2.full.min.js') }}"></script>
-
-<script>
-    $(document).ready(function() {
-        $("#vendor_id").select2({
-            ajax: {
-                url: "/api/v1/admin/fabric",
-                dataType: 'json',
-                delay: 250,
-                data: function(params) {
-                    return {
-                        q: params.term, // search term
-                        page: params.page
-                    };
-                },
-                initSelection: function(element, callback) {
-                    var data = [];
-                },
-                processResults: function(data, params) {
-                    params.page = params.page || 1;
-                    return {
-                        results: $.map(data, function(item) {
-                            return {
-                                text: item.name,
-                                id: item.id,
-                                // position: item.position,
-                            }
-                        }),
-                        pagination: {
-                            more: (params.page * 30) < data.total_count
-                        }
-                    };
-                },
-                cache: false
-            },
-            placeholder: 'Поиск производителя',
-            minimumInputLength: 1,
-        });
-    });
-
-    // $(document).ready(function() {
-    //     $("#product_type_id").select2({
-    //         ajax: {
-    //             url: "/api/v1/admin/product_type",
-    //             dataType: 'json',
-    //             delay: 250,
-    //             data: function(params) {
-    //                 return {
-    //                     q: params.term, // search term
-    //                     page: params.page
-    //                 };
-    //             },
-    //             initSelection: function(element, callback) {
-    //                 var data = [];
-    //             },
-    //             processResults: function(data, params) {
-    //                 params.page = params.page || 1;
-    //                 return {
-    //                     results: $.map(data, function(item) {
-    //                         return {
-    //                             text: item.name,
-    //                             id: item.id,
-    //                             // position: item.position,
-    //                         }
-    //                     }),
-    //                     pagination: {
-    //                         more: (params.page * 30) < data.total_count
-    //                     }
-    //                 };
-    //             },
-    //             cache: false
-    //         },
-    //         placeholder: 'Поиск производителя',
-    //         minimumInputLength: 1,
-    //     });
-    // });
-    // $(document).ready(function() {
-    //     $("#product_subtype_id").select2({
-    //         ajax: {
-    //             url: "/api/v1/admin/product_subtype",
-    //             dataType: 'json',
-    //             delay: 250,
-    //             data: function(params) {
-    //                 return {
-    //                     q: params.term, // search term
-    //                     page: params.page
-    //                 };
-    //             },
-    //             initSelection: function(element, callback) {
-    //                 var data = [];
-    //             },
-    //             processResults: function(data, params) {
-    //                 params.page = params.page || 1;
-    //                 return {
-    //                     results: $.map(data, function(item) {
-    //                         return {
-    //                             text: item.name,
-    //                             id: item.id,
-    //                             // position: item.position,
-    //                         }
-    //                     }),
-    //                     pagination: {
-    //                         more: (params.page * 30) < data.total_count
-    //                     }
-    //                 };
-    //             },
-    //             cache: false
-    //         },
-    //         placeholder: 'Поиск подтипа',
-    //         minimumInputLength: 1,
-    //     });
-    // });
-
-
-var productTypeSelect = $('#product_type_id');
-$.ajax({
-    type: 'GET',
-    url: "/api/v1/admin/product_type/by_id?product_type_id={{ $product->product_type_id }}",
-
-}).then(function (data) {
-    // create the option and append to Select2
-    var option = new Option(data.name, data.id, true, true);
-    productTypeSelect.append(option).trigger('change');
-
-    // manually trigger the `select2:select` event
-    productTypeSelect.trigger({
-        type: 'select2:select',
-        params: {
-            data: data
-        }
-    });
-});
-
-
-
-var productSubtypeSelect = $('#product_subtype_id');
-$.ajax({
-    type: 'GET',
-    url: "/api/v1/admin/product_subtype/by_id?product_subtype_id={{ $product->product_subtype_id }}&product_type_id={{ $product->product_type_id }}",
-
-}).then(function (data) {
-    // create the option and append to Select2
-    var option = new Option(data.name, data.id, true, true);
-    productSubtypeSelect.append(option).trigger('change');
-
-    // manually trigger the `select2:select` event
-    productSubtypeSelect.trigger({
-        type: 'select2:select',
-        params: {
-            data: data
-        }@extends('admin')
-@section('title', 'Товары')
-@section('content_header')
-<h1>Редактирование товара {{ $product->name }}</h1>
-<a class="btn btn-primary" href="{{ $product->front_url }}" role="button" target="_blank"><i class="fas fa-globe"></i>
-    Просмотреть на сайте</a>
-
-@stop
-
-@section('content')
-@include('admin.blocks.error')
-
-<div class="col-12 ">
-    <div class="card card-primary card-outline card-outline-tabs">
-        <div class="card-header p-0 border-bottom-0">
-            <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill"
-                        href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home"
-                        aria-selected="true">Основное</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill"
-                        href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile"
-                        aria-selected="false">SEO</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill"
-                        href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages"
-                        aria-selected="false">Изображения</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill"
-                        href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings"
-                        aria-selected="false">Варианты продуктов </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-five-settings-tab" data-toggle="pill"
-                        href="#custom-tabs-five-settings" role="tab" aria-controls="custom-tabs-five-settings"
-                        aria-selected="false">Архивная информация </a>
-                </li>
-                @if (config('app.programming_level') >= 2)
-                <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-six-settings-tab" data-toggle="pill"
-                        href="#custom-tabs-six-settings" role="tab" aria-controls="custom-tabs-six-settings"
-                        aria-selected="false">Файлы для загрузки </a>
-                </li>
-                @endif
-            </ul>
-        </div>
-        <div class="card-body">
-            <div class="tab-content" id="custom-tabs-four-tabContent">
-                <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel"
-                    aria-labelledby="custom-tabs-four-home-tab">
-                    <form action="{{ route('admin.product.update', $product->id) }}" method="POST">
-
-                        @csrf
-                        @method('PATCH')
-                        <input type="hidden" name="id" value="{{ $product->id }}">
-                        <div class="form-group">
-                            <label for="name">Название</label>
-                            <input type="text" class="form-control" name="name" value="{{ $product->name }}">
-                            @error('name')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-3 col-6  bg-success color-palette">
-                                <div class="form-group">
-                                    <label for="name">Модель</label>
-                                    <input type="text" class="form-control" name="model" value="{{ $product->model }}">
-                                    @error('model')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <div class="form-group">
+                                        <label for="name">Название</label>
+                                        <input type="text" class="form-control" name="name" id="name"  value="{{ $product->name }}">
+                                        @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-6 bg-success color-palette">
-                                <div class="form-group">
-                                    <label for="name">Код товара </label>
-                                    <input type="text" class="form-control" name="old_code" id="old_code"
-                                        value="{{ $product->old_code }}">
-                                    @error('old_code')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+
+                                <div class="col-lg-6 col-12">
+                                    <div class="form-group">
+
+                                        <label for="slug">ЧПУ </label>
+                                        <input type="text" class="form-control" name="slug" id="slug" value="{{ @$product->slug }}">
+                                        <div id="slugHelp" class="form-text">Заполняется автоматически. Ручное заполнение не желательно.</div>
+
+                                        @error('slug')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
+
                             </div>
 
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-3 col-6">
-                                <label for="price">Цена</label>
-                                <input type="number" class="form-control" name="price" id="price"
-                                    value="{{ $product->price }}">
-                                @error('price')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-lg-3 col-6">
-                                <label for="price_discount">Цена скидка</label>
-                                <input type="number" class="form-control" name="price_discount" id="price_discount"
-                                    value="{{ $product->price_discount }}">
-                                @error('price_discount')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-lg-3 col-6">
-                                <label for="in_stock">Наличие</label>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="in_stock" id="in_stock"
-                                        data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да"
-                                        data-off="Нет" {!! @$product->in_stock ? '
-                                    checked ' : ' ' !!} >
-                                    <label class="form-check-label" for="exampleCheck1">В наличии </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-6">
-                                <div class="form-group">
-                                    <label for="price_segment_id">Ценовой сегмент</label>
-                                    </br>{{ @$product->vendor->price_segment->name }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3 col-6">
-
-                                <div class="form-group">
-                                    <label for="product_subtype_id">Вид продукта</label>
-                                    <select class="form-control  " id="product_subtype_id" name="product_subtype_id">
-                                        <option value="0">Выберите вид ..</option>
-                                        @foreach($subtypes as $group => $cars)
-                                        <optgroup label="{{$group}}">
-                                            @foreach($cars as $car => $tt)
-                                            <option value="{{$car}}" {{ @$item->product_subtype_id == $car ? 'selected'
-                                                :
-                                                '' }} >{{$tt }}</option>
+                            <div class="row">
+                                <div class="col-6 ">
+                                    <label for="parent" class="form-label">Категория товара</label>
+                                    <div class="input-group">
+                                        <select name="category_id" id="parent" class="form-control">
+                                            <option value="">Корневая категория</option>
+                                            @foreach ($parentCategories as $category)
+                                            @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
+                                            ''])
                                             @endforeach
-                                        </optgroup>
-                                        @endforeach
-                                    </select>
-
-                                    @error('product_subtype_id')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            {{-- <div class="col-lg-3 col-6">
-
-                                <div class="form-group">
-                                    <label for="product_type_id">Тип товара</label>
-                                    <select class="form-control select2  " name="product_type_id" id="product_type_id"
-                                        style="width: 100%;">
-                                    </select>
-
-                                </div>
-                            </div> --}}
-                            {{-- <div class="col-lg-3 col-6">
-
-                                <div class="form-group">
-                                    <label for="product_subtype_id">Подтип товара</label>
-                                    <select class="form-control select2  " name="product_subtype_id"
-                                        id="product_subtype_id" style="width: 100%;">
-                                    </select>
-
-                                </div>
-                            </div> --}}
-                            <div class="col-lg-3 col-6">
-
-                                <div class="form-group">
-                                    <label for="filter_id">Фильтр продукта</label>
-                                    <select class="form-control " name="filter_id">
-                                        @foreach ($product_filters as $filter)
-                                        <option value="{{ $filter->id }}" {{ $filter->id ==
-                                            $product->filter_id ? 'selected' : '' }}>{{
-                                            $filter->name }}
-                                        </option>
-
-                                        @endforeach
-                                    </select>
-                                    @error('filter_id')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-6">
-
-                                <div class="form-group">
-                                    <label for="vendor_id">Производитель</label>
-                                    <select class="form-control select2 vendors" name="vendor_id" id="vendor_id"
-                                        style="width: 100%;">
-                                    </select>
-                                    <span>Доставка: {{ @$product->vendor->making_time }}</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-6">
-                                <div class="form-group">
-                                    <label for="product_style_id">Стиль</label>
-                                    <select class="form-control" name="product_style_id">
-                                        <option value="">Выберите стиль</option>
-                                        </option>
-                                        @foreach ($product_styles as $product_style)
-                                        <option value="{{ $product_style->id }}" {{ $product_style->id ==
-                                            $product->product_style_id ? 'selected' : '' }}>{{
-                                            $product_style->name }}
+                                <div class="col-6 ">
+                                    <label for="product_type_id" class="form-label">Тип товара</label>
+                                    <select class="form-control  " id="product_type_id" name="product_type_id">
+                                        <option value="0">Выберите тип товара</option>
+                                        @foreach ($productTypes as $productType)
+                                        <option value="{{ $productType->id }}" {{ $productType->id == @$product->product_type_id	 ? 'selected' : '' }}>{{
+                                    $productType->name }}
                                         </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            {{-- <div class="col-lg-3 col-6">
-                                <div class="form-group">
-                                    <label for="product_location_id">Расположение</label>
-                                    <select class="form-control" name="product_location_id">
-                                        <option value="">Выберите расположение</option>
+                            <div class="row">
+                                <div class="col-4 ">
+                                    <div class="form-group">
+                                        <label for="currency_id" class="form-label">Валюта</label>
+                                        <select class="form-control  " id="currency_id" name="currency_id">
+                                            <option value="0">Выберите валюту</option>
+                                            @foreach ($currencies as $currency)
+                                            <option value="{{ $currency->id }}" {{ $currency->id == @$product->currency_id ? 'selected' : '' }}>{{
+                                        $currency->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 ">
+                                    <label for="vendor_id" class="form-label">Производитель</label>
+                                    <select class="form-control  " id="vendor_id" name="vendor_id">
+                                        <option value="0">Выберите тип товара</option>
+                                        @foreach ($vendors as $vendor)
+                                        <option value="{{ $vendor->id }}" {{ $vendor->id ==@$product->vendor_id ? 'selected' : '' }}>{{
+                                    $vendor->name }}
                                         </option>
-                                        @foreach ($product_locations as $product_location)
-                                        <option value="{{ $product_location->id }}" {{ $product_location->id ==
-                                            $product->product_location_id ? 'selected' : '' }}>{{
-                                            $product_location->name }}
-                                        </option>
+
                                         @endforeach
                                     </select>
                                 </div>
-                            </div> --}}
+                                <div class="col-lg-3 col-6  ">
+                                    <div class="form-group">
+                                        <label for="article">Артикул</label>
+                                        <input type="text" class="form-control" name="article" id="article" value="{{ $product->article }}">
+                                        @error('article')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-6  ">
+                                    <div class="form-group">
+                                        <label for="name">Код товара </label>
+                                        <input type="text" class="form-control" name="old_code" value="">
+                                        @error('old_code')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="body_description">Описание</label>
-                            <textarea class="form-control" name="body_description" row="5"
-                                id="summernote">{{ $product->body_description }}</textarea>
-                        </div>
+                            </div>
 
-                        <div class="row">
-                            <div class="col-3">
+                            <div class="col-12">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="published" id="published"
-                                        data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да"
-                                        data-off="Нет" {!! @$product->active ? '
-                                    checked ' : ' ' !!} >
-                                    <label class="form-check-label" for="exampleCheck1">Опубликовано </label>
+                                    <input type="checkbox" class="form-check-input" name="composite_product" id="composite_product" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product->composite_product ? 'checked ' : ' ' !!}>
+                                    <label class="form-check-label" for="exampleCheck1">Композитный товар </label>
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="is_moderated"
-                                        id="is_moderated" data-toggle="toggle" data-onstyle="success"
-                                        data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product->is_moderated ?
-                                    '
-                                    checked ' : ' ' !!} >
-                                    <label class="form-check-label" for="exampleCheck1">Модерировано </label>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group"> <label for="short_description">Краткое описание</label>
+                                        <textarea class="form-control" name="short_description" row="3">{{ $product->short_description  }}</textarea>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="description">Описание</label>
+                                        <textarea class="form-control" name="body_description" row="5" id="summernote">{{ $product->body_description}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="published" id="published" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product->published ? 'checked ' : ' ' !!}>
+                                        <label class="form-check-label" for="exampleCheck1">Опубликовано </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+                            <livewire:seo :record="@$product">
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
+
+                            <livewire:gallery :record="$product" />
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-files" role="tabpanel" aria-labelledby="custom-tabs-four-files-tab">
+                            <livewire:product-file-upload-component :record="@$product" />
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
+                            <livewire:test-component :record="@$product" />
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-analog" role="tabpanel" aria-labelledby="custom-tabs-four-analog-tab">
+                            <livewire:analog-vendor-component :record="@$product" />
+                        </div>
+
+
+
+                        @if ($product->composite_product)
+
+                        <div class="tab-pane fade" id="custom-tabs-four-complect" role="tabpanel" aria-labelledby="custom-tabs-four-complect-tab">
+                             <livewire:product-complect-component :product="@$product" />
+                        </div>
+                        @endif
+
+
+                        <div class="tab-pane fade" id="custom-tabs-four-price" role="tabpanel" aria-labelledby="custom-tabs-four-price-tab">
+                            Марккетплейсы, цены и прочее
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="barcode">Штрих-код</label>
+                                        <input type="text" class="form-control" name="barcode" id="barcode" value="{{ @$product->barcode }}">
+                                        @error('barcode')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tn_ved">ТН ВЭД</label>
+                                        <input type="text" class="form-control" name="tn_ved"  id="tn_ved" value="{{ @$product->tn_ved }}">
+                                        @error('tn_ved')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pieces_per_pack">pieces_per_pack</label>
+                                        <input type="text" class="form-control" name="pieces_per_pack" id="pieces_per_pack" value="{{ @$product->pieces_per_pack }}">
+                                        @error('pieces_per_pack')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="stock"> stock</label>
+                                        <input type="text" class="form-control"  name="stock" id="stock" value="{{ @$product->stock }}">
+                                        @error('stock')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="minimum_stock"> minimum_stock</label>
+                                        <input type="text" class="form-control" name="minimum_stock" id="minimum_stock" value="{{ @$product->minimum_stock }}">
+                                        @error('minimum_stock')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="supplier_price">supplier_price</label>
+                                        <input type="text" class="form-control" name="supplier_price" value="{{ @$product->supplier_price }}">
+                                        @error('supplier_price')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price">price</label>
+                                        <input type="text" class="form-control" name="price" value="{{ @$product->price }}">
+                                        @error('price')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="special_price">special_price</label>
+                                        <input type="text" class="form-control" name="special_price" value="{{ @$product->special_price }}">
+                                        @error('special_price')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="moq_supplier">moq_supplier</label>
+                                        <input type="text" class="form-control" name="moq_supplier" value="{{ @$product->moq_supplier }}">
+                                        @error('moq_supplier')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+
+
+
+
+                                </div>
+
+                                <div class="col-3">
+                                    <h3>Размеры товара</h3>
+                                    <div class="form-group">
+                                        <label for="weight">Вес товара</label>
+                                        <input type="text" class="form-control" name="weight" value="{{ @$product->weight }}">
+                                        @error('weight')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="width">Ширина товара(единица измерения)</label>
+                                        <input type="text" class="form-control" name="width" value="{{ @$product->width }}">
+                                        @error('width')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="height">Высота товара(единица измерения)</label>
+                                        <input type="text" class="form-control" name="height" value="{{ @$product->height }}">
+                                        @error('height')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="length">Длина товара(единица измерения)</label>
+                                        <input type="text" class="form-control" name="length" value="{{ @$product->length }}">
+                                        @error('length')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <h3>Размеры упаковки </h3>
+                                    <div class="form-group">
+                                        <label for="package_weight">Вес упаковки (единица измерения???)</label>
+                                        <input type="text" class="form-control" name="package_weight" value="{{ @$product->package_weight }}">
+                                        @error('package_weight')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="package_width">Ширина упаковки(единица измерения)</label>
+                                        <input type="text" class="form-control" name="package_width" value="{{ @$product->package_width }}">
+                                        @error('package_width')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="package_height">Высота упаковки(единица измерения)</label>
+                                        <input type="text" class="form-control" name="package_height" value="{{ @$product->package_height }}">
+                                        @error('package_height')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="package_length">Длина упаковки(единица измерения)</label>
+                                        <input type="text" class="form-control" name="package_length" value="{{ @$product->package_length }}">
+                                        @error('package_length')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class=" py-3 form-row justify-content-center">
-                            <button type="submit" name="action" value="save" class="btn btn-primary">Сохранить</button>
-                            &nbsp;
-                            <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и
-                                закрыть</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel"
-                    aria-labelledby="custom-tabs-four-profile-tab">
-                    <livewire:seo :record="$product">
 
-                </div>
-                <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel"
-                    aria-labelledby="custom-tabs-four-messages-tab">
-                    <livewire:gallery :record="$product" :multiple=true />
 
-                </div>
-                <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel"
-                    aria-labelledby="custom-tabs-four-settings-tab">
-                    <livewire:product-variant-component :record="$product" />
-                </div>
 
-                <div class="tab-pane fade" id="custom-tabs-five-settings" role="tabpanel"
-                    aria-labelledby="custom-tabs-five-settings-tab">
-                    Архивная информация
-
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Имя</th>
-                                <th>Значение</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Код продукта</td>
-                                <td>{{ $product->old_code }}</td>
-                            </tr>
-                            <tr>
-                                <td>Ссылка на продукт в магазине</td>
-                                <td><a href="{{ $product->front_url  }}" target="_blank">{{ $product->front_url }}</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Строка данных all.db </td>
-                                <td> {{ $product->old_data }}</td>
-                            </tr>
-                            <tr>
-                                <td>Строка данных map.db </td>
-                                <td> {{ $product->old_map }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    </div>
                 </div>
-                @if (config('app.programming_level') >= 2)
-                <div class="tab-pane fade" id="custom-tabs-six-settings" role="tabpanel"
-                    aria-labelledby="custom-tabs-six-settings-tab">
-
-                    <livewire:product-files-component :record="$product" />
-                </div>
-                @endif
+            </div>
+            <div class=" py-3 form-row justify-content-center">
+                <a class="btn .btn-lg btn-success " href="{{ route('admin.product.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>&nbsp;
+                <button type="submit" name="action" value="save" class="btn btn-primary">Сохранить</button>
+                &nbsp;
+                <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и закрыть</button>
             </div>
         </div>
     </div>
-</div>
-<div class=" py-3 form-row justify-content-center">
-    <a class="btn .btn-lg btn-success " href="{{ route('admin.product.index') }}" role="button"> <i
-            class="fa fa-arrow-left "></i> К списку</a>
-</div>
+
+    </div>
+
+</form>
+
+
+
 
 @stop
-
 
 {{-- Push extra CSS --}}
 
 @push('css')
 {{-- Add here extra stylesheets --}}
-<link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.min.css') }}">
-
-<link rel="stylesheet" href="{{ asset('vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-
 <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 @endpush
 
 {{-- Push extra scripts --}}
 
 @push('js')
-<script src="{{ asset('vendor/summernote/summernote.min.js') }}"></script>
-<script>
-    $(function () {
-      // Summernote
-      $('#summernote').summernote({
-        height:300,
-        lang:'ru-RU',
-        minHeight:500,
-        maxHeight:800,
-        placeholder: 'Введите текст'
-      })
-
-    })
-</script>
-
-
+@include('admin.blocks.summernote')
 <script src="{{ asset('vendor/select2/js/select2.full.min.js') }}"></script>
 
-<script>
-    $(document).ready(function() {
-        $("#vendor_id").select2({
-            ajax: {
-                url: "/api/v1/admin/fabric",
-                dataType: 'json',
-                delay: 250,
-                data: function(params) {
-                    return {
-                        q: params.term, // search term
-                        page: params.page
-                    };
-                },
-                initSelection: function(element, callback) {
-                    var data = [];
-                },
-                processResults: function(data, params) {
-                    params.page = params.page || 1;
-                    return {
-                        results: $.map(data, function(item) {
-                            return {
-                                text: item.name,
-                                id: item.id,
-                                // position: item.position,
-                            }
-                        }),
-                        pagination: {
-                            more: (params.page * 30) < data.total_count
-                        }
-                    };
-                },
-                cache: false
-            },
-            placeholder: 'Поиск производителя',
-            minimumInputLength: 1,
-        });
-    });
 
-    // $(document).ready(function() {
-    //     $("#product_type_id").select2({
-    //         ajax: {
-    //             url: "/api/v1/admin/product_type",
-    //             dataType: 'json',
-    //             delay: 250,
-    //             data: function(params) {
-    //                 return {
-    //                     q: params.term, // search term
-    //                     page: params.page
-    //                 };
-    //             },
-    //             initSelection: function(element, callback) {
-    //                 var data = [];
-    //             },
-    //             processResults: function(data, params) {
-    //                 params.page = params.page || 1;
-    //                 return {
-    //                     results: $.map(data, function(item) {
-    //                         return {
-    //                             text: item.name,
-    //                             id: item.id,
-    //                             // position: item.position,
-    //                         }
-    //                     }),
-    //                     pagination: {
-    //                         more: (params.page * 30) < data.total_count
-    //                     }
-    //                 };
-    //             },
-    //             cache: false
-    //         },
-    //         placeholder: 'Поиск производителя',
-    //         minimumInputLength: 1,
-    //     });
-    // });
-    // $(document).ready(function() {
-    //     $("#product_subtype_id").select2({
-    //         ajax: {
-    //             url: "/api/v1/admin/product_subtype",
-    //             dataType: 'json',
-    //             delay: 250,
-    //             data: function(params) {
-    //                 return {
-    //                     q: params.term, // search term
-    //                     page: params.page
-    //                 };
-    //             },
-    //             initSelection: function(element, callback) {
-    //                 var data = [];
-    //             },
-    //             processResults: function(data, params) {
-    //                 params.page = params.page || 1;
-    //                 return {
-    //                     results: $.map(data, function(item) {
-    //                         return {
-    //                             text: item.name,
-    //                             id: item.id,
-    //                             // position: item.position,
-    //                         }
-    //                     }),
-    //                     pagination: {
-    //                         more: (params.page * 30) < data.total_count
-    //                     }
-    //                 };
-    //             },
-    //             cache: false
-    //         },
-    //         placeholder: 'Поиск подтипа',
-    //         minimumInputLength: 1,
-    //     });
-    // });
-
-
-var productTypeSelect = $('#product_type_id');
-$.ajax({
-    type: 'GET',
-    url: "/api/v1/admin/product_type/by_id?product_type_id={{ $product->product_type_id }}",
-
-}).then(function (data) {
-    // create the option and append to Select2
-    var option = new Option(data.name, data.id, true, true);
-    productTypeSelect.append(option).trigger('change');
-
-    // manually trigger the `select2:select` event
-    productTypeSelect.trigger({
-        type: 'select2:select',
-        params: {
-            data: data
-        }
-    });
-});
-
-
-
-var productSubtypeSelect = $('#product_subtype_id');
-$.ajax({
-    type: 'GET',
-    url: "/api/v1/admin/product_subtype/by_id?product_subtype_id={{ $product->product_subtype_id }}&product_type_id={{ $product->product_type_id }}",
-
-}).then(function (data) {
-    // create the option and append to Select2
-    var option = new Option(data.name, data.id, true, true);
-    productSubtypeSelect.append(option).trigger('change');
-
-    // manually trigger the `select2:select` event
-    productSubtypeSelect.trigger({
-        type: 'select2:select',
-        params: {
-            data: data
-        }
-    });
-});
-
-
-
-// Fetch the preselected item, and add to the control
-var vendorSelect = $('#vendor_id');
-$.ajax({
-    type: 'GET',
-    url: "/api/v1/admin/fabric/by_id?vendor_id={{ $product->vendor_id }}",
-
-}).then(function (data) {
-    // create the option and append to Select2
-    var option = new Option(data.name, data.id, true, true);
-    vendorSelect.append(option).trigger('change');
-
-    // manually trigger the `select2:select` event
-    vendorSelect.trigger({
-        type: 'select2:select',
-        params: {
-            data: data
-        }
-    });
-});
-
-</script>
-@endpush
-
-    });
-});
-
-
-
-// Fetch the preselected item, and add to the control
-var vendorSelect = $('#vendor_id');
-$.ajax({
-    type: 'GET',
-    url: "/api/v1/admin/fabric/by_id?vendor_id={{ $product->vendor_id }}",
-
-}).then(function (data) {
-    // create the option and append to Select2
-    var option = new Option(data.name, data.id, true, true);
-    vendorSelect.append(option).trigger('change');
-
-    // manually trigger the `select2:select` event
-    vendorSelect.trigger({
-        type: 'select2:select',
-        params: {
-            data: data
-        }
-    });
-});
-
-</script>
 @endpush

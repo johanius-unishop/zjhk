@@ -1477,6 +1477,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
+ * @property string|null $short_name
  * @property int|null $order_column
  * @property string $slug
  * @property string|null $logo
@@ -1510,6 +1511,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereOrderColumn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor wherePublished($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereShortName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereWarranty($value)

@@ -25,7 +25,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Основное</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">SEO</a>
                         </li>
                         <li class="nav-item">
@@ -49,46 +49,45 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-four-price-tab" data-toggle="pill" href="#custom-tabs-four-price" role="tab" aria-controls="custom-tabs-four-price" aria-selected="false">Торговля и цены</a>
-                        </li> {{-- <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-five-settings-tab" data-toggle="pill"
-                        href="#custom-tabs-five-settings" role="tab" aria-controls="custom-tabs-five-settings"
-                        aria-selected="false">Видео </a>
-                </li> --}}
+                        </li> --}}
                     </ul>
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-four-tabContent">
                         <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-
                             <div class="row">
-                                <div class="col-lg-6 col-12">
+                                <div class="col-lg-4 col-4">
                                     <div class="form-group">
-                                        <label for="name">Название</label>
-                                        <input type="text" class="form-control" name="name" id="name"  value="{{ $product->name }}">
-                                        @error('name')
+                                        <label for="name">Код товара </label>
+                                        <input type="text" class="form-control" name="id" id="id" value="{{ @$product->id }}" disabled>
+                                        @error('id')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-
-                                <div class="col-lg-6 col-12">
+                                <div class="col-lg-4 col-4">
                                     <div class="form-group">
-
-                                        <label for="slug">ЧПУ </label>
-                                        <input type="text" class="form-control" name="slug" id="slug" value="{{ @$product->slug }}">
-                                        <div id="slugHelp" class="form-text">Заполняется автоматически. Ручное заполнение не желательно.</div>
-
-                                        @error('slug')
+                                        <label for="barcode">Штрих-код</label>
+                                        <input type="text" class="form-control" name="barcode" id="barcode" value="{{ @$product->barcode }}">
+                                        @error('barcode')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-
+                                <div class="col-lg-4 col-4">
+                                    <div class="form-group">
+                                        <label for="tn_ved">ТН ВЭД</label>
+                                        <input type="text" class="form-control" name="tn_ved" id="tn_ved" value="{{ @$product->tn_ved }}">
+                                        @error('tn_ved')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-6 ">
-                                    <label for="parent" class="form-label">Категория товара</label>
+                                <div class="col-12">
+                                    <label for="parent" class="form-label">Категория</label>
                                     <div class="input-group">
                                         <select name="category_id" id="parent" class="form-control">
                                             <option value="">Корневая категория</option>
@@ -99,20 +98,63 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-6 ">
-                                    <label for="product_type_id" class="form-label">Тип товара</label>
-                                    <select class="form-control  " id="product_type_id" name="product_type_id">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-12">
+                                    <div class="form-group">
+                                        <label for="name">Наименование товара</label>
+                                        <input type="text" class="form-control" name="name" id="name" value="{{ $product->name }}">
+                                        @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-4">
+                                    <div class="col-lg-12 col-12">
+                                        <div class="form-group">
+                                            <label for="model">Модель</label>
+                                            <input type="text" class="form-control" name="model" id="model" value="{{ $product->name }}">
+                                            @error('model')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-4">
+                                    <div class="form-group">
+                                        <label for="article">Артикул</label>
+                                        <input type="text" class="form-control" name="article" id="article" value="{{ $product->article }}">
+                                        @error('article')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-4">
+                                    <label for="vendor_id" class="form-label">Производитель</label>
+                                    <select class="form-control  " id="vendor_id" name="vendor_id">
                                         <option value="0">Выберите тип товара</option>
-                                        @foreach ($productTypes as $productType)
-                                        <option value="{{ $productType->id }}" {{ $productType->id == @$product->product_type_id	 ? 'selected' : '' }}>{{
-                                    $productType->name }}
+                                        @foreach ($vendors as $vendor)
+                                        <option value="{{ $vendor->id }}" {{ $vendor->id ==@$product->vendor_id ? 'selected' : '' }}>{{$vendor->name }}
                                         </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
+                            <b>Цены</b>
                             <div class="row">
-                                <div class="col-4 ">
+
+                                <div class="col-lg-4 col-4">
+                                    <div class="form-group">
+                                        <label for="supplier_price">Закупочная цена</label>
+                                        <input type="number" class="form-control" name="supplier_price" value="{{ @$product->supplier_price }}">
+                                        @error('supplier_price')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="currency_id" class="form-label">Валюта</label>
                                         <select class="form-control  " id="currency_id" name="currency_id">
@@ -125,63 +167,86 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 ">
-                                    <label for="vendor_id" class="form-label">Производитель</label>
-                                    <select class="form-control  " id="vendor_id" name="vendor_id">
-                                        <option value="0">Выберите тип товара</option>
-                                        @foreach ($vendors as $vendor)
-                                        <option value="{{ $vendor->id }}" {{ $vendor->id ==@$product->vendor_id ? 'selected' : '' }}>{{
-                                    $vendor->name }}
-                                        </option>
-
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-lg-3 col-6  ">
+                                <div class="col-lg-4 col-4">
                                     <div class="form-group">
-                                        <label for="article">Артикул</label>
-                                        <input type="text" class="form-control" name="article" id="article" value="{{ $product->article }}">
-                                        @error('article')
+                                        <div class="form-check">
+                                            <label for="exampleCheck1">Автоматический расчет цены </label>
+                                            <input type="checkbox" class="form-check-input" name="auto_price" id="auto_price" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product->auto_price ? 'checked ' : ' ' !!}>
+                                        </div>
+                                    </div>
+
+                                    <label for="auto_price_coef">Коэффициент</label>
+                                    <input type="text" class="form-control" name="auto_price_coef" value="{{ @$product->auto_price_coef }}">
+                                    @error('auto_price_coef')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-lg-4 col-4">
+                                    <div class="form-group">
+                                        <label for="price">РРЦ</label>
+                                        <input type="text" class="form-control" name="price" value="{{ @$product->price }}">
+                                        @error('price')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="special_price">Специальная цена</label>
+                                        <input type="text" class="form-control" name="special_price" value="{{ @$product->special_price }}">
+                                        @error('special_price')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-6  ">
+                            </div>
+                            Остатки и склад
+                            <div class="row">
+                                <div class="col-lg-4 col-4">
                                     <div class="form-group">
-                                        <label for="name">Код товара </label>
-                                        <input type="text" class="form-control" name="old_code" value="">
-                                        @error('old_code')
+                                        <label for="stock">Наличие</label>
+                                        <input type="text" class="form-control" name="stock" id="stock" value="{{ @$product->stock }}">
+                                        @error('stock')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-
-                            </div>
-
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="composite_product" id="composite_product" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product->composite_product ? 'checked ' : ' ' !!}>
-                                    <label class="form-check-label" for="exampleCheck1">Композитный товар </label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group"> <label for="short_description">Краткое описание</label>
-                                        <textarea class="form-control" name="short_description" row="3">{{ $product->short_description  }}</textarea>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
+                                <div class="col-lg-4 col-4">
                                     <div class="form-group">
-                                        <label for="description">Описание</label>
-                                        <textarea class="form-control" name="body_description" row="5" id="summernote">{{ $product->body_description}}</textarea>
+                                        <label for="pieces_per_pack">Количество в заводской упаковке</label>
+                                        <input type="text" class="form-control" name="pieces_per_pack" id="pieces_per_pack" value="{{ @$product->pieces_per_pack }}">
+                                        @error('pieces_per_pack')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="moq_supplier">Мин. количество для заказа</label>
+                                        <input type="text" class="form-control" name="moq_supplier" value="{{ @$product->moq_supplier }}">
+                                        @error('moq_supplier')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
+                                <div class="col-lg-4 col-4">
+                                    <div class="form-group">
+                                        <label for="minimum_stock"> Минимальный остаток</label>
+                                        <input type="text" class="form-control" name="minimum_stock" id="minimum_stock" value="{{ @$product->minimum_stock }}">
+                                        @error('minimum_stock')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    Заказано (новое поле)
+                                    <div class="form-group">
+                                        <label for="priority"> Приоритет</label>
+                                        <input type="text" class="form-control" name="priority" id="priority" value="{{ @$product->priority }}">
+                                        @error('priority')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            Статус товара
+                            <div class="row">
                                 <div class="col-12">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="published" id="published" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product->published ? 'checked ' : ' ' !!}>
@@ -191,119 +256,47 @@
                             </div>
 
 
-                        </div>
-                        <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
-                            <livewire:seo :record="@$product">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group"> <label for="short_description">Краткое описание</label>
+                                        <textarea class="form-control" name="short_description" row="3">{{ $product->short_description  }}</textarea>
 
-                        </div>
-                        <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
-
-                            <livewire:gallery :record="$product" />
-
-                        </div>
-                        <div class="tab-pane fade" id="custom-tabs-four-files" role="tabpanel" aria-labelledby="custom-tabs-four-files-tab">
-                            <livewire:product-file-upload-component :record="@$product" />
-                        </div>
-                        <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
-                            <livewire:test-component :record="@$product" />
-                        </div>
-                        <div class="tab-pane fade" id="custom-tabs-four-analog" role="tabpanel" aria-labelledby="custom-tabs-four-analog-tab">
-                            <livewire:analog-vendor-component :record="@$product" />
-                        </div>
-
-
-
-                        @if ($product->composite_product)
-
-                        <div class="tab-pane fade" id="custom-tabs-four-complect" role="tabpanel" aria-labelledby="custom-tabs-four-complect-tab">
-                             <livewire:product-complect-component :product="@$product" />
-                        </div>
-                        @endif
-
-
-                        <div class="tab-pane fade" id="custom-tabs-four-price" role="tabpanel" aria-labelledby="custom-tabs-four-price-tab">
-                            Марккетплейсы, цены и прочее
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-12">
                                     <div class="form-group">
-                                        <label for="barcode">Штрих-код</label>
-                                        <input type="text" class="form-control" name="barcode" id="barcode" value="{{ @$product->barcode }}">
-                                        @error('barcode')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="tn_ved">ТН ВЭД</label>
-                                        <input type="text" class="form-control" name="tn_ved"  id="tn_ved" value="{{ @$product->tn_ved }}">
-                                        @error('tn_ved')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pieces_per_pack">pieces_per_pack</label>
-                                        <input type="text" class="form-control" name="pieces_per_pack" id="pieces_per_pack" value="{{ @$product->pieces_per_pack }}">
-                                        @error('pieces_per_pack')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="stock"> stock</label>
-                                        <input type="text" class="form-control"  name="stock" id="stock" value="{{ @$product->stock }}">
-                                        @error('stock')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="minimum_stock"> minimum_stock</label>
-                                        <input type="text" class="form-control" name="minimum_stock" id="minimum_stock" value="{{ @$product->minimum_stock }}">
-                                        @error('minimum_stock')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
+                                        <label for="description">Описание</label>
+                                        <textarea class="form-control" name="body_description" row="5" id="summernote">{{ $product->body_description}}</textarea>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="supplier_price">supplier_price</label>
-                                        <input type="text" class="form-control" name="supplier_price" value="{{ @$product->supplier_price }}">
-                                        @error('supplier_price')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="composite_product" id="composite_product" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product->composite_product ? 'checked ' : ' ' !!}>
+                                        <label class="form-check-label" for="exampleCheck1">Композитный товар </label>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="price">price</label>
-                                        <input type="text" class="form-control" name="price" value="{{ @$product->price }}">
-                                        @error('price')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="special_price">special_price</label>
-                                        <input type="text" class="form-control" name="special_price" value="{{ @$product->special_price }}">
-                                        @error('special_price')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="moq_supplier">moq_supplier</label>
-                                        <input type="text" class="form-control" name="moq_supplier" value="{{ @$product->moq_supplier }}">
-                                        @error('moq_supplier')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-
-
-
-
                                 </div>
+                            </div>
 
-                                <div class="col-3">
-                                    <h3>Размеры товара</h3>
+                            <div class="row">
+                                <div class="col-lg-4 col-4">
+                                    Страна
+                                </div>
+                            </div>
+                            Характеристики
+                            <div class="row">
+                                <div class=" col-12">
+                                    <h3>Вес и габаритные размеры</h3>
+                                </div>
+                                <div class="col-lg-6 col-6">
                                     <div class="form-group">
-                                        <label for="weight">Вес товара</label>
+                                        <label for="weight">Вес, грамм</label>
                                         <input type="text" class="form-control" name="weight" value="{{ @$product->weight }}">
                                         @error('weight')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -311,31 +304,32 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="width">Ширина товара(единица измерения)</label>
+                                        <label for="width">Ширина, мм</label>
                                         <input type="text" class="form-control" name="width" value="{{ @$product->width }}">
                                         @error('width')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="height">Высота товара(единица измерения)</label>
+                                        <label for="height">Высота, мм</label>
                                         <input type="text" class="form-control" name="height" value="{{ @$product->height }}">
                                         @error('height')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="length">Длина товара(единица измерения)</label>
+                                        <label for="length">Длина мм</label>
                                         <input type="text" class="form-control" name="length" value="{{ @$product->length }}">
                                         @error('length')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <h3>Размеры упаковки </h3>
+
+
+                                <div class="col-lg-6 col-6">
                                     <div class="form-group">
-                                        <label for="package_weight">Вес упаковки (единица измерения???)</label>
+                                        <label for="package_weight">Вес упакованного товара, грамм</label>
                                         <input type="text" class="form-control" name="package_weight" value="{{ @$product->package_weight }}">
                                         @error('package_weight')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -343,21 +337,21 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="package_width">Ширина упаковки(единица измерения)</label>
+                                        <label for="package_width">Ширина упакованного товара, мм</label>
                                         <input type="text" class="form-control" name="package_width" value="{{ @$product->package_width }}">
                                         @error('package_width')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="package_height">Высота упаковки(единица измерения)</label>
+                                        <label for="package_height">Высота упакованного товара, мм</label>
                                         <input type="text" class="form-control" name="package_height" value="{{ @$product->package_height }}">
                                         @error('package_height')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="package_length">Длина упаковки(единица измерения)</label>
+                                        <label for="package_length">Длина упакованного товара, мм</label>
                                         <input type="text" class="form-control" name="package_length" value="{{ @$product->package_length }}">
                                         @error('package_length')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -365,10 +359,55 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class=" col-12">
+                                    <label for="product_type_id" class="form-label">Тип товара</label>
+                                    <select class="form-control  " id="product_type_id" name="product_type_id">
+                                        <option value="0">Выберите тип товара</option>
+                                        @foreach ($productTypes as $productType)
+                                        <option value="{{ $productType->id }}" {{ $productType->id == @$product->product_type_id	 ? 'selected' : '' }}>{{
+                                    $productType->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-12">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-12">
+                                    <livewire:test-component :record="@$product" />
+                                </div>
+                            </div>
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title">Медиа</h3>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class=" col-12">
+                                            <b> Изображения товара</b>
+                                            <br>
+                                            Добавьте изображения в формате JPEG или PNG. Главное фото – на одноцветном контрастном фоне. Размер главного фото – не менее 800рх по большей стороне, размер дополнительных фото – не менее 400рх по большей стороне.
+                                            Максимальный размер фото 6500px на 6500px.
+                                            <br>
+                                        </div>
+                                        <div class=" col-12">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-12">
+
+                                </div>
+                            </div>
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
@@ -381,7 +420,7 @@
         </div>
     </div>
 
-    </div>
+
 
 </form>
 

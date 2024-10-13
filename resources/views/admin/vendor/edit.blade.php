@@ -54,7 +54,15 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                <div class="col-lg-6 col-12">
+                                    <div class="form-group">
+                                        <label for="short_name">Краткое название</label>
+                                        <input type="text" class="form-control" name="short_name" value="{{ @$vendor->short_name }}">
+                                        @error('short_name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">

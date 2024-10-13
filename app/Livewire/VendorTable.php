@@ -58,6 +58,7 @@ final class VendorTable extends PowerGridComponent
             ->add('name', function ($item) {
                 return $item->name . ' (' . $item->product_count . ')';
             })
+            ->add('short_name')
             ->add('country')
             ->add('delivery_time')
             ->add('country')
@@ -70,9 +71,10 @@ final class VendorTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name')->searchable(),
+            Column::make('Краткое', 'short_name')->searchable(),
 
 
-            Column::make('Страна', 'country')->searchable(), 
+            Column::make('Страна', 'country')->searchable(),
             Column::make('Время доставки', 'delivery_time')->sortable(),
             Column::make('Гарантия', 'warranty')->sortable(),
             Column::make('Создано', 'created_at')
