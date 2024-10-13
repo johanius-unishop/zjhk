@@ -60,56 +60,56 @@ class AdminTableSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         Admin::find(2)->assignRole('super-admin');
 
-        for ($i = 1; $i < 6; $i++) {
+        // for ($i = 1; $i < 6; $i++) {
 
-            $user = Admin::create([
-                'name' => $faker->firstName,
+        //     $user = Admin::create([
+        //         'name' => $faker->firstName,
 
-                'last_name' => $faker->lastName,
-                'patronymic' => $faker->middleName,
-                'email' => 'user' . $i . '@admin.com',
-                'password' => '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
-                'phone_number' => $faker->numerify('+79#########'),
-                'is_admin' => '0',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-            $user->assignRole('content-editor');
+        //         'last_name' => $faker->lastName,
+        //         'patronymic' => $faker->middleName,
+        //         'email' => 'user' . $i . '@admin.com',
+        //         'password' => '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
+        //         'phone_number' => $faker->numerify('+79#########'),
+        //         'is_admin' => '0',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
+        //     $user->assignRole('content-editor');
 
-        }
+        // }
 
 
-        for ($i = 7; $i < 10; $i++) {
+        // for ($i = 7; $i < 10; $i++) {
 
-            $user = Admin::create([
-                'name' => $faker->firstName,
-                'last_name' => $faker->lastName,
-                'patronymic' => $faker->middleName,
-                'email' => 'user' . $i . '@admin.com',
-                'password' => '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
-                'phone_number' => $faker->numerify('+79#########'),
-                'is_admin' => '0',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-            $user->assignRole('product-editor');
+        //     $user = Admin::create([
+        //         'name' => $faker->firstName,
+        //         'last_name' => $faker->lastName,
+        //         'patronymic' => $faker->middleName,
+        //         'email' => 'user' . $i . '@admin.com',
+        //         'password' => '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
+        //         'phone_number' => $faker->numerify('+79#########'),
+        //         'is_admin' => '0',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
+        //     $user->assignRole('product-editor');
 
-        }
-        for ($i = 11; $i < 13; $i++) {
+        // }
+        // for ($i = 11; $i < 13; $i++) {
 
-            $user = Admin::create([
-                'name' => $faker->firstName,
-                'last_name' => $faker->lastName,
-                'patronymic' => $faker->middleName,
-                'email' => 'user' . $i . '@admin.com',
-                'password' => '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
-                'phone_number' => $faker->numerify('+79#########'),
-                'is_admin' => '0',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-            $user->assignRole('image-editor');
+        //     $user = Admin::create([
+        //         'name' => $faker->firstName,
+        //         'last_name' => $faker->lastName,
+        //         'patronymic' => $faker->middleName,
+        //         'email' => 'user' . $i . '@admin.com',
+        //         'password' => '$2y$10$GuaoFnDw17nZcbNNDq6aO.1wZHpLr3hGyADjN14J0kj1yjrPxdHJm',                // 'password'
+        //         'phone_number' => $faker->numerify('+79#########'),
+        //         'is_admin' => '0',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
+        //     $user->assignRole('image-editor');
 
-        }
+        // }
     }
 }
