@@ -20,7 +20,7 @@ class AdminTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create('ru_RU');
+        // $faker = Faker::create('ru_RU');
         Artisan::call('cache:clear');
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         // $all_roles_in_database = Role::all()->pluck('name');
