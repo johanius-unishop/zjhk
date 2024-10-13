@@ -15,15 +15,10 @@
                     <td>{{ $prop->id }}</td>
                     <td>{{ $prop->name }}</td>
                     <td>
-                        {{-- @if ($this->property_show[$prop->id] == true) --}}
-                        {{-- <label for="select_{{ $prop->id }}">Выберите поле</label> --}}
-                        <div class="mb-3">
-                            <select class="form-control" id="select_{{ $prop->id }}">
-                                <option value="0">Выберите вариант</option>
-                            </select>
-                        </div>
-                        {{-- @endif --}}
-                    </td>
+                        <select class="form-control" id="select_{{ $prop->id }}">
+                            <option value="0">Выберите вариант</option>
+                        </select>
+                     </td>
                     <td>
                         <button type="button" wire:click="editProperty({{$prop->id}})" class="btn btn-success"><i class="fas fa-edit"></i></button>
                         <button type="button" wire:click="deleteProperty({{$prop->id}})" class="btn btn-danger"><i class="fas fa-trash"></i></button>
@@ -45,17 +40,29 @@
     <script>
         $(document).ready(function() {
             $('#select_{{ $prop->id }}').select2({
-             tags: true ,
-                ajax: {
+                tags: true
+                , ajax: {
                     url: "/api/v1/admin/property_list"
                     , dataType: 'json'
                     , delay: 250
                     , data: function(params) {
                         return {
-                            productType: {{  $productType->id}} ,
-                            propertyId: {{ $prop->id }},
-                            productId: {{  $product ->id}} ,
-                            q: params.term, // search term
+                            productType: {
+                                {
+                                    $productType - > id
+                                }
+                            }
+                            , propertyId: {
+                                {
+                                    $prop - > id
+                                }
+                            }
+                            , productId: {
+                                {
+                                    $product - > id
+                                }
+                            }
+                            , q: params.term, // search term
                             page: params.page
                         };
                     }
@@ -118,7 +125,11 @@
                     , data: {
                         "_token": "{{ csrf_token() }}"
                         , "product_id": "{{   $product->id }}"
-                        , "product_type_property_id": {{$prop->id}}
+                        , "product_type_property_id": {
+                            {
+                                $prop - > id
+                            }
+                        }
                         , "product_type_property_value": data.text
 
                     },
