@@ -26,4 +26,4 @@ jobs:
           key: ${{ secrets.SSHKEY }}
           password: ${{ secrets.PASSWORD }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          script: "cd /var/www/html/kevtek/.scripts/deploy.sh"
+          script: "cd /var/www/html/kevtek &&./.scripts/deploy.sh"
