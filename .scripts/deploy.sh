@@ -20,7 +20,7 @@ php artisan clear-compiled
 php artisan optimize
 
 # Скомпилировать ресурсы
-npm run prod
+npm run build
 
 # Запустить миграцию базы данных
 php artisan migrate --force
