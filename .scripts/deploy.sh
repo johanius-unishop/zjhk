@@ -22,10 +22,22 @@ php artisan optimize
 # Скомпилировать ресурсы
 npm run build
 
+php -v
+/usr/local/bin/composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+chmod -R 775 bootstrap/cache/
+chmod -R 775 storage/
+php artisan mig:ref --seed
+php artisan key:generate
+php artisan op:c
+
+php artisan up
+php artisan queue:restart
+
+
 # Запустить миграцию базы данных
-php artisan migrate --force
+#php artisan migrate --force
 
 # Выход из режима обслуживания
-php artisan up
+#php artisan up
 
 echo "Deployment finished!"
