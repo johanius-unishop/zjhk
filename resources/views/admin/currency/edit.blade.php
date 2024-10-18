@@ -43,9 +43,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
                                         <label for="charcode">Символ</label>
@@ -55,11 +52,23 @@
                                         @enderror
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
                                         <label for="numcode">Код</label>
                                         <input type="text" class="form-control" name="numcode" value="{{   $currency->numcode  }}">
                                         @error('numcode')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <div class="form-group">
+                                        <label for="internal_rate">Внутренний курс</label>
+                                        <input type="text" class="form-control" name="internal_rate" value="{{   $currency->internal_rate  }}">
+                                        @error('internal_rate')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
