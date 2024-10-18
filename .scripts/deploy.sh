@@ -3,6 +3,7 @@ set -e
 
 echo "Deployment started ..."
 
+
 # Войти в режим обслуживания или вернуть true
 # если уже в режиме обслуживания
 (php artisan down) || true
@@ -24,8 +25,8 @@ npm run build
 
 php -v
 /usr/local/bin/composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-sudo chmod -R 775 bootstrap/cache/
-sudo chmod -R 775 storage/
+chmod -R 775 bootstrap/cache/
+chmod -R 777 storage/
 php artisan migrate --force
 php artisan key:generate
 php artisan op:c
