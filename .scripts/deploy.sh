@@ -24,8 +24,8 @@ npm run build
 
 php -v
 /usr/local/bin/composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-chmod -R 775 bootstrap/cache/
-chmod -R 775 storage/
+sudo chmod -R 775 bootstrap/cache/
+sudo chmod -R 775 storage/
 php artisan migrate --force
 php artisan key:generate
 php artisan op:c
