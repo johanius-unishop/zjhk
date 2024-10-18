@@ -55,8 +55,8 @@ final class CurrencyTable extends PowerGridComponent
             ->add('name')
             ->add('charcode')
             ->add('numcode')
+            ->add('internal_rate')
 
-            ->add('created_at');
     }
 
     public function columns(): array
@@ -66,10 +66,8 @@ final class CurrencyTable extends PowerGridComponent
             Column::make('Наименование', 'name')->searchable(),
             Column::make('Символ', 'charcode')->searchable(),
             Column::make('Код', 'numcode')->searchable(),
-            Column::make('Создано', 'created_at')
-                ->sortable()
-                ->searchable(),
-
+            Column::make('Код', 'internal_rate')->searchable(),
+            
             Column::action('Действия'),
         ];
     }
