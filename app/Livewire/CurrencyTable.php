@@ -66,7 +66,7 @@ final class CurrencyTable extends PowerGridComponent
             Column::make('Наименование', 'name')->searchable(),
             Column::make('Символ', 'charcode')->searchable(),
             Column::make('Код', 'numcode')->searchable(),
-            Column::make('Код', 'internal_rate')->searchable(),
+            Column::make('Внутренний курс', 'internal_rate')->searchable(),
             
             Column::action('Действия'),
         ];
