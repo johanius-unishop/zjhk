@@ -52,7 +52,7 @@ class FetchExchangeRates extends Command
                     $exchangeRates['cny_rate'] = $value / $nominal;
                     break;
                 case 'TRY':
-                    $exchangeRates['try_rate'] = round($value / 10, 2); // Округляем до сотых и делим на 10
+                    $exchangeRates['try_rate'] = round($value / $nominal, 2); // Округляем до сотых и делим на 10
                     break;
             }
         }
