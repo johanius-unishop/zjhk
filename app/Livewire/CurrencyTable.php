@@ -55,7 +55,7 @@ final class CurrencyTable extends PowerGridComponent
             ->add('name')
             ->add('charcode')
             ->add('numcode')
-            ->add('internal_rate')
+            ->add('internal_rate');
 
     }
 
