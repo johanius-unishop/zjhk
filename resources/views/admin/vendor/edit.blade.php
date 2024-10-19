@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="form-group">
-                                        <label for="delivery_time">Время доставки </label>
+                                        <label for="delivery_time">Срок поставки </label>
                                         <input type="text" class="form-control" name="delivery_time" value="{{ @$vendor->delivery_time }}">
                                         @error('delivery_time')
                                         <div class="alert alert-danger">{{ $message }}</div>
