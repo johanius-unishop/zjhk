@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Jobs;
 
 use App\Models\Product;
@@ -31,3 +31,4 @@ class UpdateCompositeProduct implements ShouldQueue
         Cache::clear();
     }
 }
+*/
