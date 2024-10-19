@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Jobs;
 
 use App\Models\Product;
@@ -37,3 +37,4 @@ class UpdateCompositeProductPrice implements ShouldQueue
     }
 
 }
+*/
