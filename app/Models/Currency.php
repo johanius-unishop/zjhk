@@ -12,6 +12,7 @@ class Currency extends Model
         'name',
         'charcode',
         'numcode',
+        'internal_rate',
 
     ];
 }
