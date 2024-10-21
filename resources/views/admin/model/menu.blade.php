@@ -21,9 +21,9 @@
                 <!-- small card -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>TODO</h3>
+                        <h3>Валюты</h3>
                         {{-- <h3>{{ @$price_segment_count }}</h3> --}}
-                        <h4>Валюты</h4>
+                        <h4>Настройка внутреннего курса</h4>
                     </div>
                     <div class="icon">
                         <i class="fas fa-ruble-sign"></i>
