@@ -106,7 +106,7 @@ final class ProductTable extends PowerGridComponent
     // }
     public function datasource(): Builder
     {
-        return Product::query()->with('vendor', 'category');
+        return Product::query()->with('vendor', 'category', 'product_type');
 
         // return Product::query()->with('vendor', 'media', 'vendor.price_segment', 'product_style', 'product_type', 'product_subtype');
     }
@@ -123,8 +123,9 @@ final class ProductTable extends PowerGridComponent
             ->add('name')
             //   ->add('category')
             ->add('category', fn($item) => e(@$item->category->name))
-            ->add('vendor', fn($item) => e(@$item->vendor->name))
-
+            ->add('vendor', fn($item) => e(@$item->vendor->short_name))
+            ->add('product_type', fn($item) => e(@$item->product_type->name))
+            
             ->add('published', closure: fn($item) => $item->published ? '✅' : '❌')
             ->add('composite_product', fn($item) => $item->composite_product ? '✅' : '❌')
             // ->add('link')
@@ -144,36 +145,26 @@ final class ProductTable extends PowerGridComponent
                 ->field('id', 'id')
 
                 ->sortable(),
-            Column::make('Наименование', 'name')
-                ->bodyAttribute('any-class', 'min-width: 200px; max-width: 600px ;white-space:normal;')
-
+            Column::make('Модель', 'name')
                 ->sortable()
                 ->searchable()
                 ->bodyAttribute('any-class', 'min-width: 200px; max-width: 600px ;white-space:normal;'),
-            Column::make('Категория', 'category'),
-            Column::make('Производитель', 'vendor'),
+            Column::make('Категория', 'category')
+                ->sortable()
+                ->searchable(),
+            Column::make('Производитель', 'vendor')
+                ->sortable()
+                ->searchable(),
+            Column::make('Тип товара', 'product_type')
+                ->sortable()
+                ->searchable(),
             Column::make('Опубликовано', 'published')
                 ->sortable()
                 ->searchable()->bodyAttribute('text-center'),
             Column::make('Составной', 'composite_product')
                 ->sortable()
                 ->searchable()->bodyAttribute('text-center'),
-            // Column::make('Одобрено', 'is_moderated')
-            //     ->sortable()
-            //     ->searchable()->bodyAttribute('text-center'),
-            // Column::make('Old code', 'old_code')
-            //     ->sortable()
-            //     ->searchable(),
-            // Column::make('Old link', 'old_link')
-            //     ->sortable()
-            //     ->searchable(),
-            // Column::make('Фабрика', 'vendor_name'),
-            // Column::make('Ценовой сегмент', 'price_segment_name'),
-            // Column::make('Стиль', 'product_style_name'),
-            // Column::make('Предмет', 'product_type_name'),
-            // Column::make('Расположение', 'product_subtype_name'),
-            // Column::make('Создано', 'created_at')
-            //     ->sortable(),
+            
 
 
 
