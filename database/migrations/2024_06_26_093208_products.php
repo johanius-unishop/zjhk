@@ -20,8 +20,8 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug')->nullable();
             $table->string('article');
-            $table->text('short_description');
-            $table->text('body_description');
+            $table->text('short_description')->nullable();
+            $table->text('body_description')->nullable();
             $table->string('barcode')->nullable();
             $table->float('supplier_price')->nullable();
             $table->float('price')->nullable();
@@ -42,10 +42,10 @@ return new class extends Migration {
             $table->float('package_width')->nullable();
             $table->float('package_height')->nullable();
             $table->float('package_length')->nullable();
-            $table->foreignIdFor(model: Category::class);
-            $table->foreignIdFor(model: Vendor::class);
-            $table->foreignIdFor(model: ProductType::class);
-            $table->foreignIdFor(model: Currency::class);
+            $table->foreignIdFor(model: Category::class)->nullable();
+            $table->foreignIdFor(model: Vendor::class)->nullable();
+            $table->foreignIdFor(model: ProductType::class)->nullable();
+            $table->foreignIdFor(model: Currency::class)->nullable();
 
             $table->boolean('chip_dip')->default(0);
             $table->boolean('elec_ru')->default(0);
