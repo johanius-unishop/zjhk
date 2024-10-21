@@ -162,21 +162,17 @@ class Product extends Model implements HasMedia, Sitemapable
         $this->addMediaCollection('overviewInformation')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Обзорная информация
 
     }
-    public function type()
+    public function product_type()
     {
         return $this->belongsTo(ProductType::class, 'product_type_id');
-    }
-
-    public function kinds()
-    {
-        return $this->belongsTo(Product_kind::class, 'product_type_id');
     }
 
     public function properties()
     {
         return $this->hasMany(Property::class);
     }
- public function  product_property_values()
+    
+    public function  product_property_values()
     {
         return $this->hasMany(ProductPropertyValue::class);
     }
