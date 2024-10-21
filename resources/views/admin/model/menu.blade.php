@@ -26,7 +26,7 @@
                         <h4>Валюты</h4>
                     </div>
                     <div class="icon">
-                        <i class="fas fa-money"></i>
+                        <i class="fas fa-ruble-sign"></i>
                     </div>
                     <a href="{{ route('admin.currency.index') }}" class="small-box-footer">
                         Перейти <i class="fas fa-arrow-circle-right"></i>
