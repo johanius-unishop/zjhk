@@ -25,6 +25,7 @@ class ChangeInternalRateColumnOnCurrenciesTable extends Migration
      */
     public function down()
     {
+         
         // Обратная миграция должна вернуть поле к исходному типу
         Schema::table('currencies', function (Blueprint $table) {
             // Предполагая, что изначально поле было целым числом
