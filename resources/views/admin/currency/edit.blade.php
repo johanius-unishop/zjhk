@@ -11,7 +11,7 @@
 
 @section('content')
 
-@include('admin.blocks.error')
+<!-- @include('admin.blocks.error') -->
 
 <form action="{{ route('admin.currency.update', $currency->id) }}" method="POST">
 

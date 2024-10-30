@@ -53,7 +53,10 @@ final class CategoryTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name', function ($item) {
-                return $item->name . ' (' . $item->childrens_count . ')';
+                // Создаем ссылку с именем категории и количеством дочерних категорий
+                return '<a href="' . route('admin.category.show', ['category' => $item->id]) . '">'
+                    . $item->name . ' (' . $item->childrens_count . ')'
+                    . '</a>';
             })
             ->add('created_at');
     }
@@ -62,11 +65,10 @@ final class CategoryTable extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name'),
-
-            Column::make('Создано', 'created_at')
-                ->sortable()
+            Column::make('Наименование', 'name')
                 ->searchable(),
+            Column::make('Создано', 'created_at')
+                ->sortable(),
 
             Column::action('Действия'),
         ];

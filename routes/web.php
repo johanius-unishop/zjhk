@@ -188,3 +188,4 @@ require __DIR__ . '/admin-auth.php';
 //     $productKindProp->delete();
 //     return redirect()->route('product-kind-props.index');
 // })->name('product-kind-props.destroy');
+

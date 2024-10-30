@@ -50,19 +50,20 @@ final class CurrencyTable extends PowerGridComponent
 
     public function fields(): PowerGridFields
     {
-        return PowerGrid::fields()
-            ->add('id')
-            ->add('name')
-            ->add('charcode')
-            ->add('numcode')
-            ->add('internal_rate');
-
+    return PowerGrid::fields()
+        //->add('id')
+        ->add('name', function($value) {
+            return '<a href="' . route('admin.currency.edit', ['currency' => $value->id]) . '">' . $value->name . '</a>';
+        })
+        ->add('charcode')
+        ->add('numcode')
+        ->add('internal_rate');
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
+           // Column::make('Id', 'id'),
             Column::make('Наименование', 'name')->searchable(),
             Column::make('Символ', 'charcode')->searchable(),
             Column::make('Код', 'numcode')->searchable(),
@@ -105,14 +106,14 @@ final class CurrencyTable extends PowerGridComponent
     {
         return [
 
-            Button::add('view')
+           /* Button::add('view')
                 ->slot('<i class="fas fa-folder"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.currency.show', ['currency' => $row->id]),
             Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.currency.edit', ['currency' => $row->id]),
+                ->route('admin.currency.edit', ['currency' => $row->id]),*/
             Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')

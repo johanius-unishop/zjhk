@@ -54,7 +54,7 @@ class CurrencyController extends Controller
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
         $record = Currency::create($input);
 
-        session()->flash('success', 'Запись успешно создана');
+        session()->flash('success', 'Валюта успешно создана');
         if ($request->action == 'save-exit') {
             return redirect(route('admin.currency.index'));
         }

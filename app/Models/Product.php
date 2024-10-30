@@ -285,7 +285,7 @@ class Product extends Model implements HasMedia, Sitemapable
     protected function frontUrl(): Attribute
     {
         return new Attribute(
-             get: fn(): string => config(key: 'app.url') . "/items/" . $this->slug,
+             get: fn(): string => config(key: 'app.url') . "/product/" . $this->slug,
 
         );
     }

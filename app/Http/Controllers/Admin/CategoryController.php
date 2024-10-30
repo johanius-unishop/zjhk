@@ -50,33 +50,42 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        // dd($request->all());
-
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
 
-        $input = $request->all();
-        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
+        $input = $request->only(['name', 'parent_id', 'description']); // Убедитесь, что тут указаны все нужные поля
+        $input['published'] = $input['published'] ?? 0; // Устанавливаем published, если оно не пришло
 
+        $record = Category::create($input); // Создаем новую категорию
 
-        $record = Category::create($input);
+        // Обновляем SEO-данные
+        if ($record->seo) {
+            $record->seo->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'keywords' => $request->keywords,
+                'canonical_url' => $request->canonical_url,
+            ]);
+        } else {
+            // Если SEO еще не создано, создаем его
+            $record->seo()->create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'keywords' => $request->keywords,
+                'canonical_url' => $request->canonical_url,
+            ]);
+        }
 
-        $record->seo->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'keywords' => $request->keywords,
-            'canonical_url' => $request->canonical_url,
-        ]);
-
-        // Cache::forget('front_vendors_list');
-        Cache::forget('CategoriesAsTree');
+        Cache::forget('CategoriesAsTree'); // Очищаем кеш
         session()->flash('success', 'Запись успешно создана');
 
+        // Определяем дальнейшие действия
         if ($request->action == 'save-exit') {
             return redirect(route('admin.category.index'));
         }
-        return redirect(route('admin.category.edit', $record->id));
+
+        return redirect(route('admin.category.edit', $record->id)); // Возвращаемся на страницу редактирования
     }
 
     /**
@@ -93,15 +102,34 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Category $category)
+        {
+            // Получаем родительскую категорию
+            $parentCategory = Category::find($category->parent_id);
+        
+            // Проверка наличия SEO-данных вынесена в отдельный метод
+            $this->ensureSeoDataExists($category);
+        
+            // Получаем все категории в виде дерева
+            $categories = Category::getCategoriesAsTree();
+        
+            // Исключаем текущую категорию и её потомков из списка доступных родительских категорий
+            $categories = $categories->filter(function ($cat) use ($category) {
+                return $cat->id != $category->id && !$cat->isDescendantOrSelf($category);
+            });
+        
+            return view('admin.category.edit', [
+                'category' => $category,
+                'parentCategory' => $parentCategory,
+                'categories' => $categories
+            ]);
+        }
+
+    // Метод для проверки и добавления SEO-данных
+    protected function ensureSeoDataExists(Category $category)
     {
-        // Fix to seeded records
-        if ($category->seo->title== '') {
+        if ($category->seo->title == '') {
             $category->addSEO();
         }
-        $parentCategories = Category::getCategoriesAsTree();
-
-        return view('admin.category.edit', ['category' => $category, 'parentCategories' => $parentCategories]);
-
     }
 
     /**
@@ -109,10 +137,6 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-
-        // dd($request->all());
-
-
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
@@ -121,23 +145,14 @@ class CategoryController extends Controller
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
         $category->update($input);
 
-        // $category->seo->update([
-        //     'title' => $request->title,
-        //     'description' => $request->description,
-        //     'keywords' => $request->keywords,
-        //     'canonical_url' => $request->canonical_url,
-        // ]);
-
-
-        // dd($category->seo->count());
-
+        
         $category->seo->update([
             'title' => $request->title,
             'description' => $request->description,
             'keywords' => $request->keywords,
             'canonical_url' => $request->canonical_url,
         ]);
-        // Cache::forget('front_vendors_list');
+        
 
         Cache::forget('CategoriesAsTree');
         session()->flash('success', 'Запись успешно обновлена');
@@ -155,4 +170,5 @@ class CategoryController extends Controller
     {
         //
     }
+
 }

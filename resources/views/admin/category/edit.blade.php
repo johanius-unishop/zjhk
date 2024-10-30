@@ -47,7 +47,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
-                                        <label for="name">Название</label>
+                                        <label for="name">Название категории:</label>
                                         <input type="text" class="form-control" name="name" value="{{ @$category->name }}">
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -58,25 +58,22 @@
 
                             <div class=" row">
 
-                                <div class="col-12 mt-2">
-                                    <label for="parent_id" class="form-label">Категория</label>
-                                    <div class="input-group">
-                                        <select name="parent_id" id="parent_id" class="form-control">
-                                            <option value="">Корневая категория</option>
-                                            @foreach ($parentCategories as $category)
-                                            @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
-                                            ''])
-                                            @endforeach
-                                        </select>
-                                    </div>
+                            <div class="col-12 mt-2">
+                                <label for="parent_id" class="form-label">Родительская категория:</label>
+                                <div class="input-group">
+                                    <select name="parent_id" id="parent_id" class="form-control">
+                                        <option value="">-- Выберите родительскую категорию --</option>
+                                        @include('admin.partials.categories-tree', ['categories' => $categories, 'parentCategory' => $parentCategory])
+                                    </select>
                                 </div>
+                            </div>
 
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
 
-                                        <label for="slug">ЧПУ </label>
+                                        <label for="slug">Slug</label>
                                         <input type="text" class="form-control" name="slug" value="{{ @$category->slug }}">
                                         <div id="slugHelp" class="form-text">Заполняется автоматически. Ручное заполнение не желательно.</div>
 

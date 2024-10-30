@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
-                                        <label for="name">Название</label>
+                                        <label for="name">Название новой категории:</label>
                                         <input type="text" class="form-control" name="name" value="{{  old('name') }}">
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -47,15 +47,15 @@
 
                             <div class="row">
                                 <div class="col-12 mt-2">
-                                    <label for="parent" class="form-label">Parent</label>
+                                    <label for="parent_category" class="form-label">Родительская категория:</label>
                                     <div class="input-group">
-                                        <select name="parent_id" id="parent" class="form-control">
-                                            <option value="">Корневая категория</option>
+                                        <select name="parent_id" id="parent_category" class="form-control">
+                                            <option value="">-- Выберите родительскую категорию --</option>
                                             @foreach ($parentCategories as $category)
-                                            @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
-                                            ''])
+                                                @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' => ''])
                                             @endforeach
                                         </select>
+                                    </div>
                                     </div>
                                 </div>
                             </div>

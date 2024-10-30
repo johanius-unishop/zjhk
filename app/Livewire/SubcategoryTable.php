@@ -56,10 +56,20 @@ final class SubcategoryTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name', function ($dish) {
-                return $dish->name . ' (' . $dish->childrens_count . ')';
+            ->add('name', function ($item) {
+                // Создаем ссылку с именем категории и количеством дочерних категорий
+                return '<a href="' . route('admin.category.show', ['category' => $item->id]) . '">'
+                    . $item->name . ' (' . $item->childrens_count . ')'
+                    . '</a>';
             })
-            ->add('created_at');
+            ->add('published', function ($item) {
+                if ($item->published == 1) {
+                    return '<input type="checkbox" checked>';
+                } else {
+                    return '<input type="checkbox" >';
+                }
+            });
+            //->add('created_at');
     }
 
     public function columns(): array
@@ -67,12 +77,13 @@ final class SubcategoryTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name')
-                ->sortable()
+            //    ->sortable()
                 ->searchable(),
+            Column::make('Опубликовано', 'published'),
 
-            Column::make('Создано', 'created_at')
-                ->sortable()
-                ->searchable(),
+            //Column::make('Создано', 'created_at')
+            //    ->sortable()
+            //    ->searchable(),
             Column::action('Действия'),
         ];
     }

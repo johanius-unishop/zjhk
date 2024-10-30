@@ -39,7 +39,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 27,
                 'name' => 'Контактные вставки',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -55,7 +55,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 28,
                 'name' => 'Корпусы',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -71,7 +71,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 29,
                 'name' => 'Обжимные контакты',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -87,7 +87,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 30,
                 'name' => 'Аксессуары',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -103,7 +103,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 31,
                 'name' => 'Сальники',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -119,7 +119,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 33,
                 'name' => 'Серия HA',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -135,7 +135,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 34,
                 'name' => 'Серия HE',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -151,7 +151,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 35,
                 'name' => 'Серия HEE',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -167,7 +167,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 36,
                 'name' => 'Серия HD',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -183,7 +183,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 37,
                 'name' => 'Серия HDD',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -199,7 +199,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 38,
                 'name' => 'Серия HSB',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -215,7 +215,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 39,
                 'name' => 'Серия HK',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -231,7 +231,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 40,
                 'name' => 'Серия HEAV',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -247,7 +247,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 41,
                 'name' => 'Серия HM',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -263,7 +263,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 42,
                 'name' => 'Серия HQ',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -279,7 +279,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 43,
                 'name' => 'Типоразмер 3A - пластик',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -295,7 +295,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 44,
                 'name' => 'Типоразмер 3A - металл',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -311,7 +311,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 45,
                 'name' => 'Типоразмер 10A - металл',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -327,7 +327,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 46,
                 'name' => 'Типоразмер 16A - металл',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -343,7 +343,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 47,
                 'name' => 'Типоразмер 32A - металл',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -359,7 +359,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 48,
                 'name' => 'Типоразмер 6B - металл',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -375,7 +375,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 49,
                 'name' => 'Типоразмер 10B - металл',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -391,7 +391,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 50,
                 'name' => 'Типоразмер 16B - металл',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -407,7 +407,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 51,
                 'name' => 'Типоразмер 24B - металл',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -423,7 +423,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 52,
                 'name' => 'Типоразмер 32B - металл',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -439,7 +439,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 53,
                 'name' => 'Типоразмер 48B - металл',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -455,7 +455,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 54,
                 'name' => 'Обжимные контакты - 5 Ампер',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -471,7 +471,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 55,
                 'name' => 'Обжимные контакты - 10 Ампер',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -487,7 +487,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 56,
                 'name' => 'Обжимные контакты - 16 Ампер',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -503,7 +503,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 57,
                 'name' => 'Обжимные контакты - 40 Ампер',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -519,7 +519,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 58,
                 'name' => 'Обжимные контакты - 70 Ампер',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -535,7 +535,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 59,
                 'name' => 'Обжимные контакты - 100 Ампер',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -551,7 +551,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 60,
                 'name' => 'Обжимные контакты - 200 Ампер',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -567,7 +567,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 61,
                 'name' => 'Пластиковые сальники',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -583,7 +583,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 62,
                 'name' => 'Металлические сальники',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -599,7 +599,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 64,
                 'name' => 'Металлические контргайки',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -615,7 +615,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 65,
                 'name' => 'Пластиковые переходники',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -631,7 +631,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 66,
                 'name' => 'Металлические переходники',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -647,7 +647,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 67,
                 'name' => 'Футорки пластиковые',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -663,7 +663,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 68,
                 'name' => 'Футорки металлические',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -679,7 +679,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 69,
                 'name' => 'Пластиковые заглушки круглые',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -695,7 +695,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 70,
                 'name' => 'Металлические заглушки шестигранные',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -711,7 +711,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 71,
             'name' => 'Пластиковые муфты для металлорукавов (быстрого соединения)',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -727,7 +727,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 72,
                 'name' => 'Муфты для металлорукавов металлические прямые',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -743,7 +743,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 73,
                 'name' => 'Металлические сальники для многожильного кабеля',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -759,7 +759,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 74,
                 'name' => 'Металлические сальники с заземлением EMC',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -775,7 +775,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 75,
             'name' => 'Сальники с внешней разгрузкой от натяжения (с двойной фиксацией)',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -791,7 +791,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 79,
             'name' => 'Полукомплекты (кожух + вставка)',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -807,7 +807,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 89,
                 'name' => 'Комплекты промышленных разъемов',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -823,7 +823,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 90,
                 'name' => 'Комплекты контактных вставок',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -839,7 +839,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 91,
                 'name' => 'Полукомплекты серии HA',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -855,7 +855,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 92,
                 'name' => 'Полукомплекты на основе контактных вставок HA-003',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -871,7 +871,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 93,
                 'name' => 'Полукомплекты на основе контактных вставок HA-004',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -887,7 +887,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 94,
                 'name' => 'Полукомплекты на основе контактных вставок HA-010',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -903,7 +903,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 95,
                 'name' => 'Полукомплекты на основе контактных вставок HA-016',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -919,7 +919,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 96,
                 'name' => 'Полукомплекты на основе контактных вставок HA-032',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -935,7 +935,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 97,
                 'name' => 'Полукомплекты серии HE',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -951,7 +951,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 98,
                 'name' => 'Полукомплекты на основе контактных вставок HE-006',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -967,7 +967,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 99,
                 'name' => 'Полукомплекты на основе контактных вставок HE-010',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -983,7 +983,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 100,
                 'name' => 'Полукомплекты на основе контактных вставок HE-016',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -999,7 +999,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 101,
                 'name' => 'Полукомплекты на основе контактных вставок HE-024',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1015,7 +1015,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 102,
                 'name' => 'Полукомплекты на основе контактных вставок HE-032',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1031,7 +1031,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 103,
                 'name' => 'Полукомплекты на основе контактных вставок HE-048',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1047,7 +1047,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 130,
                 'name' => 'Полукомплекты серии HSB',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1063,7 +1063,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 131,
                 'name' => 'Полукомплекты на основе контактных вставок HSBS-004',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1079,7 +1079,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 132,
                 'name' => 'Полукомплекты на основе контактных вставок HSB-004',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1095,7 +1095,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 133,
                 'name' => 'Полукомплекты на основе контактных вставок HSB-006',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1111,7 +1111,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 134,
                 'name' => 'Полукомплекты на основе контактных вставок HSB-012',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1127,7 +1127,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 135,
                 'name' => 'Полукомплекты серии HK',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1143,7 +1143,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 138,
                 'name' => 'Полукомплекты на основе контактных вставок HK-004/0',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1159,7 +1159,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 139,
                 'name' => 'Полукомплекты на основе контактных вставок HK-004/2',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1175,7 +1175,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 140,
                 'name' => 'Полукомплекты на основе контактных вставок HWK-006/6',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1191,7 +1191,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 144,
                 'name' => 'Полукомплекты на основе контактных вставок HK-006/6',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1207,7 +1207,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 145,
                 'name' => 'Полукомплекты на основе контактных вставок HK-008/0',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1223,7 +1223,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 146,
                 'name' => 'Полукомплекты на основе контактных вставок HK-004/8',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1239,7 +1239,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 155,
                 'name' => 'Комплекты серии HA',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1255,7 +1255,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 156,
                 'name' => 'Комплекты серии HE',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1271,7 +1271,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 157,
                 'name' => 'Комплекты серии HSB',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1287,7 +1287,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 158,
                 'name' => 'Комплекты серии HK',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1303,7 +1303,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 159,
                 'name' => 'Комплекты HA-003',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1319,7 +1319,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 160,
                 'name' => 'Комплекты HA-004',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1335,7 +1335,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 161,
                 'name' => 'Комплекты HA-010',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1351,7 +1351,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 162,
                 'name' => 'Комплекты HA-016',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1367,7 +1367,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 163,
                 'name' => 'Комплекты HA-032',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1383,7 +1383,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 164,
                 'name' => 'Комплекты HE-006',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1399,7 +1399,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 165,
                 'name' => 'Комплекты HE-010',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1415,7 +1415,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 166,
                 'name' => 'Комплекты HE-016',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1431,7 +1431,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 167,
                 'name' => 'Комплекты HE-024',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1447,7 +1447,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 168,
                 'name' => 'Комплекты HE-032',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1463,7 +1463,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 169,
                 'name' => 'Комплекты HE-048',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1479,7 +1479,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 170,
                 'name' => 'Комплекты HSBS-004',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1495,7 +1495,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 171,
                 'name' => 'Комплекты HSB-004',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1511,7 +1511,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 172,
                 'name' => 'Комплекты HSB-006',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1527,7 +1527,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 173,
                 'name' => 'Комплекты HSB-012',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1543,7 +1543,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 174,
                 'name' => 'Комплекты HK-004/0',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1559,7 +1559,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 175,
                 'name' => 'Комплекты HK-004/2',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1575,7 +1575,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 176,
                 'name' => 'Комплекты HWK-006/6',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1591,7 +1591,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 177,
                 'name' => 'Комплекты HK-006/6',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1607,7 +1607,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 178,
                 'name' => 'Комплекты HK-008/0',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1623,7 +1623,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 179,
                 'name' => 'Комплекты HK-004/8',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1639,7 +1639,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 180,
                 'name' => 'Пластиковые контргайки',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1655,7 +1655,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 181,
                 'name' => 'Система кодирования',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1671,7 +1671,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 182,
                 'name' => 'Крепежные винты',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1687,7 +1687,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 183,
                 'name' => 'Монтажные и стыковочные рамки',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1703,7 +1703,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 184,
                 'name' => 'Инструмент для обжима',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1719,7 +1719,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 185,
                 'name' => 'Инструмент для установки и извлечения контактов',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,
@@ -1735,7 +1735,7 @@ class CategoriesTableSeeder extends Seeder
             array (
                 'id' => 186,
                 'name' => 'Полукомплекты RJ45',
-                'root_id' => NULL,
+                'root_id' => 26,
                 'description' => '',
                 'custom_title' => '',
                 'order_column' => 0,

@@ -31,7 +31,7 @@ class Category extends Model implements Sortable, HasMedia
     protected $fillable = [
         'name',
         'description',
-        'root_id',
+        'parent_id',
         'published',
         'slug',
         'custom_title',
@@ -53,8 +53,8 @@ class Category extends Model implements Sortable, HasMedia
     public function getSearchableAttributes(): array
     {
         return [
-            'name' => 5, // Model attribute
-            'body_description' => 2,
+            'name' => 10, // Model attribute
+            'description' => 5,
 
         ];
     }
@@ -91,14 +91,25 @@ class Category extends Model implements Sortable, HasMedia
         ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb');
 
     }
+    
+    
+    //
+    // Связь с родительской категорией
+    //
+    // @return BelongsTo
+    //
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id');
     }
-
+    //
+    // Подкатегории данной категории
+    //
+    // @return HasMany
+    //
     public function childrens()
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany(Category::class, 'parent_id', 'id');
     }
 
     public function products()

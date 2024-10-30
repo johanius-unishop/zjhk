@@ -21,6 +21,9 @@
     <a class="btn .btn-lg btn-success " href="{{ route('admin.category.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>
 </div>
 @stop
+    
+
+
 
 {{-- Push extra CSS --}}
 

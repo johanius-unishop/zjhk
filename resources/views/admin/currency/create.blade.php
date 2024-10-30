@@ -40,22 +40,31 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-lg-6 col-12">
+                                    <div class="form-group">
+                                        <label for="charcode">Символ</label>
+                                        <input type="text" class="form-control" name="charcode" value="{{  old('charcode')  }}">
+                                        @error('charcode')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
-                                        <label for="charcode">Символ</label>
-                                        <input type="text" class="form-control" name="charcode" value="{{  old('charcode') }}">
-                                        @error('charcode')
+                                        <label for="charcode">Код</label>
+                                        <input type="text" class="form-control" name="numcode" value="{{  old('numcode') }}">
+                                        @error('numcode')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
-                                        <label for="numcode">Код</label>
-                                        <input type="text" class="form-control" name="numcode" value="{{  old('numcode') }}">
-                                        @error('numcode')
+                                        <label for="numcode">Внутренний курс</label>
+                                        <input type="text" class="form-control" name="internal_rate" value="{{  old('internal_rate') }}">
+                                        @error('internal_rate')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
