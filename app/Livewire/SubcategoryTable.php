@@ -25,26 +25,24 @@ final class SubcategoryTable extends PowerGridComponent
     public $delete_id;
     public function setUp(): array
     {
-        $this->showCheckBox();
+        //$this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+         //   Exportable::make('export')
+         //       ->striped()
+         //       ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput()->withoutLoading(),
             Footer::make()
-                // ->showPerPage()
+                ->showPerPage()
                 ->showRecordCount(),
         ];
     }
 
     public function datasource(): Builder
     {
-        // return Category::query()->descendantsOf( $this->parent_category)->toFlatTree() ;
-        // $result = Category::whereDescendantOf($node)->get();
-        return Category::query()->where('parent_id', $this->parent_category)->withCount('childrens');
-
-
+        return Category::query()
+            ->where('parent_id', $this->parent_category)
+            ->withCount('childrens');
     }
 
     public function relationSearch(): array
@@ -63,13 +61,8 @@ final class SubcategoryTable extends PowerGridComponent
                     . '</a>';
             })
             ->add('published', function ($item) {
-                if ($item->published == 1) {
-                    return '<input type="checkbox" checked>';
-                } else {
-                    return '<input type="checkbox" >';
-                }
+                return '<input type="checkbox"' . ($item->published ? ' checked' : '') . '>';
             });
-            //->add('created_at');
     }
 
     public function columns(): array
@@ -77,13 +70,8 @@ final class SubcategoryTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Наименование', 'name')
-            //    ->sortable()
                 ->searchable(),
             Column::make('Опубликовано', 'published'),
-
-            //Column::make('Создано', 'created_at')
-            //    ->sortable()
-            //    ->searchable(),
             Column::action('Действия'),
         ];
     }
@@ -99,33 +87,59 @@ final class SubcategoryTable extends PowerGridComponent
     public function post_delete($rowId): void
     {
         $this->delete_id = $rowId;
-        $this->confirm('Вы действительно хотите удалить эту запись?', [
-            'onConfirmed' => 'confirmed',
-            'showCancelButton' => true,
-            'cancelButtonText' => 'Нет',
-        ]);
+    
+        // Получаем категорию для проверки
+        $category = Category::find($this->delete_id);
+    
+        // Проверяем, является ли категория родительской для других категорий
+        $childrenCount = $category->children()->count();
+    
+        // Проверяем, содержит ли категория товары
+        $productCount = $category->products()->count();
+    
+        //if ($childrenCount > 0/* || $hasProducts*/) {
+            // Категория не пустая, выводим предупреждение
+            $this->confirm('Категория не пустая'.$productCount.'', [
+                'onConfirmed' => 'confirmed',
+                'showCancelButton' => true,
+                'cancelButtonText' => 'Нет',
+            ]);
+            
+
+            $this->dispatch('notify', message: 'Нельзя удалить категорию, так как она содержит товары или является родительской для других категорий.', notify: 'warning');
+        /*} else {
+            // Категория пустая, подтверждаем удаление
+            $this->confirm('Вы действительно хотите удалить эту запись?', [
+                'onConfirmed' => 'confirmed',
+                'showCancelButton' => true,
+                'cancelButtonText' => 'Нет',
+            ]);
+        }*/
     }
 
     #[\Livewire\Attributes\On('confirmed')]
     public function confirmed()
     {
-        // TODO Удаление
-        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
+        // Удаляем категорию
+        $category = Category::find($this->delete_id);
+        $category->delete();
 
+        // Выводим уведомление об успешной операции
+        $this->dispatch('toast', message: 'Категория удалена.', notify: 'success');
     }
+    
     public function actions(Category $row): array
     {
         return [
-
-            Button::add('view')
+            Button::add('Просмотр')
                 ->slot('<i class="fas fa-folder"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.category.show', ['category' => $row->id]),
-            Button::add('view')
+            Button::add('Редактировать')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.category.edit', ['category' => $row->id]),
-            Button::add('Delete')
+            Button::add('Удалить')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
                 ->dispatch('post_delete', ['rowId' => $row->id]),

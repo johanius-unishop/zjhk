@@ -7,6 +7,7 @@ use App\Models\ProductSubtype;
 use Illuminate\Console\Command;
 use App\Models\Blog;
 use App\Models\News;
+use App\Models\Article;
 use App\Models\Portfolio;
 use App\Models\Vendor;
 use App\Models\Product;
@@ -42,46 +43,28 @@ class GenerateSitemap extends Command
     public function handle()
     {
         $this->line('Генерация файла sitemap начата');
-        $start = microtime(true);
+        $startTime = microtime(true);
         Log::info('Генерация файла sitemap начата');
-        $path = public_path('sitemap.xml');
 
+        $sitemapPath = public_path('sitemap.xml');
 
-        // $count = Product::query()
-        //     ->where('active', true)
-        //     ->count();
-        // $chunk = 10000;
-        // $index = 1;
-        // for ($i = 0; $i < $count; ) {
-        //     $lazy = Product::query()
-        //         ->where('active', true)
-        //         ->lazy()
-        //         ->skip($i)
-        //         ->take($chunk);
-
-        //     $i += $chunk;
-        //     Sitemap::create()
-        //         ->add($lazy)
-        //         ->writeToFile(public_path("products_$index.xml"));
-        //         // ->writeToFile(public_path('sitemap.xml'));
-
-        //     $index++;
-        // }
+        $news = News::published()->get(['id', 'slug', 'updated_at']);
+        $articles = Article::published()->get(['id', 'slug', 'updated_at']);
+        $products = Product::published()->get(['id', 'slug', 'updated_at']);
 
         Sitemap::create()
-            ->add(News::published()->get(['id',   'slug', 'updated_at']))
-            // ->add(Blog::all(['id', 'old_link', 'slug', 'updated_at']))
-            // ->add(Portfolio::all(['id', 'old_link', 'slug', 'updated_at']))
-            // ->add(Vendor::all(['id', 'old_link', 'slug', 'updated_at']))
-              ->add(Product::published()->get(['id',   'slug', 'updated_at']))
-            // ->add(ProductType::all(['id', 'old_link', 'slug', 'updated_at']))
-            // ->add(ProductSubtype::all(['id', 'old_link', 'slug', 'updated_at']))
-            // ->add(Filter::all(['id', 'old_link', 'slug', 'updated_at']))
-            ->writeToFile(public_path('sitemap.xml'));
+            ->add($news)
+            ->add($articles)
+            ->add($products)
+            ->writeToFile($sitemapPath);
+
+        $executionTime = round(microtime(true) - $startTime, 4);
+
         $this->line('Генерация файла sitemap закончена');
-        $this->line('Время выполнения скрипта: ' . round(microtime(true) - $start, 4) . ' сек.');
+        $this->line("Время выполнения скрипта: {$executionTime} сек.");
+
         Log::info('Генерация файла sitemap закончена');
-        Log::info('Время выполнения скрипта: ' . round(microtime(true) - $start, 4) . ' сек.');
+        Log::info("Время выполнения скрипта: {$executionTime} сек.");
     }
 
 }
