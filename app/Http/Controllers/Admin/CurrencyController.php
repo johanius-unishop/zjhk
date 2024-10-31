@@ -44,14 +44,12 @@ class CurrencyController extends Controller
      */
     public function store(StoreCurrencyRequest $request)
     {
-
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
 
 
         $input = $request->all();
-        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
         $record = Currency::create($input);
 
         session()->flash('success', 'Валюта успешно создана');
