@@ -11,8 +11,10 @@ class Currency extends Model
     protected $fillable = [
         'name',
         'charcode',
-        'numcode',
+        'cb_rate',
         'internal_rate',
+        'auto_calc_cbrf',
+        'auto_multiplier'
 
     ];
 }

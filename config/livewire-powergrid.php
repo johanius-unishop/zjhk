@@ -11,8 +11,8 @@ return [
     | Configure here the theme of your choice.
     */
 
-   //'theme' => \PowerComponents\LivewirePowerGrid\Themes\Tailwind::class,
-     'theme' => \PowerComponents\LivewirePowerGrid\Themes\Bootstrap5::class,
+    //'theme' => \PowerComponents\LivewirePowerGrid\Themes\Tailwind::class,
+    'theme' => \PowerComponents\LivewirePowerGrid\Themes\Bootstrap5::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -86,6 +86,7 @@ return [
     |
     | PowerGrid supports persisting of the filters, columns and sorting.
     | 'session': persist in the session.
+    | 'cache': persist with cache.
     | 'cookies': persist with cookies (default).
     |
     */
