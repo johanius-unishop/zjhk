@@ -27,22 +27,21 @@
                     </ul>
                 </div>
                 <div class="card-body">
-
                     <div class="tab-content" id="custom-tabs-four-tabContent">
                         <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                             <div class="row">
-                                <div class="col-lg-6 col-12">
+                                <div class="col-lg-6 col-12 mb-3">
                                     <div class="form-group">
-                                        <label for="name">Название</label>
+                                        <label for="name">Название новой валюты</label>
                                         <input type="text" class="form-control" name="name" value="{{  old('name') }}">
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-12">
+                                <div class="col-lg-6 col-12 mb-3">
                                     <div class="form-group">
-                                        <label for="charcode">Символ</label>
+                                        <label for="charcode">Символьное обозначение</label>
                                         <input type="text" class="form-control" name="charcode" value="{{  old('charcode')  }}">
                                         @error('charcode')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -51,27 +50,33 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6 col-12">
+                                <div class="col-lg-6 col-12 mb-3">
                                     <div class="form-group">
-                                        <label for="charcode">Код</label>
-                                        <input type="text" class="form-control" name="numcode" value="{{  old('numcode') }}">
-                                        @error('numcode')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-12">
-                                    <div class="form-group">
-                                        <label for="numcode">Внутренний курс</label>
+                                        <label for="internal_rate">Внутренний курс валюты</label>
                                         <input type="text" class="form-control" name="internal_rate" value="{{  old('internal_rate') }}">
                                         @error('internal_rate')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-lg-6 col-12 mb-3">
+                                    <div class="form-group">
+                                        <label for="auto_multiplier">Множитель для расчета внутреннего курса</label>
+                                        <input type="text" class="form-control" name="auto_multiplier" value="{{  old('auto_multiplier') }}">
+                                        @error('auto_multiplier')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
-
-
+                            <div class="row">
+                                <div class="col-lg-12 col-12 mb-3">
+                                    <div class="form-check form-switch">
+                                        <input type="checkbox" class="form-check-input" name="auto_calc_cbrf" id="auto_calc_cbrf" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$currency->auto_calc_cbrf ? 'checked' : '' !!}>
+                                        <label class="form-check-label" for="auto_calc_cbrf">Автоматический расчет внутреннего курса</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

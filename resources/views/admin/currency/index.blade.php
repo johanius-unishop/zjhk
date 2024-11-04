@@ -2,9 +2,9 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Валюты')
+@section('title', 'Валюты системы')
 @section('content_header')
-<h1>Валюты</h1>
+<h1>Валюты системы</h1>
 @stop
 
 {{-- Content body: main page content --}}

@@ -57,6 +57,13 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
+            'pool' => [
+                'size' => 10,
+                'persistent' => false,
+                'strict' => true,
+                'lazy' => true,
+                'generator' => 'MySqlPoolGenerator',
+            ],
         ],
 
         'mariadb' => [

@@ -47,9 +47,11 @@ class CurrencyController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
+        
 
 
         $input = $request->all();
+        $request->filled('auto_calc_cbrf') ? $input['auto_calc_cbrf'] = true : $input['auto_calc_cbrf'] = false;
         $record = Currency::create($input);
 
         session()->flash('success', 'Валюта успешно создана');
