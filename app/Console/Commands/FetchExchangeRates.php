@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Exchange_rate;
+use App\Models\Currency;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -32,32 +32,31 @@ class FetchExchangeRates extends Command
         $url = 'https://www.cbr.ru/scripts/XML_daily.asp'; // URL of the XML file
         $xml = simplexml_load_file($url);
 
-        $exchangeRates = [];
-        foreach ($xml->Valute as $valute) {
-            $charCode = (string) $valute->CharCode;
-            $nominal = (int) $valute->Nominal;
-            $value = (float)str_replace(',', '.', substr($valute->Value, 0, strpos($valute->Value, '.') + 5)); // Округляем до сотых
+        $currenciesDB = Currency::all();
 
-            switch ($charCode) {
-                case 'EUR':
-                    $exchangeRates['eur_rate'] = $value / $nominal;
-                    break;
-                case 'USD':
-                    $exchangeRates['usd_rate'] = $value / $nominal;
-                    break;
-                case 'GBP':
-                    $exchangeRates['gbp_rate'] = $value / $nominal;
-                    break;
-                case 'CNY':
-                    $exchangeRates['cny_rate'] = $value / $nominal;
-                    break;
-                case 'TRY':
-                    $exchangeRates['try_rate'] = round($value / $nominal, 2); // Округляем до сотых и делим на 10
-                    break;
+            foreach ($xml->Valute as $valute) {
+                $charCode = (string)$valute->CharCode;
+                $nominal = (int)$valute->Nominal;
+                $value = (float)str_replace(',', '.', substr($valute->Value, 0, strpos($valute->Value, '.') + 5));
+                
+                foreach ($currenciesDB as $currencyDB){
+                // Проверяем наличие текущего charCode в списке из базы данных
+                    if ($charCode === $currencyDB->charcode) {
+                        // Обновление курса в базе данных
+                        $cb_rate = $value / $nominal;
+                        DB::table('currencies')
+                            ->where('id', $currencyDB->id)
+                            ->update(['cb_rate' => $cb_rate]);
+                        if ($currencyDB->auto_calc_cbrf === 1){
+                            $internal_rate = round($cb_rate * $currencyDB->auto_multiplier,2);
+                            DB::table('currencies')
+                                ->where('id', $currencyDB->id)
+                                ->update(['internal_rate' => $internal_rate]);
+                        }
+                    }
+                    
+                }
             }
-        }
-
-// Создаем новую запись
-        $exchangeRateSDB = Exchange_rate::create($exchangeRates);
+        $this->info('Курс валют успешно обновлен.');
     }
 }

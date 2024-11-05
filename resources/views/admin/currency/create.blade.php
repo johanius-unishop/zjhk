@@ -83,7 +83,7 @@
             </div>
             <div class=" py-3 form-row justify-content-center">
                 <a class="btn   btn-success " href="{{ route('admin.currency.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a> &nbsp;
-                <button type="submit" class="btn btn-primary">Сохранить</button> &nbsp;
+                
                 <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и
                     закрыть</button>
             </div>

@@ -58,12 +58,12 @@ class CurrencyController extends Controller
         if ($request->action == 'save-exit') {
             return redirect(route('admin.currency.index'));
         }
-        return redirect(route('admin.currency.edit', $record->id));
+        
     }
 
     /**
      * Display the specified resource.
-     */
+     
     public function show(Currency $currency)
     {
 
@@ -73,10 +73,11 @@ class CurrencyController extends Controller
         return view('admin.currency.show', ['currency' => $currency]);
 
     }
+        */
 
     /**
      * Show the form for editing the specified resource.
-     */
+     
     public function edit(Currency $currency)
     {
         if (!Gate::allows('manage content')) {
@@ -85,10 +86,11 @@ class CurrencyController extends Controller
         return view('admin.currency.edit', ['currency' => $currency]);
 
     }
+        */
 
     /**
      * Update the specified resource in storage.
-     */
+     
     public function update(UpdateCurrencyRequest $request, Currency $currency)
     {
         if (!Gate::allows('manage content')) {
@@ -105,6 +107,6 @@ class CurrencyController extends Controller
         }
         return redirect(route('admin.currency.edit', $currency->id));
     }
-
+*/
 
 }
