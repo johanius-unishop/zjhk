@@ -4,7 +4,7 @@
 
 @section('title', 'Тип товара')
 @section('content_header')
-<h1>Тип товара "{{ $parent_category->name }}"</h1>
+<h1>Тип товара: {{ $parent_type->name }}</h1>
 @stop
 
 {{-- Content body: main page content --}}
@@ -33,24 +33,24 @@
                         {{-- <div class="tab-content" id="custom-tabs-four-tabContent">
                             <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab"> --}}
                         <div class=" py-3 form-row  ">
-                            <a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_category) }}" role="button">Добавить характеристику</a>
+                            <a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_type) }}" role="button">Добавить характеристику</a>
                         </div>
-                        <livewire:product-type-property-table :parent_category="$parent_category->id" />
+                        <livewire:product-type-property-table :parent_type="$parent_type->id" />
                         {{-- </div>
                         </div> --}}
                     </div>
                     <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
                         <div class=" py-3 form-row  ">
-                            <a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_category) }}" role="button">Добавить тип </a>
+                            <a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_type) }}" role="button">Добавить тип </a>
                         </div>
-                        <livewire:related-product-type-component :parent_category="$parent_category->id" />
+                        <livewire:related-product-type-component :parent_type="$parent_type->id" />
 
                     </div>
 
 
 
                     <div class="tab-pane fade" id="custom-tabs-four-composite" role="tabpanel" aria-labelledby="custom-tabs-four-composite-tab">
-                        {{-- <livewire:product-type-composite-table :parent_category="$parent_category->id" /> --}}
+                        {{-- <livewire:product-type-composite-table :parent_type="$parent_type->id" /> --}}
 
 
                     </div>
@@ -82,4 +82,6 @@
 
 {{-- Push extra scripts --}}
 @push('js')
+@livewireScripts
+<script src="{{ asset('js/powergrid.js') }}"></script>
 @endpush

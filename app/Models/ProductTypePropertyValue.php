@@ -10,7 +10,7 @@ class ProductTypePropertyValue extends Model
 {
     use HasFactory;
     use HasSearch;
-    // protected $table = 'product_type_property_values';
+    protected $table = 'product_type_property_values';
 
     protected $fillable = [
         'value',
@@ -29,8 +29,17 @@ class ProductTypePropertyValue extends Model
         ];
     }
 
+    // Связь со свойством
     public function productTypeProperty()
     {
         return $this->belongsTo(ProductTypeProperty::class, 'product_type_property_id');
+    }
+
+    // Связь с продуктом через промежуточную таблицу
+    public function productPropertyValues() {
+        return $this->hasOneThrough(
+            Product::class,
+            ProductPropertyValue::class
+        );
     }
 }

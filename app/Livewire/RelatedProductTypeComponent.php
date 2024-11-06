@@ -10,17 +10,17 @@ class RelatedProductTypeComponent extends Component
 {
     use LivewireAlert;
 
-    public string $parent_category;
+    public string $parent_type;
     public $delete_id;
     public $property_id;
     public $relatedProductTypes;
     public $name = '';
     public $isDisabled = false;
-    public function mount($parent_category = null)
+    public function mount($parent_type = null)
     {
 
-        $this->parent_category     = $parent_category;
-        $this->relatedProductTypes = RelatedProductType::ordered()->where('product_type_id', $this->parent_category)->get(['id', 'name', 'order_column']);
+        $this->parent_type     = $parent_type;
+        $this->relatedProductTypes = RelatedProductType::ordered()->where('product_type_id', $this->parent_type)->get(['id', 'name', 'order_column']);
     }
 
 
@@ -29,7 +29,7 @@ class RelatedProductTypeComponent extends Component
         try {
             RelatedProductType::create([
                 'name' => $this->name,
-                'product_type_id' => $this->parent_category,
+                'product_type_id' => $this->parent_type,
             ]);
             $this->dispatch('toast', message: 'Запись успешно добавлена.', notify: 'success');
         }

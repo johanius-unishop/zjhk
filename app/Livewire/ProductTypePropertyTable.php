@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\ProductTypeProperty;
+use App\Models\ProductTypePropepertyValue;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -17,12 +18,14 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 final class ProductTypePropertyTable extends PowerGridComponent
 {
 
     use LivewireAlert;
-    public string $parent_category;
+    public string $parent_type;
+    public array $name;
     public $delete_id;
     public $property_id;
     public function setUp(): array
@@ -36,8 +39,10 @@ final class ProductTypePropertyTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        // return ProductTypeProperty::query();->withCount('childrens')        return ProductTypeProperty::query()->where('product_type_id', operator: $this->parent_category)->ordered();
-        return ProductTypeProperty::query()->where(column: 'product_type_id', operator: $this->parent_category)->withCount('values') ->orderBy('order_column');
+        return ProductTypeProperty::query()
+            ->where('product_type_id', '=', $this->parent_type)
+            ->withCount('productTypePropertyValues')
+            ->orderBy('order_column');
     }
 
     public function relationSearch(): array
@@ -48,20 +53,21 @@ final class ProductTypePropertyTable extends PowerGridComponent
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('id')
-            ->add('name', function ($item) {
-                return $item->name . ' (' . $item->values_count . ')';
-            })
-            ->add('created_at');
+            ->add('order_column')
+            ->add('name')
+            ->add('section')
+            ->add('product_type_property_values_count');;
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
-            Column::make('Наименование', 'name'),
-            Column::make('Создано', 'created_at'),
-
+            Column::make('Порядок вывода', 'order_column'),
+            Column::make('Название харктеристики/секции', 'name')
+                ->editOnClick(),
+            Column::make('Является секцией', 'section')
+                ->toggleable(),
+                Column::make('Количество вариантов значений', 'product_type_property_values_count'),
             Column::action('Действия'),
         ];
     }
@@ -138,10 +144,10 @@ final class ProductTypePropertyTable extends PowerGridComponent
                 ->class('btn btn-primary')
                 ->route('admin.product_type_property.show', ['product_type_property' => $row->id]),
 
-            Button::add('view')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.product_type_property.edit', ['product_type_property' => $row->id]),
+            //Button::add('view')
+            //    ->slot('<i class="fas fa-edit"></i>')
+            //    ->class('btn btn-primary')
+            //    ->route('admin.product_type_property.edit', ['product_type_property' => $row->id]),
             Button::add('up')
                 ->slot('<i class="fas fa-arrow-up"></i>')
                 ->class('btn btn-success')
@@ -157,5 +163,48 @@ final class ProductTypePropertyTable extends PowerGridComponent
         ];
     }
 
+    protected function rules()
+    {
+        return [
+            'name.*' => [
+                'required',
+            ],
+        ];
+    }
+
+    protected function validationAttributes()
+    {
+        return [
+            'name.*'       => 'Название характеристики',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'name.*.required'     => 'Название характеристики должно быть заполнено',
+        ];
+    }
+
+    public function onUpdatedEditable(int|string $id, string $field, string $value): void
+    {
+        $this->withValidator(function (\Illuminate\Validation\Validator $validator) use ($id, $field) {
+            if ($validator->errors()->isNotEmpty()) {
+                $this->dispatch('toggle-' . $field . '-' . $id);
+            }
+        })->validate();
+    
+        $updated = ProductTypeProperty::query()->find($id)->update([
+            $field => $value,
+        ]);
+    }
+
+    public function onUpdatedToggleable(string|int $id, string $field, string $value): void
+    {
+        ProductTypeProperty::query()->find($id)->update([
+            $field => e($value),
+        ]);
+        $this->skipRender();
+    }
 
 }

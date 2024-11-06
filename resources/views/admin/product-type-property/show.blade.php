@@ -4,13 +4,13 @@
 
 @section('title', 'Тип товара')
 @section('content_header')
-<h1>Тип товара "{{ $productType->name }}"</h1>
-<h2> Характеристика типа товара "{{ $productTypeProperty->name }}"</h2>
+<h1>Тип товара "{{ $productType->name }}", ID: {{ $productType->id }}</h1>
+<h2> Характеристика типа товара "{{ $productTypeProperty->name }}", ID: {{ $productTypeProperty->id }}</h2>
 @stop
 
 {{-- Content body: main page content --}}
 @section('content')
-{{-- <a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_category) }}" role="button">Добавить</a> --}}
+{{-- <a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_property) }}" role="button">Добавить</a> --}}
 
 <livewire:product-type-prorety-values-component :productTypeProperty="$productTypeProperty" />
 
@@ -26,4 +26,6 @@
 
 {{-- Push extra scripts --}}
 @push('js')
+@livewireScripts
+<script src="{{ asset('js/powergrid.js') }}"></script>
 @endpush

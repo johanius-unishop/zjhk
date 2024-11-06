@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ProductPropertyValue extends Model
+class ProductPropertyValue extends Pivot
 {
 
     protected $table = 'product_property_values';
@@ -16,21 +16,19 @@ class ProductPropertyValue extends Model
         'product_type_property_value_id',
     ];
 
-
-    public function productTypeProperty()
-    {
-        return $this->belongsTo(ProductTypeProperty::class, 'product_type_property_id');
-    }
-    public function value()
-    {
-        return $this->hasOne(ProductTypePropertyValue::class, 'product_type_property_id');
-    }
-    public function propertyValue()
-    {
-        return $this->hasOne(ProductTypePropertyValue::class  , 'id' , 'product_type_property_value_id');
-    }
-    public function product()
-    {
+    // Связь с товаром
+    public function product() {
         return $this->belongsTo(Product::class, 'product_id');
     }
+
+    // Связь со свойством типа товара
+    public function productTypeProperty() {
+        return $this->belongsTo(ProductTypeProperty::class, 'product_type_property_id');
+    }
+
+    // Связь с возможным значением свойства
+    public function productTypePropertyValue() {
+        return $this->belongsTo(ProductTypePropertyValue::class, 'product_type_property_value_id');
+    }
+    
 }

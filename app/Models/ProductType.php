@@ -18,33 +18,41 @@ class ProductType extends Model
         'delivery_time',
 
     ];
-    public function props()
+    
+    // Связь с товарами
+    public function products() {
+        return $this->hasMany(Product::class, 'product_type_id');
+    }
+
+    public function properties()
     {
         return $this->hasMany(ProductTypeProperty::class, 'product_type_id')->ordered();
     }
 
-    public function old_props()
-    {
-        return $this->hasMany(ProductTypeProperty::class, 'product_type_id');
-    }
-
-
-    // public function relatedTypes(){
-    //     return $this->hasMany(Related_product_type::class, 'product_type_id');
-    // }
     public function relatedTypes(){
         return $this->hasMany(RelatedProductType::class, 'product_type_id');
     }
 
-    // public function compositeElements()
-    // {
+     public function compositeElements()
+     {
 
-    //     return $this->hasMany(Product_kind_composite_element::class, 'product_type_id');
-    // }
+         return $this->hasMany(Product_kind_composite_element::class, 'product_type_id');
+     }
 
     public function composites()
     {
         return $this->hasMany(ProductTypeCompositeElement::class, 'product_type_id')->ordered();
+    }
+
+    public function delete()
+    {
+        // Каскадное удаление свойств типа продукта
+        $this->properties()->each(function ($property) {
+            $property->delete();
+        });
+
+        // Удаление самого типа продукта
+        parent::delete();
     }
 }
  

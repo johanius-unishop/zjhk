@@ -65,7 +65,7 @@ class ProductTypeController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-         return view('admin.product-type.show', ['parent_category' => $productType]);
+         return view('admin.product-type.show', ['parent_type' => $productType]);
     }
 
     /**
