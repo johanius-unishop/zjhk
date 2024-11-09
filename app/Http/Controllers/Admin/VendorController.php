@@ -45,7 +45,6 @@ class VendorController extends Controller
      */
     public function store(StoreVendorRequest $request)
     {
-
         if (!Gate::allows('manage content')) {
             return abort(401);
         }

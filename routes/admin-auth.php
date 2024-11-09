@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DeliveryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Admin\AnalogController;
 use App\Http\Controllers\Admin\AnalogVendorController;
 use App\Http\Controllers\Admin\ProductTypeController;
 use App\Http\Controllers\Admin\ProductTypePropertyController;
@@ -82,11 +83,13 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::post('/images/upload', [ContentController::class, 'imagesUpload'])->name('images_upload');
     Route::resource('currency', CurrencyController::class);
     Route::resource('delivery', DeliveryController::class);
-    Route::resource('analog-vendor', AnalogVendorController::class);
+    Route::resource('analog_vendor', AnalogVendorController::class);
+    Route::resource('analog', AnalogController::class);
     Route::resource('product_type', ProductTypeController::class);
 
 
     Route::resource('product_type_property', ProductTypePropertyController::class);
+    //Рабочий маршрут
     Route::get('product_type_property/createNew/{product_type}', [ProductTypePropertyController::class, 'createNew'])->name('product_type_property.createNew');
 
 

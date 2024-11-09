@@ -35,11 +35,5 @@ class ProductTypePropertyValue extends Model
         return $this->belongsTo(ProductTypeProperty::class, 'product_type_property_id');
     }
 
-    // Связь с продуктом через промежуточную таблицу
-    public function productPropertyValues() {
-        return $this->hasOneThrough(
-            Product::class,
-            ProductPropertyValue::class
-        );
-    }
+   
 }

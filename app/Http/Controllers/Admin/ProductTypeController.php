@@ -49,10 +49,7 @@ class ProductTypeController extends Controller
         $record = ProductType::create($input);
 
         session()->flash('success', 'Запись успешно создана');
-        if ($request->action == 'save-exit') {
-            return redirect(route('admin.product_type.index'));
-        }
-        return redirect(route('admin.product_type.edit', $record->id));
+        return redirect(route('admin.product_type.index', $record->id));
 
 
     }

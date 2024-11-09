@@ -139,11 +139,11 @@ final class ProductTypePropertyTable extends PowerGridComponent
     public function actions(ProductTypeProperty $row): array
     {
         return [
+            
             Button::add('view')
                 ->slot('<i class="fas fa-folder"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.product_type_property.show', ['product_type_property' => $row->id]),
-
             //Button::add('view')
             //    ->slot('<i class="fas fa-edit"></i>')
             //    ->class('btn btn-primary')

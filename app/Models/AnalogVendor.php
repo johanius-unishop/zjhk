@@ -13,4 +13,9 @@ class AnalogVendor extends Model
         'name',
         'published',
     ];
+
+    public function analogs()
+    {
+        return $this->hasMany(Analog::class);
+    }
 }

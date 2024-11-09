@@ -52,19 +52,15 @@ class ProductTypePropertyController extends Controller
             return abort(401);
         }
 
-        if (!Gate::allows('manage content')) {
-            return abort(401);
-        }
         $input = $request->all();
-        // dd(    $input);
-        $request->filled('composite') ? $input['composite'] = 1 : $input['composite'] = 0;
+        $request->filled('section') ? $input['section'] = 1 : $input['section'] = 0;
         $record = ProductTypeProperty::create($input);
 
-        session()->flash('success', 'Запись успешно создана');
+        session()->flash('success', '{Характеристика успешно создана');
         if ($request->action == 'save-exit') {
             return redirect(route('admin.product_type.show', $record->product_type_id));
         }
-        return redirect(route('admin.product_type_property.edit', $record->id));
+        return redirect(route('admin.product_type.show', $record->product_type_id));
     }
 
     /**
@@ -110,7 +106,7 @@ class ProductTypePropertyController extends Controller
         if ($request->action == 'save-exit') {
             return redirect(route('admin.product_type.show', $productTypeProperty->product_type_id));
         }
-        return redirect(route('admin.product_type_property.edit', $productTypeProperty->id));
+        return redirect(route('admin.product_type_show.', $productTypeProperty->product_type_id));
     }
 
     /**

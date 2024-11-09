@@ -21,17 +21,21 @@ final class DeliveryTable extends PowerGridComponent
     use WithExport;
     use LivewireAlert;
     public $delete_id;
+    public string $tableName = 'delivery-table';
+    public array $name;
+    public array $comment;
+    public bool $showErrorBag = true;
+    public $editingRow = null;
+    public $editingRowId = null;
+    public $editingFieldName = '';
+    public $editingValue = '';
 
-    // public bool $deferLoading = true;
     public function setUp(): array
     {
-        // $this->showCheckBox();
-
         return [
 
             Header::make()->showSearchInput()->withoutLoading(),
             Footer::make()
-                // ->showPerPage()
                 ->showRecordCount(),
         ];
     }
@@ -39,7 +43,6 @@ final class DeliveryTable extends PowerGridComponent
     public function datasource(): Builder
     {
         return DeliveryMethod::query();
-        // ->whereIsRoot() ->withCount('childrens')       return Category::query()->where('root_id', null)->withCount('childrens');
 
     }
 
@@ -54,22 +57,21 @@ final class DeliveryTable extends PowerGridComponent
             ->add('id')
             ->add('name')
             ->add('comment')
-
-
-            ->add('created_at');
+            ->add('published');
     }
 
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name')->searchable(),
-            Column::make('Комментарий', 'comment')->searchable(),
-
-            Column::make('Создано', 'created_at')
+            Column::make('Наименование', 'name')
                 ->sortable()
-                ->searchable(),
-
+                ->searchable()
+                ->editOnClick(),
+            Column::make('Комментарий', 'comment')
+                ->editOnClick(),
+            Column::make('Опубликовано', 'published')
+                ->toggleable(),
             Column::action('Действия'),
         ];
     }
@@ -98,17 +100,6 @@ final class DeliveryTable extends PowerGridComponent
         // TODO Удаление
 
         $deleted_record = DeliveryMethod::where('id', $this->delete_id)-> firstOrFail();
-        // if ($deleted_record->product_count > 0) {
-        //     $this->dispatch('toast', message: 'У этого производителя есть товары. Вначале удалите их!', notify: 'error');
-        //     return;
-        // }
-
-        // if ($deleted_record->seo()->exists()) {
-        //     $deleted_record->seo()->delete();
-        // }
-        // if ($deleted_record->media()->exists()) {
-        //     $deleted_record->media()->delete();
-        // }
         $deleted_record->delete();
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
 
@@ -116,15 +107,6 @@ final class DeliveryTable extends PowerGridComponent
     public function actions(DeliveryMethod $row): array
     {
         return [
-
-            // Button::add('view')
-            //     ->slot('<i class="fas fa-folder"></i>')
-            //     ->class('btn btn-primary')
-            //     ->route('admin.delivery.show', ['currency' => $row->id]),
-            Button::add('view')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.delivery.edit', ['delivery' => $row->id]),
             Button::add('delivery')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
@@ -132,15 +114,56 @@ final class DeliveryTable extends PowerGridComponent
         ];
     }
 
-    /*
-    public function actionRules($row): array
+    protected function rules()
     {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
+        return [
+            'name.*' => [
+                'required',
+            ],
+
+            'comment.*' => [
+                'required',
+            ],
         ];
     }
-    */
+
+    protected function validationAttributes()
+    {
+        return [
+            'name.*'       => 'Способ доставки',
+            'comment.*' => 'Комментарий',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'name.*.required'     => 'Способ доставки должен быть заполнен',
+            'comment.*.unique'     => 'Комментарий должен быть заполнен',
+            'name.*.unique' => 'Способ доставки должен быть уникальным',
+        ];
+    }
+
+    public function onUpdatedEditable(int|string $id, string $field, string $value): void
+    {
+        $this->withValidator(function (\Illuminate\Validation\Validator $validator) use ($id, $field) {
+            if ($validator->errors()->isNotEmpty()) {
+                $this->dispatch('toggle-' . $field . '-' . $id);
+            }
+        })->validate();
+    
+        $updated = DeliveryMethod::query()->find($id)->update([
+            $field => $value,
+        ]);
+    }
+
+    public function onUpdatedToggleable(string|int $id, string $field, string $value): void
+    {
+        DeliveryMethod::query()->find($id)->update([
+            $field => e($value),
+        ]);
+        $this->skipRender();
+    }
+
+    
 }

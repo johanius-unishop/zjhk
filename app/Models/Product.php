@@ -177,7 +177,7 @@ class Product extends Model implements HasMedia, Sitemapable
         return $this->hasMany(ProductPropertyValue::class, 'product_id');
     }
 
-    public function analogies()
+    public function analogs()
     {
         return $this->hasMany(Analog::class);
     }

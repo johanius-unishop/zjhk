@@ -10,7 +10,7 @@
 
 {{-- Content body: main page content --}}
 @section('content')
-{{-- <a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_property) }}" role="button">Добавить</a> --}}
+{{-- <a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_property) }}" role="button">Добавить1</a> --}}
 
 <livewire:product-type-prorety-values-component :productTypeProperty="$productTypeProperty" />
 

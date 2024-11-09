@@ -2,42 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Analog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
-use App\Models\{Currency, PriceSegment, ProductType ,  ProductClass,  ProductStyle, Vendor, Product};
-
-class ModelController extends Controller
+class AnalogController extends Controller
 {
-
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function menu()
-    {
-        //
-        $currency_count = Currency::count();
-        $price_segment_count    = PriceSegment::count();
-        $product_location_count =  0; 
-
-        $product_class_count = 0;//ProductClass::count();
-        $vendor_count        = Vendor::count();
-
-        $product_count = Product::count();
-        $product_style_count = ProductStyle::count();
-
-        $product_type_count = ProductType::count();
-
-        return view('admin.model.menu', compact('price_segment_count', 'product_location_count', 'product_class_count', 'vendor_count', 'product_count' , 'product_style_count', 'product_type_count'));
-     }
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        return view('admin.analog.index');
     }
 
     /**

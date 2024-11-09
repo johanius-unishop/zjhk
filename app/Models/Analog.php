@@ -10,7 +10,7 @@ class Analog extends Model
     use HasFactory;
     protected $table = "analogies";
 
-    protected $fillable = [
+    protected $fillable = [                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
         'name',
         'article',
         'product_id',
@@ -23,7 +23,7 @@ class Analog extends Model
     {
         return $this->belongsTo(AnalogVendor::class, 'analog_vendor_id');
     }
-
+                                                                                                                                                    
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');

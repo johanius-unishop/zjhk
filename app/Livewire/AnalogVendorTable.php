@@ -2,34 +2,36 @@
 
 namespace App\Livewire;
 
+use App\Models\Analog;
 use App\Models\AnalogVendor;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use Illuminate\Support\Facades\DB;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 final class AnalogVendorTable extends PowerGridComponent
 {
-    use WithExport;
     use LivewireAlert;
     public $delete_id;
-    public ?string $primaryKeyAlias = 'slug';
+    public string $tableName = 'analog-vendor-table';
+    public array $name;
+    public bool $showErrorBag = true;
+    public $editingRow = null;
+    public $editingRowId = null;
+    public $editingFieldName = '';
+    public $editingValue = '';
+    public $currentId;
+
     public function setUp(): array
     {
-        // $this->showCheckBox();
-
         return [
-            // Exportable::make('export')
-            //     ->striped()
-            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput()->withoutLoading(),
             Footer::make()
                 ->showPerPage()
@@ -40,7 +42,6 @@ final class AnalogVendorTable extends PowerGridComponent
     public function datasource(): Builder
     {
         return AnalogVendor::query();
-        // return Category::query()->where('root_id', null)->withCount('childrens');
 
     }
 
@@ -52,31 +53,20 @@ final class AnalogVendorTable extends PowerGridComponent
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('id')
             ->add('name')
-        ->add('published', fn($item) => $item->published ? '✅' : '❌');
-        // ->add('name', function ($item) {
-        //     return $item->name . ' (' . $item->product_count . ')';
-        // });
-        // ->add('country')
-        // ->add('delivery_time')
+            ->add('published');
 
-        // ->add('warranty');
     }
 
     public function columns(): array
     {
-        // ->searchable()
         return [
-            Column::make('Id', 'id'),
-            Column::make('Наименование', 'name')->sortable(),
-             Column::make('Опубликовано ', 'published'),
-
-            // Column::make('Страна', 'country')->sortable(),
-            // Column::make('Время доставки', 'delivery_time')->sortable(),
-            // Column::make('Гарантия', 'warranty')->sortable(),
-            Column::make('Создано', 'created_at')
-                ->sortable(),
+            Column::make('Наименование', 'name')
+                ->sortable()
+                ->searchable()
+                ->editOnClick(),
+            Column::make('Опубликовано ', 'published')
+                ->toggleable(),
             Column::action('Действия'),
         ];
     }
@@ -91,49 +81,100 @@ final class AnalogVendorTable extends PowerGridComponent
     #[\Livewire\Attributes\On('post_delete')]
     public function post_delete($rowId): void
     {
+        $analog_vendor_name = AnalogVendor::where('id', $rowId)->first()?->name;
         $this->delete_id = $rowId;
-        $this->confirm('Вы действительно хотите удалить эту запись?', [
-            'onConfirmed' => 'confirmed',
-            'showCancelButton' => true,
-            'cancelButtonText' => 'Нет',
-        ]);
+        $deleted_analog_record =  Analog::where('analog_vendor_id', $this->delete_id)->count();
+        if ($deleted_analog_record > 0) {
+            $this->confirm('У этого производителя аналогов есть ' . $deleted_analog_record . ' записей в таблице аналогов. Вы действительно хотите удалить всю информацию из базы данных?', [
+                'onConfirmed' => 'confirmed',
+                'showCancelButton' => true,
+                'cancelButtonText' => 'Нет',
+            ]);
+        }       
+        else {
+            $this->confirm('Вы действительно хотите производителя аналогов ' . $analog_vendor_name . '?', [
+                'onConfirmed' => 'confirmed',
+                'showCancelButton' => true,
+                'cancelButtonText' => 'Нет',
+            ]);
+        } 
     }
+    
+    
 
     #[\Livewire\Attributes\On('confirmed')]
     public function confirmed()
     {
-
-        $deleted_record = AnalogVendor::where('id', $this->delete_id)->withCount('product')->firstOrFail();
-        if ($deleted_record->product_count > 0) {
-            $this->dispatch('toast', message: 'У этого производителя есть аналоги товаров. Вначале удалите их!', notify: 'error');
-            return;
-        }
-
-        // if ($deleted_record->seo()->exists()) {
-        //     $deleted_record->seo()->delete();
-        // }
-        // if ($deleted_record->media()->exists()) {
-        //     $deleted_record->media()->delete();
-        // }
-        $deleted_record->delete();
+        DB::transaction(function () {
+            // Удаление связанных записей из таблицы Analog
+            Analog::where('analog_vendor_id', $this->delete_id)->delete();
+    
+            // Удаление основной записи
+            AnalogVendor::findOrFail($this->delete_id)->delete();
+        });
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
     }
     public function actions(AnalogVendor $row): array
     {
         return [
-
-            // Button::add('view')
-            //     ->slot('<i class="fas fa-folder"></i>')
-            //     ->class('btn btn-primary')
-            //     ->route('admin.category.show', ['category' => $row->id]),
             Button::add('view')
-                ->slot('<i class="fas fa-edit"></i>')
+                ->slot('<i class="fas fa-folder"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.analog-vendor.edit', ['analog_vendor' => $row->id]),
+                ->route('admin.analog-vendor.show', ['analog_vendor' => $row->id]),
             Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
                 ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
     }
+    
+    protected function rules()
+    {
+        return [
+            'name.*' => [
+                'required',
+            ],
+        ];
+    }
+
+    protected function validationAttributes()
+    {
+        return [
+            'name.*'       => 'Название производителя',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'name.*.required'     => 'Название производителя должно быть заполнено',
+        ];
+    }
+
+    public function onUpdatedEditable(int|string $id, string $field, string $value): void
+    {
+        $this->withValidator(function (\Illuminate\Validation\Validator $validator) use ($id, $field) {
+            if ($validator->errors()->isNotEmpty()) {
+                $this->dispatch('toggle-' . $field . '-' . $id);
+            }
+        })->validate();
+    
+        $updated = AnalogVendor::query()->find($id)->update([
+            $field => $value,
+        ]);
+        $this->resetValidation(); // Сброс всех результатов валидации
+        
+        
+    }
+
+    public function onUpdatedToggleable(string|int $id, string $field, string $value): void
+    {
+        AnalogVendor::query()->find($id)->update([
+            $field => e($value),
+        ]);
+        $this->skipRender();
+    }
 }
+
+
+

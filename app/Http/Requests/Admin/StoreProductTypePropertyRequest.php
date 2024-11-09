@@ -22,8 +22,7 @@ class StoreProductTypePropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'       => 'required|min:2|max:120',
-            // 'name_plural'       => 'required|min:2|max:120',
+            'name'       => 'required|min:2|max:50',
         ];
     }
 }

@@ -81,18 +81,6 @@ final class ProductTypeTable extends PowerGridComponent
         ];
     }
 
-
-   /* #[\Livewire\Attributes\On('post_delete')]
-    public function post_delete($rowId): void
-    {
-        $this->delete_id = $rowId;
-        
-        $this->confirm('Вы действительно хотите удалить эту запись?', [
-            'onConfirmed' => 'confirmed',
-            'showCancelButton' => true,
-            'cancelButtonText' => 'Нет',
-        ]);
-    }*/
     #[\Livewire\Attributes\On('post_delete')]
     public function post_delete($rowId): void
     {
@@ -176,6 +164,8 @@ final class ProductTypeTable extends PowerGridComponent
                 ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
     }
+
+    
 
     protected function rules()
     {

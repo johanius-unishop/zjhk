@@ -48,11 +48,8 @@ class AnalogVendorController extends Controller
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
         $record = AnalogVendor::create($input);
 
-         session()->flash('success', 'Запись успешно создана');
-        if ($request->action == 'save-exit') {
-            return redirect(route('admin.analog-vendor.index'));
-        }
-        return redirect(route('admin.analog-vendor.edit', $record->id));
+        session()->flash('success', 'Запись успешно создана');
+        return redirect(route('admin.analog-vendor.index'));
     }
 
     /**
@@ -60,6 +57,10 @@ class AnalogVendorController extends Controller
      */
     public function show(AnalogVendor $analogVendor)
     {
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+         return view('admin.analog-vendor.show', ['parent_analog_vendor' => $analogVendor]);
         //
     }
 

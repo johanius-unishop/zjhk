@@ -55,7 +55,8 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => [
-                PDO::ATTR_PERSISTENT => false,
+                PDO::ATTR_PERSISTENT => true,
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET wait_timeout=30",
             ],
             'pooling' => true,
             'pool' => [

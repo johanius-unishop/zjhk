@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-12 ">
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Добавить новое значение
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" title="Добавить вариант значения для характеристики">
+                Добавить
             </button>
         </div>
     </div>
@@ -13,7 +13,7 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Значение </th>
+                <th scope="col">Варианты значений для характеристики</th>
                 <th scope="col">Действия</th>
             </tr>
         </thead>

@@ -19,10 +19,9 @@
         <div class="row">
             <div class="col-lg-3 col-6">
                 <!-- small card -->
-                <div class="small-box bg-info">
+                <div class="small-box bg-primary">
                     <div class="inner">
                         <h3>Валюты</h3>
-                        {{-- <h3>{{ @$price_segment_count }}</h3> --}}
                         <h4>Настройка внутреннего курса</h4>
                     </div>
                     <div class="icon">
@@ -33,6 +32,20 @@
                     </a>
                 </div>
             </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>Производители</h3>
+                        <h4>Информация о производителях</h4>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <a href="{{ route('admin.vendor.index') }}" class="small-box-footer">
+                        Перейти <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>   
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-success">
                     <div class="inner">
@@ -129,6 +142,31 @@
     </div>
 </div>
 
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Аналоги и производители аналогов</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small card -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>Аналоги</h3>
+                        <p>Производители аналогов и аналоги</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <a href="{{ route('admin.analog-vendor.index') }}" class="small-box-footer">
+                        Перейти <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-lg-3 col-6">
         <!-- small card -->
@@ -167,22 +205,7 @@
         </div>
     </div>
 
-    <div class="col-lg-3 col-6">
-        <!-- small card -->
-        <div class="small-box bg-success">
-            <div class="inner">
-                <h3>TODO</h3>
-                {{-- <h3>{{ @$vendor_count }}</h3> --}}
-                <h4> Производители АНАЛОГОВ </h4>
-            </div>
-            <div class="icon">
-                <i class="fas fa-newspaper"></i>
-            </div>
-            <a href="{{ route('admin.analog-vendor.index') }}" class="small-box-footer">
-                Перейти <i class="fas fa-arrow-circle-right"></i>
-            </a>
-        </div>
-    </div>
+    
     <div class="col-lg-3 col-6">
         <!-- small card -->
         <div class="small-box bg-info">

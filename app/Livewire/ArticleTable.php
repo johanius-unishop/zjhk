@@ -16,6 +16,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use Illuminate\Support\Facades\Log;
 
 final class ArticleTable extends PowerGridComponent

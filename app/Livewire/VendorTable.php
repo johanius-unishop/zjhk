@@ -14,34 +14,35 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 final class VendorTable extends PowerGridComponent
 {
-    use WithExport;
     use LivewireAlert;
     public $delete_id;
+    public string $tableName = 'vendor-table';
+    public array $name;
+    public array $short_name;
+    public array $country;
+    public array $delivery_time;
+    public array $warranty;
+    public bool $showErrorBag = true;
+    public $editingRowId = null;
+    public $editingFieldName = '';
+    public $editingValue = '';
     public ?string $primaryKeyAlias = 'slug';
+    
     public function setUp(): array
     {
-        // $this->showCheckBox();
-
         return [
-            // Exportable::make('export')
-            //     ->striped()
-            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput()->withoutLoading(),
-            Footer::make()
-                ->showPerPage()
-                ->showRecordCount(),
+            Footer::make()->showPerPage()->showRecordCount(),
         ];
     }
 
     public function datasource(): Builder
     {
         return Vendor::query()->withCount('product');
-        // return Category::query()->where('root_id', null)->withCount('childrens');
-
     }
 
     public function relationSearch(): array
@@ -51,37 +52,38 @@ final class VendorTable extends PowerGridComponent
 
     public function fields(): PowerGridFields
     {
-        return PowerGrid::fields()
-            ->add('id')
-            // ->add('name')
-
-            ->add('name', function ($item) {
-                return $item->name . ' (' . $item->product_count . ')';
-            })
+        $powerGridFields = PowerGrid::fields()
+            ->add('name')
             ->add('short_name')
             ->add('country')
             ->add('delivery_time')
-            ->add('country')
-            ->add('warranty');
+            ->add('warranty')
+            ->add('product_count');
+
+            return $powerGridFields;
     }
 
     public function columns(): array
     {
-        // ->searchable()
         return [
-            Column::make('Id', 'id'),
-            Column::make('Наименование', 'name')->searchable(),
-            Column::make('Краткое', 'short_name')->searchable(),
-
-
-            Column::make('Страна', 'country')->searchable(),
-            Column::make('Время доставки', 'delivery_time')->sortable(),
-            Column::make('Гарантия', 'warranty')->sortable(),
-            Column::make('Создано', 'created_at')
-                ->sortable(),
+            Column::make('ID', 'id'),
+            Column::make('Производитель', 'name')
+                ->searchable()
+                ->editOnClick(),
+            Column::make('Краткое название', 'short_name')
+                ->searchable()
+                ->editOnClick(),
+            Column::make('Страна производителя', 'country')
+                ->editOnClick(),
+            Column::make('Срок поставки', 'delivery_time')
+                ->editOnClick(),
+            Column::make('Гарантийный срок', 'warranty')
+                ->editOnClick(),
+            Column::make('Количество товаров', 'product_count'),
             Column::action('Действия'),
         ];
     }
+    
 
     public function filters(): array
     {
@@ -123,11 +125,6 @@ final class VendorTable extends PowerGridComponent
     public function actions(Vendor $row): array
     {
         return [
-
-            // Button::add('view')
-            //     ->slot('<i class="fas fa-folder"></i>')
-            //     ->class('btn btn-primary')
-            //     ->route('admin.category.show', ['category' => $row->id]),
             Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
@@ -137,5 +134,48 @@ final class VendorTable extends PowerGridComponent
                 ->class('btn btn-danger')
                 ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
+    }
+    
+    protected function rules()
+    {
+        return [
+            'name.*' => ['required'],
+            'country.*' => ['required'],
+            'delivery_time.*' => ['required'],
+            'warranty.*' => ['required'], 
+        ];
+    }
+
+    protected function validationAttributes()
+    {
+        return [
+            'name.*'       => 'Название производителя',
+            'country.*' => 'Страна производителя',
+            'delivery_time.*' => 'Срок поставки',
+            'warranty.*' => 'Срок гарантии',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'name.*.required'     => 'Название производителя должно быть заполнено',
+            'country.*.required' => 'Страна производителя должна быть заполнена',
+            'delivery_time.*.required' => 'Срок поставки должен быть заполнен',
+            'warranty.*.required' => 'Гарантийный срок должен быть заполнен',
+        ];
+    }
+    
+    public function onUpdatedEditable(int|string $id, string $field, string $value): void
+    {
+        $model = is_string($id) ? Vendor::where('slug', $id)->firstOrFail() : Vendor::findOrFail($id);
+
+        $this->withValidator(function (\Illuminate\Validation\Validator $validator) use ($id, $field) {
+            if ($validator->errors()->isNotEmpty()) {
+                $this->dispatch('toggle-' . $field . '-' . $id);
+            }
+        })->validate();
+
+        $model->updateOrFail([$field => $value]);
     }
 }
