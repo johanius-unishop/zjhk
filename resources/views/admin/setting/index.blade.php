@@ -10,7 +10,10 @@
 {{-- Content body: main page content --}}
 
 @section('content')
-<livewire:setting-component />
+<div class=" py-3  ">
+    <a class="btn btn-primary" href="{{ route('admin.setting.create') }}" role="button">Добавить настройку</a>
+</div>
+<livewire:setting-table />
 
 @stop
 
@@ -24,5 +27,6 @@
 {{-- Push extra scripts --}}
 
 @push('js')
-
+@livewireScripts
+<script src="{{ asset('js/powergrid.js') }}"></script>
 @endpush

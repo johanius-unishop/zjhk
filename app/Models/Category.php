@@ -114,7 +114,7 @@ class Category extends Model implements Sortable, HasMedia
 
     public function products()
     {
-        return $this->hasMany(Product::class, 'category_id');
+        return $this->hasMany(Product::class);
     }
 
 
@@ -123,6 +123,8 @@ class Category extends Model implements Sortable, HasMedia
      *
      * @return \Kalnoy\Nestedset\Collection
      */
+    
+    
     public static function getCategoriesAsTree()
     {
         $cache_name = 'CategoriesAsTree';
@@ -155,4 +157,6 @@ class Category extends Model implements Sortable, HasMedia
     {
         $query->where('published', 1);
     }
+
 }
+

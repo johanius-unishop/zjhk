@@ -6,6 +6,7 @@ use App\Models\Currency;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
+
 class FetchExchangeRates extends Command
 {
     /**
@@ -39,22 +40,29 @@ class FetchExchangeRates extends Command
                 $nominal = (int)$valute->Nominal;
                 $value = (float)str_replace(',', '.', substr($valute->Value, 0, strpos($valute->Value, '.') + 5));
                 
-                foreach ($currenciesDB as $currencyDB){
-                // Проверяем наличие текущего charCode в списке из базы данных
+                
+
+                foreach ($currenciesDB as $currencyDB) {
+                    // Проверяем наличие текущего charCode в списке из базы данных
                     if ($charCode === $currencyDB->charcode) {
                         // Обновление курса в базе данных
                         $cb_rate = $value / $nominal;
-                        DB::table('currencies')
-                            ->where('id', $currencyDB->id)
-                            ->update(['cb_rate' => $cb_rate]);
-                        if ($currencyDB->auto_calc_cbrf === 1){
-                            $internal_rate = round($cb_rate * $currencyDB->auto_multiplier,2);
-                            DB::table('currencies')
-                                ->where('id', $currencyDB->id)
-                                ->update(['internal_rate' => $internal_rate]);
+                        
+                        // Находим запись в базе данных по id
+                        $currency = Currency::findOrFail($currencyDB->id);
+                        
+                        // Обновляем курс
+                        $currency->cb_rate = $cb_rate;
+                        
+                        // Проверка auto_calc_cbrf
+                        if ($currencyDB->auto_calc_cbrf === 1) {
+                            $internal_rate = round($cb_rate * $currencyDB->auto_multiplier, 2);
+                            $currency->internal_rate = $internal_rate;
                         }
+                        
+                        // Сохраняем изменения
+                        $currency->save();
                     }
-                    
                 }
             }
         $this->info('Курс валют успешно обновлен.');

@@ -69,16 +69,18 @@
                             <div class="row">
                                 <div class="col-lg-4 col-6">
                                     <div class="form-group">
-                                        <label for="country">Страна </label>
-                                        <input type="text" class="form-control" name="country" value="{{ @$vendor->country }}">
-                                        @error('country')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
+                                        <label for="country_id">Родина бренда</label>
+                                        <select class="form-control" id="country_id" name="country_id">
+                                            <option value="0">--Выберите страну--</option>
+                                            @foreach ($countries as $country)
+                                            <option value="{{ $country->id }}" {{ $country->id == @$vendor->country_id ? 'selected' : '' }}>{{$country->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
                                     <div class="form-group">
-                                        <label for="delivery_time">Время доставки </label>
+                                        <label for="delivery_time">Срок поставки (под заказ) </label>
                                         <input type="text" class="form-control" name="delivery_time" value="{{ @$vendor->delivery_time }}">
                                         @error('delivery_time')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -96,6 +98,17 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-lg-4 col-6">
+                                    <div class="form-group">
+                                        <label for="vendorLogo">Логотип производителя</label>
+                                        <input type="file" class="form-control" id="vendorLogo" name="vendorLogo">
+                                        @error('vendorLogo')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label for="description">Описание</label>
@@ -120,10 +133,8 @@
                 </div>
             </div>
             <div class=" py-3 form-row justify-content-center">
-                <a class="btn   btn-success " href="{{ route('admin.vendor.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a> &nbsp;
+                <a class="btn   btn-success " href="{{ route('admin.vendor.index') }}" role="button"> <i class="fa fa-arrow-left "></i> Отменить</a> &nbsp;
                 <button type="submit" class="btn btn-primary">Сохранить</button> &nbsp;
-                <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и
-                    закрыть</button>
             </div>
         </div>
     </div>

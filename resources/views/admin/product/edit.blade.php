@@ -12,56 +12,39 @@
 @section('content')
 @include('admin.blocks.error')
 
-<form action="{{ route('admin.product.update', $product->id) }}" method="POST">
 
-    @csrf
-    @method('PATCH')
-    <input type="hidden" name="id" value="{{ $product->id }}">
-    <div class="row">
-        <div class="col-12 ">
-            <div class="card card-primary card-outline card-outline-tabs">
-                <div class="card-header p-0 border-bottom-0">
-                    <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Основное</a>
-                        </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">SEO</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Фото</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-four-files-tab" data-toggle="pill" href="#custom-tabs-four-files" role="tab" aria-controls="custom-tabs-four-files" aria-selected="false">Файлы</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Характеристики</a>
-                        </li>
-
-                        @if ($product->composite_product)
-                        <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-four-complect-tab" data-toggle="pill" href="#custom-tabs-four-complect" role="tab" aria-controls="custom-tabs-four-complect" aria-selected="false">Состав комплекта</a>
-                        </li>
-                        @endif
-
-                        <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-four-analog-tab" data-toggle="pill" href="#custom-tabs-four-analog" role="tab" aria-controls="custom-tabs-four-analog" aria-selected="false">Аналоги</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-four-price-tab" data-toggle="pill" href="#custom-tabs-four-price" role="tab" aria-controls="custom-tabs-four-price" aria-selected="false">Торговля и цены</a>
-                        </li> --}}
-                    </ul>
-                </div>
-                <div class="card-body">
-                    <div class="tab-content" id="custom-tabs-four-tabContent">
-                        <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+<div class="row">
+    <div class="col-12 ">
+        <div class="card card-primary card-outline card-outline-tabs">
+            <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Основное</a>
+                    </li>
+                    @if ($product->composite_product)
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-complect-tab" data-toggle="pill" href="#custom-tabs-four-complect" role="tab" aria-controls="custom-tabs-four-complect" aria-selected="false">Состав комплекта</a>                        
+                    </li>
+                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-related-products-tab" data-toggle="pill" href="#custom-tabs-four-related-products" role="tab" aria-controls="custom-tabs-four-related-products" aria-selected="false">Сопутствующие товары</a>
+                    </li>                        
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="custom-tabs-four-tabContent">
+                    <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+                        <form action="{{ route('admin.product.update', $product->id) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        <input type="hidden" name="id" value="{{ $product->id }}">
                             <div class="row">
                                 <div class="col-lg-4 col-4">
                                     <div class="form-group">
                                         <label for="name">Код товара </label>
                                         <input type="text" class="form-control" name="id" id="id" value="{{ @$product->id }}" disabled>
                                         @error('id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                            <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -70,7 +53,7 @@
                                         <label for="barcode">Штрих-код</label>
                                         <input type="text" class="form-control" name="barcode" id="barcode" value="{{ @$product->barcode }}">
                                         @error('barcode')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                            <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -79,32 +62,30 @@
                                         <label for="tn_ved">ТН ВЭД</label>
                                         <input type="text" class="form-control" name="tn_ved" id="tn_ved" value="{{ @$product->tn_ved }}">
                                         @error('tn_ved')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                            <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="parent" class="form-label">Категория</label>
+                                <label for="parent" class="form-label">Категория</label>
                                     <div class="input-group">
                                         <select name="category_id" id="parent" class="form-control">
-                                            <option value="">Корневая категория</option>
-                                            @foreach ($parentCategories as $category)
-                                            @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
-                                            ''])
-                                            @endforeach
+                                        <option value="">--Выберите категорию--</option>
+                                        @foreach ($parentCategories as $category)
+                                        @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
+                                        ''])
+                                        @endforeach
                                         </select>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-lg-12 col-12">
                                     <div class="form-group">
                                         <label for="name">Наименование товара</label>
-                                        <input type="text" class="form-control" name="name" id="name" value="{{ $product->name }}">
+                                        <input type="text" class="form-control" name="name" id="name" value="{{ $product->productType->name }} {{ $product->vendor->short_name }} {{ $product->name }} ({{ $product->article }})" disabled>
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -116,7 +97,7 @@
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
                                             <label for="model">Модель</label>
-                                            <input type="text" class="form-control" name="model" id="model" value="{{ $product->name }}">
+                                            <input type="text" class="form-control" name="model" id="model" value="{{ $product->name }}" disabled>
                                             @error('model')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -135,9 +116,9 @@
                                 <div class="col-lg-4 col-4">
                                     <label for="vendor_id" class="form-label">Производитель</label>
                                     <select class="form-control  " id="vendor_id" name="vendor_id">
-                                        <option value="0">Выберите тип товара</option>
+                                        <option value="0">Выберите производителя</option>
                                         @foreach ($vendors as $vendor)
-                                        <option value="{{ $vendor->id }}" {{ $vendor->id ==@$product->vendor_id ? 'selected' : '' }}>{{$vendor->name }}
+                                        <option value="{{ $vendor->id }}" {{ $vendor->id == @$product->vendor_id ? 'selected' : '' }}>{{$vendor->name }}
                                         </option>
                                         @endforeach
                                     </select>
@@ -145,23 +126,21 @@
                             </div>
                             <b>Цены</b>
                             <div class="row">
-
                                 <div class="col-lg-4 col-4">
                                     <div class="form-group">
                                         <label for="supplier_price">Закупочная цена</label>
-                                        <input type="number" class="form-control" name="supplier_price" value="{{ @$product->supplier_price }}">
+                                        <input type="text" class="form-control" name="supplier_price" value="{{ @$product->supplier_price }}" disabled>
                                         @error('supplier_price')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-
                                     <div class="form-group">
                                         <label for="currency_id" class="form-label">Валюта</label>
-                                        <select class="form-control  " id="currency_id" name="currency_id">
+                                        <select class="form-control" id="currency_id" name="currency_id" disabled>
                                             <option value="0">Выберите валюту</option>
                                             @foreach ($currencies as $currency)
                                             <option value="{{ $currency->id }}" {{ $currency->id == @$product->currency_id ? 'selected' : '' }}>{{
-                                        $currency->name }}
+                                            $currency->name }}
                                             </option>
                                             @endforeach
                                         </select>
@@ -174,7 +153,6 @@
                                             <input type="checkbox" class="form-check-input" name="auto_price" id="auto_price" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да" data-off="Нет" {!! @$product->auto_price ? 'checked ' : ' ' !!}>
                                         </div>
                                     </div>
-
                                     <label for="auto_price_coef">Коэффициент</label>
                                     <input type="text" class="form-control" name="auto_price_coef" value="{{ @$product->auto_price_coef }}">
                                     @error('auto_price_coef')
@@ -217,8 +195,6 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-
-
                                     <div class="form-group">
                                         <label for="moq_supplier">Мин. количество для заказа</label>
                                         <input type="text" class="form-control" name="moq_supplier" value="{{ @$product->moq_supplier }}">
@@ -235,7 +211,13 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    Заказано (новое поле)
+                                    <div class="form-group">
+                                        <label for="ordered">Заказано</label>
+                                        <input type="text" class="form-control" name="ordered" id="ordered" value="{{ @$ordered }}" disabled>
+                                        @error('ordered')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>   
                                     <div class="form-group">
                                         <label for="priority"> Приоритет</label>
                                         <input type="text" class="form-control" name="priority" id="priority" value="{{ @$product->priority }}">
@@ -254,17 +236,13 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group"> <label for="short_description">Краткое описание</label>
                                         <textarea class="form-control" name="short_description" row="3">{{ $product->short_description  }}</textarea>
-
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -273,8 +251,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-check">
@@ -283,10 +259,20 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-lg-4 col-4">
-                                    Страна
+                                    <label for="country_id" class="form-label">Страна происхождения</label>
+                                    <select class="form-control" id="country_id" name="country_id">
+                                        <option value="0">--Выберите страну происхождения--</option>
+                                        @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}" {{ $country->id == @$product->country_id ? 'selected' : '' }}>{{$country->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-4">
+                                    <label for="country_id" class="form-label">Родина бренда</label>
+                                    <input type="text" class="form-control" id="vendor_country_id" name="vendor_country_id" value="{{ @$product->vendor->country->name }}">
                                 </div>
                             </div>
                             Характеристики
@@ -302,7 +288,6 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-
                                     <div class="form-group">
                                         <label for="width">Ширина, мм</label>
                                         <input type="text" class="form-control" name="width" value="{{ @$product->width }}">
@@ -325,8 +310,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
-
                                 <div class="col-lg-6 col-6">
                                     <div class="form-group">
                                         <label for="package_weight">Вес упакованного товара, грамм</label>
@@ -335,7 +318,6 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-
                                     <div class="form-group">
                                         <label for="package_width">Ширина упакованного товара, мм</label>
                                         <input type="text" class="form-control" name="package_width" value="{{ @$product->package_width }}">
@@ -366,64 +348,74 @@
                                         <option value="0">Выберите тип товара</option>
                                         @foreach ($productTypes as $productType)
                                         <option value="{{ $productType->id }}" {{ $productType->id == @$product->product_type_id	 ? 'selected' : '' }}>{{
-                                    $productType->name }}
+                                        $productType->name }}
                                         </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class=" col-12">
-
+                            <div class=" py-3 form-row justify-content-center">
+                                <a class="btn .btn-lg btn-success " href="{{ route('admin.product.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>&nbsp; 
+                                <button type="submit" name="action" value="save" class="btn btn-primary">Сохранить</button>
+                                &nbsp;
+                                <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и закрыть</button>
+                            </div>
+                        </form> 
+                        <div class="card card-success mt-3">
+                            <div class="card-header">
+                                <h3 class="card-title"><strong>Характеристики товара </strong></h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class=" col-12">
+                                        <livewire:test-component :record="@$product" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class=" col-12">
-                                    <livewire:test-component :record="@$product" />
-                                </div>
+                        </div>
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Изображения товара</h3>
                             </div>
-                            <div class="card card-success">
-                                <div class="card-header">
-                                    <h3 class="card-title">Медиа</h3>
-                                </div>
-                                <div class="card-body">
-
-                                    <div class="row">
-                                        <div class=" col-12">
-                                            <b> Изображения товара</b>
-                                            <br>
-                                            Добавьте изображения в формате JPEG или PNG. Главное фото – на одноцветном контрастном фоне. Размер главного фото – не менее 800рх по большей стороне, размер дополнительных фото – не менее 400рх по большей стороне.
-                                            Максимальный размер фото 6500px на 6500px.
-                                            <br>
-                                        </div>
-                                        <div class=" col-12">
-
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class=" col-12">
+                                        <b> Изображения товара</b>
+                                        <br>
+                                        Добавьте изображения в формате JPEG или PNG. Главное фото – на одноцветном контрастном фоне. Размер главного фото – не менее 800рх по большей стороне, размер дополнительных фото – не менее 400рх по большей стороне.
+                                        Максимальный размер фото 6500px на 6500px.
+                                        <br>
+                                        <div>
+                                            <livewire:product-images-gallery :record="@$product" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class=" col-12">
-
+                        </div>
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">Файлы</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class=" col-12">
+                                        <livewire:product-files-component :id="@$product->id" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>        
                     </div>
-                </div>
-            </div>
-            <div class=" py-3 form-row justify-content-center">
-                <a class="btn .btn-lg btn-success " href="{{ route('admin.product.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>&nbsp;
-                <button type="submit" name="action" value="save" class="btn btn-primary">Сохранить</button>
-                &nbsp;
-                <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и закрыть</button>
+                    <div class="tab-pane fade show" id="custom-tabs-four-complect" role="tabpanel" aria-labelledby="custom-tabs-four-complect-tab">
+                        <livewire:product-composite-elements-component :product="$product" />
+                    </div>
+                    <div class="tab-pane fade show" id="custom-tabs-four-related-products" role="tabpanel" aria-labelledby="custom-tabs-four-related-products-tab">
+                        <livewire:product-related-products-component :product="$product" />
+                    </div>   
+                </div>                                                      
             </div>
         </div>
     </div>
-
-
-
-</form>
-
+</div>
 
 
 
@@ -444,6 +436,7 @@
 @push('js')
 @include('admin.blocks.summernote')
 <script src="{{ asset('vendor/select2/js/select2.full.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 
 
 @endpush

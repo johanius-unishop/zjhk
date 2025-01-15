@@ -30,8 +30,13 @@ class ProductTypeCompositeElement extends Model implements Sortable
     }
 
 
-    public function completeProduct()
+/*    public function completeProduct()
     {
         return $this->belongsTo(ProductType::class);
+    } */
+
+    // Связь "один ко многим" с таблицей product_composite_elements
+    public function compositeElements() {
+        return $this->hasMany(ProductCompositeElement::class);
     }
 }

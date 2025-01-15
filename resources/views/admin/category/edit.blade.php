@@ -10,6 +10,25 @@
 {{-- Content body: main page content --}}
 
 @section('content')
+@if (!function_exists('buildSelectOptions'))
+    @php
+        function buildSelectOptions($tree, $selectedId = null, $level = 0)
+        {
+            $html = '';
+            foreach ($tree as $node) {
+                $indent = str_repeat('- ', $level); // Уровень вложенности
+                $optionValue = $node->id == $selectedId ? ' selected' : '';
+                $html .= '<option value="' . $node->id . '"' . $optionValue . '>' . $indent . $node['name'] . '</option>';
+                
+                if ($node->children->isNotEmpty()) {
+                    $html .= buildSelectOptions($node->children, $selectedId, $level + 1);
+                }
+            }
+            
+            return $html;
+        }
+    @endphp
+@endif
 <div class=" py-3  ">
     <a class="btn btn-primary" href="{{ $category->front_url }}" role="button" target="_blank"><i class="fas fa-globe"></i>
         Просмотреть на сайте</a>
@@ -58,12 +77,14 @@
 
                             <div class=" row">
 
+                            <!-- Селект для выбора родительской категории -->
+    
                             <div class="col-12 mt-2">
                                 <label for="parent_id" class="form-label">Родительская категория:</label>
                                 <div class="input-group">
                                     <select name="parent_id" id="parent_id" class="form-control">
                                         <option value="">-- Выберите родительскую категорию --</option>
-                                        @include('admin.partials.categories-tree', ['categories' => $categories, 'parentCategory' => $parentCategory])
+                                        {{ buildSelectOptions($categories, $category->parent_id) }}
                                     </select>
                                 </div>
                             </div>
@@ -75,7 +96,7 @@
 
                                         <label for="slug">Slug</label>
                                         <input type="text" class="form-control" name="slug" value="{{ @$category->slug }}">
-                                        <div id="slugHelp" class="form-text">Заполняется автоматически. Ручное заполнение не желательно.</div>
+                                        <div id="slugHelp" class="form-text">Заполняется автоматически. Ручное заполнение нежелательно.</div>
 
                                         @error('slug')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -112,9 +133,7 @@
             </div>
             <div class=" py-3 form-row justify-content-center">
                 <a class="btn   btn-success " href="{{ route('admin.category.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a> &nbsp;
-                <button type="submit" class="btn btn-primary">Сохранить</button> &nbsp;
-                <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и
-                    закрыть</button>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
             </div>
         </div>
     </div>

@@ -9,7 +9,7 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 Schedule::command('fetch:exchange-rates')->dailyAt('05:00')->timezone('Europe/Moscow');
-//Schedule::command('products:update-stock')->hourly();
+Schedule::command('products:update-simple-products-stock-from-1c')->everyFiveMinutes();
 //Schedule::command('products:updateCompositePrice')->dailyAt('00:00')->timezone('Europe/Moscow');
 //Schedule::command('products:updateCompositePrice')->dailyAt('12:00')->timezone('Europe/Moscow');
-Schedule::command('queue:work --queue=high,default')->everyFiveMinutes();
+//Schedule::command('queue:work --queue=high,default')->everyFiveSeconds();

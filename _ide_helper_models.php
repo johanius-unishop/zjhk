@@ -510,12 +510,12 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $value
- * @property int $product_kind_prop_id
+ 
  * @property int $product_id
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Product_kind_prop|null $kindProp
+ 
  * @method static \Illuminate\Database\Eloquent\Builder|OldProperty newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OldProperty newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OldProperty query()
@@ -523,7 +523,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereProductKindPropId($value)
+ 
  * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OldProperty whereValue($value)
  */
@@ -674,7 +674,6 @@ namespace App\Models{
  * @property-read int|null $composite_count
  * @property-read \App\Models\Currency|null $currency
  * @property-read string $front_url
- * @property-read \App\Models\Product_kind|null $kinds
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Product> $parentComplectation
@@ -990,17 +989,7 @@ namespace App\Models{
  * @property int $composite
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind query()
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind whereComposite($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind whereNamePlural($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind whereUpdatedAt($value)
  */
-	class Product_kind extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -1008,20 +997,13 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property int $product_kind_id
  * @property string $element
  * @property int $sorting
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductCompositeElement> $elements
  * @property-read int|null $elements_count
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_composite_element newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_composite_element newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_composite_element query()
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_composite_element whereElement($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_composite_element whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_composite_element whereProductKindId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_composite_element whereSorting($value)
+ * 
  */
-	class Product_kind_composite_element extends \Eloquent {}
+	
 }
 
 namespace App\Models{
@@ -1033,35 +1015,19 @@ namespace App\Models{
  * @property int $sorting
  * @property int|null $order_column
  * @property int $section
- * @property int $product_kind_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Property> $values
  * @property-read int|null $values_count
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop query()
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereOrderColumn($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereProductKindId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereSection($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereSorting($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop whereUpdatedAt($value)
  */
-	class Product_kind_prop extends \Eloquent {}
+
 }
 
 namespace App\Models{
 /**
  * 
  *
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop_value newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop_value newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Product_kind_prop_value query()
  */
-	class Product_kind_prop_value extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -1133,12 +1099,10 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $value
- * @property int $product_kind_prop_id
  * @property int $product_id
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Product_kind_prop|null $kindProp
  * @method static \Illuminate\Database\Eloquent\Builder|Property newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Property newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Property query()
@@ -1146,7 +1110,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Property whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Property whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Property whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Property whereProductKindPropId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Property whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Property whereValue($value)
  */

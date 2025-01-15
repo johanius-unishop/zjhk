@@ -3,23 +3,22 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\AdminOrderController;
 // use App\Http\Controllers\AdminProductController;
-// use App\Http\Controllers\AdminProductKindController;
 // use App\Http\Controllers\ProductController;
 // use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\TestController;
 // use App\Http\Controllers\RegisteredUserController;
 // use App\Http\Controllers\SessionController;
-// use App\Models\Product_kind_prop;
 // use Illuminate\Foundation\Auth\EmailVerificationRequest;
 // use Illuminate\Support\Facades\Route;
 // use Symfony\Component\HttpFoundation\Request;
 // use App\Http\Middleware\CompleteProfile;
-use App\Http\Controllers\Front\{PageController, NewsController, CategoryController, ProductController ,CartController , FaqController ,SearchController , VendorController ,ArticleController};
-Route::get('/', function () {
+use App\Http\Controllers\Front\{HomeController, PageController, NewsController, CategoryController, ProductController ,CartController , FaqController ,SearchController , VendorController ,ArticleController};
+/*Route::get('/', function () {
     return view('welcome');
 })->name('home');
-;
+;*/
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
 Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
 
@@ -94,12 +93,8 @@ Route::middleware('auth')->group(function () {
 Route::prefix('test')->name('test.')->group(function () {
     Route::get('/test_vendor_product', [TestController::class, 'test_vendor_product'])->name('test_vendor_product');
     Route::get('/test_currency_seed', [TestController::class, 'test_currency_seed'])->name('test_currency_seed');
-    Route::get('/product_kinds_props', [TestController::class, 'product_kinds_props'])->name('product_kinds_props');
     Route::get('/product_composite', [TestController::class, 'product_composite'])->name('product_composite');
-
-    // Route::get('/product_kinds_props', [TestController::class, 'product_kinds_props'])->name('product_kinds_props');
     Route::get('/product_values', [TestController::class, 'product_values'])->name('product_values');
-
     Route::get('/props_value_seed', [TestController::class, 'props_value_seed'])->name('props_value_seed');
 
 });
@@ -151,13 +146,6 @@ require __DIR__ . '/admin-auth.php';
 //     Route::patch('/products/{product}/update', [AdminProductController::class, 'update'])->name('product.update');
 //     Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])->name('product.destroy');
 
-//     // Product Kinds
-//     Route::get('/product-kinds', [AdminProductKindController::class, 'index'])->name('product-kinds.index');
-//     Route::get('/product-kinds/create', [AdminProductKindController::class, 'create'])->name('product-kinds.create');
-//     Route::post('/product-kinds', [AdminProductKindController::class, 'store'])->name('product-kinds.store');
-//     Route::get('/product-kinds/{productKind}/edit', [AdminProductKindController::class, 'edit'])->name('product-kinds.edit');
-//     Route::patch('/product-kinds/{productKind}/update', [AdminProductKindController::class, 'update'])->name('product-kinds.update');
-
 //     // Orders
 //     Route::get('/orders-manage', [AdminOrderController::class, 'index'])->name('orders.index');
 //     Route::get('/orders-manage/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
@@ -166,26 +154,4 @@ require __DIR__ . '/admin-auth.php';
 //     Route::post('/orders-manage/update-received', [AdminOrderController::class, 'updateReceived'])->name('orders.updateReceived');
 
 // });
-
-// //product kind props
-
-// Route::get('/admin/product-kinds-props', function () {
-//     $productKindProps = Product_kind_prop::paginate(100);
-//     return view('admin.product-kind-props.index', compact('productKindProps'));
-// })->name('product-kind-props.index');
-
-// Route::get('/admin/product-kinds-props/{productKindProp}/edit', function (Product_kind_prop $productKindProp) {
-//     return view('admin.product-kind-props.edit', compact('productKindProp'));
-// })->name('product-kind-props.edit');
-
-// Route::patch('/admin/product-kinds-props/{productKindProp}/store', function (Request $request, Product_kind_prop $productKindProp) {
-//     $productKindProp->fill($request->all());
-//     $productKindProp->save();
-//     return redirect()->back();
-// })->name('product-kind-props.store');
-
-// Route::delete('/admin/product-kinds-props/{productKindProp}', function (Request $request, Product_kind_prop $productKindProp) {
-//     $productKindProp->delete();
-//     return redirect()->route('product-kind-props.index');
-// })->name('product-kind-props.destroy');
 

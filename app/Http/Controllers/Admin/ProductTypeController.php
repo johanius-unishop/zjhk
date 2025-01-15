@@ -91,10 +91,7 @@ class ProductTypeController extends Controller
 
         session()->flash('success', 'Запись успешно обновлена');
 
-        if ($request->action == 'save-exit') {
-            return redirect(route('admin.product_type.index'));
-        }
-        return redirect(route('admin.product_type.edit', $productType->id));
+        return redirect(route('admin.product_type.index'));
     }
 
     /**

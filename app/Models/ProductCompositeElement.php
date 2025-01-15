@@ -10,7 +10,7 @@ class ProductCompositeElement extends Model
 
     protected $table = 'product_composite_elements';
     protected $fillable = [
-        'product_composite_element_id',
+        'product_type_composite_element_id',
         'product_id',
         'product_element_id',
         'quantity',
@@ -32,7 +32,7 @@ class ProductCompositeElement extends Model
 
     public function compositeType()
     {
-        return $this->belongsTo(ProductTypeCompositeElement::class, 'product_composite_element_id');
+        return $this->belongsTo(ProductTypeCompositeElement::class, 'product_type_composite_element_id');
     }
 
 }

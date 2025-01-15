@@ -9,8 +9,12 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function details()
+    protected $fillable = [
+        'received'
+    ];
+
+    public function products()
     {
-        return $this->hasMany(Order_composition::class);
+        return $this->belongsToMany(Product::class, 'order_compositions', 'order_id', 'product_id');
     }
 }

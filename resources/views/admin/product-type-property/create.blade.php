@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
-                                        <label for="name">Название</label>
+                                        <label for="name">Название1</label>
                                         <input type="text" class="form-control" name="name" value="{{  old('name') }}">
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>

@@ -11,15 +11,13 @@
 
 @section('content')
  
-<div class=" py-3 ">
-    <a class="btn btn-primary" href="{{ route('admin.category.createNew', $parent_category->id) }}" role="button">Добавить</a>
-</div>
-
+<livewire:subcategory-component :parent_category="$parent_category->id" />
 <livewire:subcategory-table :parent_category="$parent_category->id" />
 
-<div class=" py-3 form-row justify-content-center">
-    <a class="btn .btn-lg btn-success " href="{{ route('admin.category.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>
+<div class="py-3 form-row justify-content-center">
+    <a class="btn .btn-lg btn-success" href="{{ $parent_category->parent_id !== null ? route('admin.category.show', ['category' => $parent_category->parent_id]) : route('admin.category.index') }}" role="button"><i class="fa fa-arrow-left"></i> Назад</a>
 </div>
+
 @stop
     
 
@@ -35,5 +33,6 @@
 {{-- Push extra scripts --}}
 
 @push('js')
-
+@livewireScripts
+<script src="{{ asset('js/powergrid.js') }}"></script>
 @endpush

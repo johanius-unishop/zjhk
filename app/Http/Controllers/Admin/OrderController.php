@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,6 +15,10 @@ class OrderController extends Controller
     public function index()
     {
         //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        return view('admin.order.index');
     }
 
     /**
@@ -38,6 +43,10 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        return view('admin.order.show', ['parent_order' => $order]);
     }
 
     /**

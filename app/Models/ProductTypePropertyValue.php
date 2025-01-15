@@ -35,5 +35,11 @@ class ProductTypePropertyValue extends Model
         return $this->belongsTo(ProductTypeProperty::class, 'product_type_property_id');
     }
 
+    public function productPropertyValues()
+    {
+        return $this->hasMany(ProductPropertyValue::class, 'product_type_property_value_id', 'id');
+    }
+    
+
    
 }

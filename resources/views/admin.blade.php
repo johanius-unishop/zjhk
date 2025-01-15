@@ -16,7 +16,7 @@
 {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 
 <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.css') }}">
-@vite('resources/css/app.css')
+@vite('resources/css/app.scss')
 
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap4-toggle/bootstrap4-toggle.min.css') }}">
 {{-- просмотр фото --}}

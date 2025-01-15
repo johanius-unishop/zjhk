@@ -13,18 +13,24 @@ use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\AnalogController;
 use App\Http\Controllers\Admin\AnalogVendorController;
 use App\Http\Controllers\Admin\ProductTypeController;
+use App\Http\Controllers\Admin\RelatedProductTypeController;
 use App\Http\Controllers\Admin\ProductTypePropertyController;
+use App\Http\Controllers\Admin\ProductTypePropertyValueController;
 use App\Http\Controllers\Admin\ImportController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ArticleController;
-use App\Http\Controllers\Admin\SiteOrdersController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\VendorPdfCatalogController;
+use App\Http\Controllers\Admin\ProductPdfTypeController;
 
 
 use Illuminate\Support\Facades\Route;
+use Spatie\LaravelSettings\Settings;
 
 Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
     // Route::get('register', [RegisteredUserController::class, 'create'])
@@ -46,7 +52,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('/regenerate_sitemap', [ContentController::class, 'regenerateSitemap'])->name('regenerate_sitemap');
 
     Route::get('/all_orders', [ContentController::class, 'all_orders'])->name('all_orders');
-    Route::resource('orders', SiteOrdersController::class);
+    Route::resource('order', OrderController::class);
 
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
 
@@ -72,6 +78,8 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('import', [ImportController::class, 'index'])->name('import.index');
     Route::get('import_product_files', [ImportController::class, 'import_product_files'])->name('import.import_product_files');
     Route::get('import_product_images', [ImportController::class, 'import_product_images'])->name('import.import_product_images');
+    Route::post('import_price_from_xls', [ImportController::class, 'import_price_from_xls'])->name('import.import_price_from_xls');
+    //Route::post('import_order_from_xls', [ImportController::class, 'import_order_from_xls'])->name('import.import_order_from_xls');
 
     Route::resource('user', UserController::class);
     Route::resource('product', ProductController::class);
@@ -80,15 +88,21 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('category/createNew/{category}', [CategoryController::class, 'createNew'])->name('category.createNew');
 
     Route::resource('vendor', VendorController::class);
+    Route::resource('country', CountryController::class);
     Route::post('/images/upload', [ContentController::class, 'imagesUpload'])->name('images_upload');
     Route::resource('currency', CurrencyController::class);
+    Route::resource('setting', SettingController::class);
     Route::resource('delivery', DeliveryController::class);
-    Route::resource('analog_vendor', AnalogVendorController::class);
+    Route::resource('analog-vendor', AnalogVendorController::class);
     Route::resource('analog', AnalogController::class);
     Route::resource('product_type', ProductTypeController::class);
+    Route::resource('vendor-pdf-catalog', VendorPdfCatalogController::class);
 
 
     Route::resource('product_type_property', ProductTypePropertyController::class);
+    Route::resource('product_type_property_value', ProductTypePropertyValueController::class);
+    Route::resource('related_product_type', RelatedProductTypeController::class);
+    Route::resource('product_pdf_type', ProductPdfTypeController::class);
     //Рабочий маршрут
     Route::get('product_type_property/createNew/{product_type}', [ProductTypePropertyController::class, 'createNew'])->name('product_type_property.createNew');
 
@@ -98,5 +112,12 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource('faq', FaqController::class);
     Route::resource('article', ArticleController::class);
 
-
+    Route::get('problem/product-without-type', [ProductController::class, 'showProductsWithoutType'])->name('problem.product_without_type');
+    Route::get('problem/product-without-vendor', [ProductController::class, 'showProductsWithoutVendor'])->name('problem.product_without_vendor');
+    Route::get('problem/product-without-category', [ProductController::class, 'showProductsWithoutCategory'])->name('problem.product_without_category');
+    Route::get('problem/product-without-currency', [ProductController::class, 'showProductsWithoutCurrency'])->name('problem.product_without_currency');
+    Route::get('problem/product-without-supplier-price', [ProductController::class, 'showProductsWithoutSupplierPrice'])->name('problem.product_without_supplier_price');
+    Route::get('problem/product-without-tnved', [ProductController::class, 'showProductsWithoutTnved'])->name('problem.product_without_tnved');
+    Route::get('problem/types-without-property', [ProductTypeController::class, 'showTypesWithoutProperty'])->name('problem.types_without_property');
+    Route::get('problem/properties-without-values', [ProductTypePropertyController::class, 'showPropertiesWithoutValues'])->name('problem.properties_without_values');
 });

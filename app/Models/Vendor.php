@@ -35,7 +35,7 @@ class Vendor extends Model implements Sortable, HasMedia
         'description',
         'slug',
         'published',
-        'country',
+        'country_id',
         'delivery_time',
         'warranty',
         'logo',
@@ -54,15 +54,6 @@ class Vendor extends Model implements Sortable, HasMedia
             ->usingLanguage('ru');
     }
 
-    // public function getDynamicSEOData(): SEOData
-    // {
-    //     return new SEOData(
-    //         title: $this->title,
-    //         description: $this->description,
-
-    //     );
-    // }
-
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
@@ -70,23 +61,18 @@ class Vendor extends Model implements Sortable, HasMedia
             ->height(232)
             ->nonQueued();
 
-        // $this
-        //     ->addMediaConversion('responsive')
-        //     ->format('webp')
-        //     ->quality(80)
-        //     ->withResponsiveImages()
-        //     ->nonQueued();
+       
     }
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('logo')
+        $this->addMediaCollection('vendorLogo')
             ->useFallbackUrl('/images/default_image.jpg')
             ->useFallbackPath(public_path('/images/default_image.jpg'))
             ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
             ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb')
             ->singleFile();
     }
-    public function product()
+    public function products()
     {
         return $this->hasMany(Product::class, 'vendor_id', 'id');
     }
@@ -110,5 +96,15 @@ class Vendor extends Model implements Sortable, HasMedia
     public function scopePublished(Builder $query): void
     {
         $query->where('published', 1);
+    }
+
+    // Связь производителя с страной
+    public function country() {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function catalogs()
+    {
+        return $this->hasMany(VendorPdfCatalog::class);
     }
 }

@@ -25,13 +25,10 @@ final class SubcategoryTable extends PowerGridComponent
     public $delete_id;
     public function setUp(): array
     {
-        //$this->showCheckBox();
-
         return [
-         //   Exportable::make('export')
-         //       ->striped()
-         //       ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput()->withoutLoading(),
+            Header::make()
+                ->showSearchInput()
+                ->withoutLoading(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -42,7 +39,8 @@ final class SubcategoryTable extends PowerGridComponent
     {
         return Category::query()
             ->where('parent_id', $this->parent_category)
-            ->withCount('childrens');
+            ->withCount('childrens')
+            ->withCount('products');
     }
 
     public function relationSearch(): array
@@ -50,28 +48,17 @@ final class SubcategoryTable extends PowerGridComponent
         return [];
     }
 
-    public function fields(): PowerGridFields
-    {
-        return PowerGrid::fields()
-            ->add('id')
-            ->add('name', function ($item) {
-                // Создаем ссылку с именем категории и количеством дочерних категорий
-                return '<a href="' . route('admin.category.show', ['category' => $item->id]) . '">'
-                    . $item->name . ' (' . $item->childrens_count . ')'
-                    . '</a>';
-            })
-            ->add('published', function ($item) {
-                return '<input type="checkbox"' . ($item->published ? ' checked' : '') . '>';
-            });
-    }
-
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name')
-                ->searchable(),
-            Column::make('Опубликовано', 'published'),
+            Column::make('Название категории', 'name')
+                ->searchable()
+                ->editOnClick(),
+            Column::make('Показывать на сайте', 'published')
+                ->toggleable(),
+            Column::make('Подкатегории', 'childrens_count'),
+            Column::make('Товары', 'products_count'),
             Column::action('Действия'),
         ];
     }
@@ -83,49 +70,41 @@ final class SubcategoryTable extends PowerGridComponent
     }
 
 
-    #[\Livewire\Attributes\On('post_delete')]
-    public function post_delete($rowId): void
+    #[\Livewire\Attributes\On('delete_subcategory')]
+    public function delete_subctegory($rowId): void
     {
+        
         $this->delete_id = $rowId;
-    
-        // Получаем категорию для проверки
-        $category = Category::find($this->delete_id);
-    
-        // Проверяем, является ли категория родительской для других категорий
-        $childrenCount = $category->children()->count();
-    
-        // Проверяем, содержит ли категория товары
-        $productCount = $category->products()->count();
-    
-        //if ($childrenCount > 0/* || $hasProducts*/) {
-            // Категория не пустая, выводим предупреждение
-            $this->confirm('Категория не пустая'.$productCount.'', [
-                'onConfirmed' => 'confirmed',
-                'showCancelButton' => true,
-                'cancelButtonText' => 'Нет',
-            ]);
-            
+        $this->confirm('Вы действительно хотите удалить эту категорию?', [
+            'onConfirmed' => 'confirmed',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'Нет',
+        ]);
 
-            $this->dispatch('notify', message: 'Нельзя удалить категорию, так как она содержит товары или является родительской для других категорий.', notify: 'warning');
-        /*} else {
-            // Категория пустая, подтверждаем удаление
-            $this->confirm('Вы действительно хотите удалить эту запись?', [
-                'onConfirmed' => 'confirmed',
-                'showCancelButton' => true,
-                'cancelButtonText' => 'Нет',
-            ]);
-        }*/
     }
 
     #[\Livewire\Attributes\On('confirmed')]
     public function confirmed()
     {
-        // Удаляем категорию
-        $category = Category::find($this->delete_id);
-        $category->delete();
-
-        // Выводим уведомление об успешной операции
+        $deleted_record = Category::where('id', $this->delete_id)->withCount('childrens')->withCount('products')->firstOrFail();
+        if ($deleted_record->childrens_count > 0) {
+            $this->dispatch('toast', message: 'Эта категория содержит подкатегории. Сначала удалите их!', notify: 'error');
+            return;
+        }
+        if ($deleted_record->products_count > 0) {
+            $this->dispatch('toast', message: 'Эта категория содержит товары. Сначала удалите их!', notify: 'error');
+            return;
+        }
+        
+        if ($deleted_record->seo()->exists()) {
+            $deleted_record->seo()->delete();
+        }
+        if ($deleted_record->media()->exists()) {
+            $deleted_record->media()->delete();
+        }
+        $deleted_record->delete();
         $this->dispatch('toast', message: 'Категория удалена.', notify: 'success');
+
     }
     
     public function actions(Category $row): array
@@ -142,19 +121,60 @@ final class SubcategoryTable extends PowerGridComponent
             Button::add('Удалить')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
-                ->dispatch('post_delete', ['rowId' => $row->id]),
+                ->dispatch('delete_subcategory', ['rowId' => $row->id]),
+        ];
+    }    
+    #[\Livewire\Attributes\On('update-subcategory-table')]
+    public function updateSubcategoryTable(): void
+    {
+        $this->dispatch('toast', message: 'Новая категория добавлена!', notify: 'success');
+        $this->refresh();
+        $this->render();
+    }
+    public function onUpdatedEditable(int|string $id, string $field, string $value): void
+    {
+        $this->withValidator(function (\Illuminate\Validation\Validator $validator) use ($id, $field) {
+            if ($validator->errors()->isNotEmpty()) {
+                $this->dispatch('toggle-' . $field . '-' . $id);
+            }
+        })->validate();
+    
+        $updated = Category::query()->find($id)->update([
+            $field => $value,
+        ]);
+    }
+
+    protected function rules()
+    {
+        return [
+            'name.*' => [
+                'required',
+                'min:3',
+            ],
         ];
     }
 
-    /*
-    public function actionRules($row): array
+    protected function validationAttributes()
     {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
+        return [
+            'name.*'       => 'Название типа товара из комплекта',
         ];
     }
-    */
+
+    protected function messages()
+    {
+        return [
+            'name.*.required'     => 'Название типа товара из товара должно быть заполнено',
+            'name.*.min'     => 'Название типа товара из товара должно содержать минимум 3 символа',
+        ];
+    }
+
+    public function onUpdatedToggleable(string|int $id, string $field, string $value): void
+    {
+        Category::query()->find($id)->update([
+            $field => e($value),
+        ]);
+
+        $this->skipRender();
+    }
 }

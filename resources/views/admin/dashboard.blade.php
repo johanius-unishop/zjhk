@@ -39,6 +39,54 @@
     </div>
 
 </div>
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-12">
+        <div class="info-box bg-gradient-warning">
+            <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Статистика проблем на сайте:</span>
+                @if ($no_product_type_count > 0)
+                <span class="info-box-number">
+                    <a href="{{ route('admin.problem.product_without_type') }}">Товары без типа товаров: {{ $no_product_type_count }}</a>
+                </span>
+                @endif
+                {{-- @if ($no_vendor_count> 0) --}}
+                <span class="info-box-number">
+                    <a href="{{ route('admin.problem.product_without_vendor') }}">Товары без бренда: {{ $no_vendor_count }}</a>
+                </span>
+                
+                <span class="info-box-number">
+                    <a href="{{ route('admin.problem.product_without_category') }}">Товары без категории: {{ $no_category_count }}</a>
+                </span>
+                <span class="info-box-number">
+                    <a href="{{ route('admin.problem.product_without_currency') }}">Товары без валюты: {{ $no_currency_count }}</a>
+                </span>
+                <span class="info-box-number">
+                    <a href="{{ route('admin.problem.product_without_supplier_price') }}">Товары без цены от поставщика: {{ $no_supplier_price_count }}</a>
+                </span>
+                <span class="info-box-number">
+                    <a href="{{ route('admin.problem.product_without_tnved') }}">Не указан ТН ВЭД: {{ $no_tn_ved_count }}</a>
+                </span>
+                <span class="info-box-number">
+                    <a href="{{ route('admin.problem.types_without_property') }}">Количество типов товаров без характеристик: {{ $product_types_without_properties }}</a>
+                </span>
+                <span class="info-box-number">
+                    <a href="{{ route('admin.problem.properties_without_values') }}" wire:click.prevent="showPropertiesWithoutValues()">Количество характеристик без доступных значений: {{ $product_type_properties_without_values }}</a>
+                </span>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 100%"></div>
+                </div>
+                <span class="progress-description">
+
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fas fa-sync"></i> {{ $sitemap_button }}
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
 

@@ -4,26 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-// use App\Models\Blog;
 use App\Models\Article;
 use App\Models\News;
 use App\Models\Page;
-// use App\Models\Product;
-// use App\Models\Consulting;
-// use App\Models\Vendor;
-// use App\Models\PriceRequest;
-// use App\Models\ProductType;
-// use App\Models\Opinion;
+use App\Models\Product;
+use App\Models\ProductType;
+use App\Models\ProductTypeProperty;
 use App\Models\Order;
 use App\Models\Faq;
-// use App\Models\Subscribe;
-// use App\Models\ModelRequest;
-
-// use App\Http\Requests\Admin\ImportProductFileRequest;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
-use App\Models\Portfolio;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
@@ -42,25 +33,15 @@ class ContentController extends Controller
 
     public function index()
     {
-        //
         $news_count = News::count();
         $faq_count  = Faq::count();
         $page_count = Page::count();
         $article_count = Article::count();
         return view('admin.content.index', compact('news_count', 'page_count' , 'faq_count'  , 'article_count'  ));
-        //  return view('admin.content.index');
     }
 
-  public function all_orders()
-    {
-        //
-        $news_count = News::count();
-        $faq_count  = Faq::count();
-        $page_count = Page::count();
-        $article_count = Article::count();
-        return view('admin.content.all_orders', compact('news_count', 'page_count' , 'faq_count'  , 'article_count'  ));
+    
 
-    }
     public function regenerateSitemap()
     {
         Log::info('Генерация sitemap');
@@ -73,15 +54,8 @@ class ContentController extends Controller
 
     public function model()
     {
-        //
-        // $news_count = News::count();
-        // $blog_count = Blog::count();
-        // $page_count = Page::count();
-
-        // return view('admin.content.index', compact('news_count', 'blog_count', 'page_count', 'portfolio_count', 'opinion_count'));
-        return view('admin.model.menu');
-
-
+        $open_orders_count = Order::where('received', '!=', 1)->count();//
+        return view('admin.model.menu', compact('open_orders_count'));
     }
 
 
@@ -105,9 +79,6 @@ class ContentController extends Controller
     }
     public function dashboard()
     {
-        // $sitemap_exists = Storage::exists(public_path('sitemap.xml'));
-        // $yandex_exists  = Storage::exists(public_path('yml.xml'));
-        // $sitemap_exists =     Storage::exists(public_path('sitemap.xml'));
         $yml_path       = public_path() . '/yml.xml';
         $sitemap_path   = public_path() . '/sitemap.xml';
         $sitemap_exists = file_exists($sitemap_path);
@@ -126,21 +97,27 @@ class ContentController extends Controller
         } else {
             $sitemap_button = 'Генерация Sitemap';
         }
-
-
-        // if ($yandex_exists) {
-        //     // echo 'already exists sitemap.xml ' . PHP_EOL;
-        //     $yandex_stats  = stat($yml_path);
-        //     $yandex_button = 'Регенерация YML Яндекс';
-        //     $response      = file_get_contents($yml_path);
-        //     $yandex_urls   = substr_count($response, '</offer>');
-
-        // } else {
-        //     $sitemap_button = 'Генерация YML Яндекс';
-        // }
-
-
-        // dd($sitemap_exists, $sitemap_info, $yandex_exists, $sitemap_urls);
+        // Товары без присвоения типа товара
+        $no_product_type_count = Product::whereNull('product_type_id')->count();
+        $no_vendor_count = Product::whereNull('vendor_id')->orWhere('vendor_id', '=', 0)->count();
+        $no_category_count = Product::whereNull('category_id')->count();
+        $no_currency_count = Product::whereNull('currency_id')->count();
+        $no_supplier_price_count = Product::where(function ($query) {
+            $query->where('composite_product', '=', 0);
+            
+            $query->where(function ($subQuery) {
+                $subQuery->whereNull('supplier_price')
+                ->orWhere('supplier_price', '=', 0);
+            });
+        })->count();
+        $no_tn_ved_count = Product::where(function ($query) {
+            $query->whereNull('tn_ved')
+            ->orWhere('tn_ved', '=', '');
+            
+            $query->where('composite_product', '=', 0);
+        })->count();
+        $product_types_without_properties = ProductType::doesntHave('properties')->count();
+        $product_type_properties_without_values = ProductTypeProperty::doesntHave('productTypePropertyValues')->count();
 
         $data = array(
             'orders_count' => $orders_count,
@@ -148,16 +125,18 @@ class ContentController extends Controller
             'sitemap_stats' => @$sitemap_stats,
             'sitemap_button' => @$sitemap_button,
             'sitemap_urls' => @$sitemap_urls,
-
-
-            // 'yandex_exists' => @$yandex_exists,
-            // 'yandex_stats' => @$yandex_stats,
-            // 'yandex_button' => @$yandex_button,
-            // 'yandex_urls' => @$yandex_urls,
+            'no_product_type_count' => $no_product_type_count,
+            'no_vendor_count' => $no_vendor_count,
+            'no_category_count' => $no_category_count,
+            'no_currency_count' => $no_currency_count,
+            'no_supplier_price_count' => $no_supplier_price_count,
+            'no_tn_ved_count' => $no_tn_ved_count,
+            'product_types_without_properties' => $product_types_without_properties,
+            'product_type_properties_without_values' => $product_type_properties_without_values,
+            
 
         );
 
-        // dd($data);
         return view('admin.dashboard', $data);
 
 

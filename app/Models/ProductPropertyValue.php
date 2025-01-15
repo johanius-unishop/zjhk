@@ -28,7 +28,7 @@ class ProductPropertyValue extends Pivot
 
     // Связь с возможным значением свойства
     public function productTypePropertyValue() {
-        return $this->belongsTo(ProductTypePropertyValue::class, 'product_type_property_value_id');
+        return $this->hasOne(ProductTypePropertyValue::class, 'id','product_type_property_value_id');
     }
     
 }

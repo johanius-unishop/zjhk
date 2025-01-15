@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Vendor;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Cache;
@@ -35,7 +35,10 @@ class VendorController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-        return view('admin.vendor.create');
+        $countries = Country::select(['name', 'id'])
+        ->orderBy('name')
+        ->get();
+        return view('admin.vendor.create', compact('countries'));
 
 
     }
@@ -45,27 +48,40 @@ class VendorController extends Controller
      */
     public function store(StoreVendorRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        // Проверка прав доступа
+        if (!Gate::allows('manage-content')) {
             return abort(401);
         }
-
-        $input = $request->all();
-        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
+    
+        // Подготовка входных данных
+        $input = $request->validated();
+        $input['published'] = $request->filled('published'); // Преобразуем в boolean
+    
+        // Создание записи
         $record = Vendor::create($input);
-
-        $record->seo->update([
-            'title' => $request->title,
+    
+        // Обработка загрузки логотипа
+        if ($request->hasFile('vendorLogo')) {
+            $record
+                ->addMediaFromRequest('vendorLogo')
+                ->toMediaCollection('vendorLogo');
+        }
+    
+        // Обновляем SEO-данные
+        $record->seo()->update([
+            'title'       => $request->title,
             'description' => $request->description,
-            'keywords' => $request->keywords,
+            'keywords'    => $request->keywords,
             'canonical_url' => $request->canonical_url,
         ]);
-
+    
+        // Очистка кеша
         Cache::forget('front_vendors_list');
+    
+        // Уведомление об успехе
         session()->flash('success', 'Запись успешно создана');
-        if ($request->action == 'save-exit') {
-            return redirect(route('admin.vendor.index'));
-        }
-        return redirect(route('admin.vendor.edit', $record->id));
+    
+        return redirect()->route('admin.vendor.index', $record->id);
     }
 
     /**
@@ -95,9 +111,14 @@ class VendorController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-        return view('admin.vendor.edit', ['vendor' => $vendor]);
+        $countries = Country::select(['name', 'id'])
+                    ->orderBy('name')
+                    ->get();
+        return view('admin.vendor.edit', compact('countries', 'vendor'));
 
     }
+
+    
 
     /**
      * Update the specified resource in storage.
@@ -112,6 +133,21 @@ class VendorController extends Controller
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
         $vendor->update($input);
 
+        // Обработка загрузки логотипа
+        
+        if ($request->hasFile('vendorLogo')) {
+            // Удаление старого логотипа, если он есть
+            $oldMedia = $vendor->getMedia('vendorLogo');
+            if ($oldMedia) {
+                $oldMedia->each->delete();
+            }
+        
+            // Добавление нового логотипа
+            $vendor
+                ->addMediaFromRequest('vendorLogo')
+                ->toMediaCollection('vendorLogo');
+        }
+        
         $vendor->seo->update([
             'title' => $request->title,
             'description' => $request->description,
@@ -122,10 +158,7 @@ class VendorController extends Controller
         Cache::forget('front_vendors_list');
         session()->flash('success', 'Запись успешно обновлена');
 
-        if ($request->action == 'save-exit') {
-            return redirect(route('admin.vendor.index'));
-        }
-        return redirect(route('admin.vendor.edit', $vendor->id));
+        return redirect(route('admin.vendor.index', $vendor->id));
     }
 
     /**

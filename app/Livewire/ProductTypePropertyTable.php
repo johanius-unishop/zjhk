@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Models\ProductPropertyValue;
 use App\Models\ProductTypeProperty;
 use App\Models\ProductTypePropepertyValue;
+use App\Models\ProductTypePropertyValue;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -19,11 +21,13 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
 
 final class ProductTypePropertyTable extends PowerGridComponent
 {
 
     use LivewireAlert;
+    public string $tableName = 'ProductTypePropertyTable';
     public string $parent_type;
     public array $name;
     public $delete_id;
@@ -56,13 +60,15 @@ final class ProductTypePropertyTable extends PowerGridComponent
             ->add('order_column')
             ->add('name')
             ->add('section')
-            ->add('product_type_property_values_count');;
+            ->add('product_type_property_values_count');
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Порядок вывода', 'order_column'),
+            Column::make('ID', 'id'),
+            Column::make('Порядок вывода', 'order_column')
+                ->editOnClick(),
             Column::make('Название харктеристики/секции', 'name')
                 ->editOnClick(),
             Column::make('Является секцией', 'section')
@@ -78,11 +84,20 @@ final class ProductTypePropertyTable extends PowerGridComponent
         ];
     }
 
-    #[\Livewire\Attributes\On('post_delete')]
-    public function post_delete($rowId): void
+    #[\Livewire\Attributes\On('update-product-type-property-table')]
+    public function updateProductTypePropertyTable(): void
+    {
+        $this->dispatch('toast', message: 'Новая характеристика добавлена!', notify: 'success');
+        $this->refresh();
+        $this->render();
+    }
+    
+    
+    #[\Livewire\Attributes\On('delete_property')]
+    public function delete_property($rowId): void
     {
         $this->delete_id = $rowId;
-        $this->confirm('Вы действительно хотите удалить эту запись?', [
+        $this->confirm('Вы действительно хотите удалить эту характеристику/секцию?', [
             'onConfirmed' => 'confirmed',
             'showCancelButton' => true,
             'cancelButtonText' => 'Нет',
@@ -92,18 +107,30 @@ final class ProductTypePropertyTable extends PowerGridComponent
     #[\Livewire\Attributes\On('confirmed')]
     public function confirmed()
     {
-        // TODO Удаление
-        // $deleted_record = ProductType::where('id', $this->delete_id)-> firstOrFail();
-        // // if ($deleted_record->product_count > 0) {
-        // //     $this->dispatch('toast', message: 'У этого производителя есть товары. Вначале удалите их!', notify: 'error');
-        // //     return;
-        // // }
-        // $deleted_record->delete();
-        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
+        // Получаем количество записей ProductTypePropertyValue
+        $deleted_records_value_count = ProductTypePropertyValue::where('product_type_property_id', $this->delete_id)->count();
 
+        // Получаем количество записей ProductPropertyValue
+        $deleted_records_product_value_count = ProductPropertyValue::where('product_type_property_id', $this->delete_id)->count();
+
+        // Удаляем записи ProductTypePropertyValue
+        if ($deleted_records_value_count > 0) {
+            ProductTypePropertyValue::where('product_type_property_id', $this->delete_id)->delete();
+        }
+
+        // Удаляем записи ProductPropertyValue
+        if ($deleted_records_product_value_count > 0) {
+            ProductPropertyValue::where('product_type_property_id', $this->delete_id)->delete();
+        }
+
+        // Удаляем основную запись ProductTypeProperty
+        $deleted_record = ProductTypeProperty::where('id', $this->delete_id)->firstOrFail();
+        $deleted_record->delete();
+
+        $this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
     }
 
-    #[\Livewire\Attributes\On('up')]
+    #[\Livewire\Attributes\On('up_property')]
     public function property_up($rowId): void
     {
         try {
@@ -120,7 +147,7 @@ final class ProductTypePropertyTable extends PowerGridComponent
     }
 
 
-    #[\Livewire\Attributes\On(event: 'down')]
+    #[\Livewire\Attributes\On(event: 'down_property')]
     public function property_down($rowId): void
     {
         try {
@@ -139,27 +166,34 @@ final class ProductTypePropertyTable extends PowerGridComponent
     public function actions(ProductTypeProperty $row): array
     {
         return [
-            
             Button::add('view')
                 ->slot('<i class="fas fa-folder"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.product_type_property.show', ['product_type_property' => $row->id]),
-            //Button::add('view')
-            //    ->slot('<i class="fas fa-edit"></i>')
-            //    ->class('btn btn-primary')
-            //    ->route('admin.product_type_property.edit', ['product_type_property' => $row->id]),
-            Button::add('up')
+            Button::add('up_property')
                 ->slot('<i class="fas fa-arrow-up"></i>')
                 ->class('btn btn-success')
-                ->dispatch('up', ['rowId' => $row->id]),
-            Button::add('down')
+                ->dispatch('up_property', ['rowId' => $row->id]),
+            Button::add('down_property')
                 ->slot('<i class="fas fa-arrow-down"></i>')
                 ->class('btn btn-success')
-                ->dispatch('down', ['rowId' => $row->id]),
+                ->dispatch('down_property', ['rowId' => $row->id]),
             Button::add('delivery')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
-                ->dispatch('post_delete', ['rowId' => $row->id]),
+                ->dispatch('delete_property', ['rowId' => $row->id]),
+            ];
+    }
+
+    public function actionRules($row): array
+    {
+        return [
+            Rule::button('view')
+            ->when(fn ($product_type_property) => $product_type_property->section == true)
+            ->hide(),
+            Rule::rows()
+            ->when(fn ($product_type_property) => $product_type_property->product_type_property_values_count != 0)
+            ->hideToggleable(),
         ];
     }
 
@@ -168,6 +202,7 @@ final class ProductTypePropertyTable extends PowerGridComponent
         return [
             'name.*' => [
                 'required',
+                'min:3',
             ],
         ];
     }
@@ -183,6 +218,7 @@ final class ProductTypePropertyTable extends PowerGridComponent
     {
         return [
             'name.*.required'     => 'Название характеристики должно быть заполнено',
+            'name.*.min'     => 'Название характеристики должно содержать минимум 3 символа',
         ];
     }
 
@@ -199,12 +235,16 @@ final class ProductTypePropertyTable extends PowerGridComponent
         ]);
     }
 
+
     public function onUpdatedToggleable(string|int $id, string $field, string $value): void
     {
         ProductTypeProperty::query()->find($id)->update([
             $field => e($value),
         ]);
-        $this->skipRender();
+
+        //$this->skipRender();
     }
+
+    
 
 }

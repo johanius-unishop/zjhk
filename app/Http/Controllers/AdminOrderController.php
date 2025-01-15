@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Order_composition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\Models\Order;
 use App\Models\Product;
@@ -22,7 +20,6 @@ class AdminOrderController extends Controller
 
     public function upload(Request $request)
     {
-        DB::enableQueryLog();
         if ($request->hasFile('excel_file')) {
             $file = $request->file('excel_file');
 
@@ -97,7 +94,7 @@ class AdminOrderController extends Controller
 
     public function show(Order $order)
     {
-        return view('admin.orders.show', compact('order'));
+        return view('admin.order.show', compact('order'));
     }
 
     public function updateReceived(Request $request)
@@ -118,6 +115,6 @@ class AdminOrderController extends Controller
         // Удаляем сам заказ
         $order->delete();
 
-        return redirect()->route('admin.orders.index')->with('success', 'Заказ успешно удален!');
+        return redirect()->route('admin.order.index')->with('success', 'Заказ успешно удален!');
     }
 }

@@ -70,6 +70,7 @@ final class ProductTypeTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Название типа товара (в единственном числе)', 'name')->searchable()->sortable()->editOnClick(),
+            Column::make('Составной тип товара', 'composite')->toggleable(),
             Column::make('Количество характеристик', 'properties_count'),
             Column::action('Действия'),
         ];
@@ -128,24 +129,6 @@ final class ProductTypeTable extends PowerGridComponent
         }
     }
 
-    /*#[\Livewire\Attributes\On('confirmed')]
-    public function confirmed()
-    {
-        // TODO Удаление
-        // 1. Проверить есть ли у удаляемого типа товара характеристики
-        // если есть то вывести предупреждение, что вместе с типом товара будут удалено столько то характеристик, назначенных этому типу
-        // получить подтверждение пользователя и удалить все присущие характерситики и все занчения характеристик назначенные товарам удаляемого типа
-        // $deleted_record = ProductType::where('id', $this->delete_id)-> firstOrFail();
-        // // if ($deleted_record->product_count > 0) {
-        // //     $this->dispatch('toast', message: 'У этого производителя есть товары. Вначале удалите их!', notify: 'error');
-        // //     return;
-        // // }
-
-        // $deleted_record->delete();
-        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
-
-    }
-        */
     public function actions(ProductType $row): array
     {
         return [
@@ -201,8 +184,15 @@ final class ProductTypeTable extends PowerGridComponent
         })->validate();
     
         $updated = ProductType::query()->find($id)->update([
-            $field => $value,
+            $field => e($value),
         ]);
+    }
+    public function onUpdatedToggleable(string|int $id, string $field, string $value): void
+    {
+        ProductType::query()->find($id)->update([
+            $field => e($value),
+        ]);
+        $this->skipRender();
     }
 
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\{Currency, PriceSegment, ProductType ,  ProductClass,  ProductStyle, Vendor, Product};
+use App\Models\{Currency, PriceSegment, ProductType ,  ProductClass,  ProductStyle, Vendor, Product,Order};
 
 class ModelController extends Controller
 {
@@ -28,16 +28,17 @@ class ModelController extends Controller
         $product_style_count = ProductStyle::count();
 
         $product_type_count = ProductType::count();
-
+        
         return view('admin.model.menu', compact('price_segment_count', 'product_location_count', 'product_class_count', 'vendor_count', 'product_count' , 'product_style_count', 'product_type_count'));
      }
+
 
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        
     }
 
     /**

@@ -114,16 +114,12 @@ class Product extends Model implements HasMedia, Sitemapable
     public function getSearchableAttributes(): array
     {
         return [
-            // 'model' => 8,
             'name' => 8, // Model attribute
             'body_description' => 4,
             'short_description' => 4, // All json keys of a model attribute
             'vendor.name' => 3, // Relationship attribute
-            // 'tags.description.*', // All json keys of a relationship attribute
-            // DB::raw("CONCAT(creator_name, ' ', creator_surname)"), // Raw expressions are supported too
         ];
     }
-
 
     public function toSitemapTag(): Url|string|array
     {
@@ -157,20 +153,12 @@ class Product extends Model implements HasMedia, Sitemapable
             ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
             ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb');
 
-        $this->addMediaCollection(name: 'specifications')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Технические характеристики
+        $this->addMediaCollection('specification')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Технические характеристики
         $this->addMediaCollection('dimensionalDrawing')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Габаритный чертеж
         $this->addMediaCollection('overviewInformation')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Обзорная информация
-
+        $this->addMediaCollection('3dModel')->acceptsMimeTypes(mimeTypes: ['application/x-rar-compressed', 'application/zip', 'text/plain']);
     }
-    public function productType()
-    {
-        return $this->belongsTo(ProductType::class, 'product_type_id');
-    }
-
-    /*public function properties()
-    {
-        return $this->hasMany(Property::class);
-    }*/
+    
     
     public function  productPropertyValues()
     {
@@ -189,18 +177,18 @@ class Product extends Model implements HasMedia, Sitemapable
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class);
+    }
+
+    public function productType()
+    {
+        return $this->belongsTo(ProductType::class, 'product_type_id');
     }
 
     public function currency()
     {
         return $this->belongsTo(Currency::class);
     }
-
-    // public function composite()
-    // {
-    //     return $this->hasMany(Product_composite_element::class);
-    // }
 
     public function composite()
     {
@@ -289,6 +277,15 @@ class Product extends Model implements HasMedia, Sitemapable
 
         );
     }
+    
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_compositions', 'product_id', 'order_id');
+    }
 
+    // Связь продукта со страной
+    public function country() {
+        return $this->belongsTo(Country::class);
+    }
 
 }

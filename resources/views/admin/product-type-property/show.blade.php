@@ -10,10 +10,12 @@
 
 {{-- Content body: main page content --}}
 @section('content')
-{{-- <a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_property) }}" role="button">Добавить1</a> --}}
 
-<livewire:product-type-prorety-values-component :productTypeProperty="$productTypeProperty" />
+<livewire:product-type-property-value-component :parent_property="$productTypeProperty->id" />
+<livewire:product-type-property-value-table :parent_property="$productTypeProperty->id" />
 
+
+                        
 <div class=" py-3 form-row justify-content-center">
     <a class="btn .btn-lg btn-success " href="{{ route('admin.product_type.show',  $productType->id ) }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>
 </div>

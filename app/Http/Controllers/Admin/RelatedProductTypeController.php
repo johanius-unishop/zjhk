@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ProductType;
+use App\Models\RelatedProductType;
 
 class RelatedProductTypeController extends Controller
 {
@@ -34,8 +36,14 @@ class RelatedProductTypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(RelatedProductType $relatedProductType)
     {
+        $productType = $relatedProductType->productType;
+
+        dd(  $productType , $relatedProductType) ;
+
+        
+        return view('admin.related-product-type.show', ['relatedProductType' => $relatedProductType, 'productType' => $productType]);
         //
     }
 

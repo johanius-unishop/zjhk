@@ -1,86 +1,72 @@
 @extends('admin')
 
-{{-- Customize layout sections --}}
-
 @section('title', 'Тип товара')
 @section('content_header')
 <h1>Тип товара: {{ $parent_type->name }}</h1>
 @stop
 
-{{-- Content body: main page content --}}
 @section('content')
-
 <div class="row">
-    <div class="col-12 ">
+    <div class="col-12">
         <div class="card card-primary card-outline card-outline-tabs">
             <div class="card-header p-0 border-bottom-0">
                 <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Характеристики </a>
+                        <a class="nav-link active" id="custom-tabs-four-prperty-tab" data-toggle="pill" href="#custom-tabs-four-property" role="tab" aria-controls="custom-tabs-four-property" aria-selected="true">Характеристики</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Связаные типы</a>
+                        <a class="nav-link" id="custom-tabs-four-related-type-tab" data-toggle="pill" href="#custom-tabs-four-related-type" role="tab" aria-controls="custom-tabs-four-related-type" aria-selected="false">Совместимые типы товаров</a>
                     </li>
+                    @if ($parent_type->composite)
                     <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-composite-tab" data-toggle="pill" href="#custom-tabs-four-composite" role="tab" aria-controls="custom-tabs-four-composite" aria-selected="false">Композиты </a>
+                        <a class="nav-link" id="custom-tabs-four-composite-type-tab" data-toggle="pill" href="#custom-tabs-four-composite-type" role="tab" aria-controls="custom-tabs-four-composite-type" aria-selected="false">Типы товаров в комплектации</a>
                     </li>
+                    @endif
                 </ul>
             </div>
             <div class="card-body">
-
                 <div class="tab-content" id="custom-tabs-four-tabContent">
-                    <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-                        {{-- <div class="tab-content" id="custom-tabs-four-tabContent">
-                            <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab"> --}}
-                        <div class=" py-3 form-row  ">
-                            <a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_type) }}" role="button">Добавить характеристику</a>
+                    <div class="tab-pane fade show active" id="custom-tabs-four-property" role="tabpanel" aria-labelledby="custom-tabs-four-property-tab">
+                        <div>
+                        <livewire:product-type-property-component :parent_type="$parent_type->id"/>
                         </div>
-                        <livewire:product-type-property-table :parent_type="$parent_type->id" />
-                        {{-- </div>
-                        </div> --}}
+                        <livewire:product-type-property-table :parent_type="$parent_type->id"/>
                     </div>
-                    <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
-                        <div class=" py-3 form-row  ">
-                            <a class="btn btn-primary" href="{{ route('admin.product_type_property.createNew', $parent_type) }}" role="button">Добавить тип </a>
+                    <div class="tab-pane fade" id="custom-tabs-four-related-type" role="tabpanel" aria-labelledby="custom-tabs-four-related-type-tab">
+                        <div>
+                        <livewire:related-product-type-component :parent_type="$parent_type->id" />    
                         </div>
-                        <livewire:related-product-type-component :parent_type="$parent_type->id" />
-
+                        <livewire:related-product-type-table :parent_type="$parent_type->id" />
                     </div>
-
-
-
-                    <div class="tab-pane fade" id="custom-tabs-four-composite" role="tabpanel" aria-labelledby="custom-tabs-four-composite-tab">
-                        {{-- <livewire:product-type-composite-table :parent_type="$parent_type->id" /> --}}
-
-
+                    @if ($parent_type->composite)
+                    <div class="tab-pane fade" id="custom-tabs-four-composite-type" role="tabpanel" aria-labelledby="custom-tabs-four-composite-type-tab">
+                        <div>
+                        <livewire:product-type-composite-component :parent_type="$parent_type->id" />    
+                        </div>
+                        <livewire:product-type-composite-table :parent_type="$parent_type->id" />
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
 
 <div class="row">
-    <div class="col-12 ">
-        <div class=" py-3 form-row justify-content-center">
-            <a class="btn .btn-lg btn-success " href="{{ route('admin.product_type.index' ) }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>
+    <div class="col-12">
+        <div class="py-3 form-row justify-content-center">
+            <a class="btn btn-lg btn-success" href="{{ route('admin.product_type.index') }}" role="button"><i class="fa fa-arrow-left"></i> К типам товаров</a>
         </div>
     </div>
 </div>
 
-
 @stop
 
-
-
-{{-- Push extra CSS --}}
 @push('css')
-{{-- Add here extra stylesheets --}}
+<!-- Добавьте сюда дополнительные стили -->
+@livewireStyles
 @endpush
 
-{{-- Push extra scripts --}}
 @push('js')
 @livewireScripts
 <script src="{{ asset('js/powergrid.js') }}"></script>

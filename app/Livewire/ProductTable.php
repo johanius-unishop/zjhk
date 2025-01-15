@@ -27,93 +27,40 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 final class ProductTable extends PowerGridComponent
 {
-    use WithExport;
     use LivewireAlert;
-
     public string $sortField = 'products.id';
     public $deleteId;
     public string $productTypeId;
     public bool $deferLoading = true;
     public bool $showFilters = true;
-    public function boot(): void
-    {
-        //   config(['livewire-powergrid.filter' => 'outside']);
-    }
+    
+    public array $name;
+    public bool $showErrorBag = true;
+    public $editingRowId = null;
+    public $editingFieldName = '';
+    public $editingValue = '';
+
     public function setUp(): array
     {
-        // $this->showCheckBox();
-
         return [
-            // Exportable::make('export')
-            //     ->striped()
-            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput()->withoutLoading(),
+            Header::make()
+                ->showSearchInput()
+                ->withoutLoading(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
         ];
     }
-    // public function header(): array
-    // {
 
-    // return [
-    //     Button::add('bulk-delete')
-    //         ->slot('Bulk Delete')
-    //         ->dispatch('bulkDelete.ProductTable'  , []),
-    // ];
-    // return [
-    //     Button::add('bulk-delete')
-    //         ->slot('Сделать неактивными')
-    //         ->class('btn btn-danger')
-    //         ->dispatch('bulkDelete', []),
-    // ];
-    //   ->slot('Bulk delete (<span x-text="window.pgBulkActions.count(\'' . $this->tableName . '\')"></span>)')
-
-    // return [
-    //     Button::add('bulk-delete')
-    //         ->slot('Сделать неактивными')   и
-    //         ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-    //         ->dispatch('bulkDelete.' . $this->tableName, []),
-    // ];
-    // }
-
-
-    // #[On('bulkDelete.{tableName}')]
-    // public function bulkDelete(): void
-    // {
-    //     // $this->js('alert(window.pgBulkActions.get(\'' . $this->tableName . '\'))');
-
-    //     $this->js('alert(  111)');
-    // // }
-    // #[On('bulkDelete.ProductTable')]
-    // public function bulkDelete(): void
-    // {
-    //     // $this->js('alert(window.pgBulkActions.get(\'' . $this->tableName . '\'))');
-    //     if($this->checkboxValues){
-    //         // YouModel::destroy($this->checkboxValues);
-    //         $this->js('window.pgBulkActions.clearAll()'); // clear the count on the interface.
-    //     }
-    // }
-    // public function editDish(array $data): void
-    // {
-    //     dd('You are editing', $data);
-    // }
-
-    // #[\Livewire\Attributes\On('bulkDelete')]
-    // public function bulkDelete(): void
-    // {
-    //     $this->js('alert("Bulk delete")');
-    // }
     public function datasource(): Builder
     {
-        return Product::query()->with('vendor', 'category', 'product_type');
-
-        // return Product::query()->with('vendor', 'media', 'vendor.price_segment', 'product_style', 'product_type', 'product_subtype');
+        return Product::query();
     }
-    // 'price_segment',
+
     public function relationSearch(): array
     {
-        return [];
+        return [
+        ];
     }
 
     public function fields(): PowerGridFields
@@ -121,53 +68,26 @@ final class ProductTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            //   ->add('category')
-            ->add('category', fn($item) => e(@$item->category->name))
-            ->add('vendor', fn($item) => e(@$item->vendor->short_name))
-            ->add('product_type', fn($item) => e(@$item->product_type->name))
-            
-            ->add('published', closure: fn($item) => $item->published ? '✅' : '❌')
-            ->add('composite_product', fn($item) => $item->composite_product ? '✅' : '❌')
-            // ->add('link')
-            // ->add('vendor_name', fn($dish) => e(@$dish->vendor->name))
-            // ->add('price_segment_name', fn($dish) => e(@$dish->vendor->price_segment->name))
-            // ->add('product_style_name', fn($dish) => e(@$dish->product_style->name))
-            // ->add('product_type_name', fn($dish) => e(@$dish->product_type->name))
-            // ->add('product_subtype_name', fn($dish) => e(@$dish->product_subtype->name))
-            ->add('created_at');
+            ->add('article')
+            ->add('vendor.name');
     }
-
     public function columns(): array
     {
         return [
-            Column::add()
-                ->title('ID')
-                ->field('id', 'id')
-
-                ->sortable(),
+            Column::make('ID', 'id'),
             Column::make('Модель', 'name')
                 ->sortable()
                 ->searchable()
-                ->bodyAttribute('any-class', 'min-width: 200px; max-width: 600px ;white-space:normal;'),
-            Column::make('Категория', 'category')
+                ->editOnClick(),
+            Column::make('Артикул', 'article')
                 ->sortable()
                 ->searchable(),
-            Column::make('Производитель', 'vendor')
-                ->sortable()
-                ->searchable(),
-            Column::make('Тип товара', 'product_type')
-                ->sortable()
-                ->searchable(),
+            Column::make('Производитель', 'vendor.name')
+                ->sortable(),
             Column::make('Опубликовано', 'published')
-                ->sortable()
-                ->searchable()->bodyAttribute('text-center'),
-            Column::make('Составной', 'composite_product')
-                ->sortable()
-                ->searchable()->bodyAttribute('text-center'),
-            
-
-
-
+                ->toggleable(),
+            Column::make('Составной товар', 'composite_product')
+                ->toggleable(),
             Column::action('Действия'),
         ];
     }
@@ -180,15 +100,10 @@ final class ProductTable extends PowerGridComponent
             Filter::boolean('composite_product')
                 ->label('✅', '❌'),            // Filter::boolean('is_moderated')
             // ->label('✅', '❌'),
-            Filter::select('vendor_name', 'vendor_id')
+            Filter::select('vendor.name', 'vendor.id')
                 ->dataSource(Vendor::all())
                 ->optionLabel('name')
                 ->optionValue('id'),
-            Filter::select('category_name', 'category_id')
-                ->dataSource(Category::all())
-                ->optionLabel('name')
-                ->optionValue('id'),
-
         ];
     }
 
@@ -267,15 +182,39 @@ final class ProductTable extends PowerGridComponent
 
     }
 
-    /*
-    public function actionRules($row): array
+    protected function rules()
     {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
+        return [
+            'name.*' => [
+                'required',
+            ],
         ];
     }
-    */
+
+    protected function validationAttributes()
+    {
+        return [
+            'name.*'       => 'Модель товара',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'name.*.required'     => 'Модель товара должна быть заполнена',
+        ];
+    }
+
+    public function onUpdatedEditable(int|string $id, string $field, string $value): void
+    {
+        $this->withValidator(function (\Illuminate\Validation\Validator $validator) use ($id, $field) {
+            if ($validator->errors()->isNotEmpty()) {
+                $this->dispatch('toggle-' . $field . '-' . $id);
+            }
+        })->validate();
+    
+        $updated = Product::query()->find($id)->update([
+            $field => $value,
+        ]);
+    }
 }

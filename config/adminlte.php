@@ -312,24 +312,7 @@ return [
             'topnav_right' => true,
         ],
 
-        // Sidebar items:
-        // [
-        //     'type' => 'sidebar-menu-search',
-        //     'text' => 'Поиск2',
-        //     'url' => 'admin/search',
-        //     'method' => 'post',
-        //     'input_name' => 'searchVal',
-        // ],
-
-        // [
-        //     'text' => 'pages',
-        //     'url' => 'admin/pages',
-        //     'icon' => 'far fa-fw fa-file',
-        //     'label' => 4,
-        //     'label_color' => 'success',
-
-        // ],
-
+        
         ['header' => 'information'],
         [
             'text' => 'Контент',
@@ -346,9 +329,9 @@ return [
 
 
 
-        ['header' => 'orders'],
+        ['header' => 'Заказы поставщикам'],
         [
-            'text' => 'Заказы и сообщения',
+            'text' => 'Заказы поставщикам',
             'url' => 'admin/all_orders',
             'icon' => 'fas  fa-fw fa-newspaper',
             // 'can' => 'manage content', TODO

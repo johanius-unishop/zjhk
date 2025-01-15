@@ -42,7 +42,7 @@ final class VendorTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Vendor::query()->withCount('product');
+        return Vendor::query()->withCount('products')->with('country');
     }
 
     public function relationSearch(): array
@@ -55,10 +55,10 @@ final class VendorTable extends PowerGridComponent
         $powerGridFields = PowerGrid::fields()
             ->add('name')
             ->add('short_name')
-            ->add('country')
+            ->add('country.name')
             ->add('delivery_time')
             ->add('warranty')
-            ->add('product_count');
+            ->add('products_count');
 
             return $powerGridFields;
     }
@@ -73,13 +73,12 @@ final class VendorTable extends PowerGridComponent
             Column::make('Краткое название', 'short_name')
                 ->searchable()
                 ->editOnClick(),
-            Column::make('Страна производителя', 'country')
-                ->editOnClick(),
+            Column::make('Страна производителя', 'country.name'),
             Column::make('Срок поставки', 'delivery_time')
                 ->editOnClick(),
             Column::make('Гарантийный срок', 'warranty')
                 ->editOnClick(),
-            Column::make('Количество товаров', 'product_count'),
+            Column::make('Количество товаров', 'products_count'),
             Column::action('Действия'),
         ];
     }
@@ -107,7 +106,7 @@ final class VendorTable extends PowerGridComponent
     public function confirmed()
     {
 
-        $deleted_record = Vendor::where('id', $this->delete_id)->withCount('product')->firstOrFail();
+        $deleted_record = Vendor::where('id', $this->delete_id)->withCount('products')->firstOrFail();
         if ($deleted_record->product_count > 0) {
             $this->dispatch('toast', message: 'У этого производителя есть товары. Вначале удалите их!', notify: 'error');
             return;

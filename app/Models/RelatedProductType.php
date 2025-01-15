@@ -39,5 +39,13 @@ use Spatie\EloquentSortable\SortableTrait;
         return $this->hasMany(RelatedProduct::class);
     }
 
+    public static function getWithRelatedProductCounts($parentTypeId)
+    {
+        return self::query()
+            ->where('product_type_id', '=', $parentTypeId)
+            ->withCount('relatedProducts') // Подсчитываем количество связанных продуктов
+            ->orderBy('order_column')
+            ->get();
+    }
 
 }

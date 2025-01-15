@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2025-01-15T15:10:52+00:00">
+  <shop>
+    <name>KevTek</name>
+    <company>KevTek LLC</company>
+    <url>https://kevtek.ru</url>
+    <currencies>
+      <currency id="RUR" rate="1"/>
+    </currencies>
+    <categories>
+      <category id="26">Промышленные прямоугольные разъемы</category>
+      <category id="27" parentId="26">Контактные вставки</category>
+      <category id="28" parentId="26">Корпусы</category>
+      <category id="29" parentId="26">Обжимные контакты</category>
+      <category id="30" parentId="26">Аксессуары</category>
+      <category id="31" parentId="26">Сальники</category>
+      <category id="33" parentId="27">Серия HA</category>
+      <category id="34" parentId="27">Серия HE</category>
+      <category id="35" parentId="27">Серия HEE</category>
+      <category id="36" parentId="27">Серия HD</category>
+      <category id="37" parentId="27">Серия HDD</category>
+      <category id="38" parentId="27">Серия HSB</category>
+      <category id="39" parentId="27">Серия HK</category>
+      <category id="40" parentId="27">Серия HEAV</category>
+      <category id="41" parentId="27">Серия HM</category>
+      <category id="42" parentId="27">Серия HQ</category>
+      <category id="43" parentId="28">Типоразмер 3A - пластик</category>
+      <category id="44" parentId="28">Типоразмер 3A - металл</category>
+      <category id="45" parentId="28">Типоразмер 10A - металл</category>
+      <category id="46" parentId="28">Типоразмер 16A - металл</category>
+      <category id="47" parentId="28">Типоразмер 32A - металл</category>
+      <category id="48" parentId="28">Типоразмер 6B - металл</category>
+      <category id="49" parentId="28">Типоразмер 10B - металл</category>
+      <category id="50" parentId="28">Типоразмер 16B - металл</category>
+      <category id="51" parentId="28">Типоразмер 24B - металл</category>
+      <category id="52" parentId="28">Типоразмер 32B - металл</category>
+      <category id="53" parentId="28">Типоразмер 48B - металл</category>
+      <category id="54" parentId="29">Обжимные контакты - 5 Ампер</category>
+      <category id="55" parentId="29">Обжимные контакты - 10 Ампер</category>
+      <category id="56" parentId="29">Обжимные контакты - 16 Ампер</category>
+      <category id="57" parentId="29">Обжимные контакты - 40 Ампер</category>
+      <category id="58" parentId="29">Обжимные контакты - 70 Ампер</category>
+      <category id="59" parentId="29">Обжимные контакты - 100 Ампер</category>
+      <category id="60" parentId="29">Обжимные контакты - 200 Ампер</category>
+      <category id="61" parentId="31">Пластиковые сальники</category>
+      <category id="62" parentId="31">Металлические сальники</category>
+      <category id="64" parentId="31">Металлические контргайки</category>
+      <category id="65" parentId="31">Пластиковые переходники</category>
+      <category id="66" parentId="31">Металлические переходники</category>
+      <category id="67" parentId="31">Футорки пластиковые</category>
+      <category id="68" parentId="31">Футорки металлические</category>
+      <category id="69" parentId="31">Пластиковые заглушки круглые</category>
+      <category id="70" parentId="31">Металлические заглушки шестигранные</category>
+      <category id="71" parentId="31">Пластиковые муфты для металлорукавов (быстрого соединения)</category>
+      <category id="72" parentId="31">Муфты для металлорукавов металлические прямые</category>
+      <category id="73" parentId="31">Металлические сальники для многожильного кабеля</category>
+      <category id="74" parentId="31">Металлические сальники с заземлением EMC</category>
+      <category id="75" parentId="31">Сальники с внешней разгрузкой от натяжения (с двойной фиксацией)</category>
+      <category id="79" parentId="26">Полукомплекты (кожух + вставка)</category>
+      <category id="89" parentId="26">Комплекты промышленных разъемов</category>
+      <category id="90" parentId="26">Комплекты контактных вставок</category>
+      <category id="91" parentId="79">Полукомплекты серии HA</category>
+      <category id="92" parentId="91">Полукомплекты на основе контактных вставок HA-003</category>
+      <category id="93" parentId="91">Полукомплекты на основе контактных вставок HA-004</category>
+      <category id="94" parentId="91">Полукомплекты на основе контактных вставок HA-010</category>
+      <category id="95" parentId="91">Полукомплекты на основе контактных вставок HA-016</category>
+      <category id="96" parentId="91">Полукомплекты на основе контактных вставок HA-032</category>
+      <category id="97" parentId="79">Полукомплекты серии HE</category>
+      <category id="98" parentId="97">Полукомплекты на основе контактных вставок HE-006</category>
+      <category id="99" parentId="97">Полукомплекты на основе контактных вставок HE-010</category>
+      <category id="100" parentId="97">Полукомплекты на основе контактных вставок HE-016</category>
+      <category id="101" parentId="97">Полукомплекты на основе контактных вставок HE-024</category>
+      <category id="102" parentId="97">Полукомплекты на основе контактных вставок HE-032</category>
+      <category id="103" parentId="97">Полукомплекты на основе контактных вставок HE-048</category>
+      <category id="130" parentId="79">Полукомплекты серии HSB</category>
+      <category id="131" parentId="130">Полукомплекты на основе контактных вставок HSBS-004</category>
+      <category id="132" parentId="130">Полукомплекты на основе контактных вставок HSB-004</category>
+      <category id="133" parentId="130">Полукомплекты на основе контактных вставок HSB-006</category>
+      <category id="134" parentId="130">Полукомплекты на основе контактных вставок HSB-012</category>
+      <category id="135" parentId="79">Полукомплекты серии HK</category>
+      <category id="138" parentId="135">Полукомплекты на основе контактных вставок HK-004/0</category>
+      <category id="139" parentId="135">Полукомплекты на основе контактных вставок HK-004/2</category>
+      <category id="140" parentId="135">Полукомплекты на основе контактных вставок HWK-006/6</category>
+      <category id="144" parentId="135">Полукомплекты на основе контактных вставок HK-006/6</category>
+      <category id="145" parentId="135">Полукомплекты на основе контактных вставок HK-008/0</category>
+      <category id="146" parentId="135">Полукомплекты на основе контактных вставок HK-004/8</category>
+      <category id="155" parentId="89">Комплекты серии HA</category>
+      <category id="156" parentId="89">Комплекты серии HE</category>
+      <category id="157" parentId="89">Комплекты серии HSB</category>
+      <category id="158" parentId="89">Комплекты серии HK</category>
+      <category id="159" parentId="155">Комплекты HA-003</category>
+      <category id="160" parentId="155">Комплекты HA-004</category>
+      <category id="161" parentId="155">Комплекты HA-010</category>
+      <category id="162" parentId="155">Комплекты HA-016</category>
+      <category id="163" parentId="155">Комплекты HA-032</category>
+      <category id="164" parentId="156">Комплекты HE-006</category>
+      <category id="165" parentId="156">Комплекты HE-010</category>
+      <category id="166" parentId="156">Комплекты HE-016</category>
+      <category id="167" parentId="156">Комплекты HE-024</category>
+      <category id="168" parentId="156">Комплекты HE-032</category>
+      <category id="169" parentId="156">Комплекты HE-048</category>
+      <category id="170" parentId="157">Комплекты HSBS-004</category>
+      <category id="171" parentId="157">Комплекты HSB-004</category>
+      <category id="172" parentId="157">Комплекты HSB-006</category>
+      <category id="173" parentId="157">Комплекты HSB-012</category>
+      <category id="174" parentId="158">Комплекты HK-004/0</category>
+      <category id="175" parentId="158">Комплекты HK-004/2</category>
+      <category id="176" parentId="158">Комплекты HWK-006/6</category>
+      <category id="177" parentId="158">Комплекты HK-006/6</category>
+      <category id="178" parentId="158">Комплекты HK-008/0</category>
+      <category id="179" parentId="158">Комплекты HK-004/8</category>
+      <category id="180" parentId="31">Пластиковые контргайки</category>
+      <category id="181" parentId="30">Система кодирования</category>
+      <category id="182" parentId="30">Крепежные винты</category>
+      <category id="183" parentId="30">Монтажные и стыковочные рамки</category>
+      <category id="184" parentId="30">Инструмент для обжима</category>
+      <category id="185" parentId="30">Инструмент для установки и извлечения контактов</category>
+      <category id="186" parentId="91">Полукомплекты RJ45</category>
+    </categories>
+    <offers>
+      <offer id="1184" available="true">
+        <name>H3A-SE-2B-PG11 (09200031640)</name>
+        <vendor>ZJHK</vendor>
+        <vendorCode>09200031640</vendorCode>
+        <url>http://localhost:8000/product/h3a-se-2b-pg11</url>
+        <price>456</price>
+        <currencyId>RUR</currencyId>
+        <categoryId>44</categoryId>
+        <picture>http://localhost:8000/storage/48/h3a-se-2b-pg11.jpg</picture>
+        <picture>http://localhost:8000/storage/51/h3a-se-2b-pg11_4.jpg</picture>
+        <picture>http://localhost:8000/storage/50/h3a-se-2b-pg11_3.jpg</picture>
+        <picture>http://localhost:8000/storage/49/h3a-se-2b-pg11_2.jpg</picture>
+        <description><![CDATA[Кожух кабельный боковой, 2 фиксатора для продольной защелки, резьба PG11, цинковый сплав]]></description>
+      </offer>
+      <offer id="2000" available="true">
+        <name>H3A-BK-1L (09200030301)</name>
+        <vendor>ZJHK</vendor>
+        <vendorCode>09200030301</vendorCode>
+        <url>http://localhost:8000/product/h3a-bk-1l</url>
+        <price>456</price>
+        <currencyId>RUR</currencyId>
+        <categoryId>44</categoryId>
+        <picture>http://localhost:8000/storage/80/h3a-bk-1l.jpg</picture>
+        <picture>http://localhost:8000/storage/79/h3a-bk-1l_2.jpg</picture>
+        <picture>http://localhost:8000/storage/77/h3a-bk-1l_4.jpg</picture>
+        <picture>http://localhost:8000/storage/78/h3a-bk-1l_3.jpg</picture>
+        <description><![CDATA[Кожух блочный проходной, продольная металлическая защелка, цинковый сплав]]></description>
+      </offer>
+      <offer id="8474" available="true">
+        <name>HA-003-SE-BK-1L-PG11 (K000000002)</name>
+        <vendor>ZJHK</vendor>
+        <vendorCode>K000000002</vendorCode>
+        <url>http://localhost:8000/product/ha-003-se-bk-1l-pg11</url>
+        <price>1710</price>
+        <currencyId>RUR</currencyId>
+        <categoryId>159</categoryId>
+        <picture>http://localhost:8000/storage/82/ha-003-se-bk-pg11_3.jpg</picture>
+        <picture>http://localhost:8000/storage/83/ha-003-se-bk-pg11_2.jpg</picture>
+        <picture>http://localhost:8000/storage/84/ha-003-se-bk-pg11.jpg</picture>
+        <description><![CDATA[Промышленный прямоугольный разъем (комплект) ZJHK HA-003-SE-BK-1L-PG11]]></description>
+      </offer>
+    </offers>
+  </shop>
+</yml_catalog>

@@ -18,17 +18,12 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 final class CategoryTable extends PowerGridComponent
 {
-    use WithExport;
     use LivewireAlert;
+    public array $name;
     public $delete_id;
     public function setUp(): array
     {
-        $this->showCheckBox();
-
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput()->withoutLoading(),
             Footer::make()
                 ->showPerPage()
@@ -38,9 +33,10 @@ final class CategoryTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Category::query()->whereIsRoot() ->withCount('childrens');
-        //        return Category::query()->where('root_id', null)->withCount('childrens');
-
+        return Category::query()
+            ->whereIsRoot()
+            ->withCount('childrens')
+            ->withCount('products');
     }
 
     public function relationSearch(): array
@@ -52,24 +48,20 @@ final class CategoryTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('name', function ($item) {
-                // Создаем ссылку с именем категории и количеством дочерних категорий
-                return '<a href="' . route('admin.category.show', ['category' => $item->id]) . '">'
-                    . $item->name . ' (' . $item->childrens_count . ')'
-                    . '</a>';
-            })
-            ->add('created_at');
+            ->add('name');
     }
 
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name')
-                ->searchable(),
-            Column::make('Создано', 'created_at')
-                ->sortable(),
-
+            Column::make('Название категории', 'name')
+                ->searchable()
+                ->editOnClick(),
+            Column::make('Показывать на сайте', 'published')
+                ->toggleable(),
+            Column::make('Подкатегорий', 'childrens_count'),
+            Column::make('Товаров', 'products_count'),
             Column::action('Действия'),
         ];
     }
@@ -81,11 +73,11 @@ final class CategoryTable extends PowerGridComponent
     }
 
 
-    #[\Livewire\Attributes\On('post_delete')]
-    public function post_delete($rowId): void
+    #[\Livewire\Attributes\On('delete_category')]
+    public function delete_category($rowId): void
     {
         $this->delete_id = $rowId;
-        $this->confirm('Вы действительно хотите удалить эту запись?', [
+        $this->confirm('Вы действительно хотите удалить эту категорию?', [
             'onConfirmed' => 'confirmed',
             'showCancelButton' => true,
             'cancelButtonText' => 'Нет',
@@ -95,8 +87,24 @@ final class CategoryTable extends PowerGridComponent
     #[\Livewire\Attributes\On('confirmed')]
     public function confirmed()
     {
-        // TODO Удаление
-        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
+        $deleted_record = Category::where('id', $this->delete_id)->withCount('childrens')->withCount('products')->firstOrFail();
+        if ($deleted_record->childrens_count > 0) {
+            $this->dispatch('toast', message: 'Эта категория содержит подкатегории. Сначала удалите их!', notify: 'error');
+            return;
+        }
+        if ($deleted_record->products_count > 0) {
+            $this->dispatch('toast', message: 'Эта категория содержит товары. Сначала удалите их!', notify: 'error');
+            return;
+        }
+        
+        if ($deleted_record->seo()->exists()) {
+            $deleted_record->seo()->delete();
+        }
+        if ($deleted_record->media()->exists()) {
+            $deleted_record->media()->delete();
+        }
+        $deleted_record->delete();
+        $this->dispatch('toast', message: 'Категория удалена.', notify: 'success');
 
     }
     public function actions(Category $row): array
@@ -114,19 +122,62 @@ final class CategoryTable extends PowerGridComponent
             Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
-                ->dispatch('post_delete', ['rowId' => $row->id]),
+                ->dispatch('delete_category', ['rowId' => $row->id]),
+        ];
+    }
+ 
+    #[\Livewire\Attributes\On('update-category-table')]
+    public function updateCategoryTable(): void
+    {
+        $this->dispatch('toast', message: 'Новая категория добавлена!', notify: 'success');
+        $this->refresh();
+        $this->render();
+    }
+
+    public function onUpdatedEditable(int|string $id, string $field, string $value): void
+    {
+        $this->withValidator(function (\Illuminate\Validation\Validator $validator) use ($id, $field) {
+            if ($validator->errors()->isNotEmpty()) {
+                $this->dispatch('toggle-' . $field . '-' . $id);
+            }
+        })->validate();
+    
+        $updated = Category::query()->find($id)->update([
+            $field => $value,
+        ]);
+    }
+
+    protected function rules()
+    {
+        return [
+            'name.*' => [
+                'required',
+                'min:3',
+            ],
         ];
     }
 
-    /*
-    public function actionRules($row): array
+    protected function validationAttributes()
     {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
+        return [
+            'name.*'       => 'Название типа товара из комплекта',
         ];
     }
-    */
+
+    protected function messages()
+    {
+        return [
+            'name.*.required'     => 'Название типа товара из товара должно быть заполнено',
+            'name.*.min'     => 'Название типа товара из товара должно содержать минимум 3 символа',
+        ];
+    }
+
+    public function onUpdatedToggleable(string|int $id, string $field, string $value): void
+    {
+        Category::query()->find($id)->update([
+            $field => e($value),
+        ]);
+
+        $this->skipRender();
+    }
 }

@@ -12,7 +12,11 @@ use App\Models\Category;
 use App\Models\ProductType;
 use App\Models\Vendor;
 use App\Models\Currency;
+use App\Models\Country;
+use App\Models\Order;
+use App\Models\OrderComposition;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -125,8 +129,15 @@ class ProductController extends Controller
         $currencies       = Currency::get(array('name', 'id'));
         $productTypes     = ProductType::get(columns: array('name', 'id'));
         $vendors          = Vendor::get(array('name', 'id'));
+        $countries        = Country::select(['name', 'id'])->orderBy('name')->get();
         $parentCategories = Category::getCategoriesAsTree();
-        return view('admin.product.edit', compact('product', 'parentCategories', 'productTypes', 'vendors', 'currencies'));
+        
+        $ordered = OrderComposition::join('orders', 'orders.id', '=', 'order_compositions.order_id')
+                           ->where('orders.received', false)
+                           ->where('order_compositions.product_id', $product->id)
+                           ->sum('order_compositions.quantity');
+
+        return view('admin.product.edit', compact('product', 'parentCategories', 'productTypes', 'vendors', 'currencies', 'countries', 'ordered'));
 
     }
 
@@ -158,5 +169,70 @@ class ProductController extends Controller
             return redirect(route('admin.product.index'));
         }
         return redirect(route('admin.product.edit', $product->id));
+    }
+
+    //
+    public function showProductsWithoutType()
+    {
+        // Логика для получения и отображения товаров без типа
+        $productsWithoutType = Product::whereNull('product_type_id')->get(); // Получаем товары без типа
+        $productTypes = ProductType::select('id', 'name')->get();
+        return view('admin.problem.product-without-type', compact('productsWithoutType', 'productTypes'));
+    }
+    public function showProductsWithoutVendor()
+    {
+        // Логика для получения и отображения товаров без производителя
+        $productsWithoutVendor = Product::where(function($query) {
+            $query->whereNull('vendor_id')
+                  ->orWhere('vendor_id', '=', 0);
+        })
+        ->get(); // Получаем товары без производителя
+        $vendors = Vendor::select('id', 'short_name')->get();
+        return view('admin.problem.product-without-vendor', compact('productsWithoutVendor', 'vendors'));
+    }
+    public function showProductsWithoutCategory()
+    {
+        // Логика для получения и отображения товаров без категории
+        $productsWithoutCategory = Product::whereNull('category_id')->get(); // Получаем товары без категории
+        $categories = Category::get()->toFlatTree();
+        return view('admin.problem.product-without-category', compact('productsWithoutCategory', 'categories'));
+    }
+    public function showProductsWithoutCurrency()
+    {
+        // Логика для получения и отображения товаров без валюты
+        $productsWithoutCurrency = Product::whereNull('currency_id')->get(); // Получаем товары без валюты
+        $currencies = Currency::select('id', 'charcode')->get();
+        return view('admin.problem.product-without-currency', compact('productsWithoutCurrency', 'currencies'));
+    }
+    public function showProductsWithoutSupplierPrice()
+    {
+        // Логика для получения и отображения товаров без цены от поставщика
+        $productsWithoutSupplierPrice = Product::where(function($query) {
+            $query->whereNull('composite_product')
+                  ->orWhere('composite_product', '=', 0);
+        })
+        ->where(function($query) {
+            $query->whereNull('supplier_price')
+                  ->orWhere('supplier_price', '=', 0);
+        })
+        ->with(['vendor' => function($query) {
+            $query->select('id', 'short_name'); // Выберите нужные поля из таблицы vendors
+        }])
+        ->get();
+        return view('admin.problem.product-without-supplier-price', compact('productsWithoutSupplierPrice'));
+    }
+    public function showProductsWithoutTnved()
+    {
+        // Логика для получения и отображения товаров без ТН ВЭД
+        $productsWithoutTnved = Product::where(function($query) {
+            $query->whereNull('composite_product')
+                  ->orWhere('composite_product', '=', 0);
+        })
+        ->where(function($subQuery) {
+            $subQuery->whereNull('tn_ved')
+                  ->orWhere('tn_ved', '=', '');
+        })
+        ->get(); // Получаем товары без ТН ВЭД
+        return view('admin.problem.product-without-tnved', compact('productsWithoutTnved'));
     }
 }
