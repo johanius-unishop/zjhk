@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Events\ProductStockUpdated;
-use App\Listeners\UpdateCompositeStock;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Event;
