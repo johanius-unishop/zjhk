@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(model: Product::class);
             $table->string('pdf');
-            $table->foreignIdFor(model: Product_pdf_type::class);
             $table->timestamps();
         });
     }
