@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('product_kind_composite_elements', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Product_kind::class);
+            
             $table->string('element');
             $table->integer('sorting');
         });
