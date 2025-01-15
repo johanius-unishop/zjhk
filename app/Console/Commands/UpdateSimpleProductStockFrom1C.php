@@ -46,8 +46,7 @@ class UpdateSimpleProductStockFrom1C extends Command
     public function __construct()
     {
         parent::__construct();
-        $this->lastSuccessfulUpdateTime = $this->loadLastSuccessfulUpdateTime();
-        $this->reportFilePath = $this->loadReportFilePath();//base_path('storage/app/protected/Ostatki tovarov.xlsx');
+
     }
 
     /**
@@ -57,6 +56,8 @@ class UpdateSimpleProductStockFrom1C extends Command
      */
     public function handle()
     {
+        $this->lastSuccessfulUpdateTime = $this->loadLastSuccessfulUpdateTime();
+        $this->reportFilePath = $this->loadReportFilePath();//base_path('storage/app/protected/Ostatki tovarov.xlsx');
         
         if (!is_null($this->reportFilePath)) {
             // Получаем время изменения файла
