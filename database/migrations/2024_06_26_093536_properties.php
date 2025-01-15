@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->string('value');
-            $table->foreignIdFor(Product_kind_prop::class);
-            $table->foreignIdFor(Product::class);
+
+
             $table->softDeletes();
             $table->timestamps();
         });
