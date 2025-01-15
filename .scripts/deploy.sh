@@ -34,9 +34,9 @@ php artisan queue:restart
 
 
 # Запустить миграцию базы данных
-#php artisan migrate --force
+php artisan migrate --force
 
 # Выход из режима обслуживания
-#php artisan up
+php artisan up
 
 echo "Deployment finished!"
