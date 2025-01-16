@@ -14,11 +14,11 @@ use App\Http\Controllers\TestController;
 // use Symfony\Component\HttpFoundation\Request;
 // use App\Http\Middleware\CompleteProfile;
 use App\Http\Controllers\Front\{HomeController, PageController, NewsController, CategoryController, ProductController ,CartController , FaqController ,SearchController , VendorController ,ArticleController};
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
 })->name('home');
-;*/
-Route::get('/', [HomeController::class, 'index'])->name('home');
+;
+//Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
 Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
 
