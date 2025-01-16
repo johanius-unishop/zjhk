@@ -1,47 +1,67 @@
 #!/bin/bash
-set -e
+set -euo pipefail
+
+# Путь к PHP
+PHP_PATH="/usr/bin/php"
+
+# Проверки
+command -v git >/dev/null 2>&1 || { echo >&2 "Git not found. Aborting..."; exit 1; }
+command -v composer >/dev/null 2>&1 || { echo >&2 "Composer not found. Aborting..."; exit 1; }
+command -v npm >/dev/null 2>&1 || { echo >&2 "NPM not found. Aborting..."; exit 1; }
+
+# Логирование
+exec > >(tee -a deploy.log) 2> >(tee -a deploy.errlog >&2)
 
 echo "Deployment started ..."
 
+# Настройка прав доступа
 sudo find /var/www/html/kevtek/storage -type f -exec chmod 777 {} +
 sudo find /var/www/html/kevtek/storage -type d -exec chmod 755 {} +
 sudo chown -R johanius:www-data /var/www/html/kevtek/storage
 
 # Войти в режим обслуживания или вернуть true
 # если уже в режиме обслуживания
-(php artisan down) || true
+($PHP_PATH artisan down) || true
 
 # Загрузить последнюю версию приложения
 git pull origin main
+
+# Удаление старых файлов кеша
+rm -rf ./storage/framework/cache/*
+rm -rf ./bootstrap/cache/*
 
 # Установить зависимости Composer
 composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
 # Очистить старый кэш
-php artisan clear-compiled
+$PHP_PATH artisan clear-compiled
 
 # Пересоздать кэш
-php artisan optimize
+$PHP_PATH artisan optimize
 
 # Скомпилировать ресурсы
 npm run build
 
-php -v
-/usr/local/bin/composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-php artisan migrate --force
-php artisan key:generate
-php artisan op:c
+# Выполнить миграцию базы данных
+$PHP_PATH artisan migrate --force
 
-php artisan up
-php artisan queue:restart
+# Генерация ключа приложения
+$PHP_PATH artisan key:generate
 
-sudo chown -R www-data:www-data /var/www/html/kevtek/storage
+# Команда op:c
+$PHP_PATH artisan op:c
 
-
-# Запустить миграцию базы данных
-#php artisan migrate --force
+# Перезагрузка очереди
+if pgrep -f "artisan queue:work" > /dev/null; then
+    $PHP_PATH artisan queue:restart
+else
+    echo "Queue not running, skipping restart..."
+fi
 
 # Выход из режима обслуживания
-php artisan up
+$PHP_PATH artisan up
+
+# Установка прав доступа после завершения деплоя
+sudo chown -R www-data:www-data /var/www/html/kevtek/storage
 
 echo "Deployment finished!"
