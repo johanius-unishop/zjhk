@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Product_kind;
+use App\Models\ProductType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('product_kind_composite_elements', function (Blueprint $table) {
             $table->id();
-            
+            $table->foreignIdFor(ProductType::class);
             $table->string('element');
             $table->integer('sorting');
         });

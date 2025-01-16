@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Product;
-use App\Models\Product_kind_prop;
+use App\Models\ProductTypeProperty;
 
 return new class extends Migration
 {
@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->string('value');
-
-
+            $table->foreignIdFor(ProductTypeProperty::class);
+            $table->foreignIdFor(Product::class);
             $table->softDeletes();
             $table->timestamps();
         });
