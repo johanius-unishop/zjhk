@@ -3,6 +3,9 @@ set -e
 
 echo "Deployment started ..."
 
+sudo find /var/www/html/kevtek/storage -type f -exec chmod 777 {} +
+sudo find /var/www/html/kevtek/storage -type d -exec chmod 755 {} +
+sudo chown -R johanius:www-data /var/www/html/kevtek/storage
 
 # Войти в режим обслуживания или вернуть true
 # если уже в режиме обслуживания
@@ -32,9 +35,11 @@ php artisan op:c
 php artisan up
 php artisan queue:restart
 
+sudo chown -R www-data:www-data /var/www/html/kevtek/storage
+
 
 # Запустить миграцию базы данных
-php artisan migrate --force
+#php artisan migrate --force
 
 # Выход из режима обслуживания
 php artisan up
