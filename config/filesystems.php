@@ -62,6 +62,27 @@ return [
             'throw' => false,
         ],
 
+        'products' => [
+        'driver' => 'local',
+        'root' => storage_path('app/public/products'),
+        'url' => env('APP_URL').'/storage/products',
+        'visibility' => 'public',
+        ],
+
+        'vendors' => [
+        'driver' => 'local',
+        'root' => storage_path('app/public/vendors'),
+        'url' => env('APP_URL').'/storage/vendors',
+        'visibility' => 'public',
+        ],
+
+        'countries' => [
+        'driver' => 'local',
+        'root' => storage_path('app/public/countries'),
+        'url' => env('APP_URL').'/storage/countries',
+        'visibility' => 'public',
+        ],
+
     ],
 
     /*

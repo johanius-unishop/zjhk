@@ -66,12 +66,20 @@ class Vendor extends Model implements Sortable, HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('vendorLogo')
+            ->useDisk('vendors')
+            ->withResponsiveImages()
+            ->singleFile()
+            ->pathGenerator(function ($media, $model) {
+                if (!empty($model->short_name)) {
+                    return "{$model->short_name}/logo";
+                } else {
+                    return "{$model->name}/logo";
+                }
+            })
             ->useFallbackUrl('/images/default_image.jpg')
-            ->useFallbackPath(public_path('/images/default_image.jpg'))
-            ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
-            ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb')
-            ->singleFile();
+            ->useFallbackPath(public_path('/images/default_image.jpg'));
     }
+
     public function products()
     {
         return $this->hasMany(Product::class, 'vendor_id', 'id');

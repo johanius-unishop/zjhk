@@ -108,6 +108,7 @@ return [
      * Here you can specify which path generator should be used for the given class.
      */
     'custom_path_generators' => [
+        \App\Models\Country::class => \App\PathGenerators\CountryPathGenerator::class,
         // Model::class => PathGenerator::class
         // or
         // 'model_morph_alias' => PathGenerator::class

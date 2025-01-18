@@ -147,16 +147,45 @@ class Product extends Model implements HasMedia, Sitemapable
     }
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('images')
+        $this->addMediaCollection('images') //Изображения
+            ->useDisk('products')
+            ->withResponsiveImages()
+            ->pat
+            ->pathGenerator(function ($media, $model) {
+                return "{$model->name}/images";
+            })
             ->useFallbackUrl('/images/default_image.jpg')
             ->useFallbackPath(public_path('/images/default_image.jpg'))
             ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
             ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb');
 
-        $this->addMediaCollection('specification')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Технические характеристики
-        $this->addMediaCollection('dimensionalDrawing')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Габаритный чертеж
-        $this->addMediaCollection('overviewInformation')->acceptsMimeTypes(mimeTypes: ['application/pdf']);//Обзорная информация
-        $this->addMediaCollection('3dModel')->acceptsMimeTypes(mimeTypes: ['application/x-rar-compressed', 'application/zip', 'text/plain']);
+        $this->addMediaCollection('specification') //Технические характеристики
+            ->useDisk('products')
+            ->pathGenerator(function ($media, $model) {
+                return "{$model->name}/pdf/specification";
+            })
+            ->acceptsMimeTypes(mimeTypes: ['application/pdf']);
+
+        $this->addMediaCollection('dimensionalDrawing')//Габаритный чертеж
+            ->useDisk('products')
+            ->pathGenerator(function ($media, $model) {
+                return "{$model->name}/pdf/dimensionalDrawing";
+            })
+            ->acceptsMimeTypes(['application/pdf']);
+
+        $this->addMediaCollection('overviewInformation')//Обзорная информация
+            ->useDisk('products')
+            ->pathGenerator(function ($media, $model) {
+                return "{$model->name}/pdf/overviewInformation";
+            })
+            ->acceptsMimeTypes(['application/pdf']);
+        
+        $this->addMediaCollection('3dModel')//3D-модель
+            ->useDisk('products')
+            ->pathGenerator(function ($media, $model) {
+                return "{$model->name}/models";
+            })
+            ->acceptsMimeTypes(['application/x-rar-compressed', 'application/zip', 'text/plain']);
     }
     
     

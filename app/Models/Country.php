@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\PathGenerators\CountryPathGenerator;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +22,22 @@ class Country extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('countryFlag');
+        $this->addMediaCollection('countryFlag')
+            ->useDisk('countries')
+            ->withResponsiveImages()
+            ->singleFile()
+            ->useFallbackUrl('/images/default_image.jpg')
+            ->useFallbackPath(public_path('/images/default_image.jpg'));
+    }
+
+    protected function getPath(Model $model): string
+    {
+        return app(CountryPathGenerator::class)->getPath($model);
+    }
+
+    protected function getPathForConversions(Model $model): string
+    {
+        return app(CountryPathGenerator::class)->getPathForConversions($model);
     }
     
     // Страна может иметь много товаров

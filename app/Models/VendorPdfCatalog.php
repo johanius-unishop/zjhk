@@ -46,14 +46,30 @@ class VendorPdfCatalog extends Model implements Sortable, HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('pdfCatalogCoverImage')
+            ->useDisk('vendors')
+            ->withResponsiveImages()
+            ->singleFile()
+            ->pathGenerator(function ($media, $model) {
+                if (!empty($model->short_name)) {
+                    return "{$model->short_name}/catalogs";
+                } else {
+                    return "{$model->name}/caralogs";
+                }
+            })
             ->useFallbackUrl('/images/default_image.jpg')
-            ->useFallbackPath(public_path('/images/default_image.jpg'))
-            ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
-            ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb')
-            ->singleFile();
+            ->useFallbackPath(public_path('/images/default_image.jpg'));
 
         $this->addMediaCollection('pdfCatalog')
-            ->singleFile();
+            ->useDisk('vendors')
+            ->pathGenerator(function ($media, $model) {
+                if (!empty($model->short_name)) {
+                    return "{$model->short_name}/catalogs";
+                } else {
+                    return "{$model->name}/catalogs";
+                }
+            })
+            ->singleFile()
+            ->acceptsMimeTypes(mimeTypes: ['application/pdf']);
             
     }
     
