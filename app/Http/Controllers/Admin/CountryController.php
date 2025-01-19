@@ -8,8 +8,8 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Cache;
-use App\Http\Requests\Admin\StoreVendorRequest;
-use App\Http\Requests\Admin\UpdateVendorRequest;
+use App\Http\Requests\Admin\StoreCountryRequest;
+use App\Http\Requests\Admin\UpdateCountryRequest;
 
 
 class CountryController extends Controller
@@ -41,31 +41,7 @@ class CountryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCountryRequest $request)
-    {
-        // Проверка прав доступа
-        if (!Gate::allows('manage-content')) {
-            return abort(401);
-        }
     
-        // Подготовка входных данных
-        $input = $request->validated();
-    
-        // Создание записи
-        $record = Country::create($input);
-    
-        // Обработка загрузки логотипа
-    //if ($request->hasFile('countryFlag')) {
-      //      $record
-        //        ->addMediaFromRequest('countryFlag')
-          //      ->toMediaCollection('countryFlag');
-        //}
-        
-        // Уведомление об успехе
-        session()->flash('success', 'Страна успешно создана');
-    
-        return redirect()->route('admin.country.index', $record->id);
-    }
 
     /**
      * Display the specified resource.

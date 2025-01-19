@@ -34,11 +34,20 @@
                     <div class="tab-content" id="custom-tabs-four-tabContent">
                         <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                             <div class="row">
-                                <div class="col-lg-6 col-12">
+                                <div class="col-lg-3 col-6">
                                     <div class="form-group">
                                         <label for="name">Название</label>
                                         <input type="text" class="form-control" name="name" value="{{ @$country->name }}">
                                         @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-6">
+                                    <div class="form-group">
+                                        <label for="name">Название на английском</label>
+                                        <input type="text" class="form-control" name="name_in_english" value="{{ @$country->name_in_english }}">
+                                        @error('name_in_english')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

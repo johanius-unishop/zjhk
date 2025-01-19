@@ -15,7 +15,7 @@ use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Image\Enums\Fit;
+use App\PathGenerators\VendorPathGenerator;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Vendor extends Model implements Sortable, HasMedia
 {
@@ -69,15 +69,18 @@ class Vendor extends Model implements Sortable, HasMedia
             ->useDisk('vendors')
             ->withResponsiveImages()
             ->singleFile()
-            ->pathGenerator(function ($media, $model) {
-                if (!empty($model->short_name)) {
-                    return "{$model->short_name}/logo";
-                } else {
-                    return "{$model->name}/logo";
-                }
-            })
             ->useFallbackUrl('/images/default_image.jpg')
             ->useFallbackPath(public_path('/images/default_image.jpg'));
+    }
+
+    protected function getPath(Model $model): string
+    {
+        return app(VendorPathGenerator::class)->getPath($model);
+    }
+
+    protected function getPathForConversions(Model $model): string
+    {
+        return app(VendorPathGenerator::class)->getPathForConversions($model);
     }
 
     public function products()

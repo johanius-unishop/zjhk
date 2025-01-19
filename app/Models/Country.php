@@ -18,6 +18,7 @@ class Country extends Model implements HasMedia
 
     protected $fillable = [
         'name',
+        'name_in_english'
     ];
 
     public function registerMediaCollections(): void

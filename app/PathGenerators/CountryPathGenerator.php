@@ -16,7 +16,7 @@ class CountryPathGenerator implements PathGenerator
     public function getPath(Model $model): string
     {
         /** @var \App\Models\Country $model */
-        return "{$model->model->name}/{$model->collection_name}/";
+        return "{$model->model->name_in_english}/{$model->collection_name}/";
     }
 
     /**
@@ -28,7 +28,7 @@ class CountryPathGenerator implements PathGenerator
     public function getPathForConversions(Model $model): string
     {
         /** @var \App\Models\Country $model */
-        return "{$model->model->name}/{$model->collection_name}/conversions/";
+        return "{$model->model->name_in_english}/{$model->collection_name}/conversions/";
     }
 
        /**
@@ -40,6 +40,6 @@ class CountryPathGenerator implements PathGenerator
     public function getPathForResponsiveImages(Model $model): string
     {
         /** @var \App\Models\Country $model */
-        return "{$model->model->name}/{$model->collection_name}/responsive/";
+        return "{$model->model->name_in_english}/{$model->collection_name}/responsive/";
     }
 }

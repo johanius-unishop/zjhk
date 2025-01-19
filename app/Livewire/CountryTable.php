@@ -22,6 +22,7 @@ final class CountryTable extends PowerGridComponent
     public $delete_id;
     public string $tableName = 'country-table';
     public array $name;
+    public array $name_in_english;
     public bool $showErrorBag = true;
     public $editingRowId = null;
     public $editingFieldName = '';
@@ -54,6 +55,7 @@ final class CountryTable extends PowerGridComponent
     {
         $powerGridFields = PowerGrid::fields()
             ->add('name')
+            ->add('name_in_english')
             ->add('flag', function ($country) { 
                 if ($country->media->isNotEmpty()) {
                     $firstMedia = $country->media->first();
@@ -75,6 +77,9 @@ final class CountryTable extends PowerGridComponent
         return [
             Column::make('ID', 'id'),
             Column::make('Название страны', 'name')
+                ->searchable()
+                ->editOnClick(),
+            Column::make('Название на английском', 'name_in_english')
                 ->searchable()
                 ->editOnClick(),
             Column::make('Флаг страны', 'flag'),
@@ -121,6 +126,17 @@ final class CountryTable extends PowerGridComponent
         $deleted_record->delete();
         $this->dispatch('toast', message: 'Страна ' . $deleted_record->name . ' удалена.', notify: 'success');
     }
+
+    
+
+    #[\Livewire\Attributes\On('update-country-table')]
+    public function updateCountryTable(): void
+    {
+        $this->dispatch('toast', message: 'Новая страна добавлена!', notify: 'success');
+        $this->refresh();
+        $this->render();
+    }
+
     public function actions(Country $row): array
     {
         return [
@@ -139,6 +155,7 @@ final class CountryTable extends PowerGridComponent
     {
         return [
             'name.*' => ['required'],
+            'name_in_english.*' => ['required']
         ];
     }
 
@@ -146,13 +163,15 @@ final class CountryTable extends PowerGridComponent
     {
         return [
             'name.*'       => 'Название страны',
+            'name_in_english.*' => 'Название на английском'
         ];
     }
 
     protected function messages()
     {
         return [
-            'name.*.required'     => 'Название страны должно быть заполнено'
+            'name.*.required'     => 'Название страны должно быть заполнено',
+            'name_in_english.*.required'     => 'Название страны на английском должно быть заполнено'
         ];
     }
     
