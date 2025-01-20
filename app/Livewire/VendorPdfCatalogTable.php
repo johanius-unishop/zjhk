@@ -42,8 +42,8 @@ final class VendorPdfCatalogTable extends PowerGridComponent
         return VendorPdfCatalog::query()
             ->where('vendor_id', $this->parent_vendor->id)
             ->with(['media' => function ($query) {
-              $query->where('collection_name', 'pdfCatalogCoverImage');
-        }]); 
+                $query->whereIn('collection_name', ['pdfCatalogCoverImage', 'pdfCatalog']);
+            }]);
     }
 
     public function relationSearch(): array
@@ -56,14 +56,29 @@ final class VendorPdfCatalogTable extends PowerGridComponent
         $powerGridFields = PowerGrid::fields()
             ->add('name')
             ->add('catalog_image', function ($vendorPdfCatalog) { 
-                if ($vendorPdfCatalog->media->isNotEmpty()) {
-                    $firstMedia = $vendorPdfCatalog->media->first();
+                if ($vendorPdfCatalog->getMedia('pdfCatalogCoverImage')->isNotEmpty()) {
+                    $firstMedia = $vendorPdfCatalog->getMedia('pdfCatalogCoverImage')->first();
                     return '<img src="' . $firstMedia->getUrl() . '" style="max-width:50px">';
+                }
+                return '';
+            })
+            ->add('catalog_file', function ($vendorPdfCatalog) { 
+                if ($vendorPdfCatalog->getMedia('pdfCatalog')->isNotEmpty()) {
+                    $firstMedia = $vendorPdfCatalog->getMedia('pdfCatalog')->first();
+                    return $this->getPdfIconAndLink($firstMedia);
                 }
                 return '';
             });
 
-            return $powerGridFields;
+        return $powerGridFields;
+    }
+
+    private function getPdfIconAndLink($media)
+    {
+        $fileName = basename($media->file_name);
+        $url = $media->getUrl();
+
+        return "<i class='fas fa-file-pdf'></i> <a href='{$url}' target='_blank'>{$fileName}</a>";
     }
 
     public function columns(): array
@@ -71,7 +86,8 @@ final class VendorPdfCatalogTable extends PowerGridComponent
         return [
             Column::make('Название', 'name')
                 ->editOnClick(),
-            Column::make('Изображение', 'catalog_image'),
+            Column::make('Обложка каталога', 'catalog_image'),
+            Column::make('PDF-файл', 'catalog_file'),
             Column::action('Действия'),
         ];
     }

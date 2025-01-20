@@ -2,80 +2,66 @@
 
 namespace App\Livewire;
 
+use App\Models\VendorPdfCatalog;
 use Livewire\Component;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Livewire\WithFileUploads;
-use Livewire\Attributes\Validate;
-use Livewire\Attributes\On;
 
 class VendorPdfCatalogGallery extends Component
 {
     use WithFileUploads;
-    public $photos = [];
-    public $images = [];
-    public $record, $media_id;
+    use LivewireAlert;
+    public $photo;
+    public $image;
+    public $record;
 
-    public $flag = 0;
-    public $multiple;
-    
-    public function render()
+    public function mount(VendorPdfCatalog $record)
     {
-        return view('livewire.vendor-pdf-catalog-gallery');
+        $this->record = $record;
+        $this->loadImage();
     }
 
-    public function mount($record = null, $multiple = false)
+    public function loadImage()
     {
-        $this->item     = @$record;
-        $this->images   = @$record->getMedia('pdfCatalogCoverImage');//'images'
-        $this->multiple = $multiple;
+        // Перезагрузка модели $this->record
+        $this->record = $this->record->fresh();
+        $this->image = $this->record->getMedia('pdfCatalogCoverImage')->first();
+        
+        $this->dispatch('vendor-pdf-catalog-gallery','$refresh');
+        
     }
 
-
-    public function boot()
-    {
-        $this->images = $this->record->getMedia('pdfCatalogCoverImage');
-        $this->dispatch('galleryModalPhoto');
-
-    }
     public function delete($media_id)
     {
-
-        try {
-            $media = Media::find($media_id);
-            $media->delete();
-            $this->dispatch('toast', message: 'Обложка для каталога удалена.', notify: 'error');
-        }
-        catch (\Throwable $th) {
-            $this->dispatch('toast', message: 'Не удалось удалить обложку для каталога.' . $th->getMessage(), notify: 'error');
-        }
-        $this->dispatch('galleryModalPhoto');
-        $this->dispatch('$refresh');
+        $media = Media::find($media_id);
+        $media->delete();
+        $this->dispatch('toast', message: 'Обложка для каталога удалена.', notify: 'error');
+        $this->loadImage();
+        
     }
 
     public function uploadFiles()
     {
-        $this->flag = 1;
         $this->validate([
-            'photos.*' => 'mimes:pdf,jpeg,png,jpg|max:102400', // 200MB Max
+            'photo' => 'mimes:jpeg,png,jpg|max:10240',
         ]);
-        foreach ($this->photos as $photo) {
-            $this->record
-                ->addMedia($photo)
-                ->toMediaCollection('pdfCatalogCoverImage');
+
+        if ($this->photo) {
+            $this->record->addMedia($this->photo)->toMediaCollection('pdfCatalogCoverImage');
+            $this->reset('photo');
+            $this->loadImage();
             $this->dispatch('toast', message: 'Обложка для каталога загружена.', notify: 'success');
         }
-
-        $this->dispatch('galleryModalPhoto');
-        $this->flag   = 0;
-        $this->photos = [];
-        $this->reset('photos');
-        $this->dispatch('$refresh');
     }
-
 
     public function download(Media $mediaItem)
     {
         return response()->download($mediaItem->getPath(), $mediaItem->file_name);
     }
 
+    public function render()
+    {
+        return view('livewire.vendor-pdf-catalog-gallery');
+    }
 }

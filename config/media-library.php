@@ -111,6 +111,7 @@ return [
         \App\Models\Country::class => \App\PathGenerators\CountryPathGenerator::class,
         \App\Models\Vendor::class => \App\PathGenerators\VendorPathGenerator::class,
         \App\Models\Product::class => \App\PathGenerators\ProductPathGenerator::class,
+        \App\Models\VendorPdfCatalog::class => \App\PathGenerators\VendorPdfCatalogPathGenerator::class,
         // Model::class => PathGenerator::class
         // or
         // 'model_morph_alias' => PathGenerator::class

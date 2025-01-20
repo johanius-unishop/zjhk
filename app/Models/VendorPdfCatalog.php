@@ -49,27 +49,15 @@ class VendorPdfCatalog extends Model implements Sortable, HasMedia
             ->useDisk('vendors')
             ->withResponsiveImages()
             ->singleFile()
-            ->pathGenerator(function ($media, $model) {
-                if (!empty($model->short_name)) {
-                    return "{$model->short_name}/catalogs";
-                } else {
-                    return "{$model->name}/caralogs";
-                }
-            })
             ->useFallbackUrl('/images/default_image.jpg')
             ->useFallbackPath(public_path('/images/default_image.jpg'));
 
         $this->addMediaCollection('pdfCatalog')
             ->useDisk('vendors')
-            ->pathGenerator(function ($media, $model) {
-                if (!empty($model->short_name)) {
-                    return "{$model->short_name}/catalogs";
-                } else {
-                    return "{$model->name}/catalogs";
-                }
-            })
             ->singleFile()
-            ->acceptsMimeTypes(mimeTypes: ['application/pdf']);
+            ->acceptsMimeTypes(['application/pdf']);
+
+            
             
     }
     

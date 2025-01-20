@@ -1,7 +1,7 @@
-<div wire:poll.visible>
+<div>
     <div class="row">
-        @if(count($images) > 0)
-            @foreach($images as $image)
+        @if(isset($image))
+            
                 <div class="col-md-2 mb-4">
                     <figure class="figure">
                         <a class="my-image-links" data-gall="gallery01" data-maxwidth="1600px" data-ratio="16x9" href="#" data-href="{{ $image->getUrl() }}">
@@ -29,24 +29,28 @@
                         </figcaption>
                     </figure>
                 </div>
-            @endforeach
+            
         @else
-            <div class="col-md-12 text-center">
-                Изображение логотипа не найдено
+        <div class="col-md-12 text-center">
+                <p class="error-message">Обложка каталога не найдена</p>
             </div>
         @endif
     </div>
-    @if(count($images) != 1)
-        @if($flag == 0)
+    @if(!isset($image))
+        
             <div>
-                <input type="file" wire:model="photos" name="photos">
-                @error('photos') <span class="error">{{ $message }}</span> @enderror
-                <a class="btn {{ $flag == 0 ? 'btn-primary' : 'btn-danger' }}" wire:loading.attr="disabled" wire:click="uploadFiles" href="#">Загрузить фото</a>
+                <input type="file" wire:model="photo" name="photo">
+                @error('photo') <span class="error">{{ $message }}</span> @enderror
+                <a class="btn btn-primary" wire:loading.attr="disabled" wire:click="uploadFiles" href="#">Загрузить фото</a>
             </div>
-        @else
-            <div class="col-md-12 text-center">
-                Загрузка...
-            </div>
-        @endif
+        
     @endif
 </div>
+
+@push('css')
+<style>
+    .error-message {
+        color: red;
+    }
+</style>
+@endpush

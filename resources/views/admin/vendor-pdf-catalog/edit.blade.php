@@ -5,7 +5,7 @@
 @section('title', 'Редактирование каталога производителя')
 @section('content_header')
 <h1>Редактирование каталога производителя {{ $vendor_pdf_catalog->vendor->short_name }}</h1>
-@stop
+@endsection
 
 {{-- Content body: main page content --}}
 
@@ -44,18 +44,27 @@
         </div>
     </div>
 </form>
-<div class="row">
-    <div class="col-lg-6 col-12">
-        <label>Обложка для каталога</label>
-        <livewire:vendor-pdf-catalog-gallery :record="$vendor_pdf_catalog" />
+
+<div class="card card-success mt-3">
+    <div class="card-header">
+        <h3 class="card-title">Обложка и PDF-файл каталога</h3>
     </div>
-    <div class="col-lg-6 col-12">
-        <label>PDF-файл</label>
-        <livewire:vendor-pdf-catalog-file :record="$vendor_pdf_catalog" />
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <label>Обложка для каталога</label>
+                <livewire:vendor-pdf-catalog-gallery :record="$vendor_pdf_catalog->id" />
+            </div>
+            <div class="col-lg-3 col-6">
+                <label>PDF-файл</label>
+                <livewire:vendor-pdf-catalog-file :record="$vendor_pdf_catalog->id" />
+            </div>
+        </div>
     </div>
 </div>
 
-@stop
+
+@endsection
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote.min.css') }}">
