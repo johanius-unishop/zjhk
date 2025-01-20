@@ -42,6 +42,9 @@
                 </div>
                 <div class="flex items-center ml-20">
                     <a href="{{ route('login') }}" class="mr-2 text-gray-600">Войти</a>
+                    <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        Войти!
+                    </a>
                     <a href="#" class="mr-2 text-gray-600">Заказы</a>
                     <a href="{{ route('favorite') }}" id="linkFavourites" class="mr-2 text-gray-600" data-count="{{ Cart::instance('favourites')->count() }}">Избранное <span class="count">{{ Cart::instance('favourites')->count()
                         }}</span></a>
