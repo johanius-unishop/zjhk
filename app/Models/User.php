@@ -19,13 +19,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'email',
         'name',
-        'number',
-        'password',
-        'delegate',
-        'birth_date',
-        'sex',
+        'email',
+        'password'
     ];
 
     /**
@@ -52,10 +48,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     //проверка, что профиль заполнен
-    public function hasCompletedProfile()
-    {
-        return !empty($this->sex) && !empty($this->birth_date);
-    }
 
     public function group()
     {

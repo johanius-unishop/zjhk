@@ -55,6 +55,22 @@
         @yield('content')
     </main>
 
+     <!-- Модальное окно для формы входа -->
+     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Форма входа</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Закрыть"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Форма входа -->
+                    @include('auth.login')
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="bg-gray-200 py-4">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-between">
