@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 // use App\Http\Controllers\AdminOrderController;
 // use App\Http\Controllers\AdminProductController;
 // use App\Http\Controllers\ProductController;
@@ -18,6 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 ;
+
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+    ->name('login');
+
+    
 //Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
 Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
