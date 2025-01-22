@@ -1,6 +1,3 @@
-@extends('layouts.guest')
-
-@section('content')
     <x-guest-layout>
         <!-- Validation Errors -->
         
@@ -48,4 +45,4 @@
             </div>
         </form>
     </x-guest-layout>
-@endsection
+

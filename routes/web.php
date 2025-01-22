@@ -20,8 +20,6 @@ Route::get('/', function () {
 })->name('home');
 ;
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-    ->name('login');
 
 
 //Route::get('/', [HomeController::class, 'index'])->name('home');
