@@ -8,15 +8,22 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\Setting;
 
 class AuthenticatedSessionController extends Controller
 {
+
+   
     /**
      * Display the login view.
      */
     public function create(): View
     {
-        return view('auth.login');
+        // Получаем значение флага из таблицы настроек
+        
+        $allowAdminRegistration = $this->loadAllowAdminRegistration();
+
+        return view('auth.login', compact('allowAdminRegistration'));
     }
 
     /**
@@ -43,5 +50,29 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    protected function loadAllowAdminRegistration(): bool
+    {
+        // Получаем запись из базы данных
+        $setting = Setting::where('group', 'register')
+            ->where('key', 'allowAdminRegistration')
+            ->first();
+        
+        if ($setting === null) {
+            // Если записи нет, создаем новую с значением 0
+            $newSetting = new Setting();
+            $newSetting->group = 'register';
+            $newSetting->key = 'allowAdminRegistration';
+            $newSetting->value = 0;
+            
+            // Сохраняем новую запись
+            $newSetting->save();
+            
+            return false;
+        }
+        
+        // Преобразуем значение в целое число и возвращаем
+        return (bool)$setting->value;
     }
 }

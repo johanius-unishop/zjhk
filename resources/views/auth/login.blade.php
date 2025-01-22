@@ -44,5 +44,19 @@
                     {{ __('Войти') }}
                 </x-primary-button>
             </div>
+
+            <!-- Ссылка на регистрацию -->
+            <div class="text-center mt-4">
+                <a href="{{ route('register') }}" class="text-sm text-gray-600 hover:text-gray-900 underline">
+                    {{ __('Не зарегистрированы? Регистрация') }}
+                </a>
+            </div>
+            @if ($allowAdminRegistration == true)
+            <div class="text-center mt-4">
+                <a href="{{ route('admin.register') }}" class="text-sm text-gray-600 hover:text-gray-900 underline">
+                    {{ __('Регистрация администратора') }}
+                </a>
+            </div>
+            @endif
         </form>
 @endsection
