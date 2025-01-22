@@ -43,9 +43,6 @@
                 <div class="flex items-center ml-20">
                     
                     <a href="{{ route('login') }}" class="mr-2 text-gray-600">Войти</a>
-                    <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900" data-bs-toggle="modal" data-bs-target="#loginModal">
-                        Войти!
-                    </a>
                     <a href="#" class="mr-2 text-gray-600">Заказы</a>
                     <a href="{{ route('favorite') }}" id="linkFavourites" class="mr-2 text-gray-600" data-count="{{ Cart::instance('favourites')->count() }}">Избранное <span class="count">{{ Cart::instance('favourites')->count()
                         }}</span></a>
@@ -59,37 +56,7 @@
         @yield('content')
     </main>
 
-    <!-- Модальное окно -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Вход</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Регистрация</a>
-                        </li>
-                    </ul>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            @include('auth.login')
-                        </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            @include('auth.register')
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <div class="bg-gray-200 py-4">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-between">
