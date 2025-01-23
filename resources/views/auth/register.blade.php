@@ -32,7 +32,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Подтвердить Пароль')" />
+            <x-input-label for="password_confirmation" :value="__('Подтвердить пароль')" />
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
                             name="password_confirmation" required autocomplete="new-password" />
@@ -41,7 +41,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button class="ml-4">
-                {{ __('Зарегистрироваться') }}
+                Зарегистрироваться
             </x-primary-button>
         </div>
     </form>
