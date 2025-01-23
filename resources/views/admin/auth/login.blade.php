@@ -50,6 +50,4 @@
             </x-primary-button>
         </div>
     </form>
-    @extends('layouts.guest')
-
 @endsection
