@@ -1,6 +1,7 @@
-<x-guest-layout>
-    <!-- Session Status -->
+@extends('layouts.guest')
 
+@section('content')
+    <!-- Validation Errors -->
     <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             {{ __('Admin Login') }}
     </h2>
@@ -49,4 +50,6 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+    @extends('layouts.guest')
+
+@endsection
