@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\App;
 
 class PasswordResetLinkController extends Controller
 {
@@ -15,6 +16,7 @@ class PasswordResetLinkController extends Controller
      */
     public function create(): View
     {
+        App::setLocale('ru');
         return view('auth.forgot-password');
     }
 
@@ -25,6 +27,7 @@ class PasswordResetLinkController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        App::setLocale('ru');
         $request->validate([
             'email' => ['required', 'email'],
         ]);

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\App;
 
 class RegisteredUserController extends Controller
 {
@@ -19,6 +20,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
+        App::setLocale('ru');
         return view('auth.register');
     }
 
@@ -29,6 +31,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        App::setLocale('ru');
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],

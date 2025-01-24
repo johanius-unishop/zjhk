@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\App;
 
 class ConfirmablePasswordController extends Controller
 {
@@ -16,6 +17,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(): View
     {
+        App::setLocale('ru');
         return view('auth.confirm-password');
     }
 
@@ -24,6 +26,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        App::setLocale('ru');
         if (! Auth::guard('web')->validate([
             'email' => $request->user()->email,
             'password' => $request->password,

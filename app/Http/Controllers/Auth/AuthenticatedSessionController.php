@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\Setting;
+use Illuminate\Support\Facades\App;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -19,8 +20,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        // Получаем значение флага из таблицы настроек
+        App::setLocale('ru');
         
+        // Получаем значение флага из таблицы настроек
         $allowAdminRegistration = $this->loadAllowAdminRegistration();
 
         return view('auth.login', compact('allowAdminRegistration'));
@@ -31,6 +33,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        App::setLocale('ru');
         $request->authenticate();
 
         $request->session()->regenerate();
@@ -43,6 +46,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        App::setLocale('ru');
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
@@ -54,6 +58,7 @@ class AuthenticatedSessionController extends Controller
 
     protected function loadAllowAdminRegistration(): bool
     {
+        
         // Получаем запись из базы данных
         $setting = Setting::where('group', 'register')
             ->where('key', 'allowAdminRegistration')

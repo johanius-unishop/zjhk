@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\App;
 
 class NewPasswordController extends Controller
 {
@@ -19,6 +20,7 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request): View
     {
+        App::setLocale('ru');
         return view('auth.reset-password', ['request' => $request]);
     }
 
@@ -29,6 +31,7 @@ class NewPasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        App::setLocale('ru');
         $request->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],
