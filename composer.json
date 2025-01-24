@@ -12,6 +12,7 @@
         "ext-simplexml": "*",
         "anayarojo/shoppingcart": "^4.2",
         "artesaos/seotools": "^1.3",
+        "coderello/laravel-nova-lang": "^2.0",
         "deployer/deployer": "^7.4",
         "diglactic/laravel-breadcrumbs": "^9.0",
         "fakerphp/faker": "^1.23",
