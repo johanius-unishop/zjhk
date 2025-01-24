@@ -21,27 +21,34 @@ class PasswordResetLinkController extends Controller
     }
 
     /**
-     * Handle an incoming password reset link request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+ * Обработка запроса на получение ссылки для сброса пароля.
+ *
+ * @param Request $request
+ * @return RedirectResponse
+ */
     public function store(Request $request): RedirectResponse
     {
+        // Устанавливаем локаль на русский
         App::setLocale('ru');
+
+        // Валидируем запрос
         $request->validate([
             'email' => ['required', 'email'],
         ]);
 
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
+        // Отправляем ссылку для сброса пароля
         $status = Password::sendResetLink(
             $request->only('email')
         );
 
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+        // Проверяем результат и возвращаем соответствующее сообщение
+        if ($status === Password::RESET_LINK_SENT) {
+            return back()->with('status', trans('passwords.sent')); // Используем переводчик для строки 'We have e-mailed your password reset link!'
+        }
+
+        // Если произошла ошибка, возвращаем сообщение об ошибке
+        return back()->withInput($request->only('email'))->withErrors([
+            'email' => trans('passwords.user'), // Используем переводчик для строки 'We can't find a user with that e-mail address.'
+        ]);
     }
 }
