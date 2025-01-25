@@ -28,7 +28,7 @@ class VendorsTableSeeder extends Seeder
                 'slug' => 'zhejiang-haoke-electric',
                 'logo' => NULL,
                 'description' => NULL,
-                'country_id' => '1',
+                'country_id' => NULL,
                 'delivery_time' => '8-12 недель',
                 'warranty' => '12 мес',
                 'published' => 1,
