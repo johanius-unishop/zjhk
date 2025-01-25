@@ -25,10 +25,10 @@
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             
                             <div>
-                                @if (!Auth::guest())
-                                    {{ Auth::user()->name }}
+                                @auth
+                                    {{ auth()->user()->name }} 
                                 @else
-                                    
+                                    Гость
                                 @endif
                             </div>
 
@@ -41,20 +41,26 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                        @auth
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Профиль') }}
                             </x-dropdown-link>
-                        </form>
+
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Выйти') }}
+                                </x-dropdown-link>
+                            </form>
+                        @else
+                            <x-dropdown-link :href="route('login')">
+                                {{ __('Войти') }}
+                            </x-dropdown-link>
+                        @endauth
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -70,6 +76,4 @@
             </div>
         </div>
     </div>
-
-    
 </nav>
