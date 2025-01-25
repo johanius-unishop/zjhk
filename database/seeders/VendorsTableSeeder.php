@@ -22,12 +22,13 @@ class VendorsTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-            'name' => 'ZHEJIANG HAOKE ELECTRIC (ZJHK)',
+                'name' => 'ZHEJIANG HAOKE ELECTRIC',
+                'short_name' => 'ZJHK',
                 'order_column' => 1,
-                'slug' => 'zhejiang-haoke-electric-zjhk',
+                'slug' => 'zhejiang-haoke-electric',
                 'logo' => NULL,
                 'description' => NULL,
-                'country' => 'Китай',
+                'country_id' => '1',
                 'delivery_time' => '8-12 недель',
                 'warranty' => '12 мес',
                 'published' => 1,
