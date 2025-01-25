@@ -58,5 +58,12 @@
                 </a>
             </div>
             @endif
+            @if ($allowAdminLogin == true)
+            <div class="text-center mt-4">
+                <a href="{{ route('admin.login') }}" class="text-sm text-gray-600 hover:text-gray-900 underline">
+                    {{ __('Вход для администратора') }}
+                </a>
+            </div>
+            @endif
         </form>
 @endsection
