@@ -22,6 +22,16 @@
                 @enderror
             </div>
         </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="charcode">Символьный код</label>
+                <input type="text" class="form-control" wire:model="charcode" id="charcode">
+                @error('charcode')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
     </div>
     
     <div class="row mt-3">

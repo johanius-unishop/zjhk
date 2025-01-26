@@ -19,6 +19,9 @@ class CountryComponent extends Component
     #[Validate('required|min:3')]
     public $name_in_english = '';
 
+    #[Validate('required|min:2|max:2')]
+    public $charcode = '';
+
 
     public function save()
     {
@@ -29,10 +32,11 @@ class CountryComponent extends Component
         Country::create([
             'name' => $this->name,
             'name_in_english' => $this->name_in_english,
+            'charcode' => $this->charcode,
         ]);
     
         // Сбрасываем значения полей
-        $this->reset('name', 'name_in_english');
+        $this->reset('name', 'name_in_english', 'charcode');
         $this->dispatch('update-country-table');
         
     }
@@ -44,6 +48,9 @@ class CountryComponent extends Component
             'name.min'     => 'Название страны должно содержать минимум 3 символа',
             'name_in_english.required'     => 'Название на английском должно быть заполнено',
             'name_in_english.min'     => 'Название на английском должно содержать минимум 3 символа',
+            'name.required'     => 'Символьный код должен быть указан',
+            'charcode.min'     => 'Символьный код должен состоять из 2-х символов',
+            'charcode.max'     => 'Символьный код должен состоять из 2-х символов',
         ];
     } 
 

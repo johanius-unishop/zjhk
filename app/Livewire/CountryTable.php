@@ -23,6 +23,7 @@ final class CountryTable extends PowerGridComponent
     public string $tableName = 'country-table';
     public array $name;
     public array $name_in_english;
+    public array $charcode;
     public bool $showErrorBag = true;
     public $editingRowId = null;
     public $editingFieldName = '';
@@ -56,6 +57,7 @@ final class CountryTable extends PowerGridComponent
         $powerGridFields = PowerGrid::fields()
             ->add('name')
             ->add('name_in_english')
+            ->add('charcode')
             ->add('flag', function ($country) { 
                 if ($country->media->isNotEmpty()) {
                     $firstMedia = $country->media->first();
@@ -80,6 +82,9 @@ final class CountryTable extends PowerGridComponent
                 ->searchable()
                 ->editOnClick(),
             Column::make('Название на английском', 'name_in_english')
+                ->searchable()
+                ->editOnClick(),
+            Column::make('Символьный код', 'charcode')
                 ->searchable()
                 ->editOnClick(),
             Column::make('Флаг страны', 'flag'),
@@ -155,7 +160,8 @@ final class CountryTable extends PowerGridComponent
     {
         return [
             'name.*' => ['required'],
-            'name_in_english.*' => ['required']
+            'name_in_english.*' => ['required'],
+            'charcode.*' => ['required']
         ];
     }
 
@@ -163,7 +169,8 @@ final class CountryTable extends PowerGridComponent
     {
         return [
             'name.*'       => 'Название страны',
-            'name_in_english.*' => 'Название на английском'
+            'name_in_english.*' => 'Название на английском',
+            'charcode.*' => 'Символьный код страны'
         ];
     }
 
@@ -171,7 +178,8 @@ final class CountryTable extends PowerGridComponent
     {
         return [
             'name.*.required'     => 'Название страны должно быть заполнено',
-            'name_in_english.*.required'     => 'Название страны на английском должно быть заполнено'
+            'name_in_english.*.required'     => 'Название страны на английском должно быть заполнено',
+            'charcode.*.required' => 'Символьный код страны должен быть указан'
         ];
     }
     
