@@ -52,6 +52,15 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-lg-3 col-6">
+                                    <div class="form-group">
+                                        <label for="charcode">Символьный код</label>
+                                        <input type="text" class="form-control" name="charcode" value="{{ @$country->charcode }}">
+                                        @error('charcode')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                             <div>
                                 <livewire:country-flag-gallery :record="$country" />
