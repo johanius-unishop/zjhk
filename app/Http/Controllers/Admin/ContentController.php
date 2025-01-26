@@ -40,6 +40,13 @@ class ContentController extends Controller
         return view('admin.content.index', compact('news_count', 'page_count' , 'faq_count'  , 'article_count'  ));
     }
 
+    public function all_orders()
+    {
+        $open_orders_count = Order::where('received', '!=', 1)->count();
+        return view('admin.content.all_orders', compact('open_orders_count'));
+
+    }
+
     
 
     public function regenerateSitemap()
