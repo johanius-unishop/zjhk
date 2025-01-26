@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 // use App\Http\Controllers\ProductController;
 // use App\Http\Controllers\ProfileController;
 
-use App\Http\Controllers\TestController;
+//use App\Http\Controllers\TestController;
 // use App\Http\Controllers\RegisteredUserController;
 // use App\Http\Controllers\SessionController;
 // use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -94,14 +94,14 @@ Route::middleware('auth')->group(function () {
 //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
-Route::prefix('test')->name('test.')->group(function () {
+/*Route::prefix('test')->name('test.')->group(function () {
     Route::get('/test_vendor_product', [TestController::class, 'test_vendor_product'])->name('test_vendor_product');
     Route::get('/test_currency_seed', [TestController::class, 'test_currency_seed'])->name('test_currency_seed');
     Route::get('/product_composite', [TestController::class, 'product_composite'])->name('product_composite');
     Route::get('/product_values', [TestController::class, 'product_values'])->name('product_values');
     Route::get('/props_value_seed', [TestController::class, 'props_value_seed'])->name('props_value_seed');
 
-});
+});*/
 // require __DIR__ . '/api.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin-auth.php';

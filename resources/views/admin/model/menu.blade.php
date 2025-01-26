@@ -148,7 +148,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Настройки сайта, основные параметры</h3>
+        <h3 class="card-title">Настройки сайта, основные параметры, дополнительные параметры</h3>
     </div>
     <div class="card-body">
         <div class="row">
@@ -163,6 +163,22 @@
                         <i class="fas fa-ruble-sign"></i>
                     </div>
                     <a href="{{ route('admin.setting.index') }}" class="small-box-footer">
+                        Перейти <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small card -->
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h3>Доп. настройки</h3>
+                        <h4>Таблица Additional Settings</h4>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-ruble-sign"></i>
+                    </div>
+                    <a href="{{ route('admin.additional-setting.index') }}" class="small-box-footer">
                         Перейти <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>

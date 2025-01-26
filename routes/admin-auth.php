@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\AdditionalSettingController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\VendorPdfCatalogController;
 use App\Http\Controllers\Admin\ProductPdfTypeController;
@@ -55,6 +56,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource('order', OrderController::class);
 
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
+    Route::get('/additional-settings', [AdditionalSettingController::class, 'index'])->name('additional-settings');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -92,6 +94,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::post('/images/upload', [ContentController::class, 'imagesUpload'])->name('images_upload');
     Route::resource('currency', CurrencyController::class);
     Route::resource('setting', SettingController::class);
+    Route::resource('additional-setting', AdditionalSettingController::class);
     Route::resource('delivery', DeliveryController::class);
     Route::resource('analog-vendor', AnalogVendorController::class);
     Route::resource('analog', AnalogController::class);

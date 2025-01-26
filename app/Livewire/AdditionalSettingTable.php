@@ -2,33 +2,26 @@
 
 namespace App\Livewire;
 
-use App\Models\Setting;
-use Illuminate\Support\Carbon;
-
+use App\Models\AdditionalSetting;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Number;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Button;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Facades\Rule;
-final class SettingTable extends PowerGridComponent
-{
-    use WithExport;
-    use LivewireAlert;
-    public $setting_id;
 
-    public string $tableName = 'setting-table';
+final class AdditionalSettingTable extends PowerGridComponent
+{
+    use LivewireAlert;
+    public $additional_setting_id;
+
+    public string $tableName = 'additional-setting-table';
     public array $group;
-    public array $key;
+    public array $name;
     public array $value;
     public array $description;
 
@@ -46,7 +39,7 @@ final class SettingTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Setting::query();
+        return AdditionalSetting::query();
 
     }
 
@@ -60,8 +53,9 @@ final class SettingTable extends PowerGridComponent
         $powerGridFields = PowerGrid::fields()
             ->add('id')
             ->add('group')
-            ->add('key')
-            ->add('value');
+            ->add('name')
+            ->add('value')
+            ->add('description');
 
         return $powerGridFields;
     }
@@ -73,10 +67,13 @@ final class SettingTable extends PowerGridComponent
             Column::make('Группа', 'group')
                 ->searchable()
                 ->editOnClick(),
-            Column::make('Настройка', 'key')
+            Column::make('Настройка', 'name')
                 ->searchable()
                 ->editOnClick(),
             Column::make('Значение', 'value')
+                ->searchable()
+                ->editOnClick(),
+            Column::make('Описание', 'description')
                 ->searchable()
                 ->editOnClick(),
             Column::action('Действия'),
@@ -90,10 +87,10 @@ final class SettingTable extends PowerGridComponent
     }
 
 
-    #[\Livewire\Attributes\On('setting_delete')]
-    public function setting_delete(int $rowId): void
+    #[\Livewire\Attributes\On('additional_setting_delete')]
+    public function additional_setting_delete(int $rowId): void
     {
-        $this->setting_id = $rowId;
+        $this->additional_setting_id = $rowId;
         $this->confirm(
             'Вы действительно хотите удалить эту настройку?',
             [
@@ -107,18 +104,18 @@ final class SettingTable extends PowerGridComponent
     #[\Livewire\Attributes\On('confirmed')]
     public function confirmed(): void
     {
-        $deleted_record = Setting::findOrFail($this->setting_id);
+        $deleted_record = AdditionalSetting::findOrFail($this->additional_setting_id);
         $deleted_record->delete();
         $this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
     }
 
-    public function actions(Setting $row): array
+    public function actions(AdditionalSetting $row): array
     {
         return [
             Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
-                ->dispatch('setting_delete', ['rowId' => $row->id])
+                ->dispatch('additional_setting_delete', ['rowId' => $row->id])
         ];
     }
 
@@ -130,7 +127,7 @@ final class SettingTable extends PowerGridComponent
                 'required',
             ],
 
-            'key.*' => [
+            'name.*' => [
                 'required',
             ],
 
@@ -145,7 +142,7 @@ final class SettingTable extends PowerGridComponent
     {
         return [
             'group.*'   => 'Группа',
-            'key.*'     => 'Настройка',
+            'name.*'     => 'Настройка',
             'value.*'   => 'Значение',
         ];
     }
@@ -154,7 +151,7 @@ final class SettingTable extends PowerGridComponent
     {
         return [
             'group.*.required'     => 'Поле "Группа" обязательно должно быть заполнено',
-            'key.*.required'     => 'Поле "Настройка" обязательно должно быть заполнено',
+            'name.*.required'     => 'Поле "Настройка" обязательно должно быть заполнено',
             'value.*.required'     => 'Поле "Значение" обязательно должно быть заполнено',
         ];
     }
@@ -167,7 +164,7 @@ final class SettingTable extends PowerGridComponent
             }
         })->validate();
     
-        $updated = Setting::query()->find($id)->update([
+        $updated = AdditionalSetting::query()->find($id)->update([
             $field => $value,
         ]);
     }
