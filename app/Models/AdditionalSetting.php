@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdditionalSetting extends Model
 {
-    protected $fillable = ['group', 'name', 'value'];
+    protected $fillable = ['group', 'name', 'value', 'description'];
 }
