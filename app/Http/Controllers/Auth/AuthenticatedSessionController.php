@@ -61,14 +61,14 @@ class AuthenticatedSessionController extends Controller
     {
         
         // Получаем запись из базы данных
-        $setting = Setting::where('group', 'register')
+        $setting = Setting::where('group', 'admin')
             ->where('key', 'allowAdminRegistration')
             ->first();
         
         if ($setting === null) {
             // Если записи нет, создаем новую с значением 0
             $newSetting = new Setting();
-            $newSetting->group = 'register';
+            $newSetting->group = 'admin';
             $newSetting->key = 'allowAdminRegistration';
             $newSetting->value = 0;
             
