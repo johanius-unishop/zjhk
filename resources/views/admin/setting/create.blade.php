@@ -30,7 +30,7 @@
                     <div class="tab-content" id="custom-tabs-four-tabContent">
                         <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                             <div class="row">
-                                <div class="col-lg-6 col-12 mb-3">
+                                <div class="col-lg-3 col-12 mb-2">
                                     <div class="form-group">
                                         <label for="group">Группа</label>
                                         <input type="text" class="form-control" name="group" value="{{  old('group') }}">
@@ -39,9 +39,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-12 mb-3">
+                                <div class="col-lg-3 col-12 mb-2">
                                     <div class="form-group">
                                         <label for="key">Настройка</label>
                                         <input type="text" class="form-control" name="key" value="{{  old('key') }}">
@@ -50,13 +48,22 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-12 mb-3">
+                                <div class="col-lg-3 col-12 mb-2">
                                     <div class="form-group">
                                         <label for="value">Значение</label>
                                         <input type="text" class="form-control" name="value" value="{{  old('value') }}">
                                         @error('value')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-9 col-12 mb-2">
+                                    <div class="form-group">
+                                        <label for="description">Группа</label>
+                                        <input type="text" class="form-control" name="description" value="{{  old('description') }}">
+                                        @error('description')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

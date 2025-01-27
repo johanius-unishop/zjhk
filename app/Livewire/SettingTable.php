@@ -3,26 +3,22 @@
 namespace App\Livewire;
 
 use App\Models\Setting;
-use Illuminate\Support\Carbon;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Number;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Button;
-use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
+
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Facades\Rule;
+
 final class SettingTable extends PowerGridComponent
 {
-    use WithExport;
+    
     use LivewireAlert;
     public $setting_id;
 
@@ -61,7 +57,8 @@ final class SettingTable extends PowerGridComponent
             ->add('id')
             ->add('group')
             ->add('key')
-            ->add('value');
+            ->add('value')
+            ->add('description');
 
         return $powerGridFields;
     }
@@ -77,6 +74,9 @@ final class SettingTable extends PowerGridComponent
                 ->searchable()
                 ->editOnClick(),
             Column::make('Значение', 'value')
+                ->searchable()
+                ->editOnClick(),
+            Column::make('Описание', 'description')
                 ->searchable()
                 ->editOnClick(),
             Column::action('Действия'),

@@ -34,5 +34,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FaqsTableSeeder::class);
         $this->call(CountriesTableSeeder::class);
         
+        
     }
 }
