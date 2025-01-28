@@ -16,9 +16,8 @@ echo "Deployment started ..."
 
 # Настройка прав доступа
 sudo chown -R johanius:www-data /var/www/html/kevtek/storage
-sudo find /var/www/html/kevtek/storage -type f -exec chmod 777 {} +
-sudo find /var/www/html/kevtek/storage -type d -exec chmod 755 {} +
-sudo chown -R johanius:www-data /var/www/html/kevtek
+sudo find /var/www/html/kevtek/storage -type f -exec chmod 664 {} +
+sudo find /var/www/html/kevtek/storage -type d -exec chmod 775 {} +
 
 # Войти в режим обслуживания или вернуть true
 # если уже в режиме обслуживания
@@ -47,10 +46,10 @@ npm run build
 $PHP_PATH artisan migrate --force
 
 # Генерация ключа приложения
-$PHP_PATH artisan key:generate
+#$PHP_PATH artisan key:generate
 
 # Команда op:c
-$PHP_PATH artisan op:c
+#$PHP_PATH artisan op:c
 
 # Перезагрузка очереди
 if pgrep -f "artisan queue:work" > /dev/null; then
@@ -58,11 +57,20 @@ if pgrep -f "artisan queue:work" > /dev/null; then
 else
     echo "Queue not running, skipping restart..."
 fi
+# Очистить кэш
+echo "Clearing cache..."
+php artisan optimize:clear
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 
+# Дать права на необходимые папки для www-data
+echo "Setting permissions for www-data..."
+sudo chgrp -R www-data storage bootstrap/cache
+sudo chmod -R ug+rwx storage bootstrap/cache
 # Выход из режима обслуживания
 $PHP_PATH artisan up
 
 # Установка прав доступа после завершения деплоя
-sudo chown -R www-data:www-data /var/www/html/kevtek
 
 echo "Deployment finished!"
