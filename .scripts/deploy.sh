@@ -15,9 +15,10 @@ exec > >(tee -a deploy.log) 2> >(tee -a deploy.errlog >&2)
 echo "Deployment started ..."
 
 # Настройка прав доступа
+sudo chown -R johanius:www-data /var/www/html/kevtek/storage
 sudo find /var/www/html/kevtek/storage -type f -exec chmod 777 {} +
 sudo find /var/www/html/kevtek/storage -type d -exec chmod 755 {} +
-sudo chown -R johanius:www-data /var/www/html/kevtek/storage
+sudo chown -R johanius:www-data /var/www/html/kevtek
 
 # Войти в режим обслуживания или вернуть true
 # если уже в режиме обслуживания
@@ -62,6 +63,6 @@ fi
 $PHP_PATH artisan up
 
 # Установка прав доступа после завершения деплоя
-sudo chown -R www-data:www-data /var/www/html/kevtek/storage
+sudo chown -R www-data:www-data /var/www/html/kevtek
 
 echo "Deployment finished!"
