@@ -10,6 +10,7 @@ use App\Models\OrderComposition;
 use App\Models\Product;
 use App\Models\AdditionalSetting;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 
 class OrderComponent extends Component
@@ -58,7 +59,8 @@ class OrderComponent extends Component
         $worksheet = $spreadsheet->getActiveSheet();
 
         $orderNumber = trim($worksheet->getCell($orderNameCell)->getValue());
-        $orderDate = trim($worksheet->getCell($orderDateCell)->getValue());
+        $excelDate = $worksheet->getCell($orderDateCell)->getValue();
+        $orderDate = Date::excelToDateTimeObject($excelDate)->format('d.m.Y');
         
         // Проверка существования заказа
         if (!Order::where('order_number', $orderNumber)
@@ -130,7 +132,7 @@ class OrderComponent extends Component
         $this->dispatch('update-order-table');
         return;
         } else {
-        session()->flash('error', 'Заказ с таким номером и такой датой уже существует!');
+        session()->flash('order_error_message', 'Заказ с таким номером и такой датой уже существует!');
         return redirect()->back();
         }
     }
