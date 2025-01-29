@@ -43,6 +43,7 @@ class OrderComponent extends Component
                              ->pluck('value', 'name')
                              ->all();
         $orderNameCell = $settings['orderNameCell'];
+        $orderDateCell = $settings['orderDateCell'];
         $startRow = intval($settings['startRowData']); // Преобразуем значение startRowData в целое число
         $modelCol = $settings['modelColumn'];
         $quantityCol = $settings['quantityColumn'];
@@ -56,7 +57,8 @@ class OrderComponent extends Component
         // Получаем первый лист
         $worksheet = $spreadsheet->getActiveSheet();
 
-        $orderNumber = preg_replace('/[^0-9]/', '', $worksheet->getCell($orderNameCell)->getValue());
+        $orderNumber = trim($worksheet->getCell($orderNameCell)->getValue());
+        $orderDate = trim($worksheet->getCell($orderDateCell)->getValue());
         
                 if (!Order::where('order_number', $orderNumber)->first()) {
                     $row = $startRow;
@@ -84,7 +86,7 @@ class OrderComponent extends Component
                 }
                 $order = new Order();
                 $order->order_number = $orderNumber;
-                $order->order_date = Carbon::now()->format('d.m.Y'); // Текущая дата в формате дд.мм.гггг
+                $order->order_date = $orderDate; // Текущая дата в формате дд.мм.гггг
                 $order->received = 0;
                 
                 $order->save();
@@ -112,74 +114,3 @@ class OrderComponent extends Component
                 return;    
     }
 }
- /*   
-        $orderName = $worksheet->getCell('A1')->getValue();
-        $orderNumber = preg_replace('/[^0-9]/', '', $orderName);
-        
-        $order = new Order();
-        $order->order_number = $orderNumber;
-        $order->order_date = Carbon::now()->format('d.m.Y'); // Текущая дата в формате дд.мм.гггг
-        $order->received = 0;
-        $order->save();
-
-        $order_id = $order->id; // Здесь хранится ID только что добавленной записи
-*/
-   /*     $models = array_column($relevantData, 'A');
-        // Фильтруем массив, чтобы исключить значения null
-        $filteredModels = array_filter($models, function($value) {
-            return !is_null($value);
-        });
-        // Оставляем только уникальные значения
-        $uniqueModels = array_unique($filteredModels);
-        // Выполняем запрос к базе данных
-        $existingProducts = Product::whereIn('name', $uniqueModels)->get();
-        // Формируем список существующих моделей
-        $existingModels = $existingProducts->pluck('name')->toArray();
-        // Список отсутствующих моделей
-        $missingModels = array_diff($uniqueModels, $existingModels);
-        $filteredMissingModels = array_filter($missingModels, function($value) {
-            return !empty($value);
-        });
-
-        if (!empty($filteredMissingModels)) {
-            // Формируем сообщение с перечислением отсутствующих товаров
-            $missingProductsList = implode(', ', $filteredMissingModels);
-            
-            $errorMessage = "При импорте заказа обнаружены отсутствующие в БД товары: {$missingProductsList}.";
-            
-            // Сохраняем сообщение об ошибках в сессии
-            Session::flash('filteredMissingModels', $errorMessage);
-            
-            // Перенаправляем пользователя обратно с сохранёнными входными данными
-            return back();
-        }
-        
-        
-        return redirect()->route('admin.order.error', ['errorMessage' => 'Не удалось обработать заказ. Попробуйте позже.']);
-        
-        foreach ($relevantData as $row) {
-            if (!empty($row[$modelCol])) {
-                Product::updateOrCreate(
-                    [
-                        'vendor_id' => trim($vendorIds[$row[$vendorCol]]),
-                        'name' => trim($row[$modelCol]),                
-                    ],    
-                    [
-                        'vendor_id' => trim($vendorIds[$row[$vendorCol]]),
-                        'name' => trim($row[$modelCol]),
-                        'article' => empty($row[$articleCol]) ? "" : trim($row[$articleCol]),
-                        'supplier_price' => empty($row[$priceCol]) ? null : trim($row[$priceCol]),
-                        'currency_id' => trim($currencyIds[$row[$currencyCol]]),
-                        'moq_supplier' => empty($row[$moqCol]) ? null : trim($row[$moqCol]),
-                        'pieces_per_pack' => empty($row[$piecesPerPackCol]) ? null : trim($row[$piecesPerPackCol]),
-                        'minimum_stock' => empty($row[$minStockCol]) ? null : trim($row[$minStockCol]),
-                        'priority' => empty($row[$priorityCol]) ? null :trim($row[$priorityCol]),
-                        'composite_product' => 0
-                    ]
-                    );
-                }
-            }
-        return back()->with('success', 'Прайс-лист успешно загружен.');
-    }
-    
-}*/
