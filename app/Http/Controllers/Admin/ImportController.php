@@ -39,10 +39,7 @@ class ImportController extends Controller
 {
 
 
-    public function index()
-    {
-        return view('admin.import.index');
-    }
+    
 
     public function import_price_from_xls(Request $request)
     {
