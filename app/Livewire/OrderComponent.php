@@ -60,82 +60,78 @@ class OrderComponent extends Component
         $orderNumber = trim($worksheet->getCell($orderNameCell)->getValue());
         $orderDate = trim($worksheet->getCell($orderDateCell)->getValue());
         
-        if (!Order::where('order_number', $orderNumber)->where('order_date', $orderDate)->exists()) {
-            $row = $startRow;
-            $missingProducts = []; // Массив для хранения недостающих товаров
-
-            // Проверяем все товары перед загрузкой
-            while ($worksheet->getCell($modelCol . $row)->getValue() !== null) {
-                $productVendor = $worksheet->getCell($vendorCol . $row)->getValue();
-                $productModel = $worksheet->getCell($modelCol . $row)->getValue();
-                $product = Product::where('name', $productModel)
-                    ->where(function($query) use ($productVendor) {
-                        $query->whereHas('vendor', function ($subQuery) use ($productVendor) {
-                            $subQuery->where('name', $productVendor);
-                        })->orWhereHas('vendor', function ($subQuery) use ($productVendor) {
-                            $subQuery->where('short_name', $productVendor);
-                        });
-                    })
-                    ->first();
-
-                if (!$product) {
-                    $missingProducts[] = $productModel;
-                }
-
-                $row++;
-            }
-        
-                
-        if (!empty($missingProducts)) {
-
-            session()->flash('order_error_message', 'В файле заказа есть товары, которых нет в БД:');
-                    session()->flash('missingProducts', $missingProducts);
-                
-                    return redirect()->back();
-                    $this->reset('xls_file');
-                }
-                $order = new Order();
-                $order->order_number = $orderNumber;
-                $order->order_date = $orderDate;
-                $order->received = 0;
-                
-                $order->save();
-               
-                $order_id = $order->id; // Здесь хранится ID только что добавленной записи
-                
-
-                $row = $startRow;
-                    while ($worksheet->getCell($modelCol . $row)->getValue() !== null) {
-                        $productVendor = $worksheet->getCell($vendorCol . $row)->getValue();
-                        $productModel = $worksheet->getCell($modelCol . $row)->getValue();
-                        $quantity = $worksheet->getCell($quantityCol . $row)->getValue();
-
-                        $product = Product::where('name', $productModel)
-                            ->where(function($query) use ($productVendor) {
-                                $query->whereHas('vendor', function ($subQuery) use ($productVendor) {
-                                    $subQuery->where('name', $productVendor);
-                                })->orWhereHas('vendor', function ($subQuery) use ($productVendor) {
-                                    $subQuery->where('short_name', $productVendor);
-                                });
-                            })
-                            ->first();
-
-                        $orderComposition = new OrderComposition();
-                        $orderComposition->quantity = $quantity;
-                        $orderComposition->order_id = $order_id;
-                        $orderComposition->product_id = $product->id;
-                        $orderComposition->save();
-
-                        $row++;
-                    }
-                $this->reset('xls_file');
-                $this->dispatch('update-order-table');       
-                return;    
-        }
-        else
+        // Проверка существования заказа
+        if (!Order::where('order_number', $orderNumber)
+        ->whereDate('order_date', $orderDate)
+        ->exists())
         {
-            session()->flash('order_error_message', 'Заказ с таким номером и такой датой уже существует!');
-            return redirect()->back();
+        $row = $startRow;
+        $missingProducts = [];
+
+        // Проверяем все товары перед загрузкой
+        while ($worksheet->getCell($modelCol . $row)->getValue() !== null) {
+        $productVendor = $worksheet->getCell($vendorCol . $row)->getValue();
+        $productModel = $worksheet->getCell($modelCol . $row)->getValue();
+
+        $product = Product::where('name', $productModel)
+                        ->whereHas('vendor', function ($query) use ($productVendor) {
+                            $query->where('name', $productVendor)
+                                ->orWhere('short_name', $productVendor);
+                        })
+                        ->first();
+
+        if (!$product) {
+        $missingProducts[] = $productModel;
+        }
+
+        $row++;
+        }
+
+        // Обработка отсутствующих товаров
+        if (!empty($missingProducts)) {
+        session()->flash('order_error_message', 'В файле заказа есть товары, которых нет в БД:');
+        session()->flash('missingProducts', $missingProducts);
+        return redirect()->back();
+        }
+
+        // Создание нового заказа
+        $order = new Order();
+        $order->order_number = $orderNumber;
+        $order->order_date = $orderDate;
+        $order->received = 0;
+        $order->save();
+
+        $orderId = $order->id; // ID созданного заказа
+
+        // Добавляем состав заказа
+        $row = $startRow;
+        while ($worksheet->getCell($modelCol . $row)->getValue() !== null) {
+        $productVendor = $worksheet->getCell($vendorCol . $row)->getValue();
+        $productModel = $worksheet->getCell($modelCol . $row)->getValue();
+        $quantity = $worksheet->getCell($quantityCol . $row)->getValue();
+
+        $product = Product::where('name', $productModel)
+                        ->whereHas('vendor', function ($query) use ($productVendor) {
+                            $query->where('name', $productVendor)
+                                ->orWhere('short_name', $productVendor);
+                        })
+                        ->first();
+
+        $orderComposition = new OrderComposition();
+        $orderComposition->quantity = $quantity;
+        $orderComposition->order_id = $orderId;
+        $orderComposition->product_id = $product->id;
+        $orderComposition->save();
+
+        $row++;
+        }
+
+        $this->reset('xls_file');
+        $this->dispatch('update-order-table');
+        return;
+        } else {
+        session()->flash('error', 'Заказ с таким номером и такой датой уже существует!');
+        return redirect()->back();
         }
     }
 }
