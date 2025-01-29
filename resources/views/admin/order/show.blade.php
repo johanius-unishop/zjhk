@@ -4,7 +4,9 @@
 
 @section('title', 'Состав заказа поставщику')
 @section('content_header')
-<h1>Состав заказа поставщику {{ $parent_order->order_number }} от {{ $parent_order->order_date }}</h1>
+@section('content_header')
+    <h1 class="page-title">Состав заказа поставщику "<span class="order-number">{{ $parent_order->order_number }}</span>" от <span class="order-date">{{ $parent_order->order_date }}</span></h1>
+@stop
 @stop
 
 {{-- Content body: main page content --}}
@@ -17,6 +19,22 @@
 
 @push('css')
 {{-- Add here extra stylesheets --}}
+    page-title {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .order-number {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .order-date {
+        font-style: italic;
+        color: #666;
+    }
 
 @endpush
 

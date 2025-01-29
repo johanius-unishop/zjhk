@@ -132,7 +132,6 @@ class OrderComponent extends Component
         $this->dispatch('update-order-table');
         return;
         } else {
-        //session()->flash('order_error_message', 'Заказ с таким номером и такой датой уже существует!');
         $this->dispatch('toast', message: 'Заказ с таким номером и такой датой уже существует!', notify: 'error');
         return redirect()->back();
         }
