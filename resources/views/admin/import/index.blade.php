@@ -18,12 +18,7 @@
     <button type="submit">Загрузить прайс-лист</button>
 </form>
 
-<form action="{{ route('admin.import.import_order_from_xls') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <h2>Загрузка заказа поставщику:</h2>
-    <input type="file" name="xls_file" accept=".xlsx,.xls">
-    <button type="submit">Загрузить заказ</button>
-</form>
+
 
 
 
