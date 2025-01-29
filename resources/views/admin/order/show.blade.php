@@ -1,4 +1,4 @@
-extends('admin')
+@extends('admin')
 
 {{-- Customize layout sections --}}
 
