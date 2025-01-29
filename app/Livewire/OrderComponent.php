@@ -62,8 +62,8 @@ class OrderComponent extends Component
         
         // Проверка существования заказа
         if (!Order::where('order_number', $orderNumber)
-        ->whereDate('order_date', $orderDate)
-        ->exists())
+            ->where('order_date', $orderDate)
+            ->exists())
         {
         $row = $startRow;
         $missingProducts = [];
