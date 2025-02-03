@@ -244,6 +244,7 @@ class ImportController extends Controller
             $result = Collection::make($data)->keyBy('characteristic_name')->transform(function ($item) {
                 return $item['characteristic_value'];
             })->all();
+            dd ($result);
             
             $columnIndex = 4;
 
