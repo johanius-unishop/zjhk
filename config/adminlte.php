@@ -400,12 +400,12 @@ return [
         //     ],
         // ],
         ['header' => 'important'],
-        /*[
+        [
             'text' => 'Импорт данных',
             'url' => 'admin/import',
             'icon' => 'fas fa-fw fa-bug ',
             'can' => 'manage content',
-        ],*/
+        ],
       [
             'text' => 'Настройки сайта',
             'url' => 'admin/settings',

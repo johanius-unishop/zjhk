@@ -3,26 +3,18 @@
 namespace App\Livewire;
 
 
-use App\Models\Category;
 use App\Models\Product;
 use App\Models\Vendor;
 
-use App\Models\ProductType;
-
-
-use Livewire\Attributes\On;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 final class ProductTable extends PowerGridComponent
@@ -107,57 +99,12 @@ final class ProductTable extends PowerGridComponent
         ];
     }
 
-    #[\Livewire\Attributes\On('post_delete')]
-    public function post_delete($rowId): void
-    {
-        $this->deleteId = $rowId;
-        $this->confirm('Вы действительно хотите удалить эту запись?', [
-            'onConfirmed' => 'confirmed',
-            'showCancelButton' => true,
-            'cancelButtonText' => 'Нет',
-        ]);
-    }
-
-    #[\Livewire\Attributes\On('confirmed')]
-    public function confirmed()
-    {
-        // TODO проверка на наличие товара в заказе
-        // dd(auth()->user()->can('delete content'));
-        if (!auth()->user()->can('delete content')) {
-            $this->dispatch('toast', message: 'У ввас нет права удалять товар!', notify: 'error');
-            return;
-        }
-        $item = Product::where('id', $this->deleteId)->first();
-
-        // if ($item) {
-        //     $this->dispatch('toast', message: 'Этот товар использован в заказе. Вначале удалите их!', notify: 'error');
-        //     return;
-        // }
-
-
-        // $item = Product::where('id', $this->deleteId)->with('variant')->first();
-
-
-        // $item->variant()->each(function ($variant) {
-        //     $variant->delete();
-        // });
-
-
-        if ($item->seo()->exists()) {
-            $item->seo()->delete();
-        }
-        if (@$item->media()->exists()) {
-            $item->media()->delete();
-        }
-
-        $item->delete();
-        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
-    }
+        
 
     public function actions(Product $row): array
     {
 
-        if (!auth()->user()->can('delete content')) {
+        if (auth()->user()->can('delete content')) {
             return [
                 Button::add('view')
                     ->slot('<i class="fas fa-edit"></i>')
@@ -167,17 +114,7 @@ final class ProductTable extends PowerGridComponent
             ];
         }
 
-        return [
-            Button::add('view')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.product.edit', ['product' => $row->id])
-                ->target('_blank'),
-            Button::add('Delete')
-                ->slot('<i class="fas fa-trash"></i>')
-                ->class('btn btn-danger')
-                ->dispatch('post_delete', ['rowId' => $row->id]),
-        ];
+        
 
 
     }

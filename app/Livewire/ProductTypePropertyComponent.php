@@ -35,6 +35,9 @@ class ProductTypePropertyComponent extends Component
     {
         $section = $this->section ? 1 : 0;
         $this->product_type_id = $this->parent_type;
+        
+        // Применяем trim к значению
+        $this->name = trim($this->name);
 
         $this->validate();
 

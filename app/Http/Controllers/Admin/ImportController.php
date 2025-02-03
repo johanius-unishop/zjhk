@@ -7,36 +7,29 @@ use App\Http\Controllers\Controller;
 use App\Models\AdditionalSetting;
 use App\Models\Vendor;
 use App\Models\Currency;
-use App\Models\Order;
-use Carbon\Carbon;
-// use App\Models\Product;
-// use App\Models\Consulting;
-// use App\Models\Vendor;
-// use App\Models\PriceRequest;
-// use App\Models\ProductType;
-// use App\Models\Opinion;
-// use App\Models\Order;
-// use App\Models\Drawing;
-// use App\Models\Subscribe;
-// use App\Models\ModelRequest;
 
-// use App\Http\Requests\Admin\ImportProductFileRequest;
+
+use App\Models\ProductType;
+use App\Models\ProductTypeProperty;
 
 use App\Models\Product;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Cell\DataValidation;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\Jobs\AttachFilesToProduct;
-use App\Jobs\AttachImagesToProduct;
-use Illuminate\Support\Facades\Queue;
-use Illuminate\Support\Facades\File;
-use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
-use PhpOffice\PhpSpreadsheet\Reader\Xls;
-use Illuminate\Support\Facades\Session;
-use Exception;
+use Illuminate\Support\Facades\Gate;
 class ImportController extends Controller
 {
+    public function index()
+    {
+
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        $productTypes = ProductType::orderBy('name', 'asc')->get();
+        return view('admin.import.index', ['productTypes' => $productTypes]);
+    }
 
 
     
@@ -142,4 +135,117 @@ class ImportController extends Controller
         return back()->with('success', 'Прайс-лист успешно загружен.');
     }
     
+    public function export_products_properties_values_to_xls(Request $request)
+    {
+        $productType = ProductType::where('id', $request->productType)->first();
+        $properties = ProductTypeProperty::where('product_type_id', $productType->id)->orderBy('order_column')->with('productTypePropertyValues')->get();
+        $products = Product::where('product_type_id', $productType->id)->with('productPropertyValues')->with('vendor')->get();
+        
+        // Функция для преобразования номера столбца в букву
+        function columnNumberToLetter(int $columnIndex): string
+        {
+            $letter = '';
+            while ($columnIndex > 0) {
+                $modulo = ($columnIndex - 1) % 26;
+                $letter = chr(65 + $modulo) . $letter;
+                $columnIndex = floor(($columnIndex - $modulo) / 26);
+            }
+            return $letter;
+        }
+
+
+
+        // Создаем новую рабочую книгу
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        
+        $sheet->setCellValue('A1', $productType->name);
+        $columnIndex = 4;
+        $rowIndex = 2;
+        $variants = [];
+
+        foreach ($properties as $property) {
+                $variants[$columnIndex] = $property->productTypePropertyValues->pluck('value')->toArray(); 
+                $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
+                $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
+                $sheet->setCellValue($cellCoordinate, $property->name);
+                $columnIndex ++;
+            }
+        $startColumnIndex = 4;
+        $finishColumnIndex = $columnIndex-1;
+
+        $columnIndex = 1;
+        $rowIndex = 3;
+
+        foreach ($products as $product) {
+            $columnIndex = 1;
+            $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
+            $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
+            $sheet->setCellValue($cellCoordinate, $product->vendor->short_name ?? '');
+            $columnIndex = 2;
+            $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
+            $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
+            $sheet->setCellValue($cellCoordinate, $product->name);
+            $columnIndex = 3;
+            $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
+            $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
+            $sheet->setCellValue($cellCoordinate, $product->article);
+            $rowIndex ++;
+        }
+
+        $startRowIndex = 3;
+        $endRowIndex = $rowIndex-1;
+
+        $sheet->mergeCells('A1:E1');
+
+        $columnIndex = 4;
+
+        foreach ($properties as $property) {
+            if (!empty($variants[$columnIndex])) {
+                $columnLetter = columnNumberToLetter($columnIndex);
+                $cellRange = $columnLetter . $startRowIndex . ':' . $columnLetter . $endRowIndex;
+                
+                // Создаем выпадающий список
+                $validation = $sheet->getDataValidation($cellRange)
+                                        ->setType(DataValidation::TYPE_LIST)
+                                        ->setErrorStyle(DataValidation::STYLE_INFORMATION)
+                                        ->setAllowBlank(false)
+                                        ->setShowInputMessage(true)
+                                        ->setShowErrorMessage(true)
+                                        ->setShowDropDown(true)
+                                        ->setFormula1('"' . implode(',', $variants[$columnIndex]) . '"');
+            }
+            $columnIndex++;
+        }
+
+
+        // Автоматически настраиваем ширину столбцов под содержимое
+        foreach (range('A', 'Z') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
+        }
+
+        // Для столбцов с двойными буквами (например, AA ... BZ и т.д.)
+        foreach (range('A', 'B') as $firstChar) {
+            foreach (range('A', 'Z') as $secondChar) {
+                $columnID = $firstChar . $secondChar;
+                $sheet->getColumnDimension($columnID)->setAutoSize(true);
+            }
+        }
+        
+
+        // Сохраняем файл в память
+        $writer = new Xlsx($spreadsheet);
+        ob_start();
+        $writer->save('php://output');
+        $content = ob_get_clean();
+
+        // Имя файла
+        $filename = rawurlencode($productType->name) . '.xlsx';
+
+        // Отправляем файл клиенту для скачивания
+        return response($content, 200)
+            ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            ->header("Content-Disposition", "attachment; filename*=UTF-8''$filename");
+
+    }
 }

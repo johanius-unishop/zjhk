@@ -28,13 +28,20 @@ class ProductTypePropertyValueComponent extends Component
     
     public function save()
     {
+        // Применяем trim к значению
+        $this->value = trim($this->value);
+        
         $this->product_type_property_id = $this->parent_property;
         $this->validate();
-        ProductTypePropertyValue::create(
-                $this->only(['value', 'product_type_property_id'])
-            );
+        
+        ProductTypePropertyValue::create([
+            'value' => $this->value,
+            'product_type_property_id' => $this->product_type_property_id
+        ]);
+        
         $this->reset('value');
-        $this->dispatch('update-product-type-property-value-table');       
+        $this->dispatch('update-product-type-property-value-table');
+        
         return;
     }
 

@@ -68,10 +68,10 @@
                     <a href="{{ route('admin.problem.product_without_tnved') }}">Не указан ТН ВЭД: {{ $no_tn_ved_count }}</a>
                 </span>
                 <span class="info-box-number">
-                    <a href="{{ route('admin.problem.types_without_property') }}">Количество типов товаров без характеристик: {{ $product_types_without_properties }}</a>
+                    <a href="{{ route('admin.product_type.index') }}">Количество типов товаров без характеристик: {{ $product_types_without_properties }}</a>
                 </span>
                 <span class="info-box-number">
-                    <a href="{{ route('admin.problem.properties_without_values') }}" wire:click.prevent="showPropertiesWithoutValues()">Количество характеристик без доступных значений: {{ $product_type_properties_without_values }}</a>
+                    <a href="{{ route('admin.product_type.index') }}">Количество характеристик без доступных значений: {{ $product_type_properties_without_values }}</a>
                 </span>
                 <div class="progress">
                     <div class="progress-bar" style="width: 100%"></div>
