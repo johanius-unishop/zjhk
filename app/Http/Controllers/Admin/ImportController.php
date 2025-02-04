@@ -260,8 +260,21 @@ class ImportController extends Controller
         $lastColumnIndex = Coordinate::columnIndexFromString($lastColumn);
 
         // Настраиваем ширину столбцов от A до последнего заполненного столбца
-        foreach (range('A', $highestColumn) as $columnID) {
-            $sheet->getColumnDimension($columnID)->setAutoSize(true);
+
+        // Определяем первую букву столбца
+        $firstLetter = 'A';
+        if ($lastColumnIndex > 26) { // Если максимальный столбец больше Z
+            $firstLetter = Coordinate::StringFromColumnIndex(floor(($lastColumnIndex - 1) / 26));
+        }
+
+        // Настраиваем ширину столбцов от A до последнего заполненного столбца
+        foreach (range($firstLetter, 'Z') as $firstChar) {
+            foreach (range('A', 'Z') as $secondChar) {
+                $columnID = $firstChar . $secondChar;
+                if (Coordinate::columnIndexFromString($columnID) <= $lastColumnIndex) {
+                    $sheet->getColumnDimension($columnID)->setAutoSize(true);
+                }
+            }
         }
 
         // Закрепление первых трех столбцов и двух строк
