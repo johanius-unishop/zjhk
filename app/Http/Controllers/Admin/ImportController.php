@@ -20,6 +20,7 @@ use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use PhpOffice\PhpSpreadsheet\Style\Protection;
 use Illuminate\Support\Collection;
 class ImportController extends Controller
 {
@@ -178,8 +179,20 @@ class ImportController extends Controller
                 $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
                 $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
                 $sheet->setCellValue($cellCoordinate, $property->name);
+                $protection = $sheet->getStyle($cellCoordinate)->getProtection();
+                $protection->setLocked(Protection::PROTECTION_PROTECTED);
                 $columnIndex ++;
             }
+
+        $rowIndex = 1;
+        foreach ($properties as $property) {
+            $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
+            $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
+            $sheet->setCellValue($cellCoordinate, $property->id);
+            $protection = $sheet->getStyle($cellCoordinate)->getProtection();
+            $protection->setLocked(Protection::PROTECTION_PROTECTED);
+            $columnIndex ++;
+        }
        
 
         $columnIndex = 1;
@@ -332,14 +345,11 @@ class ImportController extends Controller
         $productType = ProductType::where('name', trim($worksheet->getCell('A1')->getValue()))->first();
         
         if ($productType) {
-            
-            
             $range = 'A2:' . $lastColumn . $lastRow;
-
-            
             $dataArray = [];
             // Преобразование диапазона ячеек в массив
             $dataArray = $worksheet->rangeToArray($range, null, true, false, true);
+            
             dd($dataArray);
 
 
