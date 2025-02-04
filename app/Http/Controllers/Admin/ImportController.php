@@ -181,7 +181,7 @@ class ImportController extends Controller
         $rowIndex = 3;
 
         foreach ($products as $product) {
-            $product_values[$product->id] = $product->productPropertyValues->pluck('product_type_value_id','product_type_property_id')->toArray();
+            $product_values[$product->id] = $product->productPropertyValues->pluck('product_type_property_value_id','product_type_property_id')->toArray();
             $columnIndex = 1;
             $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
             $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
