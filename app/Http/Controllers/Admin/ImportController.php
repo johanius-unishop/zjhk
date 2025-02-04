@@ -178,8 +178,6 @@ class ImportController extends Controller
                 $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
                 $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
                 $sheet->setCellValue($cellCoordinate, $property->id);
-                $protection = $sheet->getStyle($cellCoordinate)->getProtection();
-                $protection->setLocked(Protection::PROTECTION_PROTECTED);
 
                 $rowIndex = 2;
                 $variants[$columnIndex] = $property->productTypePropertyValues->pluck('value')->toArray(); 
@@ -187,8 +185,6 @@ class ImportController extends Controller
                 $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
                 $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
                 $sheet->setCellValue($cellCoordinate, $property->name);
-                $protection = $sheet->getStyle($cellCoordinate)->getProtection();
-                $protection->setLocked(Protection::PROTECTION_PROTECTED);
                 $columnIndex ++;
             }
         
@@ -298,7 +294,7 @@ class ImportController extends Controller
 
         // Закрепление первых трех столбцов и двух строк
         $sheet->freezePane('D3'); // Указываем ячейку, начиная с которой область будет прокручиваться
-        $sheet->protect();
+        
 
         // Сохраняем файл в память
         $writer = new Xlsx($spreadsheet);
