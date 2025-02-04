@@ -253,17 +253,15 @@ class ImportController extends Controller
         }
 
 
-        // Автоматически настраиваем ширину столбцов под содержимое
-        foreach (range('A', 'Z') as $columnID) {
-            $sheet->getColumnDimension($columnID)->setAutoSize(true);
-        }
+        // Определяем последний заполненный столбец
+        $highestColumn = $sheet->getHighestColumn();
 
-        // Для столбцов с двойными буквами (например, AA ... BZ и т.д.)
-        foreach (range('A', 'B') as $firstChar) {
-            foreach (range('A', 'Z') as $secondChar) {
-                $columnID = $firstChar . $secondChar;
-                $sheet->getColumnDimension($columnID)->setAutoSize(true);
-            }
+        $lastColumn = $sheet->getHighestColumn();
+        $lastColumnIndex = Coordinate::columnIndexFromString($lastColumn);
+
+        // Настраиваем ширину столбцов от A до последнего заполненного столбца
+        foreach (range('A', $highestColumn) as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
 
         // Закрепление первых трех столбцов и двух строк
