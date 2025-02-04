@@ -167,7 +167,7 @@ class ImportController extends Controller
         $sheet = $spreadsheet->getActiveSheet();
         
         $sheet->setCellValue('A1', $productType->name);
-        $columnIndex = 4;
+        $columnIndex = 5;
         $rowIndex = 2;
         $variants = [];
         $variants_value = [];
@@ -198,12 +198,17 @@ class ImportController extends Controller
             $columnIndex = 1;
             $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
             $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
-            $sheet->setCellValue($cellCoordinate, $product->vendor->short_name ?? '');
+            $sheet->setCellValue($cellCoordinate, $product->id);
+            
             $columnIndex = 2;
             $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
             $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
-            $sheet->setCellValue($cellCoordinate, $product->name);
+            $sheet->setCellValue($cellCoordinate, $product->vendor->short_name);
             $columnIndex = 3;
+            $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
+            $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
+            $sheet->setCellValue($cellCoordinate, $product->name);
+            $columnIndex = 4;
             $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
             $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
             $sheet->setCellValue($cellCoordinate, $product->article);
@@ -214,7 +219,7 @@ class ImportController extends Controller
         $startRowIndex = 3;
         $endRowIndex = $rowIndex-1;
 
-        $sheet->mergeCells('A1:C1');
+        $sheet->mergeCells('A1:D1');
         // Применяем стиль для ячейки
         $fontStyle = [
             'font' => [
@@ -223,7 +228,7 @@ class ImportController extends Controller
         ];
         $sheet->getStyle('A1')->applyFromArray($fontStyle);
 
-        $columnIndex = 4;
+        $columnIndex = 5;
 
         foreach ($properties as $property) {
             if (!empty($variants[$columnIndex])) {
@@ -245,7 +250,7 @@ class ImportController extends Controller
 
         
         $rowIndex = 3;
-        $columnIndex = 4;
+        $columnIndex = 5;
 
         foreach ($products as $product) {
             foreach ($properties as $property) {
@@ -264,12 +269,11 @@ class ImportController extends Controller
             }
 
             $rowIndex++;
-            $columnIndex = 4; // Сбрасываем индекс колонки для новой строки
+            $columnIndex = 5; // Сбрасываем индекс колонки для новой строки
         }
 
 
         // Определяем последний заполненный столбец
-        $highestColumn = $sheet->getHighestColumn();
 
         $lastColumn = $sheet->getHighestColumn();
         $lastColumnIndex = Coordinate::columnIndexFromString($lastColumn);
