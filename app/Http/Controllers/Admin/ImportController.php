@@ -174,6 +174,14 @@ class ImportController extends Controller
         $product_values = [];
 
         foreach ($properties as $property) {
+                $rowIndex = 1;
+                $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
+                $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
+                $sheet->setCellValue($cellCoordinate, $property->id);
+                $protection = $sheet->getStyle($cellCoordinate)->getProtection();
+                $protection->setLocked(Protection::PROTECTION_PROTECTED);
+
+                $rowIndex = 2;
                 $variants[$columnIndex] = $property->productTypePropertyValues->pluck('value')->toArray(); 
                 $variants_value[$property->id] =  $property->productTypePropertyValues->pluck('value', 'id')->toArray(); 
                 $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
@@ -183,16 +191,7 @@ class ImportController extends Controller
                 $protection->setLocked(Protection::PROTECTION_PROTECTED);
                 $columnIndex ++;
             }
-
-        $rowIndex = 1;
-        foreach ($properties as $property) {
-            $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
-            $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
-            $sheet->setCellValue($cellCoordinate, $property->id);
-            $protection = $sheet->getStyle($cellCoordinate)->getProtection();
-            $protection->setLocked(Protection::PROTECTION_PROTECTED);
-            $columnIndex ++;
-        }
+        
        
 
         $columnIndex = 1;
