@@ -272,7 +272,8 @@ class ImportController extends Controller
             $columnIndex = 5; // Сбрасываем индекс колонки для новой строки
         }
 
-
+        // Объединяем ячейки A1:D1
+        $sheet->mergeCells('A1:D1');
         // Определяем последний заполненный столбец
 
         $lastColumn = $sheet->getHighestColumn();
