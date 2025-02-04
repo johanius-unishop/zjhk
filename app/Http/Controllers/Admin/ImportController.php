@@ -226,22 +226,26 @@ class ImportController extends Controller
 
         
         $rowIndex = 3;
+        $columnIndex = 4;
 
-        foreach ($products as $product)
-        {
-            $columnIndex = 4;
-
-            foreach ($properties as $property)
-            {
+        foreach ($products as $product) {
+            foreach ($properties as $property) {
                 $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
-                $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
-                $product_value = $variants_value[$property->id][$product_values[$product->id][$property->id]];
-                $sheet->setCellValue($cellCoordinate, $product_value);
+                $cellCoordinate = $columnLetter . $rowIndex; // Формирование координат ячейки (A1, B1, ...)
+
+                // Проверяем существование ключей в массивах
+                if (
+                    isset($variants_value[$property->id], $product_values[$product->id], $product_values[$product->id][$property->id])
+                ) {
+                    $product_value = $variants_value[$property->id][$product_values[$product->id][$property->id]];
+                    $sheet->setCellValue($cellCoordinate, $product_value);
+                }
 
                 $columnIndex++;
             }
-            
+
             $rowIndex++;
+            $columnIndex = 4; // Сбрасываем индекс колонки для новой строки
         }
 
 
