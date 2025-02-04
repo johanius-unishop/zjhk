@@ -278,22 +278,13 @@ class ImportController extends Controller
         $lastColumn = $sheet->getHighestColumn();
         $lastColumnIndex = Coordinate::columnIndexFromString($lastColumn);
 
-        // Настраиваем ширину столбцов от A до последнего заполненного столбца
+        
+        // Перебираем все столбцы от 'A' до максимального заполненного столбца
+        for ($i = 0; $i <= $lastColumnIndex; $i++) {
+            $columnID = Coordinate::stringFromColumnIndex($i); // Получаем идентификатор столбца
 
-        // Определяем первую букву столбца
-        $firstLetter = 'A';
-        if ($lastColumnIndex > 26) { // Если максимальный столбец больше Z
-            $firstLetter = Coordinate::StringFromColumnIndex(floor(($lastColumnIndex - 1) / 26));
-        }
-
-        // Настраиваем ширину столбцов от A до последнего заполненного столбца
-        foreach (range($firstLetter, 'Z') as $firstChar) {
-            foreach (range('A', 'Z') as $secondChar) {
-                $columnID = $firstChar . $secondChar;
-                if (Coordinate::columnIndexFromString($columnID) <= $lastColumnIndex) {
-                    $sheet->getColumnDimension($columnID)->setAutoSize(true);
-                }
-            }
+            // Устанавливаем автоподбор ширины для текущего столбца
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
 
         // Закрепление первых трех столбцов и двух строк
