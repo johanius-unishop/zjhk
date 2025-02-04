@@ -321,16 +321,15 @@ class ImportController extends Controller
         $productType = ProductType::where('name', trim($worksheet->getCell('A1')->getValue()))->first();
         
         if ($productType) {
-            // Проходимся по каждой ячейке второй строки, начиная с D
-            for ($col = 4; $col <= $lastColumnIndex; $col++) {
-                $cellValue = $worksheet->getCell(Coordinate::stringFromColumnIndex($col) . '2')->getValue(); // Читаем значение ячейки
+            
+            
+            $range = 'A2:' . $lastColumn . $lastRow;
 
-                if (!empty($cellValue)) { // Проверяем, что ячейка не пустая
-                    $productTypePropertyXls[] = ProductTypeProperty::where('product_type_id',$productType->id)->where('name',trim($cellValue))->first(); // Добавляем значение в массив
-                }
-            }
-
-            dd($productTypePropertyXls);
+            
+            $dataArray = [];
+            // Преобразование диапазона ячеек в массив
+            $dataArray = $worksheet->rangeToArray($range, null, true, false, true);
+            dd($dataArray);
 
 
             echo "Найден продукт с именем: " . $productType->name;
