@@ -218,7 +218,14 @@ class ImportController extends Controller
         $startRowIndex = 3;
         $endRowIndex = $rowIndex-1;
 
-        $sheet->mergeCells('A1:E1');
+        $sheet->mergeCells('A1:C1');
+        // Применяем стиль для ячейки
+        $fontStyle = [
+            'font' => [
+                'bold' => true,
+            ],
+        ];
+        $sheet->getStyle('A1')->applyFromArray($fontStyle);
 
         $columnIndex = 4;
 
@@ -291,7 +298,7 @@ class ImportController extends Controller
 
         // Закрепление первых трех столбцов и двух строк
         $sheet->freezePane('D3'); // Указываем ячейку, начиная с которой область будет прокручиваться
-        
+        $sheet->protect();
 
         // Сохраняем файл в память
         $writer = new Xlsx($spreadsheet);
