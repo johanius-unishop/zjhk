@@ -194,7 +194,7 @@ class ImportController extends Controller
             $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
             $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
             $sheet->setCellValue($cellCoordinate, $product->article);
-            
+            dd($product_values[$product->id]);
             
             $rowIndex ++;
         }
