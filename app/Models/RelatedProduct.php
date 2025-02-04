@@ -22,6 +22,19 @@ class RelatedProduct extends Model
         'order_column' => 'int',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            foreach ($model->getFillable() as $field) {
+                if (is_string($model->$field)) {
+                    $model->$field = trim($model->$field);
+                }
+            }
+        });
+    }
+
     protected static function booting()
     {
         parent::booting();

@@ -16,6 +16,19 @@ class ProductPropertyValue extends Pivot
         'product_type_property_value_id',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            foreach ($model->getFillable() as $field) {
+                if (is_string($model->$field)) {
+                    $model->$field = trim($model->$field);
+                }
+            }
+        });
+    }
+
     // Связь с товаром
     public function product() {
         return $this->belongsTo(Product::class, 'product_id');

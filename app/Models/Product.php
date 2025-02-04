@@ -31,6 +31,19 @@ class Product extends Model implements HasMedia, Sitemapable
     use HasSlug;
     protected $table = 'products';
     protected $guarded = ['id'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            foreach ($model->getFillable() as $field) {
+                if (is_string($model->$field)) {
+                    $model->$field = trim($model->$field);
+                }
+            }
+        });
+    }
     /**
      * Get the options for generating the slug.
      */

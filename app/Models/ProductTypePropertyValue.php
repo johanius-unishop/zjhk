@@ -17,6 +17,19 @@ class ProductTypePropertyValue extends Model
         'product_type_property_id',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            foreach ($model->getFillable() as $field) {
+                if (is_string($model->$field)) {
+                    $model->$field = trim($model->$field);
+                }
+            }
+        });
+    }
+
     /**
      * Get the model's searchable attributes.
      *

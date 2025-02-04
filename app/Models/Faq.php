@@ -25,6 +25,19 @@ class Faq extends Model implements Sortable
         'sort_when_creating' => true,
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            foreach ($model->getFillable() as $field) {
+                if (is_string($model->$field)) {
+                    $model->$field = trim($model->$field);
+                }
+            }
+        });
+    }
+
     public function scopePublished(Builder $query): void
     {
         $query->where('published', 1);

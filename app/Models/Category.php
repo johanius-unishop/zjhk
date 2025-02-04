@@ -41,6 +41,20 @@ class Category extends Model implements Sortable, HasMedia
         'order_column_name' => 'order_column',
         'sort_when_creating' => true,
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            foreach ($model->getFillable() as $field) {
+                if (is_string($model->$field)) {
+                    $model->$field = trim($model->$field);
+                }
+            }
+        });
+    }
+    
     public function buildSortQuery()
     {
         return static::query()->where('parent_id', $this->root_id);

@@ -13,6 +13,19 @@ class OrderComposition extends Model
 
     protected $fillable = ['quantity', 'product_id', 'order_id'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            foreach ($model->getFillable() as $field) {
+                if (is_string($model->$field)) {
+                    $model->$field = trim($model->$field);
+                }
+            }
+        });
+    }
+
     // Связь с моделью Order
     public function order()
     {

@@ -26,6 +26,8 @@ class ProductTypeProperty extends Model implements Sortable
         'order_column_name' => 'order_column',
         'sort_when_creating' => true,
     ];
+
+  
     public function buildSortQuery()
     {
         return static::query()->where('product_type_id', $this->product_type_id);
@@ -62,6 +64,14 @@ class ProductTypeProperty extends Model implements Sortable
                 $model->productTypePropertyValues()->delete(); // Удаление всех связанных значений
                 $model->productPropertyValues()->detach(); // Отсоединение всех товаров
             });
+        });
+
+        static::saving(function ($model) {
+            foreach ($model->getFillable() as $field) {
+                if (is_string($model->$field)) {
+                    $model->$field = trim($model->$field);
+                }
+            }
         });
     }
 }

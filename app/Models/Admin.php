@@ -32,6 +32,19 @@ class Admin extends Authenticatable
 
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            foreach ($model->getFillable() as $field) {
+                if (is_string($model->$field)) {
+                    $model->$field = trim($model->$field);
+                }
+            }
+        });
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

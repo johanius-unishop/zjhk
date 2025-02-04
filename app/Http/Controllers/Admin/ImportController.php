@@ -164,9 +164,12 @@ class ImportController extends Controller
         $columnIndex = 4;
         $rowIndex = 2;
         $variants = [];
+        $variants_value = [];
+        $product_values = [];
 
         foreach ($properties as $property) {
                 $variants[$columnIndex] = $property->productTypePropertyValues->pluck('value')->toArray(); 
+                $variants_value[$property->id] =  $property->productTypePropertyValues->pluck('value', 'id')->toArray(); 
                 $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
                 $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
                 $sheet->setCellValue($cellCoordinate, $property->name);
@@ -178,7 +181,7 @@ class ImportController extends Controller
         $rowIndex = 3;
 
         foreach ($products as $product) {
-            $productId = $product->id;
+            $product_values[$product->id] = $product->productPropertyValues->pluck('product_type_value_id','product_type_property_id')->toArray();
             $columnIndex = 1;
             $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
             $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
@@ -226,33 +229,14 @@ class ImportController extends Controller
 
         foreach ($products as $product)
         {
-            $productId = $product->id;
-            $data = ProductTypeProperty::query()
-                ->leftJoin('product_property_values', function($join) use ($productId) {
-                    $join->on('product_type_properties.id', '=', 'product_property_values.product_type_property_id')
-                        ->where('product_property_values.product_id', '=', $productId);
-                })
-                ->leftJoin('product_type_property_values', 'product_property_values.product_type_property_value_id', '=', 'product_type_property_values.id')
-                ->where('product_type_properties.product_type_id', '=', $productType)
-                ->orderBy('product_type_properties.order_column')
-                ->select([
-                    'product_type_properties.name as characteristic_name',
-                    'product_type_property_values.value as characteristic_value',
-            ])->get();
-
-            // Преобразуем массив в коллекцию и используем keyBy() для получения нужного формата
-            $result = Collection::make($data)->keyBy('characteristic_name')->transform(function ($item) {
-                return $item['characteristic_value'];
-            })->all();
-            dd ($data);
-            
             $columnIndex = 4;
 
             foreach ($properties as $property)
             {
                 $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
                 $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
-                $sheet->setCellValue($cellCoordinate, $result[$property->name]);
+                $product_value = $variants_value[$property->id][$product_values[$product->id][$property->id]];
+                $sheet->setCellValue($cellCoordinate, $product_value);
 
                 $columnIndex++;
             }
