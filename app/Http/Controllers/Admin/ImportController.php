@@ -16,7 +16,8 @@ use App\Models\Product;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Cell\DataValidation;
-
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Collection;
@@ -37,6 +38,9 @@ class ImportController extends Controller
 
     public function import_price_from_xls(Request $request)
     {
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
         $settings = AdditionalSetting::where('group', 'priceListImport')
                              ->pluck('value', 'name')
                              ->all();
@@ -58,9 +62,10 @@ class ImportController extends Controller
         $path = $request->file('xls_file')->getRealPath();
 
         try {
-            $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-            $spreadsheet = $reader->load($path);
-        } catch (\PhpOffice\PhpSpreadsheet\Reader\Exception $e) {
+            // Загружаем файл
+            $spreadsheet = IOFactory::load($path);
+        }
+        catch (\PhpOffice\PhpSpreadsheet\Reader\Exception $e) {
             return back()->withErrors(['error' => $e->getMessage()]);
         }
 
@@ -260,6 +265,9 @@ class ImportController extends Controller
                 $sheet->getColumnDimension($columnID)->setAutoSize(true);
             }
         }
+
+        // Закрепление первых трех столбцов и двух строк
+        $sheet->freezePane('D3'); // Указываем ячейку, начиная с которой область будет прокручиваться
         
 
         // Сохраняем файл в память
@@ -275,6 +283,59 @@ class ImportController extends Controller
         return response($content, 200)
             ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
             ->header("Content-Disposition", "attachment; filename*=UTF-8''$filename");
+    }
 
+    public function import_products_properties_values_from_xls(Request $request)
+    {
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        
+        
+        $request->validate([
+            'xls_file1' => 'required|mimes:xls,xlsx'
+        ]);
+
+        
+    
+        $path = $request->file('xls_file1')->getRealPath();
+        
+        $productTypePropertyXls = [];
+        $productXls = [];
+        
+        
+        try {
+            // Загружаем файл
+            $spreadsheet = IOFactory::load($path);
+        } catch (\PhpOffice\PhpSpreadsheet\Reader\Exception $e) {
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
+        
+        // Получаем первый лист
+        $worksheet = $spreadsheet->getActiveSheet();
+        // Определяем последнюю строку и последний столбец
+        $lastRow = $worksheet->getHighestRow();
+        $lastColumn = $worksheet->getHighestColumn();
+        $lastColumnIndex = Coordinate::columnIndexFromString($lastColumn);
+        
+        $productType = ProductType::where('name', trim($worksheet->getCell('A1')->getValue()))->first();
+        
+        if ($productType) {
+            // Проходимся по каждой ячейке второй строки, начиная с D
+            for ($col = 4; $col <= $lastColumnIndex; $col++) {
+                $cellValue = $worksheet->getCell(Coordinate::stringFromColumnIndex($col) . '2')->getValue(); // Читаем значение ячейки
+
+                if (!empty($cellValue)) { // Проверяем, что ячейка не пустая
+                    $productTypePropertyXls[] = ProductTypeProperty::where('product_type_id',$productType->id)->where('name',trim($cellValue))->first(); // Добавляем значение в массив
+                }
+            }
+
+            dd($productTypePropertyXls);
+
+
+            echo "Найден продукт с именем: " . $productType->name;
+        } else {
+            echo "Продукт с таким именем не найден.";
+        }
     }
 }
