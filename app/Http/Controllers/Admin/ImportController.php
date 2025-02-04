@@ -219,7 +219,7 @@ class ImportController extends Controller
         $startRowIndex = 3;
         $endRowIndex = $rowIndex-1;
 
-        $sheet->mergeCells('A1:D1');
+      //  $sheet->mergeCells('A1:D1');
         // Применяем стиль для ячейки
         $fontStyle = [
             'font' => [
@@ -297,7 +297,7 @@ class ImportController extends Controller
         }
 
         // Закрепление первых трех столбцов и двух строк
-        $sheet->freezePane('D3'); // Указываем ячейку, начиная с которой область будет прокручиваться
+        $sheet->freezePane('D4'); // Указываем ячейку, начиная с которой область будет прокручиваться
         
 
         // Сохраняем файл в память
