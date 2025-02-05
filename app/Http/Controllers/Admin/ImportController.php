@@ -303,11 +303,9 @@ class ImportController extends Controller
         $filename = rawurlencode($productType->name) . '.xlsx';
 
         // Сначала отправляем файл клиенту
-        return response()->streamDownload(function () use ($content) {
-            echo $content;
-        }, $filename, [
-            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-        ]);
+        return response($content, 200)
+            ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            ->header("Content-Disposition", "attachment; filename*=UTF-8''$filename");
 
         
     }
@@ -384,12 +382,9 @@ class ImportController extends Controller
                     }
                 }
             }
-            
+            return back()->with('success', 'Характеристики успешно загружены');    
         } else {
-          
+            return back()->with('warning','Файл не загружен');
         }
-        
-        // После отправки файла выполняем перенаправление
-        return back()->with('success', 'Характеристики успешно загружены');
     }
 }
