@@ -21,6 +21,7 @@ use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 
 class ImportController extends Controller
@@ -278,8 +279,10 @@ class ImportController extends Controller
         // Определяем последний заполненный столбец
 
         $lastColumn = $sheet->getHighestColumn();
+        $lastRow = $sheet->getHighestRow();
         $lastColumnIndex = Coordinate::columnIndexFromString($lastColumn);
 
+        $sheet->getStyle('A1:' . $lastColumn . $lastRow)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_TEXT);
         
         // Перебираем все столбцы от 'A' до максимального заполненного столбца
         for ($i = 0; $i <= $lastColumnIndex; $i++) {
