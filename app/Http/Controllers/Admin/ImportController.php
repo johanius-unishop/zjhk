@@ -14,6 +14,7 @@ use App\Models\ProductTypeProperty;
 use App\Models\ProductPropertyValue;
 
 use App\Models\Product;
+use App\Models\ProductTypePropertyValue;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Cell\DataValidation;
@@ -147,7 +148,7 @@ class ImportController extends Controller
     public function export_products_properties_values_to_xls(Request $request)
     {
         $productType = ProductType::where('id', $request->productType)->first();
-        $properties = ProductTypeProperty::where('product_type_id', $productType->id)->orderBy('order_column')->with('productTypePropertyValues')->get();
+        $properties = ProductTypeProperty::where('product_type_id', $productType->id)->orderBy('order_column')->get();
         $products = Product::where('product_type_id', $productType->id)->with('productPropertyValues')->with('vendor')->get();
         
         // Функция для преобразования номера столбца в букву
@@ -183,7 +184,7 @@ class ImportController extends Controller
 
                 $rowIndex = 2;
                 $variants[$columnIndex] = $property->productTypePropertyValues->pluck('value')->toArray(); 
-                $variants_value[$property->id] =  $property->productTypePropertyValues->pluck('value', 'id')->toArray(); 
+                $variants_value[$property->id] =  ProductTypePropertyValue::where('property_id', $property->id)->orderBy('value')->pluck('value', 'id')->toArray(); 
                 $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
                 $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
                 $sheet->setCellValue($cellCoordinate, $property->name);
