@@ -11,6 +11,7 @@ use App\Models\Currency;
 
 use App\Models\ProductType;
 use App\Models\ProductTypeProperty;
+use App\Models\ProductPropertyValue;
 
 use App\Models\Product;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -322,8 +323,7 @@ class ImportController extends Controller
     
         $path = $request->file('xls_file1')->getRealPath();
         
-        $productTypePropertyXls = [];
-        $productXls = [];
+        
         
         
         try {
@@ -336,24 +336,54 @@ class ImportController extends Controller
         // Получаем первый лист
         $worksheet = $spreadsheet->getActiveSheet();
         // Определяем последнюю строку и последний столбец
-        $lastRow = $worksheet->getHighestRow();
-        $lastColumn = $worksheet->getHighestColumn();
-        $lastColumnIndex = Coordinate::columnIndexFromString($lastColumn);
-        
+
+        $variants_value = [];
         $productType = ProductType::where('name', trim($worksheet->getCell('A1')->getValue()))->first();
         
         if ($productType) {
-            $range = 'A2:' . $lastColumn . $lastRow;
-            $dataArray = [];
-            // Преобразование диапазона ячеек в массив
-            $dataArray = $worksheet->rangeToArray($range, null, true, false, true);
             
-            dd($dataArray);
+            $properties = ProductTypeProperty::where('product_type_id', $productType->id)->orderBy('order_column')->with('productTypePropertyValues')->get();
+            foreach ($properties as $property)
+            {
+                $variants_value[$property->id] =  $property->productTypePropertyValues->pluck('id', 'value')->toArray(); 
+            }
 
+            $startRowIndex = 3;
+            $startColumnIndex = 5;
 
-            echo "Найден продукт с именем: " . $productType->name;
+            $finishRowIndex = $worksheet->getHighestRow();
+            $finishColumn = $worksheet->getHighestColumn();
+            $finishColumnIndex = Coordinate::columnIndexFromString($finishColumn);
+            
+            for ($row = $startRowIndex; $row <= $finishRowIndex; $row++) {
+                $product = Product::where('id', trim($worksheet->getCell('A' . $row)->getValue()))->first();
+                if ($product) {
+                    for ($col = $startColumnIndex; $col <= $finishColumnIndex; $col++) {
+                        $property = ProductTypeProperty::where('id', trim($worksheet->getCell(Coordinate::stringFromColumnIndex($col) . '1')->getValue()))->first();
+                        if ($property && $property->section == 0) {
+                            $value_xls = trim($worksheet->getCell(Coordinate::stringFromColumnIndex($col) . $row));
+                            if ($value_xls != "") {
+                                
+                                $value = $variants_value[$property->id][trim($worksheet->getCell(Coordinate::stringFromColumnIndex($col) . $row))];
+                                if ($value) {
+                                    $conditions = [
+                                        'product_id' => $product->id,
+                                        'product_type_property_id' => $property->id,
+                                    ];
+                                    $data = [
+                                        'product_type_property_value_id' => $value,
+                                    ];
+                                    dd($conditions, $data);
+                                    ProductPropertyValue::updateOrCreate($conditions, $data);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
         } else {
-            echo "Продукт с таким именем не найден.";
+          
         }
     }
 }
