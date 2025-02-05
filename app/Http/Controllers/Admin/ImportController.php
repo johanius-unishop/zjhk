@@ -21,8 +21,8 @@ use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use PhpOffice\PhpSpreadsheet\Style\Protection;
-use Illuminate\Support\Collection;
+
+
 class ImportController extends Controller
 {
     public function index()
@@ -302,10 +302,14 @@ class ImportController extends Controller
         // Имя файла
         $filename = rawurlencode($productType->name) . '.xlsx';
 
-        // Отправляем файл клиенту для скачивания
-        return response($content, 200)
-            ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-            ->header("Content-Disposition", "attachment; filename*=UTF-8''$filename");
+        // Сначала отправляем файл клиенту
+        return response()->streamDownload(function () use ($content) {
+            echo $content;
+        }, $filename, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        ]);
+
+        
     }
 
     public function import_products_properties_values_from_xls(Request $request)
@@ -384,5 +388,8 @@ class ImportController extends Controller
         } else {
           
         }
+        
+        // После отправки файла выполняем перенаправление
+        return back()->with('success', 'Характеристики успешно загружены');
     }
 }
