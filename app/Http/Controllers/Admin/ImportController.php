@@ -373,7 +373,6 @@ class ImportController extends Controller
                                     $data = [
                                         'product_type_property_value_id' => $value,
                                     ];
-                                    dd($conditions, $data);
                                     ProductPropertyValue::updateOrCreate($conditions, $data);
                                 }
                             }
