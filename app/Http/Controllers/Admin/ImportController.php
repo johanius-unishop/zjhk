@@ -243,7 +243,7 @@ class ImportController extends Controller
                 $escapedVariants = array_map(function ($value) {
                     return '"' . str_replace(['"', ','], ['""', '\,'], $value) . '"'; // Экранируем запятые и кавычки
                 }, $variants[$columnIndex]);
-                dd($escapedVariants);
+                
                 // Создаем выпадающий список
                 $validation = $sheet->getDataValidation($cellRange)
                                         ->setType(DataValidation::TYPE_LIST)
