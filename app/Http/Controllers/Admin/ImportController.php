@@ -239,6 +239,9 @@ class ImportController extends Controller
                 $columnLetter = columnNumberToLetter($columnIndex);
                 $cellRange = $columnLetter . $startRowIndex . ':' . $columnLetter . $endRowIndex;
                 
+                $escapedVariants = array_map(function ($value) {
+                    return '"' . str_replace('"', '""', $value) . '"';
+                }, $variants[$columnIndex]);
                 // Создаем выпадающий список
                 $validation = $sheet->getDataValidation($cellRange)
                                         ->setType(DataValidation::TYPE_LIST)
@@ -247,7 +250,7 @@ class ImportController extends Controller
                                         ->setShowInputMessage(true)
                                         ->setShowErrorMessage(true)
                                         ->setShowDropDown(true)
-                                        ->setFormula1('"' . implode(',', $variants[$columnIndex]) . '"');
+                                        ->setFormula1(implode(',', $escapedVariants));
             }
             $columnIndex++;
         }
