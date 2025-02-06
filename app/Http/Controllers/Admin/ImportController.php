@@ -238,19 +238,23 @@ class ImportController extends Controller
                 $columnLetter = columnNumberToLetter($columnIndex);
                 $cellRange = $columnLetter . $startRowIndex . ':' . $columnLetter . $endRowIndex;
                 
+                // Экранируем запятые и другие специальные символы
                 $escapedVariants = array_map(function ($value) {
-                    return '"' . str_replace('"', '""', $value) . '"';
+                    return str_replace([',', '"'], ['\,', '\"'], $value); // Экранируем запятые и кавычки
                 }, $variants[$columnIndex]);
+                
+                // Формируем строку с вариантами, обёрнутыми в одинарные кавычки
+                $formulaString = "'" . implode("','", $escapedVariants) . "'";
                 
                 // Создаем выпадающий список
                 $validation = $sheet->getDataValidation($cellRange)
-                                        ->setType(DataValidation::TYPE_LIST)
-                                        ->setErrorStyle(DataValidation::STYLE_INFORMATION)
-                                        ->setAllowBlank(false)
-                                        ->setShowInputMessage(true)
-                                        ->setShowErrorMessage(true)
-                                        ->setShowDropDown(true)
-                                        ->setFormula1(implode(',', $escapedVariants));
+                                    ->setType(DataValidation::TYPE_LIST)
+                                    ->setErrorStyle(DataValidation::STYLE_INFORMATION)
+                                    ->setAllowBlank(false)
+                                    ->setShowInputMessage(true)
+                                    ->setShowErrorMessage(true)
+                                    ->setShowDropDown(true)
+                                    ->setFormula1($formulaString);
             }
             
             $columnIndex++;
