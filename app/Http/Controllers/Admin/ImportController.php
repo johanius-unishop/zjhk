@@ -241,6 +241,7 @@ class ImportController extends Controller
                 $escapedVariants = array_map(function ($value) {
                     return '"' . str_replace('"', '""', $value) . '"';
                 }, $variants[$columnIndex]);
+                
                 // Создаем выпадающий список
                 $validation = $sheet->getDataValidation($cellRange)
                                         ->setType(DataValidation::TYPE_LIST)
@@ -251,6 +252,7 @@ class ImportController extends Controller
                                         ->setShowDropDown(true)
                                         ->setFormula1(implode(',', $escapedVariants));
             }
+            
             $columnIndex++;
         }
 
