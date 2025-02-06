@@ -239,10 +239,10 @@ class ImportController extends Controller
                 $columnLetter = columnNumberToLetter($columnIndex);
                 $cellRange = $columnLetter . $startRowIndex . ':' . $columnLetter . $endRowIndex;
                 
-                // Экранируем запятые и двойные кавычки
-                $escapedVariants = array_map(function ($value) {
-                    return '"' . str_replace(['"', ','], ['""', '\,'], $value) . '"'; // Экранируем запятые и кавычки
-                }, $variants[$columnIndex]);
+                // Экранируем запятые и кавычки в строке
+                $escapedVariants = implode(',', array_map(function ($value) {
+                    return '"' . str_replace(['"', ','], ['""', '\,'], $value) . '"';
+                }, $variants[$columnIndex]));
                 
                 // Создаем выпадающий список
                 $validation = $sheet->getDataValidation($cellRange)
@@ -252,7 +252,7 @@ class ImportController extends Controller
                                         ->setShowInputMessage(true)
                                         ->setShowErrorMessage(true)
                                         ->setShowDropDown(true)
-                                        ->setFormula1('="' . implode(', ', $escapedVariants) . '"');
+                                        ->setFormula1('="' . $escapedVariants . '"');
             }
             
             $columnIndex++;
