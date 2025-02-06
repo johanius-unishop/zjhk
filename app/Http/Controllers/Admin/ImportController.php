@@ -185,6 +185,7 @@ class ImportController extends Controller
                 $rowIndex = 2;
                 $variants[$columnIndex] = $property->productTypePropertyValues->pluck('value')->toArray(); 
                 $variants_value[$property->id] =  ProductTypePropertyValue::where('product_type_property_id', $property->id)->orderBy('value')->pluck('value', 'id')->toArray(); 
+                dd($variants_value[$property->id]);
                 $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
                 $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
                 $sheet->setCellValue($cellCoordinate, $property->name);
