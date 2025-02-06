@@ -185,6 +185,7 @@ class ImportController extends Controller
                 $rowIndex = 2;
                 $variants[$columnIndex] = $property->productTypePropertyValues->pluck('value')->toArray(); 
                 $variants_value[$property->id] =  ProductTypePropertyValue::where('product_type_property_id', $property->id)->orderBy('value')->pluck('value', 'id')->toArray(); 
+                dd($variants_value[$property->id]);
                 $columnLetter = columnNumberToLetter($columnIndex); // Преобразование индекса колонки в букву (A, B, C...)
                 $cellCoordinate = $columnLetter . ($rowIndex); // Формирование координат ячейки (A1, B1, ...)
                 $sheet->setCellValue($cellCoordinate, $property->name);
@@ -238,23 +239,20 @@ class ImportController extends Controller
                 $columnLetter = columnNumberToLetter($columnIndex);
                 $cellRange = $columnLetter . $startRowIndex . ':' . $columnLetter . $endRowIndex;
                 
-                // Экранируем запятые и другие специальные символы
+                // Экранируем запятые и двойные кавычки
                 $escapedVariants = array_map(function ($value) {
-                    return str_replace([',', '"'], ['\,', '\"'], $value); // Экранируем запятые и кавычки
+                    return '"' . str_replace(['"', ','], ['""', '\,'], $value) . '"'; // Экранируем запятые и кавычки
                 }, $variants[$columnIndex]);
-                
-                // Формируем строку с вариантами, обёрнутыми в одинарные кавычки
-                $formulaString = "'" . implode("','", $escapedVariants) . "'";
                 
                 // Создаем выпадающий список
                 $validation = $sheet->getDataValidation($cellRange)
-                                    ->setType(DataValidation::TYPE_LIST)
-                                    ->setErrorStyle(DataValidation::STYLE_INFORMATION)
-                                    ->setAllowBlank(false)
-                                    ->setShowInputMessage(true)
-                                    ->setShowErrorMessage(true)
-                                    ->setShowDropDown(true)
-                                    ->setFormula1($formulaString);
+                                        ->setType(DataValidation::TYPE_LIST)
+                                        ->setErrorStyle(DataValidation::STYLE_INFORMATION)
+                                        ->setAllowBlank(false)
+                                        ->setShowInputMessage(true)
+                                        ->setShowErrorMessage(true)
+                                        ->setShowDropDown(true)
+                                        ->setFormula1('="' . implode(', ', $escapedVariants) . '"');
             }
             
             $columnIndex++;
