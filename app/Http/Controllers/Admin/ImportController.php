@@ -241,27 +241,28 @@ class ImportController extends Controller
         $secondSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'Варианты значений');
         $spreadsheet->addSheet($secondSheet);
         // Устанавливаем второй лист активным
-        $spreadsheet->setActiveSheetIndex(1);
+        $sheet_1 = $spreadsheet->setActiveSheetIndex(1);
         $columnIndex = 5;
         $rowIndex = 2;
 
         foreach ($properties as $property) {
             if (!empty($variants[$columnIndex])){
                 $columnLetter = columnNumberToLetter($columnIndex);
-                $rowIndex = 2;
+                
                 foreach ($variants_value[$property->id] as $variant) {
                     $cellCoordinate = $columnLetter . $rowIndex;
-                    $sheet->setCellValue($cellCoordinate, $variant);
+                    $sheet_1->setCellValue($cellCoordinate, $variant);
                     $rowIndex++;
                 }
+                $rowIndex = 2;
             }
             $columnIndex++;
         }
 
-        $spreadsheet->setActiveSheetIndex(0);
+        $sheet = $spreadsheet->setActiveSheetIndex(0);
 
 
-
+        $rowIndex = 3;
 
 
         foreach ($properties as $property) {
