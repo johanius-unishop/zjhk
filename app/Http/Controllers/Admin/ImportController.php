@@ -273,7 +273,7 @@ class ImportController extends Controller
         
                 // Определяем диапазон ячеек на втором листе, который содержит допустимые значения
                 $sourceColumnLetter = columnNumberToLetter($columnIndex);
-                $sourceCellRange = $sourceColumnLetter . 1 . ':' . $sourceColumnLetter . (1 + $variants[$columnIndex]->count() - 1); // Диапазон начинается со второй строки и до последней строки, где были записаны значения
+                $sourceCellRange = $sourceColumnLetter . 1 . ':' . $sourceColumnLetter . (count($variants[$columnIndex])); // Диапазон начинается со второй строки и до последней строки, где были записаны значения
                 
                 // Создаем выпадающий список, используя ссылку на диапазон ячеек на втором листе
                 $validation = $sheet->getDataValidation($cellRange)
