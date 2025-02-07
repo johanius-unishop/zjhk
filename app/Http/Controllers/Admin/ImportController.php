@@ -23,6 +23,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use Illuminate\Support\Facades\Log;
 
 
 class ImportController extends Controller
@@ -274,7 +275,8 @@ class ImportController extends Controller
                 // Определяем диапазон ячеек на втором листе, который содержит допустимые значения
                 $sourceColumnLetter = columnNumberToLetter($columnIndex);
                 $sourceCellRange = $sourceColumnLetter . 1 . ':' . $sourceColumnLetter . (count($variants[$columnIndex])); // Диапазон начинается со второй строки и до последней строки, где были записаны значения
-                
+                Log::info('Диапазон данных:' . $sourceCellRange);
+                Log::info('Источник вариантов:' . $sourceCellRange);
                 // Создаем выпадающий список, используя ссылку на диапазон ячеек на втором листе
                 $validation = $sheet->getDataValidation($cellRange)
                                     ->setType(DataValidation::TYPE_LIST)
