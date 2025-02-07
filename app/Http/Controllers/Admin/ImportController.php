@@ -285,7 +285,6 @@ class ImportController extends Controller
                                     ->setShowDropDown(true)
                                     ->setFormula1('\'Варианты значений\'!' . $sourceCellRange); // Ссылка на другой лист
             }
-        
             $columnIndex++;
         }
 
