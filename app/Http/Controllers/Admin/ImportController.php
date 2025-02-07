@@ -264,17 +264,16 @@ class ImportController extends Controller
 
 
         $columnIndex = 5;
-
+        $sourceColumnIndex = 5;
 
         foreach ($properties as $property) {
             if (!empty($variants[$columnIndex])) {
                 $columnLetter = columnNumberToLetter($columnIndex);
-                
+                $sourceColumnLetter = columnNumberToLetter($sourceColumnIndex);
                 $cellRange = $columnLetter . $startRowIndex . ':' . $columnLetter . $endRowIndex;
         
                 // Определяем диапазон ячеек на втором листе, который содержит допустимые значения
-                $sourceColumnLetter = columnNumberToLetter($columnIndex);
-                $sourceCellRange = $sourceColumnLetter . 1 . ':' . $sourceColumnLetter . (count($variants[$columnIndex])); // Диапазон начинается со второй строки и до последней строки, где были записаны значения
+                $sourceCellRange = $sourceColumnLetter . 1 . ':' . $sourceColumnLetter . (count($variants_value[$property->id])); // Диапазон начинается со второй строки и до последней строки, где были записаны значения
                 Log::info('Диапазон данных:' . $sourceCellRange);
                 Log::info('Источник вариантов:' . $sourceCellRange);
                 // Создаем выпадающий список, используя ссылку на диапазон ячеек на втором листе
