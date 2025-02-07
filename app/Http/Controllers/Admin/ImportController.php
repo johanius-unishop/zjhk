@@ -254,7 +254,7 @@ class ImportController extends Controller
                     $sheet_1->setCellValue($cellCoordinate, $variant);
                     $rowIndex++;
                 }
-                $rowIndex = 2;
+                $rowIndex = 1;
             }
             $columnIndex++;
         }
@@ -272,8 +272,8 @@ class ImportController extends Controller
                 $cellRange = $columnLetter . $startRowIndex . ':' . $columnLetter . $endRowIndex;
         
                 // Определяем диапазон ячеек на втором листе, который содержит допустимые значения
-                $sourceColumnLetter = $columnLetter;
-                $sourceCellRange = $sourceColumnLetter . 1 . ':' . $sourceColumnLetter . (1 + count($variants[$columnIndex]) - 1); // Диапазон начинается со второй строки и до последней строки, где были записаны значения
+                $sourceColumnLetter = columnNumberToLetter($columnIndex);
+                $sourceCellRange = $sourceColumnLetter . 1 . ':' . $sourceColumnLetter . (1 + $variants[$columnIndex]->count() - 1); // Диапазон начинается со второй строки и до последней строки, где были записаны значения
                 
                 // Создаем выпадающий список, используя ссылку на диапазон ячеек на втором листе
                 $validation = $sheet->getDataValidation($cellRange)
