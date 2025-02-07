@@ -168,6 +168,10 @@ class ImportController extends Controller
         // Создаем новую рабочую книгу
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('Характеристики');
+
+       
+        
         
         $sheet->setCellValue('A1', $productType->name);
         $columnIndex = 5;
@@ -191,6 +195,7 @@ class ImportController extends Controller
                 $sheet->setCellValue($cellCoordinate, $property->name);
                 $columnIndex ++;
             }
+        
         
        
 
@@ -232,19 +237,41 @@ class ImportController extends Controller
         ];
         $sheet->getStyle('A1')->applyFromArray($fontStyle);
 
+        // Добавляем второй лист
+        $secondSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'Варианты значений');
+        $spreadsheet->addSheet($secondSheet);
+        // Устанавливаем второй лист активным
+        $spreadsheet->setActiveSheetIndex(1);
         $columnIndex = 5;
+        $rowIndex = 2;
+
+        foreach ($properties as $property) {
+            if (!empty($variants[$columnIndex])){
+                $columnLetter = columnNumberToLetter($columnIndex);
+                $rowIndex = 2;
+                foreach ($variants_value[$property->id] as $variant) {
+                    $cellCoordinate = $columnLetter . $rowIndex;
+                    $sheet->setCellValue($cellCoordinate, $variant);
+                    $rowIndex++;
+                }
+            }
+            $columnIndex++;
+        }
+
+        $spreadsheet->setActiveSheetIndex(0);
+
+
+
+
 
         foreach ($properties as $property) {
             if (!empty($variants[$columnIndex])) {
                 $columnLetter = columnNumberToLetter($columnIndex);
+                
                 $cellRange = $columnLetter . $startRowIndex . ':' . $columnLetter . $endRowIndex;
-                
-                // Экранируем запятые и кавычки в строке
-                $escapedVariants = implode(',', array_map(function ($value) {
-                    return '"' . str_replace(['"', ','], ['""', '\,'], $value) . '"';
-                }, $variants[$columnIndex]));
-                
-                // Создаем выпадающий список
+
+
+                // Создаем выпадающий список, используя ссылку на диапазон ячеек
                 $validation = $sheet->getDataValidation($cellRange)
                                         ->setType(DataValidation::TYPE_LIST)
                                         ->setErrorStyle(DataValidation::STYLE_INFORMATION)
@@ -252,9 +279,9 @@ class ImportController extends Controller
                                         ->setShowInputMessage(true)
                                         ->setShowErrorMessage(true)
                                         ->setShowDropDown(true)
-                                        ->setFormula1('="' . $escapedVariants . '"');
+                                        ->setFormula1('"' . implode(',', $variants[$columnIndex]) . '"');
             }
-            
+
             $columnIndex++;
         }
 
