@@ -261,6 +261,11 @@ class ImportController extends Controller
             $columnIndex++;
         }
 
+        $lastColumn_1 = $sheet_1->getHighestColumn();
+        $lastRow_1 = $sheet_1->getHighestRow();
+
+        $sheet_1->getStyle('A1:' . $lastColumn_1 . $lastRow_1)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_TEXT);
+
         $sheet = $spreadsheet->setActiveSheetIndex(0);
 
 
