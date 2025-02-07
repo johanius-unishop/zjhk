@@ -149,6 +149,7 @@ class ImportController extends Controller
     public function export_products_properties_values_to_xls(Request $request)
     {
         $productType = ProductType::where('id', $request->productType)->first();
+        if ($productType){
         $properties = ProductTypeProperty::where('product_type_id', $productType->id)->orderBy('order_column')->get();
         $products = Product::where('product_type_id', $productType->id)->with('productPropertyValues')->with('vendor')->get();
         
@@ -350,7 +351,10 @@ class ImportController extends Controller
             ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
             ->header("Content-Disposition", "attachment; filename*=UTF-8''$filename");
 
-        
+    }
+    else {
+        return back()->with('warning','Нужно выбрать "Тип товара"');
+    }
     }
 
     public function import_products_properties_values_from_xls(Request $request)
