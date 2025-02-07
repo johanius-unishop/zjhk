@@ -262,7 +262,7 @@ class ImportController extends Controller
         $sheet = $spreadsheet->setActiveSheetIndex(0);
 
 
-        $rowIndex = 3;
+        $columnIndex = 5;
 
 
         foreach ($properties as $property) {
@@ -270,19 +270,22 @@ class ImportController extends Controller
                 $columnLetter = columnNumberToLetter($columnIndex);
                 
                 $cellRange = $columnLetter . $startRowIndex . ':' . $columnLetter . $endRowIndex;
-
-
-                // Создаем выпадающий список, используя ссылку на диапазон ячеек
+        
+                // Определяем диапазон ячеек на втором листе, который содержит допустимые значения
+                $sourceColumnLetter = $columnLetter;
+                $sourceCellRange = $sourceColumnLetter . $startRowIndex . ':' . $sourceColumnLetter . ($startRowIndex + count($variants[$columnIndex]) - 1); // Диапазон начинается со второй строки и до последней строки, где были записаны значения
+        
+                // Создаем выпадающий список, используя ссылку на диапазон ячеек на втором листе
                 $validation = $sheet->getDataValidation($cellRange)
-                                        ->setType(DataValidation::TYPE_LIST)
-                                        ->setErrorStyle(DataValidation::STYLE_INFORMATION)
-                                        ->setAllowBlank(false)
-                                        ->setShowInputMessage(true)
-                                        ->setShowErrorMessage(true)
-                                        ->setShowDropDown(true)
-                                        ->setFormula1('"' . implode(',', $variants[$columnIndex]) . '"');
+                                    ->setType(DataValidation::TYPE_LIST)
+                                    ->setErrorStyle(DataValidation::STYLE_INFORMATION)
+                                    ->setAllowBlank(false)
+                                    ->setShowInputMessage(true)
+                                    ->setShowErrorMessage(true)
+                                    ->setShowDropDown(true)
+                                    ->setFormula1('"Варианты значений!"' . $sourceCellRange); // Ссылка на другой лист
             }
-
+        
             $columnIndex++;
         }
 
