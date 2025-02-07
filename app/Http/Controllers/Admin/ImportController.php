@@ -273,7 +273,7 @@ class ImportController extends Controller
                 $cellRange = $columnLetter . $startRowIndex . ':' . $columnLetter . $endRowIndex;
         
                 // Определяем диапазон ячеек на втором листе, который содержит допустимые значения
-                $sourceCellRange = $sourceColumnLetter . 1 . ':' . $sourceColumnLetter . (count($variants_value[$property->id])); // Диапазон начинается со второй строки и до последней строки, где были записаны значения
+                $sourceCellRange = $sourceColumnLetter . '$1' . ':' . $sourceColumnLetter . '$' . (count($variants_value[$property->id])); // Диапазон начинается со второй строки и до последней строки, где были записаны значения
                 Log::info('Диапазон данных:' . $cellRange);
                 Log::info('Источник вариантов:' . $sourceCellRange);
                 // Создаем выпадающий список, используя ссылку на диапазон ячеек на втором листе
