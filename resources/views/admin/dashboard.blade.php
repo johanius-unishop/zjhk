@@ -55,6 +55,10 @@
                 <span class="info-box-number">
                     <a href="{{ route('admin.problem.product_with_photo_problem') }}">Проблемы с изображением у товаров: {{ $product_with_photo_problem_count }}</a>
                 </span>
+
+                <span class="info-box-number">
+                    <a href="{{ route('admin.problem.product_without_3d') }}">Товары без 3D-модели: {{ $product_without_3d_count }}</a>
+                </span>
                 
                 <span class="info-box-number">
                     <a href="{{ route('admin.problem.product_without_vendor') }}">Товары без бренда: {{ $no_vendor_count }}</a>

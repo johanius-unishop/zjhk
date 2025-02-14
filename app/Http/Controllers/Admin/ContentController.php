@@ -107,11 +107,19 @@ class ContentController extends Controller
         // Товары без присвоения типа товара
         $no_product_type_count = Product::whereNull('product_type_id')->count();
         $no_vendor_count = Product::whereNull('vendor_id')->orWhere('vendor_id', '=', 0)->count();
+        
         $product_with_photo_problem_count = Product::withCount([
             'media as image_count' => function ($query) {
                 $query->where('collection_name', 'images'); // Укажите название вашей коллекции медиа
             },
         ])->havingRaw('image_count < 5')->get()->count();
+        
+        $product_without_3d_count = Product::where('composite_product', '!=', '1')->withCount([
+            'media as 3dModel_count' => function ($query) {
+                $query->where('collection_name', '3dModel'); // Укажите название вашей коллекции медиа
+            },
+        ])->havingRaw('3dModel_count < 1')->get()->count();
+
         $no_category_count = Product::whereNull('category_id')->count();
         $no_currency_count = Product::whereNull('currency_id')->count();
         $no_supplier_price_count = Product::where(function ($query) {
@@ -143,6 +151,7 @@ class ContentController extends Controller
             'no_currency_count' => $no_currency_count,
             'no_supplier_price_count' => $no_supplier_price_count,
             'product_with_photo_problem_count' => $product_with_photo_problem_count,
+            'product_without_3d_count' => $product_without_3d_count,
             'no_tn_ved_count' => $no_tn_ved_count,
             'product_types_without_properties' => $product_types_without_properties,
             'product_type_properties_without_values' => $product_type_properties_without_values,
