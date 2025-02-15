@@ -38,10 +38,10 @@ class ProductWithProblemImagesComponent extends Component
     
         $query = Product::query();
 
-        if ($this->composite) {
+        if ($this->composite == 2) {
             $query->where('composite_product', '1');
         }
-        if (!$this->composite) {
+        if ($this->composite == 1) {
             $query->where('composite_product', '0');
         }
 

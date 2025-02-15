@@ -4,7 +4,7 @@
             <div class=" py-3 form-row justify-content-left">
                 <strong>Выберите параметры:</strong>
                 <!-- Добавляем выпадающий список -->
-                <select wire:model="selectedOption" class="form-control ml-3 mr-3">
+                <select wire:model="selectedOption" class="form-control ml-3 mr-3 my-1">
                     <option value="0" selected>Товары без изображений</option>
                     <option value="1">Товары с 1 изображением</option>
                     <option value="2">Товары с 2 изображениями</option>
@@ -12,8 +12,12 @@
                     <option value="4">Товары с 4 изображениями</option>
                     <option value="5">Товары с 5 изображениями</option>
                 </select>
-                <input type="checkbox" wire:model="inStock" class="ml-3 mr-3"> Товары в наличии
-                <input type="checkbox" wire:model="composite" class="ml-3 mr-3"> Составной товар
+                <select wire:model="composite" class="form-control ml-3 mr-3 my-1">
+                    <option value="0" selected>Все товары</option>
+                    <option value="1">Простые товары</option>
+                    <option value="2">Составные товары (комплекты)</option>
+                </select>
+                <input type="checkbox" wire:model="inStock" class="ml-3 mr-3 my-1"> Товары в наличии
             </div>
             <div class=" py-3 form-row justify-content-right">
                 <button wire:click="accept_filter" type="button" class="btn btn-primary">Показать </button>
