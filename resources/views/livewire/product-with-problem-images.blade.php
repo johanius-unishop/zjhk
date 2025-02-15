@@ -13,6 +13,7 @@
                     <option value="5">Товары с 5 изображениями</option>
                 </select>
                 <input type="checkbox" wire:model="inStock" class="ml-3 mr-3"> Товары в наличии
+                <input type="checkbox" wire:model="composite" class="ml-3 mr-3"> Составной товар
             </div>
             <div class=" py-3 form-row justify-content-right">
                 <button wire:click="accept_filter" type="button" class="btn btn-primary">Показать </button>

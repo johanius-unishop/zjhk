@@ -15,6 +15,7 @@ class ProductWithProblemImagesComponent extends Component
     public $productWithProblemImages;
     public $selectedOption;
     public $inStock;
+    public $composite;
      
 
     
@@ -22,6 +23,7 @@ class ProductWithProblemImagesComponent extends Component
     {
         $this->selectedOption = 0;
         $this->inStock = 0;
+        $this->composite = 0;
         $this->productWithProblemImages = Product::doesntHave('media', 'and', function ($query) {
             $query->where('collection_name', 'images');
         })->get();
@@ -33,13 +35,18 @@ class ProductWithProblemImagesComponent extends Component
             $this->alert('error', 'Необходимо выбрать корректную опцию.');
             return;
         }
-
+    
         $query = Product::query();
+
+        if ($this->composite) {
+            $query->where('composite_product', '1');
+        } 
 
         if ($this->inStock) {
             $query->where('stock', '>', 0);
         }
-
+    
+    
         if ($this->selectedOption == 0) {
             $query->doesntHave('media', 'and', function ($query) {
                 $query->where('collection_name', 'images');
@@ -51,12 +58,11 @@ class ProductWithProblemImagesComponent extends Component
                 },
             ])->havingRaw("image_count = ?", [$this->selectedOption]);
         }
-
+    
         $this->productWithProblemImages = $query->get();
-
-        $this->dispatch('toast', message: 'Фильтр применен', notify: 'success');
+    
+        $this->dispatch('toast', message: 'Фильтр применён', notify: 'success');
     }
-
         
 
     public function render()
