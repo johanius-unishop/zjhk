@@ -235,4 +235,20 @@ class ProductController extends Controller
         ->get(); // Получаем товары без ТН ВЭД
         return view('admin.problem.product-without-tnved', compact('productsWithoutTnved'));
     }
+
+    public function showProductsWithProblemImages()
+    {
+        $products =Product::all();
+        return view('admin.problem.product-with-problem-images', compact('products'));
+    }
+
+
+
+
+
+
+
+
+    
+    
 }
