@@ -41,7 +41,7 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->article }}</td>
                         <td>
-                            <a href="{{ route('admin.product.edit', ['product' => $product->id]) }}>
+                            <a href="{{ route('admin.product.edit', ['product' => $product->id]) }}">
                                 <button type="button" class="btn btn-primary">Редактировать</button>
                             </a>
                         </td>
