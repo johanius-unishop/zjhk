@@ -21,12 +21,38 @@ class ProductWithProblemImagesComponent extends Component
     
     public function mount()
     {
-        $this->selectedOption = 0;
-        $this->inStock = 0;
-        $this->composite = 0;
-        $this->productWithProblemImages = Product::doesntHave('media', 'and', function ($query) {
-            $query->where('collection_name', 'images');
-        })->get();
+        if ($this->selectedOption === null || $this->selectedOption < 0) {
+            $this->alert('error', 'Необходимо выбрать корректную опцию.');
+            return;
+        }
+    
+        $query = Product::query();
+
+        if ($this->composite == 2) {
+            $query->where('composite_product', '1');
+        }
+        if ($this->composite == 1) {
+            $query->where('composite_product', '0');
+        }
+
+        if ($this->inStock) {
+            $query->where('stock', '>', 0);
+        }
+    
+    
+        if ($this->selectedOption == 0) {
+            $query->doesntHave('media', 'and', function ($query) {
+                $query->where('collection_name', 'images');
+            });
+        } else {
+            $query->withCount([
+                'media as image_count' => function ($query) {
+                    $query->where('collection_name', 'images');
+                },
+            ])->havingRaw("image_count = ?", [$this->selectedOption]);
+        }
+    
+        $this->productWithProblemImages = $query->get();
     }
 
     public function accept_filter()
