@@ -40,7 +40,10 @@ class ProductWithProblemImagesComponent extends Component
 
         if ($this->composite) {
             $query->where('composite_product', '1');
-        } 
+        }
+        if (!$this->composite) {
+            $query->where('composite_product', '0');
+        }
 
         if ($this->inStock) {
             $query->where('stock', '>', 0);
