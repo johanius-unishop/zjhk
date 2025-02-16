@@ -242,6 +242,11 @@ class ProductController extends Controller
         return view('admin.problem.product-with-problem-images', compact('products'));
     }
 
+    public function showProductsWithoutModel()
+    {
+        $products =Product::all();
+        return view('admin.problem.product-without-model', compact('products'));
+    }
 
 
 

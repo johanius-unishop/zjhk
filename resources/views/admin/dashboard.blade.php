@@ -57,7 +57,7 @@
                 </span>
 
                 <span class="info-box-number">
-                    <a href="{{ route('admin.problem.product_without_3d') }}">Товары без 3D-модели: {{ $product_without_3d_count }}</a>
+                    <a href="{{ route('admin.problem.product_without_model') }}">Товары без 3D-модели: {{ $product_without_3d_count }}</a>
                 </span>
                 
                 <span class="info-box-number">

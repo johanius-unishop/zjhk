@@ -125,5 +125,5 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('problem/types-without-property', [ProductTypeController::class, 'showTypesWithoutProperty'])->name('problem.types_without_property');
     Route::get('problem/properties-without-values', [ProductTypePropertyController::class, 'showPropertiesWithoutValues'])->name('problem.properties_without_values');
     Route::get('problem/product_with_photo_problem', [ProductController::class, 'showProductsWithProblemImages'])->name('problem.product_with_photo_problem');
-    Route::get('problem/product_without_3d', [ProductController::class, 'showProductsWithout3d'])->name('problem.product_without_3d');
+    Route::get('problem/product_without_model', [ProductController::class, 'showProductsWithoutModel'])->name('problem.product_without_model');
 });
