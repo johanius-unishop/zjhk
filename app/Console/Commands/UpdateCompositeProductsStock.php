@@ -115,6 +115,9 @@ class UpdateCompositeProductsStock extends Command
 
             if (!empty($updates_composite_products)) {
                 foreach ($updates_composite_products as $update) {
+                    if ($update['stock'] < 0 || $update['stock'] == 10000000) {
+                        $update['stock'] = 0;
+                    }
                     Product::where('id', $update['id'])->update(['stock' => $update['stock']]);
                 }
             }
