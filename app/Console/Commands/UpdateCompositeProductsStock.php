@@ -5,8 +5,6 @@ namespace App\Console\Commands;
 use App\Models\ProductCompositeElement;
 use Illuminate\Console\Command;
 use App\Models\Product;
-use App\Models\Setting;
-use Symfony\Component\Console\Output\BufferedOutput;
 
 
 class UpdateCompositeProductsStock extends Command
@@ -54,7 +52,6 @@ class UpdateCompositeProductsStock extends Command
                 $products_new_stock[$key] = [
                     'id' => $product->id,
                     'stock' => intval($product->stock),
-                    'new_stock' => 0,
                 ];
             }
 
@@ -75,7 +72,7 @@ class UpdateCompositeProductsStock extends Command
             //Подготавливаем ассоциативный массив простых товаров где ключ - id
             $simple_products = [];
             foreach ($products_new_stock as $product_new_stock) {
-                $simple_products[$product_new_stock['id']] = $product_new_stock['new_stock'] > 0 ? $product_new_stock['new_stock'] : 0;
+                $simple_products[$product_new_stock['id']] = $product_new_stock['stock'];
             }
 
             
@@ -118,13 +115,9 @@ class UpdateCompositeProductsStock extends Command
 
             if (!empty($updates_composite_products)) {
                 foreach ($updates_composite_products as $update) {
-                    Product::updateOrCreate(
-                        ['id' => $update['id']], // Условие поиска по полю 'id'
-                        ['stock' => $update['stock']] // Данные для обновления
-                    );
+                    Product::where('id', $update['id'])->update(['stock' => $update['stock']]);
                 }
             }
-                
     }
 
 }
