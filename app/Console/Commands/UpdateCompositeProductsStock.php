@@ -89,10 +89,13 @@ class UpdateCompositeProductsStock extends Command
                         : 0;
                     $composite_product_quantity = min($composite_product_quantity, $quantity);
                 }
+                if ($composite_product_quantity == 10000000 || $composite_product_quantity < 0) {
+                    $composite_product_quantity = 0;
+                }
 
                 $composite_product_new_stock['new_stock'] = $composite_product_quantity;
             }
-            
+
             // Подготавливаем массив для массового обновления составных товаров
             $updates_composite_products = [];
             foreach ($composite_products_new_stock as $composite_product_new_stock) {
@@ -108,9 +111,6 @@ class UpdateCompositeProductsStock extends Command
 
             if (!empty($updates_composite_products)) {
                 foreach ($updates_composite_products as $update) {
-                    if ($update['stock'] < 0 || $update['stock'] == 10000000) {
-                        $update['stock'] = 0;
-                    }
                     Product::where('id', $update['id'])->update(['stock' => $update['stock']]);
                 }
             }
