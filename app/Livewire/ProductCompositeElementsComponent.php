@@ -39,7 +39,6 @@ class ProductCompositeElementsComponent extends Component
 
         //array_push($this->tempCompositeArray, $product->id);
         $this->listProducts = Product::where('composite_product', '!=', '1')
-            ->whereNotIn('id', $this->tempCompositeArray)
                                ->orderBy('name')
                                ->pluck('id', 'name')
                                ->toArray();
@@ -94,7 +93,6 @@ class ProductCompositeElementsComponent extends Component
 
             //array_push($this->tempCompositeArray, $product->id);
             $this->listProducts = Product::where('composite_product', '!=', '1')
-                ->whereNotIn('id', $this->tempCompositeArray)
                 ->orderBy('name')
                 ->pluck('id', 'name')
                 ->toArray();
@@ -149,7 +147,6 @@ class ProductCompositeElementsComponent extends Component
 
             //array_push($this->tempCompositeArray, $product->id);
             $this->listProducts = Product::where('composite_product', '!=', '1')
-                ->whereNotIn('id', $this->tempCompositeArray)
                                 ->orderBy('name')
                                 ->pluck('id', 'name')
                                 ->toArray();
