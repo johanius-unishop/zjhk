@@ -76,24 +76,22 @@ class UpdateCompositeProductsStock extends Command
             }
 
             
-            // Загружаем элементы составных продуктов
+           // Загружаем элементы составных продуктов
             $composite_elements = ProductCompositeElement::whereIn('product_id', array_keys($composite_products_new_stock))->get()->groupBy('product_id');
 
             foreach ($composite_products_new_stock as &$composite_product_new_stock) {
                 $composite_product_quantity = 10000000;
-                $elements = $composite_elements[$composite_product_new_stock['id']] ?? collect([]); // Если нет элементов, используем пустой набор
+                $elements = $composite_elements[$composite_product_new_stock['id']] ?? collect([]);
 
                 foreach ($elements as $element) {
-                    $quantity = isset($simple_products[$element->product_element_id])
+                    $quantity = isset($simple_products[$element->product_element_id]) && $simple_products[$element->product_element_id] >= 0
                         ? intdiv($simple_products[$element->product_element_id], $element->quantity)
                         : 0;
                     $composite_product_quantity = min($composite_product_quantity, $quantity);
                 }
-                if ($composite_product_quantity == 10000000 || $composite_product_quantity < 0) {
-                    $composite_product_quantity = 0;
-                }
 
-                $composite_product_new_stock['new_stock'] = $composite_product_quantity;
+                // Устанавливаем composite_product_quantity в 0, если она равна 10000000 или меньше 0
+                $composite_product_new_stock['new_stock'] = max(0, min($composite_product_quantity, 10000000));
             }
 
             // Подготавливаем массив для массового обновления составных товаров
