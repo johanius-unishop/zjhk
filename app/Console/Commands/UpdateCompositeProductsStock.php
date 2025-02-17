@@ -41,77 +41,67 @@ class UpdateCompositeProductsStock extends Command
      */
     public function handle()
     {
+        // Массив простых товаров, цена больше 0, товар публикуется
+        $simple_products = Product::where('composite_product', 0)
+                                ->where('supplier_price', '>', 0)
+                                ->where('published', 1)
+                                ->pluck('stock', 'id')
+                                ->transform(function ($value) {
+                                    return max(0, $value);
+                                });
 
-            // Получаем простые товары
-            $products = Product::where('composite_product', 0)->get();
-                        
-            // Создаем ассоциативный массив для быстрого поиска по имени и артикулу
-            $products_new_stock = [];
-            foreach ($products as $product) {
-                $key = $product->name . '-' . $product->article;
-                $products_new_stock[$key] = [
-                    'id' => $product->id,
-                    'stock' => intval($product->stock),
-                ];
+        // Получаем полный список составных товаров
+        $composite_products = Product::where('composite_product', 1)->get();
+
+        // Получаем данные из таблицы product_composite_elements
+        $elements = ProductCompositeElement::all();
+
+        // Создаем ассоциативный массив для хранения информации
+        $compositeElements = [];
+
+        foreach ($elements as $element) {
+            if (!isset($compositeElements[$element->product_id])) {
+                $compositeElements[$element->product_id] = [];
             }
-
-            // Получаем полный список составных товаров
-            $composite_products = Product::where('composite_product', 1)->get();
-
-            // Создаем ассоциативный массив для быстрого поиска по id составвного товара
-            $composite_products_new_stock = [];
-            foreach ($composite_products as $composite_product) {
-                $key = $composite_product->id;
-                $composite_products_new_stock[$key] = [
-                    'id' => $composite_product->id,
-                    'stock' => intval($composite_product->stock),
-                    'new_stock' => 0,
-                ];
-            }
-
-            //Подготавливаем ассоциативный массив простых товаров где ключ - id
-            $simple_products = [];
-            foreach ($products_new_stock as $product_new_stock) {
-                $simple_products[$product_new_stock['id']] = $product_new_stock['stock'];
-            }
-
             
-           // Загружаем элементы составных продуктов
-            $composite_elements = ProductCompositeElement::whereIn('product_id', array_keys($composite_products_new_stock))->get()->groupBy('product_id');
+            $compositeElements[$element->product_id][] = [
+                'product_element_id' => $element->product_element_id,
+                'quantity' => $element->quantity,
+                'stock' => $simple_products[$element->product_element_id],
+            ];
+        }
 
-            foreach ($composite_products_new_stock as &$composite_product_new_stock) {
-                $composite_product_quantity = 10000000;
-                $elements = $composite_elements[$composite_product_new_stock['id']] ?? collect([]);
+        // Обновляем new_stock для каждого составного товара
+        $updates_composite_products = [];
 
-                foreach ($elements as $element) {
-                    $quantity = isset($simple_products[$element->product_element_id]) && $simple_products[$element->product_element_id] >= 0
-                        ? intdiv($simple_products[$element->product_element_id], $element->quantity)
-                        : 0;
-                    $composite_product_quantity = min($composite_product_quantity, $quantity);
+        foreach ($composite_products as $composite_product) {
+            if (isset($compositeElements[$composite_product->id]) && !empty($compositeElements[$composite_product->id])) {
+                $minStock = PHP_INT_MAX;
+
+                foreach ($compositeElements[$composite_product->id] as $element) {
+                    $stockPerUnit = floor($element['stock'] / $element['quantity']);
+                    $minStock = min($minStock, $stockPerUnit);
                 }
 
-                // Устанавливаем composite_product_quantity в 0, если она равна 10000000 или меньше 0
-                $composite_product_new_stock['new_stock'] = max(0, min($composite_product_quantity, 10000000));
-            }
-
-            // Подготавливаем массив для массового обновления составных товаров
-            $updates_composite_products = [];
-            foreach ($composite_products_new_stock as $composite_product_new_stock) {
-                if ($composite_product_new_stock['stock'] != $composite_product_new_stock['new_stock']) {
+                if ($composite_product->stock != $minStock) {
                     $updates_composite_products[] = [
-                        'id' => intval($composite_product_new_stock['id']),
-                        'stock' => intval($composite_product_new_stock['new_stock'])
+                        'id' => $composite_product->id,
+                        'stock' => $minStock
                     ];
                 }
             }
+        }
 
-            
-
-            if (!empty($updates_composite_products)) {
-                foreach ($updates_composite_products as $update) {
-                    Product::where('id', $update['id'])->update(['stock' => $update['stock']]);
-                }
+        // Массовое обновление составных товаров
+        if (!empty($updates_composite_products)) {
+            foreach (array_chunk($updates_composite_products, 100) as $chunk) {
+                Product::upsert(
+                    $chunk,
+                    ['id'],
+                    ['stock']
+                );
             }
+        }
     }
 
 }
