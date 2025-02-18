@@ -99,7 +99,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource('delivery', DeliveryController::class);
     Route::resource('analog-vendor', AnalogVendorController::class);
     Route::resource('analog', AnalogController::class);
-    Route::resource('product_type', ProductTypeController::class);
+    Route::resource('product-type', ProductTypeController::class);
     Route::resource('vendor-pdf-catalog', VendorPdfCatalogController::class);
 
 
@@ -116,14 +116,15 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource('faq', FaqController::class);
     Route::resource('article', ArticleController::class);
 
-    Route::get('problem/product-without-type', [ProductController::class, 'showProductsWithoutType'])->name('problem.product_without_type');
-    Route::get('problem/product-without-vendor', [ProductController::class, 'showProductsWithoutVendor'])->name('problem.product_without_vendor');
-    Route::get('problem/product-without-category', [ProductController::class, 'showProductsWithoutCategory'])->name('problem.product_without_category');
-    Route::get('problem/product-without-currency', [ProductController::class, 'showProductsWithoutCurrency'])->name('problem.product_without_currency');
-    Route::get('problem/product-without-supplier-price', [ProductController::class, 'showProductsWithoutSupplierPrice'])->name('problem.product_without_supplier_price');
-    Route::get('problem/product-without-tnved', [ProductController::class, 'showProductsWithoutTnved'])->name('problem.product_without_tnved');
-    Route::get('problem/types-without-property', [ProductTypeController::class, 'showTypesWithoutProperty'])->name('problem.types_without_property');
-    Route::get('problem/properties-without-values', [ProductTypePropertyController::class, 'showPropertiesWithoutValues'])->name('problem.properties_without_values');
-    Route::get('problem/product_with_photo_problem', [ProductController::class, 'showProductsWithProblemImages'])->name('problem.product_with_photo_problem');
-    Route::get('problem/product_without_model', [ProductController::class, 'showProductsWithoutModel'])->name('problem.product_without_model');
+    Route::get('problem/product-without-type', [ProductController::class, 'showProductsWithoutType'])->name('problem.product-without-type');
+    Route::get('problem/product-without-vendor', [ProductController::class, 'showProductsWithoutVendor'])->name('problem.product-without-vendor');
+    Route::get('problem/product-without-category', [ProductController::class, 'showProductsWithoutCategory'])->name('problem.product-without-category');
+    Route::get('problem/product-without-currency', [ProductController::class, 'showProductsWithoutCurrency'])->name('problem.product-without-currency');
+    Route::get('problem/product-without-supplier-price', [ProductController::class, 'showProductsWithoutSupplierPrice'])->name('problem.product-without-supplier-price');
+    Route::get('problem/product-without-tnved', [ProductController::class, 'showProductsWithoutTnved'])->name('problem.product-without-tnved');
+    Route::get('problem/types-without-property', [ProductTypeController::class, 'showTypesWithoutProperty'])->name('problem.types-without-property');
+    Route::get('problem/properties-without-values', [ProductTypePropertyController::class, 'showPropertiesWithoutValues'])->name('problem.properties-without-values');
+    Route::get('problem/product-with-photo-problem', [ProductController::class, 'showProductsWithProblemImages'])->name('problem.product-with-photo-problem');
+    Route::get('problem/product-without-model', [ProductController::class, 'showProductsWithoutModel'])->name('problem.product-without-model');
+    Route::get('problem/product-without-property-values', [ProductController::class, 'showProductsWithoutPropertyValues'])->name('problem.product-without-property-values');
 });

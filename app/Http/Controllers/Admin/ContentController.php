@@ -114,6 +114,8 @@ class ContentController extends Controller
             },
         ])->havingRaw('image_count < 5')->get()->count();
         
+        $product_without_property_values_count = Product::doesntHave('productPropertyValues')->count();
+
         $product_without_3d_count = Product::where('composite_product', '!=', '1')->withCount([
             'media as 3dModel_count' => function ($query) {
                 $query->where('collection_name', '3dModel'); // Укажите название вашей коллекции медиа
@@ -155,6 +157,7 @@ class ContentController extends Controller
             'no_tn_ved_count' => $no_tn_ved_count,
             'product_types_without_properties' => $product_types_without_properties,
             'product_type_properties_without_values' => $product_type_properties_without_values,
+            'product_without_property_values_count'=> $product_without_property_values_count,
             
 
         );

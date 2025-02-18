@@ -47,40 +47,44 @@
                 <span class="info-box-text">Статистика проблем на сайте:</span>
                 @if ($no_product_type_count > 0)
                 <span class="info-box-number">
-                    <a href="{{ route('admin.problem.product_without_type') }}">Товары без типа товаров: {{ $no_product_type_count }}</a>
+                    <a href="{{ route('admin.problem.product-without-type') }}">Товары без типа товаров: {{ $no_product_type_count }}</a>
                 </span>
                 @endif
                 {{-- @if ($no_vendor_count> 0) --}}
 
                 <span class="info-box-number">
-                    <a href="{{ route('admin.problem.product_with_photo_problem') }}">Проблемы с изображением у товаров: {{ $product_with_photo_problem_count }}</a>
+                    <a href="{{ route('admin.problem.product-without-property-values') }}">Товары без значений характеристик: {{ $product_without_property_values_count }}</a>
                 </span>
 
                 <span class="info-box-number">
-                    <a href="{{ route('admin.problem.product_without_model') }}">Товары без 3D-модели: {{ $product_without_3d_count }}</a>
+                    <a href="{{ route('admin.problem.product-with-photo-problem') }}">Проблемы с изображением у товаров: {{ $product_with_photo_problem_count }}</a>
+                </span>
+
+                <span class="info-box-number">
+                    <a href="{{ route('admin.problem.product-without-model') }}">Товары без 3D-модели: {{ $product_without_3d_count }}</a>
                 </span>
                 
                 <span class="info-box-number">
-                    <a href="{{ route('admin.problem.product_without_vendor') }}">Товары без бренда: {{ $no_vendor_count }}</a>
+                    <a href="{{ route('admin.problem.product-without-vendor') }}">Товары без бренда: {{ $no_vendor_count }}</a>
                 </span>
                 
                 <span class="info-box-number">
-                    <a href="{{ route('admin.problem.product_without_category') }}">Товары без категории: {{ $no_category_count }}</a>
+                    <a href="{{ route('admin.problem.product-without-category') }}">Товары без категории: {{ $no_category_count }}</a>
                 </span>
                 <span class="info-box-number">
-                    <a href="{{ route('admin.problem.product_without_currency') }}">Товары без валюты: {{ $no_currency_count }}</a>
+                    <a href="{{ route('admin.problem.product-without-currency') }}">Товары без валюты: {{ $no_currency_count }}</a>
                 </span>
                 <span class="info-box-number">
-                    <a href="{{ route('admin.problem.product_without_supplier_price') }}">Товары без цены от поставщика: {{ $no_supplier_price_count }}</a>
+                    <a href="{{ route('admin.problem.product-without-supplier-price') }}">Товары без цены от поставщика: {{ $no_supplier_price_count }}</a>
                 </span>
                 <span class="info-box-number">
-                    <a href="{{ route('admin.problem.product_without_tnved') }}">Не указан ТН ВЭД: {{ $no_tn_ved_count }}</a>
+                    <a href="{{ route('admin.problem.product-without-tnved') }}">Не указан ТН ВЭД: {{ $no_tn_ved_count }}</a>
                 </span>
                 <span class="info-box-number">
-                    <a href="{{ route('admin.product_type.index') }}">Количество типов товаров без характеристик: {{ $product_types_without_properties }}</a>
+                    <a href="{{ route('admin.product-type.index') }}">Количество типов товаров без характеристик: {{ $product_types_without_properties }}</a>
                 </span>
                 <span class="info-box-number">
-                    <a href="{{ route('admin.product_type.index') }}">Количество характеристик без доступных значений: {{ $product_type_properties_without_values }}</a>
+                    <a href="{{ route('admin.product-type.index') }}">Количество характеристик без доступных значений: {{ $product_type_properties_without_values }}</a>
                 </span>
                 <div class="progress">
                     <div class="progress-bar" style="width: 100%"></div>
