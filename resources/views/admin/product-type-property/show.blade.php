@@ -17,7 +17,7 @@
 
                         
 <div class=" py-3 form-row justify-content-center">
-    <a class="btn .btn-lg btn-success " href="{{ route('admin.product_type.show',  $productType->id ) }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>
+    <a class="btn .btn-lg btn-success " href="{{ route('admin.product-type.show',  $productType->id ) }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>
 </div>
 @stop
 

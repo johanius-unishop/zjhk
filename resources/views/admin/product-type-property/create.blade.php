@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class=" py-3 form-row justify-content-center">
-                <a class="btn   btn-success " href="{{ route('admin.product_type.show', $productType) }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a> &nbsp;
+                <a class="btn   btn-success " href="{{ route('admin.product-type.show', $productType) }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a> &nbsp;
                 <button type="submit" class="btn btn-primary">Сохранить</button> &nbsp;
                 
             </div>
