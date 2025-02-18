@@ -21,8 +21,8 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->article }}</td>
                         <td>
-                            @if ($product->product_type)
-                                {{ $product->product_type->name }}
+                            @if ($product->productType)
+                                {{ $product->productType->name }}
                             @else
                                 Не назначен тип товара
                             @endif

@@ -22,7 +22,7 @@ class ProductWithoutPropertyValuesComponent extends Component
     {
         // Логика фильтрации остается такой же
         $this->productWithoutPropertyValues = Product::doesntHave('productPropertyValues')
-            ->with('productType')
+            
             ->get();
     }
 
