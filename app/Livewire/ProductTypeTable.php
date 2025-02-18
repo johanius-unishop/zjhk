@@ -136,11 +136,11 @@ final class ProductTypeTable extends PowerGridComponent
             Button::add('view')
                 ->slot('<i class="fas fa-folder"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.product_type.show', ['product_type' => $row->id]),
+                ->route('admin.product-type.show', ['product_type' => $row->id]),
             Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.product_type.edit', ['product_type' => $row->id]),
+                ->route('admin.product-type.edit', ['product_type' => $row->id]),
               Button::add('delivery')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
