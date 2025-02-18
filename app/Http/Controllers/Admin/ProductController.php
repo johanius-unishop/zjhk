@@ -238,14 +238,17 @@ class ProductController extends Controller
 
     public function showProductsWithProblemImages()
     {
-        $products =Product::all();
-        return view('admin.problem.product-with-problem-images', compact('products'));
+        return view('admin.problem.product-with-problem-images');
     }
 
     public function showProductsWithoutModel()
     {
-        $products =Product::all();
-        return view('admin.problem.product-without-model', compact('products'));
+        return view('admin.problem.product-without-model');
+    }
+
+    public function showProductsWithoutPropertyValues()
+    {
+        return view('admin.problem.product-without-property-values');
     }
 
 

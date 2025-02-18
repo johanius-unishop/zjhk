@@ -2,15 +2,15 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Товары с проблемами изображений')
+@section('title', 'Товары без технических характеристик<')
 @section('content_header')
-<h1>Товары с проблемами изображений</h1>
+<h1>Товары без технических характеристик</h1>
 @stop
 
 {{-- Content body: main page content --}}
 
 @section('content')
-<livewire:product-with-problem-images-component/>
+<livewire:product-without-property-values-component/>
 @stop
 
 {{-- Push extra CSS --}}

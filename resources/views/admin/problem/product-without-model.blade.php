@@ -10,7 +10,7 @@
 {{-- Content body: main page content --}}
 
 @section('content')
-<livewire:product-without-model-component :products-without-model="$products"/>
+<livewire:product-without-model-component/>
 @stop
 
 {{-- Push extra CSS --}}
