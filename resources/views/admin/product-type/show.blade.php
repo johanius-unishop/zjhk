@@ -55,7 +55,7 @@
 <div class="row">
     <div class="col-12">
         <div class="py-3 form-row justify-content-center">
-            <a class="btn btn-lg btn-success" href="{{ route('admin.product_type.index') }}" role="button"><i class="fa fa-arrow-left"></i> К типам товаров</a>
+            <a class="btn btn-lg btn-success" href="{{ route('admin.product-type.index') }}" role="button"><i class="fa fa-arrow-left"></i> К типам товаров</a>
         </div>
     </div>
 </div>
