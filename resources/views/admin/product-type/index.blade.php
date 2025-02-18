@@ -9,7 +9,7 @@
 
 {{-- Content body: main page content --}}
 @section('content')
-<a class="btn btn-primary" href="{{ route('admin.product_type.create') }}" role="button">Добавить</a>
+<a class="btn btn-primary" href="{{ route('admin.product-type.create') }}" role="button">Добавить</a>
 <livewire:product-type-table />
 
 
