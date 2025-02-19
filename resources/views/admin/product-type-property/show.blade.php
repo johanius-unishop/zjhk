@@ -2,7 +2,7 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Тип товара')
+@section('title', '{{ $productType->name }} -> $productTypeProperty->name ')
 @section('content_header')
 <h1>Тип товара "{{ $productType->name }}", ID: {{ $productType->id }}</h1>
 <h2> Характеристика типа товара "{{ $productTypeProperty->name }}", ID: {{ $productTypeProperty->id }}</h2>

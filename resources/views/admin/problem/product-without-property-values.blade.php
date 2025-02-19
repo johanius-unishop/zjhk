@@ -2,7 +2,7 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Товары без технических характеристик<')
+@section('title', 'Товары без технических характеристик')
 @section('content_header')
 <h1>Товары без технических характеристик</h1>
 @stop
