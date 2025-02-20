@@ -49,7 +49,7 @@ class VendorController extends Controller
     public function store(StoreVendorRequest $request)
     {
         // Проверка прав доступа
-        if (!Gate::allows('manage-content')) {
+        if (!Gate::allows('manage content')) {
             return abort(401);
         }
     
