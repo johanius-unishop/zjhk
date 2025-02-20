@@ -23,6 +23,7 @@ class StoreVendorRequest extends FormRequest
     {
         return [
             'name'       => 'required|min:2|max:120',
+            'short_name'       => 'required|min:2|max:10',
         ];
     }
 }

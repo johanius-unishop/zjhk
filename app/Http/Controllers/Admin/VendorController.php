@@ -52,9 +52,9 @@ class VendorController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-    
+        
         // Подготовка входных данных
-        $input = $request->validated();
+        $input = $request->all();
         $input['published'] = $request->filled('published'); // Преобразуем в boolean
     
         // Создание записи
