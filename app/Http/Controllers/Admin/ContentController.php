@@ -139,7 +139,9 @@ class ContentController extends Controller
             $query->where('composite_product', '=', 0);
         })->count();
         $product_types_without_properties = ProductType::doesntHave('properties')->count();
-        $product_type_properties_without_values = ProductTypeProperty::doesntHave('productTypePropertyValues')->count();
+        $product_type_properties_without_values = ProductTypeProperty::doesntHave('productTypePropertyValues')
+            ->where('section', '0')
+            ->count();
 
         $data = array(
             'orders_count' => $orders_count,

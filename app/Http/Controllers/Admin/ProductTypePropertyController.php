@@ -116,4 +116,10 @@ class ProductTypePropertyController extends Controller
     {
         //
     }
+
+    public function showProductTypePropertiesWithoutValues()
+    {
+        return view('admin.problem.product-type-properties-without-values');
+    }
+    
 }
