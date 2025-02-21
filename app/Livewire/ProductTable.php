@@ -128,7 +128,11 @@ final class ProductTable extends PowerGridComponent
         $buttons = [];
         
         if ($row->productType === null) { // Проверка на отсутствие типа товара
-            $buttons[] = '<span class="badge badge-warning">Не назначен тип товара</span>';
+            $buttons[] = Button::add('view')
+                ->slot('<i class="fas fa-edit"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.problem.product-without-type');
+            
         } else if (Gate::allows('manage content')) {
             $buttons[] = Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
