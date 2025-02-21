@@ -119,15 +119,17 @@ public function filters(): array
     public function actions(Product $row): array
     {
 
-        if (auth()->user()->can('delete content')) {
+        if (!Gate::allows('manage content')) {
+        
             return [
-                /*Button::add('view')
+                Button::add('view')
                     ->slot('<i class="fas fa-edit"></i>')
                     ->class('btn btn-primary')
                     ->route('admin.product.edit', ['product' => $row->id])
-                    ->target('_blank'),*/ 
+                    ->target('_blank'),
             ];
         }
+    }
 
        
 
