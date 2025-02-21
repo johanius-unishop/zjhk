@@ -87,8 +87,7 @@ final class ProductTable extends PowerGridComponent
             Column::make('ID', 'id'),
             Column::make('Модель', 'name')
                 ->sortable()
-                ->searchable()
-                ->editOnClick(),
+                ->searchable(),
             Column::make('Артикул', 'article')
                 ->sortable()
                 ->searchable(),
@@ -115,8 +114,6 @@ final class ProductTable extends PowerGridComponent
         ];
     }
 
-        
-
     public function actions(Product $row): array
     {
         // Проверим наличие продукта
@@ -138,18 +135,6 @@ final class ProductTable extends PowerGridComponent
                 ->class('btn btn-primary')
                 ->route('admin.product.edit', ['product' => $row->id]);
         }
-        /*if ($row->productType === null) { // Проверка на отсутствие типа товара
-            $buttons[] = Button::add('view')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.problem.product-without-type');
-            
-        } else if (Gate::allows('manage content')) {
-            $buttons[] = Button::add('view')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.product.edit', ['product' => $row->id]);
-        } */
 
         return $buttons;
     }

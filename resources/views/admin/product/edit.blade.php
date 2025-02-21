@@ -85,8 +85,8 @@
                                 <div class="col-lg-12 col-12">
                                     <div class="form-group">
                                         <label for="product_name">Наименование товара</label>
-                                        <input type="text" class="form-control" name="product_name" id="product_name" value="
-                                            {{
+                                        <input type="text" class="form-control" name="product_name" id="product_name" value="{{
+                                            trim(
                                                 // Определяем название типа товара
                                                 ($product->productType ? $product->productType->name : '') . ' '
                                                 // Определяем название бренда
@@ -99,8 +99,8 @@
                                                 . $product->name
                                                 // Добавляем артикул в скобках, если он отличается от названия товара
                                                 . ($product->name != $product->article ? ' (' . $product->article . ')' : '')
-                                            }}
-                                        " disabled>
+                                            )
+                                        }}" disabled>
                                         @error('product_name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
