@@ -84,9 +84,24 @@
                             <div class="row">
                                 <div class="col-lg-12 col-12">
                                     <div class="form-group">
-                                        <label for="name">Наименование товара</label>
-                                        <input type="text" class="form-control" name="name" id="name" value="{{ $product->productType->name }} {{ $product->vendor->short_name }} {{ $product->name }} ({{ $product->article }})" disabled>
-                                        @error('name')
+                                        <label for="product_name">Наименование товара</label>
+                                        <input type="text" class="form-control" name="product_name" id="product_name" value="
+                                            {{
+                                                // Определяем название типа товара
+                                                ($product->productType ? $product->productType->name : '') . ' '
+                                                // Определяем название бренда
+                                                . (
+                                                    $product->vendor && $product->vendor->short_name
+                                                    ? $product->vendor->short_name
+                                                    : ($product->vendor ? $product->vendor->name : '')
+                                                ) . ' '
+                                                // Определяем название товара
+                                                . $product->name
+                                                // Добавляем артикул в скобках, если он отличается от названия товара
+                                                . ($product->name != $product->article ? ' (' . $product->article . ')' : '')
+                                            }}
+                                        " disabled>
+                                        @error('product_name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -96,9 +111,9 @@
                                 <div class="col-lg-4 col-4">
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
-                                            <label for="model">Модель</label>
-                                            <input type="text" class="form-control" name="model" id="model" value="{{ $product->name }}" disabled>
-                                            @error('model')
+                                            <label for="name">Модель</label>
+                                            <input type="text" class="form-control" name="name" id="name" value="{{ $product->name }}" disabled>
+                                            @error('name')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
