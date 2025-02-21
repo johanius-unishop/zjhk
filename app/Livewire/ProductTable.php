@@ -128,10 +128,10 @@ final class ProductTable extends PowerGridComponent
         $buttons = [];
         
         if ($row->productType === null) { // Проверка на отсутствие типа товара
-            $buttons[] = Button::add('view')
-                ->slot('<i class="fas fa-exclamation-circle"></i> Тип товара не назначен')
+                 /* = Button::add('view')
+                ->slot('<i class="fas fa-exclamation-circle"></i>')
                 ->class('btn btn-outline-warning')
-                ->route('admin.problem.product-without-type');
+                ->route('admin.problem.product-without-type');*/
         } elseif (Gate::allows('manage content')) {
             $buttons[] = Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
