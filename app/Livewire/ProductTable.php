@@ -129,6 +129,17 @@ final class ProductTable extends PowerGridComponent
         
         if ($row->productType === null) { // Проверка на отсутствие типа товара
             $buttons[] = Button::add('view')
+                ->slot('<i class="fas fa-exclamation-circle"></i> Тип товара не назначен')
+                ->class('btn btn-outline-danger disabled')
+                ->href('#'); // Добавляем href="#", чтобы кнопка выглядела как ссылка, но никуда не вела
+        } elseif (Gate::allows('manage content')) {
+            $buttons[] = Button::add('view')
+                ->slot('<i class="fas fa-edit"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.[product.edit](product.edit)', ['product' => $row->id]);
+        }
+        /*if ($row->productType === null) { // Проверка на отсутствие типа товара
+            $buttons[] = Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.problem.product-without-type');
@@ -138,7 +149,7 @@ final class ProductTable extends PowerGridComponent
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.product.edit', ['product' => $row->id]);
-        }
+        } */
 
         return $buttons;
     }
