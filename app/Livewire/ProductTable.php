@@ -133,7 +133,7 @@ final class ProductTable extends PowerGridComponent
             $buttons[] = Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.[product.edit](product.edit)', ['product' => $row->id]);
+                ->route('admin.product.edit', ['product' => $row->id]);
         }
 
         return $buttons;
