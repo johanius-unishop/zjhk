@@ -1,12 +1,9 @@
 <div>
+    @if($productType->name)
     <div class="row">
         <div class="col-12">
             <div class="py-3 form-row justify-content-left">
-                @if($productType->name)
-                    {{ $productType->name }}:  <b>{{ $product->name }}</b>
-                @else
-                    Товару не назначен Тип продукта
-                @endif
+                {{ $productType->name }}:  <b>{{ $product->name }}</b>
             </div>
             <table class="table table-striped">
                 <thead>
@@ -36,4 +33,13 @@
             </div>
         </div>
     </div>
+    @else
+    <div class="row">
+        <div class="col-12">
+            <div class="py-3 form-row justify-content-left">
+                Товару не назначен Тип продукта
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
