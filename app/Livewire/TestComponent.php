@@ -16,23 +16,28 @@ class TestComponent extends Component
     public $productType;
     public $selectedValues = []; // Массив для хранения выбранных значений
 
-      public function mount($record = null)
+    
+
+    public function mount($record = null)
     {
         $this->product = $record;
         $this->record  = $record;
-        $this->productType = ProductType::where('id', $this->record->product_type_id)
-        ->with('properties.productTypePropertyValues')
-        ->first();
 
-        foreach ($this->productType->properties as $property) {
-            $defaultValue = $this->product->productPropertyValues
-                              ->where('product_type_property_id', $property->id)
-                              ->first()?->product_type_property_value_id;
-            $this->selectedValues[$property->id] = $defaultValue;
+        // Проверяем, что $this->record->product_type_id не равен null
+        if ($this->record && isset($this->record->product_type_id)) {
+            $this->productType = ProductType::where('id', $this->record->product_type_id)
+                                            ->with('properties.productTypePropertyValues')
+                                            ->first();
+
+            if ($this->productType) {
+                foreach ($this->productType->properties as $property) {
+                    $defaultValue = $this->product->productPropertyValues
+                                            ->where('product_type_property_id', $property->id)
+                                            ->first()?->product_type_property_value_id;
+                    $this->selectedValues[$property->id] = $defaultValue;
+                }
+            }
         }
-
-        
-        
     }
     public function render()
     {
