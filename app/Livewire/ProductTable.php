@@ -15,6 +15,7 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use Illuminate\Support\Facades\Gate;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 final class ProductTable extends PowerGridComponent
@@ -80,67 +81,70 @@ final class ProductTable extends PowerGridComponent
             ->add('vendor_name', fn ($product) => e($product->vendor->short_name));
     }
 
-public function columns(): array
-{
-    return [
-        Column::make('ID', 'id'),
-        Column::make('Модель', 'name')
-            ->sortable()
-            ->searchable()
-            ->editOnClick(),
-        Column::make('Артикул', 'article')
-            ->sortable()
-            ->searchable(),
-        Column::make('Производитель', 'vendor_name', 'vendor_id'),
-        Column::make('Опубликовано', 'published')
-            ->toggleable(),
-        Column::make('Составной товар', 'composite_product')
-            ->toggleable(),
-        Column::action('Действия'),
-    ];
-}
+    public function columns(): array
+    {
+        return [
+            Column::make('ID', 'id'),
+            Column::make('Модель', 'name')
+                ->sortable()
+                ->searchable()
+                ->editOnClick(),
+            Column::make('Артикул', 'article')
+                ->sortable()
+                ->searchable(),
+            Column::make('Производитель', 'vendor_name', 'vendor_id'),
+            Column::make('Опубликовано', 'published')
+                ->toggleable(),
+            Column::make('Составной товар', 'composite_product')
+                ->toggleable(),
+            Column::action('Действия'),
+        ];
+    }
 
-public function filters(): array
-{
-    return [
-        Filter::boolean('published')
-            ->label('✅', '❌'),
-        Filter::boolean('composite_product')
-            ->label('✅', '❌'),
-        Filter::select('vendor_name', 'vendor_id')
-            ->dataSource(Vendor::all())
-            ->optionLabel('name')
-            ->optionValue('id'),
-    ];
-}
+    public function filters(): array
+    {
+        return [
+            Filter::boolean('published')
+                ->label('✅', '❌'),
+            Filter::boolean('composite_product')
+                ->label('✅', '❌'),
+            Filter::select('vendor_name', 'vendor_id')
+                ->dataSource(Vendor::all())
+                ->optionLabel('name')
+                ->optionValue('id'),
+        ];
+    }
 
         
 
     public function actions(Product $row): array
     {
-
-        if (!Gate::allows('manage content')) {
-        
-            return [
-                Button::add('view')
-                    ->slot('<i class="fas fa-edit"></i>')
-                    ->class('btn btn-primary')
-                    ->route('admin.product.edit', ['product' => $row->id])
-                    ->target('_blank'),
-            ];
+        // Проверим наличие продукта
+        if (!$row || !$row->exists) {
+            return [];
         }
+
+        // Создадим кнопку редактирования
+        $buttons = [];
+        
+        if (Gate::allows('manage content')) {
+            $buttons[] = Button::add('view')
+                ->slot('<i class="fas fa-edit"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.[product.edit](product.edit)', ['product' => $row->id])
+                ->target('_blank');
+        }
+
+        return $buttons;
     }
-
-       
-
-
-    }
-
+    
     protected function rules()
     {
         return [
             'name.*' => [
                 'required',
+                'string',
+                'max:255',
             ],
         ];
     }
