@@ -176,7 +176,7 @@ class ProductController extends Controller
     {
         // Логика для получения и отображения товаров без типа
         $productsWithoutType = Product::whereNull('product_type_id')->get(); // Получаем товары без типа
-        $sortedProductTypes = ProductType::select('id', 'name')
+        $productTypes = ProductType::select('id', 'name')
                                  ->orderBy('name', 'asc') // asc для возрастания, desc для убывания
                                  ->get();
         return view('admin.problem.product-without-type', compact('productsWithoutType', 'productTypes'));
