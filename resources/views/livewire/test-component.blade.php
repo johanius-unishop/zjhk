@@ -1,5 +1,5 @@
 <div>
-    @if($productType->name)
+    @if(isset($productType) && $productType->name)
     <div class="row">
         <div class="col-12">
             <div class="py-3 form-row justify-content-left">
