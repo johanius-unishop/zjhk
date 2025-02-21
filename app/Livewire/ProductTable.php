@@ -32,6 +32,8 @@ final class ProductTable extends PowerGridComponent
     public $editingFieldName = '';
     public $editingValue = '';
 
+    public int $vendorId = 0;
+
     public function setUp(): array
     {
         return [
@@ -46,12 +48,25 @@ final class ProductTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Product::query();
+        
+        
+        return Product::with('vendor')
+            ->when(
+                $this->vendorId,
+                fn ($builder) => $builder->whereHas(
+                    'vendor',
+                    fn ($builder) => $builder->where('vendor_id', $this->vendorId)
+                )
+            );
+            
     }
 
     public function relationSearch(): array
     {
         return [
+            'vendor' => [
+                'short_name',
+            ],
         ];
     }
 
@@ -61,43 +76,43 @@ final class ProductTable extends PowerGridComponent
             ->add('id')
             ->add('name')
             ->add('article')
-            ->add('vendor.name');
-    }
-    public function columns(): array
-    {
-        return [
-            Column::make('ID', 'id'),
-            Column::make('Модель', 'name')
-                ->sortable()
-                ->searchable()
-                ->editOnClick(),
-            Column::make('Артикул', 'article')
-                ->sortable()
-                ->searchable(),
-            Column::make('Производитель', 'vendor.name')
-                ->sortable(),
-            Column::make('Опубликовано', 'published')
-                ->toggleable(),
-            Column::make('Составной товар', 'composite_product')
-                ->toggleable(),
-            Column::action('Действия'),
-        ];
+            ->add('vendor_id', fn ($product) => intval($product->vendor_id))
+            ->add('vendor_name', fn ($product) => e($product->vendor->short_name));
     }
 
-    public function filters(): array
-    {
-        return [
-            Filter::boolean('published')
-                ->label('✅', '❌'),
-            Filter::boolean('composite_product')
-                ->label('✅', '❌'),            // Filter::boolean('is_moderated')
-            // ->label('✅', '❌'),
-            Filter::select('vendor.name', 'vendor.id')
-                ->dataSource(Vendor::all())
-                ->optionLabel('name')
-                ->optionValue('id'),
-        ];
-    }
+public function columns(): array
+{
+    return [
+        Column::make('ID', 'id'),
+        Column::make('Модель', 'name')
+            ->sortable()
+            ->searchable()
+            ->editOnClick(),
+        Column::make('Артикул', 'article')
+            ->sortable()
+            ->searchable(),
+        Column::make('Производитель', 'vendor_name', 'vendor_id'),
+        Column::make('Опубликовано', 'published')
+            ->toggleable(),
+        Column::make('Составной товар', 'composite_product')
+            ->toggleable(),
+        Column::action('Действия'),
+    ];
+}
+
+public function filters(): array
+{
+    return [
+        Filter::boolean('published')
+            ->label('✅', '❌'),
+        Filter::boolean('composite_product')
+            ->label('✅', '❌'),
+        Filter::select('vendor_name', 'vendor_id')
+            ->dataSource(Vendor::all())
+            ->optionLabel('name')
+            ->optionValue('id'),
+    ];
+}
 
         
 
@@ -106,15 +121,15 @@ final class ProductTable extends PowerGridComponent
 
         if (auth()->user()->can('delete content')) {
             return [
-                Button::add('view')
+                /*Button::add('view')
                     ->slot('<i class="fas fa-edit"></i>')
                     ->class('btn btn-primary')
                     ->route('admin.product.edit', ['product' => $row->id])
-                    ->target('_blank'),
+                    ->target('_blank'),*/ 
             ];
         }
 
-        
+       
 
 
     }
