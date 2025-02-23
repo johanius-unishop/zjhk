@@ -6,17 +6,16 @@ use App\Models\ProductType;
 use App\Models\ProductPropertyValue;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 class TestComponent extends Component
 {
     use LivewireAlert;
     public $isDisabled = false;
-    public $record = '';
+    public $record;
     public $product;
     public $properties;
     public $productType;
     public $selectedValues = []; // Массив для хранения выбранных значений
-
-    
 
     public function mount($record = null)
     {
@@ -48,15 +47,8 @@ class TestComponent extends Component
         return view('livewire.test-component', ['productType' =>  $this->productType ] );
     }
 
-    /*public function updatedSelectedValues($propertyId, $value)
-    {
-        dump("Updated property ID: {$propertyId}, new value: {$value}");
-        $this->selectedValues['prop_' . $propertyId] = $value;
-    }*/
-
     public function save()
     {
-        //dd($this->selectedValues);
         foreach ($this->selectedValues as $key => $value) {
             // Сохранение значений в базе данных
             if ($value !== null){

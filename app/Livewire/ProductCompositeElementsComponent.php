@@ -3,12 +3,9 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\Attributes\Validate;
 use App\Models\ProductCompositeElement;
 use App\Models\Product;
-use Illuminate\Support\Facades\Log;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Livewire\WithEvents;
 
 class ProductCompositeElementsComponent extends Component
 {
@@ -23,21 +20,14 @@ class ProductCompositeElementsComponent extends Component
     public $addedElementImages = [];
     public $addedElementQuantities = [];
     public $addedElements =[];
-    
     public $product;
-    
-    
-    
     
     public function mount($product = null)
     {
         $this->product = $product;
         $this->productCompositeTypes = $product->productType->composites->sortBy('order_column');
-        //$this->compositeElements = ProductCompositeElement::where('product_id', '=', $product->id)->get();
-        //$this->tempCompositeArray = $this->compositeElements->pluck('product_element_id')->toArray();
         $this->tempCompositeArray = ProductCompositeElement::where('product_id', '=', $product->id)->pluck('product_element_id')->toArray();
 
-        //array_push($this->tempCompositeArray, $product->id);
         $this->listProducts = Product::where('composite_product', '!=', '1')
                                ->orderBy('name')
                                ->pluck('id', 'name')
@@ -87,11 +77,8 @@ class ProductCompositeElementsComponent extends Component
             ]);
 
             $this->productCompositeTypes = $this->product->productType->composites->sortBy('order_column');
-            //$this->compositeElements = ProductCompositeElement::where('product_id', '=', $this->product->id)->get();
-            //$this->tempCompositeArray = $this->compositeElements->pluck('product_element_id')->toArray();
             $this->tempCompositeArray = ProductCompositeElement::where('product_id', '=', $this->product->id)->pluck('product_element_id')->toArray();
 
-            //array_push($this->tempCompositeArray, $product->id);
             $this->listProducts = Product::where('composite_product', '!=', '1')
                 ->orderBy('name')
                 ->pluck('id', 'name')
@@ -141,11 +128,8 @@ class ProductCompositeElementsComponent extends Component
 
               
             $this->productCompositeTypes = $this->product->productType->composites->sortBy('order_column');
-            //$this->compositeElements = ProductCompositeElement::where('product_id', '=', $this->product->id)->get();
-            //$this->tempCompositeArray = $this->compositeElements->pluck('product_element_id')->toArray();
             $this->tempCompositeArray = ProductCompositeElement::where('product_id', '=', $this->product->id)->pluck('product_element_id')->toArray();
 
-            //array_push($this->tempCompositeArray, $product->id);
             $this->listProducts = Product::where('composite_product', '!=', '1')
                                 ->orderBy('name')
                                 ->pluck('id', 'name')

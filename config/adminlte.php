@@ -323,7 +323,13 @@ return [
         [
             'text' => 'Справочники',
             'url' => 'admin/model',
-            'icon' => 'fas  fa-fw fa-folder',
+            'icon' => 'fas fa-fw fa-folder',
+            // 'can' => 'manage content', TODO
+        ],
+        [
+            'text' => 'Медиафайлы',
+            'url' => 'admin/mediafiles',
+            'icon' => 'fas fa-fw fa-images',
             // 'can' => 'manage content', TODO
         ],
 
