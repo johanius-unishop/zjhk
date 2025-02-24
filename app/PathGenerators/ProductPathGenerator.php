@@ -55,6 +55,16 @@ class ProductPathGenerator implements PathGenerator
         }
         $article = $model->model->article ?: '';
         $modelName = $model->model->name ?: '';
+
+        // Замена недопустимых символов на тире
+        $modelName = preg_replace('/[\/:*?"<>|\.\s]+/', '-', $modelName);
+
+        // Объединение двойных тире в одно
+        $modelName = preg_replace('/-+/', '-', $modelName);
+
+        // Убираем ведущие и замыкающие тире, если они есть
+        $modelName = trim($modelName, '-');
+        
         $collectionName = $model->collection_name ?: '';
 
         $path = "{$vendorName}/";
