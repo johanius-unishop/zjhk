@@ -139,8 +139,8 @@ class ImportController extends Controller
                         'currency_id' => trim($currencyIds[$row[$currencyCol]]),
                         'moq_supplier' => empty($row[$moqCol]) ? null : trim($row[$moqCol]),
                         'pieces_per_pack' => empty($row[$piecesPerPackCol]) ? null : trim($row[$piecesPerPackCol]),
-                        'minimum_stock' => 500,//empty($row[$minStockCol]) ? null : trim($row[$minStockCol]),
-                        'priority' => 100, //empty($row[$priorityCol]) ? null :trim($row[$priorityCol]),
+                        'minimum_stock' => empty($row[$minStockCol]) ? null : trim($row[$minStockCol]),
+                        'priority' => empty($row[$priorityCol]) ? null :trim($row[$priorityCol]),
                     ]
                     );
                 }
