@@ -37,6 +37,15 @@ class OrderController extends Controller
         //
     }
 
+    public function new_order()
+    {
+        //
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        return view('admin.order.new-order');
+    }
+
     /**
      * Display the specified resource.
      */

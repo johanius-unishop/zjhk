@@ -52,7 +52,8 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('/dashboard', [ContentController::class, 'dashboard'])->name('dashboard');
     Route::get('/regenerate_sitemap', [ContentController::class, 'regenerateSitemap'])->name('regenerate_sitemap');
 
-    Route::get('/all_orders', [ContentController::class, 'all_orders'])->name('all_orders');
+    Route::get('/all-orders', [ContentController::class, 'all_orders'])->name('all-orders');
+    Route::get('order/new-order', [OrderController::class, 'new_order'])->name('order.new-order');
     Route::resource('order', OrderController::class);
 
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');

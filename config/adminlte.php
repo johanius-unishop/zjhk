@@ -338,7 +338,7 @@ return [
         ['header' => 'Заказы поставщикам'],
         [
             'text' => 'Заказы поставщикам',
-            'url' => 'admin/all_orders',
+            'url' => 'admin/all-orders',
             'icon' => 'fas  fa-fw fa-newspaper',
             // 'can' => 'manage content', TODO
         ],

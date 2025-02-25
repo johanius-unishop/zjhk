@@ -43,7 +43,7 @@ class ContentController extends Controller
     public function all_orders()
     {
         $open_orders_count = Order::where('received', '!=', 1)->count();
-        return view('admin.content.all_orders', compact('open_orders_count'));
+        return view('admin.content.all-orders', compact('open_orders_count'));
 
     }
 

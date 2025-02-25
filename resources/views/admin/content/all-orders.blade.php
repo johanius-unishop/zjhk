@@ -27,6 +27,21 @@
             </a>
         </div>
     </div>
+    <div class="col-lg-3 col-6">
+        <!-- small card -->
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>Сформировать</h3>
+                <p>Новый заказ</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-newspaper"></i>
+            </div>
+            <a href="{{ route('admin.order.new-order') }}" class="small-box-footer">
+                Перейти <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
 </div>
 <!-- /.row -->
 @endsection

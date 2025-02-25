@@ -79,7 +79,7 @@ class ImportController extends Controller
 
         // Преобразуем лист в массив, начиная с третьей строки
         $dataRows = $worksheet->toArray(null, true, false, true); // Здесь True указывает, что нумерация ячеек начинается с 1
-        $relevantData = array_slice($dataRows, $startRow); // Пропускаем первые две строки
+        $relevantData = array_slice($dataRows, $startRow-1); // Пропускаем первые две строки
 
         $vendorColumnValues = []; // Массив для хранения значений столбца vendor (производитель)
         $currencyColumnValues = []; // Массив для хранения значений столбца currency (валюта)
@@ -104,7 +104,8 @@ class ImportController extends Controller
             if (Vendor::where('short_name', $vendor)->doesntExist()) {
                 Vendor::create([
                     'short_name' => trim($vendor),
-                    'name' => trim($vendor)
+                    'name' => trim($vendor),
+                    'published' => '1'
                 ]);
             } 
         }
@@ -122,11 +123,13 @@ class ImportController extends Controller
         $currencyIds = Currency::whereIn('charcode', $uniqueCurrencyColumnValues)->pluck('id', 'charcode')->all();
 
         foreach ($relevantData as $row) {
+            dd($relevantData);
             if (!empty($row[$vendorCol]) && !empty($row[$modelCol])) {
+
                 Product::updateOrCreate(
                     [
                         'vendor_id' => trim($vendorIds[$row[$vendorCol]]),
-                        'name' => trim($row[$modelCol]),                
+                        'name' => trim($row[$modelCol]),
                     ],    
                     [
                         'vendor_id' => trim($vendorIds[$row[$vendorCol]]),
@@ -136,9 +139,8 @@ class ImportController extends Controller
                         'currency_id' => trim($currencyIds[$row[$currencyCol]]),
                         'moq_supplier' => empty($row[$moqCol]) ? null : trim($row[$moqCol]),
                         'pieces_per_pack' => empty($row[$piecesPerPackCol]) ? null : trim($row[$piecesPerPackCol]),
-                        'minimum_stock' => empty($row[$minStockCol]) ? null : trim($row[$minStockCol]),
-                        'priority' => empty($row[$priorityCol]) ? null :trim($row[$priorityCol]),
-                        'composite_product' => 0
+                        'minimum_stock' => 500,//empty($row[$minStockCol]) ? null : trim($row[$minStockCol]),
+                        'priority' => 100, //empty($row[$priorityCol]) ? null :trim($row[$priorityCol]),
                     ]
                     );
                 }
