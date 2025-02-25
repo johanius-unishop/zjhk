@@ -123,7 +123,7 @@ class ImportController extends Controller
         $currencyIds = Currency::whereIn('charcode', $uniqueCurrencyColumnValues)->pluck('id', 'charcode')->all();
 
         foreach ($relevantData as $row) {
-            dd($relevantData);
+            
             if (!empty($row[$vendorCol]) && !empty($row[$modelCol])) {
 
                 Product::updateOrCreate(
