@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 
 use App\Models\AdditionalSetting;
 use App\Models\Vendor;
+use App\Models\Order;
+use App\Models\OrderComposition;
 use App\Models\Currency;
+use Illuminate\Support\Facades\DB;
 
 
 use App\Models\ProductType;
@@ -123,7 +126,7 @@ class ImportController extends Controller
         $currencyIds = Currency::whereIn('charcode', $uniqueCurrencyColumnValues)->pluck('id', 'charcode')->all();
 
         foreach ($relevantData as $row) {
-            
+                        
             if (!empty($row[$vendorCol]) && !empty($row[$modelCol])) {
 
                 Product::updateOrCreate(
@@ -437,6 +440,54 @@ class ImportController extends Controller
             return back()->with('success', 'Характеристики успешно загружены');    
         } else {
             return back()->with('warning','Файл не загружен');
+        }
+    }
+
+    public function new_order(Request $request)
+    {
+        if (!Gate::allows('manage content')) {
+            return abort(401);
+        }
+        
+        
+        $request->validate([
+            'vendor_id' => 'required',
+            'amount' => 'required|numeric|min:1',
+        ]);
+
+        $vendor_id = $request->vendor_id;
+        $amount = $request->amount;
+    
+        if ($vendor_id == 0) {
+            // Если выбрано "Все производители", получаем все продукты
+            $order_products = Product::where('composite_product', '0')->get();
+        } else {
+            // Если выбран конкретный производитель, фильтруем по нему
+            $order_products = Product::where('composite_product', '0')->where('vendor_id', $vendor_id)->with('orders')->get();
+        }
+        $open_orders = Order::where('received', '0')->pluck('id');
+
+        $open_orders_products = OrderComposition::whereIn('order_id', $open_orders)
+            ->select('product_id', DB::raw('SUM(quantity) as total_quantity'))
+            ->groupBy('product_id')
+            ->get()
+            ->keyBy('product_id')
+            ->map(function($item) {
+                return $item['total_quantity'];
+            })
+            ->toArray();
+
+        $order_products_with_negative_balance = $order_products->where('stock', '<', 0);
+
+        $order_products_one_priority = $order_products->where('priority', '1');
+        $order_products_two_priority = $order_products->where('priority', '2');
+        $order_products_three_priority = $order_products->where('priority', '3');
+        $order_products_four_priority = $order_products->where('priority', '4');
+        
+        dd($open_orders_products);
+        foreach ($order_products as $order_product)
+        {
+
         }
     }
 }

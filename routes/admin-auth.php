@@ -84,6 +84,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::post('import_price_from_xls', [ImportController::class, 'import_price_from_xls'])->name('import.import_price_from_xls');
     Route::post('export_products_properties_values_to_xls', [ImportController::class, 'export_products_properties_values_to_xls'])->name('import.export_products_properties_values_to_xls');
     Route::post('import_products_properties_values_from_xls', [ImportController::class, 'import_products_properties_values_from_xls'])->name('import.import_products_properties_values_from_xls');
+    Route::post('new_order', [ImportController::class, 'new_order'])->name('import.new_order');
 
     Route::resource('user', UserController::class);
     Route::resource('product', ProductController::class);
