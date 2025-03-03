@@ -481,17 +481,19 @@ class ImportController extends Controller
             })
             ->toArray();
         foreach ($order_products as $product) {
+            $ordered = isset($open_orders_products[$product->id]) ? $open_orders_products[$product->id] : 0;
+
             $new_order_products[$product->id] = [
                 'vendor' => $product->vendor->short_name,
                 'name' => $product->name,
                 'stock' => $product->stock,
-                'ordered' => $open_orders_products[$product->id],
+                'ordered' => $ordered,
                 'minimum_stock' => $product->minimum_stock,
                 'moq' => $product->moq,
                 'priority' => $product->priority,
             ];
         }
-        $new_order_products = 
+        
         
         //Товары которые необходимо заказать в первую очередь (заказаны покупателями и отсутствуют на складе)
         $order_products_with_negative_balance = $order_products->where('stock', '<', 0);
