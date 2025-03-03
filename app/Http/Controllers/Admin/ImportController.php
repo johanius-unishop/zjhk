@@ -457,6 +457,7 @@ class ImportController extends Controller
 
         $vendor_id = $request->vendor_id;
         $amount = $request->amount;
+        $new_order_products [] = [];
     
         if ($vendor_id == 0) {
             // Если выбрано "Все производители", получаем все продукты
@@ -465,8 +466,11 @@ class ImportController extends Controller
             // Если выбран конкретный производитель, фильтруем по нему
             $order_products = Product::where('composite_product', '0')->where('vendor_id', $vendor_id)->with('orders')->get();
         }
+
+        //Получаем айдишники открытых заказов
         $open_orders = Order::where('received', '0')->pluck('id');
 
+        //Получаем количество заказанных товаров во всех открытых заказах массив id -> total_quantity
         $open_orders_products = OrderComposition::whereIn('order_id', $open_orders)
             ->select('product_id', DB::raw('SUM(quantity) as total_quantity'))
             ->groupBy('product_id')
@@ -476,15 +480,31 @@ class ImportController extends Controller
                 return $item['total_quantity'];
             })
             ->toArray();
-
+        foreach ($order_products as $product) {
+            $new_order_products[$product->id] = [
+                'vendor' => $product->vendor->short_name,
+                'name' => $product->name,
+                'stock' => $product->stock,
+                'ordered' => $open_orders_products[$product->id],
+                'minimum_stock' => $product->minimum_stock,
+                'moq' => $product->moq,
+                'priority' => $product->priority,
+            ];
+        }
+        $new_order_products = 
+        
+        //Товары которые необходимо заказать в первую очередь (заказаны покупателями и отсутствуют на складе)
         $order_products_with_negative_balance = $order_products->where('stock', '<', 0);
-
+        //Товары с приоритетом 1
         $order_products_one_priority = $order_products->where('priority', '1');
+        //Товары с приоритетом 2
         $order_products_two_priority = $order_products->where('priority', '2');
+        //Товары с приоритетом 3
         $order_products_three_priority = $order_products->where('priority', '3');
+        //Товары с приоритетом 4
         $order_products_four_priority = $order_products->where('priority', '4');
         
-        dd($open_orders_products);
+        dd($new_order_products);
         foreach ($order_products as $order_product)
         {
 
