@@ -457,7 +457,7 @@ class ImportController extends Controller
 
         $vendor_id = $request->vendor_id;
         $amount = $request->amount;
-        $new_order_products [] = [];
+        $new_order_products = [];
     
         if ($vendor_id == 0) {
             // Если выбрано "Все производители", получаем все продукты
@@ -489,7 +489,7 @@ class ImportController extends Controller
                 'stock' => $product->stock,
                 'ordered' => $ordered,
                 'minimum_stock' => $product->minimum_stock,
-                'moq' => $product->moq,
+                'moq' => $product->moq_supplier,
                 'priority' => $product->priority,
             ];
         }
