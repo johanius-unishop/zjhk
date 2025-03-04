@@ -502,9 +502,14 @@ class ImportController extends Controller
             return $product['stock'] < 0;
         });
 
-        foreach ($order_products_with_negative_balance as $product) {
-            $new_order_quantity = intdiv(($product['minimum_stock'] - $product['stock'] - $product['ordered']), $product['moq']) + $product['moq'];
-            $product['new_order_quantity'] = $new_order_quantity;
+        foreach ($order_products_with_negative_balance as $productId => $product) {
+            $new_order_quantity = intdiv(
+                ($product['minimum_stock'] - $product['stock'] - $product['ordered']),
+                $product['moq']
+            ) + $product['moq'];
+        
+            // Обновление объекта в массиве $new_order_products
+            $new_order_products[$productId]['new_order_quantity'] = $new_order_quantity;
         }
 
 
