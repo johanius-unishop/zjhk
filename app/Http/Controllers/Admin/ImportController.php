@@ -494,6 +494,7 @@ class ImportController extends Controller
                 'priority' => $product->priority,
                 'new_order_quantity' => 0,
                 'price' => $product->supplier_price,
+                'coef' => 0
             ];
         }
         
@@ -520,7 +521,25 @@ class ImportController extends Controller
 
 
         //Товары с приоритетом 1
-        $order_products_one_priority = $order_products->where('priority', '1');
+        $order_products_one_priority = array_filter($new_order_products, function($product) {
+            return $product['priority'] = 1;
+        });
+
+        foreach ($order_products_one_priority as $key => $product) {
+            if ($product['minimum_stock'] === 0) {
+                $coef = 100;
+            } else {
+                $coef = ($product['stock'] + $product['ordered'] + $product['new_order_quantity']) / $product['minimum_stock'];
+            }
+                
+            // Сохраняем изменение непосредственно в массив
+            $order_products_one_priority[$key]['coef'] = $coef;
+        }
+
+        usort($order_products_one_priority, function($a, $b) {
+            return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
+        });
+
         //Товары с приоритетом 2
         $order_products_two_priority = $order_products->where('priority', '2');
         //Товары с приоритетом 3
@@ -528,7 +547,7 @@ class ImportController extends Controller
         //Товары с приоритетом 4
         $order_products_four_priority = $order_products->where('priority', '4');
         
-        dd($new_order_products);
+        dd($order_products_one_priority);
         foreach ($order_products as $order_product)
         {
 
