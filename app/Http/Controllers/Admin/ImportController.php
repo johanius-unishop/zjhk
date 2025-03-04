@@ -545,7 +545,6 @@ class ImportController extends Controller
             return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
         });
 
-        dd($order_products_one_priority);
 
         
         $amount = 0;
@@ -566,14 +565,14 @@ class ImportController extends Controller
                 $order_products_one_priority[$key]['coef'] = $coef;
             }    
         }
-        usort($order_products_one_priority, function($a, $b) {
+        uasort($order_products_one_priority, function($a, $b) {
             return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
         });
 
             $amount = $amount + $amount_part;
             $i = 0;
         }
-        dd($order_products_one_priority);
+        
         foreach ($order_products_one_priority as $key => $product) {
             $new_order_products[$key]['new_order_quantity'] = $product['new_order_quantity'];
         }
