@@ -544,8 +544,8 @@ class ImportController extends Controller
         $i = 0;
         foreach ($order_products_one_priority as $key => $product) {
             if ($i === 0) {
-                $product['new_order_quantity']+$product['moq'];
-                $order_products_one_priority[$key]['new_order_quantity'] = $product['new_order_quantity']+$product['moq'];
+                $product['new_order_quantity'] = $product['new_order_quantity']+$product['moq'];
+                $order_products_one_priority[$key]['new_order_quantity'] = $product['new_order_quantity'];
                 $amount_part = $product['moq'] * $product['price'];
                 $i++;
                 if ($product['minimum_stock'] === 0) {
@@ -573,7 +573,7 @@ class ImportController extends Controller
         //Товары с приоритетом 4
         $order_products_four_priority = $order_products->where('priority', '4');
         
-        dd($order_products_one_priority);
+        dd($amount . ' ' .$order_products_one_priority);
         foreach ($order_products as $order_product)
         {
 
