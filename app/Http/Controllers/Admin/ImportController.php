@@ -485,6 +485,7 @@ class ImportController extends Controller
             $minimum_stock = isset($product->minimum_stock) ? $product->minimum_stock : 0;
             
             $new_order_products[$product->id] = [
+                'id' => $product->id,
                 'vendor' => $product->vendor->short_name,
                 'name' => $product->name,
                 'stock' => $product->stock,
@@ -504,6 +505,7 @@ class ImportController extends Controller
             return $product['stock'] < 0;
         });
 
+        dd($order_products_with_negative_balance );
         foreach ($order_products_with_negative_balance as $key => $product) {
             if (abs($product['stock']) <= abs($product['ordered'])) {
                 $new_order_quantity = 0;
