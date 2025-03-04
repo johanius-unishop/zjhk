@@ -491,12 +491,15 @@ class ImportController extends Controller
                 'minimum_stock' => $product->minimum_stock,
                 'moq' => $product->moq_supplier,
                 'priority' => $product->priority,
+                'new_order_quantity' => 0,
             ];
         }
         
         
         //Товары которые необходимо заказать в первую очередь (заказаны покупателями и отсутствуют на складе)
-        $order_products_with_negative_balance = $order_products->where('stock', '<', 0);
+        $order_products_with_negative_balance = array_filter($new_order_products, function($product) {
+            return $product['stock'] < 0;
+        });
         //Товары с приоритетом 1
         $order_products_one_priority = $order_products->where('priority', '1');
         //Товары с приоритетом 2
@@ -506,7 +509,7 @@ class ImportController extends Controller
         //Товары с приоритетом 4
         $order_products_four_priority = $order_products->where('priority', '4');
         
-        dd($new_order_products);
+        dd($order_products_with_negative_balance);
         foreach ($order_products as $order_product)
         {
 
