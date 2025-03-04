@@ -493,6 +493,7 @@ class ImportController extends Controller
                 'moq' => $product->moq_supplier,
                 'priority' => $product->priority,
                 'new_order_quantity' => 0,
+                'price' => $product->supplier_price,
             ];
         }
         
@@ -511,10 +512,9 @@ class ImportController extends Controller
                     $product['moq']
                 ) + 1) * $product['moq'];
             }
-            
-            
+                
             // Сохраняем изменение непосредственно в массив
-            $order_products_with_negative_balance[$key]['new_order_quantity'] = $new_order_quantity;
+            $new_order_products[$key]['new_order_quantity'] = $new_order_quantity;
         }
 
 
@@ -528,7 +528,7 @@ class ImportController extends Controller
         //Товары с приоритетом 4
         $order_products_four_priority = $order_products->where('priority', '4');
         
-        dd($order_products_with_negative_balance);
+        dd($new_order_products);
         foreach ($order_products as $order_product)
         {
 
