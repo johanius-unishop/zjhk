@@ -566,6 +566,14 @@ class ImportController extends Controller
             $i = 0;
         }
 
+        foreach ($order_products_one_priority as $key => $product) {
+            $new_order_products[$key]['new_order_quantity'] = $product['new_order_quantity'];
+        }
+
+        $list_order_products = array_filter($new_order_products, function($product) {
+            return $product['new_order_quantity'] > 0;
+        });
+
 
         //Товары с приоритетом 2
         $order_products_two_priority = $order_products->where('priority', '2');
@@ -575,7 +583,7 @@ class ImportController extends Controller
         $order_products_four_priority = $order_products->where('priority', '4');
         
         //dd($amount);
-        dd($order_products_one_priority);
+        dd($list_order_products);
         foreach ($order_products as $order_product)
         {
 
