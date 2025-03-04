@@ -505,7 +505,7 @@ class ImportController extends Controller
             return $product['stock'] < 0;
         });
 
-        dd($order_products_with_negative_balance );
+        
         foreach ($order_products_with_negative_balance as $key => $product) {
             if (abs($product['stock']) <= abs($product['ordered'])) {
                 $new_order_quantity = 0;
@@ -526,6 +526,8 @@ class ImportController extends Controller
         $order_products_one_priority = array_filter($new_order_products, function($product) {
             return $product['priority'] == 1;
         });
+
+        dd($order_products_one_priority);
 
         foreach ($order_products_one_priority as $key => $product) {
             if ($product['minimum_stock'] === 0) {
