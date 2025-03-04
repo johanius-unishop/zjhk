@@ -503,7 +503,8 @@ class ImportController extends Controller
         });
 
         foreach ($order_products_with_negative_balance as $product) {
-
+            $new_order_quantity = intdiv(($product['minimum_stock'] - $product['stock'] - $product['ordered']), $product['moq']) + $product['moq'];
+            $product['new_order_quantity'] = $new_order_quantity;
         }
 
 
