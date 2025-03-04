@@ -539,13 +539,15 @@ class ImportController extends Controller
             $order_products_one_priority[$key]['coef'] = $coef;
         }
 
-        dd($order_products_one_priority);
+        
 
         usort($order_products_one_priority, function($a, $b) {
             return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
         });
 
         dd($order_products_one_priority);
+
+        
         $amount = 0;
         while ($amount <= 10000) {
         $i = 0;
