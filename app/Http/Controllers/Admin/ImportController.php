@@ -526,7 +526,7 @@ class ImportController extends Controller
             return $product['priority'] == 1;
         });
 
-        dd($order_products_one_priority);
+        
 
         foreach ($order_products_one_priority as $key => $product) {
             if ($product['minimum_stock'] === 0) {
@@ -538,6 +538,8 @@ class ImportController extends Controller
             // Сохраняем изменение непосредственно в массив
             $order_products_one_priority[$key]['coef'] = $coef;
         }
+
+        dd($order_products_one_priority);
 
         usort($order_products_one_priority, function($a, $b) {
             return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
