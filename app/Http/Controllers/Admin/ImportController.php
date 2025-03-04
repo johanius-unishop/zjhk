@@ -522,7 +522,7 @@ class ImportController extends Controller
 
         //Товары с приоритетом 1
         $order_products_one_priority = array_filter($new_order_products, function($product) {
-            return $product['priority'] = 1;
+            return $product['priority'] == 1;
         });
 
         foreach ($order_products_one_priority as $key => $product) {
