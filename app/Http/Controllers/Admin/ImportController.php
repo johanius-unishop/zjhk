@@ -540,6 +540,32 @@ class ImportController extends Controller
             return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
         });
 
+        while ($amount <= 10000) {
+        $i = 0;
+        foreach ($order_products_one_priority as $key => $product) {
+            if ($i === 0) {
+                $product['new_order_quantity']+$product['moq'];
+                $order_products_one_priority[$key]['new_order_quantity'] = $product['new_order_quantity']+$product['moq'];
+                $amount_part = $product['moq'] * $product['price'];
+                $i++;
+                if ($product['minimum_stock'] === 0) {
+                    $coef = 100;
+                } else {
+                    $coef = ($product['stock'] + $product['ordered'] + $product['new_order_quantity']) / $product['minimum_stock'];
+                }
+                // Сохраняем изменение непосредственно в массив
+                $order_products_one_priority[$key]['coef'] = $coef;
+            }    
+        }
+        usort($order_products_one_priority, function($a, $b) {
+            return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
+        });
+
+            $amount = $amount + $amount_part;
+            $i = 0;
+        }
+
+
         //Товары с приоритетом 2
         $order_products_two_priority = $order_products->where('priority', '2');
         //Товары с приоритетом 3
