@@ -540,6 +540,7 @@ class ImportController extends Controller
             return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
         });
 
+        $amount = 0;
         while ($amount <= 10000) {
         $i = 0;
         foreach ($order_products_one_priority as $key => $product) {
