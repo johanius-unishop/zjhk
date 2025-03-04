@@ -521,13 +521,12 @@ class ImportController extends Controller
         }
 
 
-
         //Товары с приоритетом 1
         $order_products_one_priority = array_filter($new_order_products, function($product) {
             return $product['priority'] == 1;
         });
 
-        
+        dd($order_products_one_priority);
 
         foreach ($order_products_one_priority as $key => $product) {
             if ($product['minimum_stock'] === 0) {
@@ -544,6 +543,7 @@ class ImportController extends Controller
             return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
         });
 
+        dd($order_products_one_priority);
         $amount = 0;
         while ($amount <= 10000) {
         $i = 0;
