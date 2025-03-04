@@ -541,7 +541,7 @@ class ImportController extends Controller
 
         
 
-        usort($order_products_one_priority, function($a, $b) {
+        uasort($order_products_one_priority, function($a, $b) {
             return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
         });
 
