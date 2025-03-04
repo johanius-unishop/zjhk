@@ -507,7 +507,7 @@ class ImportController extends Controller
                 $new_order_quantity = 0;
             } else {
                 $new_order_quantity = (intdiv(
-                    ($product['minimum_stock'] - $product['stock'] - $product['ordered']),
+                    ($product['ordered'] - $product['stock']),
                     $product['moq']
                 ) + 1) * $product['moq'];
             }
