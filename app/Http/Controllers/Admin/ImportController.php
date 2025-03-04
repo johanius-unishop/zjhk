@@ -574,7 +574,8 @@ class ImportController extends Controller
         //Товары с приоритетом 4
         $order_products_four_priority = $order_products->where('priority', '4');
         
-        dd($amount . ' ' .$order_products_one_priority);
+        dd($amount);
+        dd($order_products_one_priority);
         foreach ($order_products as $order_product)
         {
 
