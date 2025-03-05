@@ -794,8 +794,10 @@ class ImportController extends Controller
         // Создаем новую рабочую книгу
         $order_spreadsheet = new Spreadsheet();
         $order_sheet = $order_spreadsheet->getActiveSheet();
+        $lastOrderNumber = $open_orders->last()->order_number;
+
         $order_sheet->setTitle('Order');
-        dd($list_order_products);
+        dd($lastOrderNumber);
         
     }
 }
