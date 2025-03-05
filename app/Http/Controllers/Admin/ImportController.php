@@ -814,7 +814,8 @@ class ImportController extends Controller
             $order_sheet->setCellValue('B' . $count, $product['name']);
             $order_sheet->setCellValue('C' . $count, $product['new_order_quantity']);
             $order_sheet->setCellValue('D' . $count, $product['price']);
-            $order_sheet->setCellValue('E' . $count, '=C' . $count . '*D' . $count);
+            $formula = "=SUM(E3:E" . $count . ")";
+            $order_sheet->setCellValue('E' . $count+2, '=SUM(E3:E' . $count . ')');
         }
         
         $order_sheet->setCellValue('E' . $count+2, '=Сумм(E3:E' . $count . ')');
