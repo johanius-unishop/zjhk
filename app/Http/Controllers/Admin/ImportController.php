@@ -470,10 +470,12 @@ class ImportController extends Controller
 
 
         //Получаем айдишники открытых заказов
-        $open_orders = Order::where('received', '0')->pluck('id');
+        $open_orders = Order::where('received', '0')
+            ->select('id', 'order_number') // Добавили 'order_number'
+            ->get(); // Используем get(), чтобы получить коллекцию
 
         //Получаем количество заказанных товаров во всех открытых заказах массив id -> total_quantity
-        $open_orders_products = OrderComposition::whereIn('order_id', $open_orders)
+        $open_orders_products = OrderComposition::whereIn('order_id', $open_orders->pluck('id'))
             ->select('product_id', DB::raw('SUM(quantity) as total_quantity'))
             ->groupBy('product_id')
             ->get()
@@ -787,6 +789,12 @@ class ImportController extends Controller
         $list_order_products = array_filter($new_order_products, function($product) {
             return $product['new_order_quantity'] > 0;
         });
+
+        // Формирование Excel файла
+        // Создаем новую рабочую книгу
+        $order_spreadsheet = new Spreadsheet();
+        $order_sheet = $order_spreadsheet->getActiveSheet();
+        $order_sheet->setTitle('Order');
         dd($list_order_products);
         
     }
