@@ -555,8 +555,8 @@ class ImportController extends Controller
 
             $firstElement = reset($order_products_one_priority);
             $min_coef = $firstElement['coef'];
-            dd($min_coef);
-            
+
+
             while ($new_order_amount <= $amount && $min_coef < 1) {
                 $i = 0;
                 foreach ($order_products_one_priority as $key => $product) {
