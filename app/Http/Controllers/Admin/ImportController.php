@@ -536,6 +536,7 @@ class ImportController extends Controller
             $new_order_products[$key]['coef'] = $coef;
         }
 
+        //Товары с приоритетом 1
         if ($new_order_amount <= $amount) {
 
 
@@ -596,24 +597,196 @@ class ImportController extends Controller
                 $new_order_products[$key]['coef'] = $product['coef'];
             }
         }
+        
+        //Товары с приоритетом 2
+        if ($new_order_amount <= $amount) {
+
+            //Товары с приоритетом 2
+            $order_products_two_priority = array_filter($new_order_products, function($product) {
+                return $product['priority'] == 2;
+            });
+
+            foreach ($order_products_two_priority as $key => $product) {
+                if ($product['minimum_stock'] === 0) {
+                    $coef = 100;
+                } else {
+                    $coef = ($product['stock'] + $product['ordered'] + $product['new_order_quantity']) / $product['minimum_stock'];
+                }
+                    
+                // Сохраняем изменение непосредственно в массив
+                $order_products_two_priority[$key]['coef'] = $coef;
+            }
+
+            uasort($order_products_two_priority, function($a, $b) {
+                return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
+            });
+
+            $firstElement = reset($order_products_two_priority);
+            $min_coef = $firstElement['coef'];
+
+            while (($new_order_amount <= $amount) && ($min_coef < 1)) {
+                $i = 0; 
+                foreach ($order_products_two_priority as $key => $product) {
+                    if ($i === 0) {
+                        $product['new_order_quantity'] = $product['new_order_quantity'] + $product['moq'];
+                        $order_products_two_priority[$key]['new_order_quantity'] = $product['new_order_quantity'];
+                        $amount_part = $product['moq'] * $product['price_rub'];
+                        $i++;
+                        if ($product['minimum_stock'] === 0) {
+                            $coef = 100;
+                        } else {
+                            $coef = ($product['stock'] + $product['ordered'] + $product['new_order_quantity']) / $product['minimum_stock'];
+                        }
+                        // Сохраняем изменение непосредственно в массив
+                        $order_products_two_priority[$key]['coef'] = $coef;
+                        $new_order_products[$key]['coef'] = $coef;
+                    }    
+                }
+                uasort($order_products_two_priority, function($a, $b) {
+                    return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
+                });
+
+                $firstElement = array_values($order_products_two_priority)[0];
+                $min_coef = $firstElement['coef'];
+                
+                $new_order_amount = $new_order_amount + $amount_part;
+                $i = 0;
+            }
+            
+            foreach ($order_products_two_priority as $key => $product) {
+                $new_order_products[$key]['new_order_quantity'] = $product['new_order_quantity'];
+                $new_order_products[$key]['coef'] = $product['coef'];
+            }
+        }
+
+        //Товары с приоритетом 3
+        if ($new_order_amount <= $amount) {
+
+            //Товары с приоритетом 3
+            $order_products_three_priority = array_filter($new_order_products, function($product) {
+                return $product['priority'] == 3;
+            });
+
+            foreach ($order_products_three_priority as $key => $product) {
+                if ($product['minimum_stock'] === 0) {
+                    $coef = 100;
+                } else {
+                    $coef = ($product['stock'] + $product['ordered'] + $product['new_order_quantity']) / $product['minimum_stock'];
+                }
+                    
+                // Сохраняем изменение непосредственно в массив
+                $order_products_three_priority[$key]['coef'] = $coef;
+            }
+
+            uasort($order_products_three_priority, function($a, $b) {
+                return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
+            });
+
+            $firstElement = reset($order_products_three_priority);
+            $min_coef = $firstElement['coef'];
+
+            while (($new_order_amount <= $amount) && ($min_coef < 1)) {
+                $i = 0; 
+                foreach ($order_products_three_priority as $key => $product) {
+                    if ($i === 0) {
+                        $product['new_order_quantity'] = $product['new_order_quantity'] + $product['moq'];
+                        $order_products_three_priority[$key]['new_order_quantity'] = $product['new_order_quantity'];
+                        $amount_part = $product['moq'] * $product['price_rub'];
+                        $i++;
+                        if ($product['minimum_stock'] === 0) {
+                            $coef = 100;
+                        } else {
+                            $coef = ($product['stock'] + $product['ordered'] + $product['new_order_quantity']) / $product['minimum_stock'];
+                        }
+                        // Сохраняем изменение непосредственно в массив
+                        $order_products_three_priority[$key]['coef'] = $coef;
+                        $new_order_products[$key]['coef'] = $coef;
+                    }    
+                }
+                uasort($order_products_three_priority, function($a, $b) {
+                    return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
+                });
+
+                $firstElement = array_values($order_products_three_priority)[0];
+                $min_coef = $firstElement['coef'];
+                
+                $new_order_amount = $new_order_amount + $amount_part;
+                $i = 0;
+            }
+            
+            foreach ($order_products_three_priority as $key => $product) {
+                $new_order_products[$key]['new_order_quantity'] = $product['new_order_quantity'];
+                $new_order_products[$key]['coef'] = $product['coef'];
+            }
+        }
+
+        //Товары с приоритетом 4
+        if ($new_order_amount <= $amount) {
+
+            //Товары с приоритетом 4
+            $order_products_four_priority = array_filter($new_order_products, function($product) {
+                return $product['priority'] == 4;
+            });
+
+            foreach ($order_products_four_priority as $key => $product) {
+                if ($product['minimum_stock'] === 0) {
+                    $coef = 100;
+                } else {
+                    $coef = ($product['stock'] + $product['ordered'] + $product['new_order_quantity']) / $product['minimum_stock'];
+                }
+                    
+                // Сохраняем изменение непосредственно в массив
+                $order_products_four_priority[$key]['coef'] = $coef;
+            }
+
+            uasort($order_products_four_priority, function($a, $b) {
+                return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
+            });
+
+            $firstElement = reset($order_products_four_priority);
+            $min_coef = $firstElement['coef'];
+
+            while (($new_order_amount <= $amount) && ($min_coef < 1)) {
+                $i = 0; 
+                foreach ($order_products_four_priority as $key => $product) {
+                    if ($i === 0) {
+                        $product['new_order_quantity'] = $product['new_order_quantity'] + $product['moq'];
+                        $order_products_four_priority[$key]['new_order_quantity'] = $product['new_order_quantity'];
+                        $amount_part = $product['moq'] * $product['price_rub'];
+                        $i++;
+                        if ($product['minimum_stock'] === 0) {
+                            $coef = 100;
+                        } else {
+                            $coef = ($product['stock'] + $product['ordered'] + $product['new_order_quantity']) / $product['minimum_stock'];
+                        }
+                        // Сохраняем изменение непосредственно в массив
+                        $order_products_four_priority[$key]['coef'] = $coef;
+                        $new_order_products[$key]['coef'] = $coef;
+                    }    
+                }
+                uasort($order_products_four_priority, function($a, $b) {
+                    return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
+                });
+
+                $firstElement = array_values($order_products_four_priority)[0];
+                $min_coef = $firstElement['coef'];
+                
+                $new_order_amount = $new_order_amount + $amount_part;
+                $i = 0;
+            }
+            
+            foreach ($order_products_four_priority as $key => $product) {
+                $new_order_products[$key]['new_order_quantity'] = $product['new_order_quantity'];
+                $new_order_products[$key]['coef'] = $product['coef'];
+            }
+        }
+        
+        //dd($amount);
+
         $list_order_products = array_filter($new_order_products, function($product) {
             return $product['new_order_quantity'] > 0;
         });
-
-
-
-        //Товары с приоритетом 2
-        $order_products_two_priority = $order_products->where('priority', '2');
-        //Товары с приоритетом 3
-        $order_products_three_priority = $order_products->where('priority', '3');
-        //Товары с приоритетом 4
-        $order_products_four_priority = $order_products->where('priority', '4');
-        
-        //dd($amount);
         dd($list_order_products);
-        foreach ($order_products as $order_product)
-        {
-
-        }
+        
     }
 }
