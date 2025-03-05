@@ -528,6 +528,12 @@ class ImportController extends Controller
             // Сохраняем изменение непосредственно в массив
             $new_order_products[$key]['new_order_quantity'] = $new_order_quantity;
             $new_order_amount = $new_order_amount + $product['price_rub'] * $new_order_quantity;
+            if ($product['minimum_stock'] === 0) {
+                $coef = 100;
+            } else {
+                $coef = ($product['stock'] + $product['ordered'] + $new_order_quantity) / $product['minimum_stock'];
+            }
+            $new_order_products[$key]['coef'] = $coef;
         }
 
         if ($new_order_amount <= $amount) {
