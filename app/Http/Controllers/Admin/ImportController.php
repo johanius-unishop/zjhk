@@ -467,6 +467,9 @@ class ImportController extends Controller
             $order_products = Product::where('composite_product', '0')->where('vendor_id', $vendor_id)->with('orders')->get();
         }
 
+        //Получаем курсы валют
+        $currency_rates = Currency::all();
+
         //Получаем айдишники открытых заказов
         $open_orders = Order::where('received', '0')->pluck('id');
 
@@ -480,10 +483,16 @@ class ImportController extends Controller
                 return $item['total_quantity'];
             })
             ->toArray();
-        foreach ($order_products as $product) {
+        
+            foreach ($order_products as $product) {
             $ordered = isset($open_orders_products[$product->id]) ? $open_orders_products[$product->id] : 0;
             $minimum_stock = isset($product->minimum_stock) ? $product->minimum_stock : 0;
-            
+            $price_rub = round($product->supplier_price * $product->currency->cb_rate, 2);
+            if ($minimum_stock === 0) {
+                $coef = 100;
+            } else {
+                $coef = ($product->stock + $ordered) / $minimum_stock;
+            }
             $new_order_products[$product->id] = [
                 'id' => $product->id,
                 'vendor' => $product->vendor->short_name,
@@ -495,7 +504,8 @@ class ImportController extends Controller
                 'priority' => $product->priority,
                 'new_order_quantity' => 0,
                 'price' => $product->supplier_price,
-                'coef' => 0
+                'price_rub' => $price_rub,
+                'coef' => $coef
             ];
         }
         
