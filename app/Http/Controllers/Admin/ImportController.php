@@ -722,7 +722,7 @@ class ImportController extends Controller
 
         //Товары с приоритетом 4
         if ($new_order_amount <= $amount) {
-            dd('Зашли в 4 приоритет');
+            
             //Товары с приоритетом 4
             $order_products_four_priority = array_filter($new_order_products, function($product) {
                 return $product['priority'] == 4;
