@@ -553,26 +553,30 @@ class ImportController extends Controller
                 return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
             });
 
+            $firstElement = reset($order_products_one_priority);
+            dd ($firstElement);
+            
             while ($new_order_amount <= $amount) {
-            $i = 0;
-            foreach ($order_products_one_priority as $key => $product) {
-                if ($i === 0) {
-                    $product['new_order_quantity'] = $product['new_order_quantity'] + $product['moq'];
-                    $order_products_one_priority[$key]['new_order_quantity'] = $product['new_order_quantity'];
-                    $amount_part = $product['moq'] * $product['price_rub'];
-                    $i++;
-                    if ($product['minimum_stock'] === 0) {
-                        $coef = 100;
-                    } else {
-                        $coef = ($product['stock'] + $product['ordered'] + $product['new_order_quantity']) / $product['minimum_stock'];
-                    }
-                    // Сохраняем изменение непосредственно в массив
-                    $order_products_one_priority[$key]['coef'] = $coef;
-                }    
-            }
-            uasort($order_products_one_priority, function($a, $b) {
-                return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
-            });
+                $i = 0;
+                foreach ($order_products_one_priority as $key => $product) {
+                    if ($i === 0) {
+                        if ($product['coef'])
+                        $product['new_order_quantity'] = $product['new_order_quantity'] + $product['moq'];
+                        $order_products_one_priority[$key]['new_order_quantity'] = $product['new_order_quantity'];
+                        $amount_part = $product['moq'] * $product['price_rub'];
+                        $i++;
+                        if ($product['minimum_stock'] === 0) {
+                            $coef = 100;
+                        } else {
+                            $coef = ($product['stock'] + $product['ordered'] + $product['new_order_quantity']) / $product['minimum_stock'];
+                        }
+                        // Сохраняем изменение непосредственно в массив
+                        $order_products_one_priority[$key]['coef'] = $coef;
+                    }    
+                }
+                uasort($order_products_one_priority, function($a, $b) {
+                    return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
+                });
 
                 $new_order_amount = $new_order_amount + $amount_part;
                 $i = 0;
