@@ -530,7 +530,7 @@ class ImportController extends Controller
             $new_order_amount = $new_order_amount + $product['price_rub'] * $new_order_quantity;
         }
 
-        if ($amount <= $new_order_amount) {
+        if ($new_order_amount <= $amount) {
 
 
             //Товары с приоритетом 1
