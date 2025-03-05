@@ -795,8 +795,42 @@ class ImportController extends Controller
         $orderNumber = $matches[0]+1; // Содержит только номер
 
         $order_sheet->setTitle('Order ' . $orderNumber);
+        // Заполнение ячейки A1 значением $orderNumber
+        $order_sheet->setCellValue('A1', 'Order ' . $orderNumber);
+
+        $formattedDate = date('d.m.Y'); // формат "день.месяц.год"
+        $order_sheet->setCellValue('B1', $formattedDate);
+
+        $order_sheet->setCellValue('A2', 'Brand');
+        $order_sheet->setCellValue('B2', 'Model');
+        $order_sheet->setCellValue('C2', 'Quantity');
+        $order_sheet->setCellValue('D2', 'Price');
+        $order_sheet->setCellValue('E2', 'Amount');
+
+        $count = 2;
+        foreach ($list_order_products as $product) {
+            $count++;
+            $order_sheet->setCellValue('A' . $count, $product['vendor']);
+            $order_sheet->setCellValue('B' . $count, $product['name']);
+            $order_sheet->setCellValue('C' . $count, $product['new_order_quantity']);
+            $order_sheet->setCellValue('D' . $count, $product['price']);
+            $order_sheet->setCellValue('E' . $count, '=C' . $count . '*D' . $count);
+        }
         
-        dd($orderNumber);
-        
+        $order_sheet->setCellValue('E' . $count+2, '=Сумм(E3:E' . $count . ')');
+
+        // Сохраняем файл в память
+        $writer = new Xlsx($order_spreadsheet);
+        ob_start();
+        $writer->save('php://output');
+        $content = ob_get_clean();
+
+        // Имя файла
+        $filename = rawurlencode('Order ' . $orderNumber) . '.xlsx';
+
+        // Сначала отправляем файл клиенту
+        return response($content, 200)
+            ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            ->header("Content-Disposition", "attachment; filename*=UTF-8''$filename");        
     }
 }
