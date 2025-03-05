@@ -559,7 +559,7 @@ class ImportController extends Controller
                 if ($i === 0) {
                     $product['new_order_quantity'] = $product['new_order_quantity'] + $product['moq'];
                     $order_products_one_priority[$key]['new_order_quantity'] = $product['new_order_quantity'];
-                    $amount_part = $product['moq'] * $product['price'];
+                    $amount_part = $product['moq'] * $product['price_rub'];
                     $i++;
                     if ($product['minimum_stock'] === 0) {
                         $coef = 100;
