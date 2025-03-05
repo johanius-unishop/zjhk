@@ -587,7 +587,7 @@ class ImportController extends Controller
                 return $product['new_order_quantity'] > 0;
             });
         }
-        dd($new_order_amount);
+
 
 
         //Товары с приоритетом 2
