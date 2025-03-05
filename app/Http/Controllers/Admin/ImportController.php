@@ -782,9 +782,6 @@ class ImportController extends Controller
                 $new_order_products[$key]['coef'] = $product['coef'];
             }
         }
-        
-
-        //dd($amount);
 
         $list_order_products = array_filter($new_order_products, function($product) {
             return $product['new_order_quantity'] > 0;
@@ -797,7 +794,8 @@ class ImportController extends Controller
         preg_match('/\d+/', $open_orders->last()->order_number, $matches);
         $orderNumber = $matches[0]+1; // Содержит только номер
 
-        $order_sheet->setTitle('Order');
+        $order_sheet->setTitle('Order ' . $orderNumber);
+        
         dd($orderNumber);
         
     }
