@@ -600,7 +600,7 @@ class ImportController extends Controller
         
         //Товары с приоритетом 2
         if ($new_order_amount <= $amount) {
-            dd('Зашли в 2 приоритет');
+            
             //Товары с приоритетом 2
             $order_products_two_priority = array_filter($new_order_products, function($product) {
                 return $product['priority'] == 2;
