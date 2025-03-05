@@ -562,7 +562,6 @@ class ImportController extends Controller
             $firstElement = reset($order_products_one_priority);
             $min_coef = $firstElement['coef'];
 
-            $ii = 0;
             while (($new_order_amount <= $amount) && ($min_coef < 1)) {
                 $i = 0; 
                 foreach ($order_products_one_priority as $key => $product) {
@@ -570,6 +569,7 @@ class ImportController extends Controller
                         if ($product['coef'])
                         $product['new_order_quantity'] = $product['new_order_quantity'] + $product['moq'];
                         $order_products_one_priority[$key]['new_order_quantity'] = $product['new_order_quantity'];
+                        $new_order_products[$key]['new_order_quantity'] = $product['new_order_quantity'];
                         $amount_part = $product['moq'] * $product['price_rub'];
                         $i++;
                         if ($product['minimum_stock'] === 0) {
@@ -579,6 +579,7 @@ class ImportController extends Controller
                         }
                         // Сохраняем изменение непосредственно в массив
                         $order_products_one_priority[$key]['coef'] = $coef;
+                        $new_order_products[$key]['coef'] = $coef;
                     }    
                 }
                 uasort($order_products_one_priority, function($a, $b) {
@@ -590,15 +591,6 @@ class ImportController extends Controller
                 
                 $new_order_amount = $new_order_amount + $amount_part;
                 $i = 0;
-                $ii++;
-                
-            }
-            
-            
-            
-            foreach ($order_products_one_priority as $key => $product) {
-                $new_order_products[$key]['new_order_quantity'] = $product['new_order_quantity'];
-                $new_order_products[$key]['coef'] = $product['coef'];
             }
         }
         $list_order_products = array_filter($new_order_products, function($product) {
