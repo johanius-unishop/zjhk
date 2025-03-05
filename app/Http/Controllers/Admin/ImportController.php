@@ -457,6 +457,7 @@ class ImportController extends Controller
 
         $vendor_id = $request->vendor_id;
         $amount = $request->amount;
+        $new_order_amount = 0;
         $new_order_products = [];
     
         if ($vendor_id == 0) {
@@ -467,8 +468,6 @@ class ImportController extends Controller
             $order_products = Product::where('composite_product', '0')->where('vendor_id', $vendor_id)->with('orders')->get();
         }
 
-        //Получаем курсы валют
-        $currency_rates = Currency::all();
 
         //Получаем айдишники открытых заказов
         $open_orders = Order::where('received', '0')->pluck('id');
@@ -528,9 +527,11 @@ class ImportController extends Controller
                 
             // Сохраняем изменение непосредственно в массив
             $new_order_products[$key]['new_order_quantity'] = $new_order_quantity;
+            $new_order_amount = $new_order_amount + $product['price_rub'] * $new_order_quantity;
         }
 
-
+        dd($new_order_amount);
+        
         //Товары с приоритетом 1
         $order_products_one_priority = array_filter($new_order_products, function($product) {
             return $product['priority'] == 1;
