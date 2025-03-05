@@ -568,7 +568,6 @@ class ImportController extends Controller
                     if ($i === 0) {
                         $product['new_order_quantity'] = $product['new_order_quantity'] + $product['moq'];
                         $order_products_one_priority[$key]['new_order_quantity'] = $product['new_order_quantity'];
-                        $new_order_products[$key]['new_order_quantity'] = $product['new_order_quantity'];
                         $amount_part = $product['moq'] * $product['price_rub'];
                         $i++;
                         if ($product['minimum_stock'] === 0) {
@@ -592,8 +591,6 @@ class ImportController extends Controller
                 $i = 0;
             }
             
-            
-            dd($order_products_one_priority);
             foreach ($order_products_one_priority as $key => $product) {
                 $new_order_products[$key]['new_order_quantity'] = $product['new_order_quantity'];
                 $new_order_products[$key]['coef'] = $product['coef'];
