@@ -585,8 +585,9 @@ class ImportController extends Controller
                 $new_order_amount = $new_order_amount + $amount_part;
                 $i = 0;
                 $ii++;
+                dd(($new_order_amount <= $amount) && ($min_coef < 1));
             }
-            dd($ii);
+            
             
             
             foreach ($order_products_one_priority as $key => $product) {
