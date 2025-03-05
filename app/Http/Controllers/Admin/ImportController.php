@@ -819,6 +819,12 @@ class ImportController extends Controller
         
         $order_sheet->setCellValue('E' . $count+2, '=Сумм(E3:E' . $count . ')');
 
+        $order_sheet->getColumnDimension('A')->setAutoSize(true);
+        $order_sheet->getColumnDimension('B')->setAutoSize(true);
+        $order_sheet->getColumnDimension('C')->setAutoSize(true);
+        $order_sheet->getColumnDimension('D')->setAutoSize(true);
+        $order_sheet->getColumnDimension('E')->setAutoSize(true);
+
         // Сохраняем файл в память
         $writer = new Xlsx($order_spreadsheet);
         ob_start();
