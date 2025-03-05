@@ -587,7 +587,7 @@ class ImportController extends Controller
                 $ii++;
                 
             }
-            dd($ii);
+            dd($new_order_amount);
             
             
             foreach ($order_products_one_priority as $key => $product) {
