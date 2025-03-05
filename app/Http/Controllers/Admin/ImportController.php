@@ -556,9 +556,9 @@ class ImportController extends Controller
             $firstElement = reset($order_products_one_priority);
             $min_coef = $firstElement['coef'];
 
-
+            $ii = 0;
             while (($new_order_amount <= $amount) && ($min_coef < 1)) {
-                $i = 0; $ii = 0;
+                $i = 0; 
                 foreach ($order_products_one_priority as $key => $product) {
                     if ($i === 0) {
                         if ($product['coef'])
@@ -585,9 +585,9 @@ class ImportController extends Controller
                 $new_order_amount = $new_order_amount + $amount_part;
                 $i = 0;
                 $ii++;
-                dd(($new_order_amount <= $amount) && ($min_coef < 1));
+                
             }
-            
+            dd($ii);
             
             
             foreach ($order_products_one_priority as $key => $product) {
