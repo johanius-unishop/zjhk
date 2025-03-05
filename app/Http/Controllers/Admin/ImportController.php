@@ -566,7 +566,6 @@ class ImportController extends Controller
                 $i = 0; 
                 foreach ($order_products_one_priority as $key => $product) {
                     if ($i === 0) {
-                        if ($product['coef'])
                         $product['new_order_quantity'] = $product['new_order_quantity'] + $product['moq'];
                         $order_products_one_priority[$key]['new_order_quantity'] = $product['new_order_quantity'];
                         $new_order_products[$key]['new_order_quantity'] = $product['new_order_quantity'];
