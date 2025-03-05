@@ -581,7 +581,7 @@ class ImportController extends Controller
 
                 $firstElement = reset($order_products_one_priority);
                 $min_coef = $firstElement['coef'];
-
+                dd($min_coef);
                 $new_order_amount = $new_order_amount + $amount_part;
                 $i = 0;
             }
