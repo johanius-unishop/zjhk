@@ -558,7 +558,6 @@ class ImportController extends Controller
 
 
             while ($new_order_amount <= $amount && $min_coef < 1) {
-                dd($min_coef);
                 $i = 0;
                 foreach ($order_products_one_priority as $key => $product) {
                     if ($i === 0) {
