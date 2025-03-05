@@ -554,9 +554,10 @@ class ImportController extends Controller
             });
 
             $firstElement = reset($order_products_one_priority);
-            dd ($firstElement);
+            $min_coef = $firstElement['coef'];
+            dd($min_coef);
             
-            while ($new_order_amount <= $amount) {
+            while ($new_order_amount <= $amount && $min_coef < 1) {
                 $i = 0;
                 foreach ($order_products_one_priority as $key => $product) {
                     if ($i === 0) {
@@ -577,6 +578,9 @@ class ImportController extends Controller
                 uasort($order_products_one_priority, function($a, $b) {
                     return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
                 });
+
+                $firstElement = reset($order_products_one_priority);
+                $min_coef = $firstElement['coef'];
 
                 $new_order_amount = $new_order_amount + $amount_part;
                 $i = 0;
