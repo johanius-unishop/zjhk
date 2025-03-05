@@ -579,14 +579,14 @@ class ImportController extends Controller
                     return $a['coef'] <=> $b['coef']; // Сортировка по возрастанию в поле coef
                 });
 
-                $firstElement = reset($order_products_one_priority);
+                $firstElement = array_values($order_products_one_priority)[0];
                 $min_coef = $firstElement['coef'];
                 
                 $new_order_amount = $new_order_amount + $amount_part;
                 $i = 0;
                 $ii++;
-                dd($new_order_amount . ' ' . $min_coef);
             }
+            dd($ii);
             
             
             foreach ($order_products_one_priority as $key => $product) {
