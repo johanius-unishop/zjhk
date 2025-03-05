@@ -592,6 +592,13 @@ class ImportController extends Controller
                 $new_order_amount = $new_order_amount + $amount_part;
                 $i = 0;
             }
+            
+            
+            dd($order_products_one_priority);
+            foreach ($order_products_one_priority as $key => $product) {
+                $new_order_products[$key]['new_order_quantity'] = $product['new_order_quantity'];
+                $new_order_products[$key]['coef'] = $product['coef'];
+            }
         }
         $list_order_products = array_filter($new_order_products, function($product) {
             return $product['new_order_quantity'] > 0;
