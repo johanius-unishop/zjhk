@@ -5,9 +5,9 @@
             <div class="header__contacts">
                <div class="header__phone-wrapper">
                   <a class="header__phone-link" href="tel:+78122008275">
-                     <img src="img/icons/phone-stroke.svg" alt="телефон">
+                     <img src="images/icons/phone-stroke.svg" alt="телефон">
                      <span>+7 (812) 200 82 75</span>
-                     <img src="img/icons/arrow-down.svg" alt="список телефонов">
+                     <img src="images/icons/arrow-down.svg" alt="список телефонов">
                   </a>
                   <ul class="header__submenu">
                      <li><a href="tel:+78122008276">+7 (812) 200 82 76</a></li>
@@ -27,7 +27,7 @@
                   <li class="header__nav-item">
                      <a href="#" class="header__nav-link">
                         <span>Покупателям</span>
-                        <img src="img/icons/arrow-down.svg" alt="список покупателям">
+                        <img src="images/icons/arrow-down.svg" alt="список покупателям">
                      </a>
                      <ul class="header__submenu">
                         <li><a href="#">Юридическим лицам</a></li>
@@ -37,7 +37,7 @@
                   <li class="header__nav-item">
                      <a href="#" class="header__nav-link">
                         <span>Полезное</span>
-                        <img src="img/icons/arrow-down.svg" alt="список полезное">
+                        <img src="images/icons/arrow-down.svg" alt="список полезное">
                      </a>
                      <ul class="header__submenu">
                         <li><a href="#">Документация</a></li>
@@ -48,7 +48,7 @@
                   </li>
                   <li class="header__nav-item">
                      <a href="#" class="header__nav-link"><span>Помощь</span>
-                        <img src="img/icons/arrow-down.svg" alt="список помощь">
+                        <img src="images/icons/arrow-down.svg" alt="список помощь">
                      </a>
                      <ul class="header__submenu">
                         <li><a href="#">Вопрос-Ответ</a></li>
@@ -67,7 +67,7 @@
       <div class="header__container container">
          <div class="header__bottom-wrapper">
             <a href="#" class="header__logo-link">
-               <img src="img/icons/logo.svg" alt="логотип" class="header__logo">
+               <img src="images/icons/logo.svg" alt="логотип" class="header__logo">
             </a>
             <div class="header__search-wrapper">
                <button class="header__catalogue-btn btn">
@@ -82,7 +82,7 @@
                   <input type="search" name="search" id="search" placeholder="Поиск по каталогу" autocomplete="off"
                      class="header__search-input">
                   <button class="header__search-submit">
-                     <img src="img/icons/zoom-glass.svg" alt="поиск">
+                     <img src="images/icons/zoom-glass.svg" alt="поиск">
                   </button>
                   <div id="search__result" class="header__result" style="display: none">
                      <ul class="header__result-wrapper">
@@ -99,8 +99,8 @@
                                  <div>
                                     <img src="img/products/item_photo.png" alt="товар">
                                     <button>
-                                       <img src="img/icons/label-gray.svg" alt="избранное">
-                                       <img src="img/icons/bookmark.svg" style="display: none" alt="избранное">
+                                       <img src="images/icons/label-gray.svg" alt="избранное">
+                                       <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
                                     </button>
                                  </div>
                                  <div class="product__title-container">
@@ -134,8 +134,8 @@
                                  <div>
                                     <img src="img/products/item_photo.png" alt="товар">
                                     <button>
-                                       <img src="img/icons/label-gray.svg" alt="избранное">
-                                       <img src="img/icons/bookmark.svg" style="display: none" alt="избранное">
+                                       <img src="images/icons/label-gray.svg" alt="избранное">
+                                       <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
                                     </button>
                                  </div>
                                  <div class="product__title-container">
@@ -169,8 +169,8 @@
                                  <div>
                                     <img src="img/products/item_photo.png" alt="товар">
                                     <button>
-                                       <img src="img/icons/label-gray.svg" alt="избранное">
-                                       <img src="img/icons/bookmark.svg" style="display: none" alt="избранное">
+                                       <img src="images/icons/label-gray.svg" alt="избранное">
+                                       <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
                                     </button>
                                  </div>
                                  <div class="product__title-container">
@@ -204,8 +204,8 @@
                                  <div>
                                     <img src="img/products/item_photo.png" alt="товар">
                                     <button>
-                                       <img src="img/icons/label-gray.svg" alt="избранное">
-                                       <img src="img/icons/bookmark.svg" style="display: none" alt="избранное">
+                                       <img src="images/icons/label-gray.svg" alt="избранное">
+                                       <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
                                     </button>
                                  </div>
                                  <div class="product__title-container">
@@ -239,8 +239,8 @@
                                  <div>
                                     <img src="img/products/item_photo.png" alt="товар">
                                     <button>
-                                       <img src="img/icons/label-gray.svg" alt="избранное">
-                                       <img src="img/icons/bookmark.svg" style="display: none" alt="избранное">
+                                       <img src="images/icons/label-gray.svg" alt="избранное">
+                                       <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
                                     </button>
                                  </div>
                                  <div class="product__title-container">
@@ -270,9 +270,9 @@
                         <div class="catalogue__wrapper">
                            <div class="catalogue__desc">
                               <p>
-                                 <img src="img/icons/adapter.svg" alt="адаптер">
+                                 <img src="images/icons/adapter.svg" alt="адаптер">
                                  <span>Промышленные прямоугольные разъёмы</span>
-                                 <img src="img/icons/arrow-blue-right.svg" alt="стрелка">
+                                 <img src="images/icons/arrow-blue-right.svg" alt="стрелка">
                               </p>
                            </div>
                            <div class="catalogue__content">
@@ -406,33 +406,33 @@
                <ul class="header__actions-list">
                   <li class="header__actions-item">
                      <a data-modal-link="account" href="#" style="display: flex">
-                        <img src="img/icons/login.svg" alt="Логин">
+                        <img src="images/icons/login.svg" alt="Логин">
                         <span>Войти</span>
                      </a>
                      <span style="display: none">11</span>
                      <a style="display: none" href="#">
-                        <img src="img/icons/account.svg" alt="Аккаунт">
+                        <img src="images/icons/account.svg" alt="Аккаунт">
                         <span>Александр</span>
                      </a>
                   </li>
                   <li class="header__actions-item">
                      <span style="display: none">11</span>
                      <a href="#">
-                        <img src="img/icons/box-stroke.svg" alt="Заказы">
+                        <img src="images/icons/box-stroke.svg" alt="Заказы">
                         <span>Заказы</span>
                      </a>
                   </li>
                   <li class="header__actions-item">
                      <span style="display: none">33</span>
                      <a href="#">
-                        <img src="img/icons/bookmark.svg" alt="Избранное">
+                        <img src="images/icons/bookmark.svg" alt="Избранное">
                         <span>Избранное</span>
                      </a>
                   </li>
                   <li class="header__actions-item">
                      <span style="display: none">5</span>
                      <a href="#">
-                        <img src="img/icons/cart.svg" alt="Корзина">
+                        <img src="images/icons/cart.svg" alt="Корзина">
                         <span>Корзина</span>
                      </a>
                   </li>
