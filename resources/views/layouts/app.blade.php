@@ -30,7 +30,7 @@
                                 @csrf <!-- Не забудьте добавить токен CSRF -->
                             <div class="modal__input-container">
                                 <div>
-                                    <label for="modal-email" class="visually-hidden"></label>
+                                    <label for="input-email" class="visually-hidden"></label>
                                     <input type="email" id="input-email" name="input-email" class="modal__input"
                                         placeholder="Введите email" required autocomplete="username">
                                     <p class="modal__error" aria-live="polite">
@@ -38,7 +38,7 @@
                                     </p>
                                 </div>
                                 <div>
-                                    <label for="modal-password" class="visually-hidden"></label>
+                                    <label for="input-password" class="visually-hidden"></label>
                                     <input type="password" id="input-password" name="input-password" placeholder="Введите пароль" autocomplete="current-password">
                                     
                                     <button type="button" id="toggle-password" class="password-toggle">
