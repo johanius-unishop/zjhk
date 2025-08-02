@@ -36,21 +36,17 @@ class AuthenticatedSessionController extends Controller
     {
         App::setLocale('ru'); // установка локали
         
-        // Получаем валидные данные из запроса
-        $credentials = $request->validated();
-    
-        // Попытка авторизоваться
+        $credentials = $request->only('input-email', 'input-password');
+
         if (!Auth::attempt($credentials)) {
+            // Запись ошибки в сессию
             return back()
-                ->withErrors(['input-email' => 'Неправильный логин или пароль'])
-                ->onlyInput('input-email')
-                ->withInput(); // Возвращаем заполненные данные обратно
+                ->withErrors(['input-email' => 'Неверный адрес электронной почты или пароль'])
+                ->withInput(request(['input-email']));
         }
-    
-        // Аутентификация прошла успешно
-        $request->session()->regenerate(); // Обновляем идентификатор сессии для защиты от атаки фиксации сессии
-        //auth()->user()->updateLastLoggedInAt(); // Можно обновить метку последнего входа (если такая логика предусмотрена)
-    
+
+        request()->session()->regenerate();
+
         return redirect()->intended('/');
     }
 
