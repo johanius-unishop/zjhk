@@ -403,48 +403,44 @@
                </div>
             </div>
             <nav class="header__actions">
-               <ul class="header__actions-list">
-                  <li class="header__actions-item">
-                     <a data-modal-link="account" href="#" style="display: flex">
-                        <img src="images/icons/login.svg" alt="Логин">
-                        <span>Войти</span>
-                     </a>
-                     @if(auth()->check())
-                     <span style="display: none">11</span>
-                     <a style="display: none" href="#">
-                        <img src="images/icons/account.svg" alt="Аккаунт">
-                        <span>Александр</span>
-                     </a>
-                    @else
-                    <a data-modal-link="account" href="#" style="display: flex">
-                        <img src="images/icons/login.svg" alt="Логин">
-                        <span>Войти</span>
-                     </a>
-                    @endif
-                     
-                  </li>
-                  <li class="header__actions-item">
-                     <span style="display: none">11</span>
-                     <a href="#">
-                        <img src="images/icons/box-stroke.svg" alt="Заказы">
-                        <span>Заказы</span>
-                     </a>
-                  </li>
-                  <li class="header__actions-item">
-                     <span style="display: none">33</span>
-                     <a href="#">
-                        <img src="images/icons/bookmark.svg" alt="Избранное">
-                        <span>Избранное</span>
-                     </a>
-                  </li>
-                  <li class="header__actions-item">
-                     <span style="display: none">5</span>
-                     <a href="#">
-                        <img src="images/icons/cart.svg" alt="Корзина">
-                        <span>Корзина</span>
-                     </a>
-                  </li>
-               </ul>
+                <ul class="header__actions-list">
+                    <li class="header__actions-item">
+                        @if(auth()->check())
+                        <span style="display: none">11</span>
+                        <a style="display: none" href="#">
+                            <img src="images/icons/account.svg" alt="Аккаунт">
+                            <span>Александр</span>
+                        </a>
+                        @else
+                        <a data-modal-link="account" href="#" style="display: flex">
+                            <img src="images/icons/login.svg" alt="Логин">
+                            <span>Войти</span>
+                        </a>
+                        @endif
+                        
+                    </li>
+                    <li class="header__actions-item">
+                        <span style="display: none">11</span>
+                        <a href="#">
+                            <img src="images/icons/box-stroke.svg" alt="Заказы">
+                            <span>Заказы</span>
+                        </a>
+                    </li>
+                    <li class="header__actions-item">
+                        <span style="display: none">33</span>
+                        <a href="#">
+                            <img src="images/icons/bookmark.svg" alt="Избранное">
+                            <span>Избранное</span>
+                        </a>
+                    </li>
+                    <li class="header__actions-item">
+                        <span style="display: none">5</span>
+                        <a href="#">
+                            <img src="images/icons/cart.svg" alt="Корзина">
+                            <span>Корзина</span>
+                        </a>
+                    </li>
+                </ul>
             </nav>
          </div>
       </div>
