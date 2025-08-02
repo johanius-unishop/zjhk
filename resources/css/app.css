@@ -102,21 +102,21 @@ input[type=radio i], input[type=checkbox i] {
 
 @font-face {
   font-family: "PT Root UI";
-  src: url("/fonts/PTRootUI-Regular.woff2") format("woff2");
+  src: url("fonts/PTRootUI-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "PT Root UI";
-  src: url("/fonts/PTRootUI-Medium.woff2") format("woff2");
+  src: url("fonts/PTRootUI-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "PT Root UI";
-  src: url("/fonts/PTRootUI-Bold.woff2") format("woff2");
+  src: url("fonts/PTRootUI-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
