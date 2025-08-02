@@ -1,57 +1,83 @@
-
-<footer class="bg-gray-800 py-8">
-    <div class="container mx-auto px-4">
-        <nav aria-label="Footer Navigation" class="flex justify-between">
-            <div class="md:w-1/3 mb-6 md:mb-0">
-                <h4 class="text-white text-lg font-bold mb-4">COMPANY LOGO</h4>
-                <p class="text-gray-400 bottom-0">
-                    © 2024 ООО «КевТек»
-                </p>
+<footer id="footer" class="footer">
+   <div class="footer__container container">
+      <div class="footer__subscribe-wrapper">
+         <p class="footer__subscribe-text">Подпишитесь на рассылку, чтобы быть в курсе новых поступлений и актуальных
+            новостей на рынке промышленного оборудования!
+         </p>
+         <form action="#" class="footer__subscribe-form">
+            <input type="email" class="footer__subscribe-input" placeholder="Введите email">
+            <button type="submit" class="footer__subscribe-btn"><span>Подписаться</span>
+            <img src="img/icons/bell.svg" alt="подписаться">
+            </button>
+         </form>
+      </div>
+      <div class="footer__content">
+         <div class="footer__about">
+            <img src="img/icons/logo.svg" alt="лого">
+            <p class="footer__address">г. Всеволожск, ул. Аэропортовская, 14</p>
+         </div>
+         <nav class="footer__nav">
+            <div class="footer__connect">
+               <h5 class="footer__title">Мы на связи</h5>
+               <div class="footer__connect-wrapper">
+                  <a href="tel:+78122008275">
+                     <img src="img/icons/phone-stroke.svg" alt="телефон">
+                     <span>+7 812 200 82 75</span>
+                  </a>
+                  <a href="mailto:info@kevtek.ru">
+                     <img src="img/icons/envelope-stroke.svg" alt="почта">
+                     <span>info@kevtek.ru</span>
+                  </a>
+                  <a href="geo:59.99512081700448,30.641846915269824">
+                     <img src="img/icons/location.svg" alt="адрес">
+                     <p>г. Всеволожск ул. Аэропортовская, 14</p>
+                  </a>
+               </div>
+               <button class="footer__write-btn">Написать нам</button>
             </div>
-            <div class="md:w-1/3 mb-6 md:mb-0">
-                <h4 class="text-white text-lg font-bold mb-4">Компания</h4>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-gray-400 hover:text-white">Наши преимущества</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Бренды</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Новости</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Контакты</a></li>
-                </ul>
+            <div class="footer__messenger">
+               <h5 class="footer__title">Мессенджеры</h5>
+               <div class="footer__messenger-wrapper">
+                  <a href="https://whatsapp.com/"><img src="img/icons/whatsapp.svg" alt="whatsapp"></a>
+                  <a href="https://www.viber.com/"><img src="img/icons/viber.svg" alt="viber"></a>
+                  <a href="https://telegram.org/"><img src="img/icons/telegram.svg" alt="telegram"></a>
+               </div>
             </div>
-            <div class="md:w-1/3 mb-6 md:mb-0">
-                <h4 class="text-white text-lg font-bold mb-4">Покупателям</h4>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-gray-400 hover:text-white">Каталог</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Полезные статьи</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Доставка и оплата</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Вопросы и ответы</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Обратная связь</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Возврат или обмен товара</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Гарантия</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Документация</a></li>
-                </ul>
+            <div class="footer__info">
+               <h5 class="footer__title">Информация</h5>
+               <ul class="footer__info-list">
+                  <li><a href="#">О компании</a></li>
+                  <li><a href="#">Новости</a></li>
+                  <li><a href="#">Документация</a></li>
+                  <li><a href="#">Статьи</a></li>
+                  <li><a href="#">Бренды</a></li>
+               </ul>
             </div>
-            <div class="md:w-1/3">
-                <h4 class="text-white text-lg font-bold mb-4">Контакты</h4>
-                <ul class="list-unstyled">
-                    <li class="mb-2">
-                        <a href="tel:+78122008275" class="text-gray-400 hover:text-white">
-                            <i class="fa-solid fa-phone mr-2"></i> +7 812 200-82-75
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mailto:info@kevtek.ru" class="text-gray-400 hover:text-white">
-                            <i class="fa-solid fa-envelope mr-2"></i> info@kevtek.ru
-                        </a>
-                    </li>
-                </ul>
+            <div class="footer__buyers">
+               <h5 class="footer__title">Покупателям</h5>
+               <ul class="footer__buyers-list">
+                  <li><a href="#">Юридическим лицам</a></li>
+                  <li><a href="#">Физическим лицам</a></li>
+                  <li><a href="#">Обратная связь</a></li>
+                  <li><a href="#">Контакты</a></li>
+                  <li><a href="#">Публичная оферта</a></li>
+               </ul>
             </div>
-        </nav>
-        <address class="mt-8 text-center">
-            <p class="text-gray-400">
-                ООО «КевТек»<br>
-                Санкт-Петербург, ул. Правды, д. 12<br>
-                ИНН: 1234567890
+         </nav>
+      </div>
+   </div>
+   <div class="footer__copyright">
+      <div class="footer__container container">
+         <div class="footer__copyright-wrapper">
+            <p class="footer__copyright-text">
+               © 2023-2024 ООО «КевТек»
             </p>
-        </address>
-    </div>
+            <p class="footer__agreement">
+               Вы принимаете условия <a href="#">политики в отношении обработки персональных данных</a>  и <a
+                  href="#"> пользовательского соглашения,</a> когда оставляете свои данные в формах обратной связи на
+               kevtek.ru
+            </p>
+         </div>
+      </div>
+   </div>
 </footer>

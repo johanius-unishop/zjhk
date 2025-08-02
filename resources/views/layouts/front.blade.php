@@ -13,6 +13,8 @@
 <body class="body">
     <div class="app__wrapper">
         @include('layouts/header')
+
+        @include('layouts/footer')
     </div>
 </body>
 </html>
