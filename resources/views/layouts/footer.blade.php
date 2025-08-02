@@ -7,13 +7,13 @@
          <form action="#" class="footer__subscribe-form">
             <input type="email" class="footer__subscribe-input" placeholder="Введите email">
             <button type="submit" class="footer__subscribe-btn"><span>Подписаться</span>
-            <img src="img/icons/bell.svg" alt="подписаться">
+            <img src="images/icons/bell.svg" alt="подписаться">
             </button>
          </form>
       </div>
       <div class="footer__content">
          <div class="footer__about">
-            <img src="img/icons/logo.svg" alt="лого">
+            <img src="images/icons/logo.svg" alt="лого">
             <p class="footer__address">г. Всеволожск, ул. Аэропортовская, 14</p>
          </div>
          <nav class="footer__nav">
@@ -21,15 +21,15 @@
                <h5 class="footer__title">Мы на связи</h5>
                <div class="footer__connect-wrapper">
                   <a href="tel:+78122008275">
-                     <img src="img/icons/phone-stroke.svg" alt="телефон">
+                     <img src="images/icons/phone-stroke.svg" alt="телефон">
                      <span>+7 812 200 82 75</span>
                   </a>
                   <a href="mailto:info@kevtek.ru">
-                     <img src="img/icons/envelope-stroke.svg" alt="почта">
+                     <img src="images/icons/envelope-stroke.svg" alt="почта">
                      <span>info@kevtek.ru</span>
                   </a>
                   <a href="geo:59.99512081700448,30.641846915269824">
-                     <img src="img/icons/location.svg" alt="адрес">
+                     <img src="images/icons/location.svg" alt="адрес">
                      <p>г. Всеволожск ул. Аэропортовская, 14</p>
                   </a>
                </div>
@@ -38,9 +38,9 @@
             <div class="footer__messenger">
                <h5 class="footer__title">Мессенджеры</h5>
                <div class="footer__messenger-wrapper">
-                  <a href="https://whatsapp.com/"><img src="img/icons/whatsapp.svg" alt="whatsapp"></a>
-                  <a href="https://www.viber.com/"><img src="img/icons/viber.svg" alt="viber"></a>
-                  <a href="https://telegram.org/"><img src="img/icons/telegram.svg" alt="telegram"></a>
+                  <a href="https://whatsapp.com/"><img src="images/icons/whatsapp.svg" alt="whatsapp"></a>
+                  <a href="https://www.viber.com/"><img src="images/icons/viber.svg" alt="viber"></a>
+                  <a href="https://telegram.org/"><img src="images/icons/telegram.svg" alt="telegram"></a>
                </div>
             </div>
             <div class="footer__info">
