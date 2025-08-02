@@ -408,7 +408,7 @@
                         @auth('admin')
                             <a href="#" style="display: inline-flex">
                                 <img src="images/icons/account.svg" alt="Аккаунт">
-                                <span>{{ Auth::guard('admin')->user()->name }}</span>
+                                <span>{{ Auth::->user()->name }}</span>
                             </a>
                         @else
                             <a data-modal-link="account" href="#" style="display: inline-flex">
