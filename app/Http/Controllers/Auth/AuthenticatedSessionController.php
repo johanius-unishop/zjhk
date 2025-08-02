@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -32,22 +33,25 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request): JsonResponse
     {
         App::setLocale('ru'); // установка локали
         
         $credentials = $request->only('input-email', 'input-password');
-
-        if (!Auth::attempt($credentials)) {
-            // Запись ошибки в сессию
-            return back()
-                ->withErrors(['input-email' => 'Неверный адрес электронной почты или пароль'])
-                ->withInput(request(['input-email']));
-        }
-
-        request()->session()->regenerate();
-
-        return redirect()->intended('/');
+        
+            if (!Auth::attempt($credentials)) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => [
+                        'input-email' => ['Неверный адрес электронной почты или пароль']
+                    ]
+                ], 422); // Код статуса 422 значит, что есть ошибка валидации
+            }
+        
+            request()->session()->regenerate();
+        
+            return response()->json(['success' => true], 200);
+        
     }
 
     /**
