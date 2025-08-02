@@ -409,11 +409,19 @@
                         <img src="images/icons/login.svg" alt="Логин">
                         <span>Войти</span>
                      </a>
+                     @if(auth()->check())
                      <span style="display: none">11</span>
                      <a style="display: none" href="#">
                         <img src="images/icons/account.svg" alt="Аккаунт">
                         <span>Александр</span>
                      </a>
+                    @else
+                    <a data-modal-link="account" href="#" style="display: flex">
+                        <img src="images/icons/login.svg" alt="Логин">
+                        <span>Войти</span>
+                     </a>
+                    @endif
+                     
                   </li>
                   <li class="header__actions-item">
                      <span style="display: none">11</span>
