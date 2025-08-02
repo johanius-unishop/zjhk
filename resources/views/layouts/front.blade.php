@@ -12,7 +12,7 @@
 
 <body class="body">
     <div class="app__wrapper">
-        @include('header')
+        @include('layouts/header')
     </div>
 </body>
 </html>
