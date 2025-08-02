@@ -448,15 +448,15 @@
                <div class="header-mobile__top-wrapper">
                   <div class="header-mobile__contacts">
                      <a class="header-mobile__phone-link" href="tel:+78122008275">
-                        <img src="img/icons/phone-stroke.svg" alt="телефон">
+                        <img src="images/icons/phone-stroke.svg" alt="телефон">
                         <span>+7 (812) 200 82 75</span>
                      </a>
                      <a class="header-mobile__phone-link _last" href="tel:+78122008275">
-                        <img src="img/icons/phone-stroke.svg" alt="телефон">
+                        <img src="images/icons/phone-stroke.svg" alt="телефон">
                         <span>+7 (812) 200 82 75</span>
                      </a>
                      <a class="header-mobile__email-wrapper" href="mailto:info@kevtek.ru">
-                        <img src="img/icons/envelope-stroke.svg" alt="почта">
+                        <img src="images/icons/envelope-stroke.svg" alt="почта">
                         <span>info@kevtek.ru</span>
                      </a>
                   </div>
@@ -467,17 +467,17 @@
             <div class="header-mobile__container container">
                <div class="header-mobile__bottom-wrapper">
                   <a href="#" class="header-mobile__logo-link">
-                     <img src="img/icons/logo.svg" alt="логотип" class="header-mobile__logo">
+                     <img src="images/icons/logo.svg" alt="логотип" class="header-mobile__logo">
                   </a>
                   <div class="header-mobile__search-wrapper">
                      <a href="#" class="header-mobile__catalogue-btn btn">
-                        <img src="img/icons/catalog.svg" alt="каталог">
+                        <img src="images/icons/catalog.svg" alt="каталог">
                      </a>
                      <div class="header-mobile__search-field">
                         <input type="mobile-search" name="mobile-search" id="mobile-search" placeholder="Поиск по каталогу"
                            autocomplete="off" class="header-mobile__search-input">
                         <button class="header-mobile__search-submit">
-                           <img src="img/icons/zoom-glass.svg" alt="поиск">
+                           <img src="images/icons/zoom-glass.svg" alt="поиск">
                         </button>
                         <div id="header-mobile__result" class="header-mobile__result" style="display: none">
                            <ul class="header-mobile__result-wrapper">
@@ -540,3 +540,88 @@
             </div>
          </div>
       </div>
+      <nav class="mobile__nav-footer">
+   <div class="mobile__container container">
+      <ul class="mobile__actions-list">
+         <li class="mobile__actions-item">
+            <span style="display: none">5</span>
+            <a href="#">
+               <img src="img/icons/home.svg" alt="Главная">
+               <span>Главная</span>
+            </a>
+         </li>
+         <li class="mobile__actions-item">
+            <a href="#">
+               <img src="img/icons/catalog-black.svg" alt="Каталог">
+               <span>Каталог</span>
+            </a>
+         </li>
+         <li class="mobile__actions-item">
+            <span style="display: none">5</span>
+            <a href="#">
+               <img src="img/icons/cart.svg" alt="Корзина">
+               <span>Корзина</span>
+            </a>
+         </li>
+
+         <li class="mobile__actions-item">
+            <a data-modal-link="account" href="#" style="display: flex">
+               <img src="img/icons/login.svg" alt="Логин">
+               <span>Кабинет</span>
+            </a>
+            <span style="display: none">11</span>
+            <a style="display: none" href="#">
+               <img src="img/icons/account.svg" alt="Аккаунт">
+               <span>Александр</span>
+            </a>
+         </li>
+         <li class="mobile__actions-item">
+            <button class="mobile__side-btn">
+               <img src="img/icons/menu-black.svg" alt="меню">
+               <span>Меню</span>
+            </button>
+         </li>
+      </ul>
+   </div>
+   <div id="mobile__side" class="mobile__side-overlay">
+      <div class="mobile__side-content">
+         <div class="mobili__side-top">
+            <div class="mobile__side-left">
+               <div>
+                  <span style="display: none">5</span>
+                  <a href="#" data-link="close" >
+                     <img src="img/icons/box-stroke.svg" alt="заказы">
+                     <span>Заказы</span>
+                  </a>
+               </div>
+               <div>
+                  <span style="display: none">5</span>
+                  <a href="#" data-link="close">
+                     <img src="img/icons/bookmark.svg" alt="избранное">
+                     <span>Избранное</span>
+                  </a>
+               </div>
+            </div>
+            <div class="mobile__side-right">
+               <button><img src="img/icons/plus.svg" alt="закрыть"></button>
+            </div>
+         </div>
+         <h3>Информация</h3>
+         <ul class="mobile__side-list">
+            <li><a href="#" data-link="close">О компании</a></li>
+            <li><a href="#" data-link="close">Новости</a></li>
+            <li><a href="#" data-link="close">Документация</a></li>
+            <li><a href="#" data-link="close">Статьи</a></li>
+            <li><a href="#" data-link="close">Бренды</a></li>
+         </ul>
+         <h3>Покупателям</h3>
+         <ul class="mobile__side-list">
+            <li><a href="#" data-link="close">Юридическим лицам</a></li>
+            <li><a href="#" data-link="close">Физическим лицам</a></li>
+            <li><a href="#" data-link="close">Обратная связь</a></li>
+            <li><a href="#" data-link="close">Контакты</a></li>
+            <li><a href="#" data-link="close">Публичная оферта</a></li>
+         </ul>
+      </div>
+   </div>
+</nav>
