@@ -89,38 +89,37 @@
 <div data-modal="account" class="modal">
    <div data-close="true" class="modal__overlay">
       <div class="modal__body">
-         <span data-close="true" class="modal__close">&#10006;</span>
+         <span data-close="true" class="modal__close">✖</span>
          <div class="modal__content">
             <h1 class="modal__title">Войти</h1>
-            <form action="#" class="modal__form">
+            <form method="POST" action="/login" class="modal__form">
+                @csrf <!-- Не забудьте добавить токен CSRF -->
                <div class="modal__input-container">
                   <div>
                      <label for="modal-email" class="visually-hidden"></label>
                      <input type="email" id="input-email" name="input-email" class="modal__input"
                         placeholder="Введите email" required autocomplete="username">
                      <p class="modal__error" aria-live="polite">
-                        <span hidden>Email содержит
-                           некорректные символы</span>
-
+                        <span hidden>{{ session('errors.input-email') ?? '' }}</span>
                      </p>
                   </div>
                   <div>
                      <label for="modal-password" class="visually-hidden"></label>
                      <input type="password" id="input-password" name="input-password" placeholder="Введите пароль" autocomplete="current-password">
-                  
+                     
                      <button type="button" id="toggle-password" class="password-toggle">
                         <img src="images/icons/password-eye-cross.svg" alt="Показать пароль">
                      </button>
-                     <p class="modal__error"><span hidden>Неверный логин или пароль</span></p>
+                     <p class="modal__error"><span hidden>{{ session('errors.input-password') ?? '' }}</span></p>
                   </div>
                </div>
                <div>
-                  <a href="#" class="modal__forget-password">Забыли пароль?</a>
+                  <a href="/forgot-password" class="modal__forget-password">Забыли пароль?</a>
                </div>
                <button data-close class="modal__btn">Войти</button>
             </form>
             <p class="modal__policy">
-               Нажимая кнопку «Войти», вы соглашаетесьc условиями <a href="#">политики конфиденциальности</a>
+               Нажимая кнопку «Войти», вы соглашаетесь c условиями <a href="#">политики конфиденциальности</a>
             </p>
          </div>
       </div>

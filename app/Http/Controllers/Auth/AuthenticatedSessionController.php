@@ -34,12 +34,24 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        App::setLocale('ru');
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard', absolute: false));
+        App::setLocale('ru'); // установка локали
+        
+        // Получаем валидные данные из запроса
+        $credentials = $request->validated();
+    
+        // Попытка авторизоваться
+        if (!Auth::attempt($credentials)) {
+            return back()
+                ->withErrors(['input-email' => 'Неправильный логин или пароль'])
+                ->onlyInput('input-email')
+                ->withInput(); // Возвращаем заполненные данные обратно
+        }
+    
+        // Аутентификация прошла успешно
+        $request->session()->regenerate(); // Обновляем идентификатор сессии для защиты от атаки фиксации сессии
+        //auth()->user()->updateLastLoggedInAt(); // Можно обновить метку последнего входа (если такая логика предусмотрена)
+    
+        return redirect()->intended('/');
     }
 
     /**

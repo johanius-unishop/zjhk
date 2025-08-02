@@ -104,7 +104,7 @@ Route::middleware('auth')->group(function () {
 });*/
 // require __DIR__ . '/api.php';
 require __DIR__ . '/auth.php';
-require __DIR__ . '/admin-auth.php';
+//Аутентификация админа......require __DIR__ . '/admin-auth.php';
 
 // //регистрация
 //     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
