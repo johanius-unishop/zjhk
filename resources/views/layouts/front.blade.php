@@ -10,6 +10,13 @@
     <title>1</title>
 </head>
 
+<body class="body">
+    <div class="app__wrapper">
+        @yield('header')
+    </div>
+</body>
+</html>
+{!!
 <body class="flex flex-col min-h-screen min-w-screen">
     <header class="py-4 bg-white">
         <div class="container mx-auto px-4 flex items-center">
@@ -123,6 +130,7 @@
             </div>
         </div>
     </footer>
+    !!}
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
