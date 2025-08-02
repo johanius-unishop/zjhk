@@ -15,7 +15,7 @@
                   </ul>
                </div>
                <a class="header__email-wrapper" href="mailto:info@kevtek.ru">
-                  <img src="img/icons/envelope-stroke.svg" alt="почта">
+                  <img src="images/icons/envelope-stroke.svg" alt="почта">
                   <span>info@kevtek.ru</span>
                </a>
             </div>
