@@ -109,7 +109,7 @@
                      <input type="password" id="input-password" name="input-password" placeholder="Введите пароль" autocomplete="current-password">
                   
                      <button type="button" id="toggle-password" class="password-toggle">
-                        <img src="./img/icons/password-eye-cross.svg" alt="Показать пароль">
+                        <img src="images/icons/password-eye-cross.svg" alt="Показать пароль">
                      </button>
                      <p class="modal__error"><span hidden>Неверный логин или пароль</span></p>
                   </div>
