@@ -12,7 +12,7 @@
 
 <body class="body">
     <div class="app__wrapper">
-        @yield('header')
+        @include('header')
     </div>
 </body>
 </html>
