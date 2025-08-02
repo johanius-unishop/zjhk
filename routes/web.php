@@ -2,27 +2,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-// use App\Http\Controllers\AdminOrderController;
-// use App\Http\Controllers\AdminProductController;
-// use App\Http\Controllers\ProductController;
-// use App\Http\Controllers\ProfileController;
-
-//use App\Http\Controllers\TestController;
-// use App\Http\Controllers\RegisteredUserController;
-// use App\Http\Controllers\SessionController;
-// use Illuminate\Foundation\Auth\EmailVerificationRequest;
-// use Illuminate\Support\Facades\Route;
-// use Symfony\Component\HttpFoundation\Request;
-// use App\Http\Middleware\CompleteProfile;
 use App\Http\Controllers\Front\{HomeController, PageController, NewsController, CategoryController, ProductController ,CartController , FaqController ,SearchController , VendorController ,ArticleController};
 Route::get('/', function () {
     return view('home');
 })->name('home');
-;
 
-
-
-//Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
 Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
 
@@ -38,13 +22,11 @@ Route::get('/product/{product}', [ProductController::class, 'testShow'])->name('
 Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
 
 Route::get('search', [SearchController::class, 'search'])->name('search');
-// Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
-// Производители
 Route::get('/vendors', [VendorController::class, 'index'])->name('vendors.index');
-//   Route::get('/vendors/{vendor}',   function (Vendor $vendor ), [VendorController::class, 'show'])->name('vendors.show');
+
   Route::get('/vendors/{vendor}', [VendorController::class, 'show'])->name('vendors.show');
 
-// Корзина и избранное
+
 Route::post('make_order', [CartController::class, 'make_order'])->name('make_order');
 Route::get('favorite', [CartController::class, 'show_favourites'])->name('favorite');
 
@@ -66,16 +48,6 @@ Route::prefix('/cart')->name('cart.')->group(function () {
 });
 
 
-
-
-
-
-
-
-
-
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -85,77 +57,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-/*Route::prefix('test')->name('test.')->group(function () {
-    Route::get('/test_vendor_product', [TestController::class, 'test_vendor_product'])->name('test_vendor_product');
-    Route::get('/test_currency_seed', [TestController::class, 'test_currency_seed'])->name('test_currency_seed');
-    Route::get('/product_composite', [TestController::class, 'product_composite'])->name('product_composite');
-    Route::get('/product_values', [TestController::class, 'product_values'])->name('product_values');
-    Route::get('/props_value_seed', [TestController::class, 'props_value_seed'])->name('props_value_seed');
 
-});*/
-// require __DIR__ . '/api.php';
 require __DIR__ . '/auth.php';
 //Аутентификация админа......require __DIR__ . '/admin-auth.php';
 
-// //регистрация
-//     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-//     Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
-//     Route::get('/login', [SessionController::class, 'create'])->name('login');
-//     Route::post('/login', [SessionController::class, 'store'])->name('login.store');
-//     Route::get('/logout', [SessionController::class, 'destroy'])->name('logout');
-
-// //Профиль
-// Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth', CompleteProfile::class])->name('profile');
-// //Заполнение профиля
-// Route::get('/complete-profile', [ProfileController::class, 'completeProfile'])->middleware(['auth'])->name('complete-profile');
-// Route::post('/complete-profile', [ProfileController::class, 'store'])->middleware(['auth'])->name('complete-profile.store');
-
-// Route::get('/email/verify', function () {
-//     return view('auth.verify-email');
-// })->middleware('auth')->name('verification.notice');
-
-// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-//     $request->fulfill();
-
-//     return redirect('/');
-// })->middleware(['auth', 'signed'])->name('verification.verify');
-
-// //админка
-// Route::get('/admin', function () {
-//     return view('admin.index');
-// })->name('admin');
 
 
-// Route::get('/products/{product}', [ProductController::class, 'show'])->name('product');
-
-// //Products
-
-// Route::prefix('admin')->name('admin.')->group(function () {
-//     //Products
-//     Route::get('/products', [AdminProductController::class, 'index'])->name('product.index');
-
-//     Route::get('/products/create', [AdminProductController::class, 'create'])->name('product.create');
-//     Route::post('/products', [AdminProductController::class, 'store'])->name('product.store');
-
-//     Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])->name('product.edit');
-//     Route::patch('/products/{product}/update', [AdminProductController::class, 'update'])->name('product.update');
-//     Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])->name('product.destroy');
-
-//     // Orders
-//     Route::get('/orders-manage', [AdminOrderController::class, 'index'])->name('orders.index');
-//     Route::get('/orders-manage/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
-//     Route::post('/orders-upload', [AdminOrderController::class, 'upload'])->name('orders.upload');
-//     Route::delete('/orders-manage/{order}', [AdminOrderController::class, 'destroy'])->name('orders.destroy');
-//     Route::post('/orders-manage/update-received', [AdminOrderController::class, 'updateReceived'])->name('orders.updateReceived');
-
-// });
 
