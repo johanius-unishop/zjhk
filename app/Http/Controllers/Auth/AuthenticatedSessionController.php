@@ -23,11 +23,7 @@ class AuthenticatedSessionController extends Controller
     {
         App::setLocale('ru');
         
-        // Получаем значение флага из таблицы настроек
-        $allowAdminRegistration = $this->loadAllowAdminRegistration();
-        $allowAdminLogin = $this->loadAllowAdminLogin();
-
-        return view('auth.login', compact('allowAdminRegistration', 'allowAdminLogin'));
+        return view('partials.login');
     }
 
     /**
