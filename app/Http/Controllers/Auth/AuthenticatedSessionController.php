@@ -33,23 +33,20 @@ class AuthenticatedSessionController extends Controller
     {
         App::setLocale('ru'); // установка локали
         
-        dd($request->all()); 
+        
         return redirect()->route('home');
         
-        /*$credentials = $request->only('input-email', 'input-password');
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) { // Попытка аутентификации
+            // Если проверка прошла успешно, перенаправляем на домашнюю страницу
+            return redirect()->route('home');
+        }
+        //dd($request->all()); 
+          
         
-            if (!Auth::attempt($credentials)) {
-                return response()->json([
-                    'success' => false,
-                    'errors' => [
-                        'input-email' => ['Неверный адрес электронной почты или пароль']
-                    ]
-                ], 422); // Код статуса 422 значит, что есть ошибка валидации
-            }
         
-            request()->session()->regenerate();
-        
-            return response()->json(['success' => true], 200);*/
+        //return redirect()->route('home'); 
         
     }
 
