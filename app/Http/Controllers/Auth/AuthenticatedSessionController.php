@@ -37,12 +37,13 @@ class AuthenticatedSessionController extends Controller
         return redirect()->route('home');
         
         $credentials = $request->only('email', 'password');
-
+        dd(Auth::attempt($credentials)); 
         if (Auth::attempt($credentials)) { // Попытка аутентификации
             // Если проверка прошла успешно, перенаправляем на домашнюю страницу
+
             return redirect()->route('home');
         }
-        //dd($request->all()); 
+        
           
         
         
