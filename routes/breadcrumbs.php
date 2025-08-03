@@ -14,6 +14,12 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Главная', route('home'));
 });
 
+// Home > About
+Breadcrumbs::for('about', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('О компании', route('front.about.index'));
+});
+
 // Home > Catalog
 Breadcrumbs::for('catalog', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

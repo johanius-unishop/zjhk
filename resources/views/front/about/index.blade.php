@@ -6,12 +6,7 @@
 <main>
          <section class="about-company">
             <div class="about-company__container container">
-               <div class="breadcrumbs">
-                  <ul class="breadcrumbs__list">
-                     <li><a href="#">Главная</a><img src="/images/icons/arrow-right.svg" alt="стрелка"></li>
-                     <li><span>О компании</span></li>
-                  </ul>
-               </div>
+            @include('components.breadcrumbs')
                <div class="about-company__content">
                   <h2 class="about-company__title">О компании</h2>
                   <div class="about-company__img-container">
