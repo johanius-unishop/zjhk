@@ -15,7 +15,7 @@
                <div class="about-company__content">
                   <h2 class="about-company__title">О компании</h2>
                   <div class="about-company__img-container">
-                     <img src="img/content/factory.jpg" alt="компания">
+                     <img src="/images/content/factory.jpg" alt="компания">
                      <div class="about-company__text-content">
                         <p class="about-company__text">Обеспечить российские предприятия качественной электротехнической
                            продукцией в кратчайшие сроки</p>
