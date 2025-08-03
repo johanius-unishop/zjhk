@@ -6723,7 +6723,7 @@ select {
 }
 
 .about-company__quote-container::before {
-  content: url("../images/icons/quotation-mark.png");
+  background-image: url('../images/icons/tick-black.svg');
   left: -2px;
   bottom: 100%;
   transform: translateY(50%);
