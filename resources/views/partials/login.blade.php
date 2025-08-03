@@ -53,8 +53,7 @@
 
     <script>
     $(function() {
-        $('#loginModal').removeClass("modal");
-        $('#loginModal').addClass("modal _open");
+        $('#loginModal').addClass("_open");
         
     });
     </script>
