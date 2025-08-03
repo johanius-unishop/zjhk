@@ -50,11 +50,12 @@
 @parent
 
 @if($errors->has('email') || $errors->has('password'))
-
     <script>
-        $(document).ready(function() {
-            $('#loginModal').addClass("_open");
+    $(function() {
+        $('#loginModal').modal({
+            show: true
         });
+    });
     </script>
 @endif
 @endsection
