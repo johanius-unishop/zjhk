@@ -66,7 +66,7 @@
    <div class="header__bottom">
       <div class="header__container container">
          <div class="header__bottom-wrapper">
-            <a href="{{ route('about') }}" class="header__logo-link">
+            <a href="{{ route('home') }}" class="header__logo-link">
                <img src="images/icons/logo.svg" alt="логотип" class="header__logo">
             </a>
             <div class="header__search-wrapper">
@@ -465,7 +465,7 @@
          <div class="header-mobile__bottom">
             <div class="header-mobile__container container">
                <div class="header-mobile__bottom-wrapper">
-                  <a href="#" class="header-mobile__logo-link">
+                  <a href="{{ route('home') }} class="header-mobile__logo-link">
                      <img src="images/icons/logo.svg" alt="логотип" class="header-mobile__logo">
                   </a>
                   <div class="header-mobile__search-wrapper">
