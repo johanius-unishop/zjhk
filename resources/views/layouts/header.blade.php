@@ -22,7 +22,7 @@
             <nav class="header__nav-pages">
                <ul class="header__nav-list">
                   <li class="header__nav-item">
-                     <a href="#" class="header__nav-link">О компании</a>
+                     <a href="{{ route('about') }}" class="header__nav-link">О компании</a>
                   </li>
                   <li class="header__nav-item">
                      <a href="#" class="header__nav-link">
@@ -607,7 +607,7 @@
          </div>
          <h3>Информация</h3>
          <ul class="mobile__side-list">
-            <li><a href="#" data-link="close">О компании</a></li>
+            <li><a href="{{ route('about') }}" data-link="close">О компании</a></li>
             <li><a href="#" data-link="close">Новости</a></li>
             <li><a href="#" data-link="close">Документация</a></li>
             <li><a href="#" data-link="close">Статьи</a></li>
