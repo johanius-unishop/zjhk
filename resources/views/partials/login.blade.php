@@ -28,13 +28,10 @@
                                     <p class="modal__error"><span hidden>{{ session('errors.input-password') ?? '' }}</span></p>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                            <label class="form-check-label" for="remember">
-                                                {{ __('Remember Me') }}
-                                            </label>
-                                        </div>
-                                    </div>
+                                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
                                 </div>
                             </div>
                             <div>
