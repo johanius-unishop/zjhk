@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
     {
         App::setLocale('ru'); // установка локали
         
-        
+        dd($request->all()); 
         return redirect()->route('home');
         
         /*$credentials = $request->only('input-email', 'input-password');
