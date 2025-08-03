@@ -1,6 +1,3 @@
-
-
-
 <div data-modal="account" class="modal" id="loginModal">
                 <div data-close="true" class="modal__overlay">
                     <div class="modal__body">
@@ -51,8 +48,9 @@
 
 @section('scripts')
 @parent
-
+dd($errors);
 @if($errors->has('email') || $errors->has('password'))
+
     <script>
     $(function() {
         $('#loginModal').modal({
