@@ -7,7 +7,7 @@
                         <span data-close="true" class="modal__close">✖</span>
                         <div class="modal__content">
                             <h1 class="modal__title">Войти</h1>
-                            <form method="POST" action="/login" class="modal__form">
+                            <form method="POST" action="{{ route('login') }}" class="modal__form">
                                 @csrf <!-- Не забудьте добавить токен CSRF -->
                             <div class="modal__input-container">
                                 <div>
