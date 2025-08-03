@@ -9,15 +9,14 @@
                             <div class="modal__input-container">
                                 <div>
                                     <label for="input-email" class="visually-hidden"></label>
-                                    <input type="email" id="input-email" name="email" class="modal__input" value="{{ old('email') 
-                                        placeholder="Введите email" required autocomplete="username">
+                                    <input type="email" id="input-email" name="email" class="modal__input" value="{{ old('emai}}" placeholder="Введите email" required autocomplete="username">
                                     <p class="modal__error" aria-live="polite">
                                         <span hidden>{{ session('errors.input-email') ?? '' }}</span>
                                     </p>
                                 </div>
                                 <div>
                                     <label for="input-password" class="visually-hidden"></label>
-                                    <input type="password" id="input-password" name="password" placeholder="Введите пароль" autocomplete="current-password" value="{{ old('email') >
+                                    <input type="password" id="input-password" name="password" placeholder="Введите пароль" autocomplete="current-password" value="{{ old('password')" >
                                     
                                     <button type="button" id="toggle-password" class="password-toggle">
                                         <img src="images/icons/password-eye-cross.svg" alt="Показать пароль">
