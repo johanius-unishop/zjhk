@@ -53,9 +53,9 @@
 
     <script>
     $(function() {
-        $('#loginModal').modal({
-            show: true
-        });
+        $('#loginModal').removeClass("modal");
+        $('#loginModal').addClass("modal _open");
+        
     });
     </script>
 @endif
