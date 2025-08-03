@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
         App::setLocale('ru'); // установка локали
         
         
-        return redirect()->route('home');
+        
         
         $credentials = $request->only('email', 'password');
         dd(Auth::attempt($credentials)); 
