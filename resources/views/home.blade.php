@@ -20,6 +20,8 @@
 {{-- просмотр фото --}}
 @stop
 
+@yield('scripts')
+
 @section('js')
 <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('vendor/bootstrap4-toggle/bootstrap4-toggle.min.js') }}"></script>

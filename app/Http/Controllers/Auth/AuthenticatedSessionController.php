@@ -29,11 +29,14 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): JsonResponse
+    public function store(LoginRequest $request)
     {
         App::setLocale('ru'); // установка локали
         
-        $credentials = $request->only('input-email', 'input-password');
+        
+        return redirect()->route('home');
+        
+        /*$credentials = $request->only('input-email', 'input-password');
         
             if (!Auth::attempt($credentials)) {
                 return response()->json([
@@ -46,7 +49,7 @@ class AuthenticatedSessionController extends Controller
         
             request()->session()->regenerate();
         
-            return response()->json(['success' => true], 200);
+            return response()->json(['success' => true], 200);*/
         
     }
 
