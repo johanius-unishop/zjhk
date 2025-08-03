@@ -48,7 +48,7 @@
 
 @section('scripts')
 @parent
-dd($errors);
+
 @if($errors->has('email') || $errors->has('password'))
 
     <script>
