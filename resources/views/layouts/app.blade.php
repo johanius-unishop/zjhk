@@ -23,9 +23,6 @@
 
             
     @livewireScripts
-    <script> 
-        $(document).ready(function(){ $('.modal__form').on('submit', function(e) { e.preventDefault(); 
-        $.ajax({ url: $(this).attr('action'), type: 'POST', dataType: 'JSON', data: $(this).serialize(), success: function(response) { if (response.success === true) { location.href = '/';
-        } else { showErrors(response.errors); } }, error: function(xhr, status, error) { showErrors(xhr.responseJSON.errors); } }); }); function showErrors(errors) { Object.keys(errors).forEach(key => { let fieldSelector = `.modal__error span[data-error="${key}"]`; $(fieldSelector).removeClass('hidden'); $(fieldSelector).text(errors[key][0]); }); } }); </script>
+    
     </body>
 </html>
