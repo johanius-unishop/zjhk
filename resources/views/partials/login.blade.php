@@ -52,10 +52,9 @@
 @if($errors->has('email') || $errors->has('password'))
 
     <script>
-    $(function() {
-        $('#loginModal').addClass("_open");
-        
-    });
+        $(document).ready(function() {
+            $('#loginModal').addClass("_open");
+        });
     </script>
 @endif
 @endsection
