@@ -2657,7 +2657,7 @@ select {
 }
 
 .choices[data-type*=select-one]::after {
-  content: url("../img/icons/tick-black.svg") !important;
+  content: url("../images/icons/tick-black.svg") !important;
   border-style: none !important;
   border-color: unset !important;
   height: 16px !important;
@@ -5784,7 +5784,7 @@ select {
   border-radius: 0.25rem;
 }
 .questions__accordion-title::after {
-  content: url("../img/icons/tick-black.svg");
+  content: url("../images/icons/tick-black.svg");
   position: absolute;
   top: 50%;
   right: 0.875rem;
@@ -6723,7 +6723,7 @@ select {
 }
 
 .about-company__quote-container::before {
-  content: url("../img/icons/quotation-mark.png");
+  content: url("../images/icons/quotation-mark.png");
   left: -2px;
   bottom: 100%;
   transform: translateY(50%);
@@ -6742,7 +6742,7 @@ select {
 }
 
 .about-company__quote-container::after {
-  content: url("../img/icons/quotation-mark.png");
+  content: url("../images/icons/quotation-mark.png");
   top: 100%;
   right: -2px;
   transform: translateY(-50%) rotate(180deg);
@@ -7223,12 +7223,12 @@ select {
   padding-inline: 1rem;
 }
 .basket__item-counter-wrapper button:first-child {
-  background: url("../img/icons/minus.svg");
+  background: url("../images/icons/minus.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
 .basket__item-counter-wrapper button:last-child {
-  background: url("../img/icons/plus.svg");
+  background: url("../images/icons/plus.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -8245,7 +8245,7 @@ select {
 .point__accordion-address::after {
   display: inline-block;
   background-color: rgb(255, 255, 255);
-  content: url("../img/icons/tick-black.svg");
+  content: url("../images/icons/tick-black.svg");
   position: absolute;
   top: 50%;
   right: 0.5rem;
