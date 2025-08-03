@@ -32,23 +32,19 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         App::setLocale('ru'); // установка локали
-        
-        
-        
-        
         $credentials = $request->only('email', 'password');
-        dd(Auth::attempt($credentials)); 
+        
         if (Auth::attempt($credentials)) { // Попытка аутентификации
             // Если проверка прошла успешно, перенаправляем на домашнюю страницу
 
             return redirect()->route('home');
         }
-        
-          
-        
-        
-        //return redirect()->route('home'); 
-        
+        else
+        {
+            return back()
+               ->withErrors(['email' => __('Неверная комбинация Email / Пароль')])
+               ->withInput(); // Сохраняем введённые значения форм
+        }
     }
 
     /**
