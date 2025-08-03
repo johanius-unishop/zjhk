@@ -564,7 +564,7 @@
          </li>
 
          <li class="mobile__actions-item">
-            <a data-modal-link="account" href="#" style="display: flex">
+            <a data-modal-link="account" href="{{ route('login') }}" style="display: flex" data-toggle="modal" data-target="#loginModal">
                <img src="images/icons/login.svg" alt="Логин">
                <span>Кабинет</span>
             </a>
