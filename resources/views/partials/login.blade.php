@@ -9,7 +9,7 @@
                             <div class="modal__input-container">
                                 <div>
                                     <label for="input-email" class="visually-hidden"></label>
-                                    <input type="email" id="input-email" name="email" class="modal__input" value="{{ old('email' }}" placeholder="Введите email" required autocomplete="username">
+                                    <input type="email" id="input-email" name="email" value="{{ old('email') }}" class="modal__input" placeholder="Введите email" required autocomplete="username">
                                     <p class="modal__error" aria-live="polite">
                                         <span hidden>{{ session('errors.email') ?? '' }}</span>
                                     </p>
