@@ -27,11 +27,22 @@
                                     </button>
                                     <p class="modal__error"><span hidden>{{ session('errors.input-password') ?? '' }}</span></p>
                                 </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6 offset-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                            <label class="form-check-label" for="remember">
+                                                {{ __('Remember Me') }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div>
                                 <a href="/forgot-password" class="modal__forget-password">Забыли пароль?</a>
                             </div>
-                            <button class="modal__btn">Войти</button>
+                            <button type="submit" class="modal__btn">Войти</button>
                             </form>
                             <p class="modal__policy">
                             Нажимая кнопку «Войти», вы соглашаетесь c условиями <a href="#">политики конфиденциальности</a>
