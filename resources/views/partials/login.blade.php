@@ -30,6 +30,12 @@
                                 
                             </div>
                             <div>
+                                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            <div>
                                 <a href="/forgot-password" class="modal__forget-password">Забыли пароль?</a>
                             </div>
                             <button type="submit" class="modal__btn">Войти</button>
