@@ -1,72 +1,43 @@
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModal">{{ __('Login') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
 
-                    <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-6 offset-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
+<div data-modal="account" class="modal">
+                <div data-close="true" class="modal__overlay">
+                    <div class="modal__body">
+                        <span data-close="true" class="modal__close">✖</span>
+                        <div class="modal__content">
+                            <h1 class="modal__title">Войти</h1>
+                            <form method="POST" action="/login" class="modal__form">
+                                @csrf <!-- Не забудьте добавить токен CSRF -->
+                            <div class="modal__input-container">
+                                <div>
+                                    <label for="input-email" class="visually-hidden"></label>
+                                    <input type="email" id="input-email" name="input-email" class="modal__input"
+                                        placeholder="Введите email" required autocomplete="username">
+                                    <p class="modal__error" aria-live="polite">
+                                        <span hidden>{{ session('errors.input-email') ?? '' }}</span>
+                                    </p>
+                                </div>
+                                <div>
+                                    <label for="input-password" class="visually-hidden"></label>
+                                    <input type="password" id="input-password" name="input-password" placeholder="Введите пароль" autocomplete="current-password">
+                                    
+                                    <button type="button" id="toggle-password" class="password-toggle">
+                                        <img src="images/icons/password-eye-cross.svg" alt="Показать пароль">
+                                    </button>
+                                    <p class="modal__error"><span hidden>{{ session('errors.input-password') ?? '' }}</span></p>
+                                </div>
                             </div>
+                            <div>
+                                <a href="/forgot-password" class="modal__forget-password">Забыли пароль?</a>
+                            </div>
+                            <button class="modal__btn">Войти</button>
+                            </form>
+                            <p class="modal__policy">
+                            Нажимая кнопку «Войти», вы соглашаетесь c условиями <a href="#">политики конфиденциальности</a>
+                            </p>
                         </div>
                     </div>
-
-                    <div class="form-group row mb-0">
-                        <div class="col-md-8 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Login') }}
-                            </button>
-
-                            @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            @endif
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
 </div>
-
