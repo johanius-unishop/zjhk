@@ -48,12 +48,12 @@
 
 @section('scripts')
 @parent
-
+@if($errors->has('email') || $errors->has('password'))
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script>
     $(function() {
         $('#loginModal').addClass("_open");
     });
     </script>
-
+@endif
 @endsection
