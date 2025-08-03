@@ -11,7 +11,7 @@
                                     <label for="input-email" class="visually-hidden"></label>
                                     <input type="email" id="input-email" name="email" class="modal__input" value="{{ old('emai}}" placeholder="Введите email" required autocomplete="username">
                                     <p class="modal__error" aria-live="polite">
-                                        <span hidden>{{ session('errors.input-email') ?? '' }}</span>
+                                        <span hidden>{{ session('errors.email') ?? '' }}</span>
                                     </p>
                                 </div>
                                 <div>
@@ -21,7 +21,7 @@
                                     <button type="button" id="toggle-password" class="password-toggle">
                                         <img src="images/icons/password-eye-cross.svg" alt="Показать пароль">
                                     </button>
-                                    <p class="modal__error"><span hidden>{{ session('errors.input-password') ?? '' }}</span></p>
+                                    <p class="modal__error"><span hidden>{{ session('errors.password') ?? '' }}</span></p>
                                 </div>
                                 
                             </div>
