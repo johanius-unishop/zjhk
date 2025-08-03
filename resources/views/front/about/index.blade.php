@@ -8,7 +8,7 @@
             <div class="about-company__container container">
                <div class="breadcrumbs">
                   <ul class="breadcrumbs__list">
-                     <li><a href="#">Главная</a><img src="./img/icons/arrow-right.svg" alt="стрелка"></li>
+                     <li><a href="#">Главная</a><img src="/images/icons/arrow-right.svg" alt="стрелка"></li>
                      <li><span>О компании</span></li>
                   </ul>
                </div>
@@ -35,7 +35,7 @@
                      <div class="about-company__offer-wrapper">
                         <div class="about-company__offer-item">
                            <div class="about-company__offer-top">
-                              <img src="img/icons/warranty.svg" alt="безупречное качество">
+                              <img src="images/icons/warranty.svg" alt="безупречное качество">
                               <h2>Безупречное качество</h2>
                            </div>
                            <p>Сотрудничаем только с крупными заводами, которые много лет специализируются на выпуске
@@ -45,7 +45,7 @@
                         </div>
                         <div class="about-company__offer-item">
                            <div class="about-company__offer-top">
-                              <img src="img/icons/goal.svg" alt="тщательный отбор">
+                              <img src="images/icons/goal.svg" alt="тщательный отбор">
                               <h2>Тщательный отбор</h2>
                            </div>
                            <p>Мы гарантируем высокое качество всех товаров, представленных на нашем сайте. Наша
@@ -55,7 +55,7 @@
                         </div>
                         <div class="about-company__offer-item">
                            <div class="about-company__offer-top">
-                              <img src="img/icons/grow.svg" alt="устойчивое развитие">
+                              <img src="images/icons/grow.svg" alt="устойчивое развитие">
                               <h2>Устойчивое развитие</h2>
                            </div>
                            <p>Наша компания постоянно работает над расширением ассортимента продукции и увеличением
@@ -63,7 +63,7 @@
                         </div>
                         <div class="about-company__offer-item">
                            <div class="about-company__offer-top">
-                              <img src="img/icons/deal.svg" alt="продуктивное сотрудничество">
+                              <img src="images/icons/deal.svg" alt="продуктивное сотрудничество">
                               <h2>Продуктивное сотрудничество</h2>
                            </div>
                            <p>Ответим на вопросы, проведём техническую консультацию и поможем выбрать продукцию,
