@@ -52,9 +52,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script>
     $(function() {
-        $('#loginModal').modal({
-            show: true
-        });
+        $('#loginModal').addClass("_open");
     });
     </script>
 
