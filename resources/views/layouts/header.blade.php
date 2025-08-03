@@ -66,7 +66,7 @@
    <div class="header__bottom">
       <div class="header__container container">
          <div class="header__bottom-wrapper">
-            <a href="#" class="header__logo-link">
+            <a href="{{ route('about') }}" class="header__logo-link">
                <img src="images/icons/logo.svg" alt="логотип" class="header__logo">
             </a>
             <div class="header__search-wrapper">
@@ -88,7 +88,7 @@
                      <ul class="header__result-wrapper">
                         <li>
                            <a href="#">
-                              <p><img src="img/products/example.png" alt="пример товара">
+                              <p><img src="images/products/example.png" alt="пример товара">
                                  <span>HA-003-F</span>
                                  <span>09200032711</span>
                               </p>
@@ -97,7 +97,7 @@
                            <div class="product__example">
                               <div class="product__example-wrapper">
                                  <div>
-                                    <img src="img/products/item_photo.png" alt="товар">
+                                    <img src="images/products/item_photo.png" alt="товар">
                                     <button>
                                        <img src="images/icons/label-gray.svg" alt="избранное">
                                        <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
@@ -123,7 +123,7 @@
                         <li>
                            <a href="#">
                               <p>
-                                 <img src="img/products/example.png" alt="пример товара">
+                                 <img src="images/products/example.png" alt="пример товара">
                                  <span>HA-003-F</span>
                                  <span>09200032711</span>
                               </p>
@@ -132,7 +132,7 @@
                            <div class="product__example">
                               <div class="product__example-wrapper">
                                  <div>
-                                    <img src="img/products/item_photo.png" alt="товар">
+                                    <img src="images/products/item_photo.png" alt="товар">
                                     <button>
                                        <img src="images/icons/label-gray.svg" alt="избранное">
                                        <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
@@ -158,7 +158,7 @@
                         <li>
                            <a href="#">
                               <p>
-                                 <img src="img/products/example.png" alt="пример товара">
+                                 <img src="images/products/example.png" alt="пример товара">
                                  <span>HA-003-F</span>
                                  <span>09200032711</span>
                               </p>
@@ -167,7 +167,7 @@
                            <div class="product__example">
                               <div class="product__example-wrapper">
                                  <div>
-                                    <img src="img/products/item_photo.png" alt="товар">
+                                    <img src="images/products/item_photo.png" alt="товар">
                                     <button>
                                        <img src="images/icons/label-gray.svg" alt="избранное">
                                        <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
@@ -193,7 +193,7 @@
                         <li>
                            <a href="#">
                               <p>
-                                 <img src="img/products/example.png" alt="пример товара">
+                                 <img src="images/products/example.png" alt="пример товара">
                                  <span>HA-003-F</span>
                                  <span>09200032711</span>
                               </p>
@@ -202,7 +202,7 @@
                            <div class="product__example">
                               <div class="product__example-wrapper">
                                  <div>
-                                    <img src="img/products/item_photo.png" alt="товар">
+                                    <img src="images/products/item_photo.png" alt="товар">
                                     <button>
                                        <img src="images/icons/label-gray.svg" alt="избранное">
                                        <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
@@ -228,7 +228,7 @@
                         <li>
                            <a href="#">
                               <p>
-                                 <img src="img/products/example.png" alt="пример товара">
+                                 <img src="images/products/example.png" alt="пример товара">
                                  <span>HA-003-F</span>
                                  <span>09200032711</span>
                               </p>
@@ -237,7 +237,7 @@
                            <div class="product__example">
                               <div class="product__example-wrapper">
                                  <div>
-                                    <img src="img/products/item_photo.png" alt="товар">
+                                    <img src="images/products/item_photo.png" alt="товар">
                                     <button>
                                        <img src="images/icons/label-gray.svg" alt="избранное">
                                        <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
@@ -483,7 +483,7 @@
                               <li>
                                  <a href="#">
                                     <p>
-                                       <img src="img/products/example.png" alt="пример товара">
+                                       <img src="images/products/example.png" alt="пример товара">
                                        <span>HA-003-F</span>
                                        <span>09200032711</span>
                                     </p>
@@ -493,7 +493,7 @@
                               <li>
                                  <a href="#">
                                     <p>
-                                       <img src="img/products/example.png" alt="пример товара">
+                                       <img src="images/products/example.png" alt="пример товара">
                                        <span>HA-003-F</span>
                                        <span>09200032711</span>
                                     </p>
@@ -503,7 +503,7 @@
                               <li>
                                  <a href="#">
                                     <p>
-                                       <img src="img/products/example.png" alt="пример товара">
+                                       <img src="images/products/example.png" alt="пример товара">
                                        <span>HA-003-F</span>
                                        <span>09200032711</span>
                                     </p>
@@ -513,7 +513,7 @@
                               <li>
                                  <a href="#">
                                     <p>
-                                       <img src="img/products/example.png" alt="пример товара">
+                                       <img src="images/products/example.png" alt="пример товара">
                                        <span>HA-003-F</span>
                                        <span>09200032711</span>
                                     </p>
@@ -523,7 +523,7 @@
                               <li>
                                  <a href="#">
                                     <p>
-                                       <img src="img/products/example.png" alt="пример товара">
+                                       <img src="images/products/example.png" alt="пример товара">
                                        <span>HA-003-F</span>
                                        <span>09200032711</span>
                                     </p>
