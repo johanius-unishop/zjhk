@@ -411,7 +411,7 @@
                                 <span>{{ Auth::user()->name }}</span>
                             </a>
                         @else
-                            <a data-modal-link="account" href="#" style="display: inline-flex">
+                            <a data-modal-link="account" href="{{ route('login') }}" style="display: inline-flex" data-toggle="modal" data-target="#loginModal">
                                 <img src="images/icons/login.svg" alt="Логин">
                                 <span>Войти</span>
                             </a>
