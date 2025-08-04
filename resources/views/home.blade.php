@@ -68,75 +68,9 @@
                </div>
             </div>
          </section>
-         <section class="benefits">
-            <div class="benefits__container container">
-               <div class="benefits__content">
-                  <h2 class="benefits__title">Почему выбирают нас</h2>
-                  <div class="benefits__wrapper">
-                     <div class="benefits__item">
-                        <div class="benefits__title-container">
-                           <img src="/images/icons/box-blue.svg" alt="Ассортимент">
-                           <h3 class="benefits__title">Ассортимент</h3>
-                        </div>
-                        <p class="benefits__text">
-                           Мы непрерывно увеличиваем количество товаров и наращиваем поставки
-                        </p>
-                     </div>
-                     <div class="benefits__item">
-                        <div class="benefits__title-container">
-                           <img src="/images/icons/conversation-blue.svg" alt="Консультации">
-                        
-                           <h3 class="benefits__title">Консультации</h3>
-                        </div>
-                        <p class="benefits__text">
-                           Помогаем в выборе продукции, аналогичной товарам из Европы</p>
-                     </div>
-                     <div class="benefits__item">
-                        <div class="benefits__title-container">
-                           <img src="/images/icons/greeting-blue.svg" alt="Доставка">
-                           <h3 class="benefits__title">Доставка по РФ</h3>
-                        </div>
-                        <p class="benefits__text">
-                           Деловые Линии, СДЭК, Boxberry, отправка в любой регион России</p>
-                     </div>
-                     <div class="benefits__item">
-                        <div class="benefits__title-container">
-                           <img src="/images/icons/features.svg" alt="Гарантия">
-                           <h3 class="benefits__title">Гарантия</h3>
-                        </div>
-                        <p class="benefits__text">
-                           Мы - официальные представителив России. Продукция проверенаи сертифицирована</p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </section>
-         @include('components.popular')
-         <section class="about">
-            <div class="about__container container">
-               <h2 class="about__title">О компании</h2>
-               <div class="about__wrapper">
-                  <div class="about__img-container">
-                     <img src="/images/content/process.jpg"
-                        srcset="/images/content/process.jpg 575w, /images/content/process-767.jpg 768w, /images/content/process.jpg 1200w"
-                        alt="компанния">
-                  </div>
-                  <div class="about__content">
-                     <h4 class="about__offer-title">Мы предлагаем инновационные решения и профессиональный подход</h4>
-                     <div class="about__text">
-                        <p> Сотрудничаем c высокотехнологичными предприятиями и являемся их официальными представителями
-                           в России. 
-                           <p>
-                              Наша миссия — предоставить нашим клиентам инновационные и надёжные решения,
-                              соответствующие самым высоким мировым стандартам.   
-                           </p>
-                        </p>
-                     </div>
-                     <a href="{{ route('about') }}">Узнать больше</a>
-                  </div>
-               </div>
-            </div>
-         </section>
+         @include('components.main-page.benefits')
+         @include('components.main-page.popular')
+         @include('components.main-page.about')
          
          <section class="news">
             <div class="news__container container">
