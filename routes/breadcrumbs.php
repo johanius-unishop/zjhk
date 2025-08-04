@@ -21,7 +21,7 @@ Breadcrumbs::for('about', function (BreadcrumbTrail $trail) {
 });
 
 // Home > News
-Breadcrumbs::for('news', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('news.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Новости', route('news.index'));
 });
