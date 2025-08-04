@@ -9,6 +9,7 @@
         <div class="news__container container">
             @include('components.breadcrumbs')
             {{ Breadcrumbs::render('news'  ) }}
+            {{ Breadcrumbs::exists() }}
             <div class="news__content">
                 <div class="news__title-body">
                     <h2>Новости</h2>
