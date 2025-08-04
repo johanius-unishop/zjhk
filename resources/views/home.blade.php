@@ -93,7 +93,7 @@
                      </div>
                      <div class="benefits__item">
                         <div class="benefits__title-container">
-                           <img src="img/icons/greeting-blue.svg" alt="Доставка">
+                           <img src="/images/icons/greeting-blue.svg" alt="Доставка">
                            <h3 class="benefits__title">Доставка по РФ</h3>
                         </div>
                         <p class="benefits__text">
@@ -233,7 +233,7 @@
                            </p>
                         </p>
                      </div>
-                     <a href="#">Узнать больше</a>
+                     <a href="{{ route('home') }}">Узнать больше</a>
                   </div>
                </div>
             </div>
@@ -501,7 +501,7 @@
                      <div class="swiper-wrapper brand">
                         <div class="swiper-slide brand">
                            <a href="#" class="brands__slider-item">
-                              <img src='img/icons/partner-logo.png' alt="брэнд">
+                              <img src='/images/icons/partner-logo.png' alt="брэнд">
                            </a>
                         </div>
                         <div class="swiper-slide brand">
