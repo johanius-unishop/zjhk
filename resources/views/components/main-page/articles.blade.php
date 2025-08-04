@@ -2,10 +2,8 @@
     <div class="articles__container container">
         <div class="articles__title-container">
             <h2 class="articles__title">Статьи</h2>
-            
-            <a href="{{ route('article.index') }}" class="title-btn btn">
-    Показать все
-</a>
+            <button class="title-btn btn">Показать все</button>
+            <a href="{{ route('article.index') }}" class="title-btn btn">Показать все</a>
         </div>
         <div class="articles__body">
             <div class="swiper articles-slider">
