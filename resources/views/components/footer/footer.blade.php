@@ -1,0 +1,83 @@
+<footer id="footer" class="footer">
+    <div class="footer__container container">
+        <div class="footer__subscribe-wrapper">
+            <p class="footer__subscribe-text">Подпишитесь на рассылку, чтобы быть в курсе новых поступлений и актуальных
+                новостей на рынке промышленного оборудования!
+            </p>
+            <form action="#" class="footer__subscribe-form">
+                <input type="email" class="footer__subscribe-input" placeholder="Введите email">
+                <button type="submit" class="footer__subscribe-btn"><span>Подписаться</span>
+                    <img src="images/icons/bell.svg" alt="подписаться">
+                </button>
+            </form>
+        </div>
+        <div class="footer__content">
+            <div class="footer__about">
+                <img src="images/icons/logo.svg" alt="лого">
+                <p class="footer__address">г. Всеволожск, ул. Аэропортовская, 14</p>
+            </div>
+            <nav class="footer__nav">
+                <div class="footer__connect">
+                    <h5 class="footer__title">Мы на связи</h5>
+                    <div class="footer__connect-wrapper">
+                        <a href="tel:+78122008275">
+                            <img src="images/icons/phone-stroke.svg" alt="телефон">
+                            <span>+7 812 200 82 75</span>
+                        </a>
+                        <a href="mailto:info@kevtek.ru">
+                            <img src="images/icons/envelope-stroke.svg" alt="почта">
+                            <span>info@kevtek.ru</span>
+                        </a>
+                        <a href="geo:59.99512081700448,30.641846915269824">
+                            <img src="images/icons/location.svg" alt="адрес">
+                            <p>г. Всеволожск ул. Аэропортовская, 14</p>
+                        </a>
+                    </div>
+                    <button class="footer__write-btn">Написать нам</button>
+                </div>
+                <div class="footer__messenger">
+                    <h5 class="footer__title">Мессенджеры</h5>
+                    <div class="footer__messenger-wrapper">
+                        <a href="https://whatsapp.com/"><img src="images/icons/whatsapp.svg" alt="whatsapp"></a>
+                        <a href="https://www.viber.com/"><img src="images/icons/viber.svg" alt="viber"></a>
+                        <a href="https://telegram.org/"><img src="images/icons/telegram.svg" alt="telegram"></a>
+                    </div>
+                </div>
+                <div class="footer__info">
+                    <h5 class="footer__title">Информация</h5>
+                    <ul class="footer__info-list">
+                        <li><a href="#">О компании</a></li>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="#">Документация</a></li>
+                        <li><a href="#">Статьи</a></li>
+                        <li><a href="#">Бренды</a></li>
+                    </ul>
+                </div>
+                <div class="footer__buyers">
+                    <h5 class="footer__title">Покупателям</h5>
+                    <ul class="footer__buyers-list">
+                        <li><a href="#">Юридическим лицам</a></li>
+                        <li><a href="#">Физическим лицам</a></li>
+                        <li><a href="#">Обратная связь</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Публичная оферта</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="footer__copyright">
+        <div class="footer__container container">
+            <div class="footer__copyright-wrapper">
+                <p class="footer__copyright-text">
+                    © 2023-2024 ООО «КевТек»
+                </p>
+                <p class="footer__agreement">
+                    Вы принимаете условия <a href="#">политики в отношении обработки персональных данных</a>  и <a
+                        href="#"> пользовательского соглашения,</a> когда оставляете свои данные в формах обратной связи на
+                    kevtek.ru
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
