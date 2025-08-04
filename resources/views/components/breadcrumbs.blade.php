@@ -1,3 +1,4 @@
+Breadcrumbs::generate()
 @if(Breadcrumbs::exists())
     <div class="breadcrumbs">
         <ul class="breadcrumbs__list">
