@@ -47,7 +47,7 @@
                     <h5 class="footer__title">Информация</h5>
                     <ul class="footer__info-list">
                         <li><a href="#">О компании</a></li>
-                        <li><a href="#">Новости</a></li>
+                        <li><a href="{{ route('news.index') }}">Новости</a></li>
                         <li><a href="#">Документация</a></li>
                         <li><a href="#">Статьи</a></li>
                         <li><a href="#">Бренды</a></li>

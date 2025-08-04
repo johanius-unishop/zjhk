@@ -41,7 +41,7 @@
                         <ul class="header__submenu">
                             <li><a href="#">Документация</a></li>
                             <li><a href="#">Статьи</a></li>
-                            <li><a href="#">Новости</a></li>
+                            <li><a href="{{ route('news.index') }}">Новости</a></li>
                             <li><a href="#">Бренды</a></li>
                         </ul>
                     </li>

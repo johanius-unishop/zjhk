@@ -67,7 +67,7 @@
             <h3>Информация</h3>
             <ul class="mobile__side-list">
                 <li><a href="{{ route('about') }}" data-link="close">О компании</a></li>
-                <li><a href="#" data-link="close">Новости</a></li>
+                <li><a href="{{ route('news.index') }}" data-link="close">Новости</a></li>
                 <li><a href="#" data-link="close">Документация</a></li>
                 <li><a href="#" data-link="close">Статьи</a></li>
                 <li><a href="#" data-link="close">Бренды</a></li>
