@@ -9468,9 +9468,6 @@ h2.benefits__title {
 }
 
 .title-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   display: inline-block;
   position: relative;
   background-color: rgb(255, 255, 255);
