@@ -8,12 +8,6 @@
     <section class="news section">
         <div class="news__container container">
             @include('components.breadcrumbs')
-            
-            @if(Breadcrumbs::exists())
-                Хлебные крошки есть!
-            @else
-                Хлебных крошек нет.
-            @endif
             <div class="news__content">
                 <div class="news__title-body">
                     <h2>Новости</h2>
