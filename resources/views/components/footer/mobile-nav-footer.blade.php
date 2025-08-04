@@ -3,7 +3,7 @@
         <ul class="mobile__actions-list">
             <li class="mobile__actions-item">
                 <span style="display: none">5</span>
-                <a href="#">
+                <a href="{{ route('home') }}" >
                     <img src="images/icons/home.svg" alt="Главная">
                     <span>Главная</span>
                 </a>
@@ -69,7 +69,7 @@
                 <li><a href="{{ route('about') }}" data-link="close">О компании</a></li>
                 <li><a href="{{ route('news.index') }}" data-link="close">Новости</a></li>
                 <li><a href="#" data-link="close">Документация</a></li>
-                <li><a href="#" data-link="close">Статьи</a></li>
+                <li><a href="{{ route('article.index') }}" data-link="close">Статьи</a></li>
                 <li><a href="#" data-link="close">Бренды</a></li>
             </ul>
             <h3>Покупателям</h3>

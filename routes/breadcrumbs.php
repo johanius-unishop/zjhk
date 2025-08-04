@@ -26,6 +26,13 @@ Breadcrumbs::for('news.index', function (BreadcrumbTrail $trail) {
     $trail->push('Новости', route('news.index'));
 });
 
+Breadcrumbs::for('article.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Статьи', route('article.index'));
+});
+
+
+
 // Home > Catalog
 Breadcrumbs::for('catalog', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
