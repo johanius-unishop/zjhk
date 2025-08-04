@@ -177,7 +177,7 @@
 
 @endsection
 
-section('css')
+@section('css')
 
 
 @stop
