@@ -52,12 +52,6 @@ Breadcrumbs::for('categories', function (BreadcrumbTrail $trail, $parents, Categ
 
 
 
-// Home > News
-Breadcrumbs::for('news', function (BreadcrumbTrail $trail) {
-    $trail->parent('home');
-    $trail->push('Новости', route('news.index'));
-});
-
 // Home > News > [news]
 Breadcrumbs::for('news_item', function (BreadcrumbTrail $trail, $news) {
     $trail->parent('news');
