@@ -10,11 +10,13 @@ Route::get('/', function () {
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+
 Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
 Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
 
-Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+
 Route::get('/pages/{slug}', [PageController::class, 'show'])->name('page.show');
 
 Route::get('/catalog', [CategoryController::class, 'catalog'])->name('catalog');

@@ -20,6 +20,12 @@ Breadcrumbs::for('about', function (BreadcrumbTrail $trail) {
     $trail->push('О компании', route('about'));
 });
 
+// Home > News
+Breadcrumbs::for('news', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Новости', route('news.index'));
+});
+
 // Home > Catalog
 Breadcrumbs::for('catalog', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
