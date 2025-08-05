@@ -47,7 +47,7 @@
                             <div class="contacts__form-body">
                                 <div class="contacts__form-top-wrapper">
                                     <div class="contacts__img-container">
-                                        <img src="img/icons/gears.svg" alt="на связи">
+                                        <img src="/images/icons/gears.svg" alt="на связи">
                                     </div>
                                     <div class="contacts__call-action-wrapper">
                                         <h2>Мы на связи!</h2>
