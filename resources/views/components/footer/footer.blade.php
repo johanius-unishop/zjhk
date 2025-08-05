@@ -13,7 +13,9 @@
         </div>
         <div class="footer__content">
             <div class="footer__about">
+                <a href="{{ route('home') }}">
                 <img src="images/icons/logo.svg" alt="лого">
+                </a>
                 <p class="footer__address">г. Всеволожск, ул. Аэропортовская, 14</p>
             </div>
             <nav class="footer__nav">
