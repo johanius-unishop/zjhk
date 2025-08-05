@@ -91,9 +91,7 @@
 
 @stop
 
-@yield('scripts')
-
-@section('js')
+@section('scripts')
     <script src="https://api-maps.yandex.ru/2.1/?apikey={{ config('app.services.yandex_maps.key') }}&lang=ru_RU"></script>
 
     @if ($errors->has('email') || $errors->has('password'))
