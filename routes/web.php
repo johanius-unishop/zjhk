@@ -3,19 +3,23 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Front\AboutController;
-use App\Http\Controllers\Front\{HomeController, PageController, NewsController, CategoryController, ProductController ,CartController , FaqController ,SearchController , VendorController ,ArticleController};
+use App\Http\Controllers\Front\NewsController;
+use App\Http\Controllers\Front\ArticleController;
+use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\{HomeController, PageController, CategoryController, ProductController ,CartController , FaqController ,SearchController , VendorController};
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+Route::get('/news', [NewsController::class, 'index'])->name('news');
+//Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
-Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
-Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
+Route::get('/article', [ArticleController::class, 'index'])->name('articles');
+//Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
 
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 
 Route::get('/pages/{slug}', [PageController::class, 'show'])->name('page.show');
 

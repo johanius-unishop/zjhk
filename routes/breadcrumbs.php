@@ -23,12 +23,17 @@ Breadcrumbs::for('about', function (BreadcrumbTrail $trail) {
 // Home > News
 Breadcrumbs::for('news.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Новости', route('news.index'));
+    $trail->push('Новости', route('news'));
 });
 
 Breadcrumbs::for('article.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Статьи', route('article.index'));
+    $trail->push('Статьи', route('articles'));
+});
+
+Breadcrumbs::for('contact.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Контакты', route('contacts'));
 });
 
 
