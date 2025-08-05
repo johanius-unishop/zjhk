@@ -7,6 +7,7 @@ use App\Http\Controllers\Front\NewsController;
 use App\Http\Controllers\Front\ArticleController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\DocumentationController;
+use App\Http\Controllers\Front\QuestionController;
 use App\Http\Controllers\Front\{HomeController, PageController, CategoryController, ProductController ,CartController, FaqController ,SearchController , VendorController};
 Route::get('/', function () {
     return view('home');
@@ -23,6 +24,8 @@ Route::get('/article', [ArticleController::class, 'index'])->name('articles');
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 
 Route::get('/documentation', [DocumentationController::class, 'index'])->name('documentation');
+
+Route::get('/question', [QuestionController::class, 'index'])->name('question');
 
 Route::get('/pages/{slug}', [PageController::class, 'show'])->name('page.show');
 

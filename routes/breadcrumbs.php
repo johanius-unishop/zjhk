@@ -44,6 +44,12 @@ Breadcrumbs::for('documentation.index', function (BreadcrumbTrail $trail) {
     $trail->push('Документация', route('documentation'));
 });
 
+// Главная > Вопрос-ответ
+Breadcrumbs::for('question.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Вопрос-ответ', route('question'));
+});
+
 // Home > Catalog
 Breadcrumbs::for('catalog', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

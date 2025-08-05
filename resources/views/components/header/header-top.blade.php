@@ -50,7 +50,7 @@
                             <img src="images/icons/arrow-down.svg" alt="список помощь">
                         </a>
                         <ul class="header__submenu">
-                            <li><a href="#">Вопрос-Ответ</a></li>
+                            <li><a href="{{ route('home') }}">Вопрос-Ответ</a></li>
                             <li><a href="#">Задать вопрос</a></li>
                         </ul>
                     </li>

@@ -1,0 +1,222 @@
+@extends('layouts.app')
+
+@section('title', 'Вопрос-ответ')
+
+@section('content')
+    <main>
+        <section class="questions">
+            <div class="questions__container container">
+                @include('components.breadcrumbs')
+                <div class="questions__content">
+                    <div class="questions__title-container">
+                        <h2>Вопрос-Ответ</h2>
+                        <p>Здесь вы найдёте ответы на часто задаваемые вопросы. Если вы не нашли ответ на свой вопрос,
+                            заполните <a href="#">форму обратной связи</a>. Вы так же можете написать нам в <a
+                                href="#">мессенджер</a> или на <a href="$">почту</a>.</p>
+                    </div>
+                    <div class="questions__item">
+                        <h2 class="questions__item-title">
+                            Наличие и характеристики товара
+                        </h2>
+                        <div class="questions__item-wrapper">
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="1" class="questions__accordion-title">
+                                    Где можно посмотреть характеристики товара?
+                                </h5>
+                                <p data-item="1" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="2" class="questions__accordion-title">
+                                    Соответствует ли качество аналогов изделиям европейских производителей?
+                                </h5>
+                                <p data-item="2" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="3" class="questions__accordion-title">
+                                    Как пользоваться фильтром в каталоге товаров?
+                                </h5>
+                                <p data-item="3" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                            <div class="questions__accordion">
+
+                                <h5 data-menu-id="4" class="questions__accordion-title">
+                                    Не могу найти на сайте модель, хотя знаю, что она есть в магазине
+                                </h5>
+                                <p data-item="4" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="questions__item">
+                        <h2 class="questions__item-title">
+                            Оплата и доставка
+                        </h2>
+                        <div class="questions__item-wrapper">
+
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="5" class="questions__accordion-title">
+                                    Как оплатить заказ?
+                                </h5>
+                                <p data-item="5" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="6" class="questions__accordion-title">
+                                    Что нужно знать о доставке?
+                                </h5>
+                                <p data-item="6" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="7" class="questions__accordion-title">
+                                    Какие документы нужны для получения заказа?
+                                </h5>
+                                <p data-item="7" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="8" class="questions__accordion-title">
+                                    Как мне узнать стоимость доставки до моего населенного пункта?
+                                </h5>
+                                <p data-item="8" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="9" class="questions__accordion-title">
+                                    Заказ оформляю я, но получать его будет другой человек. Что мне нужно сделать?
+                                </h5>
+                                <p data-item="9" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="10" class="questions__accordion-title">
+                                    Получение заказа
+                                </h5>
+                                <p data-item="10" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="questions__item">
+                        <h2 class="questions__item-title">
+                            Гарантии
+                        </h2>
+                        <div class="questions__item-wrapper">
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="11" class="questions__accordion-title">
+                                    Срок службы изделий?
+                                </h5>
+                                <p data-item="11" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="12" class="questions__accordion-title">
+                                    Можно ли вернуть товар?
+                                </h5>
+                                <p data-item="12" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="13" class="questions__accordion-title">
+                                    Можно ли вернуть товар?
+                                </h5>
+                                <p data-item="13" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                            <div class="questions__accordion">
+                                <h5 data-menu-id="14" class="questions__accordion-title">
+                                    Оказывается ли помощь при выборе товара?
+                                </h5>
+                                <p data-item="14" class="questions__accordion-text">
+                                    В описании товара перечислены его основные характеристики. Так же вы можете скачать
+                                    спецификацию изделия в разделе <a href="#">документации</a> и прочесть <a
+                                        href="#">статью</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="questions__bottom">
+                        <h2 class="questions__bottom-title">Не нашли нужного ответа?</h2>
+                        <div class="questions__bottom-item">
+                            <p class="questions__bottom-subtitle">Свяжитесь с нами через форму обратной связи</p>
+                            <button>Перейти к форме</button>
+                        </div>
+                        <div class="questions__bottom-item">
+                            <p class="questions__bottom-subtitle">Напишите нам в мессенджер</p>
+                            <div class="questions__bottom-messenger">
+                                <a href="https://whatsapp.com/"><img src="/images/icons/whatsapp.svg" alt="whatsapp"></a>
+                                <a href="https://www.viber.com/"><img src="/images/icons/viber.svg" alt="viber"></a>
+                                <a href="https://telegram.org/"><img src="/images/icons/telegram.svg" alt="telegram"></a>
+                            </div>
+                        </div>
+                        <div class="questions__bottom-item">
+                            <p class="questions__bottom-subtitle last">Или позвоните по номеру телефона:</p>
+                            <p class="questions__bottom-tel">
+                                +7 (812) 200 82 75
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+@endsection
+
+@section('css')
+
+
+@stop
+
+@section('scripts')
+    @if ($errors->has('email') || $errors->has('password'))
+        <script>
+            $(function() {
+                $('#loginModal').modal({
+                    show: true
+                });
+            });
+        </script>
+    @endif
+@stop
