@@ -175,8 +175,6 @@
 
 @stop
 
-@yield('scripts')
-
 @section('js')
 @if($errors->has('email') || $errors->has('password'))
 

@@ -48,7 +48,7 @@
                     <ul class="footer__info-list">
                         <li><a href="{{ route('about') }}">О компании</a></li>
                         <li><a href="{{ route('news') }}">Новости</a></li>
-                        <li><a href="#">Документация</a></li>
+                        <li><a href="{{ route('documentation') }}">Документация</a></li>
                         <li><a href="{{ route('articles') }}">Статьи</a></li>
                         <li><a href="#">Бренды</a></li>
                     </ul>

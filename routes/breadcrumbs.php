@@ -9,40 +9,47 @@ use App\Models\Category;
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
-// Home
+// Главная
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Главная', route('home'));
 });
 
-// Home > About
+// Главная > О компании
 Breadcrumbs::for('about', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('О компании', route('about'));
 });
 
-// Home > News
+// Главная > Новости
 Breadcrumbs::for('news.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Новости', route('news'));
 });
 
+// Главная > Статьи
 Breadcrumbs::for('article.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Статьи', route('articles'));
 });
 
+// Главная > Контакты
 Breadcrumbs::for('contact.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Контакты', route('contacts'));
 });
 
-
+// Главная > Документация
+Breadcrumbs::for('documentation.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Документация', route('documentation'));
+});
 
 // Home > Catalog
 Breadcrumbs::for('catalog', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Каталог', route('catalog'));
 });
+
 // Home > search_result
 Breadcrumbs::for('search_result', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

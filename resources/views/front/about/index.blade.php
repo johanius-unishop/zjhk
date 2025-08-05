@@ -82,9 +82,7 @@
 
 @stop
 
-@yield('scripts')
-
-@section('js')
+@section('scripts')
 @if($errors->has('email') || $errors->has('password'))
 
 <script>

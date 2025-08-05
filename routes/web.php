@@ -21,6 +21,8 @@ Route::get('/article', [ArticleController::class, 'index'])->name('articles');
 
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 
+Route::get('/documentation', [ContactController::class, 'index'])->name('documentation');
+
 Route::get('/pages/{slug}', [PageController::class, 'show'])->name('page.show');
 
 Route::get('/catalog', [CategoryController::class, 'catalog'])->name('catalog');

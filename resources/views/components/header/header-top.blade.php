@@ -39,7 +39,7 @@
                             <img src="images/icons/arrow-down.svg" alt="список полезное">
                         </a>
                         <ul class="header__submenu">
-                            <li><a href="#">Документация</a></li>
+                            <li><a href="{{ route('documentation') }}">Документация</a></li>
                             <li><a href="{{ route('articles') }}">Статьи</a></li>
                             <li><a href="{{ route('news') }}">Новости</a></li>
                             <li><a href="#">Бренды</a></li>
