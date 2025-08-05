@@ -95,19 +95,6 @@
 
 @section('js')
     <script src="https://api-maps.yandex.ru/2.1/?apikey={{ config('app.services.yandex_maps.key') }}&lang=ru_RU"></script>
-    <script type="text/javascript">
-        ymaps.ready(function() {
-
-            var myMap = new ymaps.Map("map", {
-
-                center: [55.75396, 37.620393], // координаты центра Москвы
-
-                zoom: 10
-
-            });
-
-        });
-    </script>
 
     @if ($errors->has('email') || $errors->has('password'))
         <script>
