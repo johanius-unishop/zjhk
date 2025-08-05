@@ -17,7 +17,7 @@
                     <div class="articles__item">
                         <div>
                             <div>
-                                <img src="./img/products/photo-9.png" alt="статьи">
+                                <img src="/images/products/photo-9.png" alt="статьи">
                             </div>
                             <div>
                                 <h5>О промышленных прямоугольных разъёмах</h5>
@@ -30,7 +30,7 @@
                     <div class="articles__item">
                         <div>
                             <div>
-                                <img src="./img/products/image-1.png" alt="статьи">
+                                <img src="/images/products/image-1.png" alt="статьи">
                             </div>
                             <div>
                                 <h5>О промышленных прямоугольных разъёмах</h5>
@@ -43,7 +43,7 @@
                     <div class="articles__item">
                         <div>
                             <div>
-                                <img src="./img/products/image-2.png" alt="статьи">
+                                <img src="/images/products/image-2.png" alt="статьи">
                             </div>
                             <div>
                                 <h5>О промышленных прямоугольных разъёмах</h5>
@@ -56,7 +56,7 @@
                     <div class="articles__item">
                         <div>
                             <div>
-                                <img src="./img/products/photo-10.png" alt="статьи">
+                                <img src="/images/products/photo-10.png" alt="статьи">
                             </div>
                             <div>
                                 <h5>О промышленных прямоугольных разъёмах</h5>
@@ -69,7 +69,7 @@
                     <div class="articles__item">
                         <div>
                             <div>
-                                <img src="./img/products/photo-9.png" alt="статьи">
+                                <img src="/images/products/photo-9.png" alt="статьи">
                             </div>
                             <div>
                                 <h5>О промышленных прямоугольных разъёмах</h5>
@@ -82,7 +82,7 @@
                     <div class="articles__item">
                         <div>
                             <div>
-                                <img src="./img/products/image-1.png" alt="статьи">
+                                <img src="/images/products/image-1.png" alt="статьи">
                             </div>
                             <div>
                                 <h5>О промышленных прямоугольных разъёмах</h5>
@@ -95,7 +95,7 @@
                     <div class="articles__item">
                         <div>
                             <div>
-                                <img src="./img/products/image-2.png" alt="статьи">
+                                <img src="/images/products/image-2.png" alt="статьи">
                             </div>
                             <div>
                                 <h5>О промышленных прямоугольных разъёмах</h5>
@@ -108,7 +108,7 @@
                     <div class="articles__item">
                         <div>
                             <div>
-                                <img src="./img/products/photo-10.png" alt="статьи">
+                                <img src="/images/products/photo-10.png" alt="статьи">
                             </div>
                             <div>
                                 <h5>О промышленных прямоугольных разъёмах</h5>
@@ -125,8 +125,8 @@
                 <div class="product-page__pagination">
                     <div class="product-page__pagination-content">
                         <button>
-                            <img src="./img/icons/tick-grey.svg" alt="влево">
-                            <img src="./img/icons/tick-black.svg" style="display: none; transform:rotateZ(180deg)"
+                            <img src="/images/icons/tick-grey.svg" alt="влево">
+                            <img src="/images/icons/tick-black.svg" style="display: none; transform:rotateZ(180deg)"
                                 alt="влево">
                         </button>
                         <ul class="product-page__page-list">
@@ -139,9 +139,9 @@
                             <li data-pagination><button>21</button></li>
                         </ul>
                         <button>
-                            <img src="./img/icons/tick-grey.svg" style="display: none; transform:rotateZ(180deg)"
+                            <img src="/images/icons/tick-grey.svg" style="display: none; transform:rotateZ(180deg)"
                                 alt="вправо">
-                            <img src="./img/icons/tick-black.svg" alt="вправо">
+                            <img src="/images/icons/tick-black.svg" alt="вправо">
                         </button>
                     </div>
                     <div class="product-page__page-size" data-page-size>
@@ -150,7 +150,7 @@
                                 <span>Показывать по </span>
                                 <button class="product-page__change-btn">
                                     <span id="page-count">6</span>
-                                    <img src="./img/icons/tick-black.svg" alt="список страниц">
+                                    <img src="/images/icons/tick-black.svg" alt="список страниц">
                                 </button>
                             </p>
                             <ul class="product-page__page-count" data-select-page>
