@@ -67,9 +67,9 @@
             <h3>Информация</h3>
             <ul class="mobile__side-list">
                 <li><a href="{{ route('about') }}" data-link="close">О компании</a></li>
-                <li><a href="{{ route('news.index') }}" data-link="close">Новости</a></li>
+                <li><a href="{{ route('news') }}" data-link="close">Новости</a></li>
                 <li><a href="#" data-link="close">Документация</a></li>
-                <li><a href="{{ route('article.index') }}" data-link="close">Статьи</a></li>
+                <li><a href="{{ route('articles') }}" data-link="close">Статьи</a></li>
                 <li><a href="#" data-link="close">Бренды</a></li>
             </ul>
             <h3>Покупателям</h3>
@@ -77,7 +77,7 @@
                 <li><a href="#" data-link="close">Юридическим лицам</a></li>
                 <li><a href="#" data-link="close">Физическим лицам</a></li>
                 <li><a href="#" data-link="close">Обратная связь</a></li>
-                <li><a href="#" data-link="close">Контакты</a></li>
+                <li><a href="{{ route('contacts') }}" data-link="close">Контакты</a></li>
                 <li><a href="#" data-link="close">Публичная оферта</a></li>
             </ul>
         </div>

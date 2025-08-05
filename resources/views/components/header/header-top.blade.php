@@ -40,8 +40,8 @@
                         </a>
                         <ul class="header__submenu">
                             <li><a href="#">Документация</a></li>
-                            <li><a href="{{ route('article.index') }}">Статьи</a></li>
-                            <li><a href="{{ route('news.index') }}">Новости</a></li>
+                            <li><a href="{{ route('articles') }}">Статьи</a></li>
+                            <li><a href="{{ route('news') }}">Новости</a></li>
                             <li><a href="#">Бренды</a></li>
                         </ul>
                     </li>
@@ -55,7 +55,7 @@
                         </ul>
                     </li>
                     <li class="header__nav-item">
-                        <a href="#" class="header__nav-link">Контакты</a>
+                        <a href="{{ route('contacts') }}" class="header__nav-link">Контакты</a>
                     </li>
                 </ul>
             </nav>

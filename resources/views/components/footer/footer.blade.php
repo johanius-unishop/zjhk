@@ -47,9 +47,9 @@
                     <h5 class="footer__title">Информация</h5>
                     <ul class="footer__info-list">
                         <li><a href="{{ route('about') }}">О компании</a></li>
-                        <li><a href="{{ route('news.index') }}">Новости</a></li>
+                        <li><a href="{{ route('news') }}">Новости</a></li>
                         <li><a href="#">Документация</a></li>
-                        <li><a href="{{ route('article.index') }}">Статьи</a></li>
+                        <li><a href="{{ route('articles') }}">Статьи</a></li>
                         <li><a href="#">Бренды</a></li>
                     </ul>
                 </div>
@@ -59,7 +59,7 @@
                         <li><a href="#">Юридическим лицам</a></li>
                         <li><a href="#">Физическим лицам</a></li>
                         <li><a href="#">Обратная связь</a></li>
-                        <li><a href="#">Контакты</a></li>
+                        <li><a href="{{ route('contacts') }}">Контакты</a></li>
                         <li><a href="#">Публичная оферта</a></li>
                     </ul>
                 </div>
