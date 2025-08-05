@@ -40,7 +40,8 @@
                                 <p class="contacts__item-details">Общество с ограниченной ответственностью «КевТек»</br>
                                     Дата регистрации компании: 10 марта 2023 года</br>
                                     ОГРН 1234700004912 от 10 марта 2023 года</br>
-                                    <strong>ИНН:</strong> 4706057430</p>
+                                    <strong>ИНН:</strong> 4706057430
+                                </p>
                             </div>
                         </div>
                         <div class="contacts__form-container">
@@ -93,6 +94,8 @@
 @yield('scripts')
 
 @section('js')
+    <script defer src="https://api-maps.yandex.ru/2.1/?apikey=082d4016-2253-4666-acca-0ffc03b9287b&lang=en_US"
+        type="text/javascript"></script>
 
     @if ($errors->has('email') || $errors->has('password'))
         <script>
