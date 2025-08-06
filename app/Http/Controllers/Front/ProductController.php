@@ -33,7 +33,8 @@ class ProductController extends Controller
         // /$viewModel = new ProductViewModel($product);
         $images      = $product->getMedia('images');
         $parents = Category::ancestorsAndSelf($product->category_id)->toArray();
-
+        $characteristics = $product->getProperties();
+        dd($characteristics);
 
         $data = [
 
