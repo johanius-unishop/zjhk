@@ -6,7 +6,7 @@
     <main>
         <section class="products-desc">
             <div class="products-desc__container container">
-                @include('components.breadcrumbs')
+                @include('components.product-page.breadcrumbs')
                 <div class="product-desc__content">
                     <div class="product-desc__title-container">
                         <h2>Комплект контактных вставок HA-016</h2>
