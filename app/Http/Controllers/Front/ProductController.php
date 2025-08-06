@@ -28,7 +28,7 @@ class ProductController extends Controller
         if ($product->published !== 1) {
             return abort(404);
         }
-        dd($product);
+
        // $analogs = (Product::getAnalogies($product));
         // /$viewModel = new ProductViewModel($product);
         $images      = $product->getMedia('images');
