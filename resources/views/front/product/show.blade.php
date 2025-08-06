@@ -116,7 +116,7 @@
                                             </div>
                                             <div class="product-desc__short">
                                                 <p>Описание:</p>
-                                                <p>Комплект контактных вставок HA-016 (0920016261, 09200162812)</p>
+                                                <p>{{$data['product']->short_description }}/p>
                                             </div>
                                             <div class="product-desc__prop-link">
                                                 <a href="#">Все характеристики</a>
