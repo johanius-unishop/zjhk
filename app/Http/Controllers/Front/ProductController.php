@@ -29,12 +29,12 @@ class ProductController extends Controller
        // $analogs = (Product::getAnalogies($product));
         // /$viewModel = new ProductViewModel($product);
         $images      = $product->getMedia('images');
-        $breadcrumbs = Category::ancestorsAndSelf($product->category_id)->toArray();
+        $parents = Category::ancestorsAndSelf($product->category_id)->toArray();
 
 
         $data = [
 
-            'breadcrumbs' => $breadcrumbs,
+            'parents' => $parents,
             'product' => $product,
            // 'analogs' => $analogs,
             'images' => $images,
