@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductType;
+use App\Models\ProductTypeProperty;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use App\ViewModels\ProductViewModel;
@@ -35,7 +36,24 @@ class ProductController extends Controller
         $images      = $product->getMedia('images');
         $parents = Category::ancestorsAndSelf($product->category_id)->toArray();
 
-        dd($product);
+        $productId = $product->id;
+        $productTypeId = Product::query()->where('id', '=', $productId)->first()->product_type_id;
+
+        $technical_data = ProductTypeProperty::query()
+            ->leftJoin('product_property_values', function($join) use ($productId) {
+                $join->on('product_type_properties.id', '=', 'product_property_values.product_type_property_id')
+                    ->where('product_property_values.product_id', '=', $productId);
+            })
+            ->leftJoin('product_type_property_values', 'product_property_values.product_type_property_value_id', '=', 'product_type_property_values.id')
+            ->where('product_type_properties.product_type_id', '=', $productTypeId)
+            ->orderBy('product_type_properties.order_column')
+            ->select([
+                'product_type_properties.name as characteristic_name',
+                'product_type_property_values.value as characteristic_value',
+            ]);
+            return $technical_data;
+
+        dd($technical_data);
 
         $data = [
 
