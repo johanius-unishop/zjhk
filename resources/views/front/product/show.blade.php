@@ -105,7 +105,7 @@
                                 <div class="product-desc__about-item">
                                     <div class="product-desc__card">
                                         <div class="product-desc__card-left">
-                                            <h4 class="product-desc__card-title">Комплекты контактных вставок</h4>
+                                            <h4 class="product-desc__card-title">{{$data['product']->product_type->name }} </h4>
                                             <div class="product-desc__card-wrapper">
                                                 <p><span>Модель:
                                                     </span>
