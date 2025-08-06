@@ -1,6 +1,7 @@
 @if (Breadcrumbs::exists())
     <div class="breadcrumbs">
         <ul class="breadcrumbs__list">
+
             @foreach (Breadcrumbs::generate('product.show', $data['parents'], $data['product']) as $crumb)
                 @if (!$loop->last)
                     <li><a href="{{ $crumb->url }}">{{ $crumb->title }}</a><img src="/images/icons/arrow-right.svg" alt="стрелка"></li>
