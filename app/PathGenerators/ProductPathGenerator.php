@@ -64,7 +64,7 @@ class ProductPathGenerator implements PathGenerator
 
         // Убираем ведущие и замыкающие тире, если они есть
         $modelName = trim($modelName, '-');
-        
+
         $collectionName = $model->collection_name ?: '';
 
         $path = "{$vendorName}/";
@@ -111,6 +111,6 @@ class ProductPathGenerator implements PathGenerator
 
         $path .= "{$collectionName}/responsive/";
 
-        return $path;  
+        return $path;
     }
 }

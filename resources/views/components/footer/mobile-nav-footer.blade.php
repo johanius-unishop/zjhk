@@ -4,38 +4,38 @@
             <li class="mobile__actions-item">
                 <span style="display: none">5</span>
                 <a href="{{ route('home') }}" >
-                    <img src="images/icons/home.svg" alt="Главная">
+                    <img src={{ asset('images/icons/home.svg') }}  alt="Главная">
                     <span>Главная</span>
                 </a>
             </li>
             <li class="mobile__actions-item">
                 <a href="#">
-                    <img src="images/icons/catalog-black.svg" alt="Каталог">
+                    <img src={{ asset('images/icons/catalog-black.svg') }}  alt="Каталог">
                     <span>Каталог</span>
                 </a>
             </li>
             <li class="mobile__actions-item">
                 <span style="display: none">5</span>
                 <a href="#">
-                    <img src="images/icons/cart.svg" alt="Корзина">
+                    <img src={{ asset('images/icons/cart.svg') }}  alt="Корзина">
                     <span>Корзина</span>
                 </a>
             </li>
 
             <li class="mobile__actions-item">
                 <a data-modal-link="account" href="{{ route('login') }}" style="display: flex" data-toggle="modal" data-target="#loginModal">
-                    <img src="images/icons/login.svg" alt="Логин">
+                    <img src={{ asset('images/icons/login.svg') }}  alt="Логин">
                     <span>Кабинет</span>
                 </a>
                 <span style="display: none">11</span>
                 <a style="display: none" href="#">
-                    <img src="images/icons/account.svg" alt="Аккаунт">
+                    <img src={{ asset('images/icons/account.svg') }}  alt="Аккаунт">
                     <span>Александр</span>
                 </a>
             </li>
             <li class="mobile__actions-item">
                 <button class="mobile__side-btn">
-                    <img src="images/icons/menu-black.svg" alt="меню">
+                    <img src={{ asset('images/icons/menu-black.svg') }}  alt="меню">
                     <span>Меню</span>
                 </button>
             </li>
@@ -48,20 +48,20 @@
                     <div>
                         <span style="display: none">5</span>
                         <a href="#" data-link="close">
-                            <img src="images/icons/box-stroke.svg" alt="заказы">
+                            <img src={{ asset('images/icons/box-stroke.svg') }}  alt="заказы">
                             <span>Заказы</span>
                         </a>
                     </div>
                     <div>
                         <span style="display: none">5</span>
                         <a href="#" data-link="close">
-                            <img src="images/icons/bookmark.svg" alt="избранное">
+                            <img src={{ asset('images/icons/bookmark.svg') }}  alt="избранное">
                             <span>Избранное</span>
                         </a>
                     </div>
                 </div>
                 <div class="mobile__side-right">
-                    <button><img src="images/icons/plus.svg" alt="закрыть"></button>
+                    <button><img src={{ asset('images/icons/plus.svg') }}  alt="закрыть"></button>
                 </div>
             </div>
             <h3>Информация</h3>

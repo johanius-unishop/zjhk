@@ -2,7 +2,7 @@
     <div class="header__container container">
         <div class="header__bottom-wrapper">
             <a href="{{ route('home') }}" class="header__logo-link">
-                <img src="images/icons/logo.svg" alt="логотип" class="header__logo">
+                <img src={{ asset('images/icons/logo.svg') }}  alt="логотип" class="header__logo">
             </a>
             <div class="header__search-wrapper">
                 <button class="header__catalogue-btn btn">
@@ -17,13 +17,13 @@
                     <input type="search" name="search" id="search" placeholder="Поиск по каталогу" autocomplete="off"
                         class="header__search-input">
                     <button class="header__search-submit">
-                        <img src="images/icons/zoom-glass.svg" alt="поиск">
+                        <img src={{ asset('images/icons/zoom-glass.svg') }}  alt="поиск">
                     </button>
                     <div id="search__result" class="header__result" style="display: none">
                         <ul class="header__result-wrapper">
                             <li>
                                 <a href="#">
-                                    <p><img src="images/products/example.png" alt="пример товара">
+                                    <p><img src={{ asset('images/products/example.png') }}  alt="пример товара">
                                         <span>HA-003-F</span>
                                         <span>09200032711</span>
                                     </p>
@@ -32,10 +32,10 @@
                                 <div class="product__example">
                                     <div class="product__example-wrapper">
                                         <div>
-                                            <img src="images/products/item_photo.png" alt="товар">
+                                            <img src={{ asset('images/products/item_photo.png') }}  alt="товар">
                                             <button>
-                                                <img src="images/icons/label-gray.svg" alt="избранное">
-                                                <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
+                                                <img src={{ asset('images/icons/label-gray.svg') }}  alt="избранное">
+                                                <img src={{ asset('images/icons/bookmark.svg') }}  style="display: none" alt="избранное">
                                             </button>
                                         </div>
                                         <div class="product__title-container">
@@ -58,7 +58,7 @@
                             <li>
                                 <a href="#">
                                     <p>
-                                        <img src="images/products/example.png" alt="пример товара">
+                                        <img src={{ asset('images/products/example.png') }}  alt="пример товара">
                                         <span>HA-003-F</span>
                                         <span>09200032711</span>
                                     </p>
@@ -67,10 +67,10 @@
                                 <div class="product__example">
                                     <div class="product__example-wrapper">
                                         <div>
-                                            <img src="images/products/item_photo.png" alt="товар">
+                                            <img src={{ asset('images/products/item_photo.png') }}  alt="товар">
                                             <button>
-                                                <img src="images/icons/label-gray.svg" alt="избранное">
-                                                <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
+                                                <img src={{ asset('images/icons/label-gray.svg') }}  alt="избранное">
+                                                <img src={{ asset('images/icons/bookmark.svg') }}  style="display: none" alt="избранное">
                                             </button>
                                         </div>
                                         <div class="product__title-container">
@@ -93,7 +93,7 @@
                             <li>
                                 <a href="#">
                                     <p>
-                                        <img src="images/products/example.png" alt="пример товара">
+                                        <img src={{ asset('images/products/example.png') }}  alt="пример товара">
                                         <span>HA-003-F</span>
                                         <span>09200032711</span>
                                     </p>
@@ -102,10 +102,10 @@
                                 <div class="product__example">
                                     <div class="product__example-wrapper">
                                         <div>
-                                            <img src="images/products/item_photo.png" alt="товар">
+                                            <img src={{ asset('images/products/item_photo.png') }}  alt="товар">
                                             <button>
-                                                <img src="images/icons/label-gray.svg" alt="избранное">
-                                                <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
+                                                <img src={{ asset('images/icons/label-gray.svg') }}  alt="избранное">
+                                                <img src={{ asset('images/icons/bookmark.svg') }}  style="display: none" alt="избранное">
                                             </button>
                                         </div>
                                         <div class="product__title-container">
@@ -128,7 +128,7 @@
                             <li>
                                 <a href="#">
                                     <p>
-                                        <img src="images/products/example.png" alt="пример товара">
+                                        <img src={{ asset('images/products/example.png') }}  alt="пример товара">
                                         <span>HA-003-F</span>
                                         <span>09200032711</span>
                                     </p>
@@ -137,10 +137,10 @@
                                 <div class="product__example">
                                     <div class="product__example-wrapper">
                                         <div>
-                                            <img src="images/products/item_photo.png" alt="товар">
+                                            <img src={{ asset('images/products/item_photo.png') }}  alt="товар">
                                             <button>
-                                                <img src="images/icons/label-gray.svg" alt="избранное">
-                                                <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
+                                                <img src={{ asset('images/icons/label-gray.svg') }}  alt="избранное">
+                                                <img src={{ asset('images/icons/bookmark.svg') }}  style="display: none" alt="избранное">
                                             </button>
                                         </div>
                                         <div class="product__title-container">
@@ -163,7 +163,7 @@
                             <li>
                                 <a href="#">
                                     <p>
-                                        <img src="images/products/example.png" alt="пример товара">
+                                        <img src={{ asset('images/products/example.png') }}  alt="пример товара">
                                         <span>HA-003-F</span>
                                         <span>09200032711</span>
                                     </p>
@@ -172,10 +172,10 @@
                                 <div class="product__example">
                                     <div class="product__example-wrapper">
                                         <div>
-                                            <img src="images/products/item_photo.png" alt="товар">
+                                            <img src={{ asset('images/products/item_photo.png') }}  alt="товар">
                                             <button>
-                                                <img src="images/icons/label-gray.svg" alt="избранное">
-                                                <img src="images/icons/bookmark.svg" style="display: none" alt="избранное">
+                                                <img src={{ asset('images/icons/label-gray.svg') }}  alt="избранное">
+                                                <img src={{ asset('images/icons/bookmark.svg') }}  style="display: none" alt="избранное">
                                             </button>
                                         </div>
                                         <div class="product__title-container">
@@ -205,9 +205,9 @@
                             <div class="catalogue__wrapper">
                                 <div class="catalogue__desc">
                                     <p>
-                                        <img src="images/icons/adapter.svg" alt="адаптер">
+                                        <img src={{ asset('images/icons/adapter.svg') }}  alt="адаптер">
                                         <span>Промышленные прямоугольные разъёмы</span>
-                                        <img src="images/icons/arrow-blue-right.svg" alt="стрелка">
+                                        <img src={{ asset('images/icons/arrow-blue-right.svg') }}  alt="стрелка">
                                     </p>
                                 </div>
                                 <div class="catalogue__content">
@@ -342,12 +342,12 @@
                     <li class="header__actions-item">
                         @auth('web')
                         <a href="#" style="display: inline-flex">
-                            <img src="images/icons/account.svg" alt="Аккаунт">
+                            <img src={{ asset('images/icons/account.svg') }}  alt="Аккаунт">
                             <span>{{ Auth::user()->name }}</span>
                         </a>
                         @else
                         <a data-modal-link="account" href="#" style="display: inline-flex" data-toggle="modal" data-target="#loginModal">
-                            <img src="images/icons/login.svg" alt="Логин">
+                            <img src={{ asset('images/icons/login.svg') }}  alt="Логин">
                             <span>Войти</span>
                         </a>
                         @endauth
@@ -355,21 +355,21 @@
                     <li class="header__actions-item">
                         <span style="display: none">11</span>
                         <a href="#">
-                            <img src="images/icons/box-stroke.svg" alt="Заказы">
+                            <img src={{ asset('images/icons/box-stroke.svg') }}  alt="Заказы">
                             <span>Заказы</span>
                         </a>
                     </li>
                     <li class="header__actions-item">
                         <span style="display: none">33</span>
                         <a href="#">
-                            <img src="images/icons/bookmark.svg" alt="Избранное">
+                            <img src={{ asset('images/icons/bookmark.svg') }}  alt="Избранное">
                             <span>Избранное</span>
                         </a>
                     </li>
                     <li class="header__actions-item">
                         <span style="display: none">5</span>
                         <a href="#">
-                            <img src="images/icons/cart.svg" alt="Корзина">
+                            <img src={{ asset('images/icons/cart.svg') }}  alt="Корзина">
                             <span>Корзина</span>
                         </a>
                     </li>

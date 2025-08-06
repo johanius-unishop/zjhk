@@ -7,14 +7,14 @@
             <form action="#" class="footer__subscribe-form">
                 <input type="email" class="footer__subscribe-input" placeholder="Введите email">
                 <button type="submit" class="footer__subscribe-btn"><span>Подписаться</span>
-                    <img src="images/icons/bell.svg" alt="подписаться">
+                    <img src={{ asset('images/icons/bell.svg') }}  alt="подписаться">
                 </button>
             </form>
         </div>
         <div class="footer__content">
             <div class="footer__about">
                 <a href="{{ route('home') }}">
-                <img src="images/icons/logo.svg" alt="лого">
+                <img src={{ asset('images/icons/logo.svg') }}  alt="лого">
                 </a>
                 <p class="footer__address">г. Всеволожск, ул. Аэропортовская, 14</p>
             </div>
@@ -23,15 +23,15 @@
                     <h5 class="footer__title">Мы на связи</h5>
                     <div class="footer__connect-wrapper">
                         <a href="tel:+78122008275">
-                            <img src="images/icons/phone-stroke.svg" alt="телефон">
+                            <img src={{ asset('images/icons/phone-stroke.svg') }}  alt="телефон">
                             <span>+7 812 200 82 75</span>
                         </a>
                         <a href="mailto:info@kevtek.ru">
-                            <img src="images/icons/envelope-stroke.svg" alt="почта">
+                            <img src={{ asset('images/icons/envelope-stroke.svg') }}  alt="почта">
                             <span>info@kevtek.ru</span>
                         </a>
                         <a href="geo:59.99512081700448,30.641846915269824">
-                            <img src="images/icons/location.svg" alt="адрес">
+                            <img src={{ asset('images/icons/location.svg') }}  alt="адрес">
                             <p>г. Всеволожск ул. Аэропортовская, 14</p>
                         </a>
                     </div>
@@ -40,9 +40,9 @@
                 <div class="footer__messenger">
                     <h5 class="footer__title">Мессенджеры</h5>
                     <div class="footer__messenger-wrapper">
-                        <a href="https://whatsapp.com/"><img src="images/icons/whatsapp.svg" alt="whatsapp"></a>
-                        <a href="https://www.viber.com/"><img src="images/icons/viber.svg" alt="viber"></a>
-                        <a href="https://telegram.org/"><img src="images/icons/telegram.svg" alt="telegram"></a>
+                        <a href="https://whatsapp.com/"><img src={{ asset('images/icons/whatsapp.svg') }}  alt="whatsapp"></a>
+                        <a href="https://www.viber.com/"><img src={{ asset('images/icons/viber.svg') }}  alt="viber"></a>
+                        <a href="https://telegram.org/"><img src={{ asset('images/icons/telegram.svg') }}  alt="telegram"></a>
                     </div>
                 </div>
                 <div class="footer__info">
