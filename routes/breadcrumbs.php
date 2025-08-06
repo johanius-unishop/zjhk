@@ -139,7 +139,6 @@ Breadcrumbs::for('product.show', function (BreadcrumbTrail $trail, array $parent
 
     if (!empty($parents)) {
         foreach ($parents as $category) {
-            dd($category);
             $trail->push($category['name'], URL::to('/category/' . @$category['slug']));
         }
     }
