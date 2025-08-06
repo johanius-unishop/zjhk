@@ -26,7 +26,7 @@ class ProductController extends Controller
             return abort(404);
         }
 
-        $analogs = (Product::getAnalogies($product));
+       // $analogs = (Product::getAnalogies($product));
         // /$viewModel = new ProductViewModel($product);
         $images      = $product->getMedia('images');
         $breadcrumbs = Category::ancestorsAndSelf($product->category_id)->toArray();
