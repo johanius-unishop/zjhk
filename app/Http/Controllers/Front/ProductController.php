@@ -51,7 +51,7 @@ class ProductController extends Controller
                 'product_type_properties.name as characteristic_name',
                 'product_type_property_values.value as characteristic_value',
             ]);
-            return $technical_data;
+
 
         dd($technical_data);
 
