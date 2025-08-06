@@ -109,10 +109,10 @@
                                             <div class="product-desc__card-wrapper">
                                                 <p><span>Модель:
                                                     </span>
-                                                    HA-016</p>
+                                                    {{$data['product']->name }}</p>
                                                 <p><span>Артикул:
                                                     </span>
-                                                    09200162612 + 09200162812</p>
+                                                    {{$data['product']->article }}</p>
                                             </div>
                                             <div class="product-desc__short">
                                                 <p>Описание:</p>
