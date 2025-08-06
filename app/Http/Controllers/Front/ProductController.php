@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ProductType;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use App\ViewModels\ProductViewModel;
@@ -21,7 +22,9 @@ class ProductController extends Controller
     // public function testShow(Product $product)
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
+        $product = Product::where('slug', $slug)
+            ->with('productType')
+            ->firstOrFail();
         if ($product->published !== 1) {
             return abort(404);
         }
