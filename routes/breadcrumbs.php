@@ -132,11 +132,11 @@ Breadcrumbs::for('favourites', function (BreadcrumbTrail $trail) {
 });
 
 // Home > Product
-Breadcrumbs::for('product.show', function (BreadcrumbTrail $trail, $parents, Product $item) {
+Breadcrumbs::for('product.show', function (BreadcrumbTrail $trail, array $parents = [], Product $item) {
     $trail->parent('home');
-    $trail->push('catalog');
+    $trail->push('catalog', route('catalog'));
 
-    if (isset($parents) && is_countable($parents) > 0) {
+    if (!empty($parents)) {
         foreach ($parents as $category) {
             $trail->push($category['name'], URL::to('/category/' . @$category['slug']));
         }
