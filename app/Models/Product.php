@@ -160,7 +160,7 @@ class Product extends Model implements HasMedia, Sitemapable
     }
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('product-images') //Изображения
+        $this->addMediaCollection('images') //Изображения
             ->useDisk('products')
             ->withResponsiveImages()
             ->useFallbackUrl('/images/default_image.jpg')
