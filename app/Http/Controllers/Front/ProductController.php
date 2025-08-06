@@ -36,7 +36,7 @@ class ProductController extends Controller
 
             'breadcrumbs' => $breadcrumbs,
             'product' => $product,
-            'analogs' => $analogs,
+           // 'analogs' => $analogs,
             'images' => $images,
             // 'media' => $media,
             // 'files' => $files,
