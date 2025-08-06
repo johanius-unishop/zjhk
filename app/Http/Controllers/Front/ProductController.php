@@ -24,6 +24,7 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)
             ->with('productType')
+            ->with('productPropertyValues')
             ->firstOrFail();
         if ($product->published !== 1) {
             return abort(404);
@@ -34,7 +35,7 @@ class ProductController extends Controller
         $images      = $product->getMedia('images');
         $parents = Category::ancestorsAndSelf($product->category_id)->toArray();
         $characteristics = $product->getProperties();
-        dd($characteristics);
+        dd($product);
 
         $data = [
 
