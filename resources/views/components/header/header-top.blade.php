@@ -4,7 +4,7 @@
             <div class="header__contacts">
                 <div class="header__phone-wrapper">
                     <a class="header__phone-link" href="tel:+78122008275">
-                        <img src="images/icons/phone-stroke.svg" alt="телефон">
+                        <img src={{ asset('images/icons/phone-stroke.svg') }} alt="телефон">
                         <span>+7 (812) 200 82 75</span>
                         <img src="images/icons/arrow-down.svg" alt="список телефонов">
                     </a>
