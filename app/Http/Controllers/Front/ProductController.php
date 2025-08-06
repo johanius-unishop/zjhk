@@ -16,8 +16,8 @@ class ProductController extends Controller
     //public function show(Product $product)
     //{
 
-      //  $viewModel = new ProductViewModel($product);
-        //return view('product-card', compact('viewModel'));
+    //  $viewModel = new ProductViewModel($product);
+    //return view('product-card', compact('viewModel'));
     //}
 
     // public function testShow(Product $product)
@@ -31,7 +31,7 @@ class ProductController extends Controller
             return abort(404);
         }
 
-       // $analogs = (Product::getAnalogies($product));
+        // $analogs = (Product::getAnalogies($product));
         // /$viewModel = new ProductViewModel($product);
         $images      = $product->getMedia('images');
         $parents = Category::ancestorsAndSelf($product->category_id)->toArray();
@@ -39,8 +39,8 @@ class ProductController extends Controller
         $productId = $product->id;
         $productTypeId = Product::query()->where('id', '=', $productId)->first()->product_type_id;
 
-        $technical_data = ProductTypeProperty::query()
-            ->leftJoin('product_property_values', function($join) use ($productId) {
+        $technical_data =  ProductTypeProperty::query()
+            ->leftJoin('product_property_values', function ($join) use ($productId) {
                 $join->on('product_type_properties.id', '=', 'product_property_values.product_type_property_id')
                     ->where('product_property_values.product_id', '=', $productId);
             })
@@ -50,7 +50,9 @@ class ProductController extends Controller
             ->select([
                 'product_type_properties.name as characteristic_name',
                 'product_type_property_values.value as characteristic_value',
-            ]);
+            ])
+            ->get()  // Выполняем запрос и получаем результат в виде Collection
+            ->toArray();  // Конвертируем результат в массив
 
 
         dd($technical_data);
@@ -59,7 +61,7 @@ class ProductController extends Controller
 
             'parents' => $parents,
             'product' => $product,
-           // 'analogs' => $analogs,
+            // 'analogs' => $analogs,
             'images' => $images,
             // 'media' => $media,
             // 'files' => $files,
