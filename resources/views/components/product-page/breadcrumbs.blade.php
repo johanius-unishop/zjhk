@@ -3,9 +3,9 @@
         <ul class="breadcrumbs__list">
             @foreach (Breadcrumbs::generate('product.show', ['parents' => $data['parents']], $data['product']) as $crumb)
                 @if (!$loop->last)
-                    <li><a href="{{ $crumb->url }}">{{ $crumb->title }}}</a><img src="/images/icons/arrow-right.svg" alt="стрелка"></li>
+                    <li><a href="{{ $crumb->url }}">{{ $crumb->title }}</a><img src="/images/icons/arrow-right.svg" alt="стрелка"></li>
                 @else
-                    <li><span>{{ $crumb->title }}}</span></li>
+                    <li><span>{{ $crumb->title }}</span></li>
                 @endif
             @endforeach
         </ul>
