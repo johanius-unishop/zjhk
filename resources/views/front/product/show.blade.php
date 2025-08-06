@@ -142,7 +142,7 @@
                                     <div class="product-desc__cart-item">
                                         <div class="product-desc__cart-item-wrapper">
                                             <div>
-                                                <p>1 976 ₽</p>
+                                                @include('components.product-page.price')
                                                 <p>В наличии 3 шт</p>
                                             </div>
                                             <div class="product-desc__cart-btn">
