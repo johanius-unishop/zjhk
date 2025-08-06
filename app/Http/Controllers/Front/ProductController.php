@@ -62,6 +62,8 @@ class ProductController extends Controller
             'parents' => $parents,
             'product' => $product,
             // 'analogs' => $analogs,
+            'technical_data' => $technical_data,
+
             'images' => $images,
             // 'media' => $media,
             // 'files' => $files,
