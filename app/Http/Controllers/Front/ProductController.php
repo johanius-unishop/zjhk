@@ -55,7 +55,7 @@ class ProductController extends Controller
             ->toArray();  // Конвертируем результат в массив
 
 
-        dd($technical_data);
+
 
         $data = [
 
