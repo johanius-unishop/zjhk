@@ -179,13 +179,13 @@ class Product extends Model implements HasMedia, Sitemapable
         $this->addMediaCollection('overviewInformation')//Обзорная информация
             ->useDisk('products')
             ->acceptsMimeTypes(['application/pdf']);
-        
+
         $this->addMediaCollection('3dModel')//3D-модель
             ->useDisk('products')
             ->acceptsMimeTypes(['application/x-rar-compressed', 'application/zip', 'text/plain']);
     }
-    
-    
+
+
     public function  productPropertyValues()
     {
         return $this->hasMany(ProductPropertyValue::class, 'product_id');
@@ -238,7 +238,7 @@ class Product extends Model implements HasMedia, Sitemapable
     }
 
 
-    public static function getAnalogies($product): array
+   /* public static function getAnalogies($product): array
     {
         // Аналоги товара
         $analogies = [];
@@ -254,6 +254,7 @@ class Product extends Model implements HasMedia, Sitemapable
         }
         return $analogies;
     }
+        */
     public static function storeAnalog(Product $product, $analogs)
     {
         try {
@@ -303,7 +304,7 @@ class Product extends Model implements HasMedia, Sitemapable
 
         );
     }
-    
+
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'order_compositions', 'product_id', 'order_id');
