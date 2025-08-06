@@ -134,7 +134,7 @@ Breadcrumbs::for('favourites', function (BreadcrumbTrail $trail) {
 // Home > Product
 Breadcrumbs::for('product.show', function (BreadcrumbTrail $trail, array $parents = [], Product $item) {
     $trail->parent('home');
-    $trail->push('catalog', route('catalog'));
+    $trail->push('Каталог товаров', route('catalog'));
 
     if (!empty($parents)) {
         foreach ($parents as $category) {
