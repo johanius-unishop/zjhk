@@ -132,8 +132,9 @@ Breadcrumbs::for('favourites', function (BreadcrumbTrail $trail) {
 });
 
 // Home > Product
-Breadcrumbs::for('front_product', function (BreadcrumbTrail $trail, $parents, Product $item) {
-    $trail->parent('catalog');
+Breadcrumbs::for('product.show', function (BreadcrumbTrail $trail, $parents, Product $item) {
+    $trail->parent('home');
+    $trail->push('catalog');
 
     if (isset($parents) && is_countable($parents) > 0) {
         foreach ($parents as $category) {
@@ -141,7 +142,6 @@ Breadcrumbs::for('front_product', function (BreadcrumbTrail $trail, $parents, Pr
         }
     }
     $trail->push($item->name);
-    // 	$breadcrumbs->push($item->name );
 });
 
 

@@ -11,15 +11,15 @@ use App\ViewModels\ProductViewModel;
 
 class ProductController extends Controller
 {
-    public function show(Product $product)
-    {
+    //public function show(Product $product)
+    //{
 
-        $viewModel = new ProductViewModel($product);
-        return view('product-card', compact('viewModel'));
-    }
+      //  $viewModel = new ProductViewModel($product);
+        //return view('product-card', compact('viewModel'));
+    //}
 
     // public function testShow(Product $product)
-    public function testShow( $slug)
+    public function show($slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
         if ($product->published !== 1) {
@@ -53,6 +53,6 @@ class ProductController extends Controller
         SEOMeta::setDescription($product->seo->description);
         SEOMeta::setKeywords($product->seo->keywords);
         //    dd($data);
-        return view('front.product.test_show', ['data' => $data]);
+        return view('front.product.show', ['data' => $data]);
     }
 }

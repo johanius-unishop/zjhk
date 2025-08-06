@@ -32,7 +32,7 @@ Route::get('/pages/{slug}', [PageController::class, 'show'])->name('page.show');
 Route::get('/catalog', [CategoryController::class, 'catalog'])->name('catalog');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 
-Route::get('/product/{product}', [ProductController::class, 'testShow'])->name('testShow');
+Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
 
 Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
 
