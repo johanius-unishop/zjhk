@@ -269,6 +269,9 @@ class Product extends Model implements HasMedia, Sitemapable
         }
         return true;
     }
+
+
+
     public function getProperties()
     {
         // Массив характеристик
