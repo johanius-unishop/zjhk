@@ -186,15 +186,7 @@
                         <div class="product-desc__props-left">
                             @include('components.product-page.brand-section')
                             @include('components.product-page.composition-set')
-                            <div class="product-desc__pack">
-                                <h5 class="product-desc__pack-title">Информация об упаковке</h5>
-                                <div class="product-desc__pack-wrapper">
-                                    <p>Вес, кг: 0,18</p>
-                                    <p>Длина, мм: 73</p>
-                                    <p>Ширина, мм: 23</p>
-                                    <p>Высота, мм: 63</p>
-                                </div>
-                            </div>
+                            @include('components.product-page.dimensions-section')
                         </div>
                         <div class="product-desc__docs">
                             <h5 class="product-desc__docs-title">Документация</h5>
