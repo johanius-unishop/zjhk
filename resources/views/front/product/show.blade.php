@@ -184,21 +184,10 @@
                 @include('components.product-page.description')
                 <div class="product-desc__props-wrapper">
                     @include('components.product-page.technical-specifications2')
+
                     <div class="product-desc__props-options">
                         <div class="product-desc__props-left">
-                            <div class="product-desc__brand">
-                                <h3>ZJHK <img src="/images/icons/attention-gray.svg" alt="логотип"></h3>
-                                <a href="#">Все товары бренда</a>
-                                <img class="product-desc__logo" src="/images/icons/partner-logo.png" alt="логотип">
-                            </div>
-                            <div class="product-desc__country">
-                                <p><img src="/images/icons/china_flag.svg" alt="страна"> <span>Страна производства:
-                                        Китай</span>
-                                </p>
-                                <p><img src="/images/icons/protect.svg" alt="гарантия"> <span>Гарантия производителя:
-                                        1 год</span>
-                                </p>
-                            </div>
+                            @include('components.product-page.brand-section')
                             <div class="product-desc__complectation">
                                 <h5 class="product-desc__complectation-title">Комплектация</h5>
                                 <div class="product-desc__complectation-wrapper">
