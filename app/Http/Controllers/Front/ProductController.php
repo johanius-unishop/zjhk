@@ -60,21 +60,32 @@ class ProductController extends Controller
             ->get()  // Выполняем запрос и получаем результат в виде Collection
             ->toArray();  // Конвертируем результат в массив
 
-        dd($product->composite);
+
         $compositionSet = [];
         foreach ($product->composite as $element) {
-            // Получаем продукт по ID и загружаем связь 'ProductType'
-            $item = Product::query()
-                ->where('id', $element->product_element_id)
-                ->with('ProductType')
-                ->first(); // Используем first(), чтобы вернуть один объект, а не коллекцию
-
-            // Добавляем полученный продукт в массив
-            if ($item) { // Проверка на null, чтобы избежать добавления пустого элемента
-
-                $compositionSet = $item;
+            if (
+                !empty($element->compositeType) &&
+                !empty($element->compositeProduct) &&
+                !empty($element->compositeType->name) &&
+                !empty($element->compositeProduct->name) &&
+                !empty($element->compositeProduct->article)
+            ) {
+                $compositionSet[] = [
+                    'type' => $element->compositeType->name,
+                    'model' => $element->compositeProduct->name,
+                    'article' => $element->compositeProduct->article,
+                    'qty' => $element->quantity,
+                    'order_column' => $element->compositeType->order_column,
+                ];
             }
         }
+
+        // Сортируем массив по полю 'order_column' по возрастанию
+        usort($compositionSet, function ($a, $b) {
+            return $a['order_column'] <=> $b['order_column'];
+        });
+
+        dd($compositionSet);
 
 
         $data = [
