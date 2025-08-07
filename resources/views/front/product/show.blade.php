@@ -183,7 +183,7 @@
                 </div>
                 @include('components.product-page.description')
                 <div class="product-desc__props-wrapper">
-                    @include('components.product-page.technical-specifications2')
+                    @include('components.product-page.technical-specifications')
                     <div class="product-desc__props-options">
                         <div class="product-desc__props-left">
                             <div class="product-desc__brand">
