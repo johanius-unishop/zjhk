@@ -28,7 +28,7 @@ class ProductController extends Controller
             ->with('productType')
             ->with('productPropertyValues')
             ->with('vendor.country')
-            ->with('composite')
+            ->with('composite.compositeProduct')
             ->firstOrFail();
         if ($product->published !== 1) {
             return abort(404);
@@ -62,13 +62,14 @@ class ProductController extends Controller
         foreach ($product->composite as $element) {
             // Получаем продукт по ID и загружаем связь 'ProductType'
             $item = Product::query()
-                ->where('id', $element->id)
+                ->where('id', $element->product_element_id)
                 ->with('ProductType')
                 ->first(); // Используем first(), чтобы вернуть один объект, а не коллекцию
 
             // Добавляем полученный продукт в массив
             if ($item) { // Проверка на null, чтобы избежать добавления пустого элемента
-                $compositionSet[] = $item;
+
+                $compositionSet = $item;
             }
         }
 
