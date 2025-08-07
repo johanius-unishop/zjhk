@@ -115,10 +115,7 @@
                                                     </span>
                                                     {{ $data['product']->article }}</p>
                                             </div>
-                                            <div class="product-desc__short">
-                                                <p>Описание:</p>
-                                                <p>{{ $data['product']->short_description }}</p>
-                                            </div>
+                                            @include('components.product-page.short-description')
                                             <div class="product-desc__prop-link">
                                                 <a href="#">Все характеристики</a>
                                                 <img src="/images/icons/arrow-right.svg" alt="все характеристики">
