@@ -57,6 +57,7 @@ class ProductController extends Controller
             ->get()  // Выполняем запрос и получаем результат в виде Collection
             ->toArray();  // Конвертируем результат в массив
 
+            dd($product->composite);
         $compositionSet = [];
         foreach ($product->composite as $element) {
             // Получаем продукт по ID и загружаем связь 'ProductType'
