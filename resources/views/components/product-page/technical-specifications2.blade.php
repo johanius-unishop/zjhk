@@ -6,7 +6,7 @@
         <p class="product-desc__technical-row">
             <span class="technical__title">Размер</span>
             <span class="technical-row__dots">
-                .........................................................................................
+                ............................................................................................
             </span>
             <span class="technical__char">16А</span>
         </p>
