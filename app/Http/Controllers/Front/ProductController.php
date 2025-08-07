@@ -25,10 +25,13 @@ class ProductController extends Controller
     public function show($slug)
     {
         $product = Product::where('slug', $slug)
-            ->with('productType')
-            ->with('productPropertyValues')
-            ->with('vendor.country')
-            ->with('composite.compositeProduct')
+            ->with([
+                'productType',
+                'productPropertyValues',
+                'vendor.country',
+                'composite.compositeProduct',
+                'composite.compositeType'
+            ])
             ->firstOrFail();
         if ($product->published !== 1) {
             return abort(404);
@@ -57,7 +60,7 @@ class ProductController extends Controller
             ->get()  // Выполняем запрос и получаем результат в виде Collection
             ->toArray();  // Конвертируем результат в массив
 
-            dd($product->composite);
+        dd($product->composite);
         $compositionSet = [];
         foreach ($product->composite as $element) {
             // Получаем продукт по ID и загружаем связь 'ProductType'
