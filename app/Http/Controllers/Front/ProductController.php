@@ -10,6 +10,7 @@ use App\Models\ProductTypeProperty;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use App\ViewModels\ProductViewModel;
+use Mews\Purifier\Facades\Purifier;
 
 class ProductController extends Controller
 {
@@ -74,6 +75,9 @@ class ProductController extends Controller
             // 'enableFastBay' => $enableFastBay,
             // 'enableSale' => $enableSale,
         ];
+
+        // Очистка данных перед передачей в представление
+        $data['product']->short_description = Purifier::clean($data['product']->short_description);
 
 
 
