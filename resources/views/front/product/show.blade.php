@@ -105,18 +105,19 @@
                                 <div class="product-desc__about-item">
                                     <div class="product-desc__card">
                                         <div class="product-desc__card-left">
-                                            <h4 class="product-desc__card-title">{{$data['product']->productType->name }} </h4>
+                                            <h4 class="product-desc__card-title">{{ $data['product']->productType->name }}
+                                            </h4>
                                             <div class="product-desc__card-wrapper">
                                                 <p><span>Модель:
                                                     </span>
-                                                    {{$data['product']->name }}</p>
+                                                    {{ $data['product']->name }}</p>
                                                 <p><span>Артикул:
                                                     </span>
-                                                    {{$data['product']->article }}</p>
+                                                    {{ $data['product']->article }}</p>
                                             </div>
                                             <div class="product-desc__short">
                                                 <p>Описание:</p>
-                                                <p>{{$data['product']->short_description }}</p>
+                                                <p>{{ $data['product']->short_description }}</p>
                                             </div>
                                             <div class="product-desc__prop-link">
                                                 <a href="#">Все характеристики</a>
@@ -182,9 +183,7 @@
                 </div>
                 @include('components.product-page.description')
                 <div class="product-desc__props-wrapper">
-                    <div class="product-desc__props-desc">
-                        @include('components.product-page.technical-specifications')
-                    </div>
+                    @include('components.product-page.technical-specifications2')
                     <div class="product-desc__props-options">
                         <div class="product-desc__props-left">
                             <div class="product-desc__brand">
@@ -222,7 +221,8 @@
                             <div class="product-desc__docs-wrapper">
                                 <p><img src="/images/icons/note.svg" alt="характеристики"><span>Технические характеристики
                                         НA-016</span></p>
-                                <p><img src="/images/icons/note.svg" alt="характеристики"><span>Вырезка из каталога по серии
+                                <p><img src="/images/icons/note.svg" alt="характеристики"><span>Вырезка из каталога
+                                        по серии
                                         НА-016</span></p>
                                 <p><img src="/images/icons/ruler.svg" alt="чертеж"><span>Габаритный чертёж</span></p>
                                 <p><img src="/images/icons/3d.svg" alt="3д-модель"><span>3D-модель</span></p>
