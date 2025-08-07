@@ -26,7 +26,7 @@ class ProductController extends Controller
         $product = Product::where('slug', $slug)
             ->with('productType')
             ->with('productPropertyValues')
-            ->with('vendor')
+            ->with('vendor.country')
             ->firstOrFail();
         if ($product->published !== 1) {
             return abort(404);

@@ -5,9 +5,9 @@
 </div>
 <div class="product-desc__country">
     <p><img src="/images/icons/china_flag.svg" alt="страна"> <span>Страна производства:
-            Китай</span>
+            {{ $data['product']->vendor->country->name }}</span>
     </p>
     <p><img src="/images/icons/protect.svg" alt="гарантия"> <span>Гарантия производителя:
-            1 год</span>
+            {{ $data['product']->vendor->warranty }}</span>
     </p>
 </div>
