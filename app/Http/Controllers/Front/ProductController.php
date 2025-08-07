@@ -75,6 +75,7 @@ class ProductController extends Controller
                     'model' => $element->compositeProduct->name,
                     'article' => $element->compositeProduct->article,
                     'qty' => $element->quantity,
+                    'link' => '/products/' . $element->compositeProduct->slug, // Форматируем ссылку на товар
                     'order_column' => $element->compositeType->order_column,
                 ];
             }
@@ -84,8 +85,6 @@ class ProductController extends Controller
         usort($compositionSet, function ($a, $b) {
             return $a['order_column'] <=> $b['order_column'];
         });
-
-        dd($compositionSet);
 
 
         $data = [

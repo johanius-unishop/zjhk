@@ -1,8 +1,8 @@
 <div class="product-desc__complectation">
     <h5 class="product-desc__complectation-title">Комплектация</h5>
     <div class="product-desc__complectation-wrapper">
-        @foreach ($data['compositionSet'] as $element)
-        <p>{{ $element->productType->name }} {{ $element->name }} {{ $element->productType->article }}</p>
+        @foreach ($data['compositeSet'] as $element)
+        <p>{{ $element['type'] }} {{ $element->['name'] }} {{ $element->['article'] }} - {{ $element->['qty'] }} шт.</p>
         @endforeach
     </div>
 </div>
