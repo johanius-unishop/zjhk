@@ -28,6 +28,7 @@ class ProductController extends Controller
             ->with('productType')
             ->with('productPropertyValues')
             ->with('vendor.country')
+            ->with('composite')
             ->firstOrFail();
         if ($product->published !== 1) {
             return abort(404);
@@ -56,7 +57,19 @@ class ProductController extends Controller
             ->get()  // Выполняем запрос и получаем результат в виде Collection
             ->toArray();  // Конвертируем результат в массив
 
+        $compositionSet = [];
+        foreach ($product->composite as $element) {
+            // Получаем продукт по ID и загружаем связь 'ProductType'
+            $item = Product::query()
+                ->where('id', $element->id)
+                ->with('ProductType')
+                ->first(); // Используем first(), чтобы вернуть один объект, а не коллекцию
 
+            // Добавляем полученный продукт в массив
+            if ($item) { // Проверка на null, чтобы избежать добавления пустого элемента
+                $compositionSet[] = $item;
+            }
+        }
 
 
         $data = [
@@ -65,7 +78,7 @@ class ProductController extends Controller
             'product' => $product,
             // 'analogs' => $analogs,
             'technical_data' => $technical_data,
-
+            'compositionSet' => $compositionSet,
             'images' => $images,
             // 'media' => $media,
             // 'files' => $files,

@@ -185,13 +185,7 @@
                     <div class="product-desc__props-options">
                         <div class="product-desc__props-left">
                             @include('components.product-page.brand-section')
-                            <div class="product-desc__complectation">
-                                <h5 class="product-desc__complectation-title">Комплектация</h5>
-                                <div class="product-desc__complectation-wrapper">
-                                    <p>Вилка HA-016–M, 09200162612</p>
-                                    <p>Розетка HA-016-F, 09200162812</p>
-                                </div>
-                            </div>
+                            @include('components.product-page.composition-set')
                             <div class="product-desc__pack">
                                 <h5 class="product-desc__pack-title">Информация об упаковке</h5>
                                 <div class="product-desc__pack-wrapper">
