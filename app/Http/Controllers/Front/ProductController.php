@@ -30,7 +30,8 @@ class ProductController extends Controller
                 'productPropertyValues',
                 'vendor.country',
                 'composite.compositeProduct',
-                'composite.compositeType'
+                'composite.compositeType',
+                'productType.relatedType.relatedProducts'
             ])
             ->firstOrFail();
         if ($product->published !== 1) {
@@ -60,6 +61,7 @@ class ProductController extends Controller
             ->get()  // Выполняем запрос и получаем результат в виде Collection
             ->toArray();  // Конвертируем результат в массив
 
+        dd($product);
 
         $compositionSet = [];
         foreach ($product->composite as $element) {
