@@ -75,7 +75,7 @@ class ProductController extends Controller
                     'model' => $element->compositeProduct->name,
                     'article' => $element->compositeProduct->article,
                     'qty' => $element->quantity,
-                    'link' => '/products/' . $element->compositeProduct->slug, // Форматируем ссылку на товар
+                    'link' => '/product/' . $element->compositeProduct->slug, // Форматируем ссылку на товар
                     'order_column' => $element->compositeType->order_column,
                 ];
             }
