@@ -76,8 +76,8 @@ class ProductController extends Controller
             // 'enableSale' => $enableSale,
         ];
 
-        // Очистка данных перед передачей в представление
-        $data['product']->short_description = Purifier::clean($data['product']->short_description);
+
+
 
 
 
