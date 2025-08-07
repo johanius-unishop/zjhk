@@ -1,5 +1,5 @@
 <div class="product-desc__brand">
-    <h3>{{ $data['product']->vendor->name }}< <img src="/images/icons/attention-gray.svg" alt="логотип"></h3>
+    <h3>{{ $data['product']->vendor->short_name }}< <img src="/images/icons/attention-gray.svg" alt="логотип"></h3>
     <a href="#">Все товары бренда</a>
     <img class="product-desc__logo" src="/images/icons/partner-logo.png" alt="логотип">
 </div>
