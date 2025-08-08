@@ -24,6 +24,24 @@ class ProductController extends Controller
     // public function testShow(Product $product)
     public function show($slug)
     {
+
+        $product = Product::where('slug', $slug)
+    ->with([
+        'productType',
+        'productPropertyValues',
+        'vendor.country',
+        'composite.compositeProduct',
+        'composite.compositeType',
+        'productType.relatedTypes' => function ($query) use ($slug) {
+            $query->with(['relatedProducts' => function ($subQuery) use ($slug) {
+                $subQuery->whereHas('product', function ($productSubQuery) use ($slug) {
+                    $productSubQuery->where('products.slug', $slug); // Фильтруем по слагу
+                });
+            }]);
+        },
+    ])
+    ->firstOrFail();
+    dd($product->productType->relatedTypes);
         $product = Product::where('slug', $slug)
             ->with([
                 'productType',
