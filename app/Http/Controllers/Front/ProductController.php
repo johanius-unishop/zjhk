@@ -100,6 +100,10 @@ class ProductController extends Controller
             }
         }
 
+        usort($related, function ($a, $b) {
+            return $a['order_column'] <=> $b['order_column'];
+        });
+
         dd($related);
 
         // foreach ($product->productType->relatedTypes as $element) {
