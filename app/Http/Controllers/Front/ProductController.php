@@ -94,7 +94,7 @@ class ProductController extends Controller
         $related = [];
         if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
             foreach ($product->productType->relatedTypes as $element) {
-                if (!empty($element->relatedProducts)) {
+                if (!empty($element->relatedProducts) && !empty($element->relatedProducts->product)) {
                     $related[] = $element;
                 }
             }
