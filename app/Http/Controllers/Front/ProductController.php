@@ -104,6 +104,7 @@ class ProductController extends Controller
                     ];
 
                     // Добавление внутреннего массива в общий список
+                    if ($relatedElement['relatedProducts']->count() > 0)
                     $related[] = $relatedElement;
                 }
             }
