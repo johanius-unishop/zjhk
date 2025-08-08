@@ -7,7 +7,7 @@
                 </h2>
                 <div class="opt__body">
                     <div class="swiper opt-slider">
-
+                        @dd($related_item['relatedProducts']);
                         <div class="swiper-wrapper">
                             @foreach ($related_item['relatedProducts'] as $related_product_item)
                                 <div class="swiper-slide product-page__item">
