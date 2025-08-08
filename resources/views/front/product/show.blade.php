@@ -9,7 +9,7 @@
                 @include('components.product-page.breadcrumbs')
                 <div class="product-desc__content">
                     <div class="product-desc__title-container">
-                        <h2>Комплект контактных вставок HA-016</h2>
+                        <h2>{{ $data['product']->productType->name }} {{ $data['product']->name }}</h2>
                         <div class="product-desc__testimonials-rating">
                             <ul>
                                 <li><img src="/images/icons/star.svg" alt="оценка"></li>

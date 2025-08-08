@@ -170,7 +170,7 @@ class ProductController extends Controller
             }
 
             // 5. Фиксированная фраза "купить по низкой цене"
-            $parts[] = 'купить по низкой цене!';
+            $parts[] = 'купить по низкой цене';
 
             // Собираем финальное название
             return implode(' ', array_filter($parts));
