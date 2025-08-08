@@ -26,22 +26,22 @@ class ProductController extends Controller
     {
 
         $product = Product::where('slug', $slug)
-    ->with([
-        'productType',
-        'productPropertyValues',
-        'vendor.country',
-        'composite.compositeProduct',
-        'composite.compositeType',
-        'productType.relatedTypes' => function ($query) use ($slug) {
-            $query->with(['relatedProducts' => function ($subQuery) use ($slug) {
-                $subQuery->whereHas('product', function ($productSubQuery) use ($slug) {
-                    $productSubQuery->where('products.slug', $slug);
-                });
-            }, 'relatedProducts.product']);
-        },
-    ])
-    ->firstOrFail();
-    dd($product->productType->relatedTypes);
+            ->with([
+                'productType',
+                'productPropertyValues',
+                'vendor.country',
+                'composite.compositeProduct',
+                'composite.compositeType',
+                'productType.relatedTypes' => function ($query) use ($slug) {
+                    $query->with(['relatedProducts' => function ($subQuery) use ($slug) {
+                        $subQuery->whereHas('product', function ($productSubQuery) use ($slug) {
+                            $productSubQuery->where('products.slug', $slug);
+                        });
+                    }, 'relatedProducts.product']);
+                },
+            ])
+            ->firstOrFail();
+        dd($product->productType->relatedTypes);
         $product = Product::where('slug', $slug)
             ->with([
                 'productType',
