@@ -161,7 +161,7 @@ class ProductController extends Controller
             }
 
             // 3. Модель (если есть)
-            if (!empty($product->model)) {
+            if (!empty($product->name)) {
                 $parts[] = $product->name;
             }
 
