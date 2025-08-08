@@ -157,16 +157,16 @@ class ProductController extends Controller
 
             // 2. Бренд (если есть)
             if (!empty($product->vendor)) {
-                $parts[] = $product->vendor->name;
+                $parts[] = $product->vendor->short_name;
             }
 
             // 3. Модель (если есть)
             if (!empty($product->model)) {
-                $parts[] = $product->model;
+                $parts[] = $product->name;
             }
 
             // 4. Артикул (если артикул не совпадает с моделью)
-            if (!empty($product->article) && $product->article !== $product->model) {
+            if (!empty($product->article) && $product->article !== $product->name) {
                 $parts[] = '(' . $product->article . ')';
             }
 
@@ -174,6 +174,6 @@ class ProductController extends Controller
             $parts[] = 'купить по низкой цене!';
 
             // Собираем финальное название
-            return implode(' | ', array_filter($parts));
+            return implode(' ', array_filter($parts));
         }
 }
