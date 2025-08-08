@@ -132,12 +132,21 @@ class ProductController extends Controller
 
 
         // SEOMeta::setTitle($product->seo->title ?: 'Стандартный заголовок');
-        dd(generateUniqueTitle());
+        dd($this->generateUniqueTitle($product));
         if ($product->seo && is_null($product->seo->title)) {
             // Если нет, создаем новую запись
-            $product->seo()->update(['title' => generateUniqueTitle($product)]);
+            $product->seo()->update(['title' => $this->generateUniqueTitle($product)]);
         }
-        function generateUniqueTitle()
+
+
+        SEOMeta::setTitle($product->seo->title);
+        SEOMeta::setDescription($product->seo->description);
+        SEOMeta::setKeywords($product->seo->keywords);
+        //    dd($data);
+        return view('front.product.show', ['data' => $data]);
+    }
+
+    private function generateUniqueTitle($product)
         {
             $parts = [];
 
@@ -167,11 +176,4 @@ class ProductController extends Controller
             // Собираем финальное название
             return implode(' | ', array_filter($parts));
         }
-
-        SEOMeta::setTitle($product->seo->title);
-        SEOMeta::setDescription($product->seo->description);
-        SEOMeta::setKeywords($product->seo->keywords);
-        //    dd($data);
-        return view('front.product.show', ['data' => $data]);
-    }
 }
