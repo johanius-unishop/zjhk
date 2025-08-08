@@ -100,21 +100,19 @@ class ProductController extends Controller
                             ->where('related_product_type_id', '=', $element->id)
                             ->with('product')
                             ->get();   // Сначала получаем коллекцию
+                            $relatedProducts = [];
                             foreach ($relProd as $prod){
-                                dd($prod->product[0]);
+                                $relatedProducts[] = $prod->product[0];
                             }
 
                     $relatedElement = [
                         'type' => $element,
-                        'relatedProducts' => RelatedProduct::query()
-                            ->where('product_id', '=', $product->id)
-                            ->where('related_product_type_id', '=', $element->id)
-                            ->with('product')
-                            ->get()   // Сначала получаем коллекцию
+                        'relatedProducts' => $relatedProducts
                     ];
 
+                    dd($relatedElement);
                     // Добавление внутреннего массива в общий список
-                    if ($relatedElement['relatedProducts']->count() > 0)
+                    if ($relatedElement['relatedProducts'].count() > 0)
                         $related[] = $relatedElement;
                 }
             }
