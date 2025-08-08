@@ -10,6 +10,7 @@
 
                         <div class="swiper-wrapper">
                             @foreach ($related_item->relatedProducts as $related_product_item)
+                            @dd($related_product_item)
                                 <div class="swiper-slide product-page__item">
                                     <div data-layout class="product-page__item-wrapper card-layout">
                                         <div>
