@@ -94,32 +94,26 @@ class ProductController extends Controller
         if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
             foreach ($product->productType->relatedTypes as $element) {
                 if (!empty($element)) {
-                    // Получаем связанные товары для текущего типа
-                    $relatedProducts = RelatedProduct::query()
-                        ->where('product_id', '=', $product->id)
-                        ->where('related_product_type_id', '=', $element->id)
-                        ->with('product')
-                        ->get();
+                    // Создание внутреннего массива для хранения текущего элемента и связанных товаров
+                    $relatedElement = [
+                        'type' => $element,
+                        'relatedProducts' => RelatedProduct::query()
+                            ->where('product_id', '=', $product->id)
+                            ->where('related_product_type_id', '=', $element->id)
+                            ->with('product')
+                            ->sortBy('product.stock')
+                            ->get(),
+                    ];
 
-                    // Если найдены товары, добавляем их в массив
-                    if ($relatedProducts->isNotEmpty()) { // Проверяем, есть ли товары
-                        // Сортируем продукты по запасам ('stock')
-                        $relatedProducts = $relatedProducts->sortBy(function ($item) {
-                            return $item->product[0]->stock;
-                        });
-
-                        // Формируем элемент для вставки
-                        $relatedElement = [
-                            'type' => $element,
-                            'relatedProducts' => $relatedProducts,
-                        ];
-
-                        // Добавляем элемент в общий массив
+                    // Добавление внутреннего массива в общий список
+                    if ($relatedElement['relatedProducts']->count() > 0)
                         $related[] = $relatedElement;
-                    }
                 }
             }
         }
+        dd($related);
+
+
 
         $data = [
 
