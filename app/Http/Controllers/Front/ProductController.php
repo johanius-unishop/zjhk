@@ -105,12 +105,13 @@ class ProductController extends Controller
                                 $relatedProducts[] = $prod->product[0];
                             }
 
+                    dd($relatedProducts);
                     $relatedElement = [
                         'type' => $element,
                         'relatedProducts' => $relatedProducts
                     ];
 
-                    dd($relatedElement);
+
                     // Добавление внутреннего массива в общий список
                     if ($relatedElement['relatedProducts'].count() > 0)
                         $related[] = $relatedElement;
