@@ -105,7 +105,7 @@ class ProductController extends Controller
                     if ($relatedProducts->isNotEmpty()) { // Проверяем, есть ли товары
                         // Сортируем продукты по запасам ('stock')
                         $relatedProducts = $relatedProducts->sortBy(function ($item) {
-                            return $item->product->stock;
+                            return $item->product[0]->stock;
                         });
 
                         // Формируем элемент для вставки
