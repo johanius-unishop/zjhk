@@ -131,7 +131,7 @@ class ProductController extends Controller
 
 
 
-
+        SEOMeta::setTitle($product->seo->title ?: 'Стандартный заголовок');
         dd(SEOMeta::getTitle());
 
         SEOMeta::setTitle($product->seo->title);
