@@ -100,7 +100,11 @@ class ProductController extends Controller
                         ->where('related_product_type_id', '=', $element->id)
                         ->pluck('id_product'); // Извлекаем только поле id_product
 
-                        dd($ids);
+                    $relatedProducts = Product::query()
+                        ->whereIn('id', $ids)          // выбираем только те товары, чей id содержится в списке $ids
+                        ->orderBy('stock', 'asc')     // сортируем по полю stock в порядке возрастания
+                        ->get();                      // выполняем запрос и получаем результат
+                    dd($relatedProducts);
                     $relatedProducts = [];
                     foreach ($relProd as $prod) {
                         $relatedProducts[] = $prod->product[0];
