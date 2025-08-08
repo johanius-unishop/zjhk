@@ -10,7 +10,6 @@
 
                         <div class="swiper-wrapper">
                             @foreach ($related_item->relatedProducts as $related_product_item)
-
                                 <div class="swiper-slide product-page__item">
                                     <div data-layout class="product-page__item-wrapper card-layout">
                                         <div>
@@ -44,6 +43,13 @@
                                         <div data-layout class="product-page__info-container card-layout">
                                             <p>{{ $related_product_item->product[0]->price }} ₽</p>
                                             <p>В наличии 192 шт.</p>
+                                            @if ($related_product_item->product[0]->stock > 0)
+                                                <p>В наличии {{ $related_product_item->product[0]->stock }} шт.</p>
+                                            @elseif ($related_product_item->product[0]->stock == 0)
+                                                <p>Нет в наличии.</p>
+                                            @else
+                                                <p>Ожидается поступление</p>
+                                            @endif
                                             <button class="product-page__add-cart product-desc">В корзину</button>
                                         </div>
                                     </div>
