@@ -38,6 +38,8 @@ class ProductController extends Controller
             return abort(404);
         }
 
+
+
         // $analogs = (Product::getAnalogies($product));
         // /$viewModel = new ProductViewModel($product);
         $images      = $product->getMedia('images');
@@ -61,7 +63,7 @@ class ProductController extends Controller
             ->get()  // Выполняем запрос и получаем результат в виде Collection
             ->toArray();  // Конвертируем результат в массив
 
-        dd($product);
+
 
         $compositionSet = [];
         foreach ($product->composite as $element) {
@@ -87,6 +89,19 @@ class ProductController extends Controller
         usort($compositionSet, function ($a, $b) {
             return $a['order_column'] <=> $b['order_column'];
         });
+
+
+        $related = [];
+        if (!empty($product->productType) && !empty($product->productType->relatedTypes))
+        {
+        dd($product->productType->relatedTypes);
+        }
+
+       // foreach ($product->productType->relatedTypes as $element) {
+         //   if (!empty($element))
+           // {
+             //   $related
+           // }
 
 
         $data = [
