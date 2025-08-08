@@ -31,7 +31,7 @@ class ProductController extends Controller
                 'vendor.country',
                 'composite.compositeProduct',
                 'composite.compositeType',
-                'productType.relatedTypes.relatedProducts'
+                'productType.relatedTypes.relatedProducts.product'
             ])
             ->firstOrFail();
         if ($product->published !== 1) {
