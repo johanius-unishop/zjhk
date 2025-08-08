@@ -15,20 +15,16 @@
                                         <div>
                                             <div class="swiper product-page-slider">
                                                 <div class="swiper-wrapper">
+                                                    @foreach ($related_product_item->product[0]->getMedia('images') as $mediaItem)
                                                     <div class="swiper-slide"> <img
-                                                            src=".//images/products/item_photo.png" alt="товар">
+                                                            src="{{ $mediaItem->getUrl() }}" alt="Изображение {{ $related_product_item->product[0]->name }}">
                                                     </div>
-                                                    <div class="swiper-slide"> <img
-                                                            src=".//images/products/photo-18.png" alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img
-                                                            src=".//images/products/item_photo.png" alt="товар">
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                                 <div class="swiper-pagination-product"></div>
                                             </div>
                                             <button class="product-page__label-btn">
-                                                <img class="product-page__label" src=".//images/icons/label-gray.svg"
+                                                <img class="product-page__label" src="{{ asset('images/icons/label-gray.svg') }}"
                                                     alt="избранное">
                                             </button>
                                         </div>
@@ -36,7 +32,7 @@
                                             <h5>{{ $related_product_item->product[0]->name }}</h5>
                                             <p>{{ $related_product_item->product[0]->article }}</p>
                                             <div>
-                                                <img src=".//images/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                                <img src="{{ asset('images/icons/star.svg') }}" alt="рейтинг"><span>4.9</span>
                                                 <a href="#"><span>152 </span>отзыва</a>
                                             </div>
                                         </div>
