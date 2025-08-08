@@ -94,8 +94,8 @@ class ProductController extends Controller
             foreach ($product->productType->relatedTypes as $element) {
 
                 if (!empty($element)) {
-
-                    $related[] = RelatedProduct::query()
+                    $related[] = $element;
+                    $related['relatedProducts'] = RelatedProduct::query()
                         ->where('product_id', '=', $product->id)
                         ->where('related_product_type_id', '=', $element->id)
                         ->with('product')
