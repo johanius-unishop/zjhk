@@ -104,7 +104,7 @@ class ProductController extends Controller
             return $a['order_column'] <=> $b['order_column'];
         });
 
-        dd($related);
+        //dd($related);
 
         // foreach ($product->productType->relatedTypes as $element) {
         //   if (!empty($element))
@@ -120,6 +120,7 @@ class ProductController extends Controller
             // 'analogs' => $analogs,
             'technical_data' => $technical_data,
             'compositionSet' => $compositionSet,
+            'related' => $related,
             'images' => $images,
             // 'media' => $media,
             // 'files' => $files,
