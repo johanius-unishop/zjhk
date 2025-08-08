@@ -101,8 +101,10 @@ class ProductController extends Controller
                             ->where('product_id', '=', $product->id)
                             ->where('related_product_type_id', '=', $element->id)
                             ->with('product')
-                            ->sortBy('product.stock')
-                            ->get(),
+                            ->get()   // Сначала получаем коллекцию
+                            ->sortBy(function ($item) {   // Затем применяем сортировку
+                                return $item->product->stock; // Сортируем по полям из связанной модели
+                            }),
                     ];
 
                     // Добавление внутреннего массива в общий список
