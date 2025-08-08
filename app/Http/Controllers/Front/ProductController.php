@@ -132,12 +132,12 @@ class ProductController extends Controller
 
 
         // SEOMeta::setTitle($product->seo->title ?: 'Стандартный заголовок');
-        dd(generateUniqueTitle($product));
+        dd(generateUniqueTitle());
         if ($product->seo && is_null($product->seo->title)) {
             // Если нет, создаем новую запись
             $product->seo()->update(['title' => generateUniqueTitle($product)]);
         }
-        function generateUniqueTitle($product)
+        function generateUniqueTitle()
         {
             $parts = [];
 
