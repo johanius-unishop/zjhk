@@ -24,24 +24,6 @@ class ProductController extends Controller
     // public function testShow(Product $product)
     public function show($slug)
     {
-
-        $product = Product::where('slug', $slug)
-            ->with([
-                'productType',
-                'productPropertyValues',
-                'vendor.country',
-                'composite.compositeProduct',
-                'composite.compositeType',
-                'productType.relatedTypes' => function ($query) use ($slug) {
-                    $query->with(['relatedProducts' => function ($subQuery) use ($slug) {
-                        $subQuery->whereHas('product', function ($productSubQuery) use ($slug) {
-                            $productSubQuery->where('products.slug', $slug);
-                        });
-                    }, 'relatedProducts.product']);
-                },
-            ])
-            ->firstOrFail();
-        dd($product->productType->relatedTypes);
         $product = Product::where('slug', $slug)
             ->with([
                 'productType',
@@ -107,8 +89,6 @@ class ProductController extends Controller
         usort($compositionSet, function ($a, $b) {
             return $a['order_column'] <=> $b['order_column'];
         });
-
-        dd($product->productType->relatedTypes);
 
         $related = [];
         if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
