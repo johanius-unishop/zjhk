@@ -92,14 +92,19 @@ class ProductController extends Controller
         $related = [];
         if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
             foreach ($product->productType->relatedTypes as $element) {
-
                 if (!empty($element)) {
-                    $related[] = $element;
-                    $related['relatedProducts'] = RelatedProduct::query()
-                        ->where('product_id', '=', $product->id)
-                        ->where('related_product_type_id', '=', $element->id)
-                        ->with('product')
-                        ->get();
+                    // Создание внутреннего массива для хранения текущего элемента и связанных товаров
+                    $relatedElement = [
+                        'type' => $element,
+                        'relatedProducts' => RelatedProduct::query()
+                            ->where('product_id', '=', $product->id)
+                            ->where('related_product_type_id', '=', $element->id)
+                            ->with('product')
+                            ->get(),
+                    ];
+
+                    // Добавление внутреннего массива в общий список
+                    $related[] = $relatedElement;
                 }
             }
         }
@@ -152,33 +157,33 @@ class ProductController extends Controller
     }
 
     private function generateUniqueTitle($product)
-        {
-            $parts = [];
+    {
+        $parts = [];
 
-            // 1. Тип продукта (если есть)
-            if (!empty($product->productType)) {
-                $parts[] = $product->productType->name;
-            }
-
-            // 2. Бренд (если есть)
-            if (!empty($product->vendor)) {
-                $parts[] = $product->vendor->short_name;
-            }
-
-            // 3. Модель (если есть)
-            if (!empty($product->name)) {
-                $parts[] = $product->name;
-            }
-
-            // 4. Артикул (если артикул не совпадает с моделью)
-            if (!empty($product->article) && $product->article !== $product->name) {
-                $parts[] = '(' . $product->article . ')';
-            }
-
-            // 5. Фиксированная фраза "купить по низкой цене"
-            $parts[] = 'купить по низкой цене';
-
-            // Собираем финальное название
-            return implode(' ', array_filter($parts));
+        // 1. Тип продукта (если есть)
+        if (!empty($product->productType)) {
+            $parts[] = $product->productType->name;
         }
+
+        // 2. Бренд (если есть)
+        if (!empty($product->vendor)) {
+            $parts[] = $product->vendor->short_name;
+        }
+
+        // 3. Модель (если есть)
+        if (!empty($product->name)) {
+            $parts[] = $product->name;
+        }
+
+        // 4. Артикул (если артикул не совпадает с моделью)
+        if (!empty($product->article) && $product->article !== $product->name) {
+            $parts[] = '(' . $product->article . ')';
+        }
+
+        // 5. Фиксированная фраза "купить по низкой цене"
+        $parts[] = 'купить по низкой цене';
+
+        // Собираем финальное название
+        return implode(' ', array_filter($parts));
+    }
 }
