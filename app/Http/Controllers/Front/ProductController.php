@@ -95,15 +95,16 @@ class ProductController extends Controller
             foreach ($product->productType->relatedTypes as $element) {
                 if (!empty($element)) {
                     // Создание внутреннего массива для хранения текущего элемента и связанных товаров
-                    $relProd = RelatedProduct::query()
-                            ->where('product_id', '=', $product->id)
-                            ->where('related_product_type_id', '=', $element->id)
-                            ->with('product')
-                            ->get();   // Сначала получаем коллекцию
-                            $relatedProducts = [];
-                            foreach ($relProd as $prod){
-                                $relatedProducts[] = $prod->product[0];
-                            }
+                    $ids = RelatedProduct::query()
+                        ->where('product_id', '=', $product->id)
+                        ->where('related_product_type_id', '=', $element->id)
+                        ->pluck('id_product'); // Извлекаем только поле id_product
+
+                        dd($ids);
+                    $relatedProducts = [];
+                    foreach ($relProd as $prod) {
+                        $relatedProducts[] = $prod->product[0];
+                    }
 
                     dd($relatedProducts);
                     $relatedElement = [
@@ -113,7 +114,7 @@ class ProductController extends Controller
 
 
                     // Добавление внутреннего массива в общий список
-                    if ($relatedElement['relatedProducts'].count() > 0)
+                    if ($relatedElement['relatedProducts'] . count() > 0)
                         $related[] = $relatedElement;
                 }
             }
