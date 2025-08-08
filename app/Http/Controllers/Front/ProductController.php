@@ -88,6 +88,9 @@ class ProductController extends Controller
             return $a['order_column'] <=> $b['order_column'];
         });
 
+        usort($product->productType->relatedTypes, function ($a, $b) {
+            return $a['order_column'] <=> $b['order_column'];
+        });
 
         $related = [];
         if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
@@ -110,9 +113,7 @@ class ProductController extends Controller
             }
         }
         dd($related);
-        usort($related, function ($a, $b) {
-            return $a['order_column'] <=> $b['order_column'];
-        });
+
 
         //dd($related);
 
