@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', {{ SEOMeta::getTitle() }})
+@section('title', SEOMeta::getTitle())
 
 @section('content')
     <main>
