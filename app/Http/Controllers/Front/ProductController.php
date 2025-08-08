@@ -92,17 +92,18 @@ class ProductController extends Controller
         $related = [];
         if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
             foreach ($product->productType->relatedTypes as $element) {
-                dd($element);
+
                 if (!empty($element)) {
 
                     $related['relatedProducts'] = RelatedProduct::query()
                         ->where('product_id', '=', $product->id)
                         ->where('related_product_type_id', '=', $element->id)
+                        ->with('product')
                         ->all();
                 }
             }
         }
-
+        dd($related);
         usort($related, function ($a, $b) {
             return $a['order_column'] <=> $b['order_column'];
         });
