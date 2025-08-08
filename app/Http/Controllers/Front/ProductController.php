@@ -95,6 +95,15 @@ class ProductController extends Controller
             foreach ($product->productType->relatedTypes as $element) {
                 if (!empty($element)) {
                     // Создание внутреннего массива для хранения текущего элемента и связанных товаров
+                    $relProd = RelatedProduct::query()
+                            ->where('product_id', '=', $product->id)
+                            ->where('related_product_type_id', '=', $element->id)
+                            ->with('product')
+                            ->get();   // Сначала получаем коллекцию
+                            foreach ($relProd as $prod){
+                                dd($prod);
+                            }
+
                     $relatedElement = [
                         'type' => $element,
                         'relatedProducts' => RelatedProduct::query()
@@ -102,9 +111,6 @@ class ProductController extends Controller
                             ->where('related_product_type_id', '=', $element->id)
                             ->with('product')
                             ->get()   // Сначала получаем коллекцию
-                            ->sortBy(function ($item) {   // Затем применяем сортировку
-                                return $item->product->stock; // Сортируем по полям из связанной модели
-                            }),
                     ];
 
                     // Добавление внутреннего массива в общий список
