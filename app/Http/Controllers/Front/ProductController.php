@@ -100,6 +100,7 @@ class ProductController extends Controller
             }
         }
 
+        dd($related);
 
         // foreach ($product->productType->relatedTypes as $element) {
         //   if (!empty($element))
