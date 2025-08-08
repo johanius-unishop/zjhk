@@ -92,6 +92,8 @@ class ProductController extends Controller
 
         $related = [];
         if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
+            $relatedTypes = $product->productType->relatedTypes;
+            dd($relatedTypes);
             foreach ($product->productType->relatedTypes as $element) {
                 if (!empty($element)) {
                     // Создание внутреннего массива для хранения текущего элемента и связанных товаров
@@ -102,15 +104,9 @@ class ProductController extends Controller
 
                     $relatedProducts = Product::query()
                         ->whereIn('id', $ids)          // выбираем только те товары, чей id содержится в списке $ids
-                        ->orderBy('stock', 'asc')     // сортируем по полю stock в порядке возрастания
+                        ->orderBy('stock', 'desc')     // сортируем по полю stock в порядке возрастания
                         ->get();                      // выполняем запрос и получаем результат
-                    dd($relatedProducts);
-                    $relatedProducts = [];
-                    foreach ($relProd as $prod) {
-                        $relatedProducts[] = $prod->product[0];
-                    }
 
-                    dd($relatedProducts);
                     $relatedElement = [
                         'type' => $element,
                         'relatedProducts' => $relatedProducts
@@ -118,7 +114,7 @@ class ProductController extends Controller
 
 
                     // Добавление внутреннего массива в общий список
-                    if ($relatedElement['relatedProducts'] . count() > 0)
+                    if ($relatedElement['relatedProducts']->count() > 0)
                         $related[] = $relatedElement;
                 }
             }
