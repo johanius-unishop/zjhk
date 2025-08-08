@@ -31,7 +31,9 @@ class ProductController extends Controller
                 'vendor.country',
                 'composite.compositeProduct',
                 'composite.compositeType',
-                'productType.relatedTypes'
+                'productType.relatedTypes' => function ($query) {
+                    $query->orderBy('order_column'); // Замените order_column на фактическое название колонки, по которой хотите сортировать
+                },
             ])
             ->firstOrFail();
         if ($product->published !== 1) {
@@ -88,9 +90,7 @@ class ProductController extends Controller
             return $a['order_column'] <=> $b['order_column'];
         });
 
-        usort($product->productType->relatedTypes, function ($a, $b) {
-            return $a['order_column'] <=> $b['order_column'];
-        });
+        dd($product->productType->relatedTypes);
 
         $related = [];
         if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
@@ -108,7 +108,7 @@ class ProductController extends Controller
 
                     // Добавление внутреннего массива в общий список
                     if ($relatedElement['relatedProducts']->count() > 0)
-                    $related[] = $relatedElement;
+                        $related[] = $relatedElement;
                 }
             }
         }
