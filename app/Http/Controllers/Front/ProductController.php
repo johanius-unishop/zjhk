@@ -91,34 +91,35 @@ class ProductController extends Controller
         });
 
         $related = [];
-if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
-    foreach ($product->productType->relatedTypes as $element) {
-        if (!empty($element)) {
-            // Получаем связанные товары для текущего типа
-            $relatedProducts = RelatedProduct::query()
-                ->where('product_id', '=', $product->id)
-                ->where('related_product_type_id', '=', $element->id)
-                ->with('product')
-                ->get();
+        if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
+            foreach ($product->productType->relatedTypes as $element) {
+                if (!empty($element)) {
+                    // Получаем связанные товары для текущего типа
+                    $relatedProducts = RelatedProduct::query()
+                        ->where('product_id', '=', $product->id)
+                        ->where('related_product_type_id', '=', $element->id)
+                        ->with('product')
+                        ->get();
 
-            // Если найдены товары, добавляем их в массив
-            if ($relatedProducts->isNotEmpty()) { // Проверяем, есть ли товары
-                // Сортируем продукты по запасам ('stock')
-                $relatedProducts = $relatedProducts->sortBy(function ($item) {
-                    return $item->product->stock;
-                });
+                    // Если найдены товары, добавляем их в массив
+                    if ($relatedProducts->isNotEmpty()) { // Проверяем, есть ли товары
+                        // Сортируем продукты по запасам ('stock')
+                        $relatedProducts = $relatedProducts->sortBy(function ($item) {
+                            return $item->product->stock;
+                        });
 
-                // Формируем элемент для вставки
-                $relatedElement = [
-                    'type' => $element,
-                    'relatedProducts' => $relatedProducts,
-                ];
+                        // Формируем элемент для вставки
+                        $relatedElement = [
+                            'type' => $element,
+                            'relatedProducts' => $relatedProducts,
+                        ];
 
-                // Добавляем элемент в общий массив
-                $related[] = $relatedElement;
+                        // Добавляем элемент в общий массив
+                        $related[] = $relatedElement;
+                    }
+                }
             }
         }
-
 
         $data = [
 
