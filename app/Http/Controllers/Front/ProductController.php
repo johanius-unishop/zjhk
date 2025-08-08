@@ -131,8 +131,42 @@ class ProductController extends Controller
 
 
 
-      // SEOMeta::setTitle($product->seo->title ?: 'Стандартный заголовок');
-        dd($product->seo->title);
+        // SEOMeta::setTitle($product->seo->title ?: 'Стандартный заголовок');
+        dd(generateUniqueTitle($product));
+        if ($product->seo && is_null($product->seo->title)) {
+            // Если нет, создаем новую запись
+            $product->seo()->update(['title' => generateUniqueTitle($product)]);
+        }
+        function generateUniqueTitle($product)
+        {
+            $parts = [];
+
+            // 1. Тип продукта (если есть)
+            if (!empty($product->productType)) {
+                $parts[] = $product->productType->name;
+            }
+
+            // 2. Бренд (если есть)
+            if (!empty($product->vendor)) {
+                $parts[] = $product->vendor->name;
+            }
+
+            // 3. Модель (если есть)
+            if (!empty($product->model)) {
+                $parts[] = $product->model;
+            }
+
+            // 4. Артикул (если артикул не совпадает с моделью)
+            if (!empty($product->article) && $product->article !== $product->model) {
+                $parts[] = '(' . $product->article . ')';
+            }
+
+            // 5. Фиксированная фраза "купить по низкой цене"
+            $parts[] = 'купить по низкой цене!';
+
+            // Собираем финальное название
+            return implode(' | ', array_filter($parts));
+        }
 
         SEOMeta::setTitle($product->seo->title);
         SEOMeta::setDescription($product->seo->description);
