@@ -92,7 +92,7 @@ class ProductController extends Controller
 
         $related = [];
         if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
-            $relatedTypes = $product->productType->relatedTypes;
+            $relatedTypes = $product->productType->relatedTypes->sortBy('order_column');
             dd($relatedTypes);
             foreach ($product->productType->relatedTypes as $element) {
                 if (!empty($element)) {
