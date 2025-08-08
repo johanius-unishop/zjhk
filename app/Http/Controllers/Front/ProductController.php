@@ -101,7 +101,7 @@ class ProductController extends Controller
                             ->with('product')
                             ->get();   // Сначала получаем коллекцию
                             foreach ($relProd as $prod){
-                                dd($prod);
+                                dd($prod->product[0]);
                             }
 
                     $relatedElement = [
