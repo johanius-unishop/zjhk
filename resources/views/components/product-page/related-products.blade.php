@@ -42,7 +42,6 @@
                                         </div>
                                         <div data-layout class="product-page__info-container card-layout">
                                             <p>{{ $related_product_item->product[0]->price }} ₽</p>
-                                            <p>В наличии 192 шт.</p>
                                             @if ($related_product_item->product[0]->stock > 0)
                                                 <p>В наличии {{ $related_product_item->product[0]->stock }} шт.</p>
                                             @elseif ($related_product_item->product[0]->stock == 0)
