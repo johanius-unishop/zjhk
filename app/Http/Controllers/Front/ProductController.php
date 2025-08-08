@@ -119,7 +119,6 @@ class ProductController extends Controller
                 }
             }
         }
-        dd($related);
 
 
 

@@ -14,7 +14,7 @@
                                         <div>
                                             <div class="swiper product-page-slider">
                                                 <div class="swiper-wrapper">
-                                                    @foreach ($related_product_item->product[0]->getMedia('images') as $mediaItem)
+                                                    @foreach ($related_product_item->getMedia('images') as $mediaItem)
                                                     <div class="swiper-slide"> <img
                                                             src="{{ $mediaItem->getUrl() }}" alt="Изображение {{ $related_product_item->product[0]->name }}">
                                                     </div>
