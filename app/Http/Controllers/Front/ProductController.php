@@ -35,9 +35,9 @@ class ProductController extends Controller
         'productType.relatedTypes' => function ($query) use ($slug) {
             $query->with(['relatedProducts' => function ($subQuery) use ($slug) {
                 $subQuery->whereHas('product', function ($productSubQuery) use ($slug) {
-                    $productSubQuery->where('products.slug', $slug); // Фильтруем по слагу
+                    $productSubQuery->where('products.slug', $slug);
                 });
-            }]);
+            }, 'relatedProducts.product']);
         },
     ])
     ->firstOrFail();
