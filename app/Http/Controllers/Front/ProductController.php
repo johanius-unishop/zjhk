@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\ProductType;
+use App\Models\RelatedProduct;
 use App\Models\ProductTypeProperty;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -31,7 +31,7 @@ class ProductController extends Controller
                 'vendor.country',
                 'composite.compositeProduct',
                 'composite.compositeType',
-                'productType.relatedTypes.relatedProducts.product'
+                'productType.relatedTypes'
             ])
             ->firstOrFail();
         if ($product->published !== 1) {
@@ -93,8 +93,12 @@ class ProductController extends Controller
         if (!empty($product->productType) && !empty($product->productType->relatedTypes)) {
             foreach ($product->productType->relatedTypes as $element) {
                 dd($element);
-                if (!empty($element->relatedProducts) && count($element->relatedProducts) > 0) {
-                    $related[] = $element;
+                if (!empty($element)) {
+
+                    $related['relatedProducts'] = RelatedProduct::query()
+                        ->where('product_id', '=', $product->id)
+                        ->where('related_product_type_id', '=', $element->id)
+                        ->all();
                 }
             }
         }
