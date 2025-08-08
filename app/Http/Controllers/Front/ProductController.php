@@ -109,7 +109,7 @@ class ProductController extends Controller
         // {
         //   $related
         // }
-
+        dd($images);
 
         $data = [
 
