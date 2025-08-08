@@ -10,7 +10,7 @@
 
                         <div class="swiper-wrapper">
                             @foreach ($related_item->relatedProducts as $related_product_item)
-                            @dd($related_product_item)
+
                                 <div class="swiper-slide product-page__item">
                                     <div data-layout class="product-page__item-wrapper card-layout">
                                         <div>
@@ -34,7 +34,7 @@
                                             </button>
                                         </div>
                                         <div data-layout class="product-page__title-container card-layout">
-                                            <h5>{{ $related_product_item->product->name }}</h5>
+                                            <h5>{{ $related_product_item->product[0]->name }}</h5>
                                             <p>{{ $related_product_item->product->article }}</p>
                                             <div>
                                                 <img src=".//images/icons/star.svg" alt="рейтинг"><span>4.9</span>
