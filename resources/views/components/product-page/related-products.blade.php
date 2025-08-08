@@ -35,14 +35,14 @@
                                         </div>
                                         <div data-layout class="product-page__title-container card-layout">
                                             <h5>{{ $related_product_item->product[0]->name }}</h5>
-                                            <p>{{ $related_product_item->product->article }}</p>
+                                            <p>{{ $related_product_item->product[0]->article }}</p>
                                             <div>
                                                 <img src=".//images/icons/star.svg" alt="рейтинг"><span>4.9</span>
                                                 <a href="#"><span>152 </span>отзыва</a>
                                             </div>
                                         </div>
                                         <div data-layout class="product-page__info-container card-layout">
-                                            <p>{{ $related_product_item->product->price }} ₽</p>
+                                            <p>{{ $related_product_item->product[0]->price }} ₽</p>
                                             <p>В наличии 192 шт.</p>
                                             <button class="product-page__add-cart product-desc">В корзину</button>
                                         </div>
