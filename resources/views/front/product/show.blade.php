@@ -55,7 +55,7 @@
                                 <div class="product-desc__cart-wrapper">
                                     <div class="product-desc__cart-actions">
                                         <button class="product-page__label-btn">
-                                            <img class="product-page__label" src="{{ asset('images/icons/label_gray.svg') }}"
+                                            <img class="product-page__label" src="{{ asset('images/icons/label-gray.svg') }}"
                                                 alt="избранное">В
                                             избранное
                                         </button>
