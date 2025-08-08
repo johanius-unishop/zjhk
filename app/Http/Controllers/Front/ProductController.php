@@ -99,7 +99,7 @@ class ProductController extends Controller
                         ->where('product_id', '=', $product->id)
                         ->where('related_product_type_id', '=', $element->id)
                         ->with('product')
-                        ->all();
+                        ->get();
                 }
             }
         }
