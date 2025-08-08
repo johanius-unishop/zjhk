@@ -132,7 +132,7 @@ class ProductController extends Controller
 
 
 
-        dd($product->seo->title);
+        dd(SEOMeta::getTitle());
 
         SEOMeta::setTitle($product->seo->title);
         SEOMeta::setDescription($product->seo->description);
