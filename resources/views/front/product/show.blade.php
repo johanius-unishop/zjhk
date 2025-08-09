@@ -21,12 +21,12 @@
                             <div>
                                 <a href="#">
                                     @if ($data['product']->reviews)
-                                    @if (count($data['product']->reviews))
-                                    {{ Str::pluralForm(count($data['product']->reviews), 'отзыв', 'отзыва', 'отзывов') }}
-                                    @else
-                                    Нет отзывов
+                                        @if (count($data['product']->reviews))
+                                            {{ Illuminate\Support\Str::pluralForm(count($data['product']->reviews), 'отзыв', 'отзыва', 'отзывов') }}
+                                        @else
+                                            Нет отзывов
+                                        @endif
                                     @endif
-                                @endif
                                 </a> |
                                 <a href="#">20 вопросов</a>
                             </div>
