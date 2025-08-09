@@ -135,7 +135,7 @@
                         <button class="_active">
                             Отзывы
                             <span>
-                                @if (count($data['product']->reviews))
+                                @if ($data['product']->reviews)
                                     {{ count($data['product']->reviews) }}
                                 @endif
                             </span>
@@ -143,7 +143,7 @@
                         <button>
                             Вопросы
                             <span>
-                                @if (count($data['product']->questions))
+                                @if ($data['product']->questions)
                                     {{ count($data['product']->questions) }}
                                 @endif
                             </span>
