@@ -19,7 +19,15 @@
                                 <li><img src="/images/icons/star.svg" alt="оценка"></li>
                             </ul>
                             <div>
-                                <a href="#">127 отзывов |</a>
+                                <a href="#">
+                                    @if ($data['product']->reviews)
+                                    @if (count($data['product']->reviews))
+                                    {{ count($data['product']->reviews) }} отзывов
+                                    @else
+                                    Нет отзывов
+                                    @endif
+                                @endif
+                                |</a>
                                 <a href="#">20 вопросов</a>
                             </div>
                         </div>
