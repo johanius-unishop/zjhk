@@ -28,7 +28,7 @@ use App\Http\Controllers\Admin\AdditionalSettingController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\VendorPdfCatalogController;
 use App\Http\Controllers\Admin\ProductPdfTypeController;
-
+use App\Http\Controllers\Admin\ReviewsController;
 
 use Illuminate\Support\Facades\Route;
 use Spatie\LaravelSettings\Settings;
@@ -130,4 +130,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('problem/product-without-model', [ProductController::class, 'showProductsWithoutModel'])->name('problem.product-without-model');
     Route::get('problem/product-without-property-values', [ProductController::class, 'showProductsWithoutPropertyValues'])->name('problem.product-without-property-values');
     Route::get('problem/product-type-properties-without-values', [ProductTypePropertyController::class, 'showProductTypePropertiesWithoutValues'])->name('problem.product-type-properties-without-values');
+
+
+    Route::put('/reviews/{review}/reply', [ReviewsController::class, 'reply'])->middleware(['auth', 'role:admin']);Route::put('/reviews/{review}/reply', [ReviewsController::class, 'reply'])->middleware(['auth', 'role:admin']);
 });

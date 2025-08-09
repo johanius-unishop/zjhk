@@ -172,15 +172,15 @@ class Product extends Model implements HasMedia, Sitemapable
             ->useDisk('products')
             ->acceptsMimeTypes(mimeTypes: ['application/pdf']);
 
-        $this->addMediaCollection('dimensionalDrawing')//Габаритный чертеж
+        $this->addMediaCollection('dimensionalDrawing') //Габаритный чертеж
             ->useDisk('products')
             ->acceptsMimeTypes(['application/pdf']);
 
-        $this->addMediaCollection('overviewInformation')//Обзорная информация
+        $this->addMediaCollection('overviewInformation') //Обзорная информация
             ->useDisk('products')
             ->acceptsMimeTypes(['application/pdf']);
 
-        $this->addMediaCollection('3dModel')//3D-модель
+        $this->addMediaCollection('3dModel') //3D-модель
             ->useDisk('products')
             ->acceptsMimeTypes(['application/x-rar-compressed', 'application/zip', 'text/plain']);
     }
@@ -221,6 +221,11 @@ class Product extends Model implements HasMedia, Sitemapable
         return $this->hasMany(ProductCompositeElement::class, 'product_id');
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     //к какому комплекту товар относится
     public function parentComplectation()
     {
@@ -238,7 +243,7 @@ class Product extends Model implements HasMedia, Sitemapable
     }
 
 
-   /* public static function getAnalogies($product): array
+    /* public static function getAnalogies($product): array
     {
         // Аналоги товара
         $analogies = [];
@@ -263,8 +268,7 @@ class Product extends Model implements HasMedia, Sitemapable
                     ['product_id' => $product->id, 'analog_vendor_id' => $analog['vendor_id'], 'name' => $analog['name'], 'article' => $analog['article']],
                 ], uniqueBy: ['product_id', 'analog_vendor_id'], update: ['name', 'article']);
             }
-        }
-        catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             throw $th;
         }
         return true;
@@ -287,7 +291,6 @@ class Product extends Model implements HasMedia, Sitemapable
             }
         }
         return $characteristics;
-
     }
 
 
@@ -303,7 +306,7 @@ class Product extends Model implements HasMedia, Sitemapable
     protected function frontUrl(): Attribute
     {
         return new Attribute(
-             get: fn(): string => config(key: 'app.url') . "/product/" . $this->slug,
+            get: fn(): string => config(key: 'app.url') . "/product/" . $this->slug,
 
         );
     }
@@ -314,8 +317,8 @@ class Product extends Model implements HasMedia, Sitemapable
     }
 
     // Связь продукта со страной
-    public function country() {
+    public function country()
+    {
         return $this->belongsTo(Country::class);
     }
-
 }

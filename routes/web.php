@@ -8,6 +8,7 @@ use App\Http\Controllers\Front\ArticleController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\DocumentationController;
 use App\Http\Controllers\Front\QuestionController;
+use App\Http\Controllers\Front\ReviewsController;
 use App\Http\Controllers\Front\{HomeController, PageController, CategoryController, ProductController ,CartController, FaqController ,SearchController , VendorController};
 Route::get('/', function () {
     return view('home');
@@ -26,6 +27,9 @@ Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 Route::get('/documentation', [DocumentationController::class, 'index'])->name('documentation');
 
 Route::get('/question', [QuestionController::class, 'index'])->name('question');
+
+Route::resource('/reviews', ReviewsController::class);
+Route::post('/reviews/store', [ReviewsController::class, 'store'])->name('reviews.store');
 
 Route::get('/pages/{slug}', [PageController::class, 'show'])->name('page.show');
 
