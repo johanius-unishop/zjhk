@@ -31,6 +31,7 @@ class ProductController extends Controller
                 'vendor.country',
                 'composite.compositeProduct',
                 'composite.compositeType',
+                'reviews',
                 'productType.relatedTypes' => function ($query) {
                     $query->orderBy('order_column'); // Замените order_column на фактическое название колонки, по которой хотите сортировать
                 },
@@ -126,7 +127,6 @@ class ProductController extends Controller
 
             'parents' => $parents,
             'product' => $product,
-            // 'analogs' => $analogs,
             'technical_data' => $technical_data,
             'compositionSet' => $compositionSet,
             'related' => $related,
