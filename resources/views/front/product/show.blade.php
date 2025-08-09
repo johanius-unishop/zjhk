@@ -137,13 +137,16 @@
                             <span>
                                 @if (count($data['product']->reviews))
                                     {{ count($data['product']->reviews) }}
-                                @else
-                                    Нет отзывов
                                 @endif
                             </span>
                         </button>
                         <button>
-                            Вопросы <span>30</span>
+                            Вопросы
+                            <span>
+                                @if (count($data['product']->questions))
+                                    {{ count($data['product']->questions) }}
+                                @endif
+                            </span>
                         </button>
                     </div>
                     <div class="product-desc__testimonial-item">
