@@ -29,7 +29,7 @@ Route::get('/documentation', [DocumentationController::class, 'index'])->name('d
 Route::get('/question', [QuestionController::class, 'index'])->name('question');
 
 Route::resource('/reviews', ReviewsController::class);
-Route::post('/reviews/store', [ReviewsController::class, 'store'])->name('reviews.store');
+
 
 Route::get('/pages/{slug}', [PageController::class, 'show'])->name('page.show');
 
