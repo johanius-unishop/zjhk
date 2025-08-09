@@ -22,12 +22,12 @@
                                 <a href="#">
                                     @if ($data['product']->reviews)
                                     @if (count($data['product']->reviews))
-                                    {{ count($data['product']->reviews) }} отзывов
+                                    {{ Str::pluralForm(count($data['product']->reviews), 'отзыв', 'отзыва', 'отзывов') }}
                                     @else
                                     Нет отзывов
                                     @endif
                                 @endif
-                                |</a>
+                                </a> |
                                 <a href="#">20 вопросов</a>
                             </div>
                         </div>
