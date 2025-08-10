@@ -132,10 +132,10 @@
                 <div class="product-desc__item-rating-container">
                     <div class="product-desc__testimonials-rating">
                         <ul>
-                            @for ($i = 1; $i <= $reviewRating['roundedAverageRating']; $i++)
+                            @for ($i = 1; $i <= $data['reviewRating']['roundedAverageRating']; $i++)
                                 <li><img src="{{ asset('images/icons/star.svg') }}" alt="полная оценка"></li>
                             @endfor
-                            @for ($j = $reviewRating['roundedAverageRating'] + 1; $j <= 5; $j++)
+                            @for ($j = $data['reviewRating']['roundedAverageRating'] + 1; $j <= 5; $j++)
                                 <li><img src="{{ asset('images/icons/star-empty.svg') }}" alt="пустая оценка"></li>
                             @endfor
                         </ul>
