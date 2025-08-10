@@ -28,7 +28,15 @@
                                         @endif
                                     @endif
                                 </a> |
-                                <a href="#">20 вопросов</a>
+                                <a href="#">
+                                    @if ($data['product']->questions)
+                                        @if (count($data['product']->questions))
+                                            {{ count($data['product']->questions) }} {{ pluralForm(count($data['product']->questions), ['вопрос', 'вопроса', 'вопросов']) }}
+                                        @else
+                                            Нет вопросов
+                                        @endif
+                                    @endif
+                                </a>
                             </div>
                         </div>
                     </div>
