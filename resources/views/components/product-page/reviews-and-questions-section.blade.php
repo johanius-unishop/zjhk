@@ -21,49 +21,14 @@
         <div class="product-desc__item-wrapper">
             <div class="product-desc__item-content">
                 <div class="product-desc__item-gallery">
-                    @foreach ( $data['allReviewImages'] as $reviewImage)
-                    <div class="product-desc__item-img">
-                        <a href="#">
-                            <img src="{{ $reviewImage->getUrl('thumb') }}" alt="Миниатюра фотографии отзыва для товара {{ $data['product']->name }}">
-                        </a>
-                    </div>
+                    @foreach ($data['allReviewImages'] as $reviewImage)
+                        <div class="product-desc__item-img">
+                            <a href="#">
+                                <img src="{{ $reviewImage->getUrl('thumb') }}"
+                                    alt="Миниатюра фотографии отзыва для товара {{ $data['product']->name }}">
+                            </a>
+                        </div>
                     @endforeach
-                    <div class="product-desc__item-img">
-                        <a href="#">
-                            <img src="/images/products/review_photos.jpg" alt="фото товара">
-                        </a>
-                    </div>
-                    <div class="product-desc__item-img">
-                        <a href="#">
-                            <img src="/images/products/review_photos.jpg" alt="фото товара">
-                        </a>
-                    </div>
-                    <div class="product-desc__item-img">
-                        <a href="#">
-                            <img src="/images/products/review_photos.jpg" alt="фото товара">
-                        </a>
-                    </div>
-                    <div class="product-desc__item-img">
-                        <a href="#">
-                            <img src="/images/products/review_photos.jpg" alt="фото товара">
-                        </a>
-                    </div>
-                    <div class="product-desc__item-img">
-                        <a href="#">
-                            <img src="/images/products/review_photos.jpg" alt="фото товара">
-                        </a>
-                    </div>
-                    <div class="product-desc__item-img">
-                        <a href="#">
-                            <img src="/images/products/review_photos.jpg" alt="фото товара">
-                        </a>
-                    </div>
-                    <div class="product-desc__item-img">
-                        <a href="#">
-                            <img src="/images/products/review_photos.jpg" alt="фото товара">
-                            <span>+175</span>
-                        </a>
-                    </div>
                 </div>
                 <div class="product-desc__item-sort">
                     <div class="product-desc__item-sort-select">
