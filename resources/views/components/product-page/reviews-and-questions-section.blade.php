@@ -36,16 +36,16 @@
                             <span>Сортировать по:</span>
                             <div class="product-desc__item-sort-target">
                                 <button data-sort class="_target">дате <img data-date class="_target"
-                                        src="/images/icons/sorting_by.svg" alt="сортировать">
-                                    <button data-sort>оценке <img data-rating src="/images/icons/sorting_by.svg"
+                                        src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать">
+                                    <button data-sort>оценке <img data-rating src="{{ asset('images/icons/sorting_by.svg') }}"
                                             alt="сортировать"></button>
-                                    <button data-sort>полезности <img data-useful src="/images/icons/sorting_by.svg"
+                                    <button data-sort>полезности <img data-useful src="{{ asset('images/icons/sorting_by.svg') }}"
                                             alt="сортировать"></button>
                             </div>
                         </div>
                         <div class="product-desc__item-sort-mobile">
                             <button class="product-desc__mobile-sort-btn">
-                                <img src="/images/icons/sorting_by.svg" alt="сортировать">
+                                <img src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать">
                             </button>
                             <div class="product-desc__sort-submenu">
                                 <h4>Сортировать</h4>
@@ -73,13 +73,14 @@
                         </div>
                         <div class="product-desc__item-sort-right">
                             <input type="checkbox" name="photo" id="photo">
-                            <span>C фото или видео</span>
+                            <span>C фотографиями</span>
                         </div>
                     </div>
+                    @foreach ($data['product']->reviews as $review_item)
                     <div class="product-desc__item-client">
-                        <p class="product-desc__client-name">Александр В.</p>
+                        <p class="product-desc__client-name">{{ $review_item->user->name }}</p>
                         <div class="product-desc__client-rating">
-                            <span>21.05.24</span>
+                            <span>{{ $review_item->created_at->format('d.m.Y') }}</span>
                             <div class="product-desc__testimonials-rating">
                                 <ul>
                                     <li><img src="/images/icons/star.svg" alt="оценка"></li>
@@ -140,6 +141,7 @@
                         </p>
                         <p>Здравствуйте, Александр! Благодарим за положительный отзыв.</p>
                     </div>
+                    @endforeach
                 </div>
             </div>
             <div class="product-desc__item-rating">
