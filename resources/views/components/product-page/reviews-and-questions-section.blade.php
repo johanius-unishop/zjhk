@@ -79,11 +79,6 @@
                                             <li><img src="{{ asset('images/icons/star-empty.svg') }}"
                                                     alt="пустая оценка"></li>
                                         @endfor
-                                        <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                        <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                        <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                        <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                        <li><img src="/images/icons/star.svg" alt="оценка"></li>
                                     </ul>
                                 </div>
                             </div>
