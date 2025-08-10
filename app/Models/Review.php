@@ -51,6 +51,7 @@ class Review extends Model implements HasMedia
     {
         return $this->belongsTo(User::class);
     }
+
     // Получение статуса наличия ответа на отзыв
     public function isReplied(): bool
     {

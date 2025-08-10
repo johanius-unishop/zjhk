@@ -39,8 +39,6 @@
                                         src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать">
                                     <button data-sort>С высокой оценкой <img data-rating
                                             src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать"></button>
-                                    <button data-sort>Полезные <img data-useful
-                                            src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать"></button>
                             </div>
                         </div>
                         <div class="product-desc__item-sort-mobile">
@@ -62,18 +60,8 @@
                                             С высокой оценкой
                                         </label>
                                     </li>
-                                    <li>
-                                        <label class="sort-control">
-                                            <input type="radio" name="sort" />
-                                            Полезные
-                                        </label>
-                                    </li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="product-desc__item-sort-right">
-                            <input type="checkbox" name="photo" id="photo">
-                            <span>C фотографиями</span>
                         </div>
                     </div>
                     @foreach ($data['product']->reviews as $review_item)
