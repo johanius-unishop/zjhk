@@ -22,7 +22,7 @@
                                 <a href="#">
                                     @if ($data['product']->reviews)
                                         @if (count($data['product']->reviews))
-                                            {{ $number }} {{ pluralForm($number, ['отзыв', 'отзыва', 'отзывов']) }}
+                                            {{ count($data['product']->reviews) }} {{ pluralForm(count($data['product']->reviews), ['отзыв', 'отзыва', 'отзывов']) }}
                                         @else
                                             Нет отзывов
                                         @endif
