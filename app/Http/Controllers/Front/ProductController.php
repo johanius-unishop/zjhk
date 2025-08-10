@@ -128,18 +128,22 @@ class ProductController extends Controller
             return $review->getMedia('photos');
         });
 
-        $reviewRating [] = [
-        'averageReviewRating' => round($product->reviews()->avg('rating'),2),
-        '$oneStarReviewsCount' => $product->reviews()->where('rating', '=', 1)->count(),
-        '$twoStarReviewsCount' => $product->reviews()->where('rating', '=', 2)->count(),
-        '$threeStarReviewsCount' => $product->reviews()->where('rating', '=', 3)->count(),
-        '$fourStarReviewsCount' => $product->reviews()->where('rating', '=', 4)->count(),
-        '$fiveStarReviewsCount' => $product->reviews()->where('rating', '=', 5)->count(),
-        '$oneStarReviewsPercent' => round($product->reviews()->where('rating', '=', 1)->count()/$product->reviews()->count()*100,0),
-        '$twoStarReviewsPercent' => round($product->reviews()->where('rating', '=', 2)->count()/$product->reviews()->count()*100,0),
-        '$threeStarReviewsPercent' => round($product->reviews()->where('rating', '=', 3)->count()/$product->reviews()->count()*100,0),
-        '$fourStarReviewsPercent' => round($product->reviews()->where('rating', '=', 4)->count()/$product->reviews()->count()*100,0),
-        '$fiveStarReviewsPercent' => round($product->reviews()->where('rating', '=', 5)->count()/$product->reviews()->count()*100,0),
+        $reviewRating = [
+            'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
+
+            // Подсчет количества отзывов каждого типа
+            'oneStarReviewsCount' => $product->reviews()->where('rating', '=', 1)->count(),
+            'twoStarReviewsCount' => $product->reviews()->where('rating', '=', 2)->count(),
+            'threeStarReviewsCount' => $product->reviews()->where('rating', '=', 3)->count(),
+            'fourStarReviewsCount' => $product->reviews()->where('rating', '=', 4)->count(),
+            'fiveStarReviewsCount' => $product->reviews()->where('rating', '=', 5)->count(),
+
+            // Процентная доля каждого типа отзыва
+            'oneStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 1)->count() / $product->reviews()->count()) * 100, 0),
+            'twoStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 2)->count() / $product->reviews()->count()) * 100, 0),
+            'threeStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 3)->count() / $product->reviews()->count()) * 100, 0),
+            'fourStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 4)->count() / $product->reviews()->count()) * 100, 0),
+            'fiveStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 5)->count() / $product->reviews()->count()) * 100, 0)
         ];
 
 
@@ -206,6 +210,4 @@ class ProductController extends Controller
         // Собираем финальное название
         return implode(' ', array_filter($parts));
     }
-
-
 }
