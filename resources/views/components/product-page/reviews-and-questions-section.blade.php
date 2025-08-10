@@ -83,14 +83,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-desc__benefit">
-                            <p>Достоинства</p>
-                            <p>{{ $review_item->advantages }}</p>
-                        </div>
+                        @if (!empty($review_item->advantages))
+                            <div class="product-desc__benefit">
+                                <p>Достоинства</p>
+                                <p>{{ $review_item->advantages }}</p>
+                            </div>
+                        @endif
+                        @if (!empty($review_item->disadvantages))
                         <div class="product-desc__benefit">
                             <p>Недостатки</p>
                             <p>{{ $review_item->disadvantages }}</p>
                         </div>
+                        @endif
+                        @if (!empty($review_item->review_text))
                         <div class="product-desc__benefit">
                             <p>Комментарий</p>
                             <p>{{ $review_item->review_text }}</p>
@@ -105,6 +110,7 @@
                                 @endforeach
                             </div>
                         </div>
+                        @endif
                         <div class="product-desc__likes">
 
                             <a href="#">Ответить</a>
