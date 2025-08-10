@@ -152,7 +152,7 @@ class ProductController extends Controller
             'related' => $related,
             'images' => $images,
             'allReviewImages' => $allReviewImages,
-            'reviewRating ' => $reviewRating,
+            'reviewRating' => $reviewRating,
             // 'price_categories' => $price_categories,
             // 'stores' => $stores,
             // 'enableQuestion' => $enableQuestion,
