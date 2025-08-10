@@ -146,7 +146,7 @@
                         чтобы увидеть европейские аналоги к данному товару.
                     </p>
                 </div>
-                @include('components.product-page.reviews-and-qquestions-section')
+                @include('components.product-page.reviews-and-questions-section')
             </div>
         </section>
     </main>
