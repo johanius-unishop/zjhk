@@ -115,12 +115,14 @@
 
                             <a href="#">Ответить</a>
                         </div>
+                        @if (!empty($review_item->admin_reply))
                         <div class="product-desc__answer">
                             <p>Ответ представителя <img src="{{ asset('images/icons/arrow-down.svg') }}"
                                     alt="ответ представителя">
                             </p>
                             <p>{{ $review_item->admin_reply }}</p>
                         </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
