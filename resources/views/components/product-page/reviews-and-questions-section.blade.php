@@ -225,8 +225,9 @@
                         </div>
                     </div>
                 </div>
-                <button data-modal-link="testimonial" class="product-desc__item-btn">Написать
-                    отзыв</button>
+                @auth
+                    <button data-modal-link="testimonial" class="product-desc__item-btn">Оставить отзыв</button>
+                @endauth
             </div>
         </div>
     </div>
