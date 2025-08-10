@@ -106,6 +106,7 @@
                             </div>
                         </div>
                         <div class="product-desc__likes">
+
                             <a href="#">Ответить</a>
                         </div>
                         <div class="product-desc__answer">

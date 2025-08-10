@@ -146,6 +146,21 @@ class ProductController extends Controller
             'fiveStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 5)->count() / $product->reviews()->count()) * 100, 0)
         ];
 
+        // Массив отзывов отсортированных по новизне
+        $newReviews = $product->reviews()
+            ->orderBy('created_at', 'desc')
+            ->with('media')
+            ->with('user')
+            ->get();
+
+        // Массив отзывов отсортированных по рейтингу, затемм по дате публикации
+        $bestRatedReviews = $product->reviews()
+            ->orderBy('rating', 'desc')   // Первичная сортировка по рейтингу
+            ->orderBy('created_at', 'desc') // Вторичная сортировка по датам публикаций
+            ->with('media')
+            ->with('user')
+            ->get();
+
 
         $data = [
 
@@ -157,8 +172,8 @@ class ProductController extends Controller
             'images' => $images,
             'allReviewImages' => $allReviewImages,
             'reviewRating' => $reviewRating,
-            // 'price_categories' => $price_categories,
-            // 'stores' => $stores,
+            'newReviews' => $newReviews,
+            'bestRatedReviews' => $bestRatedReviews,
             // 'enableQuestion' => $enableQuestion,
             // 'enableFastBay' => $enableFastBay,
             // 'enableSale' => $enableSale,
