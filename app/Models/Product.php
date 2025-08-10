@@ -226,6 +226,11 @@ class Product extends Model implements HasMedia, Sitemapable
         return $this->hasMany(Review::class);
     }
 
+     public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
     //к какому комплекту товар относится
     public function parentComplectation()
     {

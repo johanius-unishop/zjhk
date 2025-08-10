@@ -32,6 +32,7 @@ class ProductController extends Controller
                 'composite.compositeProduct',
                 'composite.compositeType',
                 'reviews',
+                'question',
                 'productType.relatedTypes' => function ($query) {
                     $query->orderBy('order_column'); // Замените order_column на фактическое название колонки, по которой хотите сортировать
                 },

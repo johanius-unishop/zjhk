@@ -87,4 +87,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->purchases()->where('product_id', $productId)->count() > 0;
     }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

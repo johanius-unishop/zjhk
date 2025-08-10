@@ -132,5 +132,5 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('problem/product-type-properties-without-values', [ProductTypePropertyController::class, 'showProductTypePropertiesWithoutValues'])->name('problem.product-type-properties-without-values');
 
 
-    Route::put('/reviews/{review}/reply', [ReviewsController::class, 'reply'])->middleware(['auth', 'role:admin']);Route::put('/reviews/{review}/reply', [ReviewsController::class, 'reply'])->middleware(['auth', 'role:admin']);
+    Route::put('/reviews/{review}/reply', [ReviewsController::class, 'reply'])->middleware(['auth', 'role:admin']);
 });

@@ -7,18 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'product_id',
+        'user_id',
+        'rating',
+        'review_title',
+        'review_text',
+        'admin_reply',
+        'admin_replied_at'
+    ];
 
-    protected static function boot()
+    public function product()
     {
-        parent::boot();
+        return $this->belongsTo(Product::class);
+    }
 
-        static::saving(function ($model) {
-            foreach ($model->getFillable() as $field) {
-                if (is_string($model->$field)) {
-                    $model->$field = trim($model->$field);
-                }
-            }
-        });
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    // Получение статуса наличия ответа на отзыв
+    public function isReplied(): bool
+    {
+        return !is_null($this->admin_reply);
     }
 }
