@@ -144,35 +144,35 @@
                             <div>
                                 <div class="product-desc__progress-level" style="width: {{ $data['reviewRating']['fiveStarReviewsPercent'] }}%"></div>
                             </div>
-                            <span>446</span>
+                            <span>{{ $data['reviewRating']['fiveStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>4</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: 20%"></div>
+                                <div class="product-desc__progress-level" style="width: {{ $data['reviewRating']['fourStarReviewsPercent'] }}%"></div>
                             </div>
-                            <span>2</span>
+                            <span>{{ $data['reviewRating']['fourStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>3</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: 0"></div>
+                                <div class="product-desc__progress-level" style="width: {{ $data['reviewRating']['threeStarReviewsPercent'] }}%"></div>
                             </div>
-                            <span>0</span>
+                            <span>{{ $data['reviewRating']['threeStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
-                            <span>0</span>
+                            <span>2</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: 0"></div>
+                                <div class="product-desc__progress-level" style="width: {{ $data['reviewRating']['twoStarReviewsPercent'] }}%"></div>
                             </div>
-                            <span>0</span>
+                            <span>{{ $data['reviewRating']['twoStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>1</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: 0"></div>
+                                <div class="product-desc__progress-level" style="width: {{ $data['reviewRating']['oneStarReviewsPercent'] }}%"></div>
                             </div>
-                            <span>0</span>
+                            <span>{{ $data['reviewRating']['oneStarReviewsCount'] }}</span>
                         </div>
                     </div>
                 </div>
