@@ -143,11 +143,10 @@ function getFilter($querry, $request)
                 $q->where('height', '<', $height_to);
             });
         }
-
     }
     return $querry;
 }
- 
+
 
 
 function file_get_contents_curl($url)
@@ -167,7 +166,6 @@ function downloadFile($imgName, $url, $path)
     $data = file_get_contents_curl($url);
     file_put_contents($path . $imgName, $data);
     echo "File downloaded!";
-
 }
 
 function firstLettersList($my_array)
@@ -293,10 +291,10 @@ function youtube_id_from_url($url)
 
 
     // обрежем таймкод
-// ?t=
-//   $url =stristr($url, '?t=' , true);
-//   $ur2 =stristr($url, '&t=' , true);
-// dd($url);
+    // ?t=
+    //   $url =stristr($url, '?t=' , true);
+    //   $ur2 =stristr($url, '&t=' , true);
+    // dd($url);
     $pos = strripos($url, '&t=');
     if (!$pos === false) {
         $url = stristr($url, '&t=', true);
@@ -321,8 +319,7 @@ function youtube_id_from_url($url)
           )             # End path alternatives.
         )               # End host alternatives.
         ([\w-]{10,12})  # Allow 10-12 for 11 char youtube id.
-        $%x'
-    ;
+        $%x';
     $result = preg_match($pattern, $url, $matches);
     if ($result) {
         return $matches[1];
@@ -447,9 +444,6 @@ function checkAdnMakeSubfolder($gfg_folderpath)
             }
         }
     }
-
-
-
 }
 function parsingInvalidHtml($html)
 {
@@ -484,6 +478,26 @@ function saveImagesFromDescription($html)
         if (!is_dir(public_path($img_folder))) {
             mkdir(public_path($img_folder), 0700, true);
         }
+    }
+}
 
+/**
+ * Возвращает правильное слово в нужной форме для русского языка
+ *
+ * @param int $count Количество элементов
+ * @param string[] $forms Массив форм слова ("единица", "двойка-тройка-четыре", "все остальное")
+ */
+function pluralForm(int $count, array $forms)
+{
+    if ($count % 100 > 10 && $count % 100 < 20) return $forms[2];
+    switch ($count % 10) {
+        case 1:
+            return $forms[0];   // одно
+        case 2:
+        case 3:
+        case 4:
+            return $forms[1]; // два-три-четыре
+        default:
+            return $forms[2];  // всё остальное
     }
 }
