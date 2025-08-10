@@ -136,7 +136,7 @@
                             <li><img src="/images/icons/star.svg" alt="оценка"></li>
                             <li><img src="/images/icons/star.svg" alt="оценка"></li>
                         </ul>
-                        <p>4.95/5</p>
+                        <p>{{ $data['reviewRating']['averageReviewRating'] }} / 5</p>
                     </div>
                     <div class="product-desc__progress">
                         <div class="product-desc__progress-item">
