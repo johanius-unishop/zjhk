@@ -111,10 +111,12 @@
                             </div>
                         </div>
                         @endif
+                        @can('isAdmin')
                         <div class="product-desc__likes">
 
                             <a href="#">Ответить</a>
                         </div>
+                        @endcan
                         @if (!empty($review_item->admin_reply))
                         <div class="product-desc__answer">
                             <p>Ответ представителя <img src="{{ asset('images/icons/arrow-down.svg') }}"
