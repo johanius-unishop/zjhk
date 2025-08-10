@@ -9,16 +9,10 @@ class UserGroup extends Model
 {
     use HasFactory;
 
-    protected static function boot()
-    {
-        parent::boot();
+    protected $table = 'user_groups';
 
-        static::saving(function ($model) {
-            foreach ($model->getFillable() as $field) {
-                if (is_string($model->$field)) {
-                    $model->$field = trim($model->$field);
-                }
-            }
-        });
+    public function users()
+    {
+        return $this->hasMany(User::class); // связанная группа пользователей
     }
 }
