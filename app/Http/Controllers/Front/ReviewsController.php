@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Front;
 
 use Illuminate\Support\Facades\Auth;
@@ -22,13 +23,16 @@ class ReviewsController extends Controller
     /**
      * Сохраняем отзыв и оценку
      */
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'product_id' => 'required|exists:products,id',
             'rating' => 'required|integer|min:1|max:5',
-            'review_title' => 'nullable|string|max:255',
-            'review_text' => 'nullable|string'
+            'review_text' => 'nullable|string',
+            'advantages' => 'nullable|string',
+            'disadvantages' => 'nullable|string', // Исправлено название поля
+            'images.*' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048' // Несколько изображений, размер файла максимум 2 Мб
         ]);
 
         // Убедимся, что пользователь купил этот товар
@@ -36,9 +40,21 @@ class ReviewsController extends Controller
             abort(403, 'Вы можете оставлять отзывы только на товары, которые приобрели.');
         }
 
-        auth('web')->user()->reviews()->create($validatedData);
+        // Создаем отзыв с привязкой к продукту и пользователю
+        $review = auth('web')->user()->reviews()->create(array_merge($validatedData, [
+            'product_id' => $validatedData['product_id'],
+            'user_id' => auth('web')->id(),
+        ]));
 
-        return redirect()->route('product.show', $validatedData['product_id'])->with('message', 'Ваш отзыв успешно сохранён!');
+        // Присоединяем все присланные изображения к отзыву
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $review->addMedia($image)->toMediaCollection('photos');
+            }
+        }
+
+        return redirect()->route('product.show', $validatedData['product_id'])
+            ->with('message', 'Ваш отзыв успешно сохранён!');
     }
 
     /**

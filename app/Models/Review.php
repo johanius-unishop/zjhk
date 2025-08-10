@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use App\PathGenerators\ReviewPathGenerator;
 
 class Review extends Model
 {
+    use InteractsWithMedia;
+
     protected $fillable = [
         'product_id',
         'user_id',
@@ -16,6 +21,26 @@ class Review extends Model
         'admin_reply',
         'admin_replied_at'
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('photos')
+            ->useDisk('reviews')
+            ->withResponsiveImages()
+            ->singleFile()
+            ->useFallbackUrl('/images/default_image.jpg')
+            ->useFallbackPath(public_path('/images/default_image.jpg'));
+    }
+
+    protected function getPath(Model $model): string
+    {
+        return app(ReviewPathGenerator::class)->getPath($model);
+    }
+
+    protected function getPathForConversions(Model $model): string
+    {
+        return app(ReviewPathGenerator::class)->getPathForConversions($model);
+    }
 
     public function product()
     {
