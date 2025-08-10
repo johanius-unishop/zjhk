@@ -12,17 +12,19 @@
                         <h2>{{ $data['product']->productType->name }} {{ $data['product']->name }}</h2>
                         <div class="product-desc__testimonials-rating">
                             <ul>
-                                <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                <li><img src="/images/icons/star.svg" alt="оценка"></li>
+                                <@for ($i = 1; $i <= $data['reviewRating']['roundedAverageRating']; $i++)
+                                    <li><img src="{{ asset('images/icons/star.svg') }}" alt="полная оценка"></li>
+                                    @endfor
+                                    @for ($j = $data['reviewRating']['roundedAverageRating'] + 1; $j <= 5; $j++)
+                                        <li><img src="{{ asset('images/icons/star-empty.svg') }}" alt="пустая оценка"></li>
+                                    @endfor
                             </ul>
                             <div>
                                 <a href="#">
                                     @if ($data['product']->reviews)
                                         @if (count($data['product']->reviews))
-                                            {{ count($data['product']->reviews) }} {{ pluralForm(count($data['product']->reviews), ['отзыв', 'отзыва', 'отзывов']) }}
+                                            {{ count($data['product']->reviews) }}
+                                            {{ pluralForm(count($data['product']->reviews), ['отзыв', 'отзыва', 'отзывов']) }}
                                         @else
                                             Нет отзывов
                                         @endif
@@ -31,7 +33,8 @@
                                 <a href="#">
                                     @if ($data['product']->questions)
                                         @if (count($data['product']->questions))
-                                            {{ count($data['product']->questions) }} {{ pluralForm(count($data['product']->questions), ['вопрос', 'вопроса', 'вопросов']) }}
+                                            {{ count($data['product']->questions) }}
+                                            {{ pluralForm(count($data['product']->questions), ['вопрос', 'вопроса', 'вопросов']) }}
                                         @else
                                             Нет вопросов
                                         @endif
