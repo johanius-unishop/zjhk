@@ -33,14 +33,14 @@
                 <div class="product-desc__item-sort">
                     <div class="product-desc__item-sort-select">
                         <div class="product-desc__item-sort-left">
-                            <span>Сортировать по:</span>
+                            <span>Показать сначала:</span>
                             <div class="product-desc__item-sort-target">
-                                <button data-sort class="_target">дате <img data-date class="_target"
+                                <button data-sort class="_target">Новые <img data-date class="_target"
                                         src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать">
-                                    <button data-sort>оценке <img data-rating src="{{ asset('images/icons/sorting_by.svg') }}"
-                                            alt="сортировать"></button>
-                                    <button data-sort>полезности <img data-useful src="{{ asset('images/icons/sorting_by.svg') }}"
-                                            alt="сортировать"></button>
+                                    <button data-sort>С высокой оценкой <img data-rating
+                                            src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать"></button>
+                                    <button data-sort>Полезные <img data-useful
+                                            src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать"></button>
                             </div>
                         </div>
                         <div class="product-desc__item-sort-mobile">
@@ -48,24 +48,24 @@
                                 <img src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать">
                             </button>
                             <div class="product-desc__sort-submenu">
-                                <h4>Сортировать</h4>
+                                <h4>Показать сначала:</h4>
                                 <ul>
                                     <li>
                                         <label class="sort-control">
                                             <input type="radio" name="sort" checked />
-                                            По дате
+                                            Новые
                                         </label>
                                     </li>
                                     <li>
                                         <label class="sort-control">
                                             <input type="radio" name="sort" />
-                                            По оценке
+                                            С высокой оценкой
                                         </label>
                                     </li>
                                     <li>
                                         <label class="sort-control">
                                             <input type="radio" name="sort" />
-                                            По полезности
+                                            Полезные
                                         </label>
                                     </li>
                                 </ul>
@@ -77,70 +77,52 @@
                         </div>
                     </div>
                     @foreach ($data['product']->reviews as $review_item)
-                    <div class="product-desc__item-client">
-                        <p class="product-desc__client-name">{{ $review_item->user->name }}</p>
-                        <div class="product-desc__client-rating">
-                            <span>{{ $review_item->created_at->format('d.m.Y') }}</span>
-                            <div class="product-desc__testimonials-rating">
-                                <ul>
-                                    <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                    <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                    <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                    <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                    <li><img src="/images/icons/star.svg" alt="оценка"></li>
-                                </ul>
+                        <div class="product-desc__item-client">
+                            <p class="product-desc__client-name">{{ $review_item->user->name }}</p>
+                            <div class="product-desc__client-rating">
+                                <span>{{ $review_item->created_at->format('d.m.Y') }}</span>
+                                <div class="product-desc__testimonials-rating">
+                                    <ul>
+                                        <li><img src="/images/icons/star.svg" alt="оценка"></li>
+                                        <li><img src="/images/icons/star.svg" alt="оценка"></li>
+                                        <li><img src="/images/icons/star.svg" alt="оценка"></li>
+                                        <li><img src="/images/icons/star.svg" alt="оценка"></li>
+                                        <li><img src="/images/icons/star.svg" alt="оценка"></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-desc__benefit">
-                        <p>Достоинства</p>
-                        <p>Отличный товар!</p>
-                    </div>
-                    <div class="product-desc__benefit">
-                        <p>Недостатки</p>
-                        <p>Нет</p>
-                    </div>
-                    <div class="product-desc__benefit">
-                        <p>Комментарий</p>
-                        <p>Полностью соответствует заявленным характеристикам.</p>
-                        <div style="display: none;" class="product-desc__testimonial-gallery">
-                            <div class="product-desc__item-img">
-                                <a href="#">
-                                    <img src="/images/products/review_photos.jpg" alt="фото товара">
-                                </a>
-                            </div>
-                            <div class="product-desc__item-img">
-                                <a href="#">
-                                    <img src="/images/products/review_photos.jpg" alt="фото товара">
-                                </a>
-                            </div>
-                            <div class="product-desc__item-img">
-                                <a href="#">
-                                    <img src="/images/products/review_photos.jpg" alt="фото товара">
-                                </a>
-                            </div>
-                            <div class="product-desc__item-img">
-                                <a href="#">
-                                    <img src="/images/products/review_photos.jpg" alt="фото товара">
-                                </a>
-                            </div>
-                            <div class="product-desc__item-img">
-                                <a href="#">
-                                    <img src="/images/products/review_photos.jpg" alt="фото товара">
-                                </a>
+                        <div class="product-desc__benefit">
+                            <p>Достоинства</p>
+                            <p>{{ $review_item->advantages }}</p>
+                        </div>
+                        <div class="product-desc__benefit">
+                            <p>Недостатки</p>
+                            <p>{{ $review_item->disadvantages }}</p>
+                        </div>
+                        <div class="product-desc__benefit">
+                            <p>Комментарий</p>
+                            <p>{{ $review_item->review_text }}</p>
+                            <div style="display: none;" class="product-desc__testimonial-gallery">
+                                @foreach ($review_item->getMedia('photos') as $review_photo_item)
+                                    <div class="product-desc__item-img">
+                                        <a href="{{ $review_photo_item->getUrl('') }}">
+                                            <img src="{{ $review_photo_item->getUrl('thumb') }}" alt="фото товара в отзыве">
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                    </div>
-                    <div class="product-desc__likes">
-                        <p><img src="/images/icons/thumbs_up.svg" alt="лайк">10</p>
-                        <p><img src="/images/icons/thumbs_down.svg" alt="дизлайк">0</p>
-                        <a href="#">Ответить</a>
-                    </div>
-                    <div class="product-desc__answer">
-                        <p>Ответ представителя <img src="/images/icons/arrow-down.svg" alt="ответ представителя">
-                        </p>
-                        <p>Здравствуйте, Александр! Благодарим за положительный отзыв.</p>
-                    </div>
+                        <div class="product-desc__likes">
+                            <p><img src="{{ asset('images/icons/thumbs_up.svg') }}" alt="лайк">10</p>
+                            <p><img src="{{ asset('images/icons/thumbs_down.svg') }}" alt="дизлайк">0</p>
+                            <a href="#">Ответить</a>
+                        </div>
+                        <div class="product-desc__answer">
+                            <p>Ответ представителя <img src="{{ asset('images/icons/arrow_down.svg') }}" alt="ответ представителя">
+                            </p>
+                            <p>{{ $review_item->admin_reply }}</p>
+                        </div>
                     @endforeach
                 </div>
             </div>
