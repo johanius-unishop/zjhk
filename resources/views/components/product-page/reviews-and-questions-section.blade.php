@@ -21,11 +21,13 @@
         <div class="product-desc__item-wrapper">
             <div class="product-desc__item-content">
                 <div class="product-desc__item-gallery">
+                    @foreach ( $data['allReviewImages'] as $reviewImage)
                     <div class="product-desc__item-img">
                         <a href="#">
-                            <img src="/images/products/review_photos.jpg" alt="фото товара">
+                            <img src="{{ $reviewImage->getUrl('thumb') }}" alt="Миниатюра фотографии отзыва для товара {{ $data['product']->name }}">
                         </a>
                     </div>
+                    @endforeach
                     <div class="product-desc__item-img">
                         <a href="#">
                             <img src="/images/products/review_photos.jpg" alt="фото товара">

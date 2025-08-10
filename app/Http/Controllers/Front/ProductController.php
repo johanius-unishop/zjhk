@@ -128,8 +128,6 @@ class ProductController extends Controller
             return $review->getMedia('photos');
         });
 
-        dd($allReviewImages);
-
 
 
         $data = [

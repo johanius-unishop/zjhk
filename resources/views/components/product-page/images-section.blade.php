@@ -3,7 +3,7 @@
         <div class="swiper-wrapper">
             @foreach ($data['images'] as $mediaItem)
                 <div class="swiper-slide">
-                    <img src="{{ $mediaItem->getUrl() }}" alt="Изображение {{ $data['product']->name }}">
+                    <img src="{{ $mediaItem->getUrl('thumb') }}" alt="Миниатюра изображения товара {{ $data['product']->name }}">
                 </div>
             @endforeach
         </div>
@@ -12,7 +12,7 @@
         <div class="swiper-wrapper">
             @foreach ($data['images'] as $mediaItem)
                 <div class="swiper-slide">
-                    <img src="{{ $mediaItem->getUrl() }}" alt="Изображение {{ $data['product']->name }}">
+                    <img src="{{ $mediaItem->getUrl() }}" alt="Изображение товара {{ $data['product']->name }}">
                 </div>
             @endforeach
         </div>
