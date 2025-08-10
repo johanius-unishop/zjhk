@@ -10,8 +10,9 @@ class Review extends Model
         'product_id',
         'user_id',
         'rating',
-        'review_title',
         'review_text',
+        'advantages',
+        'disadvantages',
         'admin_reply',
         'admin_replied_at'
     ];
