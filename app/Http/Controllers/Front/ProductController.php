@@ -130,6 +130,7 @@ class ProductController extends Controller
 
         $reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
+            'roundedAverageRating' => round($product->reviews()->avg('rating'), 0),
 
             // Подсчет количества отзывов каждого типа
             'oneStarReviewsCount' => $product->reviews()->where('rating', '=', 1)->count(),
