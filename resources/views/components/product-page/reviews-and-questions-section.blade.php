@@ -71,6 +71,14 @@
                                 <span>{{ $review_item->created_at->format('d.m.Y') }}</span>
                                 <div class="product-desc__testimonials-rating">
                                     <ul>
+                                        @for ($i = 1; $i <= $review_item->rating; $i++)
+                                            <li><img src="{{ asset('images/icons/star.svg') }}" alt="полная оценка">
+                                            </li>
+                                        @endfor
+                                        @for ($j = $review_item->rating + 1; $j <= 5; $j++)
+                                            <li><img src="{{ asset('images/icons/star-empty.svg') }}"
+                                                    alt="пустая оценка"></li>
+                                        @endfor
                                         <li><img src="/images/icons/star.svg" alt="оценка"></li>
                                         <li><img src="/images/icons/star.svg" alt="оценка"></li>
                                         <li><img src="/images/icons/star.svg" alt="оценка"></li>
@@ -103,8 +111,6 @@
                             </div>
                         </div>
                         <div class="product-desc__likes">
-                            <p><img src="{{ asset('images/icons/thumbs_up.svg') }}" alt="лайк">10</p>
-                            <p><img src="{{ asset('images/icons/thumbs_down.svg') }}" alt="дизлайк">0</p>
                             <a href="#">Ответить</a>
                         </div>
                         <div class="product-desc__answer">
