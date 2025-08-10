@@ -110,7 +110,7 @@
                             <a href="#">Ответить</a>
                         </div>
                         <div class="product-desc__answer">
-                            <p>Ответ представителя <img src="{{ asset('images/icons/arrow_down.svg') }}"
+                            <p>Ответ представителя <img src="{{ asset('images/icons/arrow-down.svg') }}"
                                     alt="ответ представителя">
                             </p>
                             <p>{{ $review_item->admin_reply }}</p>
