@@ -142,7 +142,7 @@
                         <div class="product-desc__progress-item">
                             <span>5</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: 80%"></div>
+                                <div class="product-desc__progress-level" style="width: {{ $data['reviewRating']['fiveStarReviewsPercent'] }}%"></div>
                             </div>
                             <span>446</span>
                         </div>
