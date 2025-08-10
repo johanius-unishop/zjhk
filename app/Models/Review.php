@@ -7,7 +7,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use App\PathGenerators\ReviewPathGenerator;
 
-class Review extends Model
+class Review extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
@@ -27,7 +27,7 @@ class Review extends Model
         $this->addMediaCollection('photos')
             ->useDisk('reviews')
             ->withResponsiveImages()
-            ->singleFile()
+            ->singleFile(false)
             ->useFallbackUrl('/images/default_image.jpg')
             ->useFallbackPath(public_path('/images/default_image.jpg'));
     }
