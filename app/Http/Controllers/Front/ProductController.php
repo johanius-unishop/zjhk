@@ -42,6 +42,8 @@ class ProductController extends Controller
             return abort(404);
         }
 
+
+
         // $analogs = (Product::getAnalogies($product));
         // /$viewModel = new ProductViewModel($product);
         $images      = $product->getMedia('images');
@@ -121,6 +123,10 @@ class ProductController extends Controller
                 }
             }
         }
+        // Получаем все изображения, объединяя через flatMap
+        $allReviewImages = $product->reviews()->with('media')->get()->flatMap(function ($review) {
+            return $review->getMedia('photos');
+        });
 
 
 
@@ -132,7 +138,7 @@ class ProductController extends Controller
             'compositionSet' => $compositionSet,
             'related' => $related,
             'images' => $images,
-            // 'media' => $media,
+            'allReviewImages' => $allReviewImages,
             // 'files' => $files,
             // 'price_categories' => $price_categories,
             // 'stores' => $stores,
@@ -187,4 +193,6 @@ class ProductController extends Controller
         // Собираем финальное название
         return implode(' ', array_filter($parts));
     }
+
+
 }
