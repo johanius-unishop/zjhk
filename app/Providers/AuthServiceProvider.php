@@ -29,6 +29,6 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         // Здесь можно зарегистрировать дополнительные разрешения
-        Gate::define('isAdmin', [\App\Policies\AdminPolicy::class, 'isAdmin']);
+        Gate::define('isAdmin', [AdminPolicy::class, 'isAdmin']);
     }
 }

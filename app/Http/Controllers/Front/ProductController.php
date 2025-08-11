@@ -14,14 +14,6 @@ use Mews\Purifier\Facades\Purifier;
 
 class ProductController extends Controller
 {
-    //public function show(Product $product)
-    //{
-
-    //  $viewModel = new ProductViewModel($product);
-    //return view('product-card', compact('viewModel'));
-    //}
-
-    // public function testShow(Product $product)
     public function show($slug)
     {
         $product = Product::where('slug', $slug)
@@ -187,6 +179,7 @@ class ProductController extends Controller
             $product->seo()->update(['title' => $this->generateUniqueTitle($product)]);
         }
 
+        dd(\Illuminate\Support\Facades\Gate::allows('isAdmin'));
 
         SEOMeta::setTitle($product->seo->title);
         SEOMeta::setDescription($product->seo->description);

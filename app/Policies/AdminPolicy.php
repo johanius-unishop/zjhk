@@ -13,6 +13,6 @@ class AdminPolicy
     public function isAdmin(User $user)
     {
         return $user->group_id === 4 ||
-               $user->group->title === 'Администратор';
+               $user->group->name === 'Администратор';
     }
 }
