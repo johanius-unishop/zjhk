@@ -179,7 +179,7 @@ class ProductController extends Controller
             $product->seo()->update(['title' => $this->generateUniqueTitle($product)]);
         }
 
-        dd(\Illuminate\Support\Facades\Gate::allows('isAdmin'));
+
 
         SEOMeta::setTitle($product->seo->title);
         SEOMeta::setDescription($product->seo->description);

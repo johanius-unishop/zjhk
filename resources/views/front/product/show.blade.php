@@ -4,6 +4,7 @@
 
 @section('content')
     <main>
+        {{ \Illuminate\Support\Facades\Gate::allows('isAdmin') }}
         <section class="products-desc">
             <div class="products-desc__container container">
                 @include('components.product-page.breadcrumbs')
