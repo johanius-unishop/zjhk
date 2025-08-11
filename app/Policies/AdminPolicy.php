@@ -12,7 +12,7 @@ class AdminPolicy
      */
     public function isAdmin(User $user)
     {
-        return $user->group_id === 4 ||
+        return $user->user_group_id === 4 ||
                $user->group->name === 'Администратор';
     }
 }
