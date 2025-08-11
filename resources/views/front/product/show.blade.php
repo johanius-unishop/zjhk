@@ -10,7 +10,7 @@
                 @include('components.product-page.breadcrumbs')
                 <div class="product-desc__content">
                     <div class="product-desc__title-container">
-                        <pre>{{ Auth::user('web')->user_group_id }}</pre>
+                        <pre>{{ Auth::user()->user_group_id }}</pre>
                         @if(auth()->check() && auth()->user()->isAdmin())
                             <p>Админ</p>
                         @else
