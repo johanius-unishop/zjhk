@@ -93,5 +93,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Question::class);
     }
 
-
+    public function isAdmin(): bool
+    {
+        return $this->group()->where('name', 'Администратор')->exists();
+    }
 }

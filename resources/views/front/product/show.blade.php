@@ -11,11 +11,11 @@
                 <div class="product-desc__content">
                     <div class="product-desc__title-container">
                         <pre>{{ Auth::user('web')->user_group_id }}</pre>
-                        @can('isAdmin')
+                        @if(auth()->check() && auth()->user()->isAdmin())
                             <p>Админ</p>
                         @else
                             <p>Не админ</p>
-                        @endcan
+                        @endif
                         <h2>{{ $data['product']->productType->name }} {{ $data['product']->name }}</h2>
                         <div class="product-desc__testimonials-rating">
                             <ul>
