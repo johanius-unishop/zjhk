@@ -36,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
         //     UpdateCompositeStock::class,
         // );
         // Paginator::defaultView('bootsrap-5');
+
+        // Регистрация глобального middleware
+        $this->app['router']->pushMiddlewareToGroup('web', \App\Http\Middleware\IsAdmin::class);
+
         Paginator::useBootstrapFive();
         Schema::defaultStringLength(191);
     }

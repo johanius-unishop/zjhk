@@ -45,7 +45,8 @@ Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(functio
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 });
 
-Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+Route::group(['middleware' => ['auth', 'is.admin']], function () {
+//Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('search', [SearchController::class, 'search'])->name('search');
 
