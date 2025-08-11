@@ -4,12 +4,13 @@
 
 @section('content')
     <main>
-        {{ \Illuminate\Support\Facades\Gate::allows('isAdmin') }}
+
         <section class="products-desc">
             <div class="products-desc__container container">
                 @include('components.product-page.breadcrumbs')
                 <div class="product-desc__content">
                     <div class="product-desc__title-container">
+                        {{ \Illuminate\Support\Facades\Gate::allows('isAdmin') }}
                         <h2>{{ $data['product']->productType->name }} {{ $data['product']->name }}</h2>
                         <div class="product-desc__testimonials-rating">
                             <ul>
