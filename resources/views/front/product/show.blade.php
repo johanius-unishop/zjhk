@@ -10,7 +10,7 @@
                 @include('components.product-page.breadcrumbs')
                 <div class="product-desc__content">
                     <div class="product-desc__title-container">
-                        {{ \Illuminate\Support\Facades\Gate::allows('isAdmin') }}
+                        {{ can('isAdmin') }}
                         <h2>{{ $data['product']->productType->name }} {{ $data['product']->name }}</h2>
                         <div class="product-desc__testimonials-rating">
                             <ul>
