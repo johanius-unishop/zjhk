@@ -90,40 +90,39 @@
                             </div>
                         @endif
                         @if (!empty($review_item->disadvantages))
-                        <div class="product-desc__benefit">
-                            <p>Недостатки</p>
-                            <p>{{ $review_item->disadvantages }}</p>
-                        </div>
+                            <div class="product-desc__benefit">
+                                <p>Недостатки</p>
+                                <p>{{ $review_item->disadvantages }}</p>
+                            </div>
                         @endif
                         @if (!empty($review_item->review_text))
-                        <div class="product-desc__benefit">
-                            <p>Комментарий</p>
-                            <p>{{ $review_item->review_text }}</p>
-                            <div style="display: none;" class="product-desc__testimonial-gallery">
-                                @foreach ($review_item->getMedia('photos') as $review_photo_item)
-                                    <div class="product-desc__item-img">
-                                        <a href="{{ $review_photo_item->getUrl('') }}">
-                                            <img src="{{ $review_photo_item->getUrl('thumb') }}"
-                                                alt="фото товара в отзыве">
-                                        </a>
-                                    </div>
-                                @endforeach
+                            <div class="product-desc__benefit">
+                                <p>Комментарий</p>
+                                <p>{{ $review_item->review_text }}</p>
+                                <div style="display: none;" class="product-desc__testimonial-gallery">
+                                    @foreach ($review_item->getMedia('photos') as $review_photo_item)
+                                        <div class="product-desc__item-img">
+                                            <a href="{{ $review_photo_item->getUrl('') }}">
+                                                <img src="{{ $review_photo_item->getUrl('thumb') }}"
+                                                    alt="фото товара в отзыве">
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
                         @endif
-                        @can('isAdmin')
-                        <div class="product-desc__likes">
-
-                            <a href="#">Ответить</a>
-                        </div>
-                        @endcan
+                        @if (auth()->check() && auth()->user()->isAdmin())
+                            <div class="product-desc__likes">
+                                <a href="#">Ответить</a>
+                            </div>
+                        @endif
                         @if (!empty($review_item->admin_reply))
-                        <div class="product-desc__answer">
-                            <p>Ответ представителя <img src="{{ asset('images/icons/arrow-down.svg') }}"
-                                    alt="ответ представителя">
-                            </p>
-                            <p>{{ $review_item->admin_reply }}</p>
-                        </div>
+                            <div class="product-desc__answer">
+                                <p>Ответ представителя <img src="{{ asset('images/icons/arrow-down.svg') }}"
+                                        alt="ответ представителя">
+                                </p>
+                                <p>{{ $review_item->admin_reply }}</p>
+                            </div>
                         @endif
                     @endforeach
                 </div>
