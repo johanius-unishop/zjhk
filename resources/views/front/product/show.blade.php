@@ -10,7 +10,11 @@
                 @include('components.product-page.breadcrumbs')
                 <div class="product-desc__content">
                     <div class="product-desc__title-container">
-                        {{ can('isAdmin') }}
+                        @can('isAdmin')
+                            <p>Админ</p>
+                        @else
+                            <p>Не админ</p>
+                        @endcan
                         <h2>{{ $data['product']->productType->name }} {{ $data['product']->name }}</h2>
                         <div class="product-desc__testimonials-rating">
                             <ul>
