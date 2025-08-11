@@ -20,7 +20,7 @@
         "jeroennoten/laravel-adminlte": "^3.13",
         "kalnoy/nestedset": "^6.0",
         "laravel-lang/lang": "^12.17",
-        "laravel/framework": "^11.9",
+        "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
