@@ -33,7 +33,7 @@ use App\Http\Controllers\Admin\ReviewsController;
 use Illuminate\Support\Facades\Route;
 use Spatie\LaravelSettings\Settings;
 
-Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
+/*Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
          ->name('register');
 
@@ -43,7 +43,7 @@ Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(functio
         ->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
-});
+});*/
 
 Route::group(['middleware' => ['auth', 'is.admin']], function () {
 //Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
@@ -133,5 +133,5 @@ Route::group(['middleware' => ['auth', 'is.admin']], function () {
     Route::get('problem/product-type-properties-without-values', [ProductTypePropertyController::class, 'showProductTypePropertiesWithoutValues'])->name('problem.product-type-properties-without-values');
 
 
-    Route::put('/reviews/{review}/reply', [ReviewsController::class, 'reply'])->middleware(['auth', 'role:admin']);
+    Route::put('/reviews/{review}/reply', [ReviewsController::class, 'reply'])->middleware(['auth', 'is.admin']);
 });
