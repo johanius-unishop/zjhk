@@ -10,7 +10,7 @@
                 @include('components.product-page.breadcrumbs')
                 <div class="product-desc__content">
                     <div class="product-desc__title-container">
-                        <pre>{{ print_r(Auth::user()) }}</pre>
+                        <pre>{{ Auth::user()->user_group_id }}</pre>
                         @can('isAdmin')
                             <p>Админ</p>
                         @else
