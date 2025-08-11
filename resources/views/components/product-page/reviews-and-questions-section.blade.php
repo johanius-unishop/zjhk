@@ -112,9 +112,15 @@
                             </div>
                         @endif
                         @if (auth()->check() && auth()->user()->isAdmin())
-                            <div class="product-desc__likes">
-                                <a href="#">Ответить</a>
-                            </div>
+                            @if (empty($review_item->admin_reply))
+                                <div class="product-desc__likes">
+                                    <a href="#">Ответить</a>
+                                </div>
+                            @else
+                                <div class="product-desc__likes">
+                                    <a href="#">Редактировать ответ</a>
+                                </div>
+                            @endif
                         @endif
                         @if (!empty($review_item->admin_reply))
                             <div class="product-desc__answer">
