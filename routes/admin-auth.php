@@ -74,11 +74,11 @@ Route::group(
             Route::delete('/product', [ProfileController::class, 'destroy'])->name('profile.destroy');
         });
 
-        Route::prefix('/rap')->name('rap.')->group(function () {
+    /*    Route::prefix('/rap')->name('rap.')->group(function () {
             Route::resource('roles', App\Http\Controllers\Admin\RolesController::class);
             Route::resource('permissions', App\Http\Controllers\Admin\PermissionsController::class);
             Route::get('/', [App\Http\Controllers\Admin\RolesController::class, 'rap'])->name('rap.list');
-        });
+        }); */
 
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
             ->name('logout');

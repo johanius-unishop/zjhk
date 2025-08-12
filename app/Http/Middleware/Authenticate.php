@@ -117,7 +117,7 @@ class Authenticate implements AuthenticatesRequests
 // dd($request);
 
         if($request->routeIs('admin.*')){
-            return route('admin.login');
+            return route('login');
         }
 
 
