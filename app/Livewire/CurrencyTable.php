@@ -9,8 +9,8 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Number;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -38,6 +38,11 @@ final class CurrencyTable extends PowerGridComponent
     public $editingFieldName = '';
     public $editingValue = '';
 
+
+    public function datasource(): ?Builder
+    {
+        return Currency::query();
+    }
     // public bool $deferLoading = true;
     /* public function setUp(): array
     {
@@ -49,11 +54,10 @@ final class CurrencyTable extends PowerGridComponent
     public function header(): array
     {
         return [
-           /* Button::add('search')
+            /* Button::add('search')
                 ->slot('<i class="fa fa-search"></i> Поиск') // иконка и подпись кнопки поиска
                 ->class('btn btn-outline-secondary')
-                ->command('search'), // Команда поиска*/
-        ];
+                ->command('search'), // Команда поиска*/];
     }
 
     public function footer(): array
@@ -64,19 +68,16 @@ final class CurrencyTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): Builder
-    {
-        return Currency::query();
-    }
+
 
     public function relationSearch(): array
     {
         return [];
     }
 
-    /*public function fields(): PowerGridFields
+    public function fields(): PowerGridFields
     {
-        $powerGridFields = PowerGrid::fields()
+        return PowerGrid::fields()
             ->add('id')
             ->add('name')
             ->add('charcode')
@@ -85,9 +86,7 @@ final class CurrencyTable extends PowerGridComponent
             ->add('cb_rate')
             ->add('auto_calc_cbrf')
             ->add('auto_multiplier');
-
-        return $powerGridFields;
-    }*/
+    }
 
     public function columns(): array
     {
