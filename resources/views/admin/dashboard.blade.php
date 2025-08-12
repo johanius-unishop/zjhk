@@ -63,11 +63,11 @@
                 <span class="info-box-number">
                     <a href="{{ route('admin.problem.product-without-model') }}">Товары без 3D-модели: {{ $product_without_3d_count }}</a>
                 </span>
-                
+
                 <span class="info-box-number">
                     <a href="{{ route('admin.problem.product-without-vendor') }}">Товары без бренда: {{ $no_vendor_count }}</a>
                 </span>
-                
+
                 <span class="info-box-number">
                     <a href="{{ route('admin.problem.product-without-category') }}">Товары без категории: {{ $no_category_count }}</a>
                 </span>
@@ -131,6 +131,30 @@
 @stop
 
 @section('css')
+
+
+
+/* Bootstrap */
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+
+/* Tailwind CSS */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Custom CSS code */
+.swiper-wrapper {
+    width: 100%;
+    height: max-content !important;
+    padding-bottom: 64px !important;
+    transition-timing-function: linear !important;
+    position: relative;
+}
+
+.swiper-pagination-bullet {
+    background: #4f46e5;
+}
 {{-- Add here extra stylesheets --}}
 {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
