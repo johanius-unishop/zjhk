@@ -47,7 +47,7 @@ use Spatie\LaravelSettings\Settings;
 
 Route::group(
     [
-        'middleware' => ['auth', 'is.admin'],
+        'middleware' => ['auth', 'App\Http\Middleware\IsAdmin'],
         'prefix' => 'admin',
         'as' => 'admin.'
     ],
