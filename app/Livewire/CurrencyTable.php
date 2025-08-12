@@ -50,7 +50,7 @@ final class CurrencyTable extends PowerGridComponent
     {
         return [
             Button::add('search')
-                ->label('<i class="fa fa-search"></i> Поиск') // иконка и подпись кнопки поиска
+                ->slot('<i class="fa fa-search"></i> Поиск') // иконка и подпись кнопки поиска
                 ->class('btn btn-outline-secondary')
                 ->command('search'), // Команда поиска
         ];
