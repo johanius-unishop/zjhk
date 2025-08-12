@@ -19,7 +19,7 @@ class CurrencyController extends Controller
     public function index()
     {
 
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.currency.index');
@@ -47,7 +47,7 @@ class CurrencyController extends Controller
         if (!Gate::allows('manage content')) {
             return abort(401);
         }
-        
+
 
 
         $input = $request->all();
@@ -58,7 +58,7 @@ class CurrencyController extends Controller
         if ($request->action == 'save-exit') {
             return redirect(route('admin.currency.index'));
         }
-        
+
     }
 
 }
