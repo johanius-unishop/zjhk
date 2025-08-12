@@ -38,42 +38,24 @@ final class CurrencyTable extends PowerGridComponent
     public $editingFieldName = '';
     public $editingValue = '';
 
+    public function setUp(): array
+    {
+        return [
+            PowerGrid::header()
+                ->showSearchInput(),
+
+            PowerGrid::footer()
+                ->showPerPage()
+                ->showRecordCount(),
+        ];
+    }
+
 
     public function datasource(): ?Builder
     {
         return Currency::query();
     }
-    // public bool $deferLoading = true;
-    /* public function setUp(): array
-    {
-        return [
-            Header::make()->showSearchInput()->withoutLoading(),
-            Footer::make()->showPerPage()->showRecordCount(),
-        ];
-    } */
-    public function header(): array
-    {
-        return [
-            /* Button::add('search')
-                ->slot('<i class="fa fa-search"></i> Поиск') // иконка и подпись кнопки поиска
-                ->class('btn btn-outline-secondary')
-                ->command('search'), // Команда поиска*/];
-    }
 
-    public function footer(): array
-    {
-        return [
-            Filter::perPage(),          // Выбор количества записей на странице
-            Filter::recordCount(),      // Показ числа записей
-        ];
-    }
-
-
-
-    public function relationSearch(): array
-    {
-        return [];
-    }
 
     public function fields(): PowerGridFields
     {
@@ -94,15 +76,15 @@ final class CurrencyTable extends PowerGridComponent
             Column::make('ID', 'id'),
             Column::make('Наименование', 'name')
                 ->searchable()
-                ->editOnClick(),
+                ->editOnClick(hasPermission: true),
             Column::make('Символ', 'charcode')
                 ->searchable()
-                ->editOnClick(),
+                ->editOnClick(hasPermission: true),
             Column::make('Внутренний курс', 'internal_rate')
-                ->editOnClick(),
+                ->editOnClick(hasPermission: true),
             Column::make('Курс ЦБ', 'cb_rate'),
             Column::make('Множитель', 'auto_multiplier')
-                ->editOnClick(),
+                ->editOnClick(hasPermission: true),
             Column::make('Авторасчет внутреннего курса', 'auto_calc_cbrf')
                 ->toggleable(),
             Column::action('Действия'),
