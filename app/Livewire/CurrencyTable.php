@@ -49,10 +49,10 @@ final class CurrencyTable extends PowerGridComponent
     public function header(): array
     {
         return [
-            Button::add('search')
+           /* Button::add('search')
                 ->slot('<i class="fa fa-search"></i> Поиск') // иконка и подпись кнопки поиска
                 ->class('btn btn-outline-secondary')
-                ->command('search'), // Команда поиска
+                ->command('search'), // Команда поиска*/
         ];
     }
 
