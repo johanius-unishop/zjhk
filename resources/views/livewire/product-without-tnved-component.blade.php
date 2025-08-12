@@ -16,7 +16,7 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->article }}</td>
                     <td>
-                    <input type="text" class="form-control" id="tnved_{{ $product->id }}" wire:model="tnved.{{ $product->id }}" value="{{ old('tnved.' . $product->id, $product->tn_ved) }}" placeholder="ТН ВЭД">
+                    <input type="text" class="form-control" id="tnved_{{ $product->id }}" wire:model.live="tnved.{{ $product->id }}" value="{{ old('tnved.' . $product->id, $product->tn_ved) }}" placeholder="ТН ВЭД">
                     </td>
                 </tr>
                 @endforeach

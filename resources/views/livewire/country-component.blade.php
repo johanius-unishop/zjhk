@@ -6,7 +6,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="name">Название страны</label>
-                <input type="text" class="form-control" wire:model="name" id="name">
+                <input type="text" class="form-control" wire:model.live="name" id="name">
                 @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -16,7 +16,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="name_in_english">Название страны на английском</label>
-                <input type="text" class="form-control" wire:model="name_in_english" id="name_in_english">
+                <input type="text" class="form-control" wire:model.live="name_in_english" id="name_in_english">
                 @error('name_in_english')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -26,7 +26,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="charcode">Символьный код</label>
-                <input type="text" class="form-control" wire:model="charcode" id="charcode">
+                <input type="text" class="form-control" wire:model.live="charcode" id="charcode">
                 @error('charcode')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

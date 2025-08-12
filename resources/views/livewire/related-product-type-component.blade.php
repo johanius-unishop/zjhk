@@ -5,7 +5,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="name">Название совместимого типа товаров</label>
-                <input type="text" class="form-control" wire:model="name" id="name">
+                <input type="text" class="form-control" wire:model.live="name" id="name">
                 @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

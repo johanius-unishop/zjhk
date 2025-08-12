@@ -36,7 +36,7 @@
     </div>
 
     @if ( $flag== 0)
-    <div><input type="file" wire:model="photos" name="photos" {{ $multiple==true ? 'multiple' : '' }}>
+    <div><input type="file" wire:model.live="photos" name="photos" {{ $multiple==true ? 'multiple' : '' }}>
         @error('photos') <span class="error">{{ $message }}</span> @enderror
         <a class="btn {{ $flag==0 ? 'btn-primary ' : 'btn-danger' }} " wire:loading.attr="disabled" wire:click="uploadFiles" href="#"> Загрузить фото </a>
     </div>

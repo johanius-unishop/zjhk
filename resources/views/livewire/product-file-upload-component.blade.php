@@ -41,7 +41,7 @@
                     <div class="col-md-12 text-center">
                         <div class="form-group">
                             <label for="fileSpecification">Файл характеристики</label>
-                            <input type="file" wire:model="fileSpecification" name="fileSpecification" {{ $multiple==true ? 'multiple' : '' }}>
+                            <input type="file" wire:model.live="fileSpecification" name="fileSpecification" {{ $multiple==true ? 'multiple' : '' }}>
                             @error('fileSpecification') <div class="alert alert-danger"> {{ $message }}</div> @enderror
                             <a class="btn {{ $flag==0 ? 'btn-primary ' : 'btn-danger' }} "  wire:click="uploadFileSpecification" href="#"> Загрузить файл </a>
                         </div>
@@ -92,7 +92,7 @@
                     <div class="col-md-12 text-center">
                         <div class="form-group">
                             <label for="fileDimensionalDrawing">Файл габаритного чертежа</label>
-                            <input type="file" wire:model="fileDimensionalDrawing" name="fileDimensionalDrawing" {{ $multiple==true ? 'multiple' : '' }}>
+                            <input type="file" wire:model.live="fileDimensionalDrawing" name="fileDimensionalDrawing" {{ $multiple==true ? 'multiple' : '' }}>
                             @error('fileDimensionalDrawing') <div class="alert alert-danger"> {{ $message }}</div> @enderror
                             <a class="btn {{ $flag==0 ? 'btn-primary ' : 'btn-danger' }} " wire:loading.attr="disabled" wire:click="uploadDimensionalDrawing" href="#"> Загрузить файл </a>
                         </div>
@@ -143,7 +143,7 @@
                     <div class="col-md-12 text-center">
                         <div class="form-group">
                             <label for="fileOverviewInformation">Файл характеристики</label>
-                            <input type="file" wire:model="fileOverviewInformation" name="fileOverviewInformation" {{ $multiple==true ? 'multiple' : '' }}>
+                            <input type="file" wire:model.live="fileOverviewInformation" name="fileOverviewInformation" {{ $multiple==true ? 'multiple' : '' }}>
                             @error('fileOverviewInformation') <div class="alert alert-danger"> {{ $message }}</div> @enderror
                             <a class="btn  btn-primary  "  wire:click="uploadOverviewInformation" href="#"> Загрузить файл </a>
                         </div>

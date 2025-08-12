@@ -15,7 +15,7 @@
                     <td @if($property->section) style="font-weight: bold;" @endif>{{ $property->name }}</td>
                     <td>
                         @if(!$property->section)
-                        <select class="form-control" id="select_{{ $property->id }}" wire:model="selectedValues.{{ $property->id }}">
+                        <select class="form-control" id="select_{{ $property->id }}" wire:model.live="selectedValues.{{ $property->id }}">
                             <option value="">Выберите вариант</option>
                             @foreach ($property->productTypePropertyValues as $value)
                                 <option value="{{ $value->id }}" {{ $selectedValues[$property->id] == $value->id ? 'selected' : '' }}>

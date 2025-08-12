@@ -16,7 +16,7 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->article }}</td>
                     <td>
-                        <select class="form-control" id="select_{{ $product->id }}" wire:model="selectedVendors.{{ $product->id }}">
+                        <select class="form-control" id="select_{{ $product->id }}" wire:model.live="selectedVendors.{{ $product->id }}">
                             <option value="">-- Выберите производителя --</option>
                             @foreach ($vendors as $vendor)
                                 <option value="{{ $vendor->id }}" {{ $product->vendor_id == $vendor->id ? 'selected' : '' }}>

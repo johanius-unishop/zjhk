@@ -7,7 +7,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="vendor_id">Выберите производителя</label>
-                <select class="form-control" wire:model="vendor_id" id="vendor_id" name="vendor_id">
+                <select class="form-control" wire:model.live="vendor_id" id="vendor_id" name="vendor_id">
                     <option value="0">-- Выберите производителя --</option>
                     @foreach($vendors as $vendor)
                         <option value="{{ $vendor->id }}">{{ $vendor->short_name ?? $vendor->name }}</option>
@@ -22,7 +22,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="amount">Введите сумму нового заказа в рублях</label>
-                <input type="number" class="form-control" wire:model="amount" id="amount" step="50000" name="amount">
+                <input type="number" class="form-control" wire:model.live="amount" id="amount" step="50000" name="amount">
                 @error('amount')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

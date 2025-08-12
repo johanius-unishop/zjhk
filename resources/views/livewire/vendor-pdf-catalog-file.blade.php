@@ -31,7 +31,7 @@
 
                 
                 <div>
-                    <input type="file" wire:model="up_file" name="up_file">
+                    <input type="file" wire:model.live="up_file" name="up_file">
                     @error('up_file') <span class="error">{{ $message }}</span> @enderror
                     
                     <a class="btn btn-primary" wire:loading.attr="disabled" wire:click="uploadPdf" href="#">Загрузить PDF</a>

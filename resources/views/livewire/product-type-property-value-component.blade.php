@@ -5,7 +5,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="name">Новый вариант значения для характеристики</label>
-                <input type="text" class="form-control" wire:model="value" id="value">
+                <input type="text" class="form-control" wire:model.live="value" id="value">
                 @error('value')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

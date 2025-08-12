@@ -41,9 +41,9 @@
     </div>
 
     @if ($flag == 0)
-        <form wire:submit.prevent="uploadFiles" class="mb-2">
+        <form wire:submit="uploadFiles" class="mb-2">
             <div>
-                <input type="file" wire:model="photos" name="photos" multiple={{ $multiple }}>
+                <input type="file" wire:model.live="photos" name="photos" multiple={{ $multiple }}>
                 @error('photos') <span class="error">{{ $message }}</span> @enderror
                 <button type="submit" wire:loading.attr="disabled" class="btn btn-outline-success btn-sm mx-2">Добавить изображения</button>
                 

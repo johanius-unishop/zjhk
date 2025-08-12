@@ -5,14 +5,14 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="name">Название характеристики</label>
-                <input type="text" class="form-control" wire:model="name" id="name">
+                <input type="text" class="form-control" wire:model.live="name" id="name">
                 @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" wire:model="section" id="section">
+                <input type="checkbox" class="form-check-input" wire:model.live="section" id="section">
                 <label class="form-check-label" for="section">Является секцией</label>
                 @error('section')
                 <div class="alert alert-danger">{{ $message }}</div>

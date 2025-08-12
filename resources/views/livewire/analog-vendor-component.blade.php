@@ -14,10 +14,10 @@
                 {{-- {{   var_dump($analogTableItem);}} --}}
                 <tr>
                     <td>{{ $analogTableItem['vendor_name'] }}</td>
-                    {{-- <td><input type="text" class="form-control" wire:model="analogTable.{{$analogTableItem['vendor_id']  }}" name="analog_name.{{$analogTableItem['vendor_id'] }}" value="{{$analogTableItem['name'] }}"></td>
-                    <td><input type="text" class="form-control" wire:model="analogTable.{{$analogTableItem['vendor_id']  }}.{{$analogTableItem['article']  }}" value="{{ $analogTableItem['article'] }}"> </td> --}}
-                    <td><input type="text" class="form-control" wire:model="analogTable.{{$analogTableItem['vendor_id']}}.name" value="{{ $analogTableItem['name'] }}"> </td>
-                    <td><input type="text" class="form-control" wire:model="analogTable.{{ $analogTableItem['vendor_id']}}.article" value="{{ $analogTableItem['article'] }}"> </td>
+                    {{-- <td><input type="text" class="form-control" wire:model.live="analogTable.{{$analogTableItem['vendor_id']  }}" name="analog_name.{{$analogTableItem['vendor_id'] }}" value="{{$analogTableItem['name'] }}"></td>
+                    <td><input type="text" class="form-control" wire:model.live="analogTable.{{$analogTableItem['vendor_id']  }}.{{$analogTableItem['article']  }}" value="{{ $analogTableItem['article'] }}"> </td> --}}
+                    <td><input type="text" class="form-control" wire:model.live="analogTable.{{$analogTableItem['vendor_id']}}.name" value="{{ $analogTableItem['name'] }}"> </td>
+                    <td><input type="text" class="form-control" wire:model.live="analogTable.{{ $analogTableItem['vendor_id']}}.article" value="{{ $analogTableItem['article'] }}"> </td>
                     {{-- <td> <button type="button" class="btn  btn-danger" wire:click="delete({{ $analogTableItem['vendor_id'] }})" wire:confirm="Вы действительно хотите очистить этот вариант?"><i class="fas fa-trash"></i></button> </td> --}}
                 </tr>
                 @endforeach

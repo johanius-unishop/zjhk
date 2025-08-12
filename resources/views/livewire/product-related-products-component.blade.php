@@ -9,10 +9,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        <form wire:submit.prevent="handleClick({{ $relatedType->id }})" class="mb-2">
+                        <form wire:submit="handleClick({{ $relatedType->id }})" class="mb-2">
                             <div class="form-group">
                                 <label for="searchable-select" class="mx-2">Добавить товар:</label>
-                                <select id="searchable-select" wire:model="selectedProducts.{{ $relatedType->id }}" class="mx-2">
+                                <select id="searchable-select" wire:model.live="selectedProducts.{{ $relatedType->id }}" class="mx-2">
                                 <option value="">-- Выберите товар--</option>
                                 @foreach($arrayProducts as $value => $label)
                                     <option value="{{ $label }}">{{ $value }}</option>
@@ -75,7 +75,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="name">Название совместимого типа товаров</label>
-                <input type="text" class="form-control" wire:model="name" id="name">
+                <input type="text" class="form-control" wire:model.live="name" id="name">
                 @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

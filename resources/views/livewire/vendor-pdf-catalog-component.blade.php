@@ -6,7 +6,7 @@
                 <div class="form-group">
                     
                     <label for="name">Название каталога</label>
-                    <input type="text" class="form-control" wire:model.defer="name" id="name">
+                    <input type="text" class="form-control" wire:model.live="name" id="name">
                     @error('name')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

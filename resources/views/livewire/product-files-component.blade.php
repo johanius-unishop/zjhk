@@ -18,10 +18,10 @@
                                 <span class="me-2"><i class="fas fa-file-pdf"></i></span>
                                 <a href="{{ $mediaFiles['specification']['url'] }}" target="_blank">{{ basename($mediaFiles['specification']['url']) }}</a>
                             @else
-                                <form wire:submit.prevent="uploadFile('specification')">
+                                <form wire:submit="uploadFile('specification')">
                                     
                                     <div class="d-flex align-items-center gap-2 d-md-flex justify-content-md">
-                                        <input type="file" wire:model="newFile" accept="application/pdf">
+                                        <input type="file" wire:model.live="newFile" accept="application/pdf">
                                         <button type="submit" class="btn btn-outline-success btn-sm">Добавить файл</button>
                                     </div>
                                 </form>
@@ -42,9 +42,9 @@
                                 <span class="me-2"><i class="fas fa-file-pdf"></i></span>
                                 <a href="{{ $mediaFiles['dimensionalDrawing']['url'] }}" target="_blank">{{ basename($mediaFiles['dimensionalDrawing']['url']) }}</a>
                             @else
-                                <form wire:submit.prevent="uploadFile('dimensionalDrawing')">
+                                <form wire:submit="uploadFile('dimensionalDrawing')">
                                     <div class="d-flex align-items-center gap-2 d-md-flex justify-content-md">
-                                        <input type="file" wire:model="newFile" accept="application/pdf">
+                                        <input type="file" wire:model.live="newFile" accept="application/pdf">
                                         <button type="submit" class="btn btn-outline-success btn-sm">Добавить файл</button>
                                     </div>
                                 </form>
@@ -65,9 +65,9 @@
                                 <span class="me-2"><i class="fas fa-file-pdf"></i></span>
                                 <a href="{{ $mediaFiles['overviewInformation']['url'] }}" target="_blank">{{ basename($mediaFiles['overviewInformation']['url']) }}</a>
                             @else
-                                <form wire:submit.prevent="uploadFile('overviewInformation')">
+                                <form wire:submit="uploadFile('overviewInformation')">
                                     <div class="d-flex align-items-center gap-2 d-md-flex justify-content-md">
-                                        <input type="file" wire:model="newFile" accept="application/pdf">
+                                        <input type="file" wire:model.live="newFile" accept="application/pdf">
                                         <button type="submit" class="btn btn-outline-success btn-sm">Добавить файл</button>
                                     </div>
                                 </form>
@@ -88,9 +88,9 @@
                                 <span class="me-2"><i class="fas fa-cube"></i></span>
                                 <a href="{{ $mediaFiles['3dModel']['url'] }}" target="_blank">{{ basename($mediaFiles['3dModel']['url']) }}</a>
                             @else
-                                <form wire:submit.prevent="uploadFile('3dModel')">
+                                <form wire:submit="uploadFile('3dModel')">
                                     <div class="d-flex align-items-center gap-2 d-md-flex justify-content-md">
-                                        <input type="file" wire:model="newFile" accept=".rar,.zip,.stp">
+                                        <input type="file" wire:model.live="newFile" accept=".rar,.zip,.stp">
                                         <button type="submit" class="btn btn-outline-success btn-sm">Добавить файл</button>
                                     </div>
                                 </form>

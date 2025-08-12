@@ -18,7 +18,7 @@
             <td>{{ @$composite->compositeType->name }}</td>
             <td>{{ @$composite->compositeProduct->name }}</td>
             <td>{{ @$composite->compositeProduct->price }} {{ $composite->quantity }}</td>
-            <td><input type="number" wire:model="composite.quantity" class="form-control"></td>
+            <td><input type="number" wire:model.live="composite.quantity" class="form-control"></td>
             <td><button wire:click="saveComposite('{{ $composite->id }}')" class="btn btn-primary">сохранить</button><button wire:click="clearComposite('{{ $composite->id }}')" class="btn btn-primary">очистить </button></td>
         </tr>
         @endforeach

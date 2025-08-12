@@ -11,14 +11,14 @@
         <div class="card-body bg-secondary disabled color-palette">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" wire:model="title">
+                <input type="text" class="form-control" id="title" name="title" wire:model.live="title">
             </div>
             <div>
                 @error('title') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="title">Keywords</label>
-                <input type="text" class="form-control" id="keywords" name="keywords" wire:model="keywords">
+                <input type="text" class="form-control" id="keywords" name="keywords" wire:model.live="keywords">
                 <div>
                     @error('keywords') <span class="error">{{ $message }}</span> @enderror
                 </div>
@@ -26,7 +26,7 @@
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" wire:model="description"></textarea>
+                <textarea class="form-control" id="description" name="description" wire:model.live="description"></textarea>
                 <div>
                     @error('description') <span class="error">{{ $message }}</span> @enderror
                 </div>
@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label for="title">Canonical url</label>
                 <input type="text" class="form-control" id="canonical_url" name="canonical_url"
-                    wire:model="canonical_url">
+                    wire:model.live="canonical_url">
                 <div>
                     @error('canonical_url') <span class="error">{{ $message }}</span> @enderror
                 </div>

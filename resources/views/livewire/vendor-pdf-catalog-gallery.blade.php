@@ -39,7 +39,7 @@
     @if(!isset($image))
         
             <div>
-                <input type="file" wire:model="photo" name="photo">
+                <input type="file" wire:model.live="photo" name="photo">
                 @error('photo') <span class="error">{{ $message }}</span> @enderror
                 <a class="btn btn-primary" wire:loading.attr="disabled" wire:click="uploadFiles" href="#">Загрузить фото</a>
             </div>

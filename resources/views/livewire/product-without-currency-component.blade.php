@@ -16,7 +16,7 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->article }}</td>
                     <td>
-                        <select class="form-control" id="select_{{ $product->id }}" wire:model="selectedCurrencies.{{ $product->id }}">
+                        <select class="form-control" id="select_{{ $product->id }}" wire:model.live="selectedCurrencies.{{ $product->id }}">
                             <option value="">-- Выберите валюту --</option>
                             @foreach ($currencies as $currency)
                                 <option value="{{ $currency->id }}" {{ $product->currency_id == $currency->id ? 'selected' : '' }}>

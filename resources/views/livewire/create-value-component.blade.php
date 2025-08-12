@@ -26,7 +26,7 @@
                 <form wire:keydown.enter="{{ $editform ? 'update' : 'save' }}">
                     <div class="mb-3">
                         <label for="value" class="form-label">Значение характеристики</label>
-                        <input wire:model="value" type="text" class="form-control value-input @error('value') is-invalid @enderror">
+                        <input wire:model.live="value" type="text" class="form-control value-input @error('value') is-invalid @enderror">
                         @error('value')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
