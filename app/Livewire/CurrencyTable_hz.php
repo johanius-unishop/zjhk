@@ -20,7 +20,6 @@ use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Rule;
-
 final class CurrencyTable extends PowerGridComponent
 {
     use WithExport;
@@ -39,34 +38,18 @@ final class CurrencyTable extends PowerGridComponent
     public $editingValue = '';
 
     // public bool $deferLoading = true;
-    /* public function setUp(): array
+    public function setUp(): array
     {
         return [
             Header::make()->showSearchInput()->withoutLoading(),
             Footer::make()->showPerPage()->showRecordCount(),
-        ];
-    } */
-    public function header(): array
-    {
-        return [
-            Button::add('search')
-                ->caption('<i class="fa fa-search"></i> Поиск') // иконка и подпись кнопки поиска
-                ->class('btn btn-outline-secondary')
-                ->command('search'), // Команда поиска
-        ];
-    }
-
-    public function footer(): array
-    {
-        return [
-            Filter::perPage(),          // Выбор количества записей на странице
-            Filter::recordCount(),      // Показ числа записей
         ];
     }
 
     public function datasource(): Builder
     {
         return Currency::query();
+
     }
 
     public function relationSearch(): array
@@ -74,7 +57,7 @@ final class CurrencyTable extends PowerGridComponent
         return [];
     }
 
-    /*public function fields(): PowerGridFields
+    public function fields(): PowerGridFields
     {
         $powerGridFields = PowerGrid::fields()
             ->add('id')
@@ -87,7 +70,7 @@ final class CurrencyTable extends PowerGridComponent
             ->add('auto_multiplier');
 
         return $powerGridFields;
-    }*/
+    }
 
     public function columns(): array
     {
@@ -112,7 +95,8 @@ final class CurrencyTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [];
+        return [
+        ];
     }
 
 
@@ -148,7 +132,7 @@ final class CurrencyTable extends PowerGridComponent
         ];
     }
 
-
+   
     protected function rules()
     {
         return [
@@ -161,16 +145,16 @@ final class CurrencyTable extends PowerGridComponent
             ],
 
             'auto_multiplier.*' => [
-                'numeric',
-                'min:0.5',
-                'max:1.5',
+            'numeric',
+            'min:0.5',
+            'max:1.5',
             ],
 
             'internal_rate.*' => [
-                'numeric',
-                'min:0.01',
+            'numeric',
+            'min:0.01',
             ],
-
+             
         ];
     }
 
@@ -210,7 +194,7 @@ final class CurrencyTable extends PowerGridComponent
                 $this->dispatch('toggle-' . $field . '-' . $id);
             }
         })->validate();
-
+    
         $updated = Currency::query()->find($id)->update([
             $field => $value,
         ]);
@@ -223,4 +207,5 @@ final class CurrencyTable extends PowerGridComponent
         ]);
         $this->skipRender();
     }
+    
 }
