@@ -15,7 +15,7 @@ exec > >(tee -a deploy.log) 2> >(tee -a deploy.errlog >&2)
 echo "Deployment started ..."
 
 # Настройка прав доступа
-sudo chown -R johanius:www-data /var/www/html/kevtek/node_modules
+
 sudo chown -R johanius:www-data /var/www/html/kevtek/storage
 sudo find /var/www/html/kevtek/storage -type f -exec chmod 664 {} +
 sudo find /var/www/html/kevtek/storage -type d -exec chmod 775 {} +
