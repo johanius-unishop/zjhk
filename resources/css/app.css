@@ -1,4 +1,6 @@
+
 @charset "UTF-8";
+@import './../../vendor/power-components/livewire-powergrid/dist/bootstrap5.css';
 
 html {
   line-height: 1.15;

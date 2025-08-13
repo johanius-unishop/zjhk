@@ -25,7 +25,7 @@
 @stop
 
 @section('js')
-@livewireScriptConfig
+@livewireScripts
 <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('vendor/bootstrap4-toggle/bootstrap4-toggle.min.js') }}"></script>
 {{-- <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script> --}}
