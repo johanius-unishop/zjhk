@@ -17,9 +17,18 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
 final class CurrencyTable extends PowerGridComponent
 {
-    public string $tableName = 'currency-table';
+    public $delete_id;
 
+    public string $tableName = 'currency-table';
     public array $name;
+    public array $charcode;
+    public array $internal_rate;
+    public array $auto_calc_cbrf;
+    public array $auto_multiplier;
+    public bool $showErrorBag = true;
+    public $editingRowId = null;
+    public $editingFieldName = '';
+    public $editingValue = '';
 
     public function setUp(): array
     {
