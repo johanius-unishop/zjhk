@@ -2,9 +2,6 @@
 
 namespace App\Livewire;
 
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-
 use App\Models\Currency;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,8 +29,6 @@ final class CurrencyTable extends PowerGridComponent
 
     public function setUp(): array
     {
-        $this->showCheckBox();
-
         return [
             PowerGrid::header()
                 ->showSearchInput(),
@@ -43,15 +38,11 @@ final class CurrencyTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): Builder
+    public function datasource(): ?Builder
     {
         return Currency::query();
     }
 
-    public function relationSearch(): array
-    {
-        return [];
-    }
 
     public function fields(): PowerGridFields
     {
@@ -62,8 +53,7 @@ final class CurrencyTable extends PowerGridComponent
             ->add('cb_rate')
             ->add('internal_rate')
             ->add('auto_calc_cbrf')
-            ->add('auto_multiplier')
-            ->add('created_at');
+            ->add('auto_multiplier');
     }
 
     public function columns(): array
@@ -72,27 +62,78 @@ final class CurrencyTable extends PowerGridComponent
             Column::make('Id', 'id'),
             Column::make('Валюта', 'name')
                 ->sortable()
-                ->searchable()
-                ->editOnClick(hasPermission: true),
+                ->editOnClick(hasPermission: true, saveOnMouseOut: true)
+                ->searchable(),
             Column::make('Код', 'charcode')
                 ->sortable()
+                ->editOnClick(hasPermission: true, saveOnMouseOut: true)
                 ->searchable(),
 
             Column::make('Курс ЦБ', 'cb_rate'),
 
-            Column::make('Внутренний курс', 'internal_rate'),
+            Column::make('Внутренний курс', 'internal_rate')
+            ->editOnClick(hasPermission: true, saveOnMouseOut: true),
 
             Column::make('Автоматический расчет', 'auto_calc_cbrf')
-                ->sortable()
-                ->searchable()
                 ->toggleable(),
 
             Column::make('Множитель', 'auto_multiplier')
                 ->sortable()
+                ->editOnClick(hasPermission: true, saveOnMouseOut: true)
                 ->searchable(),
 
 
             Column::action('Действия')
+        ];
+    }
+
+     protected function rules()
+    {
+        return [
+            'name.*' => [
+                'required',
+            ],
+
+            'charcode.*' => [
+                'required',
+            ],
+
+            'auto_multiplier.*' => [
+                'numeric',
+                'min:0.5',
+                'max:1.5',
+            ],
+
+            'internal_rate.*' => [
+                'numeric',
+                'min:0.01',
+            ],
+
+        ];
+    }
+
+    protected function validationAttributes()
+    {
+        return [
+            'name.*'       => 'Название валюты',
+            'charcode.*' => 'Символьный код',
+            'auto_calc_cbrf.*' => 'Авторасчет внутреннего курса',
+            'auto_multiplier.*' => 'Множитель',
+            'internal_rate.*' => 'Внутренний курс',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'name.*.required'     => 'Название обязательно должно быть заполнено',
+            'name.*.unique'     => 'Название должно быть уникальным',
+            'charcode.*.unique' => 'Валюта с таким символьным кодом уже есть в списке.',
+            'auto_multiplier.*.numeric' => 'Множитель должен быть числом, разделитель дробной части "."',
+            'auto_multiplier.*.max' => 'Множитель должен быть меньше или равен 1.5',
+            'auto_multiplier.*.min' => 'Множитель должен быть больше или равен 0.5',
+            'internal_rate.*.numeric' => 'Внутренний курс должен быть числом, разделитель дробной части "."',
+            'internal_rate.*.min' => 'Внутренний курс должен быть больше или равен 0.01',
         ];
     }
 
@@ -129,54 +170,10 @@ final class CurrencyTable extends PowerGridComponent
         ];
     }
     */
-    protected function rules()
-    {
-        return [
-            'name.*' => [
-                'required',
-            ],
 
-            'charcode.*' => [
-                'required',
-            ],
 
-            'auto_multiplier.*' => [
-                'numeric',
-                'min:0.5',
-                'max:1.5',
-            ],
 
-            'internal_rate.*' => [
-                'numeric',
-                'min:0.01',
-            ],
 
-        ];
-    }
-    protected function validationAttributes()
-    {
-        return [
-            'name.*'       => 'Название валюты',
-            'charcode.*' => 'Символьный код',
-            'auto_calc_cbrf.*' => 'Авторасчет внутреннего курса',
-            'auto_multiplier.*' => 'Множитель',
-            'internal_rate.*' => 'Внутренний курс',
-        ];
-    }
-
-    protected function messages()
-    {
-        return [
-            'name.*.required'     => 'Название обязательно должно быть заполнено',
-            'name.*.unique'     => 'Название должно быть уникальным',
-            'charcode.*.unique' => 'Валюта с таким символьным кодом уже есть в списке.',
-            'auto_multiplier.*.numeric' => 'Множитель должен быть числом, разделитель дробной части "."',
-            'auto_multiplier.*.max' => 'Множитель должен быть меньше или равен 1.5',
-            'auto_multiplier.*.min' => 'Множитель должен быть больше или равен 0.5',
-            'internal_rate.*.numeric' => 'Внутренний курс должен быть числом, разделитель дробной части "."',
-            'internal_rate.*.min' => 'Внутренний курс должен быть больше или равен 0.01',
-        ];
-    }
 
     public function onUpdatedEditable(int|string $id, string $field, string $value): void
     {
@@ -190,10 +187,11 @@ final class CurrencyTable extends PowerGridComponent
             }
         })->validate();
 
-        $updated = Currency::query()->find($id)->update([
-            $field => $value,
+        Currency::query()->find($id)->update([
+            $field => e($value),
         ]);
     }
+
 
     public function onUpdatedToggleable(string|int $id, string $field, string $value): void
     {
@@ -201,5 +199,10 @@ final class CurrencyTable extends PowerGridComponent
             $field => e($value),
         ]);
         $this->skipRender();
+    }
+
+    public function relationSearch(): array
+    {
+        return [];
     }
 }
