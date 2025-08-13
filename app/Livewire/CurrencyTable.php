@@ -17,7 +17,9 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
 final class CurrencyTable extends PowerGridComponent
 {
-    public string $tableName = 'currencies-table';
+    public string $tableName = 'currency-table';
+
+    public array $name;
 
     public function setUp(): array
     {
