@@ -76,6 +76,4 @@
         @endif
     </script>
 
-    <!-- Livewire Scripts -->
-    @livewireScripts
 @stop
