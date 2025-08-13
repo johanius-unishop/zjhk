@@ -18,7 +18,7 @@ class DeliveryController extends Controller
     public function index()
     {
         //delivery
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.delivery.index');
@@ -29,7 +29,7 @@ class DeliveryController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.delivery.create');
@@ -40,7 +40,7 @@ class DeliveryController extends Controller
      */
     public function store(StoreDeliveryRequest $request, DeliveryMethod $deliveryMethod)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -68,7 +68,7 @@ class DeliveryController extends Controller
      */
     public function edit(DeliveryMethod $delivery)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.delivery.edit', ['delivery' => $delivery]);
@@ -79,7 +79,7 @@ class DeliveryController extends Controller
      */
     public function update(UpdateDeliveryRequest $request, DeliveryMethod $delivery)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();

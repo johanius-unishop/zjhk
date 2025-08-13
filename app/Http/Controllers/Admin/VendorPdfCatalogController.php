@@ -20,7 +20,7 @@ class VendorPdfCatalogController extends Controller
     public function index()
     {
 
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.vendor.index');
@@ -32,7 +32,7 @@ class VendorPdfCatalogController extends Controller
     public function create()
     {
 
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $countries = Country::select(['name', 'id'])
@@ -52,21 +52,21 @@ class VendorPdfCatalogController extends Controller
         if (!Gate::allows('manage-content')) {
             return abort(401);
         }
-    
+
         // Подготовка входных данных
         $input = $request->validated();
         $input['published'] = $request->filled('published'); // Преобразуем в boolean
-    
+
         // Создание записи
         $record = Vendor::create($input);
-    
+
         // Обработка загрузки логотипа
         if ($request->hasFile('vendorLogo')) {
             $record
                 ->addMediaFromRequest('vendorLogo')
                 ->toMediaCollection('vendorLogo');
         }
-    
+
         // Обновляем SEO-данные
         $record->seo()->update([
             'title'       => $request->title,
@@ -74,13 +74,13 @@ class VendorPdfCatalogController extends Controller
             'keywords'    => $request->keywords,
             'canonical_url' => $request->canonical_url,
         ]);
-    
+
         // Очистка кеша
         Cache::forget('front_vendors_list');
-    
+
         // Уведомление об успехе
         session()->flash('success', 'Запись успешно создана');
-    
+
         return redirect()->route('admin.vendor.index', $record->id);
     }
 
@@ -89,7 +89,7 @@ class VendorPdfCatalogController extends Controller
      */
     public function show(Vendor $vendor)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.vendor.show', ['vendor' => $vendor]);
@@ -101,7 +101,7 @@ class VendorPdfCatalogController extends Controller
      */
     public function edit(VendorPdfCatalog $vendor_pdf_catalog)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -109,14 +109,14 @@ class VendorPdfCatalogController extends Controller
 
     }
 
-    
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateVendorRequest $request, Vendor $vendor)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
@@ -125,20 +125,20 @@ class VendorPdfCatalogController extends Controller
         $vendor->update($input);
 
         // Обработка загрузки логотипа
-        
+
         if ($request->hasFile('vendorLogo')) {
             // Удаление старого логотипа, если он есть
             $oldMedia = $vendor->getMedia('vendorLogo');
             if ($oldMedia) {
                 $oldMedia->each->delete();
             }
-        
+
             // Добавление нового логотипа
             $vendor
                 ->addMediaFromRequest('vendorLogo')
                 ->toMediaCollection('vendorLogo');
         }
-        
+
         $vendor->seo->update([
             'title' => $request->title,
             'description' => $request->description,

@@ -14,7 +14,7 @@ class AnalogController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.analog.index');

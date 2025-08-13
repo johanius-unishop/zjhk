@@ -20,27 +20,27 @@ class SubcategoryComponent extends Component
     public $keywords;
     public $description_seo;
     public $canonical_url;
-    
+
     public $name = '';
     public bool $published = false;
-       
+
     public function mount($parent_category = null)
     {
         $this->parent_category_id = $parent_category;
     }
 
     public function save()
-    {   
+    {
         // Проверка прав доступа
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
-        
+
         $this->parent_category_id = $this->parent_category;
         $published = $this->published ? 1 : 0;
-    
+
         $this->validate();
-    
+
         $record = Category::create([
             'name'              => $this->name,
             'published'         => $published,
@@ -65,7 +65,7 @@ class SubcategoryComponent extends Component
         return;
     }
 
-    
+
 
     protected $rules = [
         'name' => 'required|min:3',
@@ -81,7 +81,7 @@ class SubcategoryComponent extends Component
             'name.required'     => 'Название категории должно быть заполнено',
             'name.min'     => 'Название категории должно содержать минимум 3 символа',
         ];
-    } 
+    }
 
 
 

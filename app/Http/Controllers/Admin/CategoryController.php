@@ -34,8 +34,8 @@ class CategoryController extends Controller
 
     }
 
-    
-    
+
+
 
     /**
      * Display the specified resource.
@@ -50,16 +50,16 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    
+
     public function edit(Category $category)
         {
-           
+
             $parentCategory = Category::findOrFail($category->parent_id);
-        
+
             // Получаем все категории в виде дерева
             $categories = Category::getCategoriesAsTree();
-        
-        
+
+
             return view('admin.category.edit', [
                 'category' => $category,
                 'parentCategory' => $parentCategory,
@@ -80,7 +80,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
@@ -88,14 +88,14 @@ class CategoryController extends Controller
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
         $category->update($input);
 
-        
+
         $category->seo->update([
             'title' => $request->title,
             'description' => $request->description,
             'keywords' => $request->keywords,
             'canonical_url' => $request->canonical_url,
         ]);
-        
+
 
         Cache::forget('CategoriesAsTree');
         session()->flash('success', 'Запись успешно обновлена');

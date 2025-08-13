@@ -158,17 +158,6 @@ final class CurrencyTable extends PowerGridComponent
         ];
     }
 
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 
 
 
@@ -204,4 +193,28 @@ final class CurrencyTable extends PowerGridComponent
     {
         return [];
     }
+
+    #[\Livewire\Attributes\On('post_delete')]
+    public function post_delete(int $rowId): void
+    {
+        $this->delete_id = $rowId;
+        $this->confirm(
+            'Вы действительно хотите удалить эту запись?',
+            [
+                'onConfirmed' => 'confirmed',
+                'showCancelButton' => true,
+                'cancelButtonText' => 'Нет'
+            ]
+        );
+    }
+
+    #[\Livewire\Attributes\On('confirmed')]
+    public function confirmed(): void
+    {
+        $deleted_record = Currency::findOrFail($this->delete_id);
+        $deleted_record->delete();
+        $this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
+    }
+
+
 }

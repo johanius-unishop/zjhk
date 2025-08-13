@@ -24,7 +24,7 @@ class ProductTypePropertyController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -37,7 +37,7 @@ class ProductTypePropertyController extends Controller
     {
         //
 
-        // if (!Gate::allows('manage content')) {
+        // if (!Gate::allows('admin-content')) {
         //     return abort(401);
         // }
 
@@ -48,7 +48,7 @@ class ProductTypePropertyController extends Controller
      */
     public function store(StoreProductTypePropertyRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -82,7 +82,7 @@ class ProductTypePropertyController extends Controller
      */
     public function edit(ProductTypeProperty $productTypeProperty)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $product_type = $productTypeProperty->productType;
@@ -95,7 +95,7 @@ class ProductTypePropertyController extends Controller
      */
     public function update(UpdateProductTypePropertyRequest $request, ProductTypeProperty $productTypeProperty)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
@@ -121,5 +121,5 @@ class ProductTypePropertyController extends Controller
     {
         return view('admin.problem.product-type-properties-without-values');
     }
-    
+
 }

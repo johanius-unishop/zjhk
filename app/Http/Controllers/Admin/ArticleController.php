@@ -15,7 +15,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.article.index');
@@ -26,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.article.create');
@@ -37,7 +37,7 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
@@ -63,7 +63,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.article.edit', ['article' => $article]);
@@ -74,7 +74,7 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
@@ -89,5 +89,5 @@ class ArticleController extends Controller
         return redirect(route('admin.article.edit', $article->id));
     }
 
- 
+
 }

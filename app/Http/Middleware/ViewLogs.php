@@ -11,11 +11,11 @@ class ViewLogs
 {
     public function handle(Request $request, Closure $next)
     {
-        
-        if (!Gate::allows('manage content')) {
+
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
-        
+
 
         // Если все условия выполнены, продолжаем выполнение запроса
         return $next($request);

@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function statistic()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -62,7 +62,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('manage content') && !Gate::allows('manage image')) {
+        if (!Gate::allows('admin-content') && !Gate::allows('manage image')) {
             return abort(401);
         }
 
@@ -71,7 +71,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $parentCategories = Category::getCategoriesAsTree();
@@ -87,7 +87,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -119,7 +119,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        if (!Gate::allows('manage content') && !Gate::allows('manage image')) {
+        if (!Gate::allows('admin-content') && !Gate::allows('manage image')) {
             return abort(401);
         }
         // !!!Fix to seeded records
@@ -131,7 +131,7 @@ class ProductController extends Controller
         $vendors          = Vendor::get(array('name', 'id'));
         $countries        = Country::select(['name', 'id'])->orderBy('name')->get();
         $parentCategories = Category::getCategoriesAsTree();
-        
+
         $ordered = OrderComposition::join('orders', 'orders.id', '=', 'order_compositions.order_id')
                            ->where('orders.received', false)
                            ->where('order_compositions.product_id', $product->id)
@@ -146,7 +146,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
@@ -259,6 +259,6 @@ class ProductController extends Controller
 
 
 
-    
-    
+
+
 }

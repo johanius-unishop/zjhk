@@ -16,7 +16,7 @@ class CountryController extends Controller
     public function index()
     {
 
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.country.index');
@@ -28,7 +28,7 @@ class CountryController extends Controller
     public function create()
     {
 
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.country.create');
@@ -37,14 +37,14 @@ class CountryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    
+
 
     /**
      * Display the specified resource.
      */
     public function show(Country $country)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.country.show', ['country' => $country]);
@@ -56,7 +56,7 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.country.edit', compact('country'));
@@ -68,7 +68,7 @@ class CountryController extends Controller
      */
     public function update(UpdateCountryRequest $request, Country $country)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
@@ -76,14 +76,14 @@ class CountryController extends Controller
         $country->update($input);
 
         // Обработка загрузки флага страны
-        
+
         if ($request->hasFile('countryFlag')) {
             // Удаление старого флага страны, если он есть
             $oldMedia = $country->getMedia('countryFlag');
             if ($oldMedia) {
                 $oldMedia->each->delete();
             }
-        
+
             // Добавление нового флага страны
             $country
                 ->addMediaFromRequest('countryFlag')

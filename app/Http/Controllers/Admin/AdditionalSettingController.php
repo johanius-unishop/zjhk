@@ -16,7 +16,7 @@ class AdditionalSettingController extends Controller
     public function index()
     {
 
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.additional-setting.index');
@@ -28,7 +28,7 @@ class AdditionalSettingController extends Controller
     public function create()
     {
 
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.additional-setting.create');
@@ -41,10 +41,10 @@ class AdditionalSettingController extends Controller
      */
     public function store(StoreAdditionalSettingRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
-        
+
         $input = $request->all();
         $record = AdditionalSetting::create($input);
 
@@ -52,7 +52,7 @@ class AdditionalSettingController extends Controller
         if ($request->action == 'save-exit') {
             return redirect(route('admin.additional-setting.index'));
         }
-        
+
     }
 
 }

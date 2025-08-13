@@ -16,7 +16,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.page.index');
@@ -27,7 +27,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.page.create');
@@ -38,7 +38,7 @@ class PageController extends Controller
      */
     public function store(StorePageRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -67,7 +67,7 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.page.edit', ['page' => $page]);
@@ -78,7 +78,7 @@ class PageController extends Controller
      */
     public function update(UpdatePageRequest $request, Page $page)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();

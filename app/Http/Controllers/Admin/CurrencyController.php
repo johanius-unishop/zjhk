@@ -31,7 +31,7 @@ class CurrencyController extends Controller
     public function create()
     {
 
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.currency.create');
@@ -44,7 +44,7 @@ class CurrencyController extends Controller
      */
     public function store(StoreCurrencyRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 

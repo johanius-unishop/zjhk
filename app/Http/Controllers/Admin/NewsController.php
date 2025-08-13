@@ -15,7 +15,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.news.index');
@@ -26,7 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.news.create');
@@ -37,7 +37,7 @@ class NewsController extends Controller
      */
     public function store(StoreNewsRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -66,7 +66,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.news.edit', ['news' => $news]);
@@ -77,7 +77,7 @@ class NewsController extends Controller
      */
     public function update(UpdateNewsRequest $request, News $news)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();

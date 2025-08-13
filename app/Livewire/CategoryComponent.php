@@ -22,19 +22,19 @@ class CategoryComponent extends Component
     public $keywords;
     public $description_seo;
     public $canonical_url;
-    
+
     public $name = '';
     public bool $published = false;
-       
+
     public function mount($parent_category = null)
     {
-        $this->parent_category_id = null; 
+        $this->parent_category_id = null;
     }
 
     public function save()
-    {   
+    {
         // Проверка прав доступа
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -47,7 +47,7 @@ class CategoryComponent extends Component
                 $this->only(['name', 'published', 'parent_category_id'])
             );
 
-            
+
         $seoRecord = $record->seo()->firstOrNew(['model_id' => $record->id]);
 
         if (!$seoRecord->exists) {
@@ -65,7 +65,7 @@ class CategoryComponent extends Component
         $this->dispatch('update-category-table');
         return;
     }
-    
+
     protected $rules = [
         'name' => 'required|min:3',
         'title' => 'nullable|string|max:255',
@@ -80,7 +80,7 @@ class CategoryComponent extends Component
             'name.required'     => 'Название категории должно быть заполнено',
             'name.min'     => 'Название категории должно содержать минимум 3 символа',
         ];
-    } 
+    }
 
 
 

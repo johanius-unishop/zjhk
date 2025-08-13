@@ -16,7 +16,7 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.product-type.index');
@@ -28,7 +28,7 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -40,7 +40,7 @@ class ProductTypeController extends Controller
      */
     public function store(StoreProductTypeRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
@@ -59,7 +59,7 @@ class ProductTypeController extends Controller
      */
     public function show(ProductType $productType)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
          return view('admin.product-type.show', ['parent_type' => $productType]);
@@ -70,7 +70,7 @@ class ProductTypeController extends Controller
      */
     public function edit(ProductType $productType)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -82,7 +82,7 @@ class ProductTypeController extends Controller
      */
     public function update(UpdateProductTypeRequest $request, ProductType $productType)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
@@ -102,6 +102,6 @@ class ProductTypeController extends Controller
         //
     }
 
-    
-    
+
+
 }

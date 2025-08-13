@@ -15,7 +15,7 @@ class OrderController extends Controller
     public function index()
     {
         //
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.order.index');
@@ -40,7 +40,7 @@ class OrderController extends Controller
     public function new_order()
     {
         //
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.order.new-order');
@@ -52,7 +52,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         //
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.order.show', ['parent_order' => $order]);

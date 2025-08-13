@@ -18,7 +18,7 @@ class ProductTypeCompositeElementController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -31,7 +31,7 @@ class ProductTypeCompositeElementController extends Controller
     {
         //
 
-        // if (!Gate::allows('manage content')) {
+        // if (!Gate::allows('admin-content')) {
         //     return abort(401);
         // }
 
@@ -42,7 +42,7 @@ class ProductTypeCompositeElementController extends Controller
      */
     public function store(StoreProductTypeCompositeRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -64,7 +64,7 @@ class ProductTypeCompositeElementController extends Controller
      */
     public function edit(ProductTypeCompositeElement $productTypeCompositeElement)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -76,7 +76,7 @@ class ProductTypeCompositeElementController extends Controller
      */
     public function update(UpdateProductTypeCompositeRequest $request, ProductTypeCompositeElement $productTypeCompositeElement)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();

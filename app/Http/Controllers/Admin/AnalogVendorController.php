@@ -17,7 +17,7 @@ class AnalogVendorController extends Controller
     public function index()
     {
         //analog-vendor
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.analog-vendor.index');
@@ -29,7 +29,7 @@ class AnalogVendorController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.analog-vendor.create' );
@@ -40,7 +40,7 @@ class AnalogVendorController extends Controller
      */
     public function store(StoreAnalogVendorRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -57,7 +57,7 @@ class AnalogVendorController extends Controller
      */
     public function show(AnalogVendor $analogVendor)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
          return view('admin.analog-vendor.show', ['parent_analog_vendor' => $analogVendor]);
@@ -69,7 +69,7 @@ class AnalogVendorController extends Controller
      */
     public function edit(AnalogVendor $analogVendor)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.analog-vendor.edit', ['analogVendor' => $analogVendor]);
@@ -80,7 +80,7 @@ class AnalogVendorController extends Controller
      */
     public function update(UpdateAnalogVendorRequest $request, AnalogVendor $analogVendor)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 

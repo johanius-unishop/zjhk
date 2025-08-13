@@ -16,7 +16,7 @@ class FaqController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.faq.index');
@@ -27,7 +27,7 @@ class FaqController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         return view('admin.faq.create');
@@ -38,7 +38,7 @@ class FaqController extends Controller
      */
     public function store(StoreFaqRequest $request)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
@@ -58,7 +58,7 @@ class FaqController extends Controller
      */
     public function edit(Faq $faq)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
@@ -70,7 +70,7 @@ class FaqController extends Controller
      */
     public function update(UpdateFaqRequest $request, Faq $faq)
     {
-        if (!Gate::allows('manage content')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
