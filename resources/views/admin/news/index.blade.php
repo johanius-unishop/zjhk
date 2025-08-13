@@ -20,11 +20,11 @@
 
 @push('css')
 {{-- Add here extra stylesheets --}}
-
+@livewireStyles
 @endpush
 
 {{-- Push extra scripts --}}
 
 @push('js')
-
+@livewireScripts
 @endpush

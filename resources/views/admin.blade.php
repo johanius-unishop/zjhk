@@ -15,7 +15,7 @@
 
 @section('css')
     {{-- Extra stylesheets can be added here if needed --}}
-    @livewireStyles
+
 
     <!-- Toastr Stylesheet -->
     <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.css') }}">
@@ -75,5 +75,5 @@
         toastr.error("{{ Session::get('error') }}");
         @endif
     </script>
-    @livewireScripts
+
 @stop
