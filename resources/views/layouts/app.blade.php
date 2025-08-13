@@ -21,8 +21,6 @@
                 <span>+</span>
             </div>
 
-
-    @livewireScriptConfig 
     @yield('scripts')
     </body>
 </html>

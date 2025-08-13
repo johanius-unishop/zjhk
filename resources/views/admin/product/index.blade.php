@@ -18,7 +18,7 @@
         <button type="submit" class="btn btn-primary mt-3">Загрузить прайс-лист</button>
     </form>
 </div>
-   
+
 
 <livewire:product-table />
 @stop
@@ -29,25 +29,25 @@
 {{-- Add here extra stylesheets --}}
 <style>
         .custom-form {
-            
+
             max-width: 100%;
             text-align: left;
             margin: auto;
             padding-top: 10px;
         }
-        
+
         h2 {
             text-align: left;
             margin-bottom: 20px;
         }
-        
+
         input[type="file"] {
             display: block;
             width: 50%;
             margin-top: 5px;
             margin-bottom: 5px;
         }
-        
+
         button {
             width: 50%;
             margin-top: 5px;
@@ -60,6 +60,6 @@
 {{-- Push extra scripts --}}
 
 @push('js')
-@livewireScriptConfig 
+
 <script src="{{ asset('js/powergrid.js') }}"></script>
 @endpush

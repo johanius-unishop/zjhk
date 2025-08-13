@@ -26,7 +26,7 @@
                     <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                         {{-- <div class="tab-content" id="custom-tabs-four-tabContent">
                             <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab"> --}}
-                        
+
                         <livewire:analog-table :parent_analog_vendor="$parent_analog_vendor->id" />
                         {{-- </div>
                         </div> --}}
@@ -59,6 +59,6 @@
 
 {{-- Push extra scripts --}}
 @push('js')
-@livewireScriptConfig 
+
 <script src="{{ asset('js/powergrid.js') }}"></script>
 @endpush

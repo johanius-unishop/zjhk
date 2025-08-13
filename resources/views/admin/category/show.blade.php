@@ -10,7 +10,7 @@
 {{-- Content body: main page content --}}
 
 @section('content')
- 
+
 <livewire:subcategory-component :parent_category="$parent_category->id" />
 <livewire:subcategory-table :parent_category="$parent_category->id" />
 
@@ -19,7 +19,7 @@
 </div>
 
 @stop
-    
+
 
 
 
@@ -33,6 +33,6 @@
 {{-- Push extra scripts --}}
 
 @push('js')
-@livewireScriptConfig 
+
 <script src="{{ asset('js/powergrid.js') }}"></script>
 @endpush

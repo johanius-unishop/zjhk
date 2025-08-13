@@ -25,6 +25,6 @@
 {{-- Push extra scripts --}}
 
 @push('js')
-@livewireScriptConfig 
+
 <script src="{{ asset('js/powergrid.js') }}"></script>
 @endpush

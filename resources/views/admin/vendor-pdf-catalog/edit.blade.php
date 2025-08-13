@@ -17,7 +17,7 @@
     @csrf
     @method('PATCH')
     <input type="hidden" name="id" value="{{ $vendor_pdf_catalog->id }}">
-    
+
     <div class="row">
         <div class="col-lg-6 col-12">
             <div class="form-group">
@@ -72,6 +72,6 @@
 
 @push('js')
 @include('admin.blocks.summernote')
-@livewireScriptConfig 
+
 <script src="{{ asset('js/powergrid.js') }}"></script>
 @endpush

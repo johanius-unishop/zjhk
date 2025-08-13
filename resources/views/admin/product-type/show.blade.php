@@ -34,14 +34,14 @@
                     </div>
                     <div class="tab-pane fade" id="custom-tabs-four-related-type" role="tabpanel" aria-labelledby="custom-tabs-four-related-type-tab">
                         <div>
-                        <livewire:related-product-type-component :parent_type="$parent_type->id" />    
+                        <livewire:related-product-type-component :parent_type="$parent_type->id" />
                         </div>
                         <livewire:related-product-type-table :parent_type="$parent_type->id" />
                     </div>
                     @if ($parent_type->composite)
                     <div class="tab-pane fade" id="custom-tabs-four-composite-type" role="tabpanel" aria-labelledby="custom-tabs-four-composite-type-tab">
                         <div>
-                        <livewire:product-type-composite-component :parent_type="$parent_type->id" />    
+                        <livewire:product-type-composite-component :parent_type="$parent_type->id" />
                         </div>
                         <livewire:product-type-composite-table :parent_type="$parent_type->id" />
                     </div>
@@ -68,6 +68,6 @@
 @endpush
 
 @push('js')
-@livewireScriptConfig 
+
 <script src="{{ asset('js/powergrid.js') }}"></script>
 @endpush
