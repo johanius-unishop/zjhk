@@ -205,7 +205,8 @@ final class CurrencyTable extends PowerGridComponent
             [
                 'onConfirmed' => 'confirmed',
                 'showCancelButton' => true,
-                'cancelButtonText' => 'Нет'
+                'cancelButtonText' => 'Нет',
+                'confirmButtonText' => 'Да'
             ]
         );
     }
@@ -215,7 +216,7 @@ final class CurrencyTable extends PowerGridComponent
     {
         $deleted_record = Currency::findOrFail($this->delete_id);
         $deleted_record->delete();
-        $this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
+        $this->dispatch('toast', ['message' => 'Валюта удалена.', 'notify' => 'success']);
     }
 
 
