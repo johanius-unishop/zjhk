@@ -20,8 +20,7 @@
     <!-- Toastr Stylesheet -->
     <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.css') }}">
 
-    <!-- Bootstrap Toggle Stylesheet -->
-    <link rel="stylesheet" href="{{ asset('vendor/bootstrap4-toggle/bootstrap4-toggle.min.css') }}">
+
 
     <!-- Venobox for Image Preview -->
     <link href="{{ asset('vendor/venobox/venobox.min.css') }}" rel="stylesheet">
@@ -34,8 +33,7 @@
     <!-- SweetAlert2 Scripts -->
     <script src="{{ asset('vendor/sweetalert2/sweetalert2.all.js') }}"></script>
 
-    <!-- Bootstrap Toggle Script -->
-    <script src="{{ asset('vendor/bootstrap5-toggle/bootstrap5-toggle.min.js') }}"></script>
+
 
     <!-- Venobox Script for Image Preview -->
     <script src="{{ asset('/vendor/venobox/venobox.min.js') }}" type="text/javascript"></script>
