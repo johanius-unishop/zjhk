@@ -34,25 +34,7 @@
 {{-- просмотр фото --}}
 <script src="{{ asset('/vendor/venobox/venobox.min.js') }}" type="text/javascript"></script>
 
-<script>
-    window.addEventListener('galleryModalPhoto', event => {
-        new VenoBox({
-            selector: '.my-image-links'
-            , numeration: true
-            , infinigall: true
-            , navigation: true
-            , titleattr: 'data-title'
-            , share: true,
-            // overlayClose: true,
-            spinner: 'plane'
-            , spinColor: '#00B1F0'
-            , maxWidth: '100%'
-            //            share: true,
-            //             spinner: 'rotating-plane'
-        });
-    })
 
-</script>
 <script>
     document.addEventListener("livewire:init", () => {
         Livewire.on("toast", (event) => {
