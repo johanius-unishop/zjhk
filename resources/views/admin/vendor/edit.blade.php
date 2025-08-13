@@ -155,6 +155,6 @@
 
 @push('js')
 @include('admin.blocks.summernote')
-@livewireScripts
+@livewireScriptConfig 
 <script src="{{ asset('js/powergrid.js') }}"></script>
 @endpush
