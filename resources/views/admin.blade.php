@@ -1,3 +1,4 @@
+<!-- adminlte::page -->
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -7,63 +8,76 @@
 @stop
 
 @section('content')
-
+<div class="container mt-5">
+    <!-- Content goes here -->
+</div>
 @stop
 
 @section('css')
-{{-- Add here extra stylesheets --}}
-@livewireStyles
-{{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
+    {{-- Extra stylesheets can be added here if needed --}}
+    @livewireStyles
 
-<link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.css') }}">
-@vite('resources/css/app.css')
+    <!-- Toastr Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.css') }}">
 
-<link rel="stylesheet" href="{{ asset('vendor/bootstrap4-toggle/bootstrap4-toggle.min.css') }}">
-{{-- просмотр фото --}}
-<link href="{{ asset('vendor/venobox/venobox.min.css') }}" rel="stylesheet">
-{{-- просмотр фото --}}
+    <!-- Bootstrap Toggle Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap4-toggle/bootstrap4-toggle.min.css') }}">
+
+    <!-- Venobox for Image Preview -->
+    <link href="{{ asset('vendor/venobox/venobox.min.css') }}" rel="stylesheet">
+
+    <!-- Application CSS -->
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 @stop
 
 @section('js')
-@livewireScripts
-<script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
-<script src="{{ asset('vendor/bootstrap4-toggle/bootstrap4-toggle.min.js') }}"></script>
-{{-- <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script> --}}
-<script src="{{ asset('vendor/sweetalert2/sweetalert2.all.js') }}"></script>
-<x-livewire-alert::scripts />
-{{-- просмотр фото --}}
-<script src="{{ asset('/vendor/venobox/venobox.min.js') }}" type="text/javascript"></script>
+    <!-- SweetAlert2 Scripts -->
+    <script src="{{ asset('vendor/sweetalert2/sweetalert2.all.js') }}"></script>
 
+    <!-- Bootstrap Toggle Script -->
+    <script src="{{ asset('vendor/bootstrap5-toggle/bootstrap5-toggle.min.js') }}"></script>
 
-<script>
-    document.addEventListener("livewire:init", () => {
-        Livewire.on("toast", (event) => {
-            toastr[event.notify](event.message);
+    <!-- Venobox Script for Image Preview -->
+    <script src="{{ asset('/vendor/venobox/venobox.min.js') }}" type="text/javascript"></script>
+
+    <!-- Livewire Alert Scripts -->
+    <x-livewire-alert::scripts />
+
+    <!-- Toastr Notifications -->
+    <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
+
+    <!-- Custom Notification Handling -->
+    <script>
+        document.addEventListener("livewire:init", () => {
+            Livewire.on("toast", (event) => {
+                toastr[event.notify](event.message);
+            });
         });
-    });
+    </script>
 
-</script>
+    <!-- Flash Messages -->
+    <script>
+        // Success Message Popup Notification
+        @if(Session::has('success'))
+        toastr.success("{{ Session::get('success') }}");
+        @endif
 
-<script>
-    // success message popup notification
-    @if(Session::has('success'))
-    toastr.success("{{ Session::get('success') }}");
-    @endif
+        // Info Message Popup Notification
+        @if(Session::has('info'))
+        toastr.info("{{ Session::get('info') }}");
+        @endif
 
-    // info message popup notification
-    @if(Session::has('info'))
-    toastr.info("{{ Session::get('info') }}");
-    @endif
+        // Warning Message Popup Notification
+        @if(Session::has('warning'))
+        toastr.warning("{{ Session::get('warning') }}");
+        @endif
 
-    // warning message popup notification
-    @if(Session::has('warning'))
-    toastr.warning("{{ Session::get('warning') }}");
-    @endif
+        // Error Message Popup Notification
+        @if(Session::has('error'))
+        toastr.error("{{ Session::get('error') }}");
+        @endif
+    </script>
 
-    // error message popup notification
-    @if(Session::has('error'))
-    toastr.error("{{ Session::get('error') }}");
-    @endif
-
-</script>
+    <!-- Livewire Scripts -->
+    @livewireScripts
 @stop
