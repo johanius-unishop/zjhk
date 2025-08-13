@@ -26,5 +26,5 @@
 {{-- Push extra scripts --}}
 
 @push('js')
-@livewireScripts
+@livewireScriptConfig
 @endpush
