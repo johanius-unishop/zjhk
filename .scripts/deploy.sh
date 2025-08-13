@@ -39,6 +39,7 @@ $PHP_PATH artisan clear-compiled
 # Пересоздать кэш
 $PHP_PATH artisan optimize
 
+npm install
 # Скомпилировать ресурсы
 npm run build
 
