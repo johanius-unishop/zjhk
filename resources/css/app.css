@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -9753,3 +9754,5 @@ h2.benefits__title {
   max-width: 100%;
   object-fit: contain;
 }
+
+@import './../../vendor/power-components/livewire-powergrid/dist/bootstrap5.css';
