@@ -62,24 +62,24 @@ final class CurrencyTable extends PowerGridComponent
             Column::make('Id', 'id'),
             Column::make('Валюта', 'name')
                 ->sortable()
-                ->editOnClick()
+                ->editOnClick(hasPermission: true, saveOnMouseOut: true)
                 ->searchable(),
             Column::make('Код', 'charcode')
                 ->sortable()
-                ->editOnClick()
+                ->editOnClick(hasPermission: true, saveOnMouseOut: true)
                 ->searchable(),
 
             Column::make('Курс ЦБ', 'cb_rate'),
 
             Column::make('Внутренний курс', 'internal_rate')
-            ->editOnClick(),
+            ->editOnClick(hasPermission: true, saveOnMouseOut: true),
 
             Column::make('Автоматический расчет', 'auto_calc_cbrf')
                 ->toggleable(),
 
             Column::make('Множитель', 'auto_multiplier')
                 ->sortable()
-                ->editOnClick()
+                ->editOnClick(hasPermission: true, saveOnMouseOut: true)
                 ->searchable(),
 
 
@@ -151,11 +151,10 @@ final class CurrencyTable extends PowerGridComponent
     public function actions(Currency $row): array
     {
         return [
-            Button::add('edit')
-                ->slot('Edit: ' . $row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+            Button::add('Delete')
+                ->slot('<i class="fas fa-trash"></i>')
+                ->class('btn btn-danger')
+                ->dispatch('post_delete', ['rowId' => $row->id])
         ];
     }
 
