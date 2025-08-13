@@ -4,7 +4,10 @@ import * as Popper from '@popperjs/core'
 window.Popper = Popper
 import 'bootstrap'
 import 'bootstrap/dist/js/bootstrap.bundle';
-import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
+
+// resources/js/app.js
+
+
 import './../../vendor/power-components/livewire-powergrid/dist/bootstrap5.css';
 
 import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
@@ -13,6 +16,7 @@ import Clipboard from '@ryangjchandler/alpine-clipboard'
 Alpine.plugin(Clipboard)
 
 Livewire.start()
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
 
 /*
  * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
