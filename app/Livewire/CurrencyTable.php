@@ -15,7 +15,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 final class CurrencyTable extends PowerGridComponent
 {
-    public $delete_id;
+    public int|null $delete_id = null;
 
     public string $tableName = 'currency-table';
     public array $name;
@@ -155,7 +155,8 @@ final class CurrencyTable extends PowerGridComponent
             Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
-                ->dispatch('post_delete', ['rowId' => $row->id])
+                //->dispatch('currency_delete', ['rowId' => $row->id])
+                ->confirm('Are you sure you want to edit?'),
         ];
     }
 
@@ -195,12 +196,12 @@ final class CurrencyTable extends PowerGridComponent
         return [];
     }
 
-    #[\Livewire\Attributes\On('post_delete')]
-    public function post_delete(int $rowId): void
+    #[\Livewire\Attributes\On('currency_delete')]
+    public function currency_delete(int $rowId): void
     {
         $this->delete_id = $rowId;
         $this->confirm(
-            'Вы действительно хотите удалить эту запись?',
+            'Вы действительно хотите удалить эту валюту?',
             [
                 'onConfirmed' => 'confirmed',
                 'showCancelButton' => true,
