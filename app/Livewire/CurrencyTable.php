@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 use App\Models\Currency;
 use Illuminate\Support\Carbon;
@@ -61,7 +62,7 @@ final class CurrencyTable extends PowerGridComponent
             Column::make('Name', 'name')
                 ->sortable()
                 ->searchable()
-                ->editOnClick($hasPermission = Auth::user()->isAdmin()),
+                ->editOnClick(hasPermission: true),
             Column::make('Charcode', 'charcode')
                 ->sortable()
                 ->searchable(),
