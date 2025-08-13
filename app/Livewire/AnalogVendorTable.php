@@ -9,7 +9,7 @@ use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
@@ -32,8 +32,8 @@ final class AnalogVendorTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Header::make()->showSearchInput()->withoutLoading(),
-            Footer::make()
+            PowerGrid::header()->showSearchInput()->withoutLoading(),
+            PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
         ];
@@ -90,17 +90,17 @@ final class AnalogVendorTable extends PowerGridComponent
                 'showCancelButton' => true,
                 'cancelButtonText' => 'Нет',
             ]);
-        }       
+        }
         else {
             $this->confirm('Вы действительно хотите производителя аналогов ' . $analog_vendor_name . '?', [
                 'onConfirmed' => 'confirmed',
                 'showCancelButton' => true,
                 'cancelButtonText' => 'Нет',
             ]);
-        } 
+        }
     }
-    
-    
+
+
 
     #[\Livewire\Attributes\On('confirmed')]
     public function confirmed()
@@ -108,7 +108,7 @@ final class AnalogVendorTable extends PowerGridComponent
         DB::transaction(function () {
             // Удаление связанных записей из таблицы Analog
             Analog::where('analog_vendor_id', $this->delete_id)->delete();
-    
+
             // Удаление основной записи
             AnalogVendor::findOrFail($this->delete_id)->delete();
         });
@@ -127,7 +127,7 @@ final class AnalogVendorTable extends PowerGridComponent
                 ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
     }
-    
+
     protected function rules()
     {
         return [
@@ -158,13 +158,13 @@ final class AnalogVendorTable extends PowerGridComponent
                 $this->dispatch('toggle-' . $field . '-' . $id);
             }
         })->validate();
-    
+
         $updated = AnalogVendor::query()->find($id)->update([
             $field => $value,
         ]);
         $this->resetValidation(); // Сброс всех результатов валидации
-        
-        
+
+
     }
 
     public function onUpdatedToggleable(string|int $id, string $field, string $value): void

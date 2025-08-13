@@ -12,7 +12,7 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use Illuminate\Support\Facades\Gate;
@@ -26,7 +26,7 @@ final class ProductTable extends PowerGridComponent
     public string $productTypeId;
     public bool $deferLoading = true;
     public bool $showFilters = true;
-    
+
     public array $name;
     public bool $showErrorBag = true;
     public $editingRowId = null;
@@ -38,10 +38,10 @@ final class ProductTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Header::make()
+            PowerGrid::header()
                 ->showSearchInput()
                 ->withoutLoading(),
-            Footer::make()
+            PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
         ];
@@ -49,8 +49,8 @@ final class ProductTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        
-        
+
+
         return Product::with('vendor')
             ->when(
                 $this->vendorId,
@@ -59,7 +59,7 @@ final class ProductTable extends PowerGridComponent
                     fn ($builder) => $builder->where('vendor_id', $this->vendorId)
                 )
             );
-            
+
     }
 
     public function relationSearch(): array
@@ -123,7 +123,7 @@ final class ProductTable extends PowerGridComponent
 
         // Создадим кнопку редактирования
         $buttons = [];
-        
+
         if ($row->productType === null) { // Проверка на отсутствие типа товара
             $buttons[] = Button::add('view')
                 ->slot('<i class="fas fa-exclamation-circle"></i>')
@@ -138,7 +138,7 @@ final class ProductTable extends PowerGridComponent
 
         return $buttons;
     }
-    
+
     protected function rules()
     {
         return [
@@ -171,7 +171,7 @@ final class ProductTable extends PowerGridComponent
                 $this->dispatch('toggle-' . $field . '-' . $id);
             }
         })->validate();
-    
+
         $updated = Product::query()->find($id)->update([
             $field => $value,
         ]);

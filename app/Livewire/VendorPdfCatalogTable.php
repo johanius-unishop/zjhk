@@ -7,11 +7,11 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
+
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -28,12 +28,12 @@ final class VendorPdfCatalogTable extends PowerGridComponent
     public $editingRowId = null;
     public $editingFieldName = '';
     public $editingValue = '';
-    
+
     public function setUp(): array
     {
         return [
-            Header::make()->withoutLoading(),
-            Footer::make()->showRecordCount(),
+            PowerGrid::header()->withoutLoading(),
+            PowerGrid::footer()->showRecordCount(),
         ];
     }
 
@@ -55,14 +55,14 @@ final class VendorPdfCatalogTable extends PowerGridComponent
     {
         $powerGridFields = PowerGrid::fields()
             ->add('name')
-            ->add('catalog_image', function ($vendorPdfCatalog) { 
+            ->add('catalog_image', function ($vendorPdfCatalog) {
                 if ($vendorPdfCatalog->getMedia('pdfCatalogCoverImage')->isNotEmpty()) {
                     $firstMedia = $vendorPdfCatalog->getMedia('pdfCatalogCoverImage')->first();
                     return '<img src="' . $firstMedia->getUrl() . '" style="max-width:50px">';
                 }
                 return '';
             })
-            ->add('catalog_file', function ($vendorPdfCatalog) { 
+            ->add('catalog_file', function ($vendorPdfCatalog) {
                 if ($vendorPdfCatalog->getMedia('pdfCatalog')->isNotEmpty()) {
                     $firstMedia = $vendorPdfCatalog->getMedia('pdfCatalog')->first();
                     return $this->getPdfIconAndLink($firstMedia);
@@ -91,14 +91,14 @@ final class VendorPdfCatalogTable extends PowerGridComponent
             Column::action('Действия'),
         ];
     }
-    
+
 
     public function filters(): array
     {
         return [
         ];
     }
-                            
+
     #[On('update-vendor-pdf-catalog-table')]
     public function updateVendorPdfCatalogTable(): void
     {
@@ -111,7 +111,7 @@ final class VendorPdfCatalogTable extends PowerGridComponent
     #[On('pdf-catalog-delete')]
     public function pdfCatalogDelete($rowId): void
     {
-        
+
         $this->delete_catalog_id = $rowId;
         $this->confirm('Вы действительно хотите удалить эту запись?', [
             'onConfirmed' => 'confirmed',
@@ -141,7 +141,7 @@ final class VendorPdfCatalogTable extends PowerGridComponent
                 ->dispatch('pdf-catalog-delete', ['rowId' => $row->id]),
         ];
     }
-    
+
     protected function rules()
     {
         return [
@@ -162,7 +162,7 @@ final class VendorPdfCatalogTable extends PowerGridComponent
             'name.*.required'     => 'Название каталога должно быть заполнено',
         ];
     }
-    
+
     public function onUpdatedEditable(int|string $id, string $field, string $value): void
     {
         $model = VendorPdfCatalog::findOrFail($id);

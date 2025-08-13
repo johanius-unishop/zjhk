@@ -7,11 +7,10 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -31,12 +30,12 @@ final class VendorTable extends PowerGridComponent
     public $editingFieldName = '';
     public $editingValue = '';
     public ?string $primaryKeyAlias = 'slug';
-    
+
     public function setUp(): array
     {
         return [
-            Header::make()->showSearchInput()->withoutLoading(),
-            Footer::make()->showPerPage()->showRecordCount(),
+            PowerGrid::header()->showSearchInput()->withoutLoading(),
+            PowerGrid::footer()->showPerPage()->showRecordCount(),
         ];
     }
 
@@ -82,7 +81,7 @@ final class VendorTable extends PowerGridComponent
             Column::action('Действия'),
         ];
     }
-    
+
 
     public function filters(): array
     {
@@ -134,14 +133,14 @@ final class VendorTable extends PowerGridComponent
                 ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
     }
-    
+
     protected function rules()
     {
         return [
             'name.*' => ['required'],
             'country.*' => ['required'],
             'delivery_time.*' => ['required'],
-            'warranty.*' => ['required'], 
+            'warranty.*' => ['required'],
         ];
     }
 
@@ -164,7 +163,7 @@ final class VendorTable extends PowerGridComponent
             'warranty.*.required' => 'Гарантийный срок должен быть заполнен',
         ];
     }
-    
+
     public function onUpdatedEditable(int|string $id, string $field, string $value): void
     {
         $model = is_string($id) ? Vendor::where('slug', $id)->firstOrFail() : Vendor::findOrFail($id);

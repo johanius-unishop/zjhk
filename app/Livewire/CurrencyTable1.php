@@ -13,7 +13,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Button;
-use PowerComponents\LivewirePowerGrid\Exportable;
+
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -63,7 +63,6 @@ final class CurrencyTable extends PowerGridComponent
             ->add('id')
             ->add('name')
             ->add('charcode')
-            ->add('numcode')
             ->add('internal_rate')
             ->add('cb_rate')
             ->add('auto_calc_cbrf')

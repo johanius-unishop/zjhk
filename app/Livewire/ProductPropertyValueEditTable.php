@@ -16,11 +16,11 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
+
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
@@ -39,10 +39,10 @@ final class ProductPropertyValueEditTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Header::make()
+            PowerGrid::header()
                 ->showSearchInput()
                 ->withoutLoading(),
-            Footer::make()
+            PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
         ];
@@ -53,7 +53,7 @@ final class ProductPropertyValueEditTable extends PowerGridComponent
         $product_type_id = Product::query()
             ->where('id', '=', $this->product_id)
             ->value('product_type_id');
-        
+
         return ProductTypeProperty::query()
             ->where('product_type_id', '=', $product_type_id)
             ->orderBy('order_column');
@@ -78,7 +78,7 @@ final class ProductPropertyValueEditTable extends PowerGridComponent
             ]);
             return $data;
     }
-    
+
 
     public function relationSearch(): array
     {
@@ -87,11 +87,11 @@ final class ProductPropertyValueEditTable extends PowerGridComponent
 
     public function fields(): PowerGridFields
     {
-        
+
         return PowerGrid::fields()
             ->add('name')
             ->add('value_id');
-            
+
     }
     public function columns(): array
     {
@@ -104,7 +104,7 @@ final class ProductPropertyValueEditTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            
+
         ];
     }
 }

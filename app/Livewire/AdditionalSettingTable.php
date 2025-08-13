@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\AdditionalSetting;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -31,8 +31,8 @@ final class AdditionalSettingTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Header::make()->showSearchInput()->withoutLoading(),
-            Footer::make()->showRecordCount(),
+            PowerGrid::header()->showSearchInput()->withoutLoading(),
+            PowerGrid::footer()->showRecordCount(),
         ];
     }
 
@@ -118,7 +118,7 @@ final class AdditionalSettingTable extends PowerGridComponent
         ];
     }
 
-   
+
     protected function rules()
     {
         return [
@@ -133,7 +133,7 @@ final class AdditionalSettingTable extends PowerGridComponent
             'value.*' => [
                 'required',
             ],
-             
+
         ];
     }
 
@@ -162,10 +162,10 @@ final class AdditionalSettingTable extends PowerGridComponent
                 $this->dispatch('toggle-' . $field . '-' . $id);
             }
         })->validate();
-    
+
         $updated = AdditionalSetting::query()->find($id)->update([
             $field => $value,
         ]);
     }
-    
+
 }

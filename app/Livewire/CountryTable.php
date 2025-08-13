@@ -7,11 +7,11 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
+
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -28,12 +28,12 @@ final class CountryTable extends PowerGridComponent
     public $editingRowId = null;
     public $editingFieldName = '';
     public $editingValue = '';
-    
+
     public function setUp(): array
     {
         return [
-            Header::make()->showSearchInput()->withoutLoading(),
-            Footer::make()->showRecordCount(),
+            PowerGrid::header()->showSearchInput()->withoutLoading(),
+            PowerGrid::footer()->showRecordCount(),
         ];
     }
 
@@ -58,7 +58,7 @@ final class CountryTable extends PowerGridComponent
             ->add('name')
             ->add('name_in_english')
             ->add('charcode')
-            ->add('flag', function ($country) { 
+            ->add('flag', function ($country) {
                 if ($country->media->isNotEmpty()) {
                     $firstMedia = $country->media->first();
                     return '<img src="' . $firstMedia->getUrl() . '" alt="Flag" style="max-width:50px">';
@@ -71,8 +71,8 @@ final class CountryTable extends PowerGridComponent
             return $powerGridFields;
     }
 
-    
-    
+
+
 
     public function columns(): array
     {
@@ -93,7 +93,7 @@ final class CountryTable extends PowerGridComponent
             Column::action('Действия'),
         ];
     }
-    
+
 
     public function filters(): array
     {
@@ -132,7 +132,7 @@ final class CountryTable extends PowerGridComponent
         $this->dispatch('toast', message: 'Страна ' . $deleted_record->name . ' удалена.', notify: 'success');
     }
 
-    
+
 
     #[\Livewire\Attributes\On('update-country-table')]
     public function updateCountryTable(): void
@@ -155,7 +155,7 @@ final class CountryTable extends PowerGridComponent
                 ->dispatch('country_delete', ['rowId' => $row->id]),
         ];
     }
-    
+
     protected function rules()
     {
         return [
@@ -182,7 +182,7 @@ final class CountryTable extends PowerGridComponent
             'charcode.*.required' => 'Символьный код страны должен быть указан'
         ];
     }
-    
+
     public function onUpdatedEditable(int|string $id, string $field, string $value): void
     {
         $model = Country::findOrFail($id);

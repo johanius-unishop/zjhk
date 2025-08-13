@@ -7,11 +7,11 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
+
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
@@ -26,10 +26,10 @@ final class SubcategoryTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Header::make()
+            PowerGrid::header()
                 ->showSearchInput()
                 ->withoutLoading(),
-            Footer::make()
+            PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
         ];
@@ -73,7 +73,7 @@ final class SubcategoryTable extends PowerGridComponent
     #[\Livewire\Attributes\On('delete_subcategory')]
     public function delete_subctegory($rowId): void
     {
-        
+
         $this->delete_id = $rowId;
         $this->confirm('Вы действительно хотите удалить эту категорию?', [
             'onConfirmed' => 'confirmed',
@@ -95,7 +95,7 @@ final class SubcategoryTable extends PowerGridComponent
             $this->dispatch('toast', message: 'Эта категория содержит товары. Сначала удалите их!', notify: 'error');
             return;
         }
-        
+
         if ($deleted_record->seo()->exists()) {
             $deleted_record->seo()->delete();
         }
@@ -106,7 +106,7 @@ final class SubcategoryTable extends PowerGridComponent
         $this->dispatch('toast', message: 'Категория удалена.', notify: 'success');
 
     }
-    
+
     public function actions(Category $row): array
     {
         return [
@@ -123,7 +123,7 @@ final class SubcategoryTable extends PowerGridComponent
                 ->class('btn btn-danger')
                 ->dispatch('delete_subcategory', ['rowId' => $row->id]),
         ];
-    }    
+    }
     #[\Livewire\Attributes\On('update-subcategory-table')]
     public function updateSubcategoryTable(): void
     {
@@ -138,7 +138,7 @@ final class SubcategoryTable extends PowerGridComponent
                 $this->dispatch('toggle-' . $field . '-' . $id);
             }
         })->validate();
-    
+
         $updated = Category::query()->find($id)->update([
             $field => $value,
         ]);

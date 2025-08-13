@@ -7,11 +7,11 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
+
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
@@ -24,8 +24,8 @@ final class CategoryTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Header::make()->showSearchInput()->withoutLoading(),
-            Footer::make()
+            PowerGrid::header()->showSearchInput()->withoutLoading(),
+            PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
         ];
@@ -96,7 +96,7 @@ final class CategoryTable extends PowerGridComponent
             $this->dispatch('toast', message: 'Эта категория содержит товары. Сначала удалите их!', notify: 'error');
             return;
         }
-        
+
         if ($deleted_record->seo()->exists()) {
             $deleted_record->seo()->delete();
         }
@@ -125,7 +125,7 @@ final class CategoryTable extends PowerGridComponent
                 ->dispatch('delete_category', ['rowId' => $row->id]),
         ];
     }
- 
+
     #[\Livewire\Attributes\On('update-category-table')]
     public function updateCategoryTable(): void
     {
@@ -141,7 +141,7 @@ final class CategoryTable extends PowerGridComponent
                 $this->dispatch('toggle-' . $field . '-' . $id);
             }
         })->validate();
-    
+
         $updated = Category::query()->find($id)->update([
             $field => $value,
         ]);

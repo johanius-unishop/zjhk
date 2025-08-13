@@ -11,6 +11,7 @@ use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 final class CurrencyTable extends PowerGridComponent
 {

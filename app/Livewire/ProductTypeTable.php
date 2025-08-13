@@ -10,11 +10,11 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
+
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
@@ -40,8 +40,8 @@ final class ProductTypeTable extends PowerGridComponent
 
         return [
 
-            Header::make()->showSearchInput()->withoutLoading(),
-            Footer::make()
+            PowerGrid::header()->showSearchInput()->withoutLoading(),
+            PowerGrid::footer()
                 // ->showPerPage()
                 ->showRecordCount(),
         ];
@@ -148,7 +148,7 @@ final class ProductTypeTable extends PowerGridComponent
         ];
     }
 
-    
+
 
     protected function rules()
     {
@@ -182,7 +182,7 @@ final class ProductTypeTable extends PowerGridComponent
                 $this->dispatch('toggle-' . $field . '-' . $id);
             }
         })->validate();
-    
+
         $updated = ProductType::query()->find($id)->update([
             $field => e($value),
         ]);

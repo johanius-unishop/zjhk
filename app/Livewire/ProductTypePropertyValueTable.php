@@ -10,11 +10,11 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
+
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
@@ -32,12 +32,12 @@ final class ProductTypePropertyValueTable extends PowerGridComponent
     public string $parent_property;
     public array $value;
     public $delete_id;
-    
+
     public function setUp(): array
     {
         return [
-            Header::make()->withoutLoading(),
-            Footer::make()->showRecordCount(),
+            PowerGrid::header()->withoutLoading(),
+            PowerGrid::footer()->showRecordCount(),
         ];
     }
 
@@ -78,7 +78,7 @@ final class ProductTypePropertyValueTable extends PowerGridComponent
     {
         // Получаем количество связанных записей product_property_values
         $count = $row->productPropertyValues()->count();
-        
+
         return [
             Rule::button('delete')
                 ->when(fn () => $count > 0)
@@ -95,7 +95,7 @@ final class ProductTypePropertyValueTable extends PowerGridComponent
     protected $listeners = [
         'update-product-type-property-value-table' => 'updateProductTypePropertyValueTable',
     ];
-    
+
     #[\Livewire\Attributes\On('update-product-type-property-value-table')]
     public function updateProductTypePropertyValueTable(): void
     {
@@ -103,8 +103,8 @@ final class ProductTypePropertyValueTable extends PowerGridComponent
         $this->refresh();
         $this->render();
     }
-    
-    
+
+
     #[\Livewire\Attributes\On('delete_value')]
     public function delete_value($rowId): void
     {
@@ -181,7 +181,7 @@ final class ProductTypePropertyValueTable extends PowerGridComponent
                 $this->dispatch('toggle-' . $field . '-' . $id);
             }
         })->validate();
-    
+
         $updated = ProductTypePropertyValue::query()->find($id)->update([
             $field => $value,
         ]);

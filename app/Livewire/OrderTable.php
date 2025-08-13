@@ -12,11 +12,11 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
+
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
@@ -25,7 +25,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 final class OrderTable extends PowerGridComponent
 {
     use LivewireAlert;
-    
+
     public $deleteId;
     public array $name;
     public bool $showErrorBag = true;
@@ -36,9 +36,9 @@ final class OrderTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Header::make()
+            PowerGrid::header()
                 ->withoutLoading(),
-            Footer::make()
+            PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
         ];
@@ -77,7 +77,7 @@ final class OrderTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            
+
         ];
     }
 
@@ -167,7 +167,7 @@ final class OrderTable extends PowerGridComponent
                 $this->dispatch('toggle-' . $field . '-' . $id);
             }
         })->validate();
-    
+
         $updated = Order::query()->find($id)->update([
             $field => $value,
         ]);
@@ -181,5 +181,5 @@ final class OrderTable extends PowerGridComponent
 
         $this->skipRender();
     }
-    
+
 }

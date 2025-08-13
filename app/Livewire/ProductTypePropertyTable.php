@@ -10,11 +10,11 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Exportable;
+
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
@@ -35,8 +35,8 @@ final class ProductTypePropertyTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Header::make()->withoutLoading(),
-            Footer::make()
+            PowerGrid::header()->withoutLoading(),
+            PowerGrid::footer()
                 ->showRecordCount(),
         ];
     }
@@ -91,8 +91,8 @@ final class ProductTypePropertyTable extends PowerGridComponent
         $this->refresh();
         $this->render();
     }
-    
-    
+
+
     #[\Livewire\Attributes\On('delete_property')]
     public function delete_property($rowId): void
     {
@@ -229,7 +229,7 @@ final class ProductTypePropertyTable extends PowerGridComponent
                 $this->dispatch('toggle-' . $field . '-' . $id);
             }
         })->validate();
-    
+
         $updated = ProductTypeProperty::query()->find($id)->update([
             $field => $value,
         ]);
@@ -245,6 +245,6 @@ final class ProductTypePropertyTable extends PowerGridComponent
         //$this->skipRender();
     }
 
-    
+
 
 }
