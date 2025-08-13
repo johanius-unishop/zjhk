@@ -62,24 +62,24 @@ final class CurrencyTable extends PowerGridComponent
             Column::make('Id', 'id'),
             Column::make('Валюта', 'name')
                 ->sortable()
-                ->editOnClick(hasPermission: true, saveOnMouseOut: true)
+                ->editOnClick()
                 ->searchable(),
             Column::make('Код', 'charcode')
                 ->sortable()
-                ->editOnClick(hasPermission: true, saveOnMouseOut: true)
+                ->editOnClick()
                 ->searchable(),
 
             Column::make('Курс ЦБ', 'cb_rate'),
 
             Column::make('Внутренний курс', 'internal_rate')
-            ->editOnClick(hasPermission: true, saveOnMouseOut: true),
+            ->editOnClick(),
 
             Column::make('Автоматический расчет', 'auto_calc_cbrf')
                 ->toggleable(),
 
             Column::make('Множитель', 'auto_multiplier')
                 ->sortable()
-                ->editOnClick(hasPermission: true, saveOnMouseOut: true)
+                ->editOnClick()
                 ->searchable(),
 
 
