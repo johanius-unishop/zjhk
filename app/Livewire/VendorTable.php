@@ -122,13 +122,14 @@ final class VendorTable extends PowerGridComponent
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
     }
 
+
     public function actions(Vendor $row): array
     {
         return [
-            Button::add('view')
+    /*        Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.vendor.edit', ['vendor' => $row->id]),
+                ->route('admin.vendor.edit', ['vendor' => $row->id]),*/
             Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
