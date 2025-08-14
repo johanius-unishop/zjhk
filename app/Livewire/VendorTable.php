@@ -88,14 +88,14 @@ final class VendorTable extends PowerGridComponent
                 ->searchable()
                 ->toggleable(),
 
-            Column::make('Страна происхождения', 'country_id'),
+            Column::make('Страна происхождения', 'country.name'),
             Column::make('Срок поставки', 'delivery_time')
                 ->editOnClick(),
 
             Column::make('Срок гарантии', 'warranty')
                 ->editOnClick(),
 
-
+            Column::make('Количество товаров', 'products_count'),
             Column::action('Действия')
         ];
     }
