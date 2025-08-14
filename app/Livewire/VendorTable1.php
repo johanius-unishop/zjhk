@@ -13,12 +13,12 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
+
 final class VendorTable extends PowerGridComponent
 {
     use LivewireAlert;
-
-    public string $tableName = 'vendor-table';
     public int|null $delete_id = null;
+    public string $tableName = 'vendor-table-1';
     public array $name;
     public array $short_name;
     public array $country;
@@ -32,8 +32,6 @@ final class VendorTable extends PowerGridComponent
 
     public function setUp(): array
     {
-        $this->showCheckBox();
-
         return [
             PowerGrid::header()
                 ->showSearchInput(),
@@ -43,25 +41,18 @@ final class VendorTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): Builder
+    public function datasource(): ?Builder
     {
         return Vendor::query()
             ->withCount('products')
             ->with('country');
     }
 
-    public function relationSearch(): array
-    {
-        return [];
-    }
-
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('id')
             ->add('name')
             ->add('short_name')
-            ->add('published')
             ->add('country.name')
             ->add('delivery_time')
             ->add('warranty')
@@ -71,35 +62,24 @@ final class VendorTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
-            Column::make('Название производителя', 'name')
-                ->sortable()
+            Column::make('ID', 'id'),
+            Column::make('Производитель', 'name')
                 ->searchable()
                 ->editOnClick(),
-
             Column::make('Краткое название', 'short_name')
-                ->sortable()
                 ->searchable()
                 ->editOnClick(),
-
-            Column::make('Published', 'published')
-                ->sortable()
-                ->searchable()
-                ->toggleable(),
-
-            Column::make('Страна происхождения', 'country_id'),
+            Column::make('Страна производителя', 'country.name'),
             Column::make('Срок поставки', 'delivery_time')
                 ->editOnClick(),
-
-            Column::make('Срок гарантии', 'warranty')
+            Column::make('Гарантийный срок', 'warranty')
                 ->editOnClick(),
-
             Column::make('Количество товаров', 'products_count'),
-            Column::action('Действия')
+            Column::action('Действия'),
         ];
     }
 
-   protected function rules()
+    protected function rules()
     {
         return [
             'name.*' => ['required'],
@@ -202,5 +182,10 @@ final class VendorTable extends PowerGridComponent
         })->validate();
 
         $model->updateOrFail([$field => $value]);
+    }
+
+    public function relationSearch(): array
+    {
+        return [];
     }
 }
