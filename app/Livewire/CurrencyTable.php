@@ -144,15 +144,14 @@ final class CurrencyTable extends PowerGridComponent
         return [];
     }
 
-    #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
-    {
-        $this->js('alert(' . $rowId . ')');
-    }
 
     public function actions(Currency $row): array
     {
         return [
+            Button::add('Edit')
+                ->slot('<i class="fas fa-edit"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.currency.edit', ['currency' => $row->id]),
             Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
