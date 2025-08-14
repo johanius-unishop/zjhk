@@ -24,6 +24,7 @@ final class VendorTable extends PowerGridComponent
     public array $country;
     public array $delivery_time;
     public array $warranty;
+    public array $published;
     public bool $showErrorBag = true;
     public $editingRowId = null;
     public $editingFieldName = '';
@@ -32,7 +33,7 @@ final class VendorTable extends PowerGridComponent
 
     public function setUp(): array
     {
-        $this->showCheckBox();
+
 
         return [
             PowerGrid::header()
@@ -94,7 +95,7 @@ final class VendorTable extends PowerGridComponent
             Column::make('Срок гарантии', 'warranty')
                 ->editOnClick(),
 
-            Column::make('Количество товаров', 'products_count'),
+
             Column::action('Действия')
         ];
     }
@@ -202,5 +203,12 @@ final class VendorTable extends PowerGridComponent
         })->validate();
 
         $model->updateOrFail([$field => $value]);
+    }
+    public function onUpdatedToggleable(string|int $id, string $field, string $value): void
+    {
+        Vendor::query()->find($id)->update([
+            $field => e($value),
+        ]);
+        $this->skipRender();
     }
 }
