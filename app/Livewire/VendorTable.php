@@ -29,7 +29,7 @@ final class VendorTable extends PowerGridComponent
     public $editingRowId = null;
     public $editingFieldName = '';
     public $editingValue = '';
-    public ?string $primaryKeyAlias = 'slug';
+   // public ?string $primaryKeyAlias = 'slug';
 
     public function setUp(): array
     {
