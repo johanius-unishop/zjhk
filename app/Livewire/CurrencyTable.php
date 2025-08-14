@@ -1,5 +1,5 @@
 <?php
-
+// Рабочая таблица
 namespace App\Livewire;
 
 use App\Models\Currency;

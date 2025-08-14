@@ -51,15 +51,13 @@ final class VendorTable extends PowerGridComponent
 
     public function fields(): PowerGridFields
     {
-        $powerGridFields = PowerGrid::fields()
+        return PowerGrid::fields()
             ->add('name')
             ->add('short_name')
             ->add('country.name')
             ->add('delivery_time')
             ->add('warranty')
             ->add('products_count');
-
-            return $powerGridFields;
     }
 
     public function columns(): array
@@ -85,20 +83,23 @@ final class VendorTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
-        ];
+        return [];
     }
 
 
-    #[\Livewire\Attributes\On('post_delete')]
-    public function post_delete($rowId): void
+    #[\Livewire\Attributes\On('vendor_delete')]
+    public function vendor_delete($rowId): void
     {
         $this->delete_id = $rowId;
-        $this->confirm('Вы действительно хотите удалить эту запись?', [
-            'onConfirmed' => 'confirmed',
-            'showCancelButton' => true,
-            'cancelButtonText' => 'Нет',
-        ]);
+        $this->confirm(
+            'Вы действительно хотите удалить этого производителя?',
+            [
+                'onConfirmed' => 'confirmed',
+                'showCancelButton' => true,
+                'cancelButtonText' => 'Нет',
+                'confirmButtonText' => 'Да'
+            ]
+        );
     }
 
     #[\Livewire\Attributes\On('confirmed')]
@@ -107,7 +108,7 @@ final class VendorTable extends PowerGridComponent
 
         $deleted_record = Vendor::where('id', $this->delete_id)->withCount('products')->firstOrFail();
         if ($deleted_record->product_count > 0) {
-            $this->dispatch('toast', message: 'У этого производителя есть товары. Вначале удалите их!', notify: 'error');
+            $this->dispatch('toast', message: 'У этого производителя есть товары. Сначала следует удалить их!', notify: 'error');
             return;
         }
 
@@ -120,6 +121,7 @@ final class VendorTable extends PowerGridComponent
         $deleted_record->delete();
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
     }
+
     public function actions(Vendor $row): array
     {
         return [
@@ -130,7 +132,7 @@ final class VendorTable extends PowerGridComponent
             Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
-                ->dispatch('post_delete', ['rowId' => $row->id]),
+                ->dispatch('vendor_delete', ['rowId' => $row->id]),
         ];
     }
 
