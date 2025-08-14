@@ -6,7 +6,4 @@ import '../../vendor/power-components/livewire-powergrid/dist/powergrid'
 
 import '../js/front'
 
-import '../css/front.css';
-console.log("Фронтенд готов!");
-import '../css/admin.css';
-console.log("Аддминка готова!");
+
