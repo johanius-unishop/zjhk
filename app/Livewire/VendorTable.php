@@ -79,12 +79,56 @@ final class VendorTable extends PowerGridComponent
         ];
     }
 
+    protected function rules()
+    {
+        return [
+            'name.*' => ['required'],
+            'country.*' => ['required'],
+            'delivery_time.*' => ['required'],
+            'warranty.*' => ['required'],
+        ];
+    }
+
+    protected function validationAttributes()
+    {
+        return [
+            'name.*'       => 'Название производителя',
+            'country.*' => 'Страна производителя',
+            'delivery_time.*' => 'Срок поставки',
+            'warranty.*' => 'Срок гарантии',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'name.*.required'     => 'Название производителя должно быть заполнено',
+            'country.*.required' => 'Страна производителя должна быть заполнена',
+            'delivery_time.*.required' => 'Срок поставки должен быть заполнен',
+            'warranty.*.required' => 'Гарантийный срок должен быть заполнен',
+        ];
+    }
+
+
 
     public function filters(): array
     {
         return [];
     }
 
+    public function actions(Vendor $row): array
+    {
+        return [
+            Button::add('Edit')
+                ->slot('<i class="fas fa-edit"></i>')
+                ->class('btn btn-primary')
+                ->route('admin.vendor.edit', ['vendor' => $row->id]),
+            Button::add('Delete')
+                ->slot('<i class="fas fa-trash"></i>')
+                ->class('btn btn-danger')
+                ->dispatch('vendor_delete', ['rowId' => $row->id]),
+        ];
+    }
 
     #[\Livewire\Attributes\On('vendor_delete')]
     public function vendor_delete($rowId): void
@@ -121,51 +165,10 @@ final class VendorTable extends PowerGridComponent
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
     }
 
-    public function actions(Vendor $row): array
-    {
-        return [
-            Button::add('Edit')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.vendor.edit', ['vendor' => $row->id]),
-            Button::add('Delete')
-                ->slot('<i class="fas fa-trash"></i>')
-                ->class('btn btn-danger')
-                ->dispatch('vendor_delete', ['rowId' => $row->id]),
-        ];
-    }
 
 
 
-    protected function rules()
-    {
-        return [
-            'name.*' => ['required'],
-            'country.*' => ['required'],
-            'delivery_time.*' => ['required'],
-            'warranty.*' => ['required'],
-        ];
-    }
 
-    protected function validationAttributes()
-    {
-        return [
-            'name.*'       => 'Название производителя',
-            'country.*' => 'Страна производителя',
-            'delivery_time.*' => 'Срок поставки',
-            'warranty.*' => 'Срок гарантии',
-        ];
-    }
-
-    protected function messages()
-    {
-        return [
-            'name.*.required'     => 'Название производителя должно быть заполнено',
-            'country.*.required' => 'Страна производителя должна быть заполнена',
-            'delivery_time.*.required' => 'Срок поставки должен быть заполнен',
-            'warranty.*.required' => 'Гарантийный срок должен быть заполнен',
-        ];
-    }
 
     public function onUpdatedEditable(int|string $id, string $field, string $value): void
     {
