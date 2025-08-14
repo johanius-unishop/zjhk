@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {!! SEO::generate() !!}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
     <title>1</title>
 </head>
 
@@ -45,7 +45,7 @@
                     </form>
                 </div>
                 <div class="flex items-center ml-20">
-                    
+
                     <a href="{{ route('login') }}" class="mr-2 text-gray-600">Войти</a>
                     <a href="#" class="mr-2 text-gray-600">Заказы</a>
                     <a href="{{ route('favorite') }}" id="linkFavourites" class="mr-2 text-gray-600" data-count="{{ Cart::instance('favourites')->count() }}">Избранное <span class="count">{{ Cart::instance('favourites')->count()
@@ -60,7 +60,7 @@
         @yield('content')
     </main>
 
-    
+
     <div class="bg-gray-200 py-4">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-between">
@@ -131,7 +131,7 @@
         </div>
     </footer>
     --}
-    @livewireScriptConfig 
+    @livewireScriptConfig
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         // add in cart
