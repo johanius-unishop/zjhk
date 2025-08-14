@@ -8,17 +8,16 @@ use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
-use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
+
 final class VendorTable extends PowerGridComponent
 {
     use LivewireAlert;
-    public $delete_id;
+    public int|null $delete_id = null;
     public string $tableName = 'vendor-table';
     public array $name;
     public array $short_name;
@@ -34,12 +33,12 @@ final class VendorTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            PowerGrid::header()->showSearchInput()->withoutLoading(),
+            PowerGrid::header()->showSearchInput(),
             PowerGrid::footer()->showPerPage()->showRecordCount(),
         ];
     }
 
-    public function datasource(): Builder
+    public function datasource(): ?Builder
     {
         return Vendor::query()->withCount('products')->with('country');
     }

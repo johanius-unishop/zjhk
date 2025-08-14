@@ -27,5 +27,5 @@
 
 @push('js')
 
-<script src="{{ asset('js/powergrid.js') }}"></script>
+
 @endpush
