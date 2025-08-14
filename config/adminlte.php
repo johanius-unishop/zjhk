@@ -299,20 +299,20 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
+       /* [
             'type' => 'navbar-search',
             'text' => 'Поиск по товарам',
             'topnav_right' => true,
             'url' => 'admin/search',
             'method' => 'get',
             'input_name' => 'searchTerm',
-        ],
+        ],*/
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
-        
+
         ['header' => 'information'],
         [
             'text' => 'Контент',
@@ -622,5 +622,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
