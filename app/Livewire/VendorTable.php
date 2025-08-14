@@ -33,19 +33,19 @@ final class VendorTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            PowerGrid::header()->showSearchInput(),
-            PowerGrid::footer()->showPerPage()->showRecordCount(),
+            PowerGrid::header()
+                ->showSearchInput(),
+            PowerGrid::footer()
+                ->showPerPage()
+                ->showRecordCount(),
         ];
     }
 
     public function datasource(): ?Builder
     {
-        return Vendor::query()->withCount('products')->with('country');
-    }
-
-    public function relationSearch(): array
-    {
-        return [];
+        return Vendor::query()
+            ->withCount('products')
+            ->with('country');
     }
 
     public function fields(): PowerGridFields
@@ -93,6 +93,7 @@ final class VendorTable extends PowerGridComponent
     {
         return [
             'name.*'       => 'Название производителя',
+            'short_name.*' => 'Краткое название производителя',
             'country.*' => 'Страна производителя',
             'delivery_time.*' => 'Срок поставки',
             'warranty.*' => 'Срок гарантии',
@@ -181,5 +182,10 @@ final class VendorTable extends PowerGridComponent
         })->validate();
 
         $model->updateOrFail([$field => $value]);
+    }
+
+    public function relationSearch(): array
+    {
+        return [];
     }
 }

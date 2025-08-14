@@ -23,10 +23,10 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\DB;
 final class ProductTypeTable extends PowerGridComponent
 {
-    use WithExport;
+
     use LivewireAlert;
     public $delete_id;
-
+    public string $tableName = 'product-type-table';
     public array $name;
     public bool $showErrorBag = true;
     public $editingRowId = null;
