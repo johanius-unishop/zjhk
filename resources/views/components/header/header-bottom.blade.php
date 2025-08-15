@@ -206,7 +206,8 @@
                                 <div class="catalogue__desc">
                                     <p>
                                         <img src={{ asset('images/icons/adapter.svg') }}  alt="адаптер">
-                                        <span>Промышленные прямоугольные разъёмы</span>
+                                        <span>{{ $categories_catalog[0]->name }}</span>
+
                                         <img src={{ asset('images/icons/arrow-blue-right.svg') }}  alt="стрелка">
                                     </p>
                                 </div>

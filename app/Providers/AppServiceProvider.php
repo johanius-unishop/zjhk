@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Providers;
-
+use Illuminate\Support\Facades\View;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Pagination\Paginator;
+use App\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::composer('*', function ($view) {
+            // Получаем список категорий из базы данных
+            $categories_catalog = Category::all();
+
+            // Передаем данные в шаблон
+            $view->with('categories_catalog', $categories_catalog);
+        });
         // VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
         //     return (new MailMessage)
         //         ->subject('Verify Email Address')
