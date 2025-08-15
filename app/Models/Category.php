@@ -54,7 +54,7 @@ class Category extends Model implements Sortable, HasMedia
             }
         });
     }
-    
+
     public function buildSortQuery()
     {
         return static::query()->where('parent_id', $this->root_id);
@@ -105,8 +105,8 @@ class Category extends Model implements Sortable, HasMedia
         ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb');
 
     }
-    
-    
+
+
     //
     // Связь с родительской категорией
     //
@@ -137,8 +137,8 @@ class Category extends Model implements Sortable, HasMedia
      *
      * @return \Kalnoy\Nestedset\Collection
      */
-    
-    
+
+
     public static function getCategoriesAsTree()
     {
         $cache_name = 'CategoriesAsTree';

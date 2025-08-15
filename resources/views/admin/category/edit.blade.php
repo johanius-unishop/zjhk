@@ -10,25 +10,6 @@
 {{-- Content body: main page content --}}
 
 @section('content')
-@if (!function_exists('buildSelectOptions'))
-    @php
-        function buildSelectOptions($tree, $selectedId = null, $level = 0)
-        {
-            $html = '';
-            foreach ($tree as $node) {
-                $indent = str_repeat('- ', $level); // Уровень вложенности
-                $optionValue = $node->id == $selectedId ? ' selected' : '';
-                $html .= '<option value="' . $node->id . '"' . $optionValue . '>' . $indent . $node['name'] . '</option>';
-
-                if ($node->children->isNotEmpty()) {
-                    $html .= buildSelectOptions($node->children, $selectedId, $level + 1);
-                }
-            }
-
-            return $html;
-        }
-    @endphp
-@endif
 <div class=" py-3  ">
     <a class="btn btn-primary" href="{{ $category->front_url }}" role="button" target="_blank"><i class="fas fa-globe"></i>
         Просмотреть на сайте</a>
