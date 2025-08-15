@@ -223,134 +223,23 @@
                                     </div>
                                     <div class="catalogue__content">
                                         @foreach ($menu_level_1_item->children as $menu_level_2_item)
-                                        <div class="catalogue__row">
-                                            <h3 class="catalogue__title">{{ $menu_level_2_item->name }}</h3>
-                                            <ul class="catalogue__category-grid">
-                                                <li><a href="#">Серия НА</a><span>24</span>
-                                                    <ul>
-                                                        <li><a href="#">Полукомплекты на основеконтактных вставок
-                                                                HA-003</a><span>15</span></li>
-                                                        <li><a href="#">Полукомплекты на основеконтактных вставок
-                                                                HA-004</a><span>15</span></li>
-                                                        <li><a href="#">Полукомплекты на основеконтактных вставок
-                                                                HA-010</a><span>4</span></li>
-                                                        <li><a href="#">Полукомплекты на основеконтактных вставок
-                                                                HA-016</a><span>3</span></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Серия НE</a><span>60</span>
-                                                    <ul>
-                                                        <li><a href="#">серия</a><span>9</span></li>
-                                                        <li><a href="#">серия</a><span>2</span></li>
-                                                        <li><a href="#">серия</a><span>4</span></li>
-                                                        <li><a href="#">серия</a><span>13</span></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Серия НD</a><span>18</span>
-                                                    <ul>
-                                                        <li><a href="#">hd серия</a><span>33</span></li>
-                                                        <li><a href="#">hd серия</a><span>9</span></li>
-                                                        <li><a href="#">hd серия</a><span>8</span></li>
-                                                        <li><a href="#">hd серия</a><span>11</span></li>
-                                                        <li><a href="#">hd серия</a><span>12</span></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Серия НDD</a><span>16</span></li>
-                                                <li><a href="#">Серия НEAV</a><span>2</span></li>
-                                                <li><a href="#">Серия НEE</a><span>20</span></li>
-                                                <li><a href="#">Серия НK</a><span>26</span></li>
-                                                <li><a href="#">Серия НM</a><span>83</span></li>
-                                                <li><a href="#">Серия НQ</a><span>15</span></li>
-                                                <li><a href="#">Серия НSB</a><span>10</span></li>
-                                            </ul>
-                                        </div>
-                                        <div class="catalogue__row">
-                                            <h3 class="catalogue__title">Корпусы</h3>
-                                            <ul class="catalogue__category-grid">
-                                                <li><a href="#">Типоразмер 3А пластик</a><span>10</span></li>
-                                                <li><a href="#">Типоразмер 3А металл</a><span>29</span></li>
-                                                <li><a href="#">Типоразмер 10А металл</a><span>34</span></li>
-                                                <li><a href="#">Типоразмер 16А металл</a><span>10</span></li>
-                                                <li><a href="#">Типоразмер 32А металл</a><span>42</span></li>
-                                                <li><a href="#">Типоразмер 6B металл</a><span>72</span></li>
-                                                <li><a href="#">Типоразмер 10B металл</a><span>168</span></li>
-                                                <li><a href="#">Типоразмер 16B металл</a><span>146</span></li>
-                                                <li><a href="#">Типоразмер 24B металл</a><span>149</span></li>
-                                                <li><a href="#">Типоразмер 32B металл</a><span>55</span></li>
-                                                <li><a href="#">Типоразмер 48B металл</a><span>30</span></li>
-                                            </ul>
-                                        </div>
-                                        <div class="catalogue__row">
-                                            <h3 class="catalogue__title">Обжимные контакты</h3>
-                                            <ul class="catalogue__category-grid">
-                                                <li><a href="#">5 Ампер</a><span>16</span></li>
-                                                <li><a href="#">10 Ампер</a><span>24</span></li>
-                                                <li><a href="#">16 Ампер</a><span>30</span></li>
-                                                <li><a href="#">40 Ампер</a><span>10</span></li>
-                                                <li><a href="#">70 Ампер</a><span>6</span></li>
-                                                <li><a href="#">100 Ампер</a><span>8</span></li>
-                                                <li><a href="#">200 Ампер</a><span>8</span></li>
-                                            </ul>
-                                        </div>
-                                        <div class="catalogue__row">
-                                            <h3 class="catalogue__title">Комплекты промышленных разъёмов</h3>
-                                            <ul class="catalogue__category-grid">
-                                                <li><a href="#">Комплекты серии HA</a><span>92</span></li>
-                                                <li><a href="#">Комплекты серии HЕ</a><span>82</span></li>
-                                                <li><a href="#">Комплекты серии HSB</a><span>20</span></li>
-                                                <li><a href="#">Комплекты серии HK</a><span>42</span></li>
-                                            </ul>
-                                        </div>
-                                        <div class="catalogue__row">
-                                            <h3 class="catalogue__title">Полукомплекты промышленных разъёмов (кожух +
-                                                вставка)
-                                            </h3>
-                                            <ul class="catalogue__category-grid">
-                                                <li><a href="#">Полукомплекты серии HA</a><span>32</span></li>
-                                                <li><a href="#">Полукомплекты серии HЕ</a><span>67</span></li>
-                                                <li><a href="#">Полукомплекты серии HSB</a><span>20</span></li>
-                                                <li><a href="#">Полукомплекты серии HK</a><span>42</span></li>
-                                            </ul>
-                                        </div>
-                                        <div class="catalogue__row">
-                                            <h3 class="catalogue__title">Сальники</h3>
-                                            <ul class="catalogue__category-grid">
-                                                <li><a href="#">Металлические сальники</a><span>29</span></li>
-                                                <li><a href="#">Пластиковые сальники</a><span>52</span></li>
-                                                <li><a href="#">Сальники с внешней разгрузкой от натяжения, с
-                                                        двойной
-                                                        фиксацией</a><span>18</span></li>
-                                                <li><a href="#">Металлические сальники с заземлением
-                                                        ЕМС</a><span>26</span></li>
-                                                <li><a href="#">Муфты для металлорукавов, металлические
-                                                    </a><span>36</span></li>
-                                                <li><a href="#">Муфты для металлорукавов, металлические
-                                                        прямые</a><span>16</span>
-                                                </li>
-                                                <li><a href="#">Пластиковые муфты для металлорукавов, быстрого
-                                                        соединения</a><span>20</span>
-                                                </li>
-                                                <li><a href="#">Пластиковые заглушки круглые</a><span>18</span>
-                                                </li>
-                                                <li><a href="#">Металлические заглушки
-                                                        шестигранные</a><span>23</span></li>
-                                                <li><a href="#">Металлические переходники</a><span>32</span></li>
-                                                <li><a href="#">Пластиковые переходники</a><span>15</span></li>
-                                                <li><a href="#">Футорки метталические</a><span>16</span></li>
-                                                <li><a href="#">Футорки пластиковые</a><span>11</span></li>
-                                                <li><a href="#">Металлические контргайки</a><span>18</span></li>
-                                                <li><a href="#">Пластиковые контргайки</a><span>42</span></li>
-                                            </ul>
-                                        </div>
-                                        <div class="catalogue__row">
-                                            <h3 class="catalogue__title">Аксессуары</h3>
-                                            <ul class="catalogue__category-grid">
-                                                <li><a href="#">Система кодирования</a><span>12</span></li>
-                                                <li><a href="#">Крепежные винты</a><span>2</span></li>
-                                                <li><a href="#">Монтажныеи стыковочные рамки</a><span>8</span>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                            <div class="catalogue__row">
+                                                <h3 class="catalogue__title">{{ $menu_level_2_item->name }}</h3>
+                                                <ul class="catalogue__category-grid">
+                                                    @foreach ($menu_level_2_item->children as $menu_level_3_item)
+                                                        <li><a
+                                                                href="#">{{ $menu_level_3_item->name }}</a><span>24</span>
+                                                            <ul>
+                                                                @foreach ($menu_level_3_item->children as $menu_level_4_item)
+                                                                    <li><a
+                                                                            href="#">{{ $menu_level_4_item->name }}</a><span>15</span>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
                                         @endforeach
                                     </div>
                                 @endforeach
