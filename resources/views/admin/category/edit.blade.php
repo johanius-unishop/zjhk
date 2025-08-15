@@ -82,10 +82,14 @@
                             <div class="col-12 mt-2">
                                 <label for="parent_id" class="form-label">Родительская категория:</label>
                                 <div class="input-group">
+
                                     <select name="parent_id" id="parent_id" class="form-control">
-                                        <option value="">-- Выберите родительскую категорию --</option>
-                                        {{ buildSelectOptions($categories, $category->parent_id) }}
-                                    </select>
+                                        <option value="">--Выберите родительскую категорию--</option>
+                                        @foreach ($parentCategories as $category)
+                                        @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
+                                        ''])
+                                        @endforeach
+                                        </select>
                                 </div>
                             </div>
 
