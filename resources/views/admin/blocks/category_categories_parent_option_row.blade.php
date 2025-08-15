@@ -1,5 +1,6 @@
 @php /** @var \App\Models\Shop\Category $category @if(request()->get('parent_id') == $category->id) selected @endif*/ @endphp
 
+@dd(@$category , $category_item);
 <option @if( @$category->parent_id == $category_item->id) selected @endif
         value="{{ $category_item->id }}"
 >
