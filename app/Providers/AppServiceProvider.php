@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             // Получаем список категорий из базы данных
             $categories_catalog = Category::defaultOrder()->get()->toTree();
 
-            dd($categories_catalog);
+
             // Передаем данные в шаблон
             $view->with('categories_catalog', $categories_catalog);
         });
