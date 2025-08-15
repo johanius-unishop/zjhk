@@ -58,7 +58,7 @@ class CategoryController extends Controller
 
             // Получаем все категории в виде дерева
             $categories = Category::getCategoriesAsTree();
-
+            dd($categories);
 
             return view('admin.category.edit', [
                 'category' => $category,
