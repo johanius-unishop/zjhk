@@ -7,7 +7,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-
+use Illuminate\Support\Facades\Log;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -66,8 +66,7 @@ final class SubcategoryTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
-        ];
+        return [];
     }
 
 
@@ -81,7 +80,6 @@ final class SubcategoryTable extends PowerGridComponent
             'showCancelButton' => true,
             'cancelButtonText' => 'Нет',
         ]);
-
     }
 
     #[\Livewire\Attributes\On('confirmed')]
@@ -105,7 +103,25 @@ final class SubcategoryTable extends PowerGridComponent
         }
         $deleted_record->delete();
         $this->dispatch('toast', message: 'Категория удалена.', notify: 'success');
+    }
 
+    #[\Livewire\Attributes\On(event: 'down_category')]
+    public function category_down($rowId): void
+    {
+        try {
+            $category = Category::findOrFail($rowId);
+            $down = $category->down();
+            if ($down) {
+                $this->dispatch('toast', message: 'Категория успешно опущена вниз.', notify: 'success');
+            } else {
+                $this->dispatch('toast', message: 'Категория не перемещена.', notify: 'danger');
+            }
+        } catch (\Throwable $th) {
+            Log::info($category->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
+            $this->dispatch('toast', message: ' Не удалось опустить  запись.' . $th->getMessage(), notify: 'error');
+            throw $th;
+        }
+        $this->dispatch('$refresh');
     }
 
     public function actions(Category $row): array
@@ -115,6 +131,14 @@ final class SubcategoryTable extends PowerGridComponent
                 ->slot('<i class="fas fa-folder"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.category.show', ['category' => $row->id]),
+            Button::add('up_category')
+                ->slot('<i class="fas fa-arrow-up"></i>')
+                ->class('btn btn-success')
+                ->dispatch('up_category', ['rowId' => $row->id]),
+            Button::add('down_category')
+                ->slot('<i class="fas fa-arrow-down"></i>')
+                ->class('btn btn-success')
+                ->dispatch('down_category', ['rowId' => $row->id]),
             Button::add('Редактировать')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
