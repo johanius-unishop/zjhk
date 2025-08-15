@@ -66,6 +66,7 @@ class CategoryController extends Controller
             ]);
         }
 
+
     /*// Метод для проверки и добавления SEO-данных
     protected function ensureSeoDataExists(Category $category)
     {
