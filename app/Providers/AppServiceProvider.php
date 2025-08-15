@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Providers;
-
 use Illuminate\Support\Facades\View;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -28,12 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             // Получаем список категорий из базы данных
-            $categories_catalog = Category::descendantsAndSelf(1)
-                ->defaultOrder()
-                ->whereNull('parent_id')
-                ->with('childrens')
-                ->get();
-            dd($categories_catalog);
+            $categories_catalog = Category::all()->defaultOrder();
+
+
             // Передаем данные в шаблон
             $view->with('categories_catalog', $categories_catalog);
         });
