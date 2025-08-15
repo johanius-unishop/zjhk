@@ -132,7 +132,7 @@ class ProductController extends Controller
         $countries        = Country::select(['name', 'id'])->orderBy('name')->get();
         $parentCategories = Category::getCategoriesAsTree();
 
-        dd($parentCategories);
+
 
         $ordered = OrderComposition::join('orders', 'orders.id', '=', 'order_compositions.order_id')
                            ->where('orders.received', false)
