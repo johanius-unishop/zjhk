@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
                 ->whereNull('parent_id')
                 ->with('childrens')
                 ->get();
-
+            dd($categories_catalog);
             // Передаем данные в шаблон
             $view->with('categories_catalog', $categories_catalog);
         });
