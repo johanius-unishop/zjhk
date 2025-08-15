@@ -19,8 +19,9 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 final class SubcategoryTable extends PowerGridComponent
 {
-    use WithExport;
     use LivewireAlert;
+
+    public string $tableName = 'subcategory-table';
     public string $parent_category;
     public $delete_id;
     public function setUp(): array
