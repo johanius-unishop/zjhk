@@ -21,6 +21,8 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 final class ProductTable extends PowerGridComponent
 {
     use LivewireAlert;
+
+    public string $tableName = 'product-table';
     public string $sortField = 'products.id';
     public $deleteId;
     public string $productTypeId;
