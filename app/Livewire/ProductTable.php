@@ -131,7 +131,7 @@ final class ProductTable extends PowerGridComponent
                 ->slot('<i class="fas fa-exclamation-circle"></i>')
                 ->class('btn btn-warning')
                 ->route('admin.problem.product-without-type', []);
-        } elseif (Gate::allows('manage content')) {
+        } elseif (Gate::allows('admin-content')) {
             $buttons[] = Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
