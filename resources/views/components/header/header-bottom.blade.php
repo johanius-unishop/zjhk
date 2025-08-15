@@ -227,14 +227,16 @@
                                                 <h3 class="catalogue__title">{{ $menu_level_2_item->name }}</h3>
                                                 <ul class="catalogue__category-grid">
                                                     @foreach ($menu_level_2_item->children as $menu_level_3_item)
-                                                        <li><a
-                                                                href="#">{{ $menu_level_3_item->name }}</a><span>24</span>
+                                                        <li>
+                                                            <a href="#">{{ $menu_level_3_item->name }}</a><span>24</span>
                                                             <ul>
+                                                                @if ($menu_level_3_item->children->count() > 0)
                                                                 @foreach ($menu_level_3_item->children as $menu_level_4_item)
-                                                                    <li><a
-                                                                            href="#">{{ $menu_level_4_item->name }}</a><span>15</span>
+                                                                    <li>
+                                                                        <a href="#">{{ $menu_level_4_item->name }}</a><span>15</span>
                                                                     </li>
                                                                 @endforeach
+                                                                @endif
                                                             </ul>
                                                         </li>
                                                     @endforeach
