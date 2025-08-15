@@ -19,6 +19,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 final class CategoryTable extends PowerGridComponent
 {
     use LivewireAlert;
+    public string $tableName = 'category-table';
     public array $name;
     public $delete_id;
     public function setUp(): array
