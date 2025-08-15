@@ -19,12 +19,12 @@
                 $indent = str_repeat('- ', $level); // Уровень вложенности
                 $optionValue = $node->id == $selectedId ? ' selected' : '';
                 $html .= '<option value="' . $node->id . '"' . $optionValue . '>' . $indent . $node['name'] . '</option>';
-                
+
                 if ($node->children->isNotEmpty()) {
                     $html .= buildSelectOptions($node->children, $selectedId, $level + 1);
                 }
             }
-            
+
             return $html;
         }
     @endphp
@@ -78,7 +78,7 @@
                             <div class=" row">
 
                             <!-- Селект для выбора родительской категории -->
-    
+
                             <div class="col-12 mt-2">
                                 <label for="parent_id" class="form-label">Родительская категория:</label>
                                 <div class="input-group">
@@ -123,10 +123,7 @@
 
 
                         </div>
-                        <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
-                            <livewire:gallery :record="$category" />
 
-                        </div>
                     </div>
 
                 </div>
