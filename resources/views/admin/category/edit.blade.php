@@ -85,7 +85,7 @@
 
                                     <select name="parent_id" id="parent_id" class="form-control">
                                         <option value="">--Выберите родительскую категорию--</option>
-                                        @foreach ($parentCategories as $category)
+                                        @foreach ($categories as $category)
                                         @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
                                         ''])
                                         @endforeach

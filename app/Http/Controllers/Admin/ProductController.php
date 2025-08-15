@@ -119,7 +119,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        if (!Gate::allows('admin-content') && !Gate::allows('manage image')) {
+        if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         // !!!Fix to seeded records
