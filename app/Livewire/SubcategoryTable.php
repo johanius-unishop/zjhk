@@ -39,6 +39,7 @@ final class SubcategoryTable extends PowerGridComponent
     public function datasource(): Builder
     {
         return Category::query()
+            ->default_order()
             ->where('parent_id', $this->parent_category)
             ->withCount('childrens')
             ->withCount('products');
