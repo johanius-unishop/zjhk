@@ -222,8 +222,9 @@
                                         </p>
                                     </div>
                                     <div class="catalogue__content">
+                                        @foreach ($menu_level_1_item->children as $menu_level_2_item)
                                         <div class="catalogue__row">
-                                            <h3 class="catalogue__title">Контактные вставки</h3>
+                                            <h3 class="catalogue__title">{{ $menu_level_2_item->name }}</h3>
                                             <ul class="catalogue__category-grid">
                                                 <li><a href="#">Серия НА</a><span>24</span>
                                                     <ul>
@@ -350,6 +351,7 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                        @endforeach
                                     </div>
                                 @endforeach
                             </div>
