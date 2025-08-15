@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             // Получаем список категорий из базы данных
-            $categories_catalog = Category::query()
+            $categories_catalog = Category::descendantsAndSelf(1)
                 ->defaultOrder()
                 ->whereNull('parent_id')
                 ->with('childrens')
