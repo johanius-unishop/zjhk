@@ -9,6 +9,6 @@
 @if($category->children->count())
     @php $padding .= '|__ '; @endphp
     @foreach($category->children as $subCategory)
-        @include('admin.blocks.categories_parent_option_row', ['category' => $subCategory, 'padding' => $padding])
+        @include('admin.blocks.product_categories_parent_option_row', ['category' => $subCategory, 'padding' => $padding])
     @endforeach
 @endif

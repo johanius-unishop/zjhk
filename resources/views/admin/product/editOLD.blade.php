@@ -93,7 +93,7 @@
                                         <select name="category_id" id="parent" class="form-control">
                                             <option value="">Корневая категория</option>
                                             @foreach ($parentCategories as $category)
-                                            @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
+                                            @include('admin.blocks.product_categories_parent_option_row', ['category' => $category, 'padding' =>
                                             ''])
                                             @endforeach
                                         </select>

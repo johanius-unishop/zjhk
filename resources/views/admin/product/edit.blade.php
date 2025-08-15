@@ -23,12 +23,12 @@
                     </li>
                     @if ($product->composite_product)
                     <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-complect-tab" data-toggle="pill" href="#custom-tabs-four-complect" role="tab" aria-controls="custom-tabs-four-complect" aria-selected="false">Состав комплекта</a>                        
+                        <a class="nav-link" id="custom-tabs-four-complect-tab" data-toggle="pill" href="#custom-tabs-four-complect" role="tab" aria-controls="custom-tabs-four-complect" aria-selected="false">Состав комплекта</a>
                     </li>
                     @endif
                     <li class="nav-item">
                         <a class="nav-link" id="custom-tabs-four-related-products-tab" data-toggle="pill" href="#custom-tabs-four-related-products" role="tab" aria-controls="custom-tabs-four-related-products" aria-selected="false">Сопутствующие товары</a>
-                    </li>                        
+                    </li>
                 </ul>
             </div>
             <div class="card-body">
@@ -74,7 +74,7 @@
                                         <select name="category_id" id="parent" class="form-control">
                                         <option value="">--Выберите категорию--</option>
                                         @foreach ($parentCategories as $category)
-                                        @include('admin.blocks.categories_parent_option_row', ['category' => $category, 'padding' =>
+                                        @include('admin.blocks.product_categories_parent_option_row', ['category' => $category, 'padding' =>
                                         ''])
                                         @endforeach
                                         </select>
@@ -232,7 +232,7 @@
                                         @error('ordered')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>   
+                                    </div>
                                     <div class="form-group">
                                         <label for="priority"> Приоритет</label>
                                         <input type="text" class="form-control" name="priority" id="priority" value="{{ @$product->priority }}">
@@ -370,12 +370,12 @@
                                 </div>
                             </div>
                             <div class=" py-3 form-row justify-content-center">
-                                <a class="btn .btn-lg btn-success " href="{{ route('admin.product.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>&nbsp; 
+                                <a class="btn .btn-lg btn-success " href="{{ route('admin.product.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a>&nbsp;
                                 <button type="submit" name="action" value="save" class="btn btn-primary">Сохранить</button>
                                 &nbsp;
                                 <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и закрыть</button>
                             </div>
-                        </form> 
+                        </form>
                         <div class="card card-success mt-3">
                             <div class="card-header">
                                 <h3 class="card-title"><strong>Характеристики товара </strong></h3>
@@ -418,15 +418,15 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>        
+                        </div>
                     </div>
                     <div class="tab-pane fade show" id="custom-tabs-four-complect" role="tabpanel" aria-labelledby="custom-tabs-four-complect-tab">
                         <livewire:product-composite-elements-component :product="$product" />
                     </div>
                     <div class="tab-pane fade show" id="custom-tabs-four-related-products" role="tabpanel" aria-labelledby="custom-tabs-four-related-products-tab">
                         <livewire:product-related-products-component :product="$product" />
-                    </div>   
-                </div>                                                      
+                    </div>
+                </div>
             </div>
         </div>
     </div>
