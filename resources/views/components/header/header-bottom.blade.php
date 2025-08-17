@@ -233,7 +233,7 @@
                                                                 <ul>
                                                                     @foreach ($menu_level_3_item->children as $menu_level_4_item)
                                                                         <li>
-                                                                            <a href="#">{{ $menu_level_4_item->name }}</a>
+                                                                            <a href="{{ $menu_level_4_item->frontUrl() }}">{{ $menu_level_4_item->name }}</a>
                                                                         </li>
                                                                     @endforeach
                                                                 </ul>
