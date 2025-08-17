@@ -1,11 +1,10 @@
 @if (Breadcrumbs::exists())
-<p> есть крошки </p>
     <div class="breadcrumbs">
         <ul class="breadcrumbs__list">
-
             @foreach (Breadcrumbs::generate('category.show', $data['parents'], $data['category']) as $crumb)
                 @if (!$loop->last)
-                    <li><a href="{{ $crumb->url }}">{{ $crumb->title }}</a><img src="{{ asset('images/icons/arrow-right.svg') }}" alt="стрелка"></li>
+                    <li><a href="{{ $crumb->url }}">{{ $crumb->title }}</a><img
+                            src="{{ asset('images/icons/arrow-right.svg') }}" alt="стрелка"></li>
                 @else
                     <li><span>{{ $crumb->title }}</span></li>
                 @endif
