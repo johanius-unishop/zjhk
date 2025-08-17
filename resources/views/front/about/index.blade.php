@@ -67,7 +67,7 @@
                </div>
                <div class="about-company__btn-wrapper">
                   <a href="#">Перейти в каталог</a>
-                  <a href="{{ route('contact') }}">Связаться с нами</a>
+                  <a href="{{ route('contacts') }}">Связаться с нами</a>
                   <a href="{{ route('question') }}">Вопрос-Ответ</a>
                </div>
             </div>
