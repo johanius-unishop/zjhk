@@ -62,10 +62,8 @@ Breadcrumbs::for('search_result', function (BreadcrumbTrail $trail) {
     $trail->push('Результаты поиска'  );
 });
 
-
-
 // Home > Categories
-Breadcrumbs::for('categories', function (BreadcrumbTrail $trail, array $parents = [], Category $item) {
+Breadcrumbs::for('category.show', function (BreadcrumbTrail $trail, array $parents = [], Category $item) {
     $trail->parent('home');
     $trail->push('Каталог товаров', route('catalog'));
     if (isset($parents) && is_countable($parents) > 0) {
@@ -76,6 +74,18 @@ Breadcrumbs::for('categories', function (BreadcrumbTrail $trail, array $parents 
     $trail->push($item->name);
     });
 
+// Home > Product
+Breadcrumbs::for('product.show', function (BreadcrumbTrail $trail, array $parents = [], Product $item) {
+    $trail->parent('home');
+    $trail->push('Каталог товаров', route('catalog'));
+
+    if (!empty($parents)) {
+        foreach ($parents as $category) {
+            $trail->push($category['name'], URL::to('/category/' . @$category['slug']));
+        }
+    }
+    $trail->push($item->name);
+});
 
 
 // Home > News > [news]
@@ -132,18 +142,6 @@ Breadcrumbs::for('favourites', function (BreadcrumbTrail $trail) {
     $trail->push('Избранное');
 });
 
-// Home > Product
-Breadcrumbs::for('product.show', function (BreadcrumbTrail $trail, array $parents = [], Product $item) {
-    $trail->parent('home');
-    $trail->push('Каталог товаров', route('catalog'));
-
-    if (!empty($parents)) {
-        foreach ($parents as $category) {
-            $trail->push($category['name'], URL::to('/category/' . @$category['slug']));
-        }
-    }
-    $trail->push($item->name);
-});
 
 
 
