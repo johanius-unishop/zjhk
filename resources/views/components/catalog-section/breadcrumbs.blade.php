@@ -1,4 +1,5 @@
 @if (Breadcrumbs::exists())
+<p> есть крошки </p>
     <div class="breadcrumbs">
         <ul class="breadcrumbs__list">
 

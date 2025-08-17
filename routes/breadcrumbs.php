@@ -63,10 +63,23 @@ Breadcrumbs::for('search_result', function (BreadcrumbTrail $trail) {
 });
 
 
+// Home > Product
+Breadcrumbs::for('product.show', function (BreadcrumbTrail $trail, array $parents = [], Product $item) {
+    $trail->parent('home');
+    $trail->push('Каталог товаров', route('catalog'));
+
+    if (!empty($parents)) {
+        foreach ($parents as $category) {
+            $trail->push($category['name'], URL::to('/category/' . @$category['slug']));
+        }
+    }
+    $trail->push($item->name);
+});
 
 // Home > Categories
-Breadcrumbs::for('categories', function (BreadcrumbTrail $trail, $parents, Category $item) {
-    $trail->parent('catalog');
+Breadcrumbs::for('categories', function (BreadcrumbTrail $trail, array $parents = [], Category $item) {
+    $trail->parent('home');
+    $trail->push('Каталог товаров', route('catalog'));
     if (isset($parents) && is_countable($parents) > 0) {
         foreach ($parents as $category) {
             $trail->push($category['name'], URL::to('/category/' . @$category['slug']));
