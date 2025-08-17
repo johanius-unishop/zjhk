@@ -150,6 +150,7 @@ final class SubcategoryTable extends PowerGridComponent
         $category = Category::find($row->id);
         $next_siblings_count = $category->getNextSiblings()->count();
         $prev_siblings_count = $category->getPrevSiblings()->count();
+        $row->products_count;
 
         $buttons = [];
 
@@ -182,11 +183,13 @@ final class SubcategoryTable extends PowerGridComponent
             ->route('admin.category.edit', ['category' => $row->id]);
 
         // Всегда добавляем кнопку удаления
-        $buttons[] = Button::add('Удалить')
+
+        if ($row->products_count == 0 && $row->childrens_count == 0){
+            $buttons[] = Button::add('Удалить')
             ->slot('<i class="fas fa-trash"></i>')
             ->class('btn btn-danger')
             ->dispatch('delete_subcategory', ['rowId' => $row->id]);
-
+        }
         return $buttons;
     }
     #[\Livewire\Attributes\On('update-subcategory-table')]
