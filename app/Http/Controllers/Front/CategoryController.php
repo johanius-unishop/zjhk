@@ -14,7 +14,9 @@ class CategoryController extends Controller
     public function catalog(Request $request)
     {
         // $categories = Category::published()->get();
-        $childrens = Category::whereIsRoot( )->get();
+        $childrens = Category::whereIsRoot( )
+            ->with('childrens')
+            ->get();
     //   dd($childrens );
         SEOMeta::setTitle( "Каталог товаров");
         SEOMeta::setDescription( "Каталог товаров");
