@@ -13,7 +13,7 @@
                 <h3>Похоже, такой страницы не существует</h3>
                 <div class="error__btn-container">
                     <a href="{{ route('home') }}">На главную</a>
-                    <a href="{{ route('contact') }}" class="error-btn btn-link">Связаться с нами</a>
+                    <a href="{{ route('contacts') }}" class="error-btn btn-link">Связаться с нами</a>
                     <button>Написать нам</button>
                 </div>
             </div>
