@@ -35,6 +35,7 @@
                             <p>{{ $mainContacts['companyAddress'] }}</p>
                         </a>
                     </div>
+                    <a href="{{ route('contact') }}" class="error-btn btn-link">Связаться с нами</a>
                     <button class="footer__write-btn">Написать нам</button>
                 </div>
                 <div class="footer__messenger">

@@ -7,12 +7,13 @@
     <section class="error">
         <div class="error__container container">
             <div class="error__img-container">
-                <img src="/images/content/404.jpg" alt="404">
+                <img src="{{ asset('images/content/404.jpg') }} " alt="404">
             </div>
             <div class="error__content">
                 <h3>Похоже, такой страницы не существует</h3>
                 <div class="error__btn-container">
                     <a href="{{ route('home') }}">На главную</a>
+                    <a href="{{ route('contact') }}" class="error-btn btn-link">Связаться с нами</a>
                     <button>Написать нам</button>
                 </div>
             </div>
