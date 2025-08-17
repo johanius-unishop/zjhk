@@ -16,7 +16,7 @@
                                 <a href="{{ config('app.url') . '/category/' . $subcategory->slug }}">
                                     <div class="products__item-wrapper">
                                         <div>
-                                            @if (!empty($data['images']))
+                                            @if (!empty($data['images'][0]))
                                                 <img src="{{ $data['images'][0]->getUrl() }}" alt="товар">
                                             @endif
 
