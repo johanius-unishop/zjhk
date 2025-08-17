@@ -54,9 +54,9 @@
                             <h5 class="banner__item-title">ВсеИнструменты.ру</h5>
                             <p class="banner__item-text">Полный ассортимент товаров на популярном маркетплейсе</p>
                         </div>
-                        <img src="{{ asset('images/icons/instrumenty-logo.png') }}" alt="все инструменты" class="banner__item-img">
+                        <img src="{{ asset('images/icons/instrymenty-logo.png') }}" alt="все инструменты" class="banner__item-img">
                     </div>
-                    <img src="{{ asset('images/icons/instrumenty-logo-2.png') }}" alt="все инструменты">
+                    <img src="{{ asset('images/icons/instrymenty-logo-2.png') }}" alt="все инструменты">
                 </div>
             </div>
         </div>
