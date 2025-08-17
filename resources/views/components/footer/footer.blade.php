@@ -36,7 +36,7 @@
                         </a>
                     </div>
                     <a href="{{ route('contacts') }}" class="footer__write-btn">Написать нам</a>
-                    <button onclick="window.location.href='{{ route('contacts') }}'">Нажми меня!</button>
+                    <button class="footer__write-btn" onclick="window.location.href='{{ route('contacts') }}'">Нажми меня!</button>
                     <button class="footer__write-btn">Написать нам</button>
                 </div>
                 <div class="footer__messenger">
