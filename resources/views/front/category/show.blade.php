@@ -16,7 +16,7 @@
                         <a href="{{ config('app.url') . "/category/" . $subcategory->slug }}">
                             <div class="products__item-wrapper">
                                 <div>
-                                    <img src="./img/products/photo-5.png" alt="товар">
+                                    <img src="{{ $data['images'][0]->getUrl() }}" alt="товар">
                                 </div>
                                 <div>
                                     <h5>{{ $subcategory->name }}
