@@ -41,7 +41,6 @@ class CategoryController extends Controller
 
         $images = $category->getMedia('images');
 
-        dd($images);
         SEOMeta::setTitle($category->seo->title);
         SEOMeta::setDescription($category->seo->description);
         SEOMeta::setKeywords($category->seo->keywords);

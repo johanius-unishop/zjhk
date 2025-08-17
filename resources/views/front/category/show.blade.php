@@ -11,21 +11,24 @@
                         <p>{{ $data['category']->description }}</p>
                     </div>
                     @if ($data['childrens']->count() > 0)
-                    <div class="products__grid hide-subsequent-rows">
-                        @foreach ($data['childrens'] as $subcategory)
-                        <a href="{{ config('app.url') . "/category/" . $subcategory->slug }}">
-                            <div class="products__item-wrapper">
-                                <div>
-                                    <img src="{{ $data['images'][0]->getUrl() }}" alt="товар">
-                                </div>
-                                <div>
-                                    <h5>{{ $subcategory->name }}
-                                    </h5>
-                                </div>
-                            </div>
-                        </a>
-                        @endforeach
-                    </div>
+                        <div class="products__grid hide-subsequent-rows">
+                            @foreach ($data['childrens'] as $subcategory)
+                                <a href="{{ config('app.url') . '/category/' . $subcategory->slug }}">
+                                    <div class="products__item-wrapper">
+                                        <div>
+                                            @if (!empty($data['images']))
+                                                <img src="{{ $data['images'][0]->getUrl() }}" alt="товар">
+                                            @endif
+
+                                        </div>
+                                        <div>
+                                            <h5>{{ $subcategory->name }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
                     @endif
                 </div>
             </div>
