@@ -27,7 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             // Получаем список категорий из базы данных
-            $categories_catalog = Category::defaultOrder()->get()->toTree();
+            $categories_catalog = Category::defaultOrder()
+                ->where('published','!=','0')
+                ->get()->toTree();
 
 
             // Передаем данные в шаблон
