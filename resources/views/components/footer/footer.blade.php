@@ -22,9 +22,9 @@
                 <div class="footer__connect">
                     <h5 class="footer__title">Мы на связи</h5>
                     <div class="footer__connect-wrapper">
-                        <a href="tel:+78122008275">
+                        <a href="tel:{{ $mainContacts['companyMainPhonePurified'] }}">">
                             <img src={{ asset('images/icons/phone-stroke.svg') }}  alt="телефон">
-                            <span>+7 812 200 82 75</span>
+                            <span>tel:{{ $mainContacts['companyMainPhone'] }}"></span>
                         </a>
                         <a href="mailto:info@kevtek.ru">
                             <img src={{ asset('images/icons/envelope-stroke.svg') }}  alt="почта">

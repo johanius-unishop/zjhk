@@ -22,7 +22,7 @@
                             </div>
                             <div class="contacts__item-wrapper">
                                 <h3>Телефон:</h3>
-                                <a href="tel:+78122008275">+7 (812) 200 82 75</a>
+                                <a href="tel:{{ $mainContacts['companyMainPhonePurified'] }}">{{ $mainContacts['companyMainPhone'] }}</a>
                             </div>
                             <div class="contacts__item-wrapper">
                                 <h3>График работы:</h3>

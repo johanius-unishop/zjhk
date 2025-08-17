@@ -116,8 +116,8 @@
                     <h4 class="text-white text-lg font-bold mb-4">Контакты</h4>
                     <ul class="list-none">
                         <li class="mb-2">
-                            <a href="tel:+78122008275" class="text-gray-400 hover:text-white">
-                                <i class="fas fa-phone mr-2"></i> +7 812 200-82-75
+                            <a href="tel:{{ $mainContacts['companyMainPhonePurified'] }}">" class="text-gray-400 hover:text-white">
+                                <i class="fas fa-phone mr-2"></i> {{ $mainContacts['companyMainPhonePurified'] }}
                             </a>
                         </li>
                         <li>

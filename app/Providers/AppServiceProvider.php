@@ -41,9 +41,10 @@ class AppServiceProvider extends ServiceProvider
             if(isset($mainContacts['companyMainPhone'])) { // Проверяем наличие ключа companyMainPhone
                 $mainContacts['companyMainPhonePurified'] = preg_replace('/[^+\d]/', '', $mainContacts['companyMainPhone']);
             }
-            dd($mainContacts);
+
             // Передаем данные в шаблон
-            $view->with('categories_catalog', $categories_catalog);
+            $view->with('categories_catalog', $categories_catalog)
+                ->with('mainContacts', $mainContacts);
         });
         // VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
         //     return (new MailMessage)
