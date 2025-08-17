@@ -113,7 +113,7 @@ final class SubcategoryTable extends PowerGridComponent
             $category = Category::findOrFail($rowId);
             $down = $category->down();
             if ($down) {
-                $this->dispatch('toast', message: 'Категория успешно опущена вниз.', notify: 'success');
+                $this->dispatch('toast', message: 'Категория перемещена вниз.', notify: 'success');
             } else {
                 $this->dispatch('toast', message: 'Категория не перемещена.', notify: 'danger');
             }
@@ -146,28 +146,47 @@ final class SubcategoryTable extends PowerGridComponent
 
     public function actions(Category $row): array
     {
-        return [
-            Button::add('Просмотр')
-                ->slot('<i class="fas fa-folder"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.category.show', ['category' => $row->id]),
-            Button::add('up_category')
+
+        $next_siblings_count = Category::getNextSiblings()->count();
+        $prev_siblings_count = Category::getPrevSiblings()->count();
+
+        $buttons = [];
+
+        // Всегда добавляем кнопку просмотра
+        $buttons[] = Button::add('Просмотр')
+            ->slot('<i class="fas fa-folder"></i>')
+            ->class('btn btn-primary')
+            ->route('admin.category.show', ['category' => $row->id]);
+
+        // Условие для показа кнопки перемещения вверх
+        if ($prev_siblings_count > 0) {
+            $buttons[] = Button::add('up_category')
                 ->slot('<i class="fas fa-arrow-up"></i>')
                 ->class('btn btn-success')
-                ->dispatch('up_category', ['rowId' => $row->id]),
-            Button::add('down_category')
+                ->dispatch('up_category', ['rowId' => $row->id]);
+        }
+
+        // Условие для показа кнопки перемещения вниз
+        if ($next_siblings_count > 0) {
+            $buttons[] = Button::add('down_category')
                 ->slot('<i class="fas fa-arrow-down"></i>')
                 ->class('btn btn-success')
-                ->dispatch('down_category', ['rowId' => $row->id]),
-            Button::add('Редактировать')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.category.edit', ['category' => $row->id]),
-            Button::add('Удалить')
-                ->slot('<i class="fas fa-trash"></i>')
-                ->class('btn btn-danger')
-                ->dispatch('delete_subcategory', ['rowId' => $row->id]),
-        ];
+                ->dispatch('down_category', ['rowId' => $row->id]);
+        }
+
+        // Всегда добавляем кнопку редактирования
+        $buttons[] = Button::add('Редактировать')
+            ->slot('<i class="fas fa-edit"></i>')
+            ->class('btn btn-primary')
+            ->route('admin.category.edit', ['category' => $row->id]);
+
+        // Всегда добавляем кнопку удаления
+        $buttons[] = Button::add('Удалить')
+            ->slot('<i class="fas fa-trash"></i>')
+            ->class('btn btn-danger')
+            ->dispatch('delete_subcategory', ['rowId' => $row->id]);
+
+        return $buttons;
     }
     #[\Livewire\Attributes\On('update-subcategory-table')]
     public function updateSubcategoryTable(): void
