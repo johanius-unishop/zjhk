@@ -745,7 +745,7 @@ input[type=radio i], input[type=checkbox i] {
   align-items: center;
 }
 .header__phone-wrapper .header__submenu {
-  width: 10.625rem;
+  width: auto;
   text-wrap: nowrap;
 }
 @media (any-hover: hover) {
