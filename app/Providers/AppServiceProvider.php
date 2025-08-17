@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Pagination\Paginator;
 use App\Models\Category;
+use App\Models\Setting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
             $categories_catalog = Category::defaultOrder()
                 ->where('published','!=','0')
                 ->get()->toTree();
-
-
+            $mainContacts = Setting::querry()->where('group','=','mainContacts')->get()->toArray();
+            dd($mainContacts);
             // Передаем данные в шаблон
             $view->with('categories_catalog', $categories_catalog);
         });
