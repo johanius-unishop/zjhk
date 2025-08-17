@@ -34,9 +34,9 @@
                             <h5 class="banner__item-title">Заказать на OZON</h5>
                             <p class="banner__item-text">Полный ассортимент товаров на популярном маркетплейсе</p>
                         </div>
-                        <img src="{{ asset('images/icons/ozon-logo.svg') }}" alt="озон" class="banner__item-img">
+                        <img src="{{ asset('images/icons/ozon-logo.png') }}" alt="озон" class="banner__item-img">
                     </div>
-                    <img src="{{ asset('images/icons/ozon-logo-2.svg') }}" alt="озон">
+                    <img src="{{ asset('images/icons/ozon-logo-2.png') }}" alt="озон">
                 </div>
                 <div class="banner__market-item">
                     <div class="banner__item-wrapper">
@@ -44,9 +44,9 @@
                             <h5 class="banner__item-title">Заказать на Яндекс Маркет</h5>
                             <p class="banner__item-text">Полный ассортимент товаров на популярном маркетплейсе</p>
                         </div>
-                        <img src="{{ asset('images/icons/yandex-m-logo.svg') }}" alt="яндекс" class="banner__item-img">
+                        <img src="{{ asset('images/icons/yandex-m-logo.png') }}" alt="яндекс" class="banner__item-img">
                     </div>
-                    <img src="{{ asset('images/icons/yandex-m-logo-2.svg') }}" alt="яндекс">
+                    <img src="{{ asset('images/icons/yandex-m-logo-2.png') }}" alt="яндекс">
                 </div>
                 <div class="banner__market-item">
                     <div class="banner__item-wrapper">
