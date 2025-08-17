@@ -4,20 +4,11 @@
     <main>
         <section class="products">
             <div class="products__container container">
-                <div class="breadcrumbs">
-                    <ul class="breadcrumbs__list">
-                        <li><a href="#">Главная</a><img src="./img/icons/arrow-right.svg" alt="стрелка"></li>
-                        <li><a href="#">Каталог</a><img src="./img/icons/arrow-right.svg" alt="стрелка"></li>
-                        <li><a href="#">Промышленные прямоугольные разъёмы</a><img src="./img/icons/arrow-right.svg"
-                                alt="стрелка"></li>
-                        <li><span>Комплекты промышленных разъёмов</span></li>
-                    </ul>
-                </div>
+                @include('components.catalog-section.breadcrumbs')
                 <div class="products__content">
                     <div class="products__title-container">
-                        <h2>Комплекты промышленных разъёмов</h2>
-                        <p>Комплекты промышленных разъёмов состоят из пары совместимых контактных вставок (розетки и вилки)
-                            и необходимых кожухов и кабельных вводов</p>
+                        <h2>{{ $category->name }}</h2>
+                        <p>{{ $category->description }}</p>
                     </div>
                     <div class="products__grid hide-subsequent-rows">
                         <a href="#">
