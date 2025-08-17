@@ -146,9 +146,9 @@ final class SubcategoryTable extends PowerGridComponent
 
     public function actions(Category $row): array
     {
-
-        $next_siblings_count = Category::getNextSiblings()->count();
-        $prev_siblings_count = Category::getPrevSiblings()->count();
+        $category = Category::where('id', $row)->firstOrNull();
+        $next_siblings_count = $category->getNextSiblings()->count();
+        $prev_siblings_count = $category->getPrevSiblings()->count();
 
         $buttons = [];
 
