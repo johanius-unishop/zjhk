@@ -31,7 +31,12 @@ class AppServiceProvider extends ServiceProvider
             $categories_catalog = Category::defaultOrder()
                 ->where('published','!=','0')
                 ->get()->toTree();
-            $mainContacts = Setting::where('group','=','companyContacts')->get()->toArray();
+            $mainContacts = Setting::where('group','=','companyContacts')
+                ->get()
+                ->mapWithKeys(function ($item){
+                    return [$item['key'] => $item['value']];
+                })
+                ->all();
             dd($mainContacts);
             // Передаем данные в шаблон
             $view->with('categories_catalog', $categories_catalog);
