@@ -16,23 +16,23 @@
                 <a href="{{ route('home') }}">
                 <img src={{ asset('images/icons/logo.svg') }}  alt="лого">
                 </a>
-                <p class="footer__address">г. Всеволожск, ул. Аэропортовская, 14</p>
+                <p class="footer__address">{{ $mainContacts['companyAddress'] }}</p>
             </div>
             <nav class="footer__nav">
                 <div class="footer__connect">
                     <h5 class="footer__title">Мы на связи</h5>
                     <div class="footer__connect-wrapper">
-                        <a href="tel:{{ $mainContacts['companyMainPhonePurified'] }}">">
+                        <a href="tel:{{ $mainContacts['companyMainPhonePurified'] }}">
                             <img src={{ asset('images/icons/phone-stroke.svg') }}  alt="телефон">
-                            <span>tel:{{ $mainContacts['companyMainPhone'] }}"></span>
+                            <span>{{ $mainContacts['companyMainPhone'] }}</span>
                         </a>
-                        <a href="mailto:info@kevtek.ru">
+                        <a href="mailto:{{ $mainContacts['companyMainEmail'] }}">
                             <img src={{ asset('images/icons/envelope-stroke.svg') }}  alt="почта">
-                            <span>info@kevtek.ru</span>
+                            <span>{{ $mainContacts['companyMainEmail'] }}</span>
                         </a>
                         <a href="geo:59.99512081700448,30.641846915269824">
                             <img src={{ asset('images/icons/location.svg') }}  alt="адрес">
-                            <p>г. Всеволожск ул. Аэропортовская, 14</p>
+                            <p>{{ $mainContacts['companyAddress'] }}</p>
                         </a>
                     </div>
                     <button class="footer__write-btn">Написать нам</button>

@@ -12,9 +12,9 @@
                         <li><a href="tel:+79313668687">+7 (931) 366 86 87 (Евгений)</a> </li>
                     </ul>
                 </div>
-                <a class="header__email-wrapper" href="mailto:info@kevtek.ru">
+                <a class="header__email-wrapper" href="mailto:{{ $mainContacts['companyMainEmail'] }}">
                     <img src={{ asset('images/icons/envelope-stroke.svg') }}  alt="почта">
-                    <span>info@kevtek.ru</span>
+                    <span>{{ $mainContacts['companyMainEmail'] }}</span>
                 </a>
             </div>
             <nav class="header__nav-pages">

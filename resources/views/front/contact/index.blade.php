@@ -18,7 +18,7 @@
                         <div class="contacts__info-wrapper">
                             <div class="contacts__item-wrapper">
                                 <h3>Электронная почта:</h3>
-                                <a href="mailto:info@kevtek.ru">info@kevtek.ru</a>
+                                <a href="mailto:{{ $mainContacts['companyMainEmail'] }}">{{ $mainContacts['companyMainEmail'] }}</a>
                             </div>
                             <div class="contacts__item-wrapper">
                                 <h3>Телефон:</h3>
