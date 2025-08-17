@@ -10,51 +10,23 @@
                         <h2>{{ $data['category']->name }}</h2>
                         <p>{{ $data['category']->description }}</p>
                     </div>
+                    @if ($data['childrens']->count() > 0)
                     <div class="products__grid hide-subsequent-rows">
-                        <a href="#">
+                        @foreach ($data['childrens'] as $subcategory)
+                        <a href="{{ config('app.url') . "/category/" . $subcategory->slug }}">
                             <div class="products__item-wrapper">
                                 <div>
                                     <img src="./img/products/photo-5.png" alt="товар">
                                 </div>
                                 <div>
-                                    <h5>Комплекты серии HA
+                                    <h5>{{ $subcategory->name }}
                                     </h5>
                                 </div>
                             </div>
                         </a>
-                        <a href="#">
-                            <div class="products__item-wrapper">
-                                <div>
-                                    <img src="./img/products/photo-12.png" alt="товар">
-                                </div>
-                                <div>
-                                    <h5>Комплекты серии HE
-                                    </h5>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="products__item-wrapper">
-                                <div>
-                                    <img src="./img/products/photo-4.png" alt="товар">
-                                </div>
-                                <div>
-                                    <h5>Комплекты серии HSB
-                                    </h5>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="products__item-wrapper">
-                                <div>
-                                    <img src="./img/products/photo-14.png" alt="товар">
-                                </div>
-                                <div>
-                                    <h5>Комплекты серии HK</h5>
-                                </div>
-                            </div>
-                        </a>
+                        @endforeach
                     </div>
+                    @endif
                 </div>
             </div>
         </section>
