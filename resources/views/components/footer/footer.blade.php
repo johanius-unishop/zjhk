@@ -35,9 +35,7 @@
                             <p>{{ $mainContacts['companyAddress'] }}</p>
                         </a>
                     </div>
-                    <a href="{{ route('contacts') }}" class="footer__write-btn">Написать нам</a>
-                    <button class="footer__write-btn" onclick="window.location.href='{{ route('contacts') }}'">Нажми меня!</button>
-                    <button class="footer__write-btn">Написать нам</button>
+                    <button class="footer__write-btn" onclick="window.location.href='{{ route('contacts') }}'">Написать нам</button>
                 </div>
                 <div class="footer__messenger">
                     <h5 class="footer__title">Мессенджеры</h5>
