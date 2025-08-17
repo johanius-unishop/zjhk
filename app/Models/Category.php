@@ -161,7 +161,7 @@ class Category extends Model implements Sortable, HasMedia
     }
 
 
-    public function frontUrl(): Attribute
+    protected function frontUrl(): Attribute
     {
         return new Attribute(
             get: fn() => config('app.url') . "/category/" . $this->slug,

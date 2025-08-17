@@ -228,12 +228,12 @@
                                                 <ul class="catalogue__category-grid">
                                                     @foreach ($menu_level_2_item->children as $menu_level_3_item)
                                                         <li>
-                                                            <a href="{{ $menu_level_3_item->frontUrl() }}">{{ $menu_level_3_item->name }}</a>
+                                                            <a href="{{ config('app.url') . "/category/" . $menu_level_3_item->slug }}">{{ $menu_level_3_item->name }}</a>
                                                             @if ($menu_level_3_item->children->count() > 0)
                                                                 <ul>
                                                                     @foreach ($menu_level_3_item->children as $menu_level_4_item)
                                                                         <li>
-                                                                            <a href="{{ $menu_level_4_item->frontUrl() }}">{{ $menu_level_4_item->name }}</a>
+                                                                            <a href="{{ config('app.url') . "/category/" . $menu_level_4_item->slug }}">{{ $menu_level_4_item->name }}</a>
                                                                         </li>
                                                                     @endforeach
                                                                 </ul>
