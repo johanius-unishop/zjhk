@@ -29,7 +29,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('slug', $slug)->firstOrFail();
         $childrens = $category->childrens;
-        $breadcrumbs = $category->ancestors->toArray();
+        $parents = Category::ancestorsAndSelf($category)->toArray();
 
         $products = Product::where('category_id', $category->id)->with('media')->paginate(12)->withQueryString();
         // $products = $category->products->paginate(12);
@@ -47,7 +47,7 @@ class CategoryController extends Controller
 
         $data = [
             'category' => $category,
-            'breadcrumbs' => $breadcrumbs,
+            'parents' => $parents,
             'products' => $products,
             'childrens' => $childrens,
             'images' => $images,
