@@ -217,14 +217,14 @@
                                     <div class="catalogue__desc">
                                         <p>
                                             <img src={{ asset('images/icons/adapter.svg') }} alt="адаптер">
-                                            <span>{{ $menu_level_1_item->name }}</span>
+                                            <a href="#"><span>{{ $menu_level_1_item->name }}</span></a>
                                             <img src={{ asset('images/icons/arrow-blue-right.svg') }} alt="стрелка">
                                         </p>
                                     </div>
                                     <div class="catalogue__content">
                                         @foreach ($menu_level_1_item->children as $menu_level_2_item)
                                             <div class="catalogue__row">
-                                                <h3 class="catalogue__title">{{ $menu_level_2_item->name }}</h3>
+                                                <a href="#"><h3 class="catalogue__title">{{ $menu_level_2_item->name }}</h3></a>
                                                 <ul class="catalogue__category-grid">
                                                     @foreach ($menu_level_2_item->children as $menu_level_3_item)
                                                         <li>
