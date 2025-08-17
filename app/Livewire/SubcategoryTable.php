@@ -22,6 +22,7 @@ final class SubcategoryTable extends PowerGridComponent
     use LivewireAlert;
 
     public string $tableName = 'subcategory-table';
+    public array $name;
     public string $parent_category;
     public $delete_id;
     public function setUp(): array
