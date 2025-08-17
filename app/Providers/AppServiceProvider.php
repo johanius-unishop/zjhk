@@ -37,6 +37,10 @@ class AppServiceProvider extends ServiceProvider
                     return [$item['key'] => $item['value']];
                 })
                 ->all();
+
+            if(isset($mainContacts['companyMainPhone'])) { // Проверяем наличие ключа companyMainPhone
+                $mainContacts['companyMainPhonePurified'] = preg_replace('/[^+\d]/', '', $mainContacts['companyMainPhone']);
+            }
             dd($mainContacts);
             // Передаем данные в шаблон
             $view->with('categories_catalog', $categories_catalog);
