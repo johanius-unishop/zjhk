@@ -119,7 +119,26 @@ final class SubcategoryTable extends PowerGridComponent
             }
         } catch (\Throwable $th) {
             Log::info($category->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
-            $this->dispatch('toast', message: ' Не удалось опустить  запись.' . $th->getMessage(), notify: 'error');
+            $this->dispatch('toast', message: ' Не удалось переместить категорию вниз.' . $th->getMessage(), notify: 'error');
+            throw $th;
+        }
+        $this->dispatch('$refresh');
+    }
+
+    #[\Livewire\Attributes\On(event: 'up_category')]
+    public function category_up($rowId): void
+    {
+        try {
+            $category = Category::findOrFail($rowId);
+            $up = $category->up();
+            if ($up) {
+                $this->dispatch('toast', message: 'Категория перемещена вверх.', notify: 'success');
+            } else {
+                $this->dispatch('toast', message: 'Категория не перемещена.', notify: 'danger');
+            }
+        } catch (\Throwable $th) {
+            Log::info($category->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
+            $this->dispatch('toast', message: ' Не удалось переместить категорию вверх.' . $th->getMessage(), notify: 'error');
             throw $th;
         }
         $this->dispatch('$refresh');

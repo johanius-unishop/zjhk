@@ -23,6 +23,7 @@ final class ArticleTable extends PowerGridComponent
 {
     use LivewireAlert;
 
+
     public $delete_id;
     public function setUp(): array
     {

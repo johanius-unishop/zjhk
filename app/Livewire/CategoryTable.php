@@ -108,24 +108,7 @@ final class CategoryTable extends PowerGridComponent
         $this->dispatch('toast', message: 'Категория удалена.', notify: 'success');
     }
 
-    #[\Livewire\Attributes\On(event: 'down_category')]
-    public function category_down($rowId): void
-    {
-        try {
-            $category = Category::findOrFail($rowId);
-            $down = $category->down();
-            if ($down) {
-                $this->dispatch('toast', message: 'Категория успешно опущена вниз.', notify: 'success');
-            } else {
-                $this->dispatch('toast', message: 'Категория не перемещена.', notify: 'danger');
-            }
-        } catch (\Throwable $th) {
-            Log::info($category->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
-            $this->dispatch('toast', message: ' Не удалось опустить  запись.' . $th->getMessage(), notify: 'error');
-            throw $th;
-        }
-        $this->dispatch('$refresh');
-    }
+
     public function actions(Category $row): array
     {
         return [
@@ -138,14 +121,6 @@ final class CategoryTable extends PowerGridComponent
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.category.edit', ['category' => $row->id]),
-            Button::add('up_category')
-                ->slot('<i class="fas fa-arrow-up"></i>')
-                ->class('btn btn-success')
-                ->dispatch('up_category', ['rowId' => $row->id]),
-            Button::add('down_category')
-                ->slot('<i class="fas fa-arrow-down"></i>')
-                ->class('btn btn-success')
-                ->dispatch('down_category', ['rowId' => $row->id]),
             Button::add('Delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
