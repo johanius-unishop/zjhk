@@ -126,9 +126,9 @@
                 <div class="product-page__pagination">
                     <div class="product-page__pagination-content">
                         <button>
-                            <img src="/images/icons/tick-grey.svg" alt="влево" />
+                            <img src="{{ asset('images/icons/tick-grey.svg') }}" alt="влево" />
                             <img
-                                src="/images/icons/tick-black.svg"
+                                src="{{ asset('images/icons/tick-black.svg') }}"
                                 style="display: none; transform: rotateZ(180deg)"
                                 alt="влево" />
                         </button>
@@ -143,10 +143,10 @@
                         </ul>
                         <button>
                             <img
-                                src="/images/icons/tick-grey.svg"
+                                src="{{ asset('images/icons/tick-grey.svg') }}"
                                 style="display: none; transform: rotateZ(180deg)"
                                 alt="вправо" />
-                            <img src="/images/icons/tick-black.svg" alt="вправо" />
+                            <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо" />
                         </button>
                     </div>
                     <div class="product-page__page-size" data-page-size>
@@ -156,7 +156,7 @@
                                 <button class="product-page__change-btn">
                                     <span id="page-count">6</span>
                                     <img
-                                        src="/images/icons/tick-black.svg"
+                                        src="{{ asset('images/icons/tick-black.svg') }}"
                                         alt="список страниц" />
                                 </button>
                             </p>

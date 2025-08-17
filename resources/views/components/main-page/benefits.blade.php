@@ -5,7 +5,7 @@
                   <div class="benefits__wrapper">
                      <div class="benefits__item">
                         <div class="benefits__title-container">
-                           <img src="/images/icons/box-blue.svg" alt="Ассортимент">
+                           <img src="{{ asset('images/icons/box-blue.svg') }}" alt="Ассортимент">
                            <h3 class="benefits__title">Ассортимент</h3>
                         </div>
                         <p class="benefits__text">
@@ -14,8 +14,8 @@
                      </div>
                      <div class="benefits__item">
                         <div class="benefits__title-container">
-                           <img src="/images/icons/conversation-blue.svg" alt="Консультации">
-                        
+                           <img src="{{ asset('images/icons/conversation-blue.svg') }}" alt="Консультации">
+
                            <h3 class="benefits__title">Консультации</h3>
                         </div>
                         <p class="benefits__text">
@@ -23,7 +23,7 @@
                      </div>
                      <div class="benefits__item">
                         <div class="benefits__title-container">
-                           <img src="/images/icons/greeting-blue.svg" alt="Доставка">
+                           <img src="{{ asset('images/icons/greeting-blue.svg') }}" alt="Доставка">
                            <h3 class="benefits__title">Доставка</h3>
                         </div>
                         <p class="benefits__text">
@@ -31,7 +31,7 @@
                      </div>
                      <div class="benefits__item">
                         <div class="benefits__title-container">
-                           <img src="/images/icons/features.svg" alt="Гарантия">
+                           <img src="{{ asset('images/icons/features.svg') }}" alt="Гарантия">
                            <h3 class="benefits__title">Гарантия</h3>
                         </div>
                         <p class="benefits__text">

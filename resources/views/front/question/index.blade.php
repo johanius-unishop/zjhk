@@ -186,9 +186,9 @@
                         <div class="questions__bottom-item">
                             <p class="questions__bottom-subtitle">Напишите нам в мессенджер</p>
                             <div class="questions__bottom-messenger">
-                                <a href="https://whatsapp.com/"><img src="/images/icons/whatsapp.svg" alt="whatsapp"></a>
-                                <a href="https://www.viber.com/"><img src="/images/icons/viber.svg" alt="viber"></a>
-                                <a href="https://telegram.org/"><img src="/images/icons/telegram.svg" alt="telegram"></a>
+                                <a href="https://whatsapp.com/"><img src="{{ asset('images/icons/whatsapp.svg') }}" alt="whatsapp"></a>
+                                <a href="https://www.viber.com/"><img src="{{ asset('images/icons/viber.svg') }}" alt="viber"></a>
+                                <a href="https://telegram.org/"><img src="{{ asset('images/icons/telegram.svg') }}" alt="telegram"></a>
                             </div>
                         </div>
                         <div class="questions__bottom-item">

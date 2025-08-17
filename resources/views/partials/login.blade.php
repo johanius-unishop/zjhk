@@ -17,13 +17,13 @@
                                 <div>
                                     <label for="input-password" class="visually-hidden"></label>
                                     <input type="password" id="input-password" name="password" placeholder="Введите пароль" autocomplete="current-password" value="{{ old('password') }}" >
-                                    
+
                                     <button type="button" id="toggle-password" class="password-toggle">
-                                        <img src="images/icons/password-eye-cross.svg" alt="Показать пароль">
+                                        <img src=""{{ asset('images/icons/password-eye-cross.svg') }} alt="Показать пароль">
                                     </button>
                                     <p class="modal__error"><span hidden>{{ session('errors.password') ?? '' }}</span></p>
                                 </div>
-                                
+
                             </div>
                             <div>
                                     <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>

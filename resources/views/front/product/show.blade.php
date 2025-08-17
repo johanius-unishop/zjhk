@@ -64,7 +64,7 @@
                                             @include('components.product-page.short-description')
                                             <div class="product-desc__prop-link">
                                                 <a href="#">Все характеристики</a>
-                                                <img src="/images/icons/arrow-right.svg" alt="все характеристики">
+                                                <img src="{{ asset('images/icons/arrow-right.svg') }}" alt="все характеристики">
                                             </div>
                                         </div>
                                         @include('components.product-page.features')

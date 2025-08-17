@@ -9,42 +9,7 @@
                 <div class="swiper-wrapper brand">
                     <div class="swiper-slide brand">
                         <a href="#" class="brands__slider-item">
-                            <img src='/images/icons/partner-logo.png' alt="брэнд">
-                        </a>
-                    </div>
-                    <div class="swiper-slide brand">
-                        <a href="#" class="brands__slider-item">
-                            <img src="/images/icons/logo.svg" alt="брэнд">
-                        </a>
-                    </div>
-                    <div class="swiper-slide brand">
-                        <a href="#" class="brands__slider-item">
-                            <img src="/images/icons/partner-logo.png" alt="брэнд">
-                        </a>
-                    </div>
-                    <div class="swiper-slide brand">
-                        <a href="#" class="brands__slider-item">
-                            <img src="/images/icons/partner-logo.png" alt="брэнд">
-                        </a>
-                    </div>
-                    <div class="swiper-slide brand">
-                        <a href="#" class="brands__slider-item">
-                            <img src="/images/icons/partner-logo.png" alt="брэнд">
-                        </a>
-                    </div>
-                    <div class="swiper-slide brand">
-                        <a href="#" class="brands__slider-item">
-                            <img src="/images/icons/logo.svg" alt="брэнд">
-                        </a>
-                    </div>
-                    <div class="swiper-slide brand">
-                        <a href="#" class="brands__slider-item">
-                            <img src="/images/icons/partner-logo.png" alt="брэнд">
-                        </a>
-                    </div>
-                    <div class="swiper-slide brand">
-                        <a href="#" class="brands__slider-item">
-                            <img src="/images/icons/partner-logo.png" alt="брэнд">
+                            <img src='{{ asset('images/icons/partner-logo.png') }}' alt="брэнд">
                         </a>
                     </div>
                 </div>

@@ -143,8 +143,8 @@
                     <div class="product-page__pagination">
                         <div class="product-page__pagination-content">
                             <button>
-                                <img src="/images/icons/tick-grey.svg" alt="влево">
-                                <img src="./images/icons/tick-black.svg" style="display: none; transform:rotateZ(180deg)"
+                                <img src="{{ asset('images/icons/tick-grey.svg') }}" alt="влево">
+                                <img src="{{ asset('images/icons/tick-black.svg') }}" style="display: none; transform:rotateZ(180deg)"
                                     alt="влево">
                             </button>
                             <ul class="product-page__page-list">
@@ -157,9 +157,9 @@
                                 <li data-pagination><button>21</button></li>
                             </ul>
                             <button>
-                                <img src="/images/icons/tick-grey.svg" style="display: none; transform:rotateZ(180deg)"
+                                <img src="{{ asset('images/icons/tick-grey.svg') }}" style="display: none; transform:rotateZ(180deg)"
                                     alt="вправо">
-                                <img src="/images/icons/tick-black.svg" alt="вправо">
+                                <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
                             </button>
                         </div>
                         <div class="product-page__page-size" data-page-size>
@@ -168,7 +168,7 @@
                                     <span>Показывать по </span>
                                     <button class="product-page__change-btn">
                                         <span id="page-count">6</span>
-                                        <img src="/images/icons/tick-black.svg" alt="список страниц">
+                                        <img src="{{ asset('images/icons/black-black.svg') }}" alt="список страниц">
                                     </button>
                                 </p>
                                 <ul class="product-page__page-count" data-select-page>
