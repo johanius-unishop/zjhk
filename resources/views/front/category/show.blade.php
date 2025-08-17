@@ -7,8 +7,8 @@
                 @include('components.catalog-section.breadcrumbs')
                 <div class="products__content">
                     <div class="products__title-container">
-                        <h2>{{ $category->name }}</h2>
-                        <p>{{ $category->description }}</p>
+                        <h2>{{ $data['category']->name }}</h2>
+                        <p>{{ $data['category']->description }}</p>
                     </div>
                     <div class="products__grid hide-subsequent-rows">
                         <a href="#">
