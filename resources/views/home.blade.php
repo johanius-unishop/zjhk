@@ -29,7 +29,7 @@
 @yield('scripts')
 
 @section('js')
-@livewireScriptConfig()
+
 
 @if($errors->has('email') || $errors->has('password'))
 <script>

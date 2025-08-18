@@ -253,7 +253,7 @@
             <nav class="header__actions">
                 <ul class="header__actions-list">
                     <li class="header__actions-item">
-                        @auth()
+                        @auth('web')
                             <a href="#" style="display: inline-flex">
                                 <img src={{ asset('images/icons/account.svg') }} alt="Аккаунт">
                                 <span>{{ Auth::user()->name }}</span>
