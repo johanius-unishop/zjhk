@@ -54,7 +54,7 @@ class CategoryController extends Controller
         }
 
         //Условие вывода фильтра по товарам
-        $data['filter'] = 1;
+        //$data['filter'] = 1;
 
         //dd($data);
 
