@@ -1,5 +1,7 @@
 
 @charset "UTF-8";
+@import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import './../../vendor/power-components/livewire-powergrid/dist/bootstrap5.css';
 
 
 html {
