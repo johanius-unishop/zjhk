@@ -193,7 +193,7 @@
                                                 </div>
                                             </div>
                                             <div data-layout class="product-page__info-container card-layout">
-                                                <p>{{ $product_item->price }} ₽</p>
+                                                <p>{{ $product_item->getUserPrice }}</p>
                                                 <p>{{ $product_item->stock }}</p>
                                                 <button class="product-page__add-cart">В корзину</button>
                                             </div>
