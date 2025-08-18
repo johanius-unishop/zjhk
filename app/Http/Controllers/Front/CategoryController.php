@@ -27,7 +27,7 @@ class CategoryController extends Controller
 
     public function show($slug)
     {
-        $category = Category::where('slug', $slug)->withMedia('images')->firstOrFail();
+        $category = Category::where('slug', $slug)->getMedia('images')->firstOrFail();
         $childrens = Category::defaultOrder()
             ->where('parent_id', $category->id)
             ->get();
