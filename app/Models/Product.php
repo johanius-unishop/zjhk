@@ -405,7 +405,7 @@ class Product extends Model implements HasMedia, Sitemapable
         }
 
         if ($this->stock > 0) {
-            return "В наличии " . $this->stock . "шт.";
+            return "В наличии " . $this->stock . " шт.";
         }
 
         if ($this->stock < 0) {
