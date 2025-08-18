@@ -46,102 +46,101 @@
                     </div>
                     <div class="product-page__content">
                         @if (isset($data['filter']) && !empty($data['filter']))
-                        <button class="product-page__open-filter">Показать фильтр</button>
-
-                        <aside class="product-page__filter filter">
-                            <form class="filter__item">
-                                <div>
-                                    <label for="type">Тип резьбы</label>
-                                    <select class="filter__select" name="type" id="type">
-                                        <option placeholder>Выбрать</option>
-                                        <option value="1">Характеристика 1</option>
-                                        <option value="2">Характеристика 2</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="material">Материал контактов</label>
-                                    <select class="filter__select" name="material" id="material">
-                                        <option placeholder>Выбрать</option>
-                                        <option value="">Характеристика 1</option>
-                                        <option value="">Характеристика 2</option>
-                                        <option value="">Характеристика 3</option>
-                                        <option value="">Характеристика 4</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="surface">Покрытие контактов</label>
-                                    <select class="filter__select" name="surface" id="surface">
-                                        <option placeholder>Выбрать</option>
-                                        <option value="">Характеристика 1</option>
-                                        <option value="">Характеристика 2</option>
-                                        <option value="">Характеристика 3</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="qty">Количество контактов</label>
-                                    <select class="filter__select" name="qty" id="qty">
-                                        <option placeholder>Выбрать</option>
-                                        <option value="">Характеристика 1</option>
-                                        <option value="">Характеристика 2</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="current">Номинальный ток</label>
-                                    <select class="filter__select" name="current" id="current">
-                                        <option placeholder>Выбрать</option>
-                                        <option value="">Характеристика 1</option>
-                                        <option value="">Характеристика 2</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="voltage">Номинальное напряжение</label>
-                                    <select class="filter__select" name="voltage" id="voltage">
-                                        <option placeholder>Выбрать</option>
-                                        <option value="">Характеристика 1</option>
-                                        <option value="">Характеристика 2</option>
-                                        <option value="">Характеристика 3</option>
-                                        <option value="">Характеристика 4</option>
-                                        <option value="">Характеристика 5</option>
-                                        <option value="">Характеристика 6</option>
-                                        <option value="">Характеристика 7</option>
-                                        <option value="">Характеристика 8</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="temp">Диапазон рабочих температур</label>
-                                    <select class="filter__select" name="temp" id="temp">
-                                        <option placeholder>Выбрать</option>
-                                        <option value="">Характеристика 1</option>
-                                        <option value="">Характеристика 2</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="join">Присоединение проводников</label>
-                                    <select class="filter__select" name="join" id="join">
-                                        <option placeholder>Выбрать</option>
-                                        <option value="">Характеристика 1</option>
-                                        <option value="">Характеристика 2</option>
-                                        <option value="">Характеристика 3</option>
-                                        <option value="">Характеристика 4</option>
-                                        <option value="">Характеристика 5</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="cut">Поперечное сечение проводников</label>
-                                    <select class="filter__select" name="cut" id="cut">
-                                        <option placeholder>Выбрать</option>
-                                        <option value="">Характеристика 1</option>
-                                        <option value="">Характеристика 2</option>
-                                    </select>
-                                </div>
-                                <div class="filter__btn-container">
-                                    <button class="filter__btn-impl">Применить</button>
-                                </div>
-                                <div class="filter__btn-container">
-                                    <button type="button" class="filter__btn-cancel">Очистить все</button>
-                                </div>
-                            </form>
-                        </aside>
+                            <button class="product-page__open-filter">Показать фильтр</button>
+                            <aside class="product-page__filter filter">
+                                <form class="filter__item">
+                                    <div>
+                                        <label for="type">Тип резьбы</label>
+                                        <select class="filter__select" name="type" id="type">
+                                            <option placeholder>Выбрать</option>
+                                            <option value="1">Характеристика 1</option>
+                                            <option value="2">Характеристика 2</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="material">Материал контактов</label>
+                                        <select class="filter__select" name="material" id="material">
+                                            <option placeholder>Выбрать</option>
+                                            <option value="">Характеристика 1</option>
+                                            <option value="">Характеристика 2</option>
+                                            <option value="">Характеристика 3</option>
+                                            <option value="">Характеристика 4</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="surface">Покрытие контактов</label>
+                                        <select class="filter__select" name="surface" id="surface">
+                                            <option placeholder>Выбрать</option>
+                                            <option value="">Характеристика 1</option>
+                                            <option value="">Характеристика 2</option>
+                                            <option value="">Характеристика 3</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="qty">Количество контактов</label>
+                                        <select class="filter__select" name="qty" id="qty">
+                                            <option placeholder>Выбрать</option>
+                                            <option value="">Характеристика 1</option>
+                                            <option value="">Характеристика 2</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="current">Номинальный ток</label>
+                                        <select class="filter__select" name="current" id="current">
+                                            <option placeholder>Выбрать</option>
+                                            <option value="">Характеристика 1</option>
+                                            <option value="">Характеристика 2</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="voltage">Номинальное напряжение</label>
+                                        <select class="filter__select" name="voltage" id="voltage">
+                                            <option placeholder>Выбрать</option>
+                                            <option value="">Характеристика 1</option>
+                                            <option value="">Характеристика 2</option>
+                                            <option value="">Характеристика 3</option>
+                                            <option value="">Характеристика 4</option>
+                                            <option value="">Характеристика 5</option>
+                                            <option value="">Характеристика 6</option>
+                                            <option value="">Характеристика 7</option>
+                                            <option value="">Характеристика 8</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="temp">Диапазон рабочих температур</label>
+                                        <select class="filter__select" name="temp" id="temp">
+                                            <option placeholder>Выбрать</option>
+                                            <option value="">Характеристика 1</option>
+                                            <option value="">Характеристика 2</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="join">Присоединение проводников</label>
+                                        <select class="filter__select" name="join" id="join">
+                                            <option placeholder>Выбрать</option>
+                                            <option value="">Характеристика 1</option>
+                                            <option value="">Характеристика 2</option>
+                                            <option value="">Характеристика 3</option>
+                                            <option value="">Характеристика 4</option>
+                                            <option value="">Характеристика 5</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="cut">Поперечное сечение проводников</label>
+                                        <select class="filter__select" name="cut" id="cut">
+                                            <option placeholder>Выбрать</option>
+                                            <option value="">Характеристика 1</option>
+                                            <option value="">Характеристика 2</option>
+                                        </select>
+                                    </div>
+                                    <div class="filter__btn-container">
+                                        <button class="filter__btn-impl">Применить</button>
+                                    </div>
+                                    <div class="filter__btn-container">
+                                        <button type="button" class="filter__btn-cancel">Очистить все</button>
+                                    </div>
+                                </form>
+                            </aside>
                         @endif
                         <div class="product-page__layout">
                             <div class="product-page__sort-container">
@@ -155,367 +154,53 @@
                                 </div>
                                 <div class="product-page__change-layout">
                                     <button id="card-layout" class="toggle__layout">
-                                        <img src="./img/icons/block-gray.svg" alt="карточки" class="change__img _active">
+                                        <img src="{{ asset('images/icons/block-gray.svg') }}" alt="карточки"
+                                            class="change__img _active">
                                     </button>
                                     <button id="list-layout" class="toggle__layout">
-                                        <img src="./img/icons/list.svg" alt="список" class="change__img">
+                                        <img src="{{ asset('images/icons/list.svg') }}" alt="список"
+                                            class="change__img">
                                     </button>
                                 </div>
                             </div>
                             <div id="layout" data-layout class="product-page__grid card-layout hide-subsequent-rows">
-                                <div class="product-page__item">
-                                    <div data-layout class="product-page__item-wrapper card-layout">
-                                        <div>
-                                            <div class="swiper product-page-slider">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide"><img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"><img src="./img/products/photo-18.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"><img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-pagination-product"></div>
-                                            </div>
-                                            <button class="product-page__label-btn">
-                                                <img class="product-page__label" src="./img/icons/label-gray.svg"
-                                                    alt="избранное">
-                                            </button>
-                                        </div>
-                                        <div data-layout class="product-page__title-container card-layout">
-                                            <h5>HA-004-F</h5>
-                                            <p>09200042711</p>
+                                @foreach ($data['products'] as $product_item)
+                                    <div class="product-page__item">
+                                        <div data-layout class="product-page__item-wrapper card-layout">
                                             <div>
-                                                <img src="./img//icons/star.svg" alt="рейтинг"><span>4.9</span>
-                                                <a href="#"><span>152 </span>отзыва</a>
+                                                <div class="swiper product-page-slider">
+                                                    <div class="swiper-wrapper">
+                                                        @foreach ($product_item->getMedia('images') as $product_image)
+                                                            <div class="swiper-slide"><img
+                                                                    src="{{ $product_image->getUrl('thumb') }}"
+                                                                    alt="{{ $product_item->getAltAttribute() }}">
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="swiper-pagination-product"></div>
+                                                </div>
+                                                <button class="product-page__label-btn">
+                                                    <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                                        alt="избранное">
+                                                </button>
                                             </div>
-                                        </div>
-                                        <div data-layout class="product-page__info-container card-layout">
-                                            <p>380 ₽</p>
-                                            <p>В наличии 192 шт.</p>
-                                            <button class="product-page__add-cart">В корзину</button>
+                                            <div data-layout class="product-page__title-container card-layout">
+                                                <h5>HA-004-F</h5>
+                                                <p>09200042711</p>
+                                                <div>
+                                                    <img src="./img//icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                                    <a href="#"><span>152 </span>отзыва</a>
+                                                </div>
+                                            </div>
+                                            <div data-layout class="product-page__info-container card-layout">
+                                                <p>380 ₽</p>
+                                                <p>В наличии 192 шт.</p>
+                                                <button class="product-page__add-cart">В корзину</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="product-page__item">
-                                    <div data-layout class="product-page__item-wrapper card-layout">
-                                        <div>
-                                            <div class="swiper product-page-slider">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/photo-18.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-pagination-product"></div>
-                                            </div>
-                                            <button class="product-page__label-btn">
-                                                <img class="product-page__label" src="./img/icons/label-gray.svg"
-                                                    alt="избранное">
-                                            </button>
-                                        </div>
-                                        <div data-layout class="product-page__title-container card-layout">
-                                            <h5>HA-004-F</h5>
-                                            <p>09200042711</p>
-                                            <div>
-                                                <img src="./img//icons/star.svg" alt="рейтинг"><span>4.9</span>
-                                                <a href="#"><span>152 </span>отзыва</a>
-                                            </div>
-                                        </div>
-                                        <div data-layout class="product-page__info-container card-layout">
-                                            <p>380 ₽</p>
-                                            <p>В наличии 192 шт.</p>
-                                            <button class="product-page__add-cart">В корзину</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-page__item">
-                                    <div data-layout class="product-page__item-wrapper card-layout">
-                                        <div>
-                                            <div class="swiper product-page-slider">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/photo-18.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-pagination-product"></div>
-                                            </div>
-                                            <button class="product-page__label-btn">
-                                                <img class="product-page__label" src="./img/icons/label-gray.svg"
-                                                    alt="избранное">
-                                            </button>
-                                        </div>
-                                        <div data-layout class="product-page__title-container card-layout">
-                                            <h5>HA-004-F</h5>
-                                            <p>09200042711</p>
-                                            <div>
-                                                <img src="./img//icons/star.svg" alt="рейтинг"><span>4.9</span>
-                                                <a href="#"><span>152 </span>отзыва</a>
-                                            </div>
-                                        </div>
-                                        <div data-layout class="product-page__info-container card-layout">
-                                            <p>380 ₽</p>
-                                            <p>В наличии 192 шт.</p>
-                                            <button class="product-page__add-cart">
-                                                <span>В корзину</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-page__item">
-                                    <div data-layout class="product-page__item-wrapper card-layout">
-                                        <div>
-                                            <div class="swiper product-page-slider">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/photo-18.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-pagination-product"></div>
-                                            </div>
-                                            <button class="product-page__label-btn">
-                                                <img class="product-page__label" src="./img/icons/label-gray.svg"
-                                                    alt="избранное">
-                                            </button>
-                                        </div>
-                                        <div data-layout class="product-page__title-container card-layout">
-                                            <h5>HA-004-F</h5>
-                                            <p>09200042711</p>
-                                            <div>
-                                                <img src="./img//icons/star.svg" alt="рейтинг"><span>4.9</span>
-                                                <a href="#"><span>152 </span>отзыва</a>
-                                            </div>
-                                        </div>
-                                        <div data-layout class="product-page__info-container card-layout">
-                                            <p>380 ₽</p>
-                                            <p>В наличии 192 шт.</p>
-                                            <button class="product-page__add-cart">
-                                                <span>В корзину</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-page__item">
-                                    <div data-layout class="product-page__item-wrapper card-layout">
-                                        <div>
-                                            <div class="swiper product-page-slider">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/photo-18.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-pagination-product"></div>
-                                            </div>
-                                            <button class="product-page__label-btn">
-                                                <img class="product-page__label" src="./img/icons/label-gray.svg"
-                                                    alt="избранное">
-                                            </button>
-                                        </div>
-                                        <div data-layout class="product-page__title-container card-layout">
-                                            <h5>HA-004-F</h5>
-                                            <p>09200042711</p>
-                                            <div>
-                                                <img src="./img//icons/star.svg" alt="рейтинг"><span>4.9</span>
-                                                <a href="#"><span>152 </span>отзыва</a>
-                                            </div>
-                                        </div>
-                                        <div data-layout class="product-page__info-container card-layout">
-                                            <p>380 ₽</p>
-                                            <p>В наличии 192 шт.</p>
-                                            <button class="product-page__add-cart">
-                                                <span>В корзину</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-page__item">
-                                    <div data-layout class="product-page__item-wrapper card-layout">
-                                        <div>
-                                            <div class="swiper product-page-slider">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/photo-18.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-pagination-product"></div>
-                                            </div>
-                                            <button class="product-page__label-btn">
-                                                <img class="product-page__label" src="./img/icons/label-gray.svg"
-                                                    alt="избранное">
-                                            </button>
-                                        </div>
-                                        <div data-layout class="product-page__title-container card-layout">
-                                            <h5>HA-004-F</h5>
-                                            <p>09200042711</p>
-                                            <div>
-                                                <img src="./img//icons/star.svg" alt="рейтинг"><span>4.9</span>
-                                                <a href="#"><span>152 </span>отзыва</a>
-                                            </div>
-                                        </div>
-                                        <div data-layout class="product-page__info-container card-layout">
-                                            <p>380 ₽</p>
-                                            <p>В наличии 192 шт.</p>
-                                            <button class="product-page__add-cart">
-                                                <span>В корзину</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-page__item">
-                                    <div data-layout class="product-page__item-wrapper card-layout">
-                                        <div>
-                                            <div class="swiper product-page-slider">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/photo-18.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-pagination-product"></div>
-                                            </div>
-                                            <button class="product-page__label-btn">
-                                                <img class="product-page__label" src="./img/icons/label-gray.svg"
-                                                    alt="избранное">
-                                            </button>
-                                        </div>
-                                        <div data-layout class="product-page__title-container card-layout">
-                                            <h5>HA-004-F</h5>
-                                            <p>09200042711</p>
-                                            <div>
-                                                <img src="./img//icons/star.svg" alt="рейтинг"><span>4.9</span>
-                                                <a href="#"><span>152 </span>отзыва</a>
-                                            </div>
-                                        </div>
-                                        <div data-layout class="product-page__info-container card-layout">
-                                            <p>380 ₽</p>
-                                            <p>В наличии 192 шт.</p>
-                                            <button class="product-page__add-cart">
-                                                <span>В корзину</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-page__item">
-                                    <div data-layout class="product-page__item-wrapper card-layout">
-                                        <div>
-                                            <div class="swiper product-page-slider">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/photo-18.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-pagination-product"></div>
-                                            </div>
-                                            <button class="product-page__label-btn">
-                                                <img class="product-page__label" src="./img/icons/label-gray.svg"
-                                                    alt="избранное">
-                                            </button>
-                                        </div>
-                                        <div data-layout class="product-page__title-container card-layout">
-                                            <h5>HA-004-F</h5>
-                                            <p>09200042711</p>
-                                            <div>
-                                                <img src="./img//icons/star.svg" alt="рейтинг"><span>4.9</span>
-                                                <a href="#"><span>152 </span>отзыва</a>
-                                            </div>
-                                        </div>
-                                        <div data-layout class="product-page__info-container card-layout">
-                                            <p>380 ₽</p>
-                                            <p>В наличии 192 шт.</p>
-                                            <button class="product-page__add-cart">
-                                                <span>В корзину</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-page__item">
-                                    <div data-layout class="product-page__item-wrapper card-layout">
-                                        <div>
-                                            <div class="swiper product-page-slider">
-                                                <div class="swiper-wrapper">
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/photo-18.png"
-                                                            alt="товар">
-                                                    </div>
-                                                    <div class="swiper-slide"> <img src="./img/products/item_photo.png"
-                                                            alt="товар">
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-pagination-product"></div>
-                                            </div>
-                                            <button class="product-page__label-btn">
-                                                <img class="product-page__label" src="./img/icons/label-gray.svg"
-                                                    alt="избранное">
-                                            </button>
-                                        </div>
-                                        <div data-layout class="product-page__title-container card-layout">
-                                            <h5>HA-004-F</h5>
-                                            <p>09200042711</p>
-                                            <div>
-                                                <img src="./img//icons/star.svg" alt="рейтинг"><span>4.9</span>
-                                                <a href="#"><span>152 </span>отзыва</a>
-                                            </div>
-                                        </div>
-                                        <div data-layout class="product-page__info-container card-layout">
-                                            <p>380 ₽</p>
-                                            <p>В наличии 192 шт.</p>
-                                            <button class="product-page__add-cart">
-                                                <span>В корзину</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
                             <div class="product-page__show">
                                 <button>Показать еще</button>

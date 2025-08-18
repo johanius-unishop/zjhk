@@ -226,7 +226,7 @@ class Product extends Model implements HasMedia, Sitemapable
         return $this->hasMany(Review::class);
     }
 
-     public function questions()
+    public function questions()
     {
         return $this->hasMany(Question::class);
     }
@@ -325,5 +325,44 @@ class Product extends Model implements HasMedia, Sitemapable
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    //Формирование Alt для изображений продукта
+    public function getAltAttribute()
+    {
+        $parts = [];
+
+        // Добавляем тип товара, если он доступен
+        if (!empty($this->productType) && !empty($this->productType->name)) {
+            $parts[] = $this->productType->name;
+        }
+
+        if (!empty($this->vendor)) {
+            if (!empty($this->vendor->short_name)) {
+                $parts[] = $this->vendor->short_name;
+            } else {
+                $parts[] = $this->vendor->name;
+            }
+        }
+
+        // Добавляем наименование модели и артикул
+        if (!empty($this->name) && !empty($this->article) && ($this->name != $this->article)) {
+            $parts[] = $this->name . ' (' . $this->article . ')';
+        }
+
+        if (!empty($this->name) && !empty($this->article) && ($this->name == $this->article)) {
+            $parts[] = $this->name;
+        }
+
+        if (!empty($this->name) && empty($this->article)) {
+            $parts[] = $this->name;
+        }
+
+        if (empty($this->name) && !empty($this->article)) {
+            $parts[] = $this->article;
+        }
+
+        // Объединяем части в единую строку
+        return implode(' ', $parts);
     }
 }
