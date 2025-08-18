@@ -399,6 +399,18 @@ class Product extends Model implements HasMedia, Sitemapable
 
     public function getUserStock()
     {
+        // Если количество на складе пусто или равно 0, возвращаем специальную надпись
+        if (!$this->stock || $this->stock == 0) {
+            return "Под заказ. " . $this->vendor->delivery_time;
+        }
+
+        if ($this->stock > 0) {
+            return "В наличии " . $this->stock . "шт.";
+        }
+
+        if ($this->stock < 0) {
+            return "Ожидается";
+        }
 
     }
 }

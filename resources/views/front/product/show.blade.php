@@ -87,7 +87,7 @@
                                         <div class="product-desc__cart-item-wrapper">
                                             <div>
                                                 <p>{{ $data['product']->getUserPrice() }}</p>
-                                                @include('components.product-page.stock')
+                                                <p>{{ $data['product']->getUserStock() }}</p>
                                             </div>
                                             <div class="product-desc__cart-btn">
                                                 <button class="product-page__add-cart">В корзину</button>
