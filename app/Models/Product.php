@@ -368,9 +368,6 @@ class Product extends Model implements HasMedia, Sitemapable
         return implode(' ', $parts);
     }
 
-
-
-
     public function getUserPrice()
     {
         // Если цена пустая или равна 0, возвращаем специальную надпись
@@ -398,5 +395,10 @@ class Product extends Model implements HasMedia, Sitemapable
 
         // Пользователь авторизован, но скидка не задана
         return number_format($basePrice, 0, '.', ' ') . ' ₽';
+    }
+
+    public function getUserStock()
+    {
+
     }
 }
