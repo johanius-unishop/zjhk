@@ -39,24 +39,10 @@
         @if (isset($data['products']) && !empty($data['products']))
             <section class="product-page">
                 <div class="product-page__container container">
-                    <div class="breadcrumbs">
-                        <ul class="breadcrumbs__list">
-                            <li><a href="./index.html">Главная</a><img src="./img/icons/arrow-right.svg" alt="стрелка">
-                            </li>
-                            <li><a href="#">Каталог</a><img src="./img/icons/arrow-right.svg" alt="стрелка"></li>
-                            <li><a href="#">Промышленные прямоугольные разъёмы</a><img
-                                    src="./img/icons/arrow-right.svg" alt="стрелка"></li>
-                            <li><a href="#">Комплекты промышленных разъёмов</a><img src="./img/icons/arrow-right.svg"
-                                    alt="стрелка"></li>
-                            <li><span>Комплекты серии HA-003</span></li>
-                        </ul>
-                    </div>
+                    @include('components.catalog-section.breadcrumbs')
                     <div class="product-page__main-title">
-                        <h2>Комплекты серии HA-003</h2>
-                        <p>Комплекты разъемов компактной серии HA. В состав комплета входят два совместимых кожуха,
-                            необходимое количество контактных вставок и пластиковых сальников. Комплекты сформированы на
-                            основе
-                            контактных вставок HA-003-F и HA-003-M, с винтовым соединением проводников.</p>
+                        <h2>{{ $data['category']->name }}</h2>
+                        <p>{{ $data['category']->description }}</p>
                     </div>
                     <div class="product-page__content">
                         <button class="product-page__open-filter">Показать фильтр</button>
