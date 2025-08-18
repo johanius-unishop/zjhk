@@ -27,7 +27,7 @@ class CategoryController extends Controller
 
     public function show($slug)
     {
-        $category = Category::where('slug', $slug)->getMedia('images')->firstOrFail();
+        $category = Category::where('slug', $slug)->firstOrFail();
         $childrens = Category::defaultOrder()
             ->where('parent_id', $category->id)
             ->get();
@@ -38,33 +38,22 @@ class CategoryController extends Controller
 
         $products = checkInCartAndFavourites($products);
 
-
-        dd($category, $products, $childrens);
-
-        $images = $category->getMedia('images');
-
         SEOMeta::setTitle($category->seo->title);
         SEOMeta::setDescription($category->seo->description);
         SEOMeta::setKeywords($category->seo->keywords);
 
-        $data = [
-            'category' => $category,
-            'parents' => $parents,
-            'products' => $products,
-            'childrens' => $childrens,
-            'images' => $images,
-            //
-            // 'files' => $files,
-            // 'price_categories' => $price_categories,
-            // 'stores' => $stores,
-            // 'enableQuestion' => $enableQuestion,
-            // 'enableFastBay' => $enableFastBay,
-            // 'enableSale' => $enableSale,
-        ];
+        $data['category'] = $category;
+        $data['parents'] = $parents;
 
-        SEOMeta::setTitle($category->seo->title);
-        SEOMeta::setDescription($category->seo->description);
-        SEOMeta::setKeywords($category->seo->keywords);
+        if ($childrens->isNotEmpty()) {
+            $data['childrens'] = $childrens;
+        }
+
+        if ($products->isNotEmpty()) {
+            $data['products'] = $products;
+        }
+
+        dd($data);
 
         return view('front.category.show', ['data' => $data]);
     }
