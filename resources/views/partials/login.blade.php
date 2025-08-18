@@ -5,7 +5,7 @@
                         <div class="modal__content">
                             <h1 class="modal__title">Войти</h1>
                             <form method="POST" action="{{ route('login') }}" class="modal__form">
-                                @csrf <!-- Не забудьте добавить токен CSRF -->
+                                @csrf
                             <div class="modal__input-container">
                                 <div>
                                     <label for="input-email" class="visually-hidden"></label>
