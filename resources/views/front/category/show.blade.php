@@ -45,7 +45,9 @@
                         <p>{{ $data['category']->description }}</p>
                     </div>
                     <div class="product-page__content">
+                        @if (isset($data['filter']) && !empty($data['filter']))
                         <button class="product-page__open-filter">Показать фильтр</button>
+
                         <aside class="product-page__filter filter">
                             <form class="filter__item">
                                 <div>
@@ -140,6 +142,7 @@
                                 </div>
                             </form>
                         </aside>
+                        @endif
                         <div class="product-page__layout">
                             <div class="product-page__sort-container">
                                 <div>
