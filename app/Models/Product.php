@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
@@ -364,5 +366,37 @@ class Product extends Model implements HasMedia, Sitemapable
 
         // Объединяем части в единую строку
         return implode(' ', $parts);
+    }
+
+
+
+
+    public function getUserPrice()
+    {
+        // Если цена пустая или равна 0, возвращаем специальную надпись
+        if (!$this->price || empty($this->price)) {
+            return "Цена по запросу"; // Или любое подходящее сообщение
+        }
+
+        // Базовая цена продукта
+        $basePrice = $this->price;
+
+        // Если пользователь не авторизован, выдаём полную цену
+        if (!Auth::check()) {
+            return number_format($basePrice, 0, '.', ' ') . ' ₽';
+        }
+
+        // Авторизованный пользователь
+        $user = Auth::user();
+
+        // Проверяем наличие группы и скидки
+        if ($user->group && isset($user->group->discount)) {
+            // Вычисляем цену с учётом скидки
+            $discountedPrice = $basePrice - ($basePrice * $user->group->discount / 100);
+            return number_format($discountedPrice, 0, '.', ' ') . ' ₽';
+        }
+
+        // Пользователь авторизован, но скидка не задана
+        return number_format($basePrice, 0, '.', ' ') . ' ₽';
     }
 }
