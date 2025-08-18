@@ -53,7 +53,10 @@ class CategoryController extends Controller
             $data['products'] = $products;
         }
 
-        dd($data);
+        //Условие вывода фильтра по товарам
+        $data['filter'] = 1;
+
+        //dd($data);
 
         return view('front.category.show', ['data' => $data]);
     }
