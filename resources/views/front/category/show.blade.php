@@ -180,21 +180,21 @@
                                                     <div class="swiper-pagination-product"></div>
                                                 </div>
                                                 <button class="product-page__label-btn">
-                                                    <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                                    <img class="product-page__label" src="{{ asset('images/icons/label-gray.svg') }}"
                                                         alt="избранное">
                                                 </button>
                                             </div>
                                             <div data-layout class="product-page__title-container card-layout">
-                                                <h5>HA-004-F</h5>
-                                                <p>09200042711</p>
+                                                <h5>{{ $product_item->name }}</h5>
+                                                <p>{{ $product_item->article }}</p>
                                                 <div>
-                                                    <img src="./img//icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                                    <img src="{{ asset('images/icons/star.svg') }}" alt="рейтинг"><span>4.9</span>
                                                     <a href="#"><span>152 </span>отзыва</a>
                                                 </div>
                                             </div>
                                             <div data-layout class="product-page__info-container card-layout">
-                                                <p>380 ₽</p>
-                                                <p>В наличии 192 шт.</p>
+                                                <p>{{ $product_item->price }} ₽</p>
+                                                <p>{{ $product_item->stock }}</p>
                                                 <button class="product-page__add-cart">В корзину</button>
                                             </div>
                                         </div>
