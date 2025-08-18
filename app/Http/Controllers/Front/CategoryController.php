@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $products = checkInCartAndFavourites($products);
 
 
-        //   dd($category, $products, $childrens);
+        dd($category, $products, $childrens);
 
         $images = $category->getMedia('images');
 
