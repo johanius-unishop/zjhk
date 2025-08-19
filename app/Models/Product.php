@@ -421,20 +421,19 @@ class Product extends Model implements HasMedia, Sitemapable
 
     public function getAverageReviewRatingString()
     {
-        if (round($this->reviews()->avg('rating'), 2) === 0) {
-            return "";
-        } else {
+        if (round($this->reviews()->avg('rating'), 2) != 0) {
             return round($this->reviews()->avg('rating'), 2);
+        } else {
+            return "";
         }
     }
 
     public function getCountReviewsString()
     {
         if (!empty($this->reviews)) {
-            if ($this->reviews->count() != 0){
-            return pluralForm(count($this->reviews), ['отзыв', 'отзыва', 'отзывов']);
-            }
-            else {
+            if ($this->reviews->count() != 0) {
+                return pluralForm(count($this->reviews), ['отзыв', 'отзыва', 'отзывов']);
+            } else {
                 return "Нет отзывов";
             }
         }
