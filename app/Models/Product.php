@@ -431,10 +431,13 @@ class Product extends Model implements HasMedia, Sitemapable
     public function getCountReviewsString()
     {
         if (!empty($this->reviews)) {
+            if ($this->reviews->count() != 0){
             return pluralForm(count($this->reviews), ['отзыв', 'отзыва', 'отзывов']);
+            }
+            else {
+                return "Нет отзывов";
+            }
         }
-
-        return "Нет отзывов";
     }
     /*$reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
