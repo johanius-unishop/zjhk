@@ -205,6 +205,7 @@
                             <div class="product-page__show">
                                 <button>Показать еще</button>
                             </div>
+
                             <div class="product-page__pagination">
                                 <div class="product-page__pagination-content">
                                     {{ $data['products']->links() }}
@@ -223,9 +224,9 @@
                                         <li data-pagination><button>21</button></li>
                                     </ul>
                                     <button>
-                                        <img src="./img/icons/tick-grey.svg"
+                                        <img src="{{ asset('images/icons/tick-grey.svg') }}"
                                             style="display: none; transform:rotateZ(180deg)" alt="вправо">
-                                        <img src="./img/icons/tick-black.svg" alt="вправо">
+                                        <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
                                     </button>
                                 </div>
                                 <div class="product-page__page-size" data-page-size>
@@ -234,7 +235,7 @@
                                             <span>Показывать по </span>
                                             <button class="product-page__change-btn">
                                                 <span id="page-count">6</span>
-                                                <img src="./img/icons/tick-black.svg" alt="список страниц">
+                                                <img src="{{ asset('images/icons/tick-black.svg') }}" alt="список страниц">
                                             </button>
                                         </p>
                                         <ul class="product-page__page-count" data-select-page>
@@ -247,6 +248,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
