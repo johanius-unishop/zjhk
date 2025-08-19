@@ -28,16 +28,58 @@ class CategoryController extends Controller
         return view('front.category.index', ['childrens' => $childrens]);
     }
 
-    public function show($slug)
+    public function show($slug, Request $request)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
+
         $childrens = Category::defaultOrder()
             ->where('parent_id', $category->id)
             ->get();
         $parents = $category->ancestors->toArray();
+
         $filter = 0;
 
-        $products = Product::where('category_id', $category->id)->with('media')->paginate(12)->withQueryString();
+        // Количество товаров на одну страницу (может передаваться параметром или фиксировано)
+        $perPage = $request->input('per_page', 12); // значение по умолчанию - 12 товаров
+
+        // Фильтрация по наличию (если передано в запросе)
+        $availabilityFilter = $request->input('availability');
+
+        // Сортировка по цене (если указана)
+        $sortOrder = $request->input('sort_by_price', '');
+
+        // Основной запрос по товарам
+        $query = Product::where('category_id', $category->id)->sortBy('stock');
+
+        $childrens = Category::defaultOrder()
+            ->where('parent_id', $category->id)
+            ->get();
+        $parents = $category->ancestors->toArray();
+
+        // Применение фильтров и сортировок
+        if ($availabilityFilter !== null) {
+            switch ($availabilityFilter) {
+                case 'in_stock':
+                    $query->where('stock', '>', 0);
+                    break;
+                case 'out_of_stock':
+                    $query->where('stock', 0);
+                    break;
+            }
+        }
+
+         if ($sortOrder !== '') {
+            switch ($sortOrder) {
+                case 'asc': // по возрастанию цены
+                    $query->orderBy('price', 'ASC');
+                    break;
+                case 'desc': // по убыванию цены
+                    $query->orderBy('price', 'DESC');
+                    break;
+            }
+        }
+
+        $products = $query->with('media')->paginate($perPage)/*->withQueryString()*/;
 
 
 
