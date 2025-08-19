@@ -418,4 +418,28 @@ class Product extends Model implements HasMedia, Sitemapable
             return "В наличии " . $this->stock . " шт.";
         }
     }
+
+    public function getAverageReviewRating()
+    {
+        return round($this->reviews()->avg('rating'), 2);
+    }
+        /*$reviewRating = [
+            'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
+            'roundedAverageRating' => round($product->reviews()->avg('rating'), 0),
+
+            // Подсчет количества отзывов каждого типа
+            'oneStarReviewsCount' => $product->reviews()->where('rating', '=', 1)->count(),
+            'twoStarReviewsCount' => $product->reviews()->where('rating', '=', 2)->count(),
+            'threeStarReviewsCount' => $product->reviews()->where('rating', '=', 3)->count(),
+            'fourStarReviewsCount' => $product->reviews()->where('rating', '=', 4)->count(),
+            'fiveStarReviewsCount' => $product->reviews()->where('rating', '=', 5)->count(),
+
+            // Процентная доля каждого типа отзыва
+            'oneStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 1)->count() / $product->reviews()->count()) * 100, 0),
+            'twoStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 2)->count() / $product->reviews()->count()) * 100, 0),
+            'threeStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 3)->count() / $product->reviews()->count()) * 100, 0),
+            'fourStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 4)->count() / $product->reviews()->count()) * 100, 0),
+            'fiveStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 5)->count() / $product->reviews()->count()) * 100, 0)
+        ];
+    }*/
 }
