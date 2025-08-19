@@ -207,7 +207,7 @@
                             </div>
                             <div class="product-page__pagination">
                                 <div class="product-page__pagination-content">
-                                    {{ $products->links() }}
+                                    {{ $data['products']->links() }}
                                     <button>
                                         <img src="./img/icons/tick-grey.svg" alt="влево">
                                         <img src="./img/icons/tick-black.svg"
