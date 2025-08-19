@@ -188,7 +188,7 @@
                                                 <h5>{{ $product_item->name }}</h5>
                                                 <p>{{ $product_item->article }}</p>
                                                 <div>
-                                                    <img src="{{ asset('images/icons/star.svg') }}" alt="рейтинг"><span>{{ $product_item->getAverageReviewRating() }}</span>
+                                                    <img src="{{ asset('images/icons/star.svg') }}" alt="рейтинг"><span>{{ $product_item->getAverageReviewRatingString() }}</span>
                                                     <span>{{ $product_item->getCountReviewsString() }}</span>
                                                 </div>
                                             </div>
