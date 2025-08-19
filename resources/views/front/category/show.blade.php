@@ -206,6 +206,7 @@
                                 <button>Показать еще</button>
                             </div>
 
+
                             <div class="product-page__pagination">
                                 <div class="product-page__pagination-content">
                                     {{ $data['products']->links() }}

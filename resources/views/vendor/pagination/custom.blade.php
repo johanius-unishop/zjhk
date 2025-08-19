@@ -71,8 +71,17 @@
 </div>
 
 
+
 <div class="product-page__pagination">
     <div class="product-page__pagination-content">
-
+        @if ($paginator->onFirstPage())
+            <button>
+                <img src="./img/icons/tick-grey.svg" alt="влево">
+                <img src="./img/icons/tick-black.svg" style="display: none; transform:rotateZ(180deg)" alt="влево">
+            </button>
+            <span class="disabled">«</span>
+        @else
+            <a href="{{ $paginator->previousPageUrl() }}">«</a>
+        @endif
     </div>
 </div>
