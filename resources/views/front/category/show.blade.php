@@ -189,7 +189,7 @@
                                                 <p>{{ $product_item->article }}</p>
                                                 <div>
                                                     <img src="{{ asset('images/icons/star.svg') }}" alt="рейтинг"><span>{{ $product_item->getAverageReviewRating() }}</span>
-                                                    <a href="#"><span>152 </span>отзыва</a>
+                                                    <span>{{ $product_item->getCountReviewsString() }}</span>
                                                 </div>
                                             </div>
                                             <div data-layout class="product-page__info-container card-layout">
