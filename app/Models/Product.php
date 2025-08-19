@@ -432,7 +432,7 @@ class Product extends Model implements HasMedia, Sitemapable
     {
         if (!empty($this->reviews)) {
             if ($this->reviews->count() != 0) {
-                return pluralForm(count($this->reviews), ['отзыв', 'отзыва', 'отзывов']);
+                return $this->reviews->count() . " " . pluralForm(count($this->reviews), ['отзыв', 'отзыва', 'отзывов']);
             } else {
                 return "Нет отзывов";
             }
