@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Front;
 
-use Illuminate\Pagination\Paginator;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -12,10 +11,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 
 class CategoryController extends Controller
 {
-    public function boot()
-    {
-        Paginator::defaultView('vendor.pagination.custom');
-    }
+
 
 
     public function catalog(Request $request)

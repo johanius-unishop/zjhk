@@ -62,7 +62,9 @@ class AppServiceProvider extends ServiceProvider
         // Регистрация глобального middleware
         //$this->app['router']->pushMiddlewareToGroup('web', \App\Http\Middleware\IsAdmin::class);
 
-        Paginator::useBootstrapFive();
+        Paginator::defaultView('vendor.pagination.custom');
+
+       // Paginator::useBootstrapFive();
         Schema::defaultStringLength(191);
     }
 }
