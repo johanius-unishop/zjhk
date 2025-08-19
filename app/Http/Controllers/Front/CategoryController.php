@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $sortOrder = $request->input('sort_by_price', '');
 
         // Основной запрос по товарам
-        $query = Product::where('category_id', $category->id)->sortBy('stock');
+        $query = Product::where('category_id', $category->id)->where('published', 1)->orderBy('stock');
 
         $childrens = Category::defaultOrder()
             ->where('parent_id', $category->id)
