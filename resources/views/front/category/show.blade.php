@@ -143,11 +143,8 @@
                             </aside>
                         @endif
                         <div class="product-page__layout">
+                            <livewire:layout-toggle :elements="$data['products']" :layoutType = "session()->get('layoutType', 'list')" />
 
-                            @livewire('layout-toggle', [
-                                'elements' => $data['products'],
-                                'layoutType' => session()->get('layoutType', 'list'),
-                            ])
                             <div class="product-page__show">
                                 <button>Показать еще</button>
                             </div>
