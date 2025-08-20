@@ -79,7 +79,7 @@ class CategoryController extends Controller
             }
         }
 
-        $products = $query->with('media')->paginate($perPage)/*->withQueryString()*/;
+        $products = $query->with('media')->paginate($perPage)->withQueryString();
 
 
 
