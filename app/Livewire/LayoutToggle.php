@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class LayoutToggleComponent extends Component
+class LayoutToggle extends Component
 {
     public string $layoutType = 'list'; // Начальное состояние: список
 

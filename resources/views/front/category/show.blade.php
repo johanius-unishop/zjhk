@@ -143,7 +143,8 @@
                             </aside>
                         @endif
                         <div class="product-page__layout">
-                            @livewire('layout-toggle-component', [
+
+                            @livewire('layout-toggle', [
                                 'elements' => $data['products'],
                                 'layoutType' => session()->get('layoutType', 'list'),
                             ])
