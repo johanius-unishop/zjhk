@@ -60,12 +60,12 @@ else
     echo "Queue not running, skipping restart..."
 fi
 # Очистить кэш
+php artisan cache:clear
 echo "Clearing cache..."
-php artisan optimize:clear
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
-
+php artisan optimize
 # Дать права на необходимые папки для www-data
 echo "Setting permissions for www-data..."
 sudo chgrp -R www-data storage bootstrap/cache
