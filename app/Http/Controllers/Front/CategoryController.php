@@ -40,7 +40,7 @@ class CategoryController extends Controller
         $filter = 0;
 
         // Количество товаров на одну страницу (может передаваться параметром или фиксировано)
-        $perPage = $request->input('per_page', 12); // значение по умолчанию - 12 товаров
+        $perPage = $request->input('per_page', 8); // значение по умолчанию - 12 товаров
 
         // Фильтрация по наличию (если передано в запросе)
         $availabilityFilter = $request->input('availability');
@@ -93,7 +93,7 @@ class CategoryController extends Controller
 
         $data['category'] = $category;
         $data['parents'] = $parents;
-
+        $data['perPage'] = $perPage;
         if ($childrens->isNotEmpty()) {
             $data['childrens'] = $childrens;
         }
