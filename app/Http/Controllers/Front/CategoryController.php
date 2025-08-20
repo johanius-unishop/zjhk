@@ -49,20 +49,14 @@ class CategoryController extends Controller
         $sortOrder = $request->input('sort_by_price', '');
 
         // Основной запрос по товарам
-        $queryPositiveStock = Product::select('*')
-                     ->where('category_id', $category->id)
-                     ->where('published', 1)
-                     ->where('stock', '>', 0)
-                     ->orderBy('order_column');
-
-        $queryZeroOrNegativeStock = Product::select('*')
-                              ->where('category_id', $category->id)
-                              ->where('published', 1)
-                              ->where('stock', '<', 1)
-                              ->orderBy('order_column');
-
-        $query = $queryPositiveStock->unionAll($queryZeroOrNegativeStock)->get();
+        $query = Product::select('*')
+                   ->where('category_id', $category->id)
+                   ->where('published', 1)
+                   ->orderByRaw("CASE WHEN stock > 0 THEN 0 ELSE 1 END") // сначала положительные остатки
+                   ->orderBy('order_column');
         //$query = Product::where('category_id', $category->id)->where('published', 1)->orderBy('stock', 'DESC');
+
+        $products = $query->with('media')->paginate($perPage)->withQueryString();
 
         $childrens = Category::defaultOrder()
             ->where('parent_id', $category->id)
