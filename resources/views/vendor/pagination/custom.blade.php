@@ -45,7 +45,7 @@
             <p class="product-page__page-select">
                 <span>Показывать по </span>
                 <button class="product-page__change-btn">
-                    <span id="page-count">6</span>
+                    <span id="page-count">8</span>
                     <img src="{{ asset('images/icons/tick-black.svg') }}" alt="список страниц">
                 </button>
             </p>
