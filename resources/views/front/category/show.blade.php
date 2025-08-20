@@ -146,10 +146,11 @@
                             <div class="product-page__sort-container">
                                 <div>
                                     <select class="filter__select" name="sort" id="sort">
-                                        <option value="popular" placeholder>по популярности</option>
-                                        <option value="price">по цене</option>
-                                        <option value="stock">по наличию</option>
-                                        <option value="new">по новизне</option>
+                                        <option value="default" selected>По умолчанию</option>
+                                        <option value="stock_asc">Количество на складе по возрастанию</option>
+                                        <option value="stock_desc">Количество на складе по убыванию</option>
+                                        <option value="price_asc">Цена по возрастанию</option>
+                                        <option value="price_desc">Цена по убыванию</option>
                                     </select>
                                 </div>
                                 <div class="product-page__change-layout">
