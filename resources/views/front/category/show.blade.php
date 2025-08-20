@@ -147,8 +147,8 @@
                                 <div>
                                     <select class="filter__select" name="sort" id="sort">
                                         <option value="default" selected>По умолчанию</option>
-                                        <option value="stock_asc">Количество на складе по возрастанию</option>
-                                        <option value="stock_desc">Количество на складе по убыванию</option>
+                                        <option value="stock_asc">Количество по возрастанию</option>
+                                        <option value="stock_desc">Количество по убыванию</option>
                                         <option value="price_asc">Цена по возрастанию</option>
                                         <option value="price_desc">Цена по убыванию</option>
                                     </select>
