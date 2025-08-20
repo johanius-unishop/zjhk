@@ -50,11 +50,11 @@
                 </button>
             </p>
             <ul class="product-page__page-count" data-select-page>
-                <li><button data-page="6">6</button></li>
-                <li><button data-page="12">12</button></li>
-                <li><button data-page="24">24</button></li>
-                <li><button data-page="36">36</button></li>
-                <li><button data-page="48">48</button></li>
+                <li><button data-per-page="8">8</button></li>
+                <li><button data-per-page="12">12</button></li>
+                <li><button data-per-page="16">16</button></li>
+                <li><button data-per-page="20">20</button></li>
+                <li><button data-per-page="24">24</button></li>
             </ul>
         </div>
     </div>
