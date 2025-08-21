@@ -68,7 +68,7 @@ class CategoryController extends Controller
                 'slug' => $product->slug,
                 'userPrice' => $product->getUserPrice(),
                 'userStock' => $product->getUserStock(),
-                'alt' => $product->getAltAtribute(),
+                'alt' => $product->getAltAttribute(),
                 'averageRating' => $product->getAverageReviewRatingString(),
                 'reviewsString' => $product->getCountReviewsString(),
 
