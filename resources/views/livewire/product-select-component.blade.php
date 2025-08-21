@@ -18,7 +18,7 @@
 </div>
 
 <div id="layout" data-layout class="product-page__grid {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }} hide-subsequent-rows">
-    @foreach ($elements as $product_item)
+    @foreach ($data['products'] as $product_item)
         <div class="product-page__item">
             <div data-layout class="product-page__item-wrapper {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
                 <div>
