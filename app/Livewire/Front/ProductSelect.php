@@ -18,6 +18,13 @@ class ProductSelect extends Component
         }
     }
 
+    public function mount($data, $layoutType)
+    {
+        $this->data = $data;
+        $this->layoutType = $layoutType;
+    }
+
+
     public function render()
     {
         return view('livewire.product-select-component');
