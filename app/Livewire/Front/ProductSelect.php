@@ -22,6 +22,7 @@ class ProductSelect extends Component
     {
         $this->elements = $elements;
         $this->layoutType = $layoutType;
+        dd($this->elements);
     }
 
 
