@@ -39,6 +39,7 @@ class CategoryController extends Controller
 
         $filter = 0;
 
+        $viewMode = $request->input();
         // Количество товаров на одну страницу (может передаваться параметром или фиксировано)
         $perPage = $request->input('per_page', 8); // значение по умолчанию - 12 товаров
 
@@ -50,13 +51,35 @@ class CategoryController extends Controller
 
         // Основной запрос по товарам
         $query = Product::select('*')
-                   ->where('category_id', $category->id)
-                   ->where('published', 1)
-                   ->orderByRaw("CASE WHEN stock > 0 THEN 0 ELSE 1 END") // сначала положительные остатки
-                   ->orderBy('order_column');
+            ->where('category_id', $category->id)
+            ->where('published', 1)
+            ->orderByRaw("CASE WHEN stock > 0 THEN 0 ELSE 1 END") // сначала положительные остатки
+            ->orderBy('order_column');
         //$query = Product::where('category_id', $category->id)->where('published', 1)->orderBy('stock', 'DESC');
 
-        $products = $query->with('media')->paginate($perPage)->withQueryString();
+        // Выполняем пагинацию и подтягиваем медиа-данные
+        $paginatedProducts = $query->with('media')->paginate($perPage)->withQueryString();
+
+        $products = collect($paginatedProducts->items())->map(function ($product) {
+            return [
+                'id' => $product->id,
+                'name' => $product->name,
+                'article' => $product->article,
+                'slug' => $product->slug,
+                'userPrice' => $product->getUserPrice(),
+                'userStock' => $product->getUserStock(),
+                'alt' => $product->getAltAtribute(),
+                'averageRating' => $product->getAverageReviewRatingString(),
+                'reviewsString' => $product->getCountReviewsString(),
+
+
+                'images' => $product->media->map(function ($media) { // Медиа-изображения товара
+                    return [
+                        'url' => $media->getUrl('thumb'), // Удобный полный путь к изображению
+                    ];
+                }),
+            ];
+        });
 
         $childrens = Category::defaultOrder()
             ->where('parent_id', $category->id)
@@ -75,7 +98,7 @@ class CategoryController extends Controller
             }
         }
 
-         if ($sortOrder !== '') {
+        if ($sortOrder !== '') {
             switch ($sortOrder) {
                 case 'asc': // по возрастанию цены
                     $query->orderBy('price', 'ASC');
@@ -86,13 +109,11 @@ class CategoryController extends Controller
             }
         }
 
-        $products = $query->with('media')->paginate($perPage)->withQueryString();
-
 
 
         // $products = $category->products->paginate(12);
 
-        $products = checkInCartAndFavourites($products);
+        //$products = checkInCartAndFavourites($products);
 
         SEOMeta::setTitle($category->seo->title);
         SEOMeta::setDescription($category->seo->description);

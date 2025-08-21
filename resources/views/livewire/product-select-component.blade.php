@@ -24,9 +24,9 @@
                 <div>
                     <div class="swiper product-page-slider">
                         <div class="swiper-wrapper">
-                            @foreach ($product_item->getMedia('images') as $product_image)
-                                <div class="swiper-slide"><img src="{{ $product_image->getUrl('thumb') }}"
-                                        alt="{{ $product_item->getAltAttribute() }}">
+                            @foreach ($product_item['images'] as $product_image)
+                                <div class="swiper-slide"><img src="{{ $product_image->url }}"
+                                        alt="{{ $product_item->alt }}">
                                 </div>
                             @endforeach
                         </div>
@@ -42,13 +42,13 @@
                     <p>{{ $product_item->article }}</p>
                     <div>
                         <img src="{{ asset('images/icons/star.svg') }}"
-                            alt="рейтинг"><span>{{ $product_item->getAverageReviewRatingString() }}</span>
-                        <a><span>{{ $product_item->getCountReviewsString() }}</span></a>
+                            alt="рейтинг"><span>{{ $product_item->AverageRating }}</span>
+                        <a><span>{{ $product_item->reviewsString }}</span></a>
                     </div>
                 </div>
                 <div data-layout class="product-page__info-container {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
-                    <p>{{ $product_item->getUserPrice() }}</p>
-                    <p>{{ $product_item->getUserStock() }}</p>
+                    <p>{{ $product_item->price }}</p>
+                    <p>{{ $product_item->stock }}</p>
                     <button class="product-page__add-cart">В корзину</button>
                 </div>
             </div>

@@ -143,7 +143,7 @@
                             </aside>
                         @endif
                         <div class="product-page__layout">
-                            @livewire('front.product-select', ['elements' => $data['products']->toArray(), 'layoutType' => session()->get('layoutType', 'list')])
+                            @livewire('front.product-select', ['elements' => $data['products'], 'layoutType' => session()->get('layoutType', 'list')])
 
 
                             <div class="product-page__show">
