@@ -128,9 +128,9 @@ class CategoryController extends Controller
 
         if ($products->isNotEmpty()) {
             $data['products'] = $products;
-            dd($products);
-        }
 
+        }
+        dd($products);
         //Условие вывода фильтра по товарам
         //$data['filter'] = 1;
 
