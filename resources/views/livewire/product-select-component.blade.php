@@ -25,7 +25,7 @@
                     <div class="swiper product-page-slider">
                         <div class="swiper-wrapper">
                             @foreach ($product_item['images'] as $product_image)
-                                <div class="swiper-slide"><img src="{{ $product_image[0]->url }}"
+                                <div class="swiper-slide"><img src="{{ $product_image['url'] }}"
                                         alt="{{ $product_item->alt }}">
                                 </div>
                             @endforeach
