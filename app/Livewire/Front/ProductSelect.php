@@ -7,7 +7,7 @@ use Livewire\Component;
 class ProductSelect extends Component
 {
     public string $layoutType = 'list'; // Начальное состояние: список
-
+    public $elements = [];
     public function toggleLayout()
     {
         if ($this->layoutType === 'list') {
