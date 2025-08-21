@@ -77,9 +77,9 @@ class CategoryController extends Controller
                     return [
                         'url' => $media->getUrl('thumb'), // Удобный полный путь к изображению
                     ];
-                }),
+                })->values()->toArray(),
             ];
-        });
+        })->values()->toArray();
 
         $childrens = Category::defaultOrder()
             ->where('parent_id', $category->id)
@@ -126,7 +126,7 @@ class CategoryController extends Controller
             $data['childrens'] = $childrens;
         }
 
-        if ($products->isNotEmpty()) {
+        if (!empty($products)) {
             $data['products'] = $products;
 
         }
