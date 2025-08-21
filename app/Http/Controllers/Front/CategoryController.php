@@ -75,7 +75,7 @@ class CategoryController extends Controller
 
                 'images' => $product->media->map(function ($media) { // Медиа-изображения товара
                     return [
-                        'url' => $media->getUrl('thumb'), // Удобный полный путь к изображению
+                        'url' => $media('images')->getUrl('thumb'), // Удобный полный путь к изображению
                     ];
                 })->values()->toArray(),
             ];
