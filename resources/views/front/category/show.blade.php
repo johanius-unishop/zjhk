@@ -143,8 +143,8 @@
                             </aside>
                         @endif
                         <div class="product-page__layout">
-                            @livewire('front.product-select', ['elements' => $data['products'], 'layoutType' => session()->get('layoutType', 'list')])
-
+                            @livewire('front.productselect.changeview', ['layoutType' => session()->get('layoutType', 'card')])
+                            @livewire('front.productselect.products', ['elements' => $data['products']])
 
                             <div class="product-page__show">
                                 <button>Показать еще</button>
