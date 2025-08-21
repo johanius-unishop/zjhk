@@ -47,8 +47,8 @@
                     </div>
                 </div>
                 <div data-layout class="product-page__info-container {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
-                    <p>{{ $product_item['price'] }}</p>
-                    <p>{{ $product_item['stock'] }}</p>
+                    <p>{{ $product_item['userPrice'] }}</p>
+                    <p>{{ $product_item['userStock'] }}</p>
                     <button class="product-page__add-cart">В корзину</button>
                 </div>
             </div>
