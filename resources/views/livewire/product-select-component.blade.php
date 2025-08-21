@@ -26,7 +26,7 @@
                         <div class="swiper-wrapper">
                             @foreach ($product_item['images'] as $product_image)
                                 <div class="swiper-slide"><img src="{{ $product_image['url'] }}"
-                                        alt="{{ $product_item->alt }}">
+                                        alt="{{ $product_item['alt'] }}">
                                 </div>
                             @endforeach
                         </div>
@@ -38,17 +38,17 @@
                     </button>
                 </div>
                 <div data-layout class="product-page__title-container {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
-                    <h5>{{ $product_item->name }}</h5>
-                    <p>{{ $product_item->article }}</p>
+                    <h5>{{ $product_item['name'] }}</h5>
+                    <p>{{ $product_item['article'] }}</p>
                     <div>
                         <img src="{{ asset('images/icons/star.svg') }}"
-                            alt="рейтинг"><span>{{ $product_item->AverageRating }}</span>
-                        <a><span>{{ $product_item->reviewsString }}</span></a>
+                            alt="рейтинг"><span>{{ $product_item['AverageRating'] }}</span>
+                        <a><span>{{ $product_item['reviewsString'] }}</span></a>
                     </div>
                 </div>
                 <div data-layout class="product-page__info-container {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
-                    <p>{{ $product_item->price }}</p>
-                    <p>{{ $product_item->stock }}</p>
+                    <p>{{ $product_item['price'] }}</p>
+                    <p>{{ $product_item['stock'] }}</p>
                     <button class="product-page__add-cart">В корзину</button>
                 </div>
             </div>
