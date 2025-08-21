@@ -42,7 +42,7 @@
                     <p>{{ $product_item['article'] }}</p>
                     <div>
                         <img src="{{ asset('images/icons/star.svg') }}"
-                            alt="рейтинг"><span>{{ $product_item['AverageRating'] }}</span>
+                            alt="рейтинг"><span>{{ $product_item['averageRating'] }}</span>
                         <a><span>{{ $product_item['reviewsString'] }}</span></a>
                     </div>
                 </div>
