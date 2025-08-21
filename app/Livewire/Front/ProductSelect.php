@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire\Front;
 
 use Livewire\Component;
 
-class LayoutToggle extends Component
+class ProductSelect extends Component
 {
     public string $layoutType = 'list'; // Начальное состояние: список
 
@@ -19,6 +19,6 @@ class LayoutToggle extends Component
 
     public function render()
     {
-        return view('livewire.layout-toggle-component');
+        return view('livewire.product-select-component');
     }
 }
