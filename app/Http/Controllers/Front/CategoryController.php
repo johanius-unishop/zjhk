@@ -73,9 +73,9 @@ class CategoryController extends Controller
                 'reviewsString' => $product->getCountReviewsString(),
 
 
-                'images' => $product->media->map(function ($media) { // Медиа-изображения товара
+                'images' => $product->getMedia('images')->map(function ($media) { // Медиа-изображения товара
                     return [
-                        'url' => $media('images')->getUrl('thumb'), // Удобный полный путь к изображению
+                        'url' => $media->getUrl('thumb'), // Удобный полный путь к изображению
                     ];
                 })->values()->toArray(),
             ];
