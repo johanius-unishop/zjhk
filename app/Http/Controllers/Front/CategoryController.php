@@ -80,7 +80,7 @@ class CategoryController extends Controller
                 })->values()->toArray(),
             ];
         })->values()->toArray();
-
+        dd($products);
 
         $childrens = Category::defaultOrder()
             ->where('parent_id', $category->id)
