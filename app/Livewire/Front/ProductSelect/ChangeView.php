@@ -12,8 +12,10 @@ class ChangeView extends Component
     {
         if ($this->layoutType === 'card') {
             $this->layoutType = 'list';
+            $this->dispatch('changeLayout', layoutType: $this->layoutType);
         } else {
             $this->layoutType = 'card';
+            $this->dispatch('changeLayout', layoutType: $this->layoutType);
         }
     }
 
