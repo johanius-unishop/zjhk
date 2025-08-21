@@ -77,10 +77,10 @@ class CategoryController extends Controller
                     return [
                         'url' => $media->getUrl('thumb'), // Удобный полный путь к изображению
                     ];
-                }),
+                })->values()->toArray(),
             ];
         })->values()->toArray();
-        dd($products);
+
 
         $childrens = Category::defaultOrder()
             ->where('parent_id', $category->id)
