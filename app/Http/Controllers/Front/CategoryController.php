@@ -130,7 +130,7 @@ class CategoryController extends Controller
             $data['products'] = $products;
 
         }
-        dd($products);
+
         //Условие вывода фильтра по товарам
         //$data['filter'] = 1;
 
