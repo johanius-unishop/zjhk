@@ -199,7 +199,7 @@
 @push('css')
 @endpush
 
-@push('scripts')
+@section('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var swiper = new Swiper('.product-page-slider', {
@@ -212,4 +212,4 @@
             });
         });
     </script>
-@endpush
+@endsection
