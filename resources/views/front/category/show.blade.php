@@ -200,4 +200,16 @@
 @endpush
 
 @push('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var swiper = new Swiper('.product-page-slider', {
+                // Параметры Swiper.js
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination-product',
+                    clickable: true,
+                },
+            });
+        });
+    </script>
 @endpush
