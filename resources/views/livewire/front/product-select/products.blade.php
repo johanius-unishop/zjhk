@@ -1,4 +1,4 @@
-<div wire:final="final" id="layout" data-layout
+<div id="layout" data-layout
     class="product-page__grid {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }} hide-subsequent-rows">
     @foreach ($elements as $product_item)
         <div class="product-page__item">
@@ -41,40 +41,3 @@
     @endforeach
 
 </div>
-
-@script
-    <script>
-        console.log("Livewire component updated");
-
-
-        const swiperProduct = new Swiper('.product-page-slider', {
-            modules: [EffectFade, Pagination], // Глобальные переменные!
-            loop: false,
-            grabCursor: false,
-            pagination: {
-                el: '.swiper-pagination-product',
-                clickable: true,
-                renderBullet: (index, className) => `<span class="${className}"></span>`
-            },
-            effect: 'fade'
-        });
-
-
-
-
-     /*   const swiperProduct = new Swiper('.product-page-slider', {
-            modules: [SwiperEffectFade,
-                SwiperPagination
-            ],
-            loop: false,
-            grabCursor: false,
-            pagination: {
-                el: '.swiper-pagination-product',
-                clickable: true,
-                renderBullet: (index, className) =>
-                    `<span class="${className}"></span>`
-            },
-            effect: 'fade'
-        });*/
-    </script>
-@endscript
