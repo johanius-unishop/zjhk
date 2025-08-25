@@ -22,12 +22,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-window.Swiper = Swiper;
-window.EffectFade = EffectFade;
-window.Pagination = Pagination;
-window.Navigation = Navigation;
-window.Autoplay = Autoplay;
-window.Thumbs = Thumbs;
+Swiper.use([EffectFade, Pagination]);
+
+
 
 
 

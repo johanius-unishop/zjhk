@@ -45,12 +45,7 @@
 @script
     <script>
         $wire.on('exeScript', () => {
-            // Подключаем библиотеку Swiper и необходимые модули
-            import Swiper from 'swiper';
-            import {
-                EffectFade,
-                Pagination
-            } from 'swiper/modules';
+
 
             // Зарегистрируем модули
             Swiper.use([EffectFade, Pagination]);
