@@ -1,4 +1,3 @@
-__webpack_require__.r(__webpack_exports__);
 const showAllText = document.querySelector('.product-desc__props-show')
 const opacityText = document.querySelector('.product-desc__show-text')
 const hiddenText = document.querySelector('.product-desc__hidden-text')
@@ -13,8 +12,13 @@ const testimonialMark = document.querySelector('.testimonial__note')
 const testimonialWarning = document.querySelector('.testimonial__note-warning')
 const stars = ratingList?.querySelectorAll('li')
 const testimonialCallBtn = document.querySelector('.product-desc__item-btn')
+
 const connectionSelect = document.querySelector('.product-desc__connection-select')
 const buttonArr = connectionSelect?.querySelectorAll('button')
+const testimonialSection = document.getElementById('testimonial-section')
+const questionsSection = document.getElementById('questions-client')
+const buttons = document.querySelectorAll('.product-desc__answer-btn')
+
 
 const goScrollTo = (y) => {
 	window.scrollTo({
@@ -62,10 +66,10 @@ navItemArr.forEach((item) =>
 			goScrollTo(2000)
 		}
 		if (e.target.hasAttribute('data-analog')) {
-			goScrollTo(2620)
+			goScrollTo(3250)
 		}
 		if (e.target.hasAttribute('data-testimonial')) {
-			goScrollTo(2900)
+			goScrollTo(3520)
 		}
 		toggleNav(e)
 		if (window.pageYOffset < 900) {
@@ -111,7 +115,6 @@ testimonialCallBtn?.addEventListener('click', () => {
 	testimonialMark.classList.remove('_active')
 	testimonialWarning.classList.remove('_active')
 	stars?.forEach((star) => {
-		// Удаляем класс _active у всех звезд
 		star.classList.remove('_active')
 	})
 })
@@ -129,15 +132,61 @@ testimonialBtn?.addEventListener('click', (e) => {
 	}
 })
 
+function toggleSections(activeButton) {
+	buttonArr.forEach((btn) => btn.classList.remove('_active'))
+	activeButton.classList.add('_active')
+	if (activeButton.textContent.includes('Отзывы')) {
+		testimonialSection.classList.add('_active')
+		questionsSection.classList.remove('_active')
+	} else if (activeButton.textContent.includes('Вопросы')) {
+		testimonialSection.classList.remove('_active')
+		questionsSection.classList.add('_active')
+	}
+}
+
 buttonArr?.forEach((button) => {
 	button.addEventListener('click', function () {
-		// Удаляем активный класс у всех кнопок
-		buttonArr.forEach((btn) => btn.classList.remove('_active'))
-
-		// Добавляем активный класс только нажатой кнопке
-		this.classList.add('_active')
+		toggleSections(this)
 	})
 })
 
+if (buttonArr?.length) {
+	const defaultActiveButton = Array.from(buttonArr).find((btn) => btn.classList.contains('_active'))
+	if (defaultActiveButton) {
+		toggleSections(defaultActiveButton)
+	} else {
+		buttonArr[0].classList.add('_active')
+		toggleSections(buttonArr[0])
+	}
+}
 
-//# sourceURL=webpack://gulp/./src/js/libs/productDesc.js?
+document.addEventListener('DOMContentLoaded', function () {
+	const textarea = document.getElementById('person-comment')
+	const charCount = document.getElementById('char-count')
+	const submitBtn = document.getElementById('submit-btn')
+
+	textarea.addEventListener('input', function () {
+		const currentLength = this.value.length
+		charCount.textContent = currentLength
+
+		if (currentLength > 1000) {
+			submitBtn.disabled = true
+			charCount.style.color = 'red'
+		} else if (currentLength === 0) {
+			submitBtn.disabled = true
+			charCount.style.color = '#666'
+		} else {
+			submitBtn.disabled = false
+			charCount.style.color = '#666'
+		}
+	})
+})
+
+buttons.forEach((button) => {
+	button.addEventListener('click', function () {
+		const textBlock = this.nextElementSibling
+		const image = this.querySelector('img')
+		textBlock.classList.toggle('_active')
+		image.classList.toggle('_active')
+	})
+})
