@@ -201,13 +201,16 @@
 
 @section('scripts')
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if(window.livewire) {
+            window.livewire.on('echo-window-livewire-init', () => {
+                console.log("Livewire component updated");
 
-        window.livewire.on('echo-window-livewire-init', () => {
-        console.log("Livewire component updated");
+                // Повторно инициализируем Swiper
+                initSwiper();
+            });
+        }});
 
-        // Повторно инициализируйте вашу библиотеку Swiper или любые другие обработчики
-    //    initSwiper();
-    });
        /* document.addEventListener('livewire:final', function() {
             // Создание экземпляра Swiper с параметрами
             const swiperProduct = new Swiper('.product-page-slider', {
