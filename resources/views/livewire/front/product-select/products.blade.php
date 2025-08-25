@@ -72,7 +72,7 @@
          * Создает новый экземпляр Swiper
          */
         function initializeSlickSlider() {
-            const swiperProduct = new window.Swiper('.product-page-slider', {
+            const swiperProduct = new Swiper('.product-page-slider', {
                 modules: [window.EffectFade, window.Pagination],
                 loop: false,
                 grabCursor: false,

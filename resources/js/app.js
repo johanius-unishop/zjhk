@@ -22,7 +22,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-Swiper.use([EffectFade, Pagination]);
 
 window.Swiper = Swiper;
 window.EffectFade = EffectFade;
