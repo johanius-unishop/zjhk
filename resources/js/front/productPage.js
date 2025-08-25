@@ -1,4 +1,4 @@
-import { addClass, isTargetElement, toggleClass, removeClass } from '.functions.js'
+import { addClass, isTargetElement, toggleClass, removeClass } from './functions.js'
 const favouriteLabel = document.querySelectorAll('.product-page__label')
 const toggleLayoutBtn = document.querySelectorAll('.toggle__layout')
 
