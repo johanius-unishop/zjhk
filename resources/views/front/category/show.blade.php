@@ -151,23 +151,23 @@
                                     <!-- Кнопка карточки -->
                                     <button wire:click="toggleLayout" id="card-layout" class="toggle__layout">
                                         <img src="{{ asset('images/icons/block-gray.svg') }}" alt="Карточки"
-                                            class="change__img {{ $layoutType === 'card' ? '_active' : '' }}">
+                                            class="change__img _active">
                                     </button>
 
                                     <!-- Кнопка списка -->
                                     <button wire:click="toggleLayout" id="list-layout" class="toggle__layout">
                                         <img src="{{ asset('images/icons/list.svg') }}" alt="Список"
-                                            class="change__img {{ $layoutType === 'list' ? '_active' : '' }}">
+                                            class="change__img">
                                     </button>
                                 </div>
                             </div>
 
                             <div id="layout" data-layout
-                                class="product-page__grid {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }} hide-subsequent-rows">
+                                class="product-page__grid card-layout hide-subsequent-rows">
                                 @foreach ($elements as $product_item)
                                     <div class="product-page__item">
                                         <div data-layout
-                                            class="product-page__item-wrapper {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
+                                            class="product-page__item-wrapper card-layout">
                                             <div>
                                                 <div class="swiper product-page-slider">
                                                     <div class="swiper-wrapper">
@@ -186,7 +186,7 @@
                                                 </button>
                                             </div>
                                             <div data-layout
-                                                class="product-page__title-container {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
+                                                class="product-page__title-container card-layout">
                                                 <h5>{{ $product_item['name'] }}</h5>
                                                 <p>{{ $product_item['article'] }}</p>
                                                 <div>
@@ -196,7 +196,7 @@
                                                 </div>
                                             </div>
                                             <div data-layout
-                                                class="product-page__info-container {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
+                                                class="product-page__info-container card-layout">
                                                 <p>{{ $product_item['userPrice'] }}</p>
                                                 <p>{{ $product_item['userStock'] }}</p>
                                                 <button class="product-page__add-cart">В корзину</button>
