@@ -28,5 +28,5 @@ window.Thumbs = Thumbs;
 
 
 
-import './front/productDesc'
-import './front/slider'
+
+
