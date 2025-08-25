@@ -47,16 +47,29 @@
         $wire.on('exeScript', () => {
             console.log('Макет изменился:');
 
-            // Проверяем, есть ли слайдер, чтобы предотвратить лишние инициализации
-            const existingSwipers = document.querySelectorAll('.swiper');
-            if (existingSwipers.length > 0) {
-                // Обходим все найденные слайдеры и уничтожаем их, если они уже созданы
-                existingSwipers.forEach((el) => {
-                    if (el.swiper) {
-                        el.swiper.destroy(true, true);
-                    }
-                });
-            }
+            // Сначала очищаем существующие объекты Swiper
+            clearSlickSliders();
+
+            // Создаем новый экземпляр Swiper
+            initializeSlickSlider();
+        });
+
+        /**
+         * Удаляет старые объекты Swiper
+         */
+        function clearSlickSliders() {
+            var sliders = document.querySelectorAll('.product-page-slider');
+            sliders.forEach((slider) => {
+                if (slider.swiper) {
+                    slider.swiper.destroy(true);
+                }
+            });
+        }
+
+        /**
+         * Создает новый экземпляр Swiper
+         */
+        function initializeSlickSlider() {
             const swiperProduct = new Swiper('.product-page-slider', {
                 modules: [EffectFade, Pagination],
                 loop: false,
@@ -64,11 +77,10 @@
                 pagination: {
                     el: '.swiper-pagination-product',
                     clickable: true,
-                    renderBullet: function(index, className) {
-                        return '<span class="' + className + '">' + '</span>'
-                    }
-                }
-            })
-        });
+                    renderBullet: (index, className) => `<span class="${className}"></span>`
+                },
+                effect: 'fade'
+            });
+        }
     </script>
 @endscript
