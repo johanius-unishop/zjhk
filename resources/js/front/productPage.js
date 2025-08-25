@@ -1,6 +1,4 @@
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _files_functions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../files/functions.js */ "./src/js/files/functions.js");
-
+import { addClass, isTargetElement, toggleClass, removeClass } from '../files/functions.js'
 const favouriteLabel = document.querySelectorAll('.product-page__label')
 const toggleLayoutBtn = document.querySelectorAll('.toggle__layout')
 
@@ -17,39 +15,35 @@ const changeLayoutIcon = (currentBtn) => {
 	const hasActiveClass = currentBtn.firstElementChild.matches('.change__img._active')
 
 	if (!hasActiveClass) {
-		(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.addClass)(currentBtn.firstElementChild, '_active')
+		addClass(currentBtn.firstElementChild, '_active')
 		const typeOfLayout = currentBtn.getAttribute('id')
 		if (typeOfLayout === 'list-layout') {
 			layoutElArr.forEach((element) => {
-				(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.removeClass)(element, 'card-layout')
-				;(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.addClass)(element, 'list-layout')
+				removeClass(element, 'card-layout')
+				addClass(element, 'list-layout')
 			})
 		} else {
 			layoutElArr.forEach((element) => {
-				(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.removeClass)(element, 'list-layout')
-				;(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.addClass)(element, 'card-layout')
+				removeClass(element, 'list-layout')
+				addClass(element, 'card-layout')
 			})
 		}
 
 		toggleLayoutBtn.forEach((btn) => {
 			if (btn !== currentBtn) {
-				(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.removeClass)(btn.firstElementChild, '_active')
+				removeClass(btn.firstElementChild, '_active')
 			}
 		})
 	}
 }
 
-// check favourite product
-
-favouriteLabel.forEach((item) => {	
-	item.addEventListener('click', () => (0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.toggleClass)(item, '_active'))
+favouriteLabel.forEach((item) => {
+	item.addEventListener('click', () => toggleClass(item, '_active'))
 })
-
-// add product in cart
 
 addCartBtnArr.forEach((btn) => {
 	btn.addEventListener('click', () => {
-		;(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.toggleClass)(btn, '_cart')
+		toggleClass(btn, '_cart')
 		if (btn.classList.contains('_cart')) {
 			btn.textContent = 'В корзине'
 		} else {
@@ -58,47 +52,39 @@ addCartBtnArr.forEach((btn) => {
 	})
 })
 
-// change layout
-
 toggleLayoutBtn.forEach((btn) => {
 	btn.addEventListener('click', () => changeLayoutIcon(btn))
 })
-
-// change page number
 
 const changePageNumber = () => {
 	pageNumberArr.forEach((pageNumberEl) => {
 		pageNumberEl.addEventListener('click', () => {
 			for (let page of pageNumberArr) {
-				;(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.removeClass)(page, '_active')
+				removeClass(page, '_active')
 			}
-			(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.addClass)(pageNumberEl, '_active')
+			addClass(pageNumberEl, '_active')
 		})
 	})
 }
 
 changePageNumber()
 
-// page count select
-
 const closePagination = (e) => {
-	if (!(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.isTargetElement)(changePageBtn, e.target)) {
-		(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.removeClass)(changePageBtn, '_active')
-		;(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.removeClass)(changePageBtn?.parentElement.nextElementSibling, '_active')
+	if (!isTargetElement(changePageBtn, e.target)) {
+		removeClass(changePageBtn, '_active')
+		removeClass(changePageBtn?.parentElement.nextElementSibling, '_active')
 	}
 }
 
 changePageBtn?.addEventListener('click', (e) => {
-	;(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.toggleClass)(changePageBtn, '_active')
-	;(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.toggleClass)(changePageBtn?.parentElement.nextElementSibling, '_active')
+	toggleClass(changePageBtn, '_active')
+	toggleClass(changePageBtn?.parentElement.nextElementSibling, '_active')
 	e.stopPropagation()
 })
 
-// add css class to one and remove from all
-
 removeFilterBtn?.addEventListener('click', () => {
-	;(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.toggleClass)(filterLayout, '_active')
-	;(0,_files_functions_js__WEBPACK_IMPORTED_MODULE_0__.toggleClass)(removeFilterBtn, '_active')
+	toggleClass(filterLayout, '_active')
+	toggleClass(removeFilterBtn, '_active')
 	if (removeFilterBtn.classList.contains('_active')) {
 		removeFilterBtn.textContent = 'Скрыть фильтр'
 	} else {
@@ -123,6 +109,3 @@ document.addEventListener('click', (e) => {
 	e.stopPropagation()
 	closePagination(e)
 })
-
-
-//# sourceURL=webpack://gulp/./src/js/libs/productPage.js?
