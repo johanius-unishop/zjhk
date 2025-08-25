@@ -201,7 +201,14 @@
 
 @section('scripts')
     <script>
-        document.addEventListener('livewire:final', function() {
+
+        window.livewire.on('echo-window-livewire-init', () => {
+        console.log("Livewire component updated");
+
+        // Повторно инициализируйте вашу библиотеку Swiper или любые другие обработчики
+    //    initSwiper();
+    });
+       /* document.addEventListener('livewire:final', function() {
             // Создание экземпляра Swiper с параметрами
             const swiperProduct = new Swiper('.product-page-slider', {
                 modules: [SwiperEffectFade,
@@ -216,6 +223,6 @@
                 },
                 effect: 'fade' // Если используется эффект fade, убедитесь, что он указан явно
             });
-        });
+        });*/
     </script>
 @endsection
