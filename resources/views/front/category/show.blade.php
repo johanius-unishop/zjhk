@@ -202,7 +202,7 @@
 @push('css')
 @endpush
 
-@livewireScriptConfig
-@section('scripts')
 
+@section('scripts')
+@livewireScriptConfig
 @endsection
