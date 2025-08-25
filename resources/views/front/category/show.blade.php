@@ -201,7 +201,7 @@
 
 @section('scripts')
 <script>
-    document.addEventListener('livewire:final', () => {
+    document.addEventListener('livewire:updated', () => {
         console.log("Livewire component updated");
     });
     /*
