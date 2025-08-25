@@ -24,7 +24,12 @@ import 'swiper/css/scrollbar';
 
 Swiper.use([EffectFade, Pagination]);
 
-
+window.Swiper = Swiper;
+window.EffectFade = EffectFade;
+window.Pagination = Pagination;
+window.Navigation = Navigation;
+window.Autoplay = Autoplay;
+window.Thumbs = Thumbs;
 
 
 
