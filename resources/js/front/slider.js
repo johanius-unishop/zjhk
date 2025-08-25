@@ -1,18 +1,12 @@
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.mjs");
-/* harmony import */ var swiper_modules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swiper/modules */ "./node_modules/swiper/modules/index.mjs");
-/* harmony import */ var swiper_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper/css */ "./node_modules/swiper/swiper.css");
-/* harmony import */ var swiper_css_navigation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! swiper/css/navigation */ "./node_modules/swiper/modules/navigation.css");
-/* harmony import */ var swiper_css_pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! swiper/css/pagination */ "./node_modules/swiper/modules/pagination.css");
+import Swiper from 'swiper'
+import { EffectFade, Pagination, Navigation, Autoplay, Thumbs } from 'swiper/modules'
 
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
-
-
-
-
-
-const swiper1 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.banner-slider', {
-	modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFade, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Autoplay],
+const swiper1 = new Swiper('.banner-slider', {
+	modules: [EffectFade, Pagination, Autoplay],
 	loop: true,
 	grabCursor: true,
 	autoplay: {
@@ -28,8 +22,8 @@ const swiper1 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.banner-slid
 	}
 })
 
-const swiperProduct = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.product-page-slider', {
-	modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFade, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination],
+const swiperProduct = new Swiper('.product-page-slider', {
+	modules: [EffectFade, Pagination],
 	loop: false,
 	grabCursor: false,
 	pagination: {
@@ -41,8 +35,8 @@ const swiperProduct = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.produ
 	}
 })
 
-const sliderNews = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.news-slider', {
-	modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFade, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
+const sliderNews = new Swiper('.news-slider', {
+	modules: [EffectFade, Navigation],
 	navigation: {
 		nextEl: '.swiper-button-next.news',
 		prevEl: '.swiper-button-prev.news'
@@ -64,8 +58,8 @@ const sliderNews = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.news-sli
 	}
 })
 
-const articles = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.articles-slider', {
-	modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFade, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
+const articles = new Swiper('.articles-slider', {
+	modules: [EffectFade, Navigation],
 	navigation: {
 		nextEl: '.swiper-button-next.articles',
 		prevEl: '.swiper-button-prev.articles'
@@ -87,8 +81,8 @@ const articles = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.articles-s
 	}
 })
 
-const docs = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.documents-slider', {
-	modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFade, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
+const docs = new Swiper('.documents-slider', {
+	modules: [EffectFade, Navigation],
 	navigation: {
 		nextEl: '.swiper-button-next.documents',
 		prevEl: '.swiper-button-prev.documents'
@@ -110,8 +104,8 @@ const docs = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.documents-slid
 	}
 })
 
-const brands = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.brands-slider', {
-	modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFade, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
+const brands = new Swiper('.brands-slider', {
+	modules: [EffectFade, Navigation],
 	navigation: {
 		nextEl: '.swiper-button-next.brands',
 		prevEl: '.swiper-button-prev.brands'
@@ -133,8 +127,8 @@ const brands = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.brands-slide
 	}
 })
 
-const sliderOpt = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.opt-slider', {
-	modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFade, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
+const sliderOpt = new Swiper('.opt-slider', {
+	modules: [EffectFade, Navigation],
 	navigation: {
 		nextEl: '.swiper-button-next.opt',
 		prevEl: '.swiper-button-prev.opt'
@@ -156,7 +150,30 @@ const sliderOpt = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.opt-slide
 	}
 })
 
-const swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.thumbSwiper', {
+const sliderOpt2 = new Swiper('.opt-slider2', {
+	modules: [EffectFade, Navigation],
+	navigation: {
+		nextEl: '.swiper-button-next.opt2',
+		prevEl: '.swiper-button-prev.opt2'
+	},
+	loop: true,
+	breakpoints: {
+		360: {
+			slidesPerView: 2,
+			spaceBetween: 8
+		},
+		680: {
+			slidesPerView: 3,
+			spaceBetween: 20
+		},
+		992: {
+			slidesPerView: 4,
+			spaceBetween: 20
+		}
+	}
+})
+
+const swiper = new Swiper('.thumbSwiper', {
 	loop: true,
 	spaceBetween: 10,
 	freeMode: true,
@@ -170,8 +187,8 @@ const swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.thumbSwiper'
 	}
 })
 
-const swiper2 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.photoSwiper', {
-	modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFade, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Thumbs, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination],
+const swiper2 = new Swiper('.photoSwiper', {
+	modules: [EffectFade, Navigation, Thumbs, Pagination],
 	loop: true,
 	spaceBetween: 10,
 	navigation: {
@@ -202,8 +219,8 @@ const swiper2 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.photoSwiper
 	}
 })
 
-const sliderTestimonial = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.testimonial-slider', {
-	modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFade, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
+const sliderTestimonial = new Swiper('.testimonial-slider', {
+	modules: [EffectFade, Navigation],
 	navigation: {
 		nextEl: '.swiper-button-next.testimonial',
 		prevEl: '.swiper-button-prev.testimonial'
@@ -227,6 +244,3 @@ const sliderTestimonial = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.t
 })
 
 console.log('Slider has been connected...')
-
-
-//# sourceURL=webpack://gulp/./src/js/libs/slider.js?
