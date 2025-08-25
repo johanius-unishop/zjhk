@@ -200,5 +200,9 @@
 @endpush
 
 @section('scripts')
-
+<script>
+    window.livewire.on('changeLayout', () => {
+        console.log("Layout changed"); // Эта запись появится при каждом изменении макета
+    });
+</script>
 @endsection
