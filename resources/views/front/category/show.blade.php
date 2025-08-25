@@ -197,20 +197,9 @@
 
 
 @push('css')
+
 @endpush
 
 @section('scripts')
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var swiper = new Swiper('.product-page-slider', {
-                // Параметры Swiper.js
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination-product',
-                    clickable: true,
-                },
-            });
-        });
-    </script>
+
 @endsection
