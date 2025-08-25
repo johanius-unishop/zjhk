@@ -4,4 +4,4 @@ import 'bootstrap'
 
 import '../../vendor/power-components/livewire-powergrid/dist/powergrid'
 
-import './front/slider'
+import './front/myProductPage'
