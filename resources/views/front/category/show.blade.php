@@ -200,32 +200,5 @@
 @endpush
 
 @section('scripts')
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if(window.livewire) {
-            window.livewire.on('echo-window-livewire-init', () => {
-                console.log("Livewire component updated");
 
-                // Повторно инициализируем Swiper
-                initSwiper();
-            });
-        }});
-
-       /* document.addEventListener('livewire:final', function() {
-            // Создание экземпляра Swiper с параметрами
-            const swiperProduct = new Swiper('.product-page-slider', {
-                modules: [SwiperEffectFade,
-                SwiperPagination], // Убедитесь, что модули подключены и указаны верно
-                loop: false,
-                grabCursor: false,
-                pagination: {
-                    el: '.swiper-pagination-product',
-                    clickable: true,
-                    renderBullet: (index, className) =>
-                        `<span class="${className}"></span>` // Используем шаблонные строки для упрощения записи
-                },
-                effect: 'fade' // Если используется эффект fade, убедитесь, что он указан явно
-            });
-        });*/
-    </script>
 @endsection
