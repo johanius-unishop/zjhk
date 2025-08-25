@@ -1,7 +1,9 @@
-<div wire:final="final" id="layout" data-layout class="product-page__grid {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }} hide-subsequent-rows">
+<div wire:final="final" id="layout" data-layout
+    class="product-page__grid {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }} hide-subsequent-rows">
     @foreach ($elements as $product_item)
         <div class="product-page__item">
-            <div data-layout class="product-page__item-wrapper {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
+            <div data-layout
+                class="product-page__item-wrapper {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
                 <div>
                     <div class="swiper product-page-slider">
                         <div class="swiper-wrapper">
@@ -18,7 +20,8 @@
                             alt="избранное">
                     </button>
                 </div>
-                <div data-layout class="product-page__title-container {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
+                <div data-layout
+                    class="product-page__title-container {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
                     <h5>{{ $product_item['name'] }}</h5>
                     <p>{{ $product_item['article'] }}</p>
                     <div>
@@ -27,7 +30,8 @@
                         <a><span>{{ $product_item['reviewsString'] }}</span></a>
                     </div>
                 </div>
-                <div data-layout class="product-page__info-container {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
+                <div data-layout
+                    class="product-page__info-container {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
                     <p>{{ $product_item['userPrice'] }}</p>
                     <p>{{ $product_item['userStock'] }}</p>
                     <button class="product-page__add-cart">В корзину</button>
@@ -39,24 +43,23 @@
 </div>
 
 @script
-<script>
-                console.log("Livewire component updated");
+    <script>
+        console.log("Livewire component updated");
 
-       /* document.addEventListener('livewire:final', function() {
-            // Создание экземпляра Swiper с параметрами
-            const swiperProduct = new Swiper('.product-page-slider', {
-                modules: [SwiperEffectFade,
-                SwiperPagination], // Убедитесь, что модули подключены и указаны верно
-                loop: false,
-                grabCursor: false,
-                pagination: {
-                    el: '.swiper-pagination-product',
-                    clickable: true,
-                    renderBullet: (index, className) =>
-                        `<span class="${className}"></span>` // Используем шаблонные строки для упрощения записи
-                },
-                effect: 'fade' // Если используется эффект fade, убедитесь, что он указан явно
-            });
-        });*/
+
+        const swiperProduct = new Swiper('.product-page-slider', {
+            modules: [SwiperEffectFade,
+                SwiperPagination
+            ],
+            loop: false,
+            grabCursor: false,
+            pagination: {
+                el: '.swiper-pagination-product',
+                clickable: true,
+                renderBullet: (index, className) =>
+                    `<span class="${className}"></span>`
+            },
+            effect: 'fade'
+        });
     </script>
-@enscript
+@endscript
