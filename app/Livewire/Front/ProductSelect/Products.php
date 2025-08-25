@@ -14,6 +14,7 @@ class Products extends Component
     {
         $this->elements = $elements;
         $this->layoutType  = $layoutType ;
+        $this->dispatch('exeScript');
     }
     // Приложение слушателя в принимающем компоненте
     protected $listeners = [
