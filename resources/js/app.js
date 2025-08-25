@@ -22,5 +22,4 @@ import 'swiper/css/pagination'
 
 
 import './front/productDesc'
-import './front/productPage'
 import './front/slider'
