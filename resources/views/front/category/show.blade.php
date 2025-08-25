@@ -201,7 +201,7 @@
 
 @section('scripts')
 <script>
-    $wire.on('changeLayout', () => {
+    document.addEventListener('livewire:init', () => {
         console.log("Layout changed"); // Эта запись появится при каждом изменении макета
     });
 </script>
