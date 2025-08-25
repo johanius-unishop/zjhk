@@ -46,6 +46,17 @@
     <script>
         $wire.on('exeScript', () => {
             console.log('Макет изменился:');
+
+            // Проверяем, есть ли слайдер, чтобы предотвратить лишние инициализации
+            const existingSwipers = document.querySelectorAll('.swiper');
+            if (existingSwipers.length > 0) {
+                // Обходим все найденные слайдеры и уничтожаем их, если они уже созданы
+                existingSwipers.forEach((el) => {
+                    if (el.swiper) {
+                        el.swiper.destroy(true, true);
+                    }
+                });
+            }
             const swiperProduct = new Swiper('.product-page-slider', {
                 modules: [EffectFade, Pagination],
                 loop: false,
