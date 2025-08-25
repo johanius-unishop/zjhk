@@ -147,27 +147,26 @@
                                 <div>
 
                                 </div>
+
                                 <div class="product-page__change-layout">
                                     <!-- Кнопка карточки -->
-                                    <button wire:click="toggleLayout" id="card-layout" class="toggle__layout">
+                                    <button id="card-layout" class="toggle__layout">
                                         <img src="{{ asset('images/icons/block-gray.svg') }}" alt="Карточки"
                                             class="change__img _active">
                                     </button>
 
                                     <!-- Кнопка списка -->
-                                    <button wire:click="toggleLayout" id="list-layout" class="toggle__layout">
+                                    <button id="list-layout" class="toggle__layout">
                                         <img src="{{ asset('images/icons/list.svg') }}" alt="Список"
                                             class="change__img">
                                     </button>
                                 </div>
                             </div>
 
-                            <div id="layout" data-layout
-                                class="product-page__grid card-layout hide-subsequent-rows">
+                            <div id="layout" data-layout class="product-page__grid card-layout hide-subsequent-rows">
                                 @foreach ($data['products'] as $product_item)
                                     <div class="product-page__item">
-                                        <div data-layout
-                                            class="product-page__item-wrapper card-layout">
+                                        <div data-layout class="product-page__item-wrapper card-layout">
                                             <div>
                                                 <div class="swiper product-page-slider">
                                                     <div class="swiper-wrapper">
@@ -185,8 +184,7 @@
                                                         src="{{ asset('images/icons/label-gray.svg') }}" alt="избранное">
                                                 </button>
                                             </div>
-                                            <div data-layout
-                                                class="product-page__title-container card-layout">
+                                            <div data-layout class="product-page__title-container card-layout">
                                                 <h5>{{ $product_item['name'] }}</h5>
                                                 <p>{{ $product_item['article'] }}</p>
                                                 <div>
@@ -195,8 +193,7 @@
                                                     <a><span>{{ $product_item['reviewsString'] }}</span></a>
                                                 </div>
                                             </div>
-                                            <div data-layout
-                                                class="product-page__info-container card-layout">
+                                            <div data-layout class="product-page__info-container card-layout">
                                                 <p>{{ $product_item['userPrice'] }}</p>
                                                 <p>{{ $product_item['userStock'] }}</p>
                                                 <button class="product-page__add-cart">В корзину</button>
