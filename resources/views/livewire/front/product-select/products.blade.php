@@ -41,3 +41,24 @@
     @endforeach
 
 </div>
+
+@script
+<script>
+
+        console.log("Livewire component updated");
+    /*
+        const swiperProduct = new Swiper('.product-page-slider', {
+            modules: [EffectFade, Pagination], // Глобальные переменные!
+            loop: false,
+            grabCursor: false,
+            pagination: {
+                el: '.swiper-pagination-product',
+                clickable: true,
+                renderBullet: (index, className) => `<span class="${className}"></span>`
+            },
+            effect: 'fade'
+        });
+
+*/
+    </script>
+@endscript
