@@ -15,4 +15,5 @@ import 'swiper/css/pagination'
 
 import './front/functions'
 import './front/productDesc'
+import './front/productPage'
 import './front/slider'
