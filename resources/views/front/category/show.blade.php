@@ -197,9 +197,25 @@
 
 
 @push('css')
-
 @endpush
 
 @section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                    const swiperProduct = new Swiper('.product-page-slider', {
+                        modules: [EffectFade, Pagination],
+                        loop: false,
+                        grabCursor: false,
+                        pagination: {
+                            el: '.swiper-pagination-product',
+                            clickable: true,
+                            renderBullet: function(index, className) {
+                                return '<span class="' + className + '">' + '</span>'
+                            }
+                        }
+                    })
+                });
+    </script>
+
 
 @endsection

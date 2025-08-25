@@ -4,4 +4,12 @@ import 'bootstrap'
 
 import '../../vendor/power-components/livewire-powergrid/dist/powergrid'
 
-import './front/myProductPage'
+
+import Swiper from 'swiper'
+import { EffectFade, Pagination, Navigation, Autoplay, Thumbs } from 'swiper/modules'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
+//import './front/myProductPage'
