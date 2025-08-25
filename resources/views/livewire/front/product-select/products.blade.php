@@ -44,7 +44,7 @@
 
 @script
     <script>
-        $wire.on('changeLayout', () => {
+        $wire.on('exeScript', () => {
             console.log('Макет изменился:');
 
         });

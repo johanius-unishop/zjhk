@@ -24,6 +24,8 @@ class Products extends Component
     public function handleChangeLayout($layoutType)
     {
         $this->layoutType = $layoutType;
+
+        $this->dispatch('exeScript');
     }
 
 
