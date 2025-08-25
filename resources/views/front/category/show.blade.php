@@ -202,6 +202,7 @@
 @push('css')
 @endpush
 
+@livewireScriptConfig
 @section('scripts')
 
 @endsection
