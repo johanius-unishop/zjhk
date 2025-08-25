@@ -12,12 +12,15 @@ Livewire.start()
 import '../../vendor/power-components/livewire-powergrid/dist/powergrid'
 
 
-import Swiper from 'swiper'
-import { EffectFade, Pagination, Navigation, Autoplay, Thumbs } from 'swiper/modules'
+// app.js
+import Swiper from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Keyboard, Mousewheel, Controller, Autoplay, Lazy, Thumbs, Virtual, HashNavigation, History, Zoom } from 'swiper/modules';
 
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
+// Подключение стилей Swiper
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 window.Swiper = Swiper;
 window.EffectFade = EffectFade;
