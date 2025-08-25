@@ -42,4 +42,11 @@
 
 </div>
 
+@script
+    <script>
+        $wire.on('changeLayout', () => {
+            console.log('Макет изменился:');
 
+        });
+    </script>
+@endscript

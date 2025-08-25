@@ -146,8 +146,8 @@
                             @livewire('front.product-select.change-view', ['layoutType' => session()->get('layoutType', 'card')])
                             @livewire('front.product-select.products', [
                                 'elements' => $data['products'],
-                                'layoutType' => session()->get('layoutType', 'card')
-                                ])
+                                'layoutType' => session()->get('layoutType', 'card'),
+                            ])
 
                             <div class="product-page__show">
                                 <button>Показать еще</button>

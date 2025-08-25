@@ -8,24 +8,26 @@ class ChangeView extends Component
 {
     public string $layoutType;
 
-    public function toggleLayout()
+    public function switchLayout()
     {
         if ($this->layoutType === 'card') {
             $this->layoutType = 'list';
-            $this->dispatch('changeLayout', layoutType: $this->layoutType);
         } else {
             $this->layoutType = 'card';
-            $this->dispatch('changeLayout', layoutType: $this->layoutType);
         }
-        session(['layout_type' => $this->layoutType]); // Запись в сессию
+
+        // Записываем новый тип макета в сессию
+        session(['layoutType' => $this->layoutType]);
+
+        // Оповещаем слушателей об изменении макета
+        $this->dispatch('changeLayout', layoutType: $this->layoutType);
     }
 
-    public function mount($layoutType)
+    public function mount()
     {
-        $this->layoutType = $layoutType;
-        $this->layoutType = session('layout_type', 'card'); // По умолчанию "card"
+        // Устанавливаем начальное значение макета из сессии
+        $this->layoutType = session('layoutType', 'card'); // По умолчанию "card"
     }
-
 
     public function render()
     {
