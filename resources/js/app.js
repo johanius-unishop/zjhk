@@ -12,4 +12,12 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
+
+window.Swiper = Swiper;
+window.EffectFade = EffectFade;
+window.Pagination = Pagination;
+window.Navigation = Navigation;
+window.Autoplay = Autoplay;
+window.Thumbs = Thumbs;
+
 //import './front/myProductPage'
