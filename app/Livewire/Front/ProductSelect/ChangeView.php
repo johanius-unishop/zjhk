@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class ChangeView extends Component
 {
-    public string $layoutType = 'card'; // Начальное состояние: список
+    public string $layoutType;
 
     public function toggleLayout()
     {
@@ -17,11 +17,13 @@ class ChangeView extends Component
             $this->layoutType = 'card';
             $this->dispatch('changeLayout', layoutType: $this->layoutType);
         }
+        session(['layout_type' => $this->layoutType]); // Запись в сессию
     }
 
     public function mount($layoutType)
     {
         $this->layoutType = $layoutType;
+        $this->layoutType = session('layout_type', 'card'); // По умолчанию "card"
     }
 
 

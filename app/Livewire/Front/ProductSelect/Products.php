@@ -10,9 +10,10 @@ class Products extends Component
     public $layoutType = 'card';
 
 
-    public function mount($elements)
+    public function mount($elements, $layoutType)
     {
         $this->elements = $elements;
+        $this->layoutType  = $layoutType ;
     }
     // Приложение слушателя в принимающем компоненте
     protected $listeners = [
