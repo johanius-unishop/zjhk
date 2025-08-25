@@ -14,7 +14,7 @@ import '../../vendor/power-components/livewire-powergrid/dist/powergrid'
 
 // app.js
 import Swiper from 'swiper';
-import { Navigation, Pagination, Scrollbar, A11y, Keyboard, Mousewheel, Controller, Autoplay, Lazy, Thumbs, Virtual, HashNavigation, History, Zoom } from 'swiper/modules';
+import { Navigation, Pagination, EffectFade, Scrollbar, A11y, Keyboard, Mousewheel, Controller, Autoplay, Lazy, Thumbs, Virtual, HashNavigation, History, Zoom } from 'swiper/modules';
 
 // Подключение стилей Swiper
 import 'swiper/css';
