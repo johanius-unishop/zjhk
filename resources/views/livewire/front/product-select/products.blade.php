@@ -45,33 +45,6 @@
 @script
     <script>
         $wire.on('contentChanged', () => {
-
-
-            console.log('Макет изменился:');
-
-            // Сначала очищаем существующие объекты Swiper
-            clearSlickSliders();
-
-            // Создаем новый экземпляр Swiper
-            initializeSlickSlider();
-        });
-
-        /**
-         * Удаляет старые объекты Swiper
-         */
-        function clearSlickSliders() {
-            var sliders = document.querySelectorAll('.product-page-slider');
-            sliders.forEach((slider) => {
-                if (slider.swiper) {
-                    slider.swiper.destroy(true);
-                }
-            });
-        }
-
-        /**
-         * Создает новый экземпляр Swiper
-         */
-        function initializeSlickSlider() {
             const swiperProduct = new Swiper('.product-page-slider', {
                 modules: [window.EffectFade, window.Pagination],
                 loop: false,
@@ -83,6 +56,9 @@
                 },
                 effect: 'fade'
             });
-        }
+
+            console.log('Макет изменился:');
+        })
+
     </script>
 @endscript
