@@ -57,7 +57,7 @@
 
             console.log(currentSwiper);
             // Создание нового экземпляра Swiper
-            var currentSwiper = new Swiper('.product-page-slider', {
+            const currentSwiper = new Swiper('.product-page-slider', {
                 modules: [window.EffectFade, window.Pagination],
                 loop: false,
                 grabCursor: false,
