@@ -44,24 +44,24 @@
 
 @script
 <script>
-    // Массив существующих экземпляров Swiper
+
     let currentSwipers = [];
 
-    // Обработчик события изменения макета
+
     window.addEventListener('contentChanged', () => {
         console.log('Макет изменился.');
 
-        // Удаляем все старые экземпляры Swiper
+
         currentSwipers.forEach(swiper => {
             if (swiper instanceof Swiper && typeof swiper.destroy === 'function') {
                 swiper.destroy();
             }
         });
-        currentSwipers = []; // Очищаем список старых Swiper
+        currentSwipers = [];
 
-        // Цикл по каждому элементу .product-page-slider
+
         document.querySelectorAll('.product-page-slider').forEach(el => {
-            // Создание нового экземпляра Swiper для каждого элемента
+
             const swiper = new Swiper(el, {
                 modules: [window.EffectFade, window.Pagination],
                 loop: false,
@@ -73,7 +73,7 @@
                 },
                 effect: 'fade'
             });
-            currentSwipers.push(swiper); // Сохраняем новые экземпляры
+            currentSwipers.push(swiper);
         });
     });
 </script>
