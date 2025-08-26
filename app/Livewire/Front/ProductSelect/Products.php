@@ -26,12 +26,12 @@ class Products extends Component
     {
         $this->layoutType = $layoutType;
 
-        $this->dispatch('contentChanged');
     }
 
 
     public function render()
     {
+        $this->dispatch('contentChanged');
         return view('livewire.front.product-select.products');
     }
 }
