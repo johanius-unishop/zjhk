@@ -19,6 +19,8 @@ class ChangeView extends Component
         // Записываем новый тип макета в сессию
         session(['layoutType' => $this->layoutType]);
 
+        // Оповещаем слушателей об изменении макета
+        $this->dispatch('updateLayout', layoutType: $this->layoutType);
     }
 
     public function mount()
