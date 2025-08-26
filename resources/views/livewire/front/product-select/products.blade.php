@@ -74,6 +74,7 @@
                 effect: 'fade'
             });
             currentSwipers.push(swiper);
+             console.log(currentSwipers);
         });
     });
 </script>
