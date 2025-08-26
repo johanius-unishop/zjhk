@@ -44,6 +44,8 @@
 
 @script
     <script>
+        let currentSwiper = null; // Переменная для хранения текущего экземпляра Swiper
+
         $wire.on('contentChanged', () => {
             // Проверяем, существует ли предыдущий экземпляр Swiper
             if (currentSwiper !== null) {
