@@ -59,8 +59,8 @@
             effect: 'fade'
         });
 
+        setTimeout(currentSwiper.destroy(), 100);
 
-        currentSwiper.destroy();
         console.log(currentSwiper);
     </script>
 @endscript
