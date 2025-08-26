@@ -47,6 +47,8 @@
         let currentSwiper = null; // Переменная для хранения текущего экземпляра Swiper
 
         $wire.on('contentChanged', () => {
+            console.log('Макет изменился:');
+
             // Проверяем, существует ли предыдущий экземпляр Swiper
             if (currentSwiper !== null) {
                 currentSwiper.destroy(); // Уничтожаем старый экземпляр
@@ -64,9 +66,6 @@
                 },
                 effect: 'fade'
             });
-
-
-        console.log('Макет изменился:');
         });
     </script>
 @endscript
