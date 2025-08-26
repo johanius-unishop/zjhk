@@ -14,7 +14,7 @@ class Products extends Component
     {
         $this->elements = $elements;
         $this->layoutType  = $layoutType ;
-        $this->dispatch('contentChanged');
+
     }
     // Приложение слушателя в принимающем компоненте
     protected $listeners = [
@@ -31,7 +31,11 @@ class Products extends Component
 
     public function render()
     {
-        $this->dispatch('contentChanged');
         return view('livewire.front.product-select.products');
+    }
+
+    public function rendered()
+    {
+     $this->dispatch('contentChanged');
     }
 }
