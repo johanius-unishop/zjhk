@@ -10,7 +10,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 window.Swiper = Swiper
-
+window.EffectFade = EffectFade
 
 import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
 import Clipboard from '@ryangjchandler/alpine-clipboard'
