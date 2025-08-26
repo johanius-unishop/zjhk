@@ -45,9 +45,10 @@
 @script
     <script>
         console.log('Макет изменился.');
+        var init = false;
 
-        // Создание нового экземпляра Swiper
-        const currentSwiper = new Swiper('.product-page-slider', {
+
+        var currentSwiper = new Swiper('.product-page-slider', {
             modules: [EffectFade, Pagination],
             loop: false,
             grabCursor: false,
@@ -58,8 +59,13 @@
             },
             effect: 'fade'
         });
+        init = true;
 
-        setTimeout(currentSwiper.destroy(), 100);
+        if (init){
+            currentSwiper.destroy();
+            init = false;
+        }
+
 
         console.log(currentSwiper);
     </script>
