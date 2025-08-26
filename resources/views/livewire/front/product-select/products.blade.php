@@ -63,7 +63,7 @@
         document.querySelectorAll('.product-page-slider').forEach(el => {
 
             const swiper = new Swiper(el, {
-                modules: [window.EffectFade, window.Pagination],
+                modules: [EffectFade, Pagination],
                 loop: false,
                 grabCursor: false,
                 pagination: {
