@@ -60,7 +60,7 @@
         });
 
 
-        currentSwiper.destroy(true, true);
+        currentSwiper.destroy();
         console.log(currentSwiper);
     </script>
 @endscript
