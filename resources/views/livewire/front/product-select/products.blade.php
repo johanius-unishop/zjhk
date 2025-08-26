@@ -49,7 +49,8 @@
         window.addEventListener('contentChanged', () => {
         console.log('Макет изменился.');
 
-        currentSwiper = null;
+        currentSwiper.destroy(true, true);
+
         console.log(currentSwiper);
         // Создание нового экземпляра Swiper
         var currentSwiper = new Swiper('.product-page-slider', {
