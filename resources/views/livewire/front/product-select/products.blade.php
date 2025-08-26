@@ -46,7 +46,6 @@
     <script>
         console.log('Макет изменился.');
 
-        console.log(currentSwiper);
         // Создание нового экземпляра Swiper
         const currentSwiper = new Swiper('.product-page-slider', {
             modules: [EffectFade, Pagination],
