@@ -44,40 +44,24 @@
 
 @script
     <script>
-        let currentSwipers = [];
-
+        let swiper;
 
         window.addEventListener('contentChanged', () => {
-            console.log('Макет изменился.');
+        console.log('Макет изменился.');
 
+        const swiper = new Swiper(el, {
+            modules: [EffectFade, Pagination],
+            loop: false,
+            grabCursor: false,
+            pagination: {
+                el: '.swiper-pagination-product',
+                clickable: true,
+                renderBullet: (index, className) => `<span class="${className}"></span>`
+            },
+            effect: 'fade'
+        });
 
-            currentSwipers.forEach(swiper => {
-                if (swiper instanceof Swiper && typeof swiper.destroy === 'function') {
-                    swiper.destroy();
-                }
-            });
-            currentSwipers = [];
-
-            document.querySelectorAll('.swiper-pagination-product').forEach(paginationEl => {
-                paginationEl.innerHTML = '';
-            });
-
-            document.querySelectorAll('.product-page-slider').forEach(el => {
-
-                const swiper = new Swiper(el, {
-                    modules: [EffectFade, Pagination],
-                    loop: false,
-                    grabCursor: false,
-                    pagination: {
-                        el: '.swiper-pagination-product',
-                        clickable: true,
-                        renderBullet: (index, className) => `<span class="${className}"></span>`
-                    },
-                    effect: 'fade'
-                });
-                currentSwipers.push(swiper);
-                console.log(currentSwipers);
-            });
+        console.log(swiper);
         });
     </script>
 @endscript
