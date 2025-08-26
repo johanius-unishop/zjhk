@@ -49,8 +49,8 @@
         $wire.on('contentChanged', () => {
             console.log('Макет изменился:');
 
-            // Проверяем, существует ли предыдущий экземпляр Swiper
-            if (currentSwiper !== null) {
+            // Проверяем, существует ли текущий экземпляр Swiper и имеет ли он метод destroy
+            if (currentSwiper instanceof Swiper && typeof currentSwiper.destroy === 'function') {
                 currentSwiper.destroy(); // Уничтожаем старый экземпляр
             }
 
