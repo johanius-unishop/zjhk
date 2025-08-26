@@ -44,18 +44,12 @@
 
 @script
     <script>
-        let currentSwiper = null; // Переменная для хранения текущего экземпляра Swiper
-
-        $wire.on('contentChanged', () => {
             console.log('Макет изменился:');
 
             // Проверяем, существует ли текущий экземпляр Swiper и имеет ли он метод destroy
-            if (currentSwiper instanceof Swiper && typeof currentSwiper.destroy === 'function') {
-                currentSwiper.destroy(); // Уничтожаем старый экземпляр
-            }
 
             // Создание нового экземпляра Swiper
-            currentSwiper = new Swiper('.product-page-slider', {
+            var    currentSwiper = new Swiper('.product-page-slider', {
                 modules: [window.EffectFade, window.Pagination],
                 loop: false,
                 grabCursor: false,
@@ -66,6 +60,5 @@
                 },
                 effect: 'fade'
             });
-        });
     </script>
 @endscript
