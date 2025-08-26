@@ -1,5 +1,5 @@
 <div id="layout" data-layout
-    class="product-page__grid {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }} hide-subsequent-rows">
+    class="product-page__grid {{ $layoutType === 'list' ? 'list-layout' : 'card-layout' }}">
     @foreach ($elements as $product_item)
         <div class="product-page__item">
             <div data-layout
@@ -8,16 +8,14 @@
                     <div class="swiper product-page-slider">
                         <div class="swiper-wrapper">
                             @foreach ($product_item['images'] as $product_image)
-                                <div class="swiper-slide"><img src="{{ $product_image['url'] }}"
-                                        alt="{{ $product_item['alt'] }}">
+                                <div class="swiper-slide"><img src="{{ $product_image['url'] }}" alt="{{ $product_item['alt'] }}">
                                 </div>
                             @endforeach
                         </div>
                         <div class="swiper-pagination-product"></div>
                     </div>
                     <button class="product-page__label-btn">
-                        <img class="product-page__label" src="{{ asset('images/icons/label-gray.svg') }}"
-                            alt="избранное">
+                        <img class="product-page__label" src="{{ asset('images/icons/label-gray.svg') }}" alt="избранное">
                     </button>
                 </div>
                 <div data-layout
@@ -25,8 +23,7 @@
                     <h5>{{ $product_item['name'] }}</h5>
                     <p>{{ $product_item['article'] }}</p>
                     <div>
-                        <img src="{{ asset('images/icons/star.svg') }}"
-                            alt="рейтинг"><span>{{ $product_item['averageRating'] }}</span>
+                        <img src="{{ asset('images/icons/star.svg') }}" alt="рейтинг"><span>{{ $product_item['averageRating'] }}</span>
                         <a><span>{{ $product_item['reviewsString'] }}</span></a>
                     </div>
                 </div>
@@ -39,17 +36,29 @@
             </div>
         </div>
     @endforeach
-
 </div>
 
 @script
-    <script>
-            console.log('Макет изменился:');
+<script>
+    // Массив существующих экземпляров Swiper
+    let currentSwipers = [];
 
-            // Проверяем, существует ли текущий экземпляр Swiper и имеет ли он метод destroy
+    // Обработчик события изменения макета
+    window.addEventListener('contentChanged', () => {
+        console.log('Макет изменился.');
 
-            // Создание нового экземпляра Swiper
-            var    currentSwiper = new Swiper('.product-page-slider', {
+        // Удаляем все старые экземпляры Swiper
+        currentSwipers.forEach(swiper => {
+            if (swiper instanceof Swiper && typeof swiper.destroy === 'function') {
+                swiper.destroy();
+            }
+        });
+        currentSwipers = []; // Очищаем список старых Swiper
+
+        // Цикл по каждому элементу .product-page-slider
+        document.querySelectorAll('.product-page-slider').forEach(el => {
+            // Создание нового экземпляра Swiper для каждого элемента
+            const swiper = new Swiper(el, {
                 modules: [window.EffectFade, window.Pagination],
                 loop: false,
                 grabCursor: false,
@@ -60,5 +69,8 @@
                 },
                 effect: 'fade'
             });
-    </script>
+            currentSwipers.push(swiper); // Сохраняем новые экземпляры
+        });
+    });
+</script>
 @endscript
