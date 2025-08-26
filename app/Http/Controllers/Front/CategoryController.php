@@ -41,7 +41,7 @@ class CategoryController extends Controller
 
         $viewMode = $request->input();
         // Количество товаров на одну страницу (может передаваться параметром или фиксировано)
-        $perPage = $request->input('per_page', 8); // значение по умолчанию - 12 товаров
+        $perPage = $request->input('per_page', 16); // значение по умолчанию - 12 товаров
 
         // Фильтрация по наличию (если передано в запросе)
         $availabilityFilter = $request->input('availability');
