@@ -44,9 +44,10 @@
 
 @script
     <script>
-        let currentSwiper;
+
 
         window.addEventListener('contentChanged', () => {
+        let currentSwiper;
         console.log('Макет изменился.');
 
         currentSwiper.destroy(true, true);
