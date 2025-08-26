@@ -45,7 +45,13 @@
 @script
     <script>
         $wire.on('contentChanged', () => {
-            const swiperProduct = new Swiper('.product-page-slider', {
+            // Проверяем, существует ли предыдущий экземпляр Swiper
+            if (currentSwiper !== null) {
+                currentSwiper.destroy(); // Уничтожаем старый экземпляр
+            }
+
+            // Создание нового экземпляра Swiper
+            currentSwiper = new Swiper('.product-page-slider', {
                 modules: [window.EffectFade, window.Pagination],
                 loop: false,
                 grabCursor: false,
@@ -57,8 +63,8 @@
                 effect: 'fade'
             });
 
-            console.log('Макет изменился:');
-        })
 
+        console.log('Макет изменился:');
+        });
     </script>
 @endscript
