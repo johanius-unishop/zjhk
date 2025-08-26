@@ -207,13 +207,14 @@
     @livewireScriptConfig
     <script>
         window.addEventListener('contentChanged', event => {
-            console.log('Макет изменился:');
+
 
             // Сначала очищаем существующие объекты Swiper
             clearSlickSliders();
 
             // Создаем новый экземпляр Swiper
             initializeSlickSlider();
+            console.log('Макет изменился:');
         });
 
         /**
