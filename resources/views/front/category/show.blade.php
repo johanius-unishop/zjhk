@@ -204,5 +204,45 @@
 
 
 @section('scripts')
-@livewireScriptConfig
+    @livewireScriptConfig
+    <script>
+        window.addEventListener('contentChanged', event => {
+            console.log('Макет изменился:');
+
+            // Сначала очищаем существующие объекты Swiper
+            clearSlickSliders();
+
+            // Создаем новый экземпляр Swiper
+            initializeSlickSlider();
+        });
+
+        /**
+         * Удаляет старые объекты Swiper
+         */
+        function clearSlickSliders() {
+            var sliders = document.querySelectorAll('.product-page-slider');
+            sliders.forEach((slider) => {
+                if (slider.swiper) {
+                    slider.swiper.destroy(true);
+                }
+            });
+        }
+
+        /**
+         * Создает новый экземпляр Swiper
+         */
+        function initializeSlickSlider() {
+            const swiperProduct = new Swiper('.product-page-slider', {
+                modules: [EffectFade, Pagination],
+                loop: false,
+                grabCursor: false,
+                pagination: {
+                    el: '.swiper-pagination-product',
+                    clickable: true,
+                    renderBullet: (index, className) => `<span class="${className}"></span>`
+                },
+                effect: 'fade'
+            });
+        }
+    </script>
 @endsection
