@@ -206,12 +206,7 @@
 @section('scripts')
     @livewireScriptConfig
     <script>
-        import {
-            addClass,
-            isTargetElement,
-            toggleClass,
-            removeClass
-        } from './front/functions.js'
+
         const favouriteLabel = document.querySelectorAll('.product-page__label')
         const toggleLayoutBtn = document.querySelectorAll('.toggle__layout')
 
