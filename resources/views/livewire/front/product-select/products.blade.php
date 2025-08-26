@@ -42,31 +42,3 @@
 
 </div>
 
-@script
-    <script>
-        console.log('Макет изменился.');
-        var init = false;
-
-
-        var currentSwiper = new Swiper('.product-page-slider', {
-            modules: [EffectFade, Pagination],
-            loop: false,
-            grabCursor: false,
-            pagination: {
-                el: '.swiper-pagination-product',
-                clickable: true,
-                renderBullet: (index, className) => `<span class="${className}"></span>`
-            },
-            effect: 'fade'
-        });
-        init = true;
-
-        if (init){
-            currentSwiper.destroy();
-            init = false;
-        }
-
-
-        console.log(currentSwiper);
-    </script>
-@endscript

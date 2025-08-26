@@ -16,26 +16,11 @@ class Products extends Component
         $this->layoutType  = $layoutType ;
 
     }
-    // Приложение слушателя в принимающем компоненте
-    protected $listeners = [
-        'changeLayout' => 'handleChangeLayout',
-    ];
 
-    // Метод-обработчик события
-    public function handleChangeLayout($layoutType)
-    {
-        $this->layoutType = $layoutType;
-
-    }
 
 
     public function render()
     {
         return view('livewire.front.product-select.products');
-    }
-
-    public function rendered()
-    {
-     $this->dispatch('contentChanged');
     }
 }
