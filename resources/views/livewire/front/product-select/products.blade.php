@@ -44,13 +44,16 @@
 
 @script
     <script>
-        let swiper;
+        let currentSwiper;
 
         window.addEventListener('contentChanged', () => {
         console.log('Макет изменился.');
 
-        const swiper = new Swiper(el, {
-            modules: [EffectFade, Pagination],
+        currentSwiper = null;
+        console.log(currentSwiper);
+        // Создание нового экземпляра Swiper
+        var currentSwiper = new Swiper('.product-page-slider', {
+            modules: [window.EffectFade, window.Pagination],
             loop: false,
             grabCursor: false,
             pagination: {
@@ -61,7 +64,7 @@
             effect: 'fade'
         });
 
-        console.log(swiper);
+        console.log(currentSwiper);
         });
     </script>
 @endscript
