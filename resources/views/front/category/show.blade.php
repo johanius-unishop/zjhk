@@ -270,6 +270,9 @@
 
         // Функция для изменения стилей
         function applyLayoutClasses(elements, layoutType) {
+            console.log(elements);
+            console.log(layoutType);
+
             elements.forEach((element) => {
                 element.classList.toggle('card-layout', layoutType === 'card');
                 element.classList.toggle('list-layout', layoutType === 'list');
