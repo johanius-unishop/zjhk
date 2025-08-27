@@ -260,19 +260,20 @@
                 element.classList.toggle('card-layout', currentLayoutType === 'card');
                 element.classList.toggle('list-layout', currentLayoutType === 'list');
             });
-            // Подписываемся на событие Livewire init
-            document.addEventListener('livewire:init', () => {
-                // Регистрация обработчика события Livewire
-                Livewire.on('updateLayout', (eventData) => {
-                    const layoutType = "{{ session('layoutType') ?? 'card' }}";
 
-                    console.log(layoutElArr);
-                    console.log(layoutType);
+        });
+        // Подписываемся на событие Livewire init
+        document.addEventListener('livewire:init', () => {
+            // Регистрация обработчика события Livewire
+            Livewire.on('updateLayout', (eventData) => {
+                const layoutType = "{{ session('layoutType') ?? 'card' }}";
 
-                    layoutElArr.forEach((element) => {
-                        element.classList.toggle('card-layout', layoutType === 'card');
-                        element.classList.toggle('list-layout', layoutType === 'list');
-                    });
+                console.log(layoutElArr);
+                console.log(layoutType);
+
+                layoutElArr.forEach((element) => {
+                    element.classList.toggle('card-layout', layoutType === 'card');
+                    element.classList.toggle('list-layout', layoutType === 'list');
                 });
             });
         });
