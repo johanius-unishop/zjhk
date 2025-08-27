@@ -284,6 +284,19 @@
                     } else return
                 })
             })
+            const changePageBtn = document.querySelector('.product-page__change-btn')
+            const closePagination = (e) => {
+                if (!isTargetElement(changePageBtn, e.target)) {
+                    removeClass(changePageBtn, '_active')
+                    removeClass(changePageBtn?.parentElement.nextElementSibling, '_active')
+                }
+            }
+
+            changePageBtn?.addEventListener('click', (e) => {
+                toggleClass(changePageBtn, '_active')
+                toggleClass(changePageBtn?.parentElement.nextElementSibling, '_active')
+                e.stopPropagation()
+            })
         });
 
         document.addEventListener('livewire:init', () => {
