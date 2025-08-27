@@ -145,11 +145,11 @@
                         <div class="product-page__layout">
                             @livewire('front.product-select.change-view', ['layoutType' => session()->get('layoutType', 'card')])
                             <div id="layout" data-layout
-                                class="product-page__grid hide-subsequent-rows">
+                                class="product-page__grid card-layout hide-subsequent-rows">
                                 @foreach ($data['products'] as $product_item)
                                     <div class="product-page__item">
                                         <div data-layout
-                                            class="product-page__item-wrapper">
+                                            class="product-page__item-wrapper card-layout">
                                             <div>
                                                 <div class="swiper product-page-slider">
                                                     <div class="swiper-wrapper">
@@ -167,7 +167,7 @@
                                                 </button>
                                             </div>
                                             <div data-layout
-                                                class="product-page__title-container">
+                                                class="product-page__title-container card-layout">
                                                 <h5>{{ $product_item['name'] }}</h5>
                                                 <p>{{ $product_item['article'] }}</p>
                                                 <div>
@@ -177,7 +177,7 @@
                                                 </div>
                                             </div>
                                             <div data-layout
-                                                class="product-page__info-container">
+                                                class="product-page__info-container card-layout">
                                                 <p>{{ $product_item->getUserPrice() }}</p>
                                                 <p>{{ $product_item->getUserStock() }}</p>
                                                 <button class="product-page__add-cart">В корзину</button>
