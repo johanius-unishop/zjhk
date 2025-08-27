@@ -202,33 +202,31 @@
                                 <div class="product-page__pagination-content">
                                     {{ $data['products']->links() }}
                                     <div class="product-page__page-size" data-page-size>
-                                        <div>
-                                            <p class="product-page__page-select">
-                                                <span>Показывать по </span>
-                                                <button class="product-page__change-btn">
-                                                    <span id="page-count">{{ $data['perPage'] }}</span>
-                                                    <img src="{{ asset('images/icons/tick-black.svg') }}"
-                                                        alt="список страниц">
-                                                </button>
-                                            </p>
-                                            <ul class="product-page__page-count" data-select-page>
-                                                <li><button
-                                                        onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 8]) }}'">8</button>
-                                                </li>
-                                                <li><button
-                                                        onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 12]) }}'">12</button>
-                                                </li>
-                                                <li><button
-                                                        onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 16]) }}'">16</button>
-                                                </li>
-                                                <li><button
-                                                        onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 20]) }}'">20</button>
-                                                </li>
-                                                <li><button
-                                                        onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 24]) }}'">24</button>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <p class="product-page__page-select">
+                                            <span>Показывать по </span>
+                                            <button class="product-page__change-btn">
+                                                <span id="page-count">{{ $data['perPage'] }}</span>
+                                                <img src="{{ asset('images/icons/tick-black.svg') }}"
+                                                    alt="список страниц">
+                                            </button>
+                                        </p>
+                                        <ul class="product-page__page-count" data-select-page>
+                                            <li><button
+                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 8]) }}'">8</button>
+                                            </li>
+                                            <li><button
+                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 12]) }}'">12</button>
+                                            </li>
+                                            <li><button
+                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 16]) }}'">16</button>
+                                            </li>
+                                            <li><button
+                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 20]) }}'">20</button>
+                                            </li>
+                                            <li><button
+                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 24]) }}'">24</button>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
