@@ -10,7 +10,7 @@ class ChangeView extends Component
 
     public function switchLayout()
     {
-        dd($this->layoutType);
+
         if ($this->layoutType === 'card') {
             $this->layoutType = 'list';
         } else {
