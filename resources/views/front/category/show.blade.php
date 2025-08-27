@@ -266,6 +266,7 @@
         document.addEventListener('livewire:init', () => {
             // Регистрация обработчика события Livewire
             Livewire.on('updateLayout', (eventData) => {
+                const layoutElArr = document.querySelectorAll('[data-layout]');
                 const layoutType = "{{ session('layoutType') ?? 'card' }}";
 
                 console.log(layoutElArr);
