@@ -258,18 +258,15 @@
             // Применение начальных классов
             applyLayoutClasses(layoutElArr, currentLayoutType);
 
-            // Обрабатываем событие Livewire
-            $wire.on('updateLayout', ({
-                layoutType
-            }) => {
-                applyLayoutClasses(layoutElArr, layoutType);
+            // Подписываемся на событие Livewire init
+            document.addEventListener('livewire:init', () => {
+                // Регистрация обработчика события Livewire
+                window.livewire.on('updateLayout', ({ layoutType }) => {
+                    applyLayoutClasses(layoutElArr, layoutType);
+                });
             });
         });
-        document.addEventListener('livewire:init', () => {
-            Livewire.on('updateLayout', (event) => {
-                console.log('Сработало событие');
-            });
-        });
+
 
         // Функция для изменения стилей
         function applyLayoutClasses(elements, layoutType) {
