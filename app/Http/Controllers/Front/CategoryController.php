@@ -58,9 +58,9 @@ class CategoryController extends Controller
         //$query = Product::where('category_id', $category->id)->where('published', 1)->orderBy('stock', 'DESC');
 
         // Выполняем пагинацию и подтягиваем медиа-данные
-        $paginatedProducts = $query->with('media')->paginate($perPage)->withQueryString();
+        $products = $query->with('media')->paginate($perPage)->withQueryString();
 
-        $products = collect($paginatedProducts->items())->map(function ($product) {
+        /*$products = collect($paginatedProducts->items())->map(function ($product) {
             return [
                 'id' => $product->id,
                 'name' => $product->name,
@@ -77,9 +77,9 @@ class CategoryController extends Controller
                     return [
                         'url' => $media->getUrl('thumb'), // Удобный полный путь к изображению
                     ];
-                })->values()->toArray(),
+                }),
             ];
-        })->values()->toArray();
+        });*/
 
 
         $childrens = Category::defaultOrder()
@@ -129,7 +129,7 @@ class CategoryController extends Controller
 
         if (!empty($products)) {
             $data['products'] = $products;
-            $data['paginatedProducts'] = $paginatedProducts;
+
 
         }
 
