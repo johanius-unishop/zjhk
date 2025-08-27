@@ -263,9 +263,9 @@
             // Подписываемся на событие Livewire init
             document.addEventListener('livewire:init', () => {
                 // Регистрация обработчика события Livewire
-                window.livewire.on('updateLayout', ({
-                    layoutType
-                }) => {
+                window.livewire.on('updateLayout', (eventData) => {
+                    const layoutType = eventData.layoutType;
+
                     console.log(layoutElArr);
                     console.log(layoutType);
 
