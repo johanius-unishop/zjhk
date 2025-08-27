@@ -260,19 +260,19 @@
                 element.classList.toggle('card-layout', layoutType === 'card');
                 element.classList.toggle('list-layout', layoutType === 'list');
             });
-        });
-        // Подписываемся на событие Livewire init
-        document.addEventListener('livewire:init', () => {
-            // Регистрация обработчика события Livewire
-            window.livewire.on('updateLayout', ({
-                layoutType
-            }) => {
-                console.log(layoutElArr);
-                console.log(layoutType);
+            // Подписываемся на событие Livewire init
+            document.addEventListener('livewire:init', () => {
+                // Регистрация обработчика события Livewire
+                window.livewire.on('updateLayout', ({
+                    layoutType
+                }) => {
+                    console.log(layoutElArr);
+                    console.log(layoutType);
 
-                layoutElArr.forEach((element) => {
-                    element.classList.toggle('card-layout', layoutType === 'card');
-                    element.classList.toggle('list-layout', layoutType === 'list');
+                    layoutElArr.forEach((element) => {
+                        element.classList.toggle('card-layout', layoutType === 'card');
+                        element.classList.toggle('list-layout', layoutType === 'list');
+                    });
                 });
             });
         });
