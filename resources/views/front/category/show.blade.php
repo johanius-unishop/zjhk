@@ -154,7 +154,7 @@
                                                 <div class="swiper product-page-slider">
                                                     <div class="swiper-wrapper">
                                                         @foreach ($product_item->getMedia('images') as $product_image)
-                                                            <div class="swiper-slide"><img src="{{ $product_image->getUrl('thumb')] }}"
+                                                            <div class="swiper-slide"><img src="{{ $product_image->getUrl('thumb') }}"
                                                                     alt="{{ $product_item->getAltAttribute() }}">
                                                             </div>
                                                         @endforeach
