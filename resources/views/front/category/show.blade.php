@@ -250,7 +250,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             const layoutElArr = document.querySelectorAll('[data-layout]')
             const currentLayoutType = "{{ session('layoutType') ?? 'card' }}";
-            console.log(layoutEllArr);
+            console.log(layoutElArr);
             console.log(currentLayoutType);
             applyLayoutClasses(currentLayoutType);
             window.livewire.on('updateLayout', ({
