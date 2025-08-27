@@ -257,8 +257,8 @@
 
             // Применение начальных классов
             layoutElArr.forEach((element) => {
-                element.classList.toggle('card-layout', layoutType === 'card');
-                element.classList.toggle('list-layout', layoutType === 'list');
+                element.classList.toggle('card-layout', currentLayoutType === 'card');
+                element.classList.toggle('list-layout', currentLayoutType === 'list');
             });
             // Подписываемся на событие Livewire init
             document.addEventListener('livewire:init', () => {
