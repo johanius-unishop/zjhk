@@ -253,32 +253,31 @@
     @livewireScriptConfig
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Глобальная переменная layoutElArr
             const layoutElArr = document.querySelectorAll('[data-layout]');
-
-            // Текущий тип макета (из сессии)
             const currentLayoutType = "{{ session('layoutType') ?? 'card' }}";
-
-            // Логируем переменные для отладки
-            console.log(layoutElArr);
-            console.log(currentLayoutType);
-
-            // Применение начальных классов
             layoutElArr.forEach((element) => {
                 element.classList.toggle('card-layout', currentLayoutType === 'card');
                 element.classList.toggle('list-layout', currentLayoutType === 'list');
             });
 
+            const swiperProduct = new Swiper('.product-page-slider', {
+                modules: [EffectFade, Pagination],
+                loop: false,
+                grabCursor: false,
+                pagination: {
+                    el: '.swiper-pagination-product',
+                    clickable: true,
+                    renderBullet: function(index, className) {
+                        return '<span class="' + className + '">' + '</span>'
+                    }
+                }
+            })
         });
-        // Подписываемся на событие Livewire init
+
         document.addEventListener('livewire:init', () => {
-            // Регистрация обработчика события Livewire
             Livewire.on('updateLayout', (eventData) => {
                 const layoutElArr = document.querySelectorAll('[data-layout]');
                 const layoutType = eventData.layoutType;
-
-                console.log(layoutElArr);
-                console.log(layoutType);
 
                 layoutElArr.forEach((element) => {
                     element.classList.toggle('card-layout', layoutType === 'card');
