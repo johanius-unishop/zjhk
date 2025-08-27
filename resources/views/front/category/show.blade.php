@@ -262,6 +262,7 @@
 
         // Функция для изменения стилей
         function applyLayoutClasses(layoutType) {
+            console.log(currentLayoutType);
             layoutElArr.forEach((element) => {
                 element.classList.toggle('card-layout', layoutType === 'card');
                 element.classList.toggle('list-layout', layoutType === 'list');
