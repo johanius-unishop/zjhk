@@ -262,7 +262,7 @@
             applyLayoutClasses(layoutElArr, currentLayoutType);
 
             // Обрабатываем событие Livewire
-            window.wire.on('updateLayout', ({ layoutType }) => {
+            $wire.on('updateLayout', ({ layoutType }) => {
                 applyLayoutClasses(layoutElArr, layoutType);
             });
         });
