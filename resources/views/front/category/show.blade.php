@@ -272,6 +272,20 @@
                     }
                 }
             })
+
+
+            pageSizeElArr.forEach((el) => {
+                el.addEventListener('click', (e) => {
+                    if (e.target.hasAttribute('data-page')) {
+                        const pageValue = e.target.getAttribute('data-page')
+                        const pageCountElValue = el.previousElementSibling.lastElementChild
+                            .firstElementChild
+                        if (pageValue === pageCountElValue) {
+                            return
+                        } else pageCountElValue.textContent = pageValue
+                    } else return
+                })
+            })
         });
 
         document.addEventListener('livewire:init', () => {
