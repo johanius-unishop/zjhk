@@ -258,28 +258,23 @@
             // Применение начальных классов
             applyLayoutClasses(layoutElArr, currentLayoutType);
 
+            // Подписываемся на событие Livewire init
+            document.addEventListener('livewire:init', () => {
+                // Регистрация обработчика события Livewire
+                window.livewire.on('updateLayout', ({
+                    layoutType
+                }) => {
+                    console.log(elements);
+                    console.log(layoutType);
+
+                    elements.forEach((element) => {
+                        element.classList.toggle('card-layout', layoutType === 'card');
+                        element.classList.toggle('list-layout', layoutType === 'list');
+                    });
+                });
+            });
 
         });
-        // Подписываемся на событие Livewire init
-        document.addEventListener('livewire:init', () => {
-            // Регистрация обработчика события Livewire
-            window.livewire.on('updateLayout', ({
-                layoutType
-            }) => {
-                applyLayoutClasses(layoutElArr, layoutType);
-            });
-        });
 
-
-        // Функция для изменения стилей
-        function applyLayoutClasses(elements, layoutType) {
-            console.log(elements);
-            console.log(layoutType);
-
-            elements.forEach((element) => {
-                element.classList.toggle('card-layout', layoutType === 'card');
-                element.classList.toggle('list-layout', layoutType === 'list');
-            });
-        }
     </script>
 @endsection
