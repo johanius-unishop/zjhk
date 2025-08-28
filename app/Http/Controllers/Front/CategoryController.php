@@ -39,9 +39,11 @@ class CategoryController extends Controller
 
         $filter = 0;
 
-        $viewMode = $request->input();
         // Количество товаров на одну страницу (может передаваться параметром или фиксировано)
-        $perPage = $request->input('per_page', 16); // значение по умолчанию - 12 товаров
+        $perPage = $request->input('per_page', 8); // значение по умолчанию - 8 товаров
+
+        // Сбрасываем номер страницы на первый при изменении per_page
+        $pageNumber = isset($request->previous_url) && !isset($request->per_page) ? $request->input('page', 1) : 1;
 
         // Фильтрация по наличию (если передано в запросе)
         $availabilityFilter = $request->input('availability');
@@ -55,31 +57,9 @@ class CategoryController extends Controller
             ->where('published', 1)
             ->orderByRaw("CASE WHEN stock > 0 THEN 0 ELSE 1 END") // сначала положительные остатки
             ->orderBy('order_column');
-        //$query = Product::where('category_id', $category->id)->where('published', 1)->orderBy('stock', 'DESC');
 
         // Выполняем пагинацию и подтягиваем медиа-данные
-        $products = $query->with('media')->paginate($perPage)->withQueryString();
-
-        /*$products = collect($paginatedProducts->items())->map(function ($product) {
-            return [
-                'id' => $product->id,
-                'name' => $product->name,
-                'article' => $product->article,
-                'slug' => $product->slug,
-                'userPrice' => $product->getUserPrice(),
-                'userStock' => $product->getUserStock(),
-                'alt' => $product->getAltAttribute(),
-                'averageRating' => $product->getAverageReviewRatingString(),
-                'reviewsString' => $product->getCountReviewsString(),
-
-
-                'images' => $product->getMedia('images')->map(function ($media) { // Медиа-изображения товара
-                    return [
-                        'url' => $media->getUrl('thumb'), // Удобный полный путь к изображению
-                    ];
-                }),
-            ];
-        });*/
+        $products = $query->with('media')->paginate($perPage, ['*'], 'page', $pageNumber)->withQueryString();
 
 
         $childrens = Category::defaultOrder()
@@ -110,12 +90,6 @@ class CategoryController extends Controller
             }
         }
 
-
-
-        // $products = $category->products->paginate(12);
-
-        //$products = checkInCartAndFavourites($products);
-
         SEOMeta::setTitle($category->seo->title);
         SEOMeta::setDescription($category->seo->description);
         SEOMeta::setKeywords($category->seo->keywords);
@@ -129,8 +103,6 @@ class CategoryController extends Controller
 
         if (!empty($products)) {
             $data['products'] = $products;
-
-
         }
 
         //Условие вывода фильтра по товарам
