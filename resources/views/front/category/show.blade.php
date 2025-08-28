@@ -212,19 +212,19 @@
                                         </p>
                                         <ul class="product-page__page-count" data-select-page>
                                             <li><button
-                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 8]) }}'">8</button>
+                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 8, 'reset_page' => $data['perPage'] != 8]) }}'">8</button>
                                             </li>
                                             <li><button
-                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 12]) }}'">12</button>
+                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 12, 'reset_page' => $data['perPage'] != 12]) }}'">12</button>
                                             </li>
                                             <li><button
-                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 16]) }}'">16</button>
+                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 16, 'reset_page' => $data['perPage'] != 16]) }}'">16</button>
                                             </li>
                                             <li><button
-                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 20]) }}'">20</button>
+                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 20, 'reset_page' => $data['perPage'] != 20]) }}'">20</button>
                                             </li>
                                             <li><button
-                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 24]) }}'">24</button>
+                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 24, 'reset_page' => $data['perPage'] != 24]) }}'">24</button>
                                             </li>
                                         </ul>
                                     </div>
