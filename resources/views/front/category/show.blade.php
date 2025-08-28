@@ -271,31 +271,13 @@
                 }
             })
 
-            const pageSizeElArr = document.querySelectorAll('.product-page__page-count')
-            pageSizeElArr.forEach((el) => {
-                el.addEventListener('click', (e) => {
-                    if (e.target.hasAttribute('data-page')) {
-                        const pageValue = e.target.getAttribute('data-page')
-                        const pageCountElValue = el.previousElementSibling.lastElementChild
-                            .firstElementChild
-                        if (pageValue === pageCountElValue) {
-                            return
-                        } else pageCountElValue.textContent = pageValue
-                    } else return
-                })
-            })
-            const changePageBtn = document.querySelector('.product-page__change-btn')
-            const closePagination = (e) => {
-                if (!isTargetElement(changePageBtn, e.target)) {
-                    removeClass(changePageBtn, '_active')
-                    removeClass(changePageBtn?.parentElement.nextElementSibling, '_active')
-                }
-            }
+            const btn = document.querySelector('.product-page__change-btn');
+            const menu = document.querySelector('.product-page__page-count');
 
-            changePageBtn?.addEventListener('click', (e) => {
-                toggleClass(changePageBtn, '_active')
-                toggleClass(changePageBtn?.parentElement.nextElementSibling, '_active')
-                e.stopPropagation()
+            // Обработчик клика по кнопке
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('_active');
+                menu.classList.toggle('hidden');
             })
         });
 
