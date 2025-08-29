@@ -45,11 +45,17 @@
                         <p>{{ $data['category']->description }}</p>
                     </div>
                     <div class="product-page__content">
-
+                        @livewire('front.product-select.filter', ['filter' => $data['filter']])
                         <div class="product-page__layout">
-                            @livewire('front.product-select.change-view', ['layoutType' => session()->get('layoutType', 'card')])
-                            {{-- Отображение частичного представления products_list --}}
-                            @include('front.partials.products_list', ['products' => $data['products']])
+                            <div class="product-page__sort-container">
+                                <div>
+
+                                </div>
+                                <div class="product-page__change-layout">
+
+                                </div>
+                            </div>
+                            @include('front.product-select.products', ['elements' => $data['products']])
 
 
                             <div class="product-page__show">
@@ -117,6 +123,18 @@
                 element.classList.toggle('list-layout', currentLayoutType === 'list');
             });
 
+            const swiperProduct = new Swiper('.product-page-slider', {
+                modules: [EffectFade, Pagination],
+                loop: false,
+                grabCursor: false,
+                pagination: {
+                    el: '.swiper-pagination-product',
+                    clickable: true,
+                    renderBullet: function(index, className) {
+                        return '<span class="' + className + '">' + '</span>'
+                    }
+                }
+            })
 
             const btn = document.querySelector('.product-page__change-btn');
             const menu = document.querySelector('.product-page__page-count');
@@ -126,41 +144,6 @@
                 menu.classList.toggle('_active');
                 menu.classList.toggle('hidden');
             })
-
-            const loadMoreButton = document.getElementById('load-more-button');
-
-            loadMoreButton.addEventListener('click', async () => {
-                const nextPage = loadMoreButton.dataset.nextPage;
-                const currentUrl = new URL(window.location.href);
-                currentUrl.searchParams.set('page', nextPage);
-
-                try {
-                    const response = await fetch(currentUrl, {
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-
-                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-                    const result = await response.json();
-
-                    // Добавляем полученные товары на страницу
-                    const productsContainer = document.querySelector('.products-container');
-                    productsContainer.insertAdjacentHTML('beforeend', result.html);
-
-                    // Обновляем данные кнопки
-                    loadMoreButton.dataset.nextPage = nextPage + 1;
-
-                    // Если достигли последней страницы, скрываем кнопку
-                    if (result.isLastPage) {
-                        loadMoreButton.style.display = 'none';
-                    }
-                } catch (error) {
-                    alert('Ошибка при загрузке товаров.');
-                    console.error(error.message);
-                }
-            });
 
 
         });
@@ -175,19 +158,6 @@
                     element.classList.toggle('list-layout', layoutType === 'list');
                 });
             });
-
-            const swiperProduct = new Swiper('.product-page-slider', {
-                modules: [EffectFade, Pagination],
-                loop: false,
-                grabCursor: false,
-                pagination: {
-                    el: '.swiper-pagination-product',
-                    clickable: true,
-                    renderBullet: function(index, className) {
-                        return '<span class="' + className + '">' + '</span>'
-                    }
-                }
-            })
         });
     </script>
 @endsection
