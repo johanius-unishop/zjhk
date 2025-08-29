@@ -1,5 +1,5 @@
 <aside class="product-page__filter filter">
-    @if (isset($filter) && !empty($filter))
+    @if ($filter == 1)
         <form class="filter__item">
             <div>
                 <label for="type">Тип резьбы</label>
