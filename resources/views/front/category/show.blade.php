@@ -65,7 +65,7 @@
                             </div>
                             <div class="product-page__pagination">
                                 <div class="product-page__pagination-content">
-                                    {{ $data['products']->links() }}
+                                    {{ $data['paginatedProducts']->links() }}
                                     <div class="product-page__page-size" data-page-size>
                                         <p class="product-page__page-select">
                                             <span>Показывать по </span>
