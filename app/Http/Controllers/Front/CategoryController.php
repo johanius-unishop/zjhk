@@ -37,7 +37,7 @@ class CategoryController extends Controller
             ->get();
         $parents = $category->ancestors->toArray();
 
-        $filter = 0; //Вывод боковой панели фильтра отключен, чтобы включить, нужно передать 1
+        $filter = 1; //Вывод боковой панели фильтра отключен, чтобы включить, нужно передать 1
 
         // Количество товаров на одну страницу (может передаваться параметром или фиксировано)
         $perPage = $request->input('per_page', 8); // значение по умолчанию - 8 товаров
@@ -68,28 +68,6 @@ class CategoryController extends Controller
             ->get();
         $parents = $category->ancestors->toArray();
 
-        // Применение фильтров и сортировок
-        if ($availabilityFilter !== null) {
-            switch ($availabilityFilter) {
-                case 'in_stock':
-                    $query->where('stock', '>', 0);
-                    break;
-                case 'out_of_stock':
-                    $query->where('stock', 0);
-                    break;
-            }
-        }
-
-        if ($sortOrder !== '') {
-            switch ($sortOrder) {
-                case 'asc': // по возрастанию цены
-                    $query->orderBy('price', 'ASC');
-                    break;
-                case 'desc': // по убыванию цены
-                    $query->orderBy('price', 'DESC');
-                    break;
-            }
-        }
 
         SEOMeta::setTitle($category->seo->title);
         SEOMeta::setDescription($category->seo->description);
