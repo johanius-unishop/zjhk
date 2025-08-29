@@ -49,7 +49,7 @@
                         <div class="product-page__layout">
                             @livewire('front.product-select.change-view', ['layoutType' => session()->get('layoutType', 'card')])
                             {{-- Отображение частичного представления products_list --}}
-                            @include('front.partials.products_list', ['data['products']' => $data['products']])
+                            @include('front.partials.products_list', ['products' => $data['products']])
 
 
                             <div class="product-page__show">
