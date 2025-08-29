@@ -51,12 +51,6 @@ class CategoryController extends Controller
             $pageNumber = $request->input('page', 1);
         }
 
-        // Фильтрация по наличию (если передано в запросе)
-        $availabilityFilter = $request->input('availability');
-
-        // Сортировка по цене (если указана)
-        $sortOrder = $request->input('sort_by_price', '');
-
         // Основной запрос по товарам
         $query = Product::select('*')
             ->where('category_id', $category->id)
@@ -65,15 +59,8 @@ class CategoryController extends Controller
             ->orderBy('order_column');
 
         // Выполняем пагинацию и подтягиваем медиа-данные
-        $products = $query->with('media')->paginate($perPage, ['*'], 'page', $pageNumber)->withQueryString();
+        $products = $query->with('media')->paginate($perPage, ['*'], 'page', $pageNumber)->withQueryString()->toArray();
 
-        // Если запрос принят как JSON, возвращаем данные в формате JSON
-        if ($request->wantsJson()) {
-            return response()->json([
-                'html' => view('partials.products_list', ['products' => $products])->render(),
-                'isLastPage' => !$products->hasMorePages()
-            ]);
-        }
 
 
         $childrens = Category::defaultOrder()
