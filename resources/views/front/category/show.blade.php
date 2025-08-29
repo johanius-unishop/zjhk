@@ -48,11 +48,13 @@
                         @livewire('front.product-select.filter', ['filter' => $data['filter']])
                         <div class="product-page__layout">
                             @livewire('front.product-select.change-view', ['layoutType' => session()->get('layoutType', 'card')])
-                            'html' => view('partials.products_list', ['data['products'] => $data['products']])->render()
+                            {{-- Отображение частичного представления products_list --}}
+                            @include('front.partials.products_list', ['data['products']' => $data['products']])
 
 
                             <div class="product-page__show">
-                                <button id="load-more-button" data-next-page="{{ $data['products']->currentPage() + 1 }}">Показать
+                                <button id="load-more-button"
+                                    data-next-page="{{ $data['products']->currentPage() + 1 }}">Показать
                                     еще</button>
                             </div>
                             <div class="product-page__pagination">
