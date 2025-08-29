@@ -45,7 +45,7 @@
                         <p>{{ $data['category']->description }}</p>
                     </div>
                     <div class="product-page__content">
-                        @livewire('front.product-select.filter',['filter' => $data['filter']])
+                        @livewire('front.product-select.filter', ['filter' => $data['filter']])
                         <div class="product-page__layout">
                             @livewire('front.product-select.change-view', ['layoutType' => session()->get('layoutType', 'card')])
                             <div id="layout" data-layout class="product-page__grid card-layout hide-subsequent-rows">
@@ -73,9 +73,11 @@
                                                 <h5>{{ $product_item['name'] }}</h5>
                                                 <p>{{ $product_item['article'] }}</p>
                                                 <div>
-                                                    <img src="{{ asset('images/icons/star.svg') }}"
-                                                        alt="рейтинг"><span>{{ $product_item->getAverageReviewRatingString() }}</span>
-                                                    <a><span>{{ $product_item->getCountReviewsString() }}</span></a>
+                                                    @if ($product_item->reviews->count() != 0)
+                                                        <img src="{{ asset('images/icons/star.svg') }}"
+                                                            alt="рейтинг"><span>{{ $product_item->getAverageReviewRatingString() }}</span>
+                                                        <a><span>{{ $product_item->getCountReviewsString() }}</span></a>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div data-layout class="product-page__info-container card-layout">
@@ -110,8 +112,7 @@
                                             <span>Показывать по </span>
                                             <button class="product-page__change-btn">
                                                 <span id="page-count">{{ $data['perPage'] }}</span>
-                                                <img src="{{ asset('images/icons/tick-black.svg') }}"
-                                                    alt="список страниц">
+                                                <img src="{{ asset('images/icons/tick-black.svg') }}" alt="список страниц">
                                             </button>
                                         </p>
                                         <ul class="product-page__page-count" data-select-page>

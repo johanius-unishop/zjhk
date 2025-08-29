@@ -372,7 +372,7 @@ class Product extends Model implements HasMedia, Sitemapable
     {
         // Если цена пустая или равна 0, возвращаем специальную надпись
         if (!$this->price || empty($this->price)) {
-            return "Цена по запросу"; // Или любое подходящее сообщение
+            return "По запросу"; // Или любое подходящее сообщение
         }
 
         // Базовая цена продукта
