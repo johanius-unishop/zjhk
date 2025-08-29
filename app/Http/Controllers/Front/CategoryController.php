@@ -59,7 +59,29 @@ class CategoryController extends Controller
             ->orderBy('order_column');
 
         // Выполняем пагинацию и подтягиваем медиа-данные
-        $products = $query->with('media')->paginate($perPage, ['*'], 'page', $pageNumber)->withQueryString()->toArray();
+        $paginatedProducts = $query->with('media')->paginate($perPage)->withQueryString();
+
+        $products = collect($paginatedProducts->items())->map(function ($product) {
+            return [
+                'id' => $product->id,
+                'name' => $product->name,
+                'article' => $product->article,
+                'slug' => $product->slug,
+                'userPrice' => $product->getUserPrice(),
+                'userStock' => $product->getUserStock(),
+                'alt' => $product->getAltAttribute(),
+                'averageRating' => $product->getAverageReviewRatingString(),
+                'reviewsString' => $product->getCountReviewsString(),
+
+
+                'images' => $product->media->map(function ($media) { // Медиа-изображения товара
+                    return [
+                        'url' => $media('images')->getUrl('thumb'), // Удобный полный путь к изображению
+                    ];
+                })->values()->toArray(),
+            ];
+        })->values()->toArray();
+
 
 
 
