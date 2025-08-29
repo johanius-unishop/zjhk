@@ -37,7 +37,7 @@ class CategoryController extends Controller
             ->get();
         $parents = $category->ancestors->toArray();
 
-        $filter = 0;
+        $filter = 1;
 
         // Количество товаров на одну страницу (может передаваться параметром или фиксировано)
         $perPage = $request->input('per_page', 8); // значение по умолчанию - 8 товаров
@@ -109,6 +109,7 @@ class CategoryController extends Controller
 
         if (!empty($products)) {
             $data['products'] = $products;
+            $data['filter'] =   $filter;
         }
 
         //Условие вывода фильтра по товарам
