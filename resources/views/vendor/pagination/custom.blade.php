@@ -20,24 +20,8 @@
                     <li data-pagination><button class="_active">{{ $page }}</button></li>
                 @else
                     <li data-pagination>
-                        @php
-                            // Разбираем текущий URL и получаем массив параметров
-                            $parsedUrl = parse_url($url);
-                            $queryParams = [];
-                            parse_str($parsedUrl['query'], $queryParams);
-
-                            // Удаляем параметр reset_page из массива параметров
-                            unset($queryParams['reset_page']);
-
-                            // Формируем новый URL без параметра reset_page
-                            $newUrl = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path'];
-                            if (!empty($queryParams)) {
-                                $newUrl .= '?' . http_build_query($queryParams);
-                            }
-                        @endphp
-
                         <button
-                            onclick="window.location.href='{{ $newUrl }}'">{{ $page }}</button>
+                            onclick="window.location.href='{{ $url }}'">{{ $page }}</button>
                     </li>
                 @endif
             @endforeach

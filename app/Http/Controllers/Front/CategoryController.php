@@ -42,8 +42,14 @@ class CategoryController extends Controller
         // Количество товаров на одну страницу (может передаваться параметром или фиксировано)
         $perPage = $request->input('per_page', 8); // значение по умолчанию - 8 товаров
 
-        // Номер страницы: если передан reset_page, то стартуем с первой страницы
-        $pageNumber = $request->boolean('reset_page') ? 1 : $request->input('page', 1);
+        // Обрабатываем параметр reset_page
+        if ($request->boolean('reset_page')) {
+            $pageNumber = 1; // Сбрасываем на первую страницу
+            // Удаляем параметр reset_page из запроса
+            $request->merge(['reset_page' => null]);
+        } else {
+            $pageNumber = $request->input('page', 1);
+        }
 
         // Фильтрация по наличию (если передано в запросе)
         $availabilityFilter = $request->input('availability');
