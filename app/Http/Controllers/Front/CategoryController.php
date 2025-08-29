@@ -71,7 +71,7 @@ class CategoryController extends Controller
         if ($request->wantsJson()) {
             return response()->json([
                 'html' => view('partials.products_list', ['products' => $products])->render(),
-                'isLastPage' => $products->lastPage() === $products->currentPage()
+                'isLastPage' => !$products->hasMorePages()
             ]);
         }
 
