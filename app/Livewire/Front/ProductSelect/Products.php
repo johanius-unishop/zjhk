@@ -7,13 +7,13 @@ use Livewire\Component;
 class Products extends Component
 {
     public array $elements = [];
-    public $layoutType = 'card';
 
 
-    public function mount($elements, $layoutType)
+
+    public function mount($elements)
     {
         $this->elements = $elements;
-        $this->layoutType  = $layoutType ;
+
 
     }
 
