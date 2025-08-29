@@ -219,40 +219,7 @@
                     console.error(error.message);
                 }
             });
-            const loadMoreButton = document.getElementById('load-more-button');
 
-            loadMoreButton.addEventListener('click', async () => {
-                const nextPage = loadMoreButton.dataset.nextPage;
-                const currentUrl = new URL(window.location.href);
-                currentUrl.searchParams.set('page', nextPage);
-
-                try {
-                    const response = await fetch(currentUrl, {
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-
-                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-                    const result = await response.json();
-
-                    // Добавляем полученные товары на страницу
-                    const productsContainer = document.querySelector('.products-container');
-                    productsContainer.insertAdjacentHTML('beforeend', result.html);
-
-                    // Обновляем данные кнопки
-                    loadMoreButton.dataset.nextPage = nextPage + 1;
-
-                    // Если достигли последней страницы, скрываем кнопку
-                    if (result.isLastPage) {
-                        loadMoreButton.style.display = 'none';
-                    }
-                } catch (error) {
-                    alert('Ошибка при загрузке товаров.');
-                    console.error(error.message);
-                }
-            });
 
         });
 
