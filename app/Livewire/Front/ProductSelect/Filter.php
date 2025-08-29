@@ -6,11 +6,12 @@ use Livewire\Component;
 
 class Filter extends Component
 {
-    public string $filter;
+    public $filter;
 
-    public function mount()
+    public function mount($filter)
     {
-
+        $this->filter = $filter;
+        dd($filter);
     }
 
     public function render()

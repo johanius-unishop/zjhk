@@ -45,7 +45,7 @@
                         <p>{{ $data['category']->description }}</p>
                     </div>
                     <div class="product-page__content">
-                        @livewire('front.product-select.filter')
+                        @livewire('front.product-select.filter',['filter' => $data['filter']])
                         <div class="product-page__layout">
                             @livewire('front.product-select.change-view', ['layoutType' => session()->get('layoutType', 'card')])
                             <div id="layout" data-layout class="product-page__grid card-layout hide-subsequent-rows">
