@@ -37,7 +37,7 @@ class CategoryController extends Controller
             ->get();
         $parents = $category->ancestors->toArray();
 
-        $filter = 1;
+        $filter = 0; //Вывод боковой панели фильтра отключен, чтобы включить, нужно передать 1
 
         // Количество товаров на одну страницу (может передаваться параметром или фиксировано)
         $perPage = $request->input('per_page', 8); // значение по умолчанию - 8 товаров
