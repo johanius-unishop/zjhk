@@ -1,6 +1,5 @@
-@if (isset($data['filter']) && !empty($data['filter']))
-    <button class="product-page__open-filter">Показать фильтр</button>
-    <aside class="product-page__filter filter">
+<aside class="product-page__filter filter">
+    @if (isset($data['filter']) && !empty($data['filter']))
         <form class="filter__item">
             <div>
                 <label for="type">Тип резьбы</label>
@@ -93,5 +92,5 @@
                 <button type="button" class="filter__btn-cancel">Очистить все</button>
             </div>
         </form>
-    </aside>
-@endif
+    @endif
+</aside>
