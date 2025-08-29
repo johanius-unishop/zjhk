@@ -8,16 +8,10 @@ class Products extends Component
 {
     public array $elements = [];
 
-
-
     public function mount($elements)
     {
         $this->elements = $elements;
-
-
     }
-
-
 
     public function render()
     {

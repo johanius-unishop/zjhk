@@ -1,9 +1,9 @@
 <div id="layout" data-layout
-    class="product-page__grid card-layout hide-subsequent-rows">
+    class="product-page__grid list-layout hide-subsequent-rows">
     @foreach ($elements as $product_item)
         <div class="product-page__item">
             <div data-layout
-                class="product-page__item-wrapper card-layout">
+                class="product-page__item-wrapper list-layout">
                 <div>
                     <div class="swiper product-page-slider">
                         <div class="swiper-wrapper">
@@ -21,7 +21,7 @@
                     </button>
                 </div>
                 <div data-layout
-                    class="product-page__title-container card-layout">
+                    class="product-page__title-container list-layout">
                     <h5>{{ $product_item['name'] }}</h5>
                     <p>{{ $product_item['article'] }}</p>
                     <div>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div data-layout
-                    class="product-page__info-container card-layout">
+                    class="product-page__info-container list-layout">
                     <p>{{ $product_item['userPrice'] }}</p>
                     <p>{{ $product_item['userStock'] }}</p>
                     <button class="product-page__add-cart">В корзину</button>
