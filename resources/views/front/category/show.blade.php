@@ -117,18 +117,6 @@
                 element.classList.toggle('list-layout', currentLayoutType === 'list');
             });
 
-            const swiperProduct = new Swiper('.product-page-slider', {
-                modules: [EffectFade, Pagination],
-                loop: false,
-                grabCursor: false,
-                pagination: {
-                    el: '.swiper-pagination-product',
-                    clickable: true,
-                    renderBullet: function(index, className) {
-                        return '<span class="' + className + '">' + '</span>'
-                    }
-                }
-            })
 
             const btn = document.querySelector('.product-page__change-btn');
             const menu = document.querySelector('.product-page__page-count');
@@ -187,6 +175,19 @@
                     element.classList.toggle('list-layout', layoutType === 'list');
                 });
             });
+
+            const swiperProduct = new Swiper('.product-page-slider', {
+                modules: [EffectFade, Pagination],
+                loop: false,
+                grabCursor: false,
+                pagination: {
+                    el: '.swiper-pagination-product',
+                    clickable: true,
+                    renderBullet: function(index, className) {
+                        return '<span class="' + className + '">' + '</span>'
+                    }
+                }
+            })
         });
     </script>
 @endsection
