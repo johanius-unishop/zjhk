@@ -102,7 +102,8 @@
 
 
                             <div class="product-page__show">
-                                <button>Показать еще</button>
+                                <button id="load-more-button" data-next-page="{{ $products->currentPage() + 1 }}">Показать
+                                    еще</button>
                             </div>
                             <div class="product-page__pagination">
                                 <div class="product-page__pagination-content">
