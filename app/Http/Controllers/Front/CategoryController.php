@@ -104,6 +104,7 @@ class CategoryController extends Controller
 
         if (!empty($products)) {
             $data['products'] = $products;
+            $data['paginatedProducts'] = $paginatedProducts;
             $data['filter'] =   $filter;
         }
 
