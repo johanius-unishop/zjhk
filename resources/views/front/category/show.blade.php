@@ -55,7 +55,7 @@
 
                                 </div>
                             </div>
-                            @include('front.product-select.products', ['elements' => $data['products']])
+                            @livewire('front.product-select.products', ['elements' => $data['products']])
 
 
                             <div class="product-page__show">
