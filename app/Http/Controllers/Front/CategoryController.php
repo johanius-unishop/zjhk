@@ -67,6 +67,14 @@ class CategoryController extends Controller
         // Выполняем пагинацию и подтягиваем медиа-данные
         $products = $query->with('media')->paginate($perPage, ['*'], 'page', $pageNumber)->withQueryString();
 
+        // Если запрос принят как JSON, возвращаем данные в формате JSON
+        if ($request->wantsJson()) {
+            return response()->json([
+                'html' => view('partials.products_list', ['products' => $products])->render(),
+                'isLastPage' => $products->lastPage() === $products->currentPage()
+            ]);
+        }
+
 
         $childrens = Category::defaultOrder()
             ->where('parent_id', $category->id)
