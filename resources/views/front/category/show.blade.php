@@ -59,12 +59,9 @@
 
 
                             <div class="product-page__show">
-                                @comment
-                                    <button id="load-more-button"
-                                        data-next-page="{{ $data['products']->nextPageUrl() ? $data['products']->currentPage() + 1 : '' }}">
+                                <button id="load-more-button">
                                         Показать ещё
-                                    </button>
-                                @endcomment
+                                </button>
                             </div>
                             <div class="product-page__pagination">
                                 <div class="product-page__pagination-content">
