@@ -11,7 +11,6 @@ class Filter extends Component
     public function mount($filter)
     {
         $this->filter = $filter;
-        dd($filter);
     }
 
     public function render()
