@@ -29,7 +29,7 @@ class ProductsSelect extends Component
     {
         $this->perPage = $newValue;
         $this->menuIsOpen = false; // Закрываем меню
-        $this->dispatch('$refresh');
+        $this->resetPage();
     }
 
     protected $listeners = [
@@ -42,7 +42,6 @@ class ProductsSelect extends Component
 
         // Оповещаем слушателей об изменении макета
         $this->dispatch('updateLayout', layoutType: $this->layoutType);
-        $this->dispatch('$refresh');
     }
 
     public function mount($category, $filter)
