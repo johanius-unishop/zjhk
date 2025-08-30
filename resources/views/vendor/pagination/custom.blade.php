@@ -21,7 +21,7 @@
                 @else
                     <li data-pagination>
                         <button
-                            onclick="window.location.href='{{ $url }}'">{{ $page }}</button>
+                            wire:click="setPage({{ $page }})">{{ $page }}</button>
                     </li>
                 @endif
             @endforeach
