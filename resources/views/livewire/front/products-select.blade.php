@@ -41,15 +41,15 @@
         </div>
 
         <div id="layout" data-layout class="product-page__grid card-layout hide-subsequent-rows">
-            @foreach ($elements as $product_item)
+            @foreach ($products as $product_item)
                 <div class="product-page__item">
                     <div data-layout class="product-page__item-wrapper card-layout">
                         <div>
                             <div class="swiper product-page-slider">
                                 <div class="swiper-wrapper">
-                                    @foreach ($product_item['images'] as $product_image)
-                                        <div class="swiper-slide"><img src="{{ $product_image['url'] }}"
-                                                alt="{{ $product_item['alt'] }}">
+                                    @foreach ($product_item->getMedia('images') as $product_image)
+                                        <div class="swiper-slide"><img src="{{ $product_image->getUrl() }}"
+                                                alt="{{ $product_item->getAltAttribute() }}">
                                         </div>
                                     @endforeach
                                 </div>
@@ -61,12 +61,12 @@
                             </button>
                         </div>
                         <div data-layout class="product-page__title-container card-layout">
-                            <h5>{{ $product_item['name'] }}</h5>
-                            <p>{{ $product_item['article'] }}</p>
+                            <h5>{{ $product_item->name }}</h5>
+                            <p>{{ $product_item->article }}</p>
                             <div>
                                 <img src="{{ asset('images/icons/star.svg') }}"
-                                    alt="рейтинг"><span>{{ $product_item['averageRating'] }}</span>
-                                <a><span>{{ $product_item['reviewsString'] }}</span></a>
+                                    alt="рейтинг"><span>{{ $product_item->getAverageReviewRatingString() }}</span>
+                                <a><span>{{ $product_item->getCountReviewsString() }}</span></a>
                             </div>
                         </div>
                         <div data-layout class="product-page__info-container card-layout">
