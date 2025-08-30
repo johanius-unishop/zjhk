@@ -35,8 +35,6 @@
                 </div>
             </section>
         @else
-
-
             <section class="product-page">
                 <div class="product-page__container container">
                     @include('components.catalog-section.breadcrumbs')
@@ -46,8 +44,8 @@
                     </div>
                     @livewire('front.products-select', [
                         'category' => $data['category'],
-                        'filter' => $data['filter']
-                        ])
+                        'filter' => $data['filter'],
+                    ])
                 </div>
             </section>
         @endif
@@ -74,12 +72,6 @@
                 element.classList.toggle('card-layout', currentLayoutType === 'card');
                 element.classList.toggle('list-layout', currentLayoutType === 'list');
             });
-
-
-
-
-
-
         });
 
         document.addEventListener('livewire:init', () => {
@@ -92,6 +84,28 @@
                     element.classList.toggle('list-layout', layoutType === 'list');
                 });
             });
+        });
+
+        document.addEventListener('livewire:load', event => {
+            console.log('Новая структура DOM построена!');
+
+            // Тут можно разместить ваш JavaScript-код
+            // Например, инициализация плагинов или другие действия
+
+            const swiperProduct = new Swiper('.product-page-slider', {
+                modules: [EffectFade, Pagination],
+                loop: false,
+                grabCursor: false,
+                pagination: {
+                    el: '.swiper-pagination-product',
+                    clickable: true,
+                    renderBullet: function(index, className) {
+                        return '<span class="' + className + '">' + '</span>'
+                    }
+                }
+            })
+            console.log('сработало!')
+
         });
     </script>
 @endsection
