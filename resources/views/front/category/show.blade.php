@@ -2,7 +2,7 @@
 
 @section('content')
     <main>
-        @if ($data['childrens']->isNotEmpty())
+        @if (isset($data['childrens']) && !empty($data['childrens']))
             <section class="products">
                 <div class="products__container container">
                     @include('components.catalog-section.breadcrumbs')
