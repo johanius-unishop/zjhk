@@ -3,7 +3,7 @@
         <img src="{{ asset('images/icons/tick-grey.svg') }}" alt="влево">
     </button>
 @else
-    <button onclick="window.location.href='{{ $paginator->previousPageUrl() }}'">
+    <button wire:click="previousPage" wire:loading.attr="disabled">
         <img src="{{ asset('images/icons/tick-black.svg') }}" style="transform:rotateZ(180deg)" alt="влево">
     </button>
 @endif
@@ -32,7 +32,7 @@
 
 
 @if ($paginator->hasMorePages())
-    <button onclick="window.location.href='{{ $paginator->nextPageUrl() }}'">
+    <button wire:click="nextPage" wire:loading.attr="disabled">
         <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
     </button>
 @else
