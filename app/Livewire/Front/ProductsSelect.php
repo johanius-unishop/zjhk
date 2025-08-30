@@ -44,7 +44,7 @@ class ProductsSelect extends Component
     {
         // Основной запрос по товарам
         $query = Product::select('*')
-            ->where('category_id', $this->categoryId)
+            ->where('category_id', $this->category->id)
             ->where('published', 1)
             ->orderByRaw("CASE WHEN stock > 0 THEN 0 ELSE 1 END") // сначала положительные остатки
             ->orderBy('order_column');
