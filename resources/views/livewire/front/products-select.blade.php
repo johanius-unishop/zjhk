@@ -40,10 +40,12 @@
             </div>
         </div>
 
-        <div id="layout" data-layout class="product-page__grid {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }} hide-subsequent-rows">
+        <div id="layout" data-layout
+            class="product-page__grid {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }} hide-subsequent-rows">
             @foreach ($products as $product_item)
                 <div class="product-page__item">
-                    <div data-layout class="product-page__item-wrapper {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
+                    <div data-layout
+                        class="product-page__item-wrapper {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                         <div>
                             <div class="swiper product-page-slider">
                                 <div class="swiper-wrapper">
@@ -60,7 +62,8 @@
                                     alt="избранное">
                             </button>
                         </div>
-                        <div data-layout class="product-page__title-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
+                        <div data-layout
+                            class="product-page__title-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                             <h5>{{ $product_item->name }}</h5>
                             <p>{{ $product_item->article }}</p>
                             <div>
@@ -69,7 +72,8 @@
                                 <a><span>{{ $product_item->getCountReviewsString() }}</span></a>
                             </div>
                         </div>
-                        <div data-layout class="product-page__info-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
+                        <div data-layout
+                            class="product-page__info-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                             <p>{{ $product_item->getUserPrice() }}</p>
                             <p>{{ $product_item->getUserStock() }}</p>
                             <button class="product-page__add-cart">В корзину</button>
@@ -93,12 +97,13 @@
                 <div class="product-page__page-size" data-page-size>
                     <p class="product-page__page-select">
                         <span>Показывать по </span>
-                        <button class="product-page__change-btn">
+                        <button wire:click="toggleMenu" class="product-page__change-btn">
                             <span id="page-count">{{ $perPage }}</span>
                             <img src="{{ asset('images/icons/tick-black.svg') }}" alt="список страниц">
                         </button>
                     </p>
-                    <ul class="product-page__page-count" data-select-page>
+                    <ul class="product-page__page-count" x-data="{ open: @entangle('menuIsOpen').initial(false) }"
+                        x-bind:class="{ '_active': open, 'hidden': !open }" data-select-page>
                         <li><button
                                 onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 8, 'reset_page' => $perPage != 8]) }}'">8</button>
                         </li>

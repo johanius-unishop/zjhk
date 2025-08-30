@@ -88,14 +88,7 @@
                 }
             })
 
-            const btn = document.querySelector('.product-page__change-btn');
-            const menu = document.querySelector('.product-page__page-count');
 
-            // Обработчик клика по кнопке
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('_active');
-                menu.classList.toggle('hidden');
-            })
 
 
         });

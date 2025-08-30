@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Livewire\Front;
 
 use Livewire\Component;
@@ -12,6 +13,13 @@ class ProductsSelect extends Component
     public $filter;
 
     public string $layoutType = 'card';
+
+    public bool $menuIsOpen = false; // Изначально меню закрыто
+
+    public function toggleMenu()
+    {
+        $this->menuIsOpen = !$this->menuIsOpen; // Инвертируем состояние
+    }
 
     protected $listeners = [
         'refreshComponent' => '$refresh',
