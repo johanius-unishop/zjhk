@@ -102,8 +102,7 @@
                             <img src="{{ asset('images/icons/tick-black.svg') }}" alt="список страниц">
                         </button>
                     </p>
-                    <ul class="product-page__page-count"
-                        x-bind:class="{ '_active': open, 'hidden': !open }" data-select-page>
+                    <ul class="product-page__page-count {{ $menuIsOpen === true ? '_active' : 'hidden' }}" data-select-page>
                         <li><button
                                 onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 8, 'reset_page' => $perPage != 8]) }}'">8</button>
                         </li>
