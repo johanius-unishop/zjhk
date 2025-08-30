@@ -3,7 +3,7 @@
         <img src="{{ asset('images/icons/tick-grey.svg') }}" alt="влево">
     </button>
 @else
-    <button onclick="window.location.href='{{ $paginator->previousPageUrl() }}'">
+    <button onclick="document.location.href='{{ $paginator->previousPageUrl() }}'">
         <img src="{{ asset('images/icons/tick-black.svg') }}" style="transform:rotateZ(180deg)" alt="влево">
     </button>
 @endif
@@ -21,7 +21,7 @@
                 @else
                     <li data-pagination>
                         <button
-                            onclick="window.location.href='{{ $url }}'">{{ $page }}</button>
+                            onclick="document.location.href='{{ $url }}'">{{ $page }}</button>
                     </li>
                 @endif
             @endforeach
@@ -32,7 +32,7 @@
 
 
 @if ($paginator->hasMorePages())
-    <button onclick="window.location.href='{{ $paginator->nextPageUrl() }}'">
+    <button onclick="document.location.href='{{ $paginator->nextPageUrl() }}'">
         <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
     </button>
 @else
