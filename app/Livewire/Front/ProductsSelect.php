@@ -25,6 +25,8 @@ class ProductsSelect extends Component
     public function changePerPage($newValue)
     {
         $this->perPage = $newValue;
+        $this->menuIsOpen = !$this->menuIsOpen; // Инвертируем состояние
+        $this->refresh();
     }
 
     protected $listeners = [
