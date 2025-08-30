@@ -31,7 +31,7 @@
 </ul>
 
 
-@if ($paginator->hasMorePages())
+@if ($paginator->onLastPge())
     <button wire:click="nextPage" wire:loading.attr="disabled">
         <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
     </button>

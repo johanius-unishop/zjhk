@@ -2,12 +2,15 @@
 
 namespace App\Livewire\Front;
 
+use Livewire\WithPagination;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 
 class ProductsSelect extends Component
 {
+    use WithPagination;
+
     public $category;
     public $perPage = 8; // количество товаров на странице
     public $perPageOptions = [8, 12, 16, 20, 24];
