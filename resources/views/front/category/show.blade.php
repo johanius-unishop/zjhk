@@ -2,7 +2,7 @@
 
 @section('content')
     <main>
-        @if (isset($data['childrens']) && !empty($data['childrens']))
+        @if ($data['childrens']->isNotEmpty())
             <section class="products">
                 <div class="products__container container">
                     @include('components.catalog-section.breadcrumbs')
@@ -34,9 +34,9 @@
                     </div>
                 </div>
             </section>
-        @endif
+        @else
 
-        @if (isset($data['products']) && !empty($data['products']))
+
             <section class="product-page">
                 <div class="product-page__container container">
                     @include('components.catalog-section.breadcrumbs')
