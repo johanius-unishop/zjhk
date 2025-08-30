@@ -82,6 +82,8 @@ class CategoryController extends Controller
             ];
         })->values()->toArray();
 
+        $paginatedProducts = $query->paginate($perPage)->withQueryString()->toArray();
+
 
 
 
