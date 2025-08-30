@@ -102,22 +102,14 @@
                             <img src="{{ asset('images/icons/tick-black.svg') }}" alt="список страниц">
                         </button>
                     </p>
-                    <ul class="product-page__page-count {{ $menuIsOpen === true ? '_active' : 'hidden' }}" data-select-page>
-                        <li><button
-                                onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 8, 'reset_page' => $perPage != 8]) }}'">8</button>
-                        </li>
-                        <li><button
-                                onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 12, 'reset_page' => $perPage != 12]) }}'">12</button>
-                        </li>
-                        <li><button
-                                onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 16, 'reset_page' => $perPage != 16]) }}'">16</button>
-                        </li>
-                        <li><button
-                                onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 20, 'reset_page' => $perPage != 20]) }}'">20</button>
-                        </li>
-                        <li><button
-                                onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 24, 'reset_page' => $perPage != 24]) }}'">24</button>
-                        </li>
+                    <ul class="product-page__page-count {{ $menuIsOpen === true ? '_active' : 'hidden' }}"
+                        data-select-page>
+                        @foreach ($perPageOptions as $option)
+                            <li><button wire:click="changePerPage({{ $option }})">
+                                    {{ $option }}
+                                </button>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
