@@ -5,10 +5,13 @@ use Livewire\Component;
 
 class ProductsSelect extends Component
 {
+    public $filter;
+
     public array $elements = [];
 
-    public function mount($elements)
+    public function mount($elements, $filter)
     {
+        $this->filter = $filter;
         $this->elements = $elements;
     }
 
