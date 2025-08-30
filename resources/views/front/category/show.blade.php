@@ -44,7 +44,7 @@
                         <h2>{{ $data['category']->name }}</h2>
                         <p>{{ $data['category']->description }}</p>
                     </div>
-                    @livewire('front.product-select.product-select')
+                    @livewire('front.product-select.products-select')
                 </div>
             </section>
         @endif
