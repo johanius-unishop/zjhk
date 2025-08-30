@@ -51,40 +51,6 @@ class CategoryController extends Controller
             $pageNumber = $request->input('page', 1);
         }
 
-        // Основной запрос по товарам
-        $query = Product::select('*')
-            ->where('category_id', $category->id)
-            ->where('published', 1)
-            ->orderByRaw("CASE WHEN stock > 0 THEN 0 ELSE 1 END") // сначала положительные остатки
-            ->orderBy('order_column');
-
-        // Выполняем пагинацию и подтягиваем медиа-данные
-        $paginatedProducts = $query->with('media')->paginate($perPage)->withQueryString();
-
-        $products = collect($paginatedProducts->items())->map(function ($product) {
-            return [
-                'id' => $product->id,
-                'name' => $product->name,
-                'article' => $product->article,
-                'slug' => $product->slug,
-                'userPrice' => $product->getUserPrice(),
-                'userStock' => $product->getUserStock(),
-                'alt' => $product->getAltAttribute(),
-                'averageRating' => $product->getAverageReviewRatingString(),
-                'reviewsString' => $product->getCountReviewsString(),
-
-
-               'images' => $product->getMedia('images')->map(function ($media) { // Медиа-изображения товара
-                    return [
-                        'url' => $media->getUrl('thumb'), // Удобный полный путь к изображению
-                    ];
-                })->values()->toArray(),
-            ];
-        })->values()->toArray();
-
-        $paginatedProducts = $query->paginate($perPage)->withQueryString()->toArray();
-
-
 
 
         $childrens = Category::defaultOrder()
@@ -104,9 +70,8 @@ class CategoryController extends Controller
             $data['childrens'] = $childrens;
         }
 
-        if (!empty($products)) {
-            $data['products'] = $products;
-            $data['paginatedProducts'] = $paginatedProducts;
+        if (!empty($category->products)) {
+            $data['category'] = $category;
             $data['filter'] =   $filter;
         }
 

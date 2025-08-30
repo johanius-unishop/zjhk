@@ -45,9 +45,8 @@
                         <p>{{ $data['category']->description }}</p>
                     </div>
                     @livewire('front.products-select', [
-                        'elements' => $data['products'],
-                        'filter' => $data['filter'],
-                        'paginatedProducts' => $data['paginatedProducts']
+                        'categoryId' => $data['catgoryId'],
+                        'filter' => $data['filter']
                         ])
                 </div>
             </section>
