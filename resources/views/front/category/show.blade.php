@@ -46,7 +46,8 @@
                     </div>
                     @livewire('front.products-select', [
                         'elements' => $data['products'],
-                        'filter' => $data['filter']
+                        'filter' => $data['filter'],
+                        'paginatedProducts' => $data['paginatedProducts']
                         ])
                 </div>
             </section>

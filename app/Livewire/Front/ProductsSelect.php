@@ -11,6 +11,8 @@ class ProductsSelect extends Component
 
     public array $elements = [];
 
+    public array $paginatedProducts = [];
+
     public function switchLayout()
     {
 
@@ -27,11 +29,12 @@ class ProductsSelect extends Component
         $this->dispatch('updateLayout', layoutType: $this->layoutType);
     }
 
-    public function mount($elements, $filter)
+    public function mount($elements, $filter, $paginatedProducts)
     {
         $this->filter = $filter;
         $this->layoutType = session('layoutType', 'card'); // По умолчанию "card"
         $this->elements = $elements;
+        $this->paginatedProducts = $paginatedProducts;
     }
 
     public function render()
