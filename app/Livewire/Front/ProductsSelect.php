@@ -1,5 +1,5 @@
 <?php
-namespace App\Livewire\Front\ProductSelect;
+namespace App\Livewire\Front;
 
 use Livewire\Component;
 
@@ -14,6 +14,6 @@ class ProductsSelect extends Component
 
     public function render()
     {
-        return view('livewire.front.product-select.products-select');
+        return view('livewire.front.products-select');
     }
 }
