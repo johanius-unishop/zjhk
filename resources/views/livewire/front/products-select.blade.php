@@ -89,12 +89,12 @@
         </div>
         <div class="product-page__pagination">
             <div class="product-page__pagination-content">
-                {{ $paginatedProducts->links() }}
+                {{ $products->links() }}
                 <div class="product-page__page-size" data-page-size>
                     <p class="product-page__page-select">
                         <span>Показывать по </span>
                         <button class="product-page__change-btn">
-                            <span id="page-count">{{ $data['perPage'] }}</span>
+                            <span id="page-count">{{ $perPage }}</span>
                             <img src="{{ asset('images/icons/tick-black.svg') }}" alt="список страниц">
                         </button>
                     </p>
