@@ -44,58 +44,8 @@
                         <h2>{{ $data['category']->name }}</h2>
                         <p>{{ $data['category']->description }}</p>
                     </div>
-                    <div class="product-page__content">
-                        @livewire('front.product-select.filter', ['filter' => $data['filter']])
-                        <div class="product-page__layout">
-                            <div class="product-page__sort-container">
-                                <div>
-
-                                </div>
-                                <div class="product-page__change-layout">
-
-                                </div>
-                            </div>
-                            @livewire('front.product-select.products', ['elements' => $data['products']])
-
-
-                            <div class="product-page__show">
-                                <button id="load-more-button">
-                                        Показать ещё
-                                </button>
-                            </div>
-                            <div class="product-page__pagination">
-                                <div class="product-page__pagination-content">
-                                    {{ $data['paginatedProducts']->links() }}
-                                    <div class="product-page__page-size" data-page-size>
-                                        <p class="product-page__page-select">
-                                            <span>Показывать по </span>
-                                            <button class="product-page__change-btn">
-                                                <span id="page-count">{{ $data['perPage'] }}</span>
-                                                <img src="{{ asset('images/icons/tick-black.svg') }}" alt="список страниц">
-                                            </button>
-                                        </p>
-                                        <ul class="product-page__page-count" data-select-page>
-                                            <li><button
-                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 8, 'reset_page' => $data['perPage'] != 8]) }}'">8</button>
-                                            </li>
-                                            <li><button
-                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 12, 'reset_page' => $data['perPage'] != 12]) }}'">12</button>
-                                            </li>
-                                            <li><button
-                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 16, 'reset_page' => $data['perPage'] != 16]) }}'">16</button>
-                                            </li>
-                                            <li><button
-                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 20, 'reset_page' => $data['perPage'] != 20]) }}'">20</button>
-                                            </li>
-                                            <li><button
-                                                    onclick="window.location='{{ request()->fullUrlWithQuery(['per_page' => 24, 'reset_page' => $data['perPage'] != 24]) }}'">24</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @livewire('front.product-select.product-select')
+                </div>
             </section>
         @endif
 
