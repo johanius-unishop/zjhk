@@ -32,12 +32,12 @@
 
 
 @if ($paginator->onLastPage())
-    <button wire:click="nextPage" wire:loading.attr="disabled">
-        <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
-    </button>
-@else
     <button>
         <img src="{{ asset('images/icons/tick-grey.svg') }}" style="transform:rotateZ(180deg)" alt="вправо">
+    </button>
+@else
+     <button wire:click="nextPage" wire:loading.attr="disabled">
+        <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
     </button>
 @endif
 </div>
