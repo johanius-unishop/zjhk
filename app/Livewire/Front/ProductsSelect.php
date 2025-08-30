@@ -7,7 +7,7 @@ use App\Models\Product;
 
 class ProductsSelect extends Component
 {
-    public $categoryId;
+    public $category;
     public $perPage = 10; // количество товаров на странице
     public $filter;
 
@@ -33,11 +33,11 @@ class ProductsSelect extends Component
         $this->dispatch('updateLayout', layoutType: $this->layoutType);
     }
 
-    public function mount($categoryId, $filter, $paginatedProducts)
+    public function mount($category, $filter, $paginatedProducts)
     {
         $this->filter = $filter;
         $this->layoutType = session('layoutType', 'card'); // По умолчанию "card"
-        $this->categoryId = $categoryId;
+        $this->category = $category;
     }
 
     public function render()
