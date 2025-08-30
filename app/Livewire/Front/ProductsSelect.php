@@ -10,6 +10,7 @@ class ProductsSelect extends Component
 {
     public $category;
     public $perPage = 8; // количество товаров на странице
+    public $perPageOptions = [8, 12, 16, 20, 24];
     public $filter;
 
     public string $layoutType = 'card';
@@ -19,6 +20,11 @@ class ProductsSelect extends Component
     public function toggleMenu()
     {
         $this->menuIsOpen = !$this->menuIsOpen; // Инвертируем состояние
+    }
+
+    public function changePerPage($newValue)
+    {
+        $this->perPage = $newValue;
     }
 
     protected $listeners = [
