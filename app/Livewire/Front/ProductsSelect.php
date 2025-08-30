@@ -25,6 +25,7 @@ class ProductsSelect extends Component
         $this->menuIsOpen = !$this->menuIsOpen; // Инвертируем состояние
     }
 
+
     public function changePerPage($newValue)
     {
         $this->perPage = $newValue;
@@ -32,9 +33,6 @@ class ProductsSelect extends Component
         $this->resetPage();
     }
 
-    protected $listeners = [
-        'refreshComponent' => '$refresh',
-    ];
 
     public function switchLayout()
     {

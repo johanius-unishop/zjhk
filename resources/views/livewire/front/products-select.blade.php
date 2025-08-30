@@ -99,9 +99,9 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
 
 
         <div class="product-page__show">
-            <button id="load-more-button">
-                Показать ещё
-            </button>
+
+
+
         </div>
         <div class="product-page__pagination">
             <div class="product-page__pagination-content">
