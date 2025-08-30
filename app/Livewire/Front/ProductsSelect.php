@@ -8,7 +8,7 @@ use App\Models\Product;
 class ProductsSelect extends Component
 {
     public $category;
-    public $perPage = 10; // количество товаров на странице
+    public $perPage = 8; // количество товаров на странице
     public $filter;
 
     public string $layoutType;
