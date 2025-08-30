@@ -2,16 +2,20 @@
 namespace App\Livewire\Front;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class ProductsSelect extends Component
 {
+    public $categoryId;
+    public $perPage = 10; // количество товаров на странице
     public $filter;
 
     public string $layoutType;
 
-    public array $elements = [];
-
-    public array $paginatedProducts = [];
+    protected $listeners = [
+        'refreshComponent' => '$refresh',
+    ];
 
     public function switchLayout()
     {
@@ -29,16 +33,25 @@ class ProductsSelect extends Component
         $this->dispatch('updateLayout', layoutType: $this->layoutType);
     }
 
-    public function mount($elements, $filter, $paginatedProducts)
+    public function mount($categoryId, $filter, $paginatedProducts)
     {
         $this->filter = $filter;
         $this->layoutType = session('layoutType', 'card'); // По умолчанию "card"
-        $this->elements = $elements;
-        $this->paginatedProducts = $paginatedProducts;
+        $this->categoryId = $categoryId;
     }
 
     public function render()
     {
-        return view('livewire.front.products-select');
+        // Основной запрос по товарам
+        $query = Product::select('*')
+            ->where('category_id', $this->categoryId)
+            ->where('published', 1)
+            ->orderByRaw("CASE WHEN stock > 0 THEN 0 ELSE 1 END") // сначала положительные остатки
+            ->orderBy('order_column');
+
+        // Выполняем пагинацию и подтягиваем медиа-данные
+        $products = $query->with('media')->paginate($this->perPage)->withQueryString();
+
+        return view('livewire.front.products-select', compact('products'));
     }
 }
