@@ -33,7 +33,7 @@ class ProductsSelect extends Component
         $this->dispatch('updateLayout', layoutType: $this->layoutType);
     }
 
-    public function mount($category, $filter, $paginatedProducts)
+    public function mount($category, $filter)
     {
         $this->filter = $filter;
         $this->layoutType = session('layoutType', 'card'); // По умолчанию "card"
