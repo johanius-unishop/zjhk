@@ -11,7 +11,7 @@ class ProductsSelect extends Component
     public $perPage = 8; // количество товаров на странице
     public $filter;
 
-    public string $layoutType;
+    public string $layoutType = 'card';
 
     protected $listeners = [
         'refreshComponent' => '$refresh',
@@ -25,9 +25,6 @@ class ProductsSelect extends Component
         } else {
             $this->layoutType = 'card';
         }
-
-        // Записываем новый тип макета в сессию
-        session(['layoutType' => $this->layoutType]);
 
         // Оповещаем слушателей об изменении макета
         $this->dispatch('updateLayout', layoutType: $this->layoutType);

@@ -27,7 +27,7 @@
             </div>
             <div class="product-page__change-layout">
                 <!-- Кнопка карточки -->
-                <button wire:click="switchLayout" id="card-layout" class="toggle__layout">
+                <button wire:click="switchLayout" id="{{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}" class="toggle__layout">
                     <img src="{{ asset('images/icons/block-gray.svg') }}" alt="Карточки"
                         class="change__img {{ $layoutType === 'card' ? '_active' : '' }}">
                 </button>
@@ -40,10 +40,10 @@
             </div>
         </div>
 
-        <div id="layout" data-layout class="product-page__grid card-layout hide-subsequent-rows">
+        <div id="layout" data-layout class="product-page__grid {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }} hide-subsequent-rows">
             @foreach ($products as $product_item)
                 <div class="product-page__item">
-                    <div data-layout class="product-page__item-wrapper card-layout">
+                    <div data-layout class="product-page__item-wrapper {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                         <div>
                             <div class="swiper product-page-slider">
                                 <div class="swiper-wrapper">
@@ -60,7 +60,7 @@
                                     alt="избранное">
                             </button>
                         </div>
-                        <div data-layout class="product-page__title-container card-layout">
+                        <div data-layout class="product-page__title-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                             <h5>{{ $product_item->name }}</h5>
                             <p>{{ $product_item->article }}</p>
                             <div>
@@ -69,7 +69,7 @@
                                 <a><span>{{ $product_item->getCountReviewsString() }}</span></a>
                             </div>
                         </div>
-                        <div data-layout class="product-page__info-container card-layout">
+                        <div data-layout class="product-page__info-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                             <p>{{ $product_item->getUserPrice() }}</p>
                             <p>{{ $product_item->getUserStock() }}</p>
                             <button class="product-page__add-cart">В корзину</button>
