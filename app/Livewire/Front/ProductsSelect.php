@@ -12,7 +12,7 @@ class ProductsSelect extends Component
     use WithPagination;
 
     public $category;
-    public $perPage = 8; // количество товаров на странице
+    public $perPage = 20; // количество товаров на странице
     public $perPageOptions = [8, 12, 16, 20, 24];
     public $filter;
 
