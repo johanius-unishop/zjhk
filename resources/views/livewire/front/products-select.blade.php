@@ -91,7 +91,11 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                         <div data-layout
                             class="product-page__info-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                             <p>{{ $product_item->getUserPrice() }}</p>
-                            <p>{{ $product_item->getUserStock() }}</p>
+                            @if ( $product_item->stock > 0)
+                                <p style="color: #027a48;">{{ $product_item->getUserStock() }}</p>
+                            @else
+                                <p style="color: #6905ec;">{{ $product_item->getUserStock() }}</p>
+                            @endif
                             <button class="product-page__add-cart">В корзину</button>
                         </div>
                     </div>
