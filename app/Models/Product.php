@@ -12,6 +12,7 @@ use Spatie\Sluggable\SlugOptions;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Enums\Fit;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Builder;
@@ -159,7 +160,13 @@ class Product extends Model implements HasMedia, Sitemapable
         //     ->quality(80)
         //     ->withResponsiveImages()
         //     ->nonQueued();
+        $this->addMediaConversion('webp_thumb')
+        ->fit(FIT::Fill, 160, 160)   // Сохраняем пропорцию, максимум ширина или высота 160px
+        ->format('webp')                              // Устанавливаем формат сохранения изображения
+        ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
+        ->nonQueued();
     }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('images') //Изображения

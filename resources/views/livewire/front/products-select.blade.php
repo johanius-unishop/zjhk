@@ -63,7 +63,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                                 <div class="swiper-wrapper">
                                     @foreach ($product_item->getMedia('images') as $product_image)
                                         <div class="swiper-slide">
-                                            <img src="{{ $product_image->getUrl('thumb') }}"
+                                            <img src="{{ $product_image->getUrl('webp_thumb') }}"
                                                 alt="{{ $product_item->getAltAttribute() }}"
                                                 loading="lazy" class="swiper-image">
                                         </div>
