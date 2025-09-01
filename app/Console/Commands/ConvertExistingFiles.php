@@ -13,7 +13,7 @@ class ConvertExistingFiles extends Command
     public function handle()
     {
         foreach (Product::all() as $model) { // проходим по каждой модели вашего типа
-            foreach ($model->getMedia() as $mediaItem) { // получаем каждый прикрепленный медиафайл
+            foreach ($model->getMedia('images') as $mediaItem) { // получаем каждый прикрепленный медиафайл
                 if (!$mediaItem->hasGeneratedConversion('webp_thumb')) { // проверяем наличие конверсии
                     $mediaItem->regenerateConversion('webp_thumb');
                     $this->info('Сгенерировано изображение для товара {{ $model->name }}');
