@@ -81,9 +81,11 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                             <h5>{{ $product_item->name }}</h5>
                             <p>{{ $product_item->article }}</p>
                             <div>
+                                @if ($product_item->getCountReviewsString() != "")
                                 <img src="{{ asset('images/icons/star.svg') }}"
                                     alt="рейтинг"><span>{{ $product_item->getAverageReviewRatingString() }}</span>
                                 <a><span>{{ $product_item->getCountReviewsString() }}</span></a>
+                                @endif
                             </div>
                         </div>
                         <div data-layout
