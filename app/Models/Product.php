@@ -407,17 +407,18 @@ class Product extends Model implements HasMedia, Sitemapable
         // Обрабатываем случай, когда товара нет в наличии или ожидаемый
         elseif ($this->stock <= 0) {
             if ($this->stock == 0) {
-                return "Под заказ. " . $this->vendor->delivery_time;
+                return "<p style=\"color: #6905ec;\">Под заказ, {$this->vendor->delivery_time}</p>";
             } else {
-                return "Ожидается"; // Если stock меньше нуля
+                return '<p style="color: #6905ec;">Ожидается</p>'; // Если stock меньше нуля
             }
         }
 
         // Товар доступен в положительном количестве
         else {
-            return "В наличии " . $this->stock . " шт.";
+            return "<p style=\"color: #027a48;\">В наличии {$this->stock} шт</p>";
         }
     }
+
 
     public function getAverageReviewRatingString()
     {
@@ -438,6 +439,9 @@ class Product extends Model implements HasMedia, Sitemapable
             }
         }
     }
+
+
+
     /*$reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
             'roundedAverageRating' => round($product->reviews()->avg('rating'), 0),
