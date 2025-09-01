@@ -407,17 +407,18 @@ class Product extends Model implements HasMedia, Sitemapable
         // Обрабатываем случай, когда товара нет в наличии или ожидаемый
         elseif ($this->stock <= 0) {
             if ($this->stock == 0) {
-                return "<p style=\"color: #6905ec;\">Под заказ, {$this->vendor->delivery_time}</p>";
+                return "Под заказ. " . $this->vendor->delivery_time;
             } else {
-                return '<p style="color: #6905ec;">Ожидается</p>'; // Если stock меньше нуля
+                return "Ожидается"; // Если stock меньше нуля
             }
         }
 
         // Товар доступен в положительном количестве
         else {
-            return "<p style=\"color: #027a48;\">В наличии {$this->stock} шт</p>";
+            return "В наличии " . $this->stock . " шт.";
         }
     }
+
 
 
     public function getAverageReviewRatingString()
