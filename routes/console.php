@@ -10,3 +10,4 @@ Schedule::command('queue:work --stop-when-empty --queue=high,default')->everyMin
 Schedule::command('check:media-files')
     ->weeklyOn(1, '03:00')  // Понедельник в 03:00
     ->timezone('Europe/Moscow');
+Schedule::command('media:convert')->everySixHours();
