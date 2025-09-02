@@ -56,7 +56,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
             class="product-page__grid {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }} hide-subsequent-rows">
             @foreach ($products as $product_item)
                 <div class="product-page__item">
-                    <a href="{{ route('products.show', ['slug' => $product_item->slug]) }}" class="product-link">
+                    <a href="{{ route('product.show', ['slug' => $product_item->slug]) }}" class="product-link">
                     <div data-layout
                         class="product-page__item-wrapper {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                         <div>
