@@ -168,37 +168,37 @@ class Product extends Model implements HasMedia, Sitemapable
         ->nonQueued();
 
         $this->addMediaConversion('small-webp')
-        ->fit(FIT::Fill, 640, 640)   // Сохраняем пропорцию, максимум ширина или высота 640px
+        ->fit(FIT::FillMax, 640, 640)   // Сохраняем пропорцию, максимум ширина или высота 640px
         ->format('webp')                              // Устанавливаем формат сохранения изображения
         ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
         ->nonQueued();
 
         $this->addMediaConversion('medium-webp')
-        ->fit(FIT::Fill, 1280, 1280)   // Сохраняем пропорцию, максимум ширина или высота 1280px
+        ->fit(FIT::FillMax, 1280, 1280)   // Сохраняем пропорцию, максимум ширина или высота 1280px
         ->format('webp')                              // Устанавливаем формат сохранения изображения
         ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
         ->nonQueued();
 
         $this->addMediaConversion('large-webp')
-        ->fit(FIT::Fill, 2560, 2560)   // Сохраняем пропорцию, максимум ширина или высота 2560px
+        ->fit(FIT::FillMax, 2560, 2560)   // Сохраняем пропорцию, максимум ширина или высота 2560px
         ->format('webp')                              // Устанавливаем формат сохранения изображения
         ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
         ->nonQueued();
 
         $this->addMediaConversion('small')
-        ->fit(FIT::Fill, 640, 640)   // Сохраняем пропорцию, максимум ширина или высота 640px
+        ->fit(FIT::FillMax, 640, 640)   // Сохраняем пропорцию, максимум ширина или высота 640px
         ->format('jpg')                              // Устанавливаем формат сохранения изображения
         ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
         ->nonQueued();
 
         $this->addMediaConversion('medium')
-        ->fit(FIT::Fill, 1280, 1280)   // Сохраняем пропорцию, максимум ширина или высота 1280px
+        ->fit(FIT::FillMax, 1280, 1280)   // Сохраняем пропорцию, максимум ширина или высота 1280px
         ->format('jpg')                              // Устанавливаем формат сохранения изображения
         ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
         ->nonQueued();
 
         $this->addMediaConversion('large')
-        ->fit(FIT::Fill, 2560, 2560)   // Сохраняем пропорцию, максимум ширина или высота 2560px
+        ->fit(FIT::FillMax, 2560, 2560)   // Сохраняем пропорцию, максимум ширина или высота 2560px
         ->format('jpg')                              // Устанавливаем формат сохранения изображения
         ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
         ->nonQueued();
