@@ -487,6 +487,10 @@ class Product extends Model implements HasMedia, Sitemapable
         }
     }
 
+    public function getLinkAttribute(): string
+    {
+        return route('product.show', ['slug' => $this->attributes['slug']]);
+    }
 
 
     /*$reviewRating = [
