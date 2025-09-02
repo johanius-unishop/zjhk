@@ -151,20 +151,59 @@ class Product extends Model implements HasMedia, Sitemapable
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->width(368)
-            ->height(232)
-            ->nonQueued();
+        ->fit(FIT::Fill, 160, 160)   // Сохраняем пропорцию, максимум ширина или высота 160px
+        ->format('jpg')                              // Устанавливаем формат сохранения изображения
+        ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
+        ->nonQueued();
         // $this
         //     ->addMediaConversion('responsive')
         //     ->format('webp')
         //     ->quality(80)
         //     ->withResponsiveImages()
         //     ->nonQueued();
-        $this->addMediaConversion('webp_thumb')
+        $this->addMediaConversion('webp-thumb')
         ->fit(FIT::Fill, 160, 160)   // Сохраняем пропорцию, максимум ширина или высота 160px
         ->format('webp')                              // Устанавливаем формат сохранения изображения
         ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
         ->nonQueued();
+
+        $this->addMediaConversion('small-webp')
+        ->fit(FIT::Fill, 640, 640)   // Сохраняем пропорцию, максимум ширина или высота 640px
+        ->format('webp')                              // Устанавливаем формат сохранения изображения
+        ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
+        ->nonQueued();
+
+        $this->addMediaConversion('medium-webp')
+        ->fit(FIT::Fill, 1280, 1280)   // Сохраняем пропорцию, максимум ширина или высота 1280px
+        ->format('webp')                              // Устанавливаем формат сохранения изображения
+        ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
+        ->nonQueued();
+
+        $this->addMediaConversion('large-webp')
+        ->fit(FIT::Fill, 2560, 2560)   // Сохраняем пропорцию, максимум ширина или высота 2560px
+        ->format('webp')                              // Устанавливаем формат сохранения изображения
+        ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
+        ->nonQueued();
+
+        $this->addMediaConversion('small')
+        ->fit(FIT::Fill, 640, 640)   // Сохраняем пропорцию, максимум ширина или высота 640px
+        ->format('jpg')                              // Устанавливаем формат сохранения изображения
+        ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
+        ->nonQueued();
+
+        $this->addMediaConversion('medium')
+        ->fit(FIT::Fill, 1280, 1280)   // Сохраняем пропорцию, максимум ширина или высота 1280px
+        ->format('jpg')                              // Устанавливаем формат сохранения изображения
+        ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
+        ->nonQueued();
+
+        $this->addMediaConversion('large')
+        ->fit(FIT::Fill, 2560, 2560)   // Сохраняем пропорцию, максимум ширина или высота 2560px
+        ->format('jpg')                              // Устанавливаем формат сохранения изображения
+        ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
+        ->nonQueued();
+
+
     }
 
     public function registerMediaCollections(): void
