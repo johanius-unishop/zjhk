@@ -465,7 +465,14 @@ class Product extends Model implements HasMedia, Sitemapable
         }
     }
 
-
+     public function getAverageReviewRating()
+    {
+        if (round($this->reviews()->avg('rating'), 2) != 0) {
+            return round($this->reviews()->avg('rating'), 2);
+        } else {
+            return 0;
+        }
+    }
 
     public function getAverageReviewRatingString()
     {
