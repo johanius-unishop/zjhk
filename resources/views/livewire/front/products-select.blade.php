@@ -76,18 +76,8 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                                                 <img src="{{ $product_image ? $product_image->getUrl() : asset('/images/default_image.jpg') }}"
                                                 alt="{{ $product_item->getAltAttribute() }}"
                                                      loading="lazy" class="swiper-image">
-                                            @end
-                                                <picture>
-                                                    @if ($product_image && $product_image->hasGeneratedConversion('webp-thumb'))
-                                                        <source type="image/webp" srcset="{{ $product_image->getUrl('webp-thumb') }}">
-                                                    @endif
-                                                    @if ($product_image && $product_image->hasGeneratedConversion('thumb'))
-                                                        <source type="image/jpeg" srcset="{{ $product_image->getUrl('thumb') }}">
-                                                    @endif
-                                                    <img src="{{ $product_image ? $product_image->getUrl('large') : asset('/images/default_image.jpg') }}"
-                                                     alt="{{ $product_item->getAltAttribute() }}"
-                                                     loading="lazy" class="swiper-image">
-                                                </picture>
+                                            @endif
+
                                         </div>
                                     @endforeach
                                 </div>
