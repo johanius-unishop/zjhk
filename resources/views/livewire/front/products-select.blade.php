@@ -64,6 +64,19 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                                 <div class="swiper-wrapper">
                                     @foreach ($product_item->getMedia('images') as $product_image)
                                         <div class="swiper-slide">
+                                            @if ($product_image && $product_image->hasGeneratedConversion('webp-thumb'))
+                                                <img src="{{ $product_image->getUrl('webp-thumb') }}"
+                                                alt="{{ $product_item->getAltAttribute() }}"
+                                                     loading="lazy" class="swiper-image">
+                                            @elseif ($product_image && $product_image->hasGeneratedConversion('thumb'))
+                                                <img src="{{ $product_image->getUrl('thumb') }}"
+                                                alt="{{ $product_item->getAltAttribute() }}"
+                                                     loading="lazy" class="swiper-image">
+                                            @else
+                                                <img src="{{ $product_image ? $product_image->getUrl() : asset('/images/default_image.jpg') }}"
+                                                alt="{{ $product_item->getAltAttribute() }}"
+                                                     loading="lazy" class="swiper-image">
+                                            @end
                                                 <picture>
                                                     @if ($product_image && $product_image->hasGeneratedConversion('webp-thumb'))
                                                         <source type="image/webp" srcset="{{ $product_image->getUrl('webp-thumb') }}">
