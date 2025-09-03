@@ -118,7 +118,7 @@ class ProductController extends Controller
         $allReviewImages = $product->reviews()->with('media')->get()->flatMap(function ($review) {
             return $review->getMedia('photos');
         });
-
+/*
         $reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
             'roundedAverageRating' => round($product->reviews()->avg('rating'), 0),
@@ -145,7 +145,7 @@ class ProductController extends Controller
             ->with('user')
             ->get();
 
-        // Массив отзывов отсортированных по рейтингу, затемм по дате публикации
+        // Массив отзывов отсортированных по рейтингу, затем по дате публикации
         $bestRatedReviews = $product->reviews()
             ->orderBy('rating', 'desc')   // Первичная сортировка по рейтингу
             ->orderBy('created_at', 'desc') // Вторичная сортировка по датам публикаций
@@ -153,7 +153,7 @@ class ProductController extends Controller
             ->with('user')
             ->get();
 
-
+*/
         $data = [
 
             'parents' => $parents,
@@ -163,9 +163,9 @@ class ProductController extends Controller
             'related' => $related,
             'images' => $images,
             'allReviewImages' => $allReviewImages,
-            'reviewRating' => $reviewRating,
-            'newReviews' => $newReviews,
-            'bestRatedReviews' => $bestRatedReviews,
+            //'reviewRating' => $reviewRating,
+            //'newReviews' => $newReviews,
+            //'bestRatedReviews' => $bestRatedReviews,
             // 'enableQuestion' => $enableQuestion,
             // 'enableFastBay' => $enableFastBay,
             // 'enableSale' => $enableSale,
