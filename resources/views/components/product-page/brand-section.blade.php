@@ -7,16 +7,16 @@
             $data['acceptsWebP'] &&
                 $data['product']->vendor->getFirstMedia('vendorLogo') &&
                 $data['product']->vendor->getFirstMedia('vendorLogo')->hasGeneratedConversion('webp-thumb'))
-            <img src="{{ $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl('webp-thumb') }}"
+            <img class="product-desc__logo" src="{{ $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl('webp-thumb') }}"
                 alt="Миниатюра логотипа компании {{ $data['product']->vendor->short_name }}" loading="lazy">
         @elseif (
             !$data['acceptsWebP'] &&
                 $data['product']->vendor->getFirstMedia('vendorLogo') &&
                 $data['product']->vendor->getFirstMedia('vendorLogo')->hasGeneratedConversion('thumb'))
-            <img src="{{ $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl('thumb') }}"
+            <img class="product-desc__logo" src="{{ $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl('thumb') }}"
                 alt="Миниатюра логотипа компании {{ $data['product']->vendor->short_name }}" loading="lazy">
         @else
-            <img src="{{ $data['product']->vendor->getFirstMedia('vendorLogo') ? $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl() : asset('/images/default_image.jpg') }}"
+            <img class="product-desc__logo" src="{{ $data['product']->vendor->getFirstMedia('vendorLogo') ? $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl() : asset('/images/default_image.jpg') }}"
                 alt=" Миниатюра логотипа компании {{ $data['product']->vendor->short_name }}" loading="lazy">
         @endif
 
