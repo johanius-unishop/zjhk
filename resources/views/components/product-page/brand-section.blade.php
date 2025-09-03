@@ -2,14 +2,14 @@
     @if($data['product']->vendor && trim($data['product']->vendor->short_name))
         <h3>{{ $data['product']->vendor->short_name }} <img src="{{ asset('images/icons/attention-gray.svg') }}" alt="логотип"></h3>
         <a href="#">Все товары бренда</a>
-        @if ($data['acceptsWebP'] && $data['product']->vendor->getMedia('vendorLogo') && $data['product']->vendor->getMedia('vendorLogo')[0]->hasGeneratedConversion('webp-thumb'))
-                        <img src="{{ $data['product']->vendor->getMedia('vendorLogo')[0]->getUrl('webp-thumb') }}"
+        @if ($data['acceptsWebP'] && $data['product']->vendor->getMedia('vendorLogo') && $data['product']->vendor->getMedia('vendorLogo')->hasGeneratedConversion('webp-thumb'))
+                        <img src="{{ $data['product']->vendor->getMedia('vendorLogo')->getUrl('webp-thumb') }}"
                             alt="Миниатюра логотипа компании {{ $data['product']->vendor->short_name }}" loading="lazy">
-                    @elseif (!$data['acceptsWebP'] && $data['product']->vendor->getMedia('vendorLogo')[0] && $data['product']->vendor->getMedia('vendorLogo')[0]->hasGeneratedConversion('thumb'))
-                        <img src="{{ $data['product']->vendor->getMedia('vendorLogo')[0]->getUrl('thumb') }}"
+                    @elseif (!$data['acceptsWebP'] && $data['product']->vendor->getMedia('vendorLogo') && $data['product']->vendor->getMedia('vendorLogo')->hasGeneratedConversion('thumb'))
+                        <img src="{{ $data['product']->vendor->getMedia('vendorLogo')->getUrl('thumb') }}"
                             alt="Миниатюра логотипа компании {{ $data['product']->vendor->short_name }}" loading="lazy">
                     @else
-                        <img src="{{ $data['product']->vendor->getMedia('vendorLogo')[0] ? $data['product']->vendor->getMedia('vendorLogo')[0]->getUrl() : asset('/images/default_image.jpg') }}"
+                        <img src="{{ $data['product']->vendor->getMedia('vendorLogo') ? $data['product']->vendor->getMedia('vendorLogo')->getUrl() : asset('/images/default_image.jpg') }}"
                             alt=" Миниатюра логотипа компании {{ $data['product']->vendor->short_name }}" loading="lazy">
                     @endif
 
