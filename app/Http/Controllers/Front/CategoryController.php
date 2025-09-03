@@ -51,6 +51,7 @@ class CategoryController extends Controller
             $pageNumber = $request->input('page', 1);
         }
 
+        $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
 
         $childrens = Category::defaultOrder()
@@ -63,6 +64,8 @@ class CategoryController extends Controller
         SEOMeta::setDescription($category->seo->description);
         SEOMeta::setKeywords($category->seo->keywords);
 
+        $data['acceptsWebP'] = $acceptsWebP;
+        dd($acceptsWebP);
         $data['category'] = $category;
         $data['parents'] = $parents;
         $data['perPage'] = $perPage;
@@ -73,6 +76,7 @@ class CategoryController extends Controller
         if (!empty($category->products)) {
             $data['category'] = $category;
             $data['filter'] =   $filter;
+
         }
 
         //Условие вывода фильтра по товарам
