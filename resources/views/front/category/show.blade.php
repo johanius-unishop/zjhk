@@ -45,6 +45,7 @@
                     @livewire('front.products-select', [
                         'category' => $data['category'],
                         'filter' => $data['filter'],
+                        'acceptsWebP' => $data['acceptsWebP'];
                     ])
                 </div>
             </section>

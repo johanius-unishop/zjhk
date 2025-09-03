@@ -64,11 +64,11 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                                     <div class="swiper-wrapper">
                                         @foreach ($product_item->getMedia('images') as $product_image)
                                             <div class="swiper-slide">
-                                                @if ($product_image && $product_image->hasGeneratedConversion('webp-thumb'))
+                                                @if ($acceptsWebP && $product_image && $product_image->hasGeneratedConversion('webp-thumb'))
                                                     <img src="{{ $product_image->getUrl('webp-thumb') }}"
                                                     alt="{{ $product_item->getAltAttribute() }}"
                                                         loading="lazy" class="swiper-image">
-                                                @elseif ($product_image && $product_image->hasGeneratedConversion('thumb'))
+                                                @elseif (!$acceptsWebP && $product_image && $product_image->hasGeneratedConversion('thumb'))
                                                     <img src="{{ $product_image->getUrl('thumb') }}"
                                                     alt="{{ $product_item->getAltAttribute() }}"
                                                         loading="lazy" class="swiper-image">

@@ -65,7 +65,7 @@ class CategoryController extends Controller
         SEOMeta::setKeywords($category->seo->keywords);
 
         $data['acceptsWebP'] = $acceptsWebP;
-        dd($acceptsWebP);
+
         $data['category'] = $category;
         $data['parents'] = $parents;
         $data['perPage'] = $perPage;

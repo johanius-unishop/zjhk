@@ -11,6 +11,7 @@ class ProductsSelect extends Component
 {
     use WithPagination;
 
+    public $acceptsWebP;
     public $category;
     public $perPage = 8; // количество товаров на странице
     public $perPageOptions = [8, 12, 16, 20, 24];
@@ -42,11 +43,12 @@ class ProductsSelect extends Component
         $this->dispatch('updateLayout', layoutType: $this->layoutType);
     }
 
-    public function mount($category, $filter)
+    public function mount($category, $filter, $acceptsWebP)
     {
         $this->filter = $filter;
         $this->layoutType = session('layoutType', 'card'); // По умолчанию "card"
         $this->category = $category;
+        $this->acceptsWebP = $acceptsWebP;
     }
 
     public function render()
