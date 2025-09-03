@@ -56,31 +56,32 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
             class="product-page__grid {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }} hide-subsequent-rows">
             @foreach ($products as $product_item)
                 <div class="product-page__item">
-                    <a href="{{ route('product.show', ['slug' => $product_item->slug]) }}" class="product-link">
                     <div data-layout
                         class="product-page__item-wrapper {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                         <div>
                             <div class="swiper product-page-slider">
-                                <div class="swiper-wrapper">
-                                    @foreach ($product_item->getMedia('images') as $product_image)
-                                        <div class="swiper-slide">
-                                            @if ($product_image && $product_image->hasGeneratedConversion('webp-thumb'))
-                                                <img src="{{ $product_image->getUrl('webp-thumb') }}"
-                                                alt="{{ $product_item->getAltAttribute() }}"
-                                                     loading="lazy" class="swiper-image">
-                                            @elseif ($product_image && $product_image->hasGeneratedConversion('thumb'))
-                                                <img src="{{ $product_image->getUrl('thumb') }}"
-                                                alt="{{ $product_item->getAltAttribute() }}"
-                                                     loading="lazy" class="swiper-image">
-                                            @else
-                                                <img src="{{ $product_image ? $product_image->getUrl() : asset('/images/default_image.jpg') }}"
-                                                alt="{{ $product_item->getAltAttribute() }}"
-                                                     loading="lazy" class="swiper-image">
-                                            @endif
+                                <a href="{{ route('product.show', ['slug' => $product_item->slug]) }}">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($product_item->getMedia('images') as $product_image)
+                                            <div class="swiper-slide">
+                                                @if ($product_image && $product_image->hasGeneratedConversion('webp-thumb'))
+                                                    <img src="{{ $product_image->getUrl('webp-thumb') }}"
+                                                    alt="{{ $product_item->getAltAttribute() }}"
+                                                        loading="lazy" class="swiper-image">
+                                                @elseif ($product_image && $product_image->hasGeneratedConversion('thumb'))
+                                                    <img src="{{ $product_image->getUrl('thumb') }}"
+                                                    alt="{{ $product_item->getAltAttribute() }}"
+                                                        loading="lazy" class="swiper-image">
+                                                @else
+                                                    <img src="{{ $product_image ? $product_image->getUrl() : asset('/images/default_image.jpg') }}"
+                                                    alt="{{ $product_item->getAltAttribute() }}"
+                                                        loading="lazy" class="swiper-image">
+                                                @endif
 
-                                        </div>
-                                    @endforeach
-                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </a>
                                 <div class="swiper-pagination-product"></div>
                             </div>
                             <button class="product-page__label-btn">
@@ -90,8 +91,10 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                         </div>
                         <div data-layout
                             class="product-page__title-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
-                            <h5>{{ $product_item->name }}</h5>
-                            <p>{{ $product_item->article }}</p>
+                            <a href="{{ route('product.show', ['slug' => $product_item->slug]) }}">
+                                <h5>{{ $product_item->name }}</h5>
+                                <p>{{ $product_item->article }}</p>
+                            </a>
                             <div>
                                 @if ($product_item->getCountReviewsString() != "")
                                 <img src="{{ asset('images/icons/star.svg') }}"
@@ -99,6 +102,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                                 <a><span>{{ $product_item->getCountReviewsString() }}</span></a>
                                 @endif
                             </div>
+
                         </div>
                         <div data-layout
                             class="product-page__info-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
@@ -111,7 +115,6 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                             <button class="product-page__add-cart">В корзину</button>
                         </div>
                     </div>
-                    </a>
                 </div>
             @endforeach
 
