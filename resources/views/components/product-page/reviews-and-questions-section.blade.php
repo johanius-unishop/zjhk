@@ -137,11 +137,13 @@
                 <div class="product-desc__item-rating-container">
                     <div class="product-desc__testimonials-rating">
                         <ul>
-                            @for ($i = 1; $i <= $data['reviewRating']['roundedAverageRating']; $i++)
-                                <li><img src="{{ asset('images/icons/star.svg') }}" alt="полная оценка"></li>
+                            @for ($i = 1; $i <= $data['product']->getAverageReviewRating(); $i++)
+                                <li><img src="{{ asset('images/icons/star.svg') }}" alt="заполненная звезда оценки">
+                                </li>
                             @endfor
-                            @for ($j = $data['reviewRating']['roundedAverageRating'] + 1; $j <= 5; $j++)
-                                <li><img src="{{ asset('images/icons/star-empty.svg') }}" alt="пустая оценка"></li>
+                            @for ($j = $data['product']->getAverageReviewRating() + 1; $j <= 5; $j++)
+                                <li><img src="{{ asset('images/icons/star-empty.svg') }}" alt="пустая звезда оценки">
+                                </li>
                             @endfor
                         </ul>
                         <p>{{ $data['reviewRating']['averageReviewRating'] }} / 5</p>
