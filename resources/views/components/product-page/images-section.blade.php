@@ -10,7 +10,7 @@
                         <img src="{{ $mediaItem->getUrl('thumb') }}"
                             alt="Миниатюра изображения товара {{ $data['product']->getAltAttribute() }}" loading="lazy">
                     @else
-                        <img src="{{ $mediaItem ? $product_image->getUrl() : asset('/images/default_image.jpg') }}"
+                        <img src="{{ $mediaItem ? $mediaItem->getUrl() : asset('/images/default_image.jpg') }}"
                             alt="{{ $data['product']->getAltAttribute() }}" loading="lazy">
                     @endif
                 </div>
@@ -28,7 +28,7 @@
                         <img src="{{ $mediaItem->getUrl('medium') }}"
                             alt="Изображение товара {{ $data['product']->getAltAttribute() }}" loading="lazy">
                     @else
-                        <img src="{{ $mediaItem ? $product_image->getUrl() : asset('/images/default_image.jpg') }}"
+                        <img src="{{ $mediaItem ? $mediaItem->getUrl() : asset('/images/default_image.jpg') }}"
                             alt="{{ $data['product']->getAltAttribute() }}" loading="lazy">
                     @endif
                 </div>
