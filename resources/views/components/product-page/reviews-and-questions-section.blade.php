@@ -146,7 +146,7 @@
                                 </li>
                             @endfor
                         </ul>
-                        <p>{{ $data['reviewRating']['averageReviewRating'] }} / 5</p>
+                        <p>{{ $data['product']->getAverageReviewRatingString() }} / 5</p>
                     </div>
                     <div class="product-desc__progress">
                         <div class="product-desc__progress-item">

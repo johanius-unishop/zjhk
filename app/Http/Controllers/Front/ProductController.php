@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use App\ViewModels\ProductViewModel;
 use Mews\Purifier\Facades\Purifier;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -118,24 +119,37 @@ class ProductController extends Controller
         $allReviewImages = $product->reviews()->with('media')->get()->flatMap(function ($review) {
             return $review->getMedia('photos');
         });
-/*
+
+        $reviewData = DB::table('reviews')
+            ->selectRaw(
+                '
+        AVG(rating) AS average_rating,
+        SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS one_star_count,
+        SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS two_star_count,
+        SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) AS three_star_count,
+        SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END) AS four_star_count,
+        SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END) AS five_star_count,
+        COUNT(*) AS total_reviews
+        '
+            )
+            ->where('product_id', $product->id)
+            ->first();
+
+        // Расчет процентов
+        $totalReviews = max($reviewData->total_reviews, 1); // Избегаем деления на ноль
         $reviewRating = [
-            'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
-            'roundedAverageRating' => round($product->reviews()->avg('rating'), 0),
-
-            // Подсчет количества отзывов каждого типа
-            'oneStarReviewsCount' => $product->reviews()->where('rating', '=', 1)->count(),
-            'twoStarReviewsCount' => $product->reviews()->where('rating', '=', 2)->count(),
-            'threeStarReviewsCount' => $product->reviews()->where('rating', '=', 3)->count(),
-            'fourStarReviewsCount' => $product->reviews()->where('rating', '=', 4)->count(),
-            'fiveStarReviewsCount' => $product->reviews()->where('rating', '=', 5)->count(),
-
-            // Процентная доля каждого типа отзыва
-            'oneStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 1)->count() / $product->reviews()->count()) * 100, 0),
-            'twoStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 2)->count() / $product->reviews()->count()) * 100, 0),
-            'threeStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 3)->count() / $product->reviews()->count()) * 100, 0),
-            'fourStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 4)->count() / $product->reviews()->count()) * 100, 0),
-            'fiveStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 5)->count() / $product->reviews()->count()) * 100, 0)
+            'averageReviewRating' => round($reviewData->average_rating, 2),
+            'roundedAverageRating' => round($reviewData->average_rating, 0),
+            'oneStarReviewsCount' => $reviewData->one_star_count,
+            'twoStarReviewsCount' => $reviewData->two_star_count,
+            'threeStarReviewsCount' => $reviewData->three_star_count,
+            'fourStarReviewsCount' => $reviewData->four_star_count,
+            'fiveStarReviewsCount' => $reviewData->five_star_count,
+            'oneStarReviewsPercent' => round(($reviewData->one_star_count / $totalReviews) * 100, 0),
+            'twoStarReviewsPercent' => round(($reviewData->two_star_count / $totalReviews) * 100, 0),
+            'threeStarReviewsPercent' => round(($reviewData->three_star_count / $totalReviews) * 100, 0),
+            'fourStarReviewsPercent' => round(($reviewData->four_star_count / $totalReviews) * 100, 0),
+            'fiveStarReviewsPercent' => round(($reviewData->five_star_count / $totalReviews) * 100, 0)
         ];
 
         // Массив отзывов отсортированных по новизне
@@ -153,7 +167,7 @@ class ProductController extends Controller
             ->with('user')
             ->get();
 
-*/
+
         $data = [
 
             'parents' => $parents,
@@ -163,7 +177,7 @@ class ProductController extends Controller
             'related' => $related,
             'images' => $images,
             'allReviewImages' => $allReviewImages,
-            //'reviewRating' => $reviewRating,
+            'reviewRating' => $reviewRating,
             //'newReviews' => $newReviews,
             //'bestRatedReviews' => $bestRatedReviews,
             // 'enableQuestion' => $enableQuestion,
