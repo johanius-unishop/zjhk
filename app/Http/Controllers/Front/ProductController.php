@@ -167,9 +167,9 @@ class ProductController extends Controller
             ->with('user')
             ->get();
 
-
+        $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
         $data = [
-
+            'acceptsWebP' => $acceptsWebP,
             'parents' => $parents,
             'product' => $product,
             'technical_data' => $technical_data,
