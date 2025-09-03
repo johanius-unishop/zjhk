@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Image\Enums\Fit;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -17,6 +18,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use App\PathGenerators\VendorPathGenerator;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
 class Vendor extends Model implements Sortable, HasMedia
 {
     use HasFactory;
@@ -70,11 +72,30 @@ class Vendor extends Model implements Sortable, HasMedia
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->width(368)
-            ->height(232)
+            ->fit(FIT::Fill, 108, 46)   // Сохраняем пропорцию, максимум ширина или высота 300px
+            ->format('jpg')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('vendorLogo')             // Применяется ко всей коллекции 'images'
             ->nonQueued();
 
-       
+        $this->addMediaConversion('webp-thumb')
+            ->fit(FIT::Fill, 108, 46)
+            ->format('webp')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('vendorLogo')
+            ->nonQueued();
+
+        $this->addMediaConversion('webp')
+            ->fit(FIT::Fill, 300, 170)
+            ->format('webp')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('vendorLogo')
+            ->nonQueued();
+
+        $this->addMediaConversion('jpg')
+            ->fit(FIT::Fill, 300, 170)
+            ->format('jpg')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('vendorLogo')
+            ->nonQueued();
+
+
     }
     public function registerMediaCollections(): void
     {
@@ -123,7 +144,8 @@ class Vendor extends Model implements Sortable, HasMedia
     }
 
     // Связь производителя с страной
-    public function country() {
+    public function country()
+    {
         return $this->belongsTo(Country::class);
     }
 
