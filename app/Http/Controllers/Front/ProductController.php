@@ -44,7 +44,7 @@ class ProductController extends Controller
         $productId = $product->id;
         $productTypeId = Product::query()->where('id', '=', $productId)->first()->product_type_id;
 
-        $characteristics = $product->getProperties();
+        $characteristics = $product->getProps();
         dd($characteristics);
         $technical_data =  ProductTypeProperty::query()
             ->leftJoin('product_property_values', function ($join) use ($productId) {

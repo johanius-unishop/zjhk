@@ -325,7 +325,23 @@ class Product extends Model implements HasMedia, Sitemapable
         return true;
     }
 
-
+    public function getProps()
+    {
+        return ProductTypeProperty::query()
+            ->leftJoin('product_property_values', function ($join) use ($this) {
+                $join->on('product_type_properties.id', '=', 'product_property_values.product_type_property_id')
+                    ->where('product_property_values.product_id', '=', $this->id);
+            })
+            ->leftJoin('product_type_property_values', 'product_property_values.product_type_property_value_id', '=', 'product_type_property_values.id')
+            ->where('product_type_properties.product_type_id', '=', $this->productType->id)
+            ->orderBy('product_type_properties.order_column')
+            ->select([
+                'product_type_properties.name as characteristic_name',
+                'product_type_property_values.value as characteristic_value',
+            ])
+            ->get()
+            ->toArray();
+    }
 
     public function getProperties()
     {
