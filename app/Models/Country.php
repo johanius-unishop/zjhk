@@ -3,6 +3,7 @@
 namespace App\Models;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\PathGenerators\CountryPathGenerator;
+use Spatie\Image\Enums\Fit;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +36,35 @@ class Country extends Model implements HasMedia
         });
     }
 
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->fit(FIT::Fill, 16, 16)   // Сохраняем пропорцию, максимум ширина или высота 300px
+            ->format('jpg')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('countryFlag')             // Применяется ко всей коллекции 'images'
+            ->nonQueued();
+
+        $this->addMediaConversion('webp-thumb')
+            ->fit(FIT::Fill, 16, 16)
+            ->format('webp')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('countryFlag')
+            ->nonQueued();
+
+        $this->addMediaConversion('webp')
+            ->fit(FIT::Fill, 600, 600)
+            ->format('webp')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('countryFlag')
+            ->nonQueued();
+
+        $this->addMediaConversion('jpg')
+            ->fit(FIT::Fill, 600, 600)
+            ->format('jpg')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('countryFlag')
+            ->nonQueued();
+
+
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('countryFlag')
@@ -54,7 +84,7 @@ class Country extends Model implements HasMedia
     {
         return app(CountryPathGenerator::class)->getPathForConversions($model);
     }
-    
+
     // Страна может иметь много товаров
     public function products() {
         return $this->hasMany(Product::class);

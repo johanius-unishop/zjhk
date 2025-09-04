@@ -7,16 +7,19 @@
             $data['acceptsWebP'] &&
                 $data['product']->vendor->getFirstMedia('vendorLogo') &&
                 $data['product']->vendor->getFirstMedia('vendorLogo')->hasGeneratedConversion('webp-thumb'))
-            <img class="product-desc__logo" src="{{ $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl('webp-thumb') }}"
+            <img class="product-desc__logo"
+                src="{{ $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl('webp-thumb') }}"
                 alt="Миниатюра логотипа компании {{ $data['product']->vendor->short_name }}" loading="lazy">
         @elseif (
             !$data['acceptsWebP'] &&
                 $data['product']->vendor->getFirstMedia('vendorLogo') &&
                 $data['product']->vendor->getFirstMedia('vendorLogo')->hasGeneratedConversion('thumb'))
-            <img class="product-desc__logo" src="{{ $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl('thumb') }}"
+            <img class="product-desc__logo"
+                src="{{ $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl('thumb') }}"
                 alt="Миниатюра логотипа компании {{ $data['product']->vendor->short_name }}" loading="lazy">
         @else
-            <img class="product-desc__logo" src="{{ $data['product']->vendor->getFirstMedia('vendorLogo') ? $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl() : asset('/images/default_image.jpg') }}"
+            <img class="product-desc__logo"
+                src="{{ $data['product']->vendor->getFirstMedia('vendorLogo') ? $data['product']->vendor->getFirstMedia('vendorLogo')->getUrl() : asset('/images/default_image.jpg') }}"
                 alt=" Миниатюра логотипа компании {{ $data['product']->vendor->short_name }}" loading="lazy">
         @endif
 
@@ -25,8 +28,26 @@
 
 <div class="product-desc__country">
     @if ($data['product']->vendor && $data['product']->vendor->country && trim($data['product']->vendor->country->name))
-        <p><img src="{{ asset('images/icons/china_flag.svg') }}" alt="страна"> <span>Страна производства:
-                {{ $data['product']->vendor->country->name }}</span></p>
+        <p>
+            @if (
+                $data['acceptsWebP'] &&
+                    $data['product']->vendor->country->getFirstMedia('countryFlag') &&
+                    $data['product']->vendor->country->getFirstMedia('countryFlag')->hasGeneratedConversion('webp-thumb'))
+                <img src="{{ $data['product']->vendor->country->getFirstMedia('countryFlag')->getUrl('webp-thumb') }}"
+                    alt="Миниатюра флага страны {{ $data['product']->vendor->country->name }}" loading="lazy"> <span>Страна производства:
+                {{ $data['product']->vendor->country->name }}</span>
+            @elseif (
+                !$data['acceptsWebP'] &&
+                    $data['product']->vendor->country->getFirstMedia('countryFlag') &&
+                    $data['product']->vendor->country->getFirstMedia('countryFlag')->hasGeneratedConversion('thumb'))
+                <img src="{{ $data['product']->vendor->country->getFirstMedia('countryFlag')->getUrl('thumb') }}"
+                    alt="Миниатюра флага страны {{ $data['product']->vendor->country->name }}" loading="lazy"> <span>Страна производства:
+                {{ $data['product']->vendor->country->name }}</span>
+            @else
+                <img src="{{ $data['product']->vendor->country->getFirstMedia('countryFlag') ? $data['product']->vendor->country->getFirstMedia('countryFlag')->getUrl() : asset('/images/default_image.jpg') }}"
+                    alt=" Миниатюра флага страны {{ $data['product']->vendor->country->name }}" loading="lazy">
+            @endif
+        </p>
     @endif
 
     @if ($data['product']->vendor && isset($data['product']->vendor->warranty) && trim($data['product']->vendor->warranty))
