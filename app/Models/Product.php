@@ -327,10 +327,12 @@ class Product extends Model implements HasMedia, Sitemapable
 
     public function getProps()
     {
+        $productId = $this->id;
+
         return ProductTypeProperty::query()
-            ->leftJoin('product_property_values', function ($join) use ($this) {
+            ->leftJoin('product_property_values', function ($join) use ($productId) {
                 $join->on('product_type_properties.id', '=', 'product_property_values.product_type_property_id')
-                    ->where('product_property_values.product_id', '=', $this->id);
+                    ->where('product_property_values.product_id', '=', $productId);
             })
             ->leftJoin('product_type_property_values', 'product_property_values.product_type_property_value_id', '=', 'product_type_property_values.id')
             ->where('product_type_properties.product_type_id', '=', $this->productType->id)
