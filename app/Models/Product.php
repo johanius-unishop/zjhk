@@ -340,6 +340,7 @@ class Product extends Model implements HasMedia, Sitemapable
             ->select([
                 'product_type_properties.name as characteristic_name',
                 'product_type_property_values.value as characteristic_value',
+                'product_type_properties.section as section',
             ])
             ->get()
             ->toArray();
