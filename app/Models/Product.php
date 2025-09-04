@@ -325,7 +325,7 @@ class Product extends Model implements HasMedia, Sitemapable
         return true;
     }
 
-    public function getProps()
+    public function getProperties()
     {
         $productId = $this->id;
 
@@ -345,24 +345,6 @@ class Product extends Model implements HasMedia, Sitemapable
             ->get()
             ->toArray();
     }
-
-    public function getProperties()
-    {
-        // Массив характеристик
-        $characteristics = [];
-        // Проходимся по свойствам вида товара
-        foreach ($this->properties() as $property) {
-            // Если секция не равна 0, добавляем название секции
-            if ($property->section != 0) {
-                $characteristics["<b>" . $property->name . "</b>"] = "";
-                // Иначе, если значение свойства существует, добавляем название свойства и его значение
-            } else if ($property->values->where('product_id', $this->product->id)->first()?->value) {
-                $characteristics[$property->name] = ": " . $property->values->where('product_id', $this->product->id)->first()->value;
-            }
-        }
-        return $characteristics;
-    }
-
 
     public function scopePublished(Builder $query): void
     {
