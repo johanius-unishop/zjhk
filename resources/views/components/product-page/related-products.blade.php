@@ -17,11 +17,11 @@
                                                 <div class="swiper product-page-slider">
                                                     <div class="swiper-wrapper">
                                                         <div class="swiper-slide">
-                                                            @if ($acceptsWebP && $related_product_item->getFirstMedia('images') && $related_product_item->getFirstMedia('images')->hasGeneratedConversion('webp-thumb'))
+                                                            @if ($data['acceptsWebP'] && $related_product_item->getFirstMedia('images') && $related_product_item->getFirstMedia('images')->hasGeneratedConversion('webp-thumb'))
                                                                 <img src="{{ $related_product_item->getFirstMedia('images')->getUrl('webp-thumb') }}"
                                                                     alt="{{ $related_product_item->getAltAttribute() }}"
                                                                     loading="lazy">
-                                                            @elseif (!$acceptsWebP && $related_product_item->getFirstMedia('images') && $related_product_item->getFirstMedia('images')->hasGeneratedConversion('thumb'))
+                                                            @elseif (!$data['acceptsWebP'] && $related_product_item->getFirstMedia('images') && $related_product_item->getFirstMedia('images')->hasGeneratedConversion('thumb'))
                                                                 <img src="{{ $related_product_item->getFirstMedia('images')->getUrl('thumb') }}"
                                                                     alt="{{ $related_product_item->getAltAttribute() }}"
                                                                     loading="lazy">
