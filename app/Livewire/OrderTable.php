@@ -26,6 +26,7 @@ final class OrderTable extends PowerGridComponent
 {
     use LivewireAlert;
 
+    public string $tableName = 'order-table';
     public $deleteId;
     public array $name;
     public bool $showErrorBag = true;
@@ -103,12 +104,6 @@ final class OrderTable extends PowerGridComponent
     #[\Livewire\Attributes\On('confirmed')]
     public function confirmed()
     {
-        // TODO проверка на наличие товара в заказе
-        // dd(auth()->user()->can('delete content'));
-        if (!auth()->user()->can('delete content')) {
-            $this->dispatch('toast', message: 'У вас нет права удалять заказ!', notify: 'error');
-            return;
-        }
         // Удаление всех записей из OrderComposition, относящихся к данному заказу
         OrderComposition::where('order_id', $this->deleteId)->delete();
 
