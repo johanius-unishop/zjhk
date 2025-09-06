@@ -59,7 +59,7 @@ class OrderComponent extends Component
         $worksheet = $spreadsheet->getActiveSheet();
 
         $orderNumber = trim($worksheet->getCell($orderNameCell)->getValue());
-        $excelDate = intval($worksheet->getCell($orderDateCell)->getValue());
+        $excelDate = $worksheet->getCell($orderDateCell)->getCalculatedValue();
         $orderDate = Date::excelToDateTimeObject($excelDate)->format('d.m.Y');
 
 
