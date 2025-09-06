@@ -32,7 +32,7 @@ class OrderComponent extends Component
      * Метод для сохранения файла
      */
     public function save()
-    {   
+    {
         // Проверка, что файл был загружен
         if (!$this->xls_file) {
             session()->flash('error', 'Пожалуйста, выберите файл.');
@@ -48,20 +48,21 @@ class OrderComponent extends Component
         $vendorCol = $settings['vendorColumn'];
         $modelCol = $settings['modelColumn'];
         $quantityCol = $settings['quantityColumn'];
-        
+
         // Получаем временный путь к загруженному файлу
         $path = $this->xls_file->getRealPath();
         // Создаем объект для чтения файла
         $reader = IOFactory::createReaderForFile($path);
         // Загружаем данные из файла
-        $spreadsheet = $reader->load($path); 
+        $spreadsheet = $reader->load($path);
         // Получаем первый лист
         $worksheet = $spreadsheet->getActiveSheet();
 
         $orderNumber = trim($worksheet->getCell($orderNameCell)->getValue());
-        $excelDate = $worksheet->getCell($orderDateCell)->getValue();
+        $excelDate = intval($worksheet->getCell($orderDateCell)->getCalculatedValue());
         $orderDate = Date::excelToDateTimeObject($excelDate)->format('d.m.Y');
-        
+
+
         // Проверка существования заказа
         if (!Order::where('order_number', $orderNumber)
             ->where('order_date', $orderDate)
@@ -136,4 +137,6 @@ class OrderComponent extends Component
         return redirect()->back();
         }
     }
+
+
 }
