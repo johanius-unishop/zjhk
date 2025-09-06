@@ -159,7 +159,7 @@
                     nextEl: '.swiper-button-next.opt',
                     prevEl: '.swiper-button-prev.opt'
                 },
-                loop: true,
+                loop: false,
                 breakpoints: {
                     360: {
                         slidesPerView: 2,
