@@ -64,7 +64,8 @@
                                             @include('components.product-page.short-description')
                                             <div class="product-desc__prop-link">
                                                 <a href="#">Все характеристики</a>
-                                                <img src="{{ asset('images/icons/arrow-right.svg') }}" alt="все характеристики">
+                                                <img src="{{ asset('images/icons/arrow-right.svg') }}"
+                                                    alt="все характеристики">
                                             </div>
                                         </div>
                                         @include('components.product-page.features')
@@ -150,6 +151,32 @@
 @stop
 
 @section('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sliderOpt = new Swiper('.opt-slider', {
+                modules: [EffectFade, Navigation],
+                navigation: {
+                    nextEl: '.swiper-button-next.opt',
+                    prevEl: '.swiper-button-prev.opt'
+                },
+                loop: true,
+                breakpoints: {
+                    360: {
+                        slidesPerView: 2,
+                        spaceBetween: 8
+                    },
+                    680: {
+                        slidesPerView: 3,
+                        spaceBetween: 20
+                    },
+                    992: {
+                        slidesPerView: 4,
+                        spaceBetween: 20
+                    }
+                }
+            })
+        });
+    </script>
     @if ($errors->has('email') || $errors->has('password'))
         <script>
             $(function() {
@@ -159,4 +186,6 @@
             });
         </script>
     @endif
+
+
 @stop
