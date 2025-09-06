@@ -12,11 +12,11 @@ use App\Models\AdditionalSetting;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-
 class OrderComponent extends Component
 {
     use LivewireAlert;
     use WithFileUploads; // Подключаем поддержку загрузки файлов
+
 
     public $xls_file;
     public $order_error_message;
@@ -40,8 +40,8 @@ class OrderComponent extends Component
         }
 
         $settings = AdditionalSetting::where('group', 'orderImport')
-                             ->pluck('value', 'name')
-                             ->all();
+            ->pluck('value', 'name')
+            ->all();
         $orderNameCell = $settings['orderNameCell'];
         $orderDateCell = $settings['orderDateCell'];
         $startRow = intval($settings['startRowData']); // Преобразуем значение startRowData в целое число
@@ -59,84 +59,105 @@ class OrderComponent extends Component
         $worksheet = $spreadsheet->getActiveSheet();
 
         $orderNumber = trim($worksheet->getCell($orderNameCell)->getValue());
-        $excelDate = $worksheet->getCell($orderDateCell)->getCalculatedValue();
-        $orderDate = Date::excelToDateTimeObject($excelDate)->format('d.m.Y');
+        $excelDate = $worksheet->getCell($orderDateCell)->getValue();
 
+
+        // Сначала пробуем считать как дату Excel
+        if (is_int($excelDate ) || is_float($excelDate )) {
+            $orderDate = Date::excelToDateTimeObject($excelDate)->format('d.m.Y');
+        }
+
+        // Пробуем преобразовать как строку даты
+        if (is_string($excelDate )) {
+            $parsedDate = date_create_from_format('d/m/Y', $excelDate ); // Формат строки "dd/mm/yyyy"
+            if ($parsedDate) {
+                $orderDate = $parsedDate;
+            }
+
+            // Ещё одна попытка с другим форматом строки "yyyy-mm-dd"
+            $parsedDate = date_create_from_format('Y-m-d', $excelDate );
+            if ($parsedDate) {
+                $orderDate = $parsedDate;;
+            }
+        }
+
+        // Последний шанс - предположим, что это простая строка с текстом
+        $timestamp = strtotime($excelDate);
+        if ($timestamp !== false) {
+            $orderDate = date('d.m.Y', $timestamp);
+        }
 
         // Проверка существования заказа
         if (!Order::where('order_number', $orderNumber)
             ->where('order_date', $orderDate)
-            ->exists())
-        {
-        $row = $startRow;
-        $missingProducts = [];
+            ->exists()) {
+            $row = $startRow;
+            $missingProducts = [];
 
-        // Проверяем все товары перед загрузкой
-        while ($worksheet->getCell($modelCol . $row)->getValue() !== null) {
-        $productVendor = $worksheet->getCell($vendorCol . $row)->getValue();
-        $productModel = $worksheet->getCell($modelCol . $row)->getValue();
+            // Проверяем все товары перед загрузкой
+            while ($worksheet->getCell($modelCol . $row)->getValue() !== null) {
+                $productVendor = $worksheet->getCell($vendorCol . $row)->getValue();
+                $productModel = $worksheet->getCell($modelCol . $row)->getValue();
 
-        $product = Product::where('name', $productModel)
-                        ->whereHas('vendor', function ($query) use ($productVendor) {
-                            $query->where('name', $productVendor)
-                                ->orWhere('short_name', $productVendor);
-                        })
-                        ->first();
+                $product = Product::where('name', $productModel)
+                    ->whereHas('vendor', function ($query) use ($productVendor) {
+                        $query->where('name', $productVendor)
+                            ->orWhere('short_name', $productVendor);
+                    })
+                    ->first();
 
-        if (!$product) {
-        $missingProducts[] = $productModel;
-        }
+                if (!$product) {
+                    $missingProducts[] = $productModel;
+                }
 
-        $row++;
-        }
+                $row++;
+            }
 
-        // Обработка отсутствующих товаров
-        if (!empty($missingProducts)) {
-        session()->flash('order_error_message', 'В файле заказа есть товары, которых нет в БД:');
-        session()->flash('missingProducts', $missingProducts);
-        return redirect()->back();
-        }
+            // Обработка отсутствующих товаров
+            if (!empty($missingProducts)) {
+                session()->flash('order_error_message', 'В файле заказа есть товары, которых нет в БД:');
+                session()->flash('missingProducts', $missingProducts);
+                return redirect()->back();
+            }
 
-        // Создание нового заказа
-        $order = new Order();
-        $order->order_number = $orderNumber;
-        $order->order_date = $orderDate;
-        $order->received = 0;
-        $order->save();
+            // Создание нового заказа
+            $order = new Order();
+            $order->order_number = $orderNumber;
+            $order->order_date = $orderDate;
+            $order->received = 0;
+            $order->save();
 
-        $orderId = $order->id; // ID созданного заказа
+            $orderId = $order->id; // ID созданного заказа
 
-        // Добавляем состав заказа
-        $row = $startRow;
-        while ($worksheet->getCell($modelCol . $row)->getValue() !== null) {
-        $productVendor = $worksheet->getCell($vendorCol . $row)->getValue();
-        $productModel = $worksheet->getCell($modelCol . $row)->getValue();
-        $quantity = $worksheet->getCell($quantityCol . $row)->getValue();
+            // Добавляем состав заказа
+            $row = $startRow;
+            while ($worksheet->getCell($modelCol . $row)->getValue() !== null) {
+                $productVendor = $worksheet->getCell($vendorCol . $row)->getValue();
+                $productModel = $worksheet->getCell($modelCol . $row)->getValue();
+                $quantity = $worksheet->getCell($quantityCol . $row)->getValue();
 
-        $product = Product::where('name', $productModel)
-                        ->whereHas('vendor', function ($query) use ($productVendor) {
-                            $query->where('name', $productVendor)
-                                ->orWhere('short_name', $productVendor);
-                        })
-                        ->first();
+                $product = Product::where('name', $productModel)
+                    ->whereHas('vendor', function ($query) use ($productVendor) {
+                        $query->where('name', $productVendor)
+                            ->orWhere('short_name', $productVendor);
+                    })
+                    ->first();
 
-        $orderComposition = new OrderComposition();
-        $orderComposition->quantity = $quantity;
-        $orderComposition->order_id = $orderId;
-        $orderComposition->product_id = $product->id;
-        $orderComposition->save();
+                $orderComposition = new OrderComposition();
+                $orderComposition->quantity = $quantity;
+                $orderComposition->order_id = $orderId;
+                $orderComposition->product_id = $product->id;
+                $orderComposition->save();
 
-        $row++;
-        }
+                $row++;
+            }
 
-        $this->reset('xls_file');
-        $this->dispatch('update-order-table');
-        return;
+            $this->reset('xls_file');
+            $this->dispatch('update-order-table');
+            return;
         } else {
-        $this->dispatch('toast', message: 'Заказ с таким номером и такой датой уже существует!', notify: 'error');
-        return redirect()->back();
+            $this->dispatch('toast', message: 'Заказ с таким номером и такой датой уже существует!', notify: 'error');
+            return redirect()->back();
         }
     }
-
-
 }
