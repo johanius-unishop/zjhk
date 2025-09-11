@@ -155,7 +155,10 @@
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll('[class^=opt-slider], [class*=opt-slider]').forEach((el) => {
                 // Парсим индекс из класса элемента (например, opt-slider1 → 1)
-                const index = el.classList.item(0).match(/\d+/)?.[0] || '';
+                const index = Array.from(el.classList)
+                   .filter(cls => cls.startsWith('opt-slider'))
+                   .map(cls => cls.match(/\d+/))
+                   .flat()[0]?.[0] || '';
                 console.log(el);
                 console.log(index);
                 // Формируем классы кнопок вперед и назад для текущего слайда
