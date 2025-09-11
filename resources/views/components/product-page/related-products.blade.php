@@ -61,7 +61,7 @@
                                                 @if ($related_product_item->stock > 0)
                                                     <p style="color: #027a48;">{{ $related_product_item->getUserStock() }}</p>
                                                 @else
-                                                    <p style="color: #6905ec;">{{ $related_product_item>getUserStock() }}</p>
+                                                    <p style="color: #6905ec;">{{ $related_product_item->getUserStock() }}</p>
                                                 @endif
                                                 <button class="product-page__add-cart product-desc">В корзину</button>
                                             </div>
