@@ -57,10 +57,12 @@
                                             </div>
 
                                             <div data-layout class="product-page__info-container card-layout">
-                                                <p>380 ₽</p>
-                                                <p style="color: #6905ec; display: none">Ожидается</p>
-                                                <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
-                                                <p style="color: #027a48;">В наличии 3 шт</p>
+                                                <p>{{ $related_product_item->getUserPrice() }}</p>
+                                                @if ($related_product_item->stock > 0)
+                                                    <p style="color: #027a48;">{{ $related_product_item->getUserStock() }}</p>
+                                                @else
+                                                    <p style="color: #6905ec;">{{ $related_product_item>getUserStock() }}</p>
+                                                @endif
                                                 <button class="product-page__add-cart product-desc">В корзину</button>
                                             </div>
 
