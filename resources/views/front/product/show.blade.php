@@ -154,7 +154,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const swiper = new Swiper('.thumbSwiper', {
-                loop: false,
+                loop: true,
                 spaceBetween: 10,
                 freeMode: true,
                 watchSlidesProgress: true,
