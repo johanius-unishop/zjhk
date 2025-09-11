@@ -1,3 +1,7 @@
+@php
+    $sliderCounter = 1; // Начнём счётчик с единицы
+@endphp
+
 @if (!empty($data['related']))
     <section class="product-desc__products">
         <div class="products-desc__container container">
@@ -8,7 +12,7 @@
                 @foreach ($data['related'] as $related_item)
                     <div class="opt__body">
                         <h4>{{ $related_item['type']->name }}</h4>
-                        <div class="swiper opt-slider">
+                        <div class="swiper opt-slider{{ $sliderCounter }}">
                             <div class="swiper-wrapper">
                                 @foreach ($related_item['relatedProducts'] as $related_product_item)
                                     <div class="swiper-slide product-page__item">
@@ -17,11 +21,17 @@
                                                 <div class="swiper product-page-slider">
                                                     <div class="swiper-wrapper">
                                                         <div class="swiper-slide">
-                                                            @if ($data['acceptsWebP'] && $related_product_item->getFirstMedia('images') && $related_product_item->getFirstMedia('images')->hasGeneratedConversion('webp-thumb'))
+                                                            @if (
+                                                                $data['acceptsWebP'] &&
+                                                                    $related_product_item->getFirstMedia('images') &&
+                                                                    $related_product_item->getFirstMedia('images')->hasGeneratedConversion('webp-thumb'))
                                                                 <img src="{{ $related_product_item->getFirstMedia('images')->getUrl('webp-thumb') }}"
                                                                     alt="{{ $related_product_item->getAltAttribute() }}"
                                                                     loading="lazy">
-                                                            @elseif (!$data['acceptsWebP'] && $related_product_item->getFirstMedia('images') && $related_product_item->getFirstMedia('images')->hasGeneratedConversion('thumb'))
+                                                            @elseif (
+                                                                !$data['acceptsWebP'] &&
+                                                                    $related_product_item->getFirstMedia('images') &&
+                                                                    $related_product_item->getFirstMedia('images')->hasGeneratedConversion('thumb'))
                                                                 <img src="{{ $related_product_item->getFirstMedia('images')->getUrl('thumb') }}"
                                                                     alt="{{ $related_product_item->getAltAttribute() }}"
                                                                     loading="lazy">
@@ -58,9 +68,14 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="swiper-button-prev opt"></div>
-                        <div class="swiper-button-next opt"></div>
+                        <div class="swiper-button-prev opt{{ $sliderCounter }}"></div>
+                        <div class="swiper-button-next opt{{ $sliderCounter }}"></div>
                     </div>
+
+                    @php
+                        $sliderCounter++; // Инкрементируем счётчик
+                    @endphp
+
                 @endforeach
             </div>
         </div>
