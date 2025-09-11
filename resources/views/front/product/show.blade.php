@@ -153,12 +153,59 @@
 @section('scripts')
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const swiper = new Swiper('.thumbSwiper', {
+                loop: true,
+                spaceBetween: 10,
+                freeMode: true,
+                watchSlidesProgress: true,
+                slidesPerView: 4,
+                breakpoints: {
+                    992: {
+                        slidesPerView: 5,
+                        direction: 'vertical'
+                    }
+                }
+            })
+
+            const swiper2 = new Swiper('.photoSwiper', {
+                modules: [EffectFade, Navigation, Thumbs, Pagination],
+                loop: true,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next.prod',
+                    prevEl: '.swiper-button-prev.prod'
+                },
+                thumbs: {
+                    swiper: swiper
+                },
+                pagination: {
+                    el: '.swiper-pagination-thumb',
+                    clickable: true,
+                    renderBullet: function(index, className) {
+                        return '<span class="' + className + '">' + '</span>'
+                    }
+                },
+                breakpoints: {
+                    360: {
+                        pagination: {
+                            enabled: true
+                        }
+                    },
+                    575: {
+                        pagination: {
+                            enabled: false
+                        }
+                    }
+                }
+            })
+
+
             document.querySelectorAll('[class^=opt-slider], [class*=opt-slider]').forEach((el) => {
                 // Парсим индекс из класса элемента (например, opt-slider1 → 1)
                 const index = Array.from(el.classList)
-                   .filter(cls => cls.startsWith('opt-slider'))
-                   .map(cls => cls.match(/\d+/))
-                   .flat()[0]?.[0] || '';
+                    .filter(cls => cls.startsWith('opt-slider'))
+                    .map(cls => cls.match(/\d+/))
+                    .flat()[0]?.[0] || '';
                 console.log(el);
                 console.log(index);
                 // Формируем классы кнопок вперед и назад для текущего слайда
@@ -194,28 +241,6 @@
     </script>
 
 
-const sliderOpt = new Swiper('.opt-slider', {
-	modules: [EffectFade, Navigation],
-	navigation: {
-		nextEl: '.swiper-button-next.opt',
-		prevEl: '.swiper-button-prev.opt'
-	},
-	loop: true,
-	breakpoints: {
-		360: {
-			slidesPerView: 2,
-			spaceBetween: 8
-		},
-		680: {
-			slidesPerView: 3,
-			spaceBetween: 20
-		},
-		992: {
-			slidesPerView: 4,
-			spaceBetween: 20
-		}
-	}
-})
     @if ($errors->has('email') || $errors->has('password'))
         <script>
             $(function() {
