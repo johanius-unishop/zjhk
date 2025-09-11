@@ -206,13 +206,9 @@
                     .filter(cls => cls.startsWith('opt-slider'))
                     .map(cls => cls.match(/\d+/))
                     .flat()[0]?.[0] || '';
-                console.log(el);
-                console.log(index);
                 // Формируем классы кнопок вперед и назад для текущего слайда
                 const nextButtonClass = `.swiper-button-next.opt${index}`;
                 const prevButtonClass = `.swiper-button-prev.opt${index}`;
-                console.log(prevButtonClass);
-                console.log(nextButtonClass)
                 // Инициализируем Swiper
                 new Swiper(el, {
                     modules: [EffectFade, Navigation],
