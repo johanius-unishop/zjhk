@@ -156,19 +156,21 @@
             document.querySelectorAll('[class^=opt-slider], [class*=opt-slider]').forEach((el) => {
                 // Парсим индекс из класса элемента (например, opt-slider1 → 1)
                 const index = el.classList.item(0).match(/\d+/)?.[0] || '';
-
+                console.log(el);
+                console.log(index);
                 // Формируем классы кнопок вперед и назад для текущего слайда
                 const nextButtonClass = `.swiper-button-next.opt${index}`;
                 const prevButtonClass = `.swiper-button-prev.opt${index}`;
-
+                console.log(prevButtonClass);
+                console.log(nextButtonClass)
                 // Инициализируем Swiper
                 new Swiper(el, {
-                    modules: [Navigation],
+                    modules: [EffectFade, Navigation],
                     navigation: {
                         nextEl: nextButtonClass,
                         prevEl: prevButtonClass
                     },
-                    loop: true,
+                    loop: false,
                     breakpoints: {
                         360: {
                             slidesPerView: 2,
@@ -187,6 +189,30 @@
             });
         });
     </script>
+
+
+const sliderOpt = new Swiper('.opt-slider', {
+	modules: [EffectFade, Navigation],
+	navigation: {
+		nextEl: '.swiper-button-next.opt',
+		prevEl: '.swiper-button-prev.opt'
+	},
+	loop: true,
+	breakpoints: {
+		360: {
+			slidesPerView: 2,
+			spaceBetween: 8
+		},
+		680: {
+			slidesPerView: 3,
+			spaceBetween: 20
+		},
+		992: {
+			slidesPerView: 4,
+			spaceBetween: 20
+		}
+	}
+})
     @if ($errors->has('email') || $errors->has('password'))
         <script>
             $(function() {
