@@ -18,44 +18,44 @@
                                     <div class="swiper-slide product-page__item">
                                         <div data-layout class="product-page__item-wrapper card-layout">
                                             <div>
-                                                <div class="swiper product-page-slider">
-                                                    <div class="swiper-wrapper">
-                                                        <div class="swiper-slide">
-                                                            @if (
-                                                                $data['acceptsWebP'] &&
-                                                                    $related_product_item->getFirstMedia('images') &&
-                                                                    $related_product_item->getFirstMedia('images')->hasGeneratedConversion('webp-thumb'))
-                                                                <img src="{{ $related_product_item->getFirstMedia('images')->getUrl('webp-thumb') }}"
-                                                                    alt="{{ $related_product_item->getAltAttribute() }}"
-                                                                    loading="lazy">
-                                                            @elseif (
-                                                                !$data['acceptsWebP'] &&
-                                                                    $related_product_item->getFirstMedia('images') &&
-                                                                    $related_product_item->getFirstMedia('images')->hasGeneratedConversion('thumb'))
-                                                                <img src="{{ $related_product_item->getFirstMedia('images')->getUrl('thumb') }}"
-                                                                    alt="{{ $related_product_item->getAltAttribute() }}"
-                                                                    loading="lazy">
-                                                            @else
-                                                                <img src="{{ $related_product_item->getFirstMedia('images') ? $related_product_item->getFirstMedia('images')->getUrl() : asset('/images/default_image.jpg') }}"
-                                                                    alt="{{ $related_product_item->getAltAttribute() }}"
-                                                                    loading="lazy">
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <a href="#" class="swiper-slide">
+                                                    @if (
+                                                        $data['acceptsWebP'] &&
+                                                            $related_product_item->getFirstMedia('images') &&
+                                                            $related_product_item->getFirstMedia('images')->hasGeneratedConversion('webp-thumb'))
+                                                        <img src="{{ $related_product_item->getFirstMedia('images')->getUrl('webp-thumb') }}"
+                                                            alt="{{ $related_product_item->getAltAttribute() }}"
+                                                            loading="lazy">
+                                                    @elseif (
+                                                        !$data['acceptsWebP'] &&
+                                                            $related_product_item->getFirstMedia('images') &&
+                                                            $related_product_item->getFirstMedia('images')->hasGeneratedConversion('thumb'))
+                                                        <img src="{{ $related_product_item->getFirstMedia('images')->getUrl('thumb') }}"
+                                                            alt="{{ $related_product_item->getAltAttribute() }}"
+                                                            loading="lazy">
+                                                    @else
+                                                        <img src="{{ $related_product_item->getFirstMedia('images') ? $related_product_item->getFirstMedia('images')->getUrl() : asset('/images/default_image.jpg') }}"
+                                                            alt="{{ $related_product_item->getAltAttribute() }}"
+                                                            loading="lazy">
+                                                    @endif
+                                                </a>
                                                 <button class="product-page__label-btn">
                                                     <img class="product-page__label" src="./img/icons/label-gray.svg"
                                                         alt="избранное">
                                                 </button>
                                             </div>
+
                                             <div data-layout class="product-page__title-container card-layout">
-                                                <h5>{{ $related_product_item->name }}</h5>
-                                                <p>{{ $related_product_item->article }}</p>
+                                                <a href="#">
+                                                    <h5>{{ $related_product_item->name }}</h5>
+                                                    <p>{{ $related_product_item->article }}</p>
+                                                </a>
                                                 <div>
                                                     <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
                                                     <a href="#"><span>152 </span>отзыва</a>
                                                 </div>
                                             </div>
+
                                             <div data-layout class="product-page__info-container card-layout">
                                                 <p>380 ₽</p>
                                                 <p style="color: #6905ec; display: none">Ожидается</p>
@@ -63,6 +63,7 @@
                                                 <p style="color: #027a48;">В наличии 3 шт</p>
                                                 <button class="product-page__add-cart product-desc">В корзину</button>
                                             </div>
+
                                         </div>
                                     </div>
                                 @endforeach
@@ -75,7 +76,6 @@
                     @php
                         $sliderCounter++; // Инкрементируем счётчик
                     @endphp
-
                 @endforeach
             </div>
         </div>
