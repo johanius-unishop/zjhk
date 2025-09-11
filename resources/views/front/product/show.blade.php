@@ -152,14 +152,19 @@
 
 @section('scripts')
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const sliderOpt = new Swiper('.opt-slider', {
+        document.querySelectorAll('[class^=opt-slider], [class*=opt-slider]').forEach((el) => {
+            let nextButtonClass = el.className.match(/opt-slider(\d*)/)[1]; // Найдем номер, если есть
+            nextButtonClass = nextButtonClass ? `.swiper-button-next.opt${nextButtonClass}` :
+                '.swiper-button-next.opt'; // Класс кнопки вперед
+            prevButtonClass = nextButtonClass.replace('next', 'prev'); // Класс кнопки назад
+
+            const sliderInstance = new Swiper(el, {
                 modules: [EffectFade, Navigation],
                 navigation: {
-                    nextEl: '.swiper-button-next.opt',
-                    prevEl: '.swiper-button-prev.opt'
+                    nextEl: nextButtonClass,
+                    prevEl: prevButtonClass
                 },
-                loop: false,
+                loop: true,
                 breakpoints: {
                     360: {
                         slidesPerView: 2,
@@ -174,7 +179,7 @@
                         spaceBetween: 20
                     }
                 }
-            })
+            });
         });
     </script>
     @if ($errors->has('email') || $errors->has('password'))
