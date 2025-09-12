@@ -218,7 +218,7 @@
                     },
                     loop: false,
                     freeMode: true, // Свободное движение слайдов
-                    centeredSlides: false, // Без центрирования
+                    centeredSlides: true, // Без центрирования
                     slidesPerView: 'auto', // Автоопределение количества слайдов
                     slideOffsetBefore: -20, // Небольшой негативный отступ для компенсации сдвига
                     watchOverflow: true, // Наблюдение за переполнением
@@ -232,7 +232,7 @@
                             spaceBetween: 20
                         },
                         992: {
-                            slidesPerView: 3,
+                            slidesPerView: 4,
                             spaceBetween: 20,
                             slideOffsetBefore: -20
                         }
