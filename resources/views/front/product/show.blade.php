@@ -232,7 +232,7 @@
                             spaceBetween: 20
                         },
                         992: {
-                            slidesPerView: 4,
+                            slidesPerView: auto,
                             spaceBetween: 20
                         }
                     }
