@@ -4920,7 +4920,7 @@ select {
 
 .product-desc__analog-wrapper {
   margin-bottom: 5rem;
-  max-width: 55%;
+  max-width: 100%;
 }
 @media (max-width: 61.99875em) {
   .product-desc__analog-wrapper {
