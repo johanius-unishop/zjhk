@@ -4839,9 +4839,6 @@ select {
 
 .swiper-slide.product-page__item {
   height: 100% !important;
-  width: 23% !important;
-  margin-right: 1%;
-  margin-left: 1%;
 }
 
 .swiper.opt-slider {
