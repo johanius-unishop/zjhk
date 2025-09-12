@@ -231,7 +231,7 @@
                         992: {
                             slidesPerView: 4,
                             slidesPerGroup: 4,
-                            spaceBetween: 20
+                            spaceBetween: 2
                         }
                     }
                 });
