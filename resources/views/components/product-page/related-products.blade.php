@@ -40,7 +40,7 @@
                                                     @endif
                                                 </a>
                                                 <button class="product-page__label-btn">
-                                                    <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                                    <img class="product-page__label" src="{{ asset('images/icons/label-gray.svg') }}"
                                                         alt="избранное">
                                                 </button>
                                             </div>
