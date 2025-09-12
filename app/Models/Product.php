@@ -294,12 +294,13 @@ class Product extends Model implements HasMedia, Sitemapable
     }
 
 
-    /* public static function getAnalogies($product): array
+    public function getAnalogies()
     {
         // Аналоги товара
+        $product = $this;
         $analogies = [];
         // Получаем аналоги товара с предзагрузкой вендора
-        foreach ($product->analogies()->with('vendor')->get() as $analog) {
+        foreach ($this->analogs()->with('vendor')->get() as $analog) {
             // Если есть имя или артикул и вендор опубликован
             if (($analog->name || $analog->article) && $analog->vendor->published) {
                 // Формируем строку "название (артикул)" или просто название/артикул, если чего-то нет
@@ -308,9 +309,10 @@ class Product extends Model implements HasMedia, Sitemapable
                     : $analog->article;
             }
         }
+        dd($analogies);
         return $analogies;
     }
-        */
+
     public static function storeAnalog(Product $product, $analogs)
     {
         try {
