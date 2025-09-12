@@ -4941,6 +4941,10 @@ select {
   }
 }
 
+.opt-swiper-wrapper {
+    box-sizing: border-box;
+}
+
 .product-page__add-cart.product-desc {
   box-sizing: border-box;
 }
@@ -11749,3 +11753,5 @@ h2.benefits__title {
   max-width: 100%;
   object-fit: contain;
 }
+
+
