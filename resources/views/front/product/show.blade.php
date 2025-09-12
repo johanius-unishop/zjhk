@@ -562,6 +562,388 @@
                            <div class="swiper-slide product-page__item">
                               <div data-layout class="product-page__item-wrapper card-layout">
                                  <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
+                                    <a href="#" class="swiper-slide"> <img src="./img/products/item_photo.png"
+                                          alt="товар">
+                                    </a>
+                                    <button class="product-page__label-btn">
+                                       <img class="product-page__label" src="./img/icons/label-gray.svg"
+                                          alt="избранное">
+                                    </button>
+                                 </div>
+                                 <div data-layout class="product-page__title-container card-layout">
+                                    <a href="#">
+                                       <h5>HA-004-F</h5>
+                                       <p>09200042711</p>
+                                    </a>
+                                    <div>
+                                       <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
+                                       <a href="#"><span>152 </span>отзыва</a>
+                                    </div>
+                                 </div>
+                                 <div data-layout class="product-page__info-container card-layout">
+                                    <p>380 ₽</p>
+                                    <p style="color: #6905ec; display: none">Ожидается</p>
+                                    <p style="color: #6905ec; display: none">Под заказ, 4-6 недель</p>
+                                    <p style="color: #027a48;">В наличии 3 шт</p>
+                                    <button class="product-page__add-cart product-desc">В корзину</button>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="swiper-slide product-page__item">
+                              <div data-layout class="product-page__item-wrapper card-layout">
+                                 <div>
                                     <a href="#" class="swiper-slide"> <img src="./img/content/exhibition_2.jpg"
                                           alt="товар">
                                     </a>
