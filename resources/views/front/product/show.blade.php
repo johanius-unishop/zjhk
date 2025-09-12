@@ -217,8 +217,11 @@
                         prevEl: prevButtonClass
                     },
                     loop: false,
-                    centeredSlides: false,
-                    watchOverFlow: true,
+                    freeMode: true, // Свободное движение слайдов
+                    centeredSlides: false, // Без центрирования
+                    slidesPerView: 'auto', // Автоопределение количества слайдов
+                    slideOffsetBefore: -8, // Небольшой негативный отступ для компенсации сдвига
+                    watchOverflow: true, // Наблюдение за переполнением
                     breakpoints: {
                         360: {
                             slidesPerView: 2,
