@@ -50,18 +50,24 @@
                                                     <h5>{{ $related_product_item->name }}</h5>
                                                     <p>{{ $related_product_item->article }}</p>
                                                 </a>
+
                                                 <div>
-                                                    <img src="./img/icons/star.svg" alt="рейтинг"><span>4.9</span>
-                                                    <a href="#"><span>152 </span>отзыва</a>
+                                                    @if ($product_item->getCountReviewsString() != '')
+                                                        <img src="{{ asset('images/icons/star.svg') }}"
+                                                            alt="рейтинг"><span>{{ $product_item->getAverageReviewRatingString() }}</span>
+                                                        <a><span>{{ $product_item->getCountReviewsString() }}</span></a>
+                                                    @endif
                                                 </div>
                                             </div>
 
                                             <div data-layout class="product-page__info-container card-layout">
                                                 <p>{{ $related_product_item->getUserPrice() }}</p>
                                                 @if ($related_product_item->stock > 0)
-                                                    <p style="color: #027a48;">{{ $related_product_item->getUserStock() }}</p>
+                                                    <p style="color: #027a48;">
+                                                        {{ $related_product_item->getUserStock() }}</p>
                                                 @else
-                                                    <p style="color: #6905ec;">{{ $related_product_item->getUserStock() }}</p>
+                                                    <p style="color: #6905ec;">
+                                                        {{ $related_product_item->getUserStock() }}</p>
                                                 @endif
                                                 <button class="product-page__add-cart product-desc">В корзину</button>
                                             </div>
