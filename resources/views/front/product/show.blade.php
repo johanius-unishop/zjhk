@@ -1623,7 +1623,7 @@
                         },
                         992: {
                             slidesPerView: 4,
-                            spaceBetween: 20
+                            spaceBetween: 2%
                         }
                     }
                 });
