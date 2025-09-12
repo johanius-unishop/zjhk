@@ -218,6 +218,7 @@
                     },
                     loop: false,
                     centeredSlides: false,
+                    watchOverFlow: true,
                     breakpoints: {
                         360: {
                             slidesPerView: 2,
