@@ -221,17 +221,17 @@
                         360: {
                             slidesPerView: 2,
                             slidesPerGroup: 2,
-                            spaceBetween: 0
+                            spaceBetween: 20
                         },
                         680: {
                             slidesPerView: 3,
                             slidesPerGroup: 3,
-                            spaceBetween: 0
+                            spaceBetween: 20
                         },
                         992: {
                             slidesPerView: 4,
                             slidesPerGroup: 4,
-                            spaceBetween: 0
+                            spaceBetween: 20
                         }
                     }
                 });
