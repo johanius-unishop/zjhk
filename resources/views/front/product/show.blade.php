@@ -217,7 +217,7 @@
                         prevEl: prevButtonClass
                     },
                     loop: false,
-                    centerdSlides: false;
+                    centeredSlides: false;
                     breakpoints: {
                         360: {
                             slidesPerView: 2,
