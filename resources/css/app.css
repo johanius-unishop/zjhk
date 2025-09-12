@@ -4941,7 +4941,7 @@ select {
   }
 }
 
-.opt-swiper-wrapper {
+.swiper-wrapper.opt-swiper-wrapper {
     box-sizing: border-box;
 }
 
