@@ -216,21 +216,22 @@
                         nextEl: nextButtonClass,
                         prevEl: prevButtonClass
                     },
-                    loop: true,
-
+                    loop: false,
                     breakpoints: {
                         360: {
                             slidesPerView: 2,
+                            slidesPerGroup: 2,
                             spaceBetween: 8
                         },
                         680: {
                             slidesPerView: 3,
+                            slidesPerGroup: 3,
                             spaceBetween: 20
                         },
                         992: {
                             slidesPerView: 4,
-                            spaceBetween: 20,
-                            slideOffsetBefore: -20
+                            slidesPerGroup: 4,
+                            spaceBetween: 20
                         }
                     }
                 });
