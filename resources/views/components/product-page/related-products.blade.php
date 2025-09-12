@@ -77,8 +77,8 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="swiper-button-prev opt{{ $sliderCounter }}"></div>
-                        <div class="swiper-button-next opt{{ $sliderCounter }}"></div>
+                        <div class="swiper-button-prev opt{{ $sliderCounter }} common-opt-button"></div>
+                        <div class="swiper-button-next opt{{ $sliderCounter }} common-opt-button"></div>
                     </div>
 
                     @php
