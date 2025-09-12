@@ -36,7 +36,7 @@ class ProductController extends Controller
 
 
 
-        $analogs = $product->getAnalogies($product);
+        $analogs = $product->getAnalogies();
         // /$viewModel = new ProductViewModel($product);
         $images      = $product->getMedia('images');
         $parents = Category::ancestorsAndSelf($product->category_id)->toArray();
@@ -161,6 +161,7 @@ class ProductController extends Controller
             'images' => $images,
             'allReviewImages' => $allReviewImages,
             'reviewRating' => $reviewRating,
+            'analogs' => $analogs,
             //'newReviews' => $newReviews,
             //'bestRatedReviews' => $bestRatedReviews,
             // 'enableQuestion' => $enableQuestion,

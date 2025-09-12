@@ -309,7 +309,6 @@ class Product extends Model implements HasMedia, Sitemapable
                     : $analog->article;
             }
         }
-        dd($analogies);
         return $analogies;
     }
 
