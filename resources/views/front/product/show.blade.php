@@ -232,8 +232,9 @@
                             spaceBetween: 20
                         },
                         992: {
-                            slidesPerView: auto,
-                            spaceBetween: 20
+                            slidesPerView: 4,
+                            spaceBetween: 20,
+                            slideOffsetBefore: -20
                         }
                     }
                 });
