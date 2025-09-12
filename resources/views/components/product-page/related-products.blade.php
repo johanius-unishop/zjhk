@@ -52,7 +52,7 @@
                                                 </a>
 
                                                 <div>
-                                                    @if ($$related_product_item->getCountReviewsString() != '')
+                                                    @if ($related_product_item->getCountReviewsString() != '')
                                                         <img src="{{ asset('images/icons/star.svg') }}"
                                                             alt="рейтинг"><span>{{ $related_product_item->getAverageReviewRatingString() }}</span>
                                                         <a><span>{{ $related_product_item->getCountReviewsString() }}</span></a>
