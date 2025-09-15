@@ -180,7 +180,7 @@
 
             // Определяем количество слайдов для текущей точки останова
             const config = breakpointsConfig[currentBreakpoint];
-            const enableLoop = slides.length >= config.minSlidesForLoop;
+            const enableLoop = slides.length > config.minSlidesForLoop;
 
             console.log(enableLoop);
             console.log(config.slidesPerView);
