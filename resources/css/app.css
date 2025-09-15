@@ -4532,6 +4532,7 @@ select {
 
 .product-desc__props-desc {
   width: 100%;
+  max-width: 50rem;
 }
 
 .product-desc__props-technical {
