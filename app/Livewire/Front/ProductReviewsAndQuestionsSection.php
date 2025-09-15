@@ -49,7 +49,7 @@ class ProductReviewsAndQuestionsSection extends Component
 
     public function render()
     {
-
+        $product = $this->product;
         /* Основной запрос по товарам
         $query = Product::select('*')
             ->where('category_id', $this->category->id)
