@@ -1,6 +1,5 @@
 <div class="product-desc__docs">
     @if (count($data['files']) > 0)
-    dd($data['files']);
     <h5 class="product-desc__docs-title">Документация</h5>
     <div class="product-desc__docs-wrapper">
 
@@ -20,7 +19,7 @@
         @endif
 
         @if (isset($data['files']['dimensionalDrawing']))
-        <p><img src="{{ asset('images/icons/ruler.svg') }}" alt="чертеж"> <a href="{{ $data['files']['dimensionalDrawing']) }}">
+        <p><img src="{{ asset('images/icons/ruler.svg') }}" alt="чертеж"> <a href="{{ $data['files']['dimensionalDrawing'] }}">
                 <span>Габаритный чертёж</span>
             </a>
         </p>
