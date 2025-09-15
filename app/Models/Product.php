@@ -549,7 +549,6 @@ class Product extends Model implements HasMedia, Sitemapable
                 'path' => $model->first()->getPath()
             ];
         }
-        dd ($files);
         return $files;
     }
 

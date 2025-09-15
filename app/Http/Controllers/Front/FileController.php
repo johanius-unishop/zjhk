@@ -37,9 +37,10 @@ class FileController extends Controller
         $zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
         // Добавляем файлы в архив
-        foreach ($files as $file) {
+        foreach ($files as $file)
+        {
             // Получаем полное имя файла
-            $filePath = $file->getPath();
+            $filePath = $file['path'];
 
             // Добавляем файл в архив
             $zip->addFile($filePath, basename($filePath));
