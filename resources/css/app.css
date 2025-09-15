@@ -4036,8 +4036,8 @@ select {
   height: 2.875rem !important;
   position: absolute;
   top: 100%;
-  left: 0;
-  transform: translate(50%) rotate(270deg);
+  right: 0;
+  transform: translate(-50%) rotate(-90deg);
   color: rgb(0, 0, 0);
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
