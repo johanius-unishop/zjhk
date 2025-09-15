@@ -4,14 +4,14 @@
     <div class="product-desc__docs-wrapper">
 
         @if (isset($data['files']['specification']))
-        <p><img src="{{ asset('images/icons/note.svg') }}" alt="характеристики"><a href="{{ $data['files']['specification'] }}">
+        <p><img src="{{ asset('images/icons/note.svg') }}" alt="Технические характеристики"><a href="{{ $data['files']['specification'] }}">
                 <span>Технические характеристики</span>
             </a>
         </p>
         @endif
 
         @if (isset($data['files']['overviewInformation']))
-        <p><img src="{{ asset('images/icons/note.svg') }}" alt="характеристики"><a href="{{ $data['files']['overviewInformation'] }}">
+        <p><img src="{{ asset('images/icons/note.svg') }}" alt="Обзорная информация<"><a href="{{ $data['files']['overviewInformation'] }}">
                 <span>Обзорная информация</span>
             </a>
         </p>
@@ -32,7 +32,7 @@
         @endif
 
 
-        <a href="#" download="#"><img src="{{ asset('images/icons/download.svg') }}" alt="скачать"><span>Скачать всё</span></a>
+        <a href="{{ route('download.all.files', ['product' => $product->id]) }}" target="_blank"><img src="{{ asset('images/icons/download.svg') }}" alt="скачать"><span>Скачать всё</span></a>
     </div>
     @endif
 </div>

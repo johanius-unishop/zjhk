@@ -77,6 +77,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/download-all-files/{product}', [FileController::class, 'downloadAll'])->name('download.all.files');
+
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin-auth.php'; //Аутентификация админа......
