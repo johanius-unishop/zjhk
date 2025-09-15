@@ -523,7 +523,9 @@ class Product extends Model implements HasMedia, Sitemapable
 
         // Сбор ссылок на файлы
         if ($specification->isNotEmpty()) {
-            $files['specification'] = $specification->first()->getUrl();
+            $files['specification'] = [
+                'url' => $specification->first()->getUrl(),
+                'path' => $specification->first()->getPath()];
         }
 
         if ($dimensionalDrawing->isNotEmpty()) {
@@ -537,6 +539,7 @@ class Product extends Model implements HasMedia, Sitemapable
         if ($model->isNotEmpty()) {
             $files['3dModel'] = $model->first()->getUrl();
         }
+        dd ($files);
         return $files;
     }
 
