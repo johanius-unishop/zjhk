@@ -4607,7 +4607,7 @@ select {
 }
 
 .product-desc__analog-row span:first-child {
-  flex: 1 1 70%;
+  flex: 1 1 50%;
   overflow: hidden;
   white-space: nowrap;
   position: relative;
@@ -4629,7 +4629,7 @@ select {
 }
 
 .product-desc__analog-row span:last-child {
-  flex: 1 1 70%;
+  flex: 1 1 50%;
   margin-left: auto;
   background: white;
   position: relative;
