@@ -20,7 +20,7 @@
                 </div>
             @endauth
         </div>
-        @livewire('front.products-select', [
+        @livewire('front.product-reviews-and-questions-section', [
                         'product' => $data['product'],
                         'acceptsWebP' => $data['acceptsWebP']
                     ])
