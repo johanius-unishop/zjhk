@@ -4581,7 +4581,7 @@ select {
 }
 
 .product-desc__technical-row span:last-child {
-  flex: 1 1 50%;
+  flex: 1 1 30%;
   margin-left: auto;
   background: white;
   position: relative;
