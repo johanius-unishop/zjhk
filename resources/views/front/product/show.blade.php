@@ -154,7 +154,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const swiper = new Swiper('.thumbSwiper', {
-                loop: true,
+                loop: false,
                 spaceBetween: 10,
                 freeMode: true,
                 watchSlidesProgress: true,
@@ -169,7 +169,7 @@
 
             const swiper2 = new Swiper('.photoSwiper', {
                 modules: [EffectFade, Navigation, Thumbs, Pagination],
-                loop: false,
+                loop: true,
                 spaceBetween: 10,
                 navigation: {
                     nextEl: '.swiper-button-next.prod',
