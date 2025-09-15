@@ -37,5 +37,5 @@
         <div class="swiper-pagination-thumb"></div>
     </div>
     <div class="swiper-button-next prod"></div>
-    <div style="display: none;" class="swiper-button-prev prod"></div>
+    <div class="swiper-button-prev prod"></div>
 </div>
