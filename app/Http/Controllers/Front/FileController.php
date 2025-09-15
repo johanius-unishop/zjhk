@@ -30,7 +30,7 @@ class FileController extends Controller
         }
 
         // Имя временного ZIP-архива
-        $zipFileName = storage_path('temp/'  . $product->name . '.zip');
+        $zipFileName = storage_path( $product->name . '.zip');
 
         // Создаем ZIP-архив
         $zip = new ZipArchive();
