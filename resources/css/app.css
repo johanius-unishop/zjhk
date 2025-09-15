@@ -4037,7 +4037,7 @@ select {
   position: absolute;
   bottom: 0;
   left: 0;
-  transform: translate(50%) rotate(-90deg);
+  transform: translate(50%) rotate(90deg);
   color: rgb(0, 0, 0);
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
@@ -6109,7 +6109,7 @@ select {
 }
 @media (max-width: 61.99875em) {
   .questions__title-container {
-    margin-bottomh: 2.25rem;
+    margin-bottom: 2.25rem;
   }
 }
 @media (max-width: 35.99875em) {
