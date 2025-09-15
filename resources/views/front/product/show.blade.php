@@ -158,10 +158,10 @@
                 spaceBetween: 10,
                 freeMode: true,
                 watchSlidesProgress: true,
-                slidesPerView: auto,
+                slidesPerView: 4,
                 breakpoints: {
                     992: {
-                        slidesPerView: auto,
+                        slidesPerView: 5,
                         direction: 'vertical'
                     }
                 }
