@@ -20,6 +20,9 @@
                 </div>
             @endauth
         </div>
-        @include('components.product-page.reviews-and-questions-section')
+        @livewire('front.products-select', [
+                        'product' => $data['product'],
+                        'acceptsWebP' => $data['acceptsWebP']
+                    ])
     </div>
 </section>
