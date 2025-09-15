@@ -537,7 +537,6 @@ class Product extends Model implements HasMedia, Sitemapable
         if ($model->isNotEmpty()) {
             $files['3dModel'] = $model->first()->getUrl();
         }
-        dd($files);
         return $files;
     }
 
