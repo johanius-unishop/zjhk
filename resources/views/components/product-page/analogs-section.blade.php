@@ -5,7 +5,7 @@
             @auth
                 <div class="product-desc__analog-product-wrapper">
                     @foreach ($data['analogs'] as $analog_vendor => $analog)
-                        <p class="product-desc__technical-row">
+                        <p class="product-desc__analog-row">
                             <span>{{ $analog_vendor }}</span> <span>{{ $analog }}</span>
                         </p>
                     @endforeach
