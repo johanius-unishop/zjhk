@@ -1,5 +1,6 @@
 <div class="product-desc__docs">
     @if (count($data['files']) > 0)
+    dd($data['files']);
     <h5 class="product-desc__docs-title">Документация</h5>
     <div class="product-desc__docs-wrapper">
 
