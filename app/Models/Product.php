@@ -511,6 +511,36 @@ class Product extends Model implements HasMedia, Sitemapable
         return route('product.show', ['slug' => $this->attributes['slug']]);
     }
 
+    public function getFiles()
+    {
+        $files = [];
+
+        // Получаем медиа-коллекции
+        $specification = $this->getMedia('specification');
+        $dimensionalDrawing = $this->getMedia('dimensionalDrawing');
+        $overviewInformation = $this->getMedia('overviewInformation');
+        $model = $this->getMedia('3dModel');
+
+        // Сбор ссылок на файлы
+        if ($specification->isNotEmpty()) {
+            $files['specification'] = $specification->first()->getUrl();
+        }
+
+        if ($dimensionalDrawing->isNotEmpty()) {
+            $files['dimensionalDrawing'] = $dimensionalDrawing->first()->getUrl();
+        }
+
+        if ($overviewInformation->isNotEmpty()) {
+            $files['overviewInformation'] = $overviewInformation->first()->getUrl();
+        }
+
+        if ($model->isNotEmpty()) {
+            $files['3dModel'] = $model->first()->getUrl();
+        }
+        dd($files);
+        return $files;
+    }
+
 
     /*$reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),

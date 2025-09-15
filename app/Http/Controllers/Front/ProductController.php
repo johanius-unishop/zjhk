@@ -39,6 +39,7 @@ class ProductController extends Controller
         $analogs = $product->getAnalogies();
         // /$viewModel = new ProductViewModel($product);
         $images      = $product->getMedia('images');
+        $files = $product->getFiles();
         $parents = Category::ancestorsAndSelf($product->category_id)->toArray();
 
         $technical_data = $product->getProperties();
