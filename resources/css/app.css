@@ -4561,7 +4561,7 @@ select {
 .product-desc__technical-row span:first-child {
   flex: 1 1 70%;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal;
   position: relative;
 }
 @media (max-width: 35.99875em) {
@@ -4581,7 +4581,7 @@ select {
 }
 
 .product-desc__technical-row span:last-child {
-  flex: 1 1 20%;
+  flex: 1 1 30%;
   margin-left: auto;
   background: white;
   position: relative;
