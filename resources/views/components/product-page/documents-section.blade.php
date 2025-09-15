@@ -5,26 +5,28 @@
 
         @if (isset($data['files']['specification']))
         <p><img src="{{ asset('images/icons/note.svg') }}" alt="характеристики"><a href="{{ $data['files']['specification'] }}">
-                <span>Технические характеристики {{ $data['product']->name }}</span>
+                <span>Технические характеристики</span>
             </a>
         </p>
         @endif
 
         @if (isset($data['files']['overviewInformation']))
-        <p><img src="{{ asset('images/icons/note.svg') }}" alt="характеристики"><a href="{{ $data['files']['overviewInformation'] }}"> <span>Обзорная информация</span></a>
+        <p><img src="{{ asset('images/icons/note.svg') }}" alt="характеристики"><a href="{{ $data['files']['overviewInformation'] }}">
+                <span>Обзорная информация</span>
+            </a>
         </p>
         @endif
 
         @if (isset($data['files']['dimensionalDrawing']))
         <p><img src="{{ asset('images/icons/ruler.svg') }}" alt="чертеж"> <a href="{{ $data['files']['dimensionalDrawing'] }}">
-                <span>Габаритный чертёж {{ $data['product']->name }}</span>
+                <span>Габаритный чертёж</span>
             </a>
         </p>
         @endif
 
         @if (isset($data['files']['3dModel']))
-        <p><img src="{{ asset('images/icons/3d.svg') }}" alt="3д-модель"><a href="{{ $data['files']['3dModel'] }}">
-                <span>3D-модель {{ $data['product']->name }}</span>
+        <p><img src="{{ asset('images/icons/3d.svg') }}" alt="3D-модель"><a href="{{ $data['files']['3dModel'] }}">
+                <span>3D-модель</span>
             </a>
         </p>
         @endif
