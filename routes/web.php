@@ -9,6 +9,7 @@ use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\DocumentationController;
 use App\Http\Controllers\Front\QuestionController;
 use App\Http\Controllers\Front\ReviewsController;
+use App\Http\Controllers\Front\FileController;
 use App\Http\Controllers\Front\{HomeController, PageController, CategoryController, ProductController ,CartController, FaqController ,SearchController , VendorController};
 Route::get('/', function () {
     return view('home');
@@ -37,6 +38,8 @@ Route::get('/catalog', [CategoryController::class, 'catalog'])->name('catalog');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
+
+Route::get('/download-all-files/{product}', [FileController::class, 'downloadAll'])->name('download.all.files');
 
 Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
 
@@ -77,7 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/download-all-files/{product}', [FileController::class, 'downloadAll'])->name('download.all.files');
+
 
 
 require __DIR__ . '/auth.php';
