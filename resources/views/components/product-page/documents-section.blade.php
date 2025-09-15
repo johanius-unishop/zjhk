@@ -5,8 +5,7 @@
 
         @if (isset($data['files']['specification']))
         <p><img src="{{ asset('images/icons/note.svg') }}" alt="характеристики"><a href="{{ $data['files']['specification'] }}">
-                <span>Технические характеристики
-                    НA-016</span>
+                <span>Технические характеристики {{ $data['product']->name }}</span>
             </a>
         </p>
         @endif
