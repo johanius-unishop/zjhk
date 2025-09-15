@@ -11,9 +11,7 @@
         @endif
 
         @if (isset($data['files']['overviewInformation']))
-        <p><img src="{{ asset('images/icons/note.svg') }}" alt="характеристики"><a href="{{ $data['files']['overviewInformation'] }}"> <span>Вырезка из каталога
-                    по серии НА-016</span>
-            </a>
+        <p><img src="{{ asset('images/icons/note.svg') }}" alt="характеристики"><a href="{{ $data['files']['overviewInformation'] }}"> <span>Вырезка из каталога</span></a>
         </p>
         @endif
 
