@@ -11,20 +11,20 @@
         @endif
 
         @if (isset($data['files']['overviewInformation']))
-        <p><img src="{{ asset('images/icons/note.svg') }}" alt="характеристики"><a href="{{ $data['files']['overviewInformation'] }}"> <span>Вырезка из каталога</span></a>
+        <p><img src="{{ asset('images/icons/note.svg') }}" alt="характеристики"><a href="{{ $data['files']['overviewInformation'] }}"> <span>Обзорная информация</span></a>
         </p>
         @endif
 
         @if (isset($data['files']['dimensionalDrawing']))
         <p><img src="{{ asset('images/icons/ruler.svg') }}" alt="чертеж"> <a href="{{ $data['files']['dimensionalDrawing'] }}">
-                <span>Габаритный чертёж</span>
+                <span>Габаритный чертёж {{ $data['product']->name }}</span>
             </a>
         </p>
         @endif
 
         @if (isset($data['files']['3dModel']))
         <p><img src="{{ asset('images/icons/3d.svg') }}" alt="3д-модель"><a href="{{ $data['files']['3dModel'] }}">
-                <span>3D-модель</span>
+                <span>3D-модель {{ $data['product']->name }}</span>
             </a>
         </p>
         @endif
