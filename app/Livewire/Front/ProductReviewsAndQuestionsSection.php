@@ -61,6 +61,6 @@ class ProductReviewsAndQuestionsSection extends Component
         // Выполняем пагинацию и подтягиваем медиа-данные
         $products = $query->with('media')->paginate($this->perPage)->withQueryString();
         */
-        return view('livewire.front.product-reviews-and-questions-section',compact('product', 'allReviewsImage'));
+        return view('livewire.front.product-reviews-and-questions-section',compact('product', 'allReviewsImages'));
     }
 }
