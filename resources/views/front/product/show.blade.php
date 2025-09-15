@@ -169,7 +169,7 @@
 
             const swiper2 = new Swiper('.photoSwiper', {
                 modules: [EffectFade, Navigation, Thumbs, Pagination],
-                loop: true,
+                loop: false,
                 spaceBetween: 10,
                 navigation: {
                     nextEl: '.swiper-button-next.prod',
