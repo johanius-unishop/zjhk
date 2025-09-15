@@ -4,28 +4,28 @@
     <div class="product-desc__docs-wrapper">
 
         @if (isset($data['files']['specification']))
-        <p><img src="{{ asset('images/icons/note.svg') }}" alt="Технические характеристики"><a href="{{ $data['files']['specification'] }}">
+        <p><img src="{{ asset('images/icons/note.svg') }}" alt="Технические характеристики"><a href="{{ $data['files']['specification']['url'] }}">
                 <span>Технические характеристики</span>
             </a>
         </p>
         @endif
 
         @if (isset($data['files']['overviewInformation']))
-        <p><img src="{{ asset('images/icons/note.svg') }}" alt="Обзорная информация<"><a href="{{ $data['files']['overviewInformation'] }}">
+        <p><img src="{{ asset('images/icons/note.svg') }}" alt="Обзорная информация<"><a href="{{ $data['files']['overviewInformation']['url'] }}">
                 <span>Обзорная информация</span>
             </a>
         </p>
         @endif
 
         @if (isset($data['files']['dimensionalDrawing']))
-        <p><img src="{{ asset('images/icons/ruler.svg') }}" alt="чертеж"> <a href="{{ $data['files']['dimensionalDrawing'] }}">
+        <p><img src="{{ asset('images/icons/ruler.svg') }}" alt="чертеж"> <a href="{{ $data['files']['dimensionalDrawing']['url'] }}">
                 <span>Габаритный чертёж</span>
             </a>
         </p>
         @endif
 
         @if (isset($data['files']['3dModel']))
-        <p><img src="{{ asset('images/icons/3d.svg') }}" alt="3D-модель"><a href="{{ $data['files']['3dModel'] }}">
+        <p><img src="{{ asset('images/icons/3d.svg') }}" alt="3D-модель"><a href="{{ $data['files']['3dModel']['url'] }}">
                 <span>3D-модель</span>
             </a>
         </p>
