@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use ZipArchive;
 
@@ -18,7 +19,7 @@ class FileController extends Controller
     public function downloadAll(Request $request, $product)
     {
         // Получаем объект продукта
-        $product = \App\Models\Product::findOrFail($product);
+        $product = Product::findOrFail($product);
 
         // Получаем файлы продукта
         $files = $product->getFiles();
@@ -36,9 +37,9 @@ class FileController extends Controller
         $zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
         // Добавляем файлы в архив
-        foreach ($files as $type => $fileUrl) {
+        foreach ($files as $file) {
             // Получаем полное имя файла
-            $filePath = public_path($fileUrl);
+            $filePath = $file->getPath();
 
             // Добавляем файл в архив
             $zip->addFile($filePath, basename($filePath));
