@@ -4558,7 +4558,7 @@ select {
 }
 
 .product-desc__technical-row span:first-child {
-  flex: 1 1 70%;
+  flex: 1 1 60%;
   overflow: hidden;
   white-space: normal;
   position: relative;
@@ -4580,7 +4580,7 @@ select {
 }
 
 .product-desc__technical-row span:last-child {
-  flex: 1 1 30%;
+  flex: 1 1 40%;
   margin-left: auto;
   background: white;
   position: relative;
