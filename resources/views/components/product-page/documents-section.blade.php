@@ -32,7 +32,7 @@
         @endif
 
 
-        <a href="{{ route('download.all.files', ['product' => $product->id]) }}" target="_blank"><img src="{{ asset('images/icons/download.svg') }}" alt="скачать"><span>Скачать всё</span></a>
+        <a href="{{ route('download.all.files', ['product' => $data['product']->id]) }}" target="_blank"><img src="{{ asset('images/icons/download.svg') }}" alt="скачать"><span>Скачать всё</span></a>
     </div>
     @endif
 </div>
