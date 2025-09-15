@@ -51,7 +51,7 @@ class FileController extends Controller
 
         // Заголовки для отправки архива
         header('Content-Type: application/zip');
-        header('Content-disposition: attachment; filename=product_files.zip');
+        header('Content-disposition: attachment; filename=' .$product->name . 'zip');
         header('Content-Length: ' . filesize($zipFileName));
 
         // Отправляем архив пользователю
