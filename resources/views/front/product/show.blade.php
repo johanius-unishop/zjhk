@@ -153,19 +153,49 @@
 @section('scripts')
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            // Получаем все слайды
+            const slides = document.querySelectorAll('.thumbSwiper .swiper-slide');
+
+            // Точки останова (breakpoints) и минимальные количества слайдов для петель
+            const breakpointsConfig = {
+                default: {
+                    slidesPerView: 4,
+                    minSlidesForLoop: 4
+                }, // Настройки по умолчанию
+                992: {
+                    slidesPerView: 5,
+                    minSlidesForLoop: 5
+                } // Настройки для больших экранов
+            };
+
+            // Определяем точку останова
+            const currentBreakpoint = (() => {
+                const viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth ||
+                0);
+                return Object.keys(breakpointsConfig).reduce((acc, key) => {
+                    const breakpointPx = parseInt(key, 10);
+                    return viewportWidth >= breakpointPx ? key : acc;
+                }, 'default');
+            })();
+
+            // Определяем количество слайдов для текущей точки останова
+            const config = breakpointsConfig[currentBreakpoint];
+            const enableLoop = slides.length >= config.minSlidesForLoop;
+
+            // Инициализируем Swiper с динамической настройкой петли
             const swiper = new Swiper('.thumbSwiper', {
-                loop: false,
+                loop: enableLoop, // Включаем петлю только если слайдов достаточно
                 spaceBetween: 10,
                 freeMode: true,
                 watchSlidesProgress: true,
-                slidesPerView: 4,
+                slidesPerView: config.slidesPerView,
                 breakpoints: {
                     992: {
                         slidesPerView: 5,
                         direction: 'vertical'
                     }
                 }
-            })
+            });
 
             const swiper2 = new Swiper('.photoSwiper', {
                 modules: [EffectFade, Navigation, Thumbs, Pagination],
