@@ -21,11 +21,11 @@
         <div class="product-desc__item-wrapper">
             <div class="product-desc__item-content">
                 <div class="product-desc__item-gallery">
-                    @foreach ($data['allReviewImages'] as $reviewImage)
+                    @foreach ($allReviewImages as $reviewImage)
                         <div class="product-desc__item-img">
                             <a href="#">
                                 <img src="{{ $reviewImage->getUrl('thumb') }}"
-                                    alt="Миниатюра фотографии отзыва для товара {{ $data['product']->name }}">
+                                    alt="Миниатюра фотографии отзыва для товара {{ $product->name }}">
                             </a>
                         </div>
                     @endforeach
@@ -70,7 +70,7 @@
                     </div>
                     <div class="product-desc__review-wrapper">
                         <div class="product-desc__item-review">
-                            @foreach ($data['product']->reviews as $review_item)
+                            @foreach ($product->reviews as $review_item)
                                 <div class="product-desc__item-client">
                                     <p class="product-desc__client-name">{{ $review_item->user->name }}</p>
                                     <div class="product-desc__client-rating">

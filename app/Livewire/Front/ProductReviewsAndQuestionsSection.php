@@ -50,6 +50,7 @@ class ProductReviewsAndQuestionsSection extends Component
     public function render()
     {
         $product = $this->product;
+        $allReviewsImages = $product->getAllReviewImages();
         /* Основной запрос по товарам
         $query = Product::select('*')
             ->where('category_id', $this->category->id)
@@ -60,6 +61,6 @@ class ProductReviewsAndQuestionsSection extends Component
         // Выполняем пагинацию и подтягиваем медиа-данные
         $products = $query->with('media')->paginate($this->perPage)->withQueryString();
         */
-        return view('livewire.front.product-reviews-and-questions-section',compact('product'));
+        return view('livewire.front.product-reviews-and-questions-section',compact('product', 'allReviewsImage'));
     }
 }

@@ -552,6 +552,13 @@ class Product extends Model implements HasMedia, Sitemapable
         return $files;
     }
 
+    public function getAllReviewImages()
+    {
+        $allReviewsRating= $this->reviews()->with('media')->get()->flatMap(function ($review) {
+            return $review->getMedia('photos');
+        });
+        return $allReviewsRating;
+        }
 
     /*$reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
