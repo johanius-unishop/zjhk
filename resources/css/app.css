@@ -4035,7 +4035,7 @@ select {
   width: 2.875rem !important;
   height: 2.875rem !important;
   position: absolute;
-  bottom: 100%;
+  bottom: 0;
   left: 0;
   transform: translate(50%) rotate(-90deg);
   color: rgb(0, 0, 0);
