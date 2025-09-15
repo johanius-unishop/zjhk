@@ -183,6 +183,7 @@
             const enableLoop = slides.length >= config.minSlidesForLoop;
 
             console.log(enableLoop);
+            console.log(config.slidesPerView);
             // Инициализируем Swiper с динамической настройкой петли
             const swiper = new Swiper('.thumbSwiper', {
                 loop: enableLoop, // Включаем петлю только если слайдов достаточно
