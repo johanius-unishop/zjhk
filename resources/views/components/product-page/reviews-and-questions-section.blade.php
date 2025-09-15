@@ -36,8 +36,8 @@
                             <span>Показать сначала:</span>
                             <div class="product-desc__item-sort-target">
                                 <button data-sort class="_target">Новые <img data-date class="_target"
-                                        src="img/icons/sorting_by.svg" alt="сортировать">
-                                <button data-sort>С высокой оценкой <img data-rating src="img/icons/sorting_by.svg"
+                                        src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать">
+                                <button data-sort>С высокой оценкой <img data-rating src="{{ asset('images/icons/sorting_by.svg') }}"
                                         alt="сортировать"></button>
                             </div>
                         </div>
