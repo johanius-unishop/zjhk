@@ -3,16 +3,16 @@
         <button class="_active">
             Отзывы
             <span>
-                @if ($data['product']->reviews)
-                    {{ count($data['product']->reviews) }}
+                @if ($product->reviews)
+                    {{ count($product->reviews) }}
                 @endif
             </span>
         </button>
         <button>
             Вопросы
             <span>
-                @if ($data['product']->questions)
-                    {{ count($data['product']->questions) }}
+                @if ($product->questions)
+                    {{ count($product->questions) }}
                 @endif
             </span>
         </button>

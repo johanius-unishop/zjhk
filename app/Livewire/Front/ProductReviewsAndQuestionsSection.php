@@ -40,18 +40,16 @@ class ProductReviewsAndQuestionsSection extends Component
         // Оповещаем слушателей об изменении макета
         $this->dispatch('updateLayout', layoutType: $this->layoutType);
     }
-
-    public function mount($product, $filter, $acceptsWebP)
+*/
+    public function mount($product, $acceptsWebP)
     {
         $this->product = $product;
-        $this->fil = $filter;
-        $this->type = session('type', 'card'); // По умолчанию "card"
-        $this->category = $category;
         $this->acceptsWebP = $acceptsWebP;
     }
-*/
+
     public function render()
     {
+
         /* Основной запрос по товарам
         $query = Product::select('*')
             ->where('category_id', $this->category->id)
@@ -62,6 +60,6 @@ class ProductReviewsAndQuestionsSection extends Component
         // Выполняем пагинацию и подтягиваем медиа-данные
         $products = $query->with('media')->paginate($this->perPage)->withQueryString();
         */
-        return view('livewire.front.product-reviews-and-questions-section');
+        return view('livewire.front.product-reviews-and-questions-section',compact('product'));
     }
 }
