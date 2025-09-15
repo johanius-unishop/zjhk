@@ -163,7 +163,7 @@ class ProductController extends Controller
             'allReviewImages' => $allReviewImages,
             'reviewRating' => $reviewRating,
             'analogs' => $analogs,
-            //'newReviews' => $newReviews,
+            'files' => $files,
             //'bestRatedReviews' => $bestRatedReviews,
             // 'enableQuestion' => $enableQuestion,
             // 'enableFastBay' => $enableFastBay,
