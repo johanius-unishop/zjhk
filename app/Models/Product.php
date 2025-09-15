@@ -525,19 +525,29 @@ class Product extends Model implements HasMedia, Sitemapable
         if ($specification->isNotEmpty()) {
             $files['specification'] = [
                 'url' => $specification->first()->getUrl(),
-                'path' => $specification->first()->getPath()];
+                'path' => $specification->first()->getPath()
+            ];
         }
 
         if ($dimensionalDrawing->isNotEmpty()) {
-            $files['dimensionalDrawing'] = $dimensionalDrawing->first()->getUrl();
+            $files['dimensionalDrawing'] = [
+                'url' => $dimensionalDrawing->first()->getUrl(),
+                'path' => $dimensionalDrawing->first()->getPth()
+            ];
         }
 
         if ($overviewInformation->isNotEmpty()) {
-            $files['overviewInformation'] = $overviewInformation->first()->getUrl();
+            $files['overviewInformation'] = [
+                'url' => $overviewInformation->first()->getUrl(),
+                'path' => $overviewInformation->first()->getPath()
+            ];
         }
 
         if ($model->isNotEmpty()) {
-            $files['3dModel'] = $model->first()->getUrl();
+            $files['3dModel'] = [
+                'url' => $model->first()->getUrl(),
+                'path' => $model->first()->getPath()
+            ];
         }
         dd ($files);
         return $files;
