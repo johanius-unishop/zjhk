@@ -69,8 +69,9 @@
                         </div>
                     </div>
                     <div class="product-desc__review-wrapper">
+                        @foreach ($product->reviews as $review_item)
                         <div class="product-desc__item-review">
-                            @foreach ($product->reviews as $review_item)
+
                                 <div class="product-desc__item-client">
                                     <p class="product-desc__client-name">{{ $review_item->user->name }}</p>
                                     <div class="product-desc__client-rating">
@@ -141,101 +142,9 @@
                                     </button>
                                     <p class="product-desc__answer-text">{{ $review_item->admin_reply }}</p>
                                 </div>
-                            @endforeach
+
                         </div>
-                        <div class="product-desc__item-review">
-                            <div class="product-desc__item-client">
-                                <p class="product-desc__client-name">Александр В.</p>
-                                <div class="product-desc__client-rating">
-                                    <span>21.05.24</span>
-                                    <div class="product-desc__testimonials-rating">
-                                        <ul>
-                                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-desc__benefit">
-                                <p>Достоинства</p>
-                                <p>Отличный товар!</p>
-                            </div>
-                            <div class="product-desc__benefit">
-                                <p>Недостатки</p>
-                                <p>Нет</p>
-                            </div>
-                            <div class="product-desc__benefit">
-                                <p>Комментарий</p>
-                                <p>Полностью соответствует заявленным характеристикам.</p>
-                                <div style="display: none;" class="product-desc__testimonial-gallery">
-                                    <div class="product-desc__item-img">
-                                        <a href="#">
-                                            <img src="img/products/review_photos.jpg" alt="фото товара">
-                                        </a>
-                                    </div>
-                                    <div class="product-desc__item-img">
-                                        <a href="#">
-                                            <img src="img/products/review_photos.jpg" alt="фото товара">
-                                        </a>
-                                    </div>
-                                    <div class="product-desc__item-img">
-                                        <a href="#">
-                                            <img src="img/products/review_photos.jpg" alt="фото товара">
-                                        </a>
-                                    </div>
-                                    <div class="product-desc__item-img">
-                                        <a href="#">
-                                            <img src="img/products/review_photos.jpg" alt="фото товара">
-                                        </a>
-                                    </div>
-                                    <div class="product-desc__item-img">
-                                        <a href="#">
-                                            <img src="img/products/review_photos.jpg" alt="фото товара">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-desc__likes">
-                                <p><img src="img/icons/thumbs_up.svg" alt="лайк">10</p>
-                                <p><img src="img/icons/thumbs_down.svg" alt="дизлайк">0</p>
-                                <a href="#">Ответить</a>
-                            </div>
-                            <div class="product-desc__answer">
-                                <button class="product-desc__answer-btn"><span>Ответ представителя</span><img
-                                        src="img/icons/arrow-down.svg" alt="ответ представителя">
-                                </button>
-                                <p class="product-desc__answer-text">Здравствуйте, Александр! Благодарим
-                                    за положительный отзыв.</p>
-                            </div>
-                        </div>
-                        <div class="product-desc__item-review">
-                            <div class="product-desc__item-client">
-                                <p class="product-desc__client-name">Александр В.</p>
-                                <div class="product-desc__client-rating">
-                                    <span>21.05.24</span>
-                                    <div class="product-desc__testimonials-rating">
-                                        <ul>
-                                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-desc__benefit">
-                                <p>Достоинства</p>
-                                <p>Отличный товар!</p>
-                            </div>
-                            <div class="product-desc__benefit">
-                                <p>Недостатки</p>
-                                <p>Нет</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
