@@ -133,13 +133,11 @@
                                     </div>
                                 </div>
                                 <div class="product-desc__likes">
-                                    <p><img src="img/icons/thumbs_up.svg" alt="лайк">10</p>
-                                    <p><img src="img/icons/thumbs_down.svg" alt="дизлайк">0</p>
                                     <a href="#">Ответить</a>
                                 </div>
                                 <div class="product-desc__answer">
                                     <button class="product-desc__answer-btn"><span>Ответ представителя</span><img
-                                            src="img/icons/arrow-down.svg" alt="ответ представителя">
+                                            src="{{ asset('images/icons/arrow-down.svg') }}" alt="ответ представителя">
                                     </button>
                                     <p class="product-desc__answer-text">Здравствуйте, Александр! Благодарим
                                         за положительный отзыв.</p>
