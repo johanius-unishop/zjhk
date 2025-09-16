@@ -12,7 +12,7 @@
                 </div>
             @else
                 <div class="product-desc__analog-invite">
-                    <img src="img/icons/attention.svg" alt="войдите">
+                    <img src="{{ asset('images/icons/attention.svg') }}" alt="войдите">
                     <p class="product-desc__analog-text">
                         <button data-modal-link="account"><span>Войдите</span>,</button>
                         чтобы увидеть европейские аналоги к данному товару.
