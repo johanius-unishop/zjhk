@@ -139,8 +139,7 @@
                                     <button class="product-desc__answer-btn"><span>Ответ представителя</span><img
                                             src="{{ asset('images/icons/arrow-down.svg') }}" alt="ответ представителя">
                                     </button>
-                                    <p class="product-desc__answer-text">Здравствуйте, Александр! Благодарим
-                                        за положительный отзыв.</p>
+                                    <p class="product-desc__answer-text">{{ $review_item->admin_reply }}</p>
                                 </div>
                             @endforeach
                         </div>
