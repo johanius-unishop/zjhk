@@ -21,7 +21,7 @@
         <div class="product-desc__item-wrapper">
             <div class="product-desc__item-content">
                 <div class="product-desc__item-gallery">
-                    @foreach ($allReviewImages as $reviewImage)
+                    @foreach ($allReviewsImages as $reviewImage)
                         <div class="product-desc__item-img">
                             <a href="#">
                                 <img src="{{ $reviewImage->getUrl('thumb') }}"
