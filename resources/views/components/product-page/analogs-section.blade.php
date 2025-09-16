@@ -15,7 +15,7 @@
                     <img src="{{ asset('images/icons/attention.svg') }}" alt="войдите">
                     <p class="product-desc__analog-text">
                         <button data-modal-link="account"><span>Войдите</span>,</button>
-                        чтобы увидеть европейские аналоги к данному товару.
+                        чтобы увидеть информацию по аналогам для данного товара.
                     </p>
                 </div>
             @endauth

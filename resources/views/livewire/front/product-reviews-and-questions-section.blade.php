@@ -95,15 +95,15 @@
                                 </div>
                                 <div class="product-desc__benefit">
                                     <p>Достоинства</p>
-                                    <p>Отличный товар!</p>
+                                    <p>{{ $review_item->advantages }}</p>
                                 </div>
                                 <div class="product-desc__benefit">
                                     <p>Недостатки</p>
-                                    <p>Нет</p>
+                                    <p>{{ $review_item->disadvantages }}</p>
                                 </div>
                                 <div class="product-desc__benefit">
                                     <p>Комментарий</p>
-                                    <p>Полностью соответствует заявленным характеристикам.</p>
+                                    <p>{{ $review_item->review_text }}</p>
                                     <div style="display: none;" class="product-desc__testimonial-gallery">
                                         <div class="product-desc__item-img">
                                             <a href="#">
