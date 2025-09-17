@@ -8,7 +8,7 @@
                 @endif
             </span>
         </button>
-        <button {{ $type === 'questions' ? 'class="_active"' : '' }}>>
+        <button {{ $type === 'questions' ? 'class="_active"' : '' }}>
             Вопросы
             <span>
                 @if ($product->questions)
