@@ -106,22 +106,6 @@ class ProductController extends Controller
 
         $reviewData = $product->getReviewStatsAttribute();
 
-        // Расчет процентов
-        $totalReviews = max($reviewData->total_reviews, 1); // Избегаем деления на ноль
-        $reviewRating = [
-            'averageReviewRating' => round($reviewData->average_rating, 2),
-            'roundedAverageRating' => round($reviewData->average_rating, 0),
-            'oneStarReviewsCount' => $reviewData->one_star_count,
-            'twoStarReviewsCount' => $reviewData->two_star_count,
-            'threeStarReviewsCount' => $reviewData->three_star_count,
-            'fourStarReviewsCount' => $reviewData->four_star_count,
-            'fiveStarReviewsCount' => $reviewData->five_star_count,
-            'oneStarReviewsPercent' => round(($reviewData->one_star_count / $totalReviews) * 100, 0),
-            'twoStarReviewsPercent' => round(($reviewData->two_star_count / $totalReviews) * 100, 0),
-            'threeStarReviewsPercent' => round(($reviewData->three_star_count / $totalReviews) * 100, 0),
-            'fourStarReviewsPercent' => round(($reviewData->four_star_count / $totalReviews) * 100, 0),
-            'fiveStarReviewsPercent' => round(($reviewData->five_star_count / $totalReviews) * 100, 0)
-        ];
 
         // Массив отзывов отсортированных по новизне
         $newReviews = $product->reviews()
