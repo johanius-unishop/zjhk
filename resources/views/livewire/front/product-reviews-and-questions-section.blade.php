@@ -67,12 +67,12 @@
                             </div>
                         </div>
                         <div class="product-desc__item-sort-right">
-                            <input type="checkbox" name="photo" id="photo">
+                            <input type="checkbox" name="photo" id="photo" wire:model="withPhoto">
                             <span>C фотографиями</span>
                         </div>
                     </div>
                     <div class="product-desc__review-wrapper">
-                        @foreach ($product->reviews as $review_item)
+                        @foreach ($reviews as $review_item)
                             <div class="product-desc__item-review">
 
                                 <div class="product-desc__item-client">

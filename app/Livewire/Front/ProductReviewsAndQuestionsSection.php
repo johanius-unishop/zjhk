@@ -12,7 +12,7 @@ class ProductReviewsAndQuestionsSection extends Component
     public $product;
     public $type = 'reviews';
     public $reviewsSort = 'new';
-    public $only_photo = false;
+    public $withPhoto = false;
 
 
     public function setType(string $newType)
@@ -55,6 +55,29 @@ class ProductReviewsAndQuestionsSection extends Component
         $allReviewsImages = $product->getAllReviewImages();
         $reviewData = $product->getReviewStatsAttribute();
         $starReviewCount = $product->getStarReviewsCount();
+
+        // Получаем коллекцию отзывов исходя из выбранного режима сортировки
+        switch ($this->reviewsSort) {
+            case 'new':
+                $reviews = $product->reviews()
+                    ->orderBy('created_at', 'desc')
+                    ->with(['media', 'user'])
+                    ->get();
+                break;
+
+            case 'hiRating':
+                $reviews = $product->reviews()
+                    ->orderBy('rating', 'desc')
+                    ->orderBy('created_at', 'desc')
+                    ->with(['media', 'user'])
+                    ->get();
+                break;
+
+            default:
+                $reviews = $product->reviews()->with(['media', 'user'])->get(); // Стандартная выборка всех отзывов
+                break;
+        }
+
         /* Основной запрос по товарам
         $query = Product::select('*')
             ->where('category_id', $this->category->id)
@@ -65,6 +88,6 @@ class ProductReviewsAndQuestionsSection extends Component
         // Выполняем пагинацию и подтягиваем медиа-данные
         $products = $query->with('media')->paginate($this->perPage)->withQueryString();
         */
-        return view('livewire.front.product-reviews-and-questions-section', compact('product', 'allReviewsImages', 'reviewData', 'starReviewCount'));
+        return view('livewire.front.product-reviews-and-questions-section', compact('product', 'allReviewsImages', 'reviewData', 'starReviewCount', 'reviews'));
     }
 }
