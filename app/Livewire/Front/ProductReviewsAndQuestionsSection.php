@@ -56,10 +56,12 @@ class ProductReviewsAndQuestionsSection extends Component
         $reviewData = $product->getReviewStatsAttribute();
         $starReviewCount = $product->getStarReviewsCount();
 
+        $reviews = null;
         // Получаем коллекцию отзывов исходя из выбранного режима сортировки
         switch ($this->reviewsSort) {
             case 'new':
                 $reviews = $product->reviews()
+                    ->when($this->withPhoto, fn($q) => $q->has('media')) // добавляем условие наличия фотографий
                     ->orderBy('created_at', 'desc')
                     ->with(['media', 'user'])
                     ->get();
@@ -67,6 +69,7 @@ class ProductReviewsAndQuestionsSection extends Component
 
             case 'hiRating':
                 $reviews = $product->reviews()
+                    ->when($this->withPhoto, fn($q) => $q->has('media'))
                     ->orderBy('rating', 'desc')
                     ->orderBy('created_at', 'desc')
                     ->with(['media', 'user'])
@@ -74,7 +77,10 @@ class ProductReviewsAndQuestionsSection extends Component
                 break;
 
             default:
-                $reviews = $product->reviews()->with(['media', 'user'])->get(); // Стандартная выборка всех отзывов
+                $reviews = $product->reviews()
+                    ->when($this->withPhoto, fn($q) => $q->has('media'))
+                    ->with(['media', 'user'])
+                    ->get();
                 break;
         }
 
