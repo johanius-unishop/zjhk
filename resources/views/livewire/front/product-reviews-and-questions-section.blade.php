@@ -164,35 +164,35 @@
                         <div class="product-desc__progress-item">
                             <span>5</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: {{fiveStarReviewsPercent}}%"></div>
+                                <div class="product-desc__progress-level" style="width: {{ $reviewData['fiveStarReviewsPercent'] }}%"></div>
                             </div>
                             <span>{{ $reviewData['fiveStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>4</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: {{fourStarReviewsPercent}}%"></div>
+                                <div class="product-desc__progress-level" style="width: {{ $reviewData['fourStarReviewsPercent'] }}%"></div>
                             </div>
                             <span>{{ $reviewData['fourStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>3</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: {{threeStarReviewsPercent}}%"></div>
+                                <div class="product-desc__progress-level" style="width: {{ $reviewData['threeStarReviewsPercent'] }}%"></div>
                             </div>
                             <span>{{ $reviewData['threeStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>0</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: {{twoStarReviewsPercent}}%"></div>
+                                <div class="product-desc__progress-level" style="width: {{$reviewData['twoStarReviewsPercent'] }}%"></div>
                             </div>
                             <span>{{ $reviewData['twoStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>1</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: {{oneStarReviewsPercent}}%"></div>
+                                <div class="product-desc__progress-level" style="width: {{$reviewData['oneStarReviewsPercent'] }}%"></div>
                             </div>
                             <span>{{ $reviewData['oneStarReviewsCount'] }}</span>
                         </div>
