@@ -104,7 +104,6 @@ class ProductController extends Controller
        //     return $review->getMedia('photos');
       //  });
 
-        $reviewData = $product->getReviewStatsAttribute();
 
 
         // Массив отзывов отсортированных по новизне
@@ -132,8 +131,6 @@ class ProductController extends Controller
             'related' => $related,
             'images' => $images,
             //'allReviewImages' => $allReviewImages,
-            'reviewData' => $reviewData,
-            'reviewRating' => $reviewRating,
             'analogs' => $analogs,
             'files' => $files,
             //'bestRatedReviews' => $bestRatedReviews,
