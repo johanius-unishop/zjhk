@@ -10,20 +10,22 @@ class ProductReviewsAndQuestionsSection extends Component
 
     public $acceptsWebP;
     public $product;
-    /*public $type;
-    public $reviews_sort;
-    public $only_photo;
+    public $type = 'reviews';
+    public $reviews_sort = 'new';
+    public $only_photo = false;
 
 
-    public string $layoutType = 'card';
-
-    public bool $menuIsOpen = false; // Изначально меню закрыто
-
-    public function toggleMenu()
+    public function reviewsLayout()
     {
-        $this->menuIsOpen = !$this->menuIsOpen; // Инвертируем состояние
+        $this->type = 'reviews';
     }
 
+    public function questionsLayout()
+    {
+        $this->type = 'questions';
+
+    }
+/*
 
     public function changePerPage($newValue)
     {
@@ -45,6 +47,7 @@ class ProductReviewsAndQuestionsSection extends Component
     {
         $this->product = $product;
         $this->acceptsWebP = $acceptsWebP;
+
     }
 
     public function render()
