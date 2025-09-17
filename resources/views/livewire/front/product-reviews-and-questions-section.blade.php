@@ -166,35 +166,35 @@
                             <div>
                                 <div class="product-desc__progress-level" style="width: 80%"></div>
                             </div>
-                            <span>446</span>
+                            <span>{{ $reviewData['five_star_count'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>4</span>
                             <div>
                                 <div class="product-desc__progress-level" style="width: 20%"></div>
                             </div>
-                            <span>2</span>
+                            <span>{{ $reviewData['four_star_count'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>3</span>
                             <div>
                                 <div class="product-desc__progress-level" style="width: 0"></div>
                             </div>
-                            <span>0</span>
+                            <span>{{ $reviewData['three_star_count'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>0</span>
                             <div>
                                 <div class="product-desc__progress-level" style="width: 0"></div>
                             </div>
-                            <span>0</span>
+                            <span>{{ $reviewData['two_star_count'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>1</span>
                             <div>
                                 <div class="product-desc__progress-level" style="width: 0"></div>
                             </div>
-                            <span>0</span>
+                            <span>{{ $reviewData['one_star_count'] }}</span>
                         </div>
                     </div>
                 </div>
