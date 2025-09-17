@@ -70,7 +70,7 @@
                     </div>
                     <div class="product-desc__review-wrapper">
                         @foreach ($product->reviews as $review_item)
-                        <div class="product-desc__item-review">
+                            <div class="product-desc__item-review">
 
                                 <div class="product-desc__item-client">
                                     <p class="product-desc__client-name">{{ $review_item->user->name }}</p>
@@ -143,7 +143,7 @@
                                     <p class="product-desc__answer-text">{{ $review_item->admin_reply }}</p>
                                 </div>
 
-                        </div>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -152,11 +152,14 @@
                 <div class="product-desc__item-rating-container">
                     <div class="product-desc__testimonials-rating">
                         <ul>
-                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                            <li><img src="img/icons/star.svg" alt="оценка"></li>
-                            <li><img src="img/icons/star.svg" alt="оценка"></li>
+                            @for ($i = 1; $i <= $reviewData['averageReviewRating']; $i++)
+                                <li><img src="{{ asset('images/icons/star.svg') }}" alt="заполненная звезда оценки">
+                                </li>
+                            @endfor
+                            @for ($j = $reviewData['averageReviewRating'] + 1; $j <= 5; $j++)
+                                <li><img src="{{ asset('images/icons/star-empty.svg') }}" alt="пустая звезда оценки">
+                                </li>
+                            @endfor
                         </ul>
                         <p>{{ $reviewData['averageReviewRating'] }}/5</p>
                     </div>
@@ -164,35 +167,40 @@
                         <div class="product-desc__progress-item">
                             <span>5</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: {{ $reviewData['fiveStarReviewsPercent'] }}%"></div>
+                                <div class="product-desc__progress-level"
+                                    style="width: {{ $reviewData['fiveStarReviewsPercent'] }}%"></div>
                             </div>
                             <span>{{ $reviewData['fiveStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>4</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: {{ $reviewData['fourStarReviewsPercent'] }}%"></div>
+                                <div class="product-desc__progress-level"
+                                    style="width: {{ $reviewData['fourStarReviewsPercent'] }}%"></div>
                             </div>
                             <span>{{ $reviewData['fourStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>3</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: {{ $reviewData['threeStarReviewsPercent'] }}%"></div>
+                                <div class="product-desc__progress-level"
+                                    style="width: {{ $reviewData['threeStarReviewsPercent'] }}%"></div>
                             </div>
                             <span>{{ $reviewData['threeStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>0</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: {{$reviewData['twoStarReviewsPercent'] }}%"></div>
+                                <div class="product-desc__progress-level"
+                                    style="width: {{ $reviewData['twoStarReviewsPercent'] }}%"></div>
                             </div>
                             <span>{{ $reviewData['twoStarReviewsCount'] }}</span>
                         </div>
                         <div class="product-desc__progress-item">
                             <span>1</span>
                             <div>
-                                <div class="product-desc__progress-level" style="width: {{$reviewData['oneStarReviewsPercent'] }}%"></div>
+                                <div class="product-desc__progress-level"
+                                    style="width: {{ $reviewData['oneStarReviewsPercent'] }}%"></div>
                             </div>
                             <span>{{ $reviewData['oneStarReviewsCount'] }}</span>
                         </div>

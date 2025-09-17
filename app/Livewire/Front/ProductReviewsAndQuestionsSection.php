@@ -52,6 +52,7 @@ class ProductReviewsAndQuestionsSection extends Component
         $product = $this->product;
         $allReviewsImages = $product->getAllReviewImages();
         $reviewData = $product->getReviewStatsAttribute();
+        $starReviewCount = $product->getStarReviewsCount();
         /* Основной запрос по товарам
         $query = Product::select('*')
             ->where('category_id', $this->category->id)
@@ -62,6 +63,6 @@ class ProductReviewsAndQuestionsSection extends Component
         // Выполняем пагинацию и подтягиваем медиа-данные
         $products = $query->with('media')->paginate($this->perPage)->withQueryString();
         */
-        return view('livewire.front.product-reviews-and-questions-section',compact('product', 'allReviewsImages', 'reviewData'));
+        return view('livewire.front.product-reviews-and-questions-section',compact('product', 'allReviewsImages', 'reviewData', 'starReviewCount'));
     }
 }
