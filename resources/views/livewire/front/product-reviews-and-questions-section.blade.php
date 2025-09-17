@@ -1,7 +1,7 @@
 <div class="product-desc__connection">
     <div class="product-desc__connection-select">
         <!-- Отзывы -->
-        <button @if ($type === 'reviews') class="_active" @endif>
+        <button wire:click="setType('reviews')" @if ($type === 'reviews') class="_active" @endif>
             Отзывы
             <span>
                 @if ($product->reviews)
@@ -11,7 +11,7 @@
         </button>
 
         <!-- Вопросы -->
-        <button @if ($type === 'questions') class="_active" @endif>
+        <button wire:click="setType('questions')" @if ($type === 'questions') class="_active" @endif>
             Вопросы
             <span>
                 @if ($product->questions)
@@ -213,7 +213,7 @@
             </div>
         </div>
     </div>
-    <div class="product-desc__questions-client" id="questions-client">
+    <div class="product-desc__questions-client {{ $type === 'questions' ? '_active' : '' }}" id="questions-client">
         <div class="product-desc__action-card">
             <div class="order__card-container">
                 <div class="order__card-top-wrapper">

@@ -15,17 +15,11 @@ class ProductReviewsAndQuestionsSection extends Component
     public $only_photo = false;
 
 
-    public function reviewsLayout()
+    public function setType(string $newType)
     {
-        $this->type = 'reviews';
+        $this->type = $newType;
     }
-
-    public function questionsLayout()
-    {
-        $this->type = 'questions';
-
-    }
-/*
+    /*
 
     public function changePerPage($newValue)
     {
@@ -47,7 +41,6 @@ class ProductReviewsAndQuestionsSection extends Component
     {
         $this->product = $product;
         $this->acceptsWebP = $acceptsWebP;
-
     }
 
     public function render()
@@ -66,6 +59,6 @@ class ProductReviewsAndQuestionsSection extends Component
         // Выполняем пагинацию и подтягиваем медиа-данные
         $products = $query->with('media')->paginate($this->perPage)->withQueryString();
         */
-        return view('livewire.front.product-reviews-and-questions-section',compact('product', 'allReviewsImages', 'reviewData', 'starReviewCount'));
+        return view('livewire.front.product-reviews-and-questions-section', compact('product', 'allReviewsImages', 'reviewData', 'starReviewCount'));
     }
 }
