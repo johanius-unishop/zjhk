@@ -20,7 +20,7 @@
             </span>
         </button>
     </div>
-    <div class="product-desc__testimonial-item {{ $type === 'reviews' ? '_active' : '' }}>" id="testimonial-section">
+    <div class="product-desc__testimonial-item {{ $type === 'reviews' ? 'class="_active"' : '' }}" id="testimonial-section">
         <div class="product-desc__item-wrapper">
             <div class="product-desc__item-content">
                 <div class="product-desc__item-gallery">
