@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="product-desc__item-sort-right">
-                            <input type="checkbox" name="photo" id="photo" wire:model="withPhoto">
+                            <input type="checkbox" name="photo" id="photo" wire:model="withPhoto" wire:change="forceRefresh">
                             <span>C фотографиями</span>
                         </div>
                     </div>

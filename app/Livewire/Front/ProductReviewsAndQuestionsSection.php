@@ -25,6 +25,15 @@ class ProductReviewsAndQuestionsSection extends Component
         $this->reviewsSort = $newReviewsSort;
     }
 
+    protected $listeners = [
+        'forceRefresh' => '$refresh'
+    ];
+
+    public function forceRefresh()
+    {
+        // Можно оставить тело метода пустым,
+        // само присутствие метода активирует принудительный рефреш
+    }
     /*
 
     public function changePerPage($newValue)
