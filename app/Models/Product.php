@@ -564,7 +564,7 @@ class Product extends Model implements HasMedia, Sitemapable
 
     public function getReviewStatsAttribute()
     {
-        return $this->reviews()
+        $reviewData = $this->reviews()
             ->selectRaw('
                 ROUND(AVG(rating), 2) AS average_rating,
                 SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS one_star_count,
@@ -575,6 +575,24 @@ class Product extends Model implements HasMedia, Sitemapable
                 COUNT(*) AS total_reviews
             ')
             ->first();
+
+        // Минимальное число отзывов для избежания деления на ноль
+        $totalReviews = max($reviewData->total_reviews, 1);
+
+        return [
+            'averageReviewRating' => round($reviewData->average_rating, 2),
+            'roundedAverageRating' => round($reviewData->average_rating, 0),
+            'oneStarReviewsCount' => $reviewData->one_star_count,
+            'twoStarReviewsCount' => $reviewData->two_star_count,
+            'threeStarReviewsCount' => $reviewData->three_star_count,
+            'fourStarReviewsCount' => $reviewData->four_star_count,
+            'fiveStarReviewsCount' => $reviewData->five_star_count,
+            'oneStarReviewsPercent' => round(($reviewData->one_star_count / $totalReviews) * 100, 0),
+            'twoStarReviewsPercent' => round(($reviewData->two_star_count / $totalReviews) * 100, 0),
+            'threeStarReviewsPercent' => round(($reviewData->three_star_count / $totalReviews) * 100, 0),
+            'fourStarReviewsPercent' => round(($reviewData->four_star_count / $totalReviews) * 100, 0),
+            'fiveStarReviewsPercent' => round(($reviewData->five_star_count / $totalReviews) * 100, 0)
+        ];
     }
 
     /*$reviewRating = [
