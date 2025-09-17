@@ -38,10 +38,10 @@
                         <div class="product-desc__item-sort-left">
                             <span>Показать сначала:</span>
                             <div class="product-desc__item-sort-target">
-                                <button data-sort class="_target">Новые <img data-date class="_target"
+                                <button data-sort wire:click="setSort('new')" @if ($reviewsSort === 'new') class="_target" @endif>Новые <img data-date @if ($reviewsSort === 'new') class="_target" @endif
                                         src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать">
-                                    <button data-sort>С высокой оценкой <img data-rating
-                                            src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать"></button>
+                                <button data-sort wire:click="setSort('hiRating')" @if ($reviewsSort === 'hiRating') class="_target" @endif>С высокой оценкой <img data-rating @if ($reviewsSort === 'hiRating') class="_target" @endif
+                                        src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать"></button>
                             </div>
                         </div>
                         <div class="product-desc__item-sort-mobile">

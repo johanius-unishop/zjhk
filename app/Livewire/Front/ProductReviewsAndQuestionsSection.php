@@ -11,7 +11,7 @@ class ProductReviewsAndQuestionsSection extends Component
     public $acceptsWebP;
     public $product;
     public $type = 'reviews';
-    public $reviews_sort = 'new';
+    public $reviewsSort = 'new';
     public $only_photo = false;
 
 
@@ -19,6 +19,12 @@ class ProductReviewsAndQuestionsSection extends Component
     {
         $this->type = $newType;
     }
+
+    public function setSort(string $newReviewsSort)
+    {
+        $this->reviewsSort = $newReviewsSort;
+    }
+
     /*
 
     public function changePerPage($newValue)
