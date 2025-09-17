@@ -1,7 +1,7 @@
 <div class="product-desc__connection">
     <div class="product-desc__connection-select">
         <!-- Отзывы -->
-        <button {{ $type === 'reviews' ? 'class="_active"' : '' }}>
+        <button @if ($type === 'reviews') class="_active" @endif>
             Отзывы
             <span>
                 @if ($product->reviews)
@@ -11,7 +11,7 @@
         </button>
 
         <!-- Вопросы -->
-        <button {{ $type === 'questions' ? 'class="_active"' : '' }}>
+        <button @if ($type === 'questions') class="_active" @endif>
             Вопросы
             <span>
                 @if ($product->questions)
