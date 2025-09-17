@@ -1,6 +1,6 @@
 <div class="product-desc__connection">
     <div class="product-desc__connection-select">
-        <button {{ $type === 'reviews' ? 'class="_active"' : '' }}>
+        <button {{ $type === 'reviews' ? ' class="_active"' : '' }}>
             Отзывы
             <span>
                 @if ($product->reviews)
