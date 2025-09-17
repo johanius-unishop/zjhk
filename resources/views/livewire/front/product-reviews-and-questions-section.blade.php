@@ -1,17 +1,19 @@
 <div class="product-desc__connection">
     <div class="product-desc__connection-select">
-        <button {{ $type === 'reviews' ? ' class="_active"' : '' }}>
+        <button class="{{ $type === 'reviews' ? '_active' : '' }}">
             Отзывы
             <span>
-                @if ($product->reviews)
+                @if (!empty($product->reviews))
                     {{ count($product->reviews) }}
                 @endif
             </span>
         </button>
-        <button {{ $type === 'questions' ? 'class="_active"' : '' }}>
+
+        <!-- Вопросы -->
+        <button class="{{ $type === 'questions' ? '_active' : '' }}">
             Вопросы
             <span>
-                @if ($product->questions)
+                @if (!empty($product->questions))
                     {{ count($product->questions) }}
                 @endif
             </span>
