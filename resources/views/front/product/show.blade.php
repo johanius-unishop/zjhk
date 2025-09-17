@@ -151,6 +151,7 @@
 @stop
 
 @section('scripts')
+    @livewireScriptConfig
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const swiper = new Swiper('.thumbSwiper', {
