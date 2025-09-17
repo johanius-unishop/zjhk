@@ -100,25 +100,13 @@ class ProductController extends Controller
             }
         }
         // Получаем все изображения, объединяя через flatMap
-        $allReviewImages = $product->reviews()->with('media')->get()->flatMap(function ($review) {
-            return $review->getMedia('photos');
-        });
+       // $allReviewImages = $product->reviews()->with('media')->get()->flatMap(function ($review) {
+       //     return $review->getMedia('photos');
+      //  });
 
-        $reviewData = DB::table('reviews')
-            ->selectRaw(
-                '
-        AVG(rating) AS average_rating,
-        SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS one_star_count,
-        SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS two_star_count,
-        SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) AS three_star_count,
-        SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END) AS four_star_count,
-        SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END) AS five_star_count,
-        COUNT(*) AS total_reviews
-        '
-            )
-            ->where('product_id', $product->id)
-            ->first();
+        $reviewData = $product->getReviewStatsAttribute();
 
+        dd($reviewData);
         // Расчет процентов
         $totalReviews = max($reviewData->total_reviews, 1); // Избегаем деления на ноль
         $reviewRating = [
@@ -160,7 +148,8 @@ class ProductController extends Controller
             'compositionSet' => $compositionSet,
             'related' => $related,
             'images' => $images,
-            'allReviewImages' => $allReviewImages,
+            //'allReviewImages' => $allReviewImages,
+            'reviewData' => $reviewData,
             'reviewRating' => $reviewRating,
             'analogs' => $analogs,
             'files' => $files,

@@ -552,13 +552,30 @@ class Product extends Model implements HasMedia, Sitemapable
         return $files;
     }
 
+
+    //  ***Отзывы на товар***
     public function getAllReviewImages()
     {
-        $allReviewsRating= $this->reviews()->with('media')->get()->flatMap(function ($review) {
+        $allReviewsRating = $this->reviews()->with('media')->get()->flatMap(function ($review) {
             return $review->getMedia('photos');
         });
         return $allReviewsRating;
-        }
+    }
+
+    public function getReviewStatsAttribute()
+    {
+        return $this->reviews()
+            ->selectRaw('
+                AVG(rating) AS average_rating,
+                SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS one_star_count,
+                SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS two_star_count,
+                SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) AS three_star_count,
+                SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END) AS four_star_count,
+                SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END) AS five_star_count,
+                COUNT(*) AS total_reviews
+            ')
+            ->first();
+    }
 
     /*$reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
