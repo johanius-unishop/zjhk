@@ -566,7 +566,7 @@ class Product extends Model implements HasMedia, Sitemapable
     {
         return $this->reviews()
             ->selectRaw('
-                AVG(rating) AS average_rating,
+                ROUND(AVG(rating), 2) AS average_rating,
                 SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS one_star_count,
                 SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS two_star_count,
                 SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) AS three_star_count,

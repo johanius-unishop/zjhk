@@ -158,7 +158,7 @@
                             <li><img src="img/icons/star.svg" alt="оценка"></li>
                             <li><img src="img/icons/star.svg" alt="оценка"></li>
                         </ul>
-                        <p>4.95/5</p>
+                        <p>{{ $data['reviewData']['average_rating'] }}/5</p>
                     </div>
                     <div class="product-desc__progress">
                         <div class="product-desc__progress-item">
