@@ -106,7 +106,6 @@ class ProductController extends Controller
 
         $reviewData = $product->getReviewStatsAttribute();
 
-        dd($reviewData);
         // Расчет процентов
         $totalReviews = max($reviewData->total_reviews, 1); // Избегаем деления на ноль
         $reviewRating = [
