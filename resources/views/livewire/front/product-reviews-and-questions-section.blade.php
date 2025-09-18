@@ -207,12 +207,7 @@
                          z-index: 1;">
 
                                     <!-- Пустая звезда под маской -->
-                                    <img src="{{ asset('images/icons/star-empty.svg') }}" alt="контур звезды"
-                                        style="
-                         position: absolute;
-                         top: 0;
-                         left: 0;
-                         z-index: 0;">
+
                                 </li>
                             @endif
 
