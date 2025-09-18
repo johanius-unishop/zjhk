@@ -3903,7 +3903,6 @@ select {
   }
 }
 .product-desc__testimonials-rating ul li {
-    position: relative;
   line-height: 1;
   height: 100%;
 }
