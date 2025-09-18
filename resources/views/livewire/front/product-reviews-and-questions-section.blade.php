@@ -160,12 +160,17 @@
                                 @endif
 
                                 @if (trim($review_item->admin_reply))
-                                <div class="product-desc__answer">
-                                    <button wire:click="openReply(review_item->id)" class="product-desc__answer-btn"><span>Ответ представителя</span><img
-                                            @if ($openAnswerReviews[$review_item->id] === true) class="_active" @endif src="{{ asset('images/icons/arrow-down.svg') }}" alt="ответ представителя">
-                                    </button>
-                                    <p class="product-desc__answer-text @if ($openAnswerReviews[$review_item->id] === true) _active @endif">{{ $review_item->admin_reply }}</p>
-                                </div>
+                                    <div class="product-desc__answer">
+                                        <button wire:click="openReply({{ $review_item->id }})"
+                                            class="product-desc__answer-btn"><span>Ответ представителя</span>
+                                            <img src="{{ asset('images/icons/arrow-down.svg') }}"
+                                                @if ($openAnswerReviews[$review_item->id]) class="_active" @endif
+                                                alt="ответ представителя">
+                                        </button>
+                                        <p
+                                            class="product-desc__answer-text @if ($openAnswerReviews[$review_item->id] === true) _active @endif">
+                                            {{ $review_item->admin_reply }}</p>
+                                    </div>
                                 @endif
 
                             </div>

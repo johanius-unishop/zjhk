@@ -64,11 +64,7 @@ class ProductReviewsAndQuestionsSection extends Component
 
     public function openReply($reviewId)
     {
-        foreach ($this->openAnswerReviews as &$review) {
-            if ($review['id'] === $reviewId) {
-                $review['isOpen'] = !$review['isOpen']; // Переключаем состояние
-            }
-        }
+         $this->openAnswerReviews[$reviewId] = !$this->openAnswerReviews[$reviewId];
     }
 
     public function render()
