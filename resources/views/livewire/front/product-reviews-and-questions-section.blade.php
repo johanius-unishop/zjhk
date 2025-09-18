@@ -38,10 +38,14 @@
                         <div class="product-desc__item-sort-left">
                             <span>Показать сначала:</span>
                             <div class="product-desc__item-sort-target">
-                                <button data-sort wire:click="setSort('new')" @if ($reviewsSort === 'new') class="_target" @endif>Новые <img data-date @if ($reviewsSort === 'new') class="_target" @endif
+                                <button data-sort wire:click="setSort('new')"
+                                    @if ($reviewsSort === 'new') class="_target" @endif>Новые <img data-date
+                                        @if ($reviewsSort === 'new') class="_target" @endif
                                         src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать">
-                                <button data-sort wire:click="setSort('hiRating')" @if ($reviewsSort === 'hiRating') class="_target" @endif>С высокой оценкой <img data-rating @if ($reviewsSort === 'hiRating') class="_target" @endif
-                                        src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать"></button>
+                                    <button data-sort wire:click="setSort('hiRating')"
+                                        @if ($reviewsSort === 'hiRating') class="_target" @endif>С высокой оценкой <img
+                                            data-rating @if ($reviewsSort === 'hiRating') class="_target" @endif
+                                            src="{{ asset('images/icons/sorting_by.svg') }}" alt="сортировать"></button>
                             </div>
                         </div>
                         <div class="product-desc__item-sort-mobile">
@@ -67,7 +71,8 @@
                             </div>
                         </div>
                         <div class="product-desc__item-sort-right">
-                            <input type="checkbox" name="photo" id="photo" wire:model="withPhoto" wire:change="forceRefresh">
+                            <input type="checkbox" name="photo" id="photo" wire:model="withPhoto"
+                                wire:change="forceRefresh">
                             <span>C фотографиями</span>
                         </div>
                     </div>
@@ -98,8 +103,10 @@
                                     </div>
                                 </div>
                                 <div class="product-desc__benefit">
-                                    <p>Достоинства</p>
-                                    <p>{{ $review_item->advantages }}</p>
+                                    @if (trim($review_item->advantages))
+                                        <p>Достоинства</p>
+                                        <p>{{ $review_item->advantages }}</p>
+                                    @endif
                                 </div>
                                 <div class="product-desc__benefit">
                                     <p>Недостатки</p>
