@@ -3951,11 +3951,12 @@ select {
     vertical-align: middle;
 }
 
-.filled-star {
+.fill-star {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
+
     object-fit: contain;
 }
 
@@ -3964,7 +3965,7 @@ select {
     top: 0;
     left: 0;
     z-index: 0;
-    object-fit: contain;
+
 }
 
 .product-desc__slider {
