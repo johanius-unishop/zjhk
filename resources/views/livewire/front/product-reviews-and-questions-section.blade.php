@@ -197,11 +197,8 @@
                             <!-- Частично заполненная звезда -->
                             @if ($remainder > 0)
                                 <li class="partial-star">
-                                    <img src="{{ asset('images/icons/star.svg') }}"
-                                        alt="частично заполненная звезда оценки" class="fill-star"
-                                        style="width: {{ $remainder * 100 }}%;">
-                                    <img src="{{ asset('images/icons/star-empty.svg') }}" alt="контур звезды"
-                                        class="outline-star">
+                                    <img src="{{ asset('images/icons/star-empty.svg') }}" alt="контур звезды" class="outline-star">
+                                    <img src="{{ asset('images/icons/star.svg') }}" alt="заполненная звезда оценки" class="filled-star" style="transform: translateX(-{{ (1 - $remainder) * 100 }}%)">
                                 </li>
                             @endif
 
