@@ -5505,6 +5505,7 @@ select {
 }
 
 .product-desc__answer-btn {
+  margin-left: auto;
   display: flex;
   justify-content: flex-start;
   align-items: center;
