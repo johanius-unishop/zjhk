@@ -13,6 +13,7 @@ class ProductReviewsAndQuestionsSection extends Component
     public $type = 'reviews';
     public $reviewsSort = 'new';
     public $withPhoto = false;
+    public $openAnswerReviews = [];
 
 
     public function setType(string $newType)
@@ -56,6 +57,18 @@ class ProductReviewsAndQuestionsSection extends Component
     {
         $this->product = $product;
         $this->acceptsWebP = $acceptsWebP;
+        foreach ($this->product->reviews as $review) { // Используем нормальный цикл
+            $this->openAnswerReviews[$review->id] = false; // Присваиваем индексу review->id значение false
+        }
+    }
+
+    public function openReply($reviewId)
+    {
+        foreach ($this->openAnswerReviews as &$review) {
+            if ($review['id'] === $reviewId) {
+                $review['isOpen'] = !$review['isOpen']; // Переключаем состояние
+            }
+        }
     }
 
     public function render()
@@ -93,16 +106,6 @@ class ProductReviewsAndQuestionsSection extends Component
                 break;
         }
 
-        /* Основной запрос по товарам
-        $query = Product::select('*')
-            ->where('category_id', $this->category->id)
-            ->where('published', 1)
-            ->orderByRaw("CASE WHEN stock > 0 THEN 0 ELSE 1 END") // сначала положительные остатки
-            ->orderBy('order_column');
-
-        // Выполняем пагинацию и подтягиваем медиа-данные
-        $products = $query->with('media')->paginate($this->perPage)->withQueryString();
-        */
         return view('livewire.front.product-reviews-and-questions-section', compact('product', 'allReviewsImages', 'reviewData', 'starReviewCount', 'reviews'));
     }
 }
