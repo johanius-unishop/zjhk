@@ -197,8 +197,8 @@
                             <!-- Частично заполненная звезда -->
                             @if ($remainder > 0)
                                 <li>
-                                    <img src="{{ asset('images/icons/star.svg') }}" alt="заполненная звезда оценки" class="filled-star" style="clip-path: polygon(0 0, calc(100% - {{ (1 - $remainder) * 100 }}%) 0, calc(100% - {{ (1 - $remainder) * 100 }}%) 100%, 0 100%);)">
-                                    <img src="{{ asset('images/icons/star-empty.svg') }}" alt="контур звезды" class="outline-star">
+                                    <img src="{{ asset('images/icons/star.svg') }}" alt="заполненная звезда оценки"  style="clip-path: polygon(0 0, calc(100% - {{ (1 - $remainder) * 100 }}%) 0, calc(100% - {{ (1 - $remainder) * 100 }}%) 100%, 0 100%); z-index: 1;)">
+                                    <img src="{{ asset('images/icons/star-empty.svg') }}" alt="контур звезды" style="z-index: 0;)">
                                 </li>
                             @endif
 
