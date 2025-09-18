@@ -147,9 +147,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-desc__likes">
-                                    <a href="#">Ответить</a>
-                                </div>
+                                @if (auth()->check() && auth()->user()->isAdmin())
+                                    @if (empty($review_item->admin_reply))
+                                        <div class="product-desc__likes">
+                                            <a href="#">Ответить</a>
+                                        </div>
+                                    @else
+                                        <div class="product-desc__likes">
+                                            <a href="#">Редактировать ответ</a>
+                                        </div>
+                                    @endif
+                                @endif
                                 <div class="product-desc__answer">
                                     <button class="product-desc__answer-btn"><span>Ответ представителя</span><img
                                             src="{{ asset('images/icons/arrow-down.svg') }}" alt="ответ представителя">
