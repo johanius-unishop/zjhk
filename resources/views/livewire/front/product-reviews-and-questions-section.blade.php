@@ -205,7 +205,8 @@
                          z-index: 1;">
 
                                     <!-- Пустая звезда под маской -->
-
+                                    <img src="{{ asset('images/icons/star-empty.svg') }}" alt="пустая звезда оценки"
+                                    style="z-index: 0;">
                                 </li>
                             @endif
 
