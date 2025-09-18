@@ -102,18 +102,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-desc__benefit">
-                                    @if (trim($review_item->advantages))
+                                @if (trim($review_item->advantages))
+                                    <div class="product-desc__benefit">
                                         <p>Достоинства:</p>
                                         <p>{{ $review_item->advantages }}</p>
-                                    @endif
-                                </div>
-                                <div class="product-desc__benefit">
-                                    @if (trim($review_item->disadvantages))
+                                    </div>
+                                @endif
+                                @if (trim($review_item->disadvantages))
+                                    <div class="product-desc__benefit">
                                         <p>Недостатки:</p>
                                         <p>{{ $review_item->disadvantages }}</p>
-                                    @endif
-                                </div>
+                                    </div>
+                                @endif
                                 <div class="product-desc__benefit">
                                     @if (trim($review_item->review_text))
                                         <p>Текст отзыва:</p>
