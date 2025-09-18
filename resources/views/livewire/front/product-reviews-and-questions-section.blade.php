@@ -201,9 +201,7 @@
                                     <img src="{{ asset('images/icons/star.svg') }}" alt="заполненная звезда оценки"
                                         style="
                          clip-path: polygon(0 0, calc({{ (1 - $remainder) * 100 }}%) 0, calc({{ (1 - $remainder) * 100 }}%) 100%, 0 100%);
-                         position: absolute;
-                         top: 0;
-                         left: 0;
+
                          z-index: 1;">
 
                                     <!-- Пустая звезда под маской -->
