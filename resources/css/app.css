@@ -3905,7 +3905,6 @@ select {
 .product-desc__testimonials-rating ul li {
   line-height: 1;
   height: 100%;
-  position: relative;
 }
 .product-desc__testimonials-rating ul li > img {
   display: inline-block;
