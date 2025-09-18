@@ -182,11 +182,31 @@
                 <div class="product-desc__item-rating-container">
                     <div class="product-desc__testimonials-rating">
                         <ul>
-                            @for ($i = 1; $i <= $reviewData['averageReviewRating']; $i++)
+                            <?php
+                            $rating = $reviewData['averageReviewRating'];
+                            $integerRating = floor($rating); // целая часть рейтинга
+                            $remainder = $rating - $integerRating; // дробная часть (остаток)
+                            ?>
+
+                            <!-- Полные звезды -->
+                            @for ($i = 1; $i <= $integerRating; $i++)
                                 <li><img src="{{ asset('images/icons/star.svg') }}" alt="заполненная звезда оценки">
                                 </li>
                             @endfor
-                            @for ($j = $reviewData['averageReviewRating'] + 1; $j <= 5; $j++)
+
+                            <!-- Частично заполненная звезда -->
+                            @if ($remainder > 0)
+                                <li class="partial-star">
+                                    <img src="{{ asset('images/icons/star.svg') }}"
+                                        alt="частично заполненная звезда оценки" class="fill-star"
+                                        style="width: {{ $remainder * 100 }}%;">
+                                    <img src="{{ asset('images/icons/star-empty.svg') }}" alt="контур звезды"
+                                        class="outline-star">
+                                </li>
+                            @endif
+
+                            <!-- Пустые звезды -->
+                            @for ($k = $integerRating + ($remainder > 0 ? 1 : 0); $k < 5; $k++)
                                 <li><img src="{{ asset('images/icons/star-empty.svg') }}" alt="пустая звезда оценки">
                                 </li>
                             @endfor

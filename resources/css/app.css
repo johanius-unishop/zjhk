@@ -3944,6 +3944,31 @@ select {
   }
 }
 
+/* Новый класс для частичной звезды */
+.partial-star {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.fill-star {
+    /* Желтая внутренняя часть */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+    object-fit: contain;
+}
+
+.outline-star {
+    /* Белая рамка звезды */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
 .product-desc__slider {
   display: flex;
   flex-direction: row;
