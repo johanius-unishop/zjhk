@@ -5536,6 +5536,7 @@ select {
 }
 
 .product-desc__answer-text._active {
+  margin-left: auto;
   padding: 0.75rem 0;
   max-height: 18.75rem;
 }
