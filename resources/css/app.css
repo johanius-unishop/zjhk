@@ -5529,6 +5529,7 @@ select {
 }
 
 .product-desc__answer-text {
+  margin-left: auto;
   padding: 0;
   max-height: 0;
   overflow: hidden;
