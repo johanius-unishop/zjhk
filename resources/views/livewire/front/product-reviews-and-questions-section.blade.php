@@ -158,12 +158,15 @@
                                         </div>
                                     @endif
                                 @endif
+
+                                @if (trim($review_item->admin_reply))
                                 <div class="product-desc__answer">
                                     <button class="product-desc__answer-btn"><span>Ответ представителя</span><img
                                             src="{{ asset('images/icons/arrow-down.svg') }}" alt="ответ представителя">
                                     </button>
                                     <p class="product-desc__answer-text">{{ $review_item->admin_reply }}</p>
                                 </div>
+                                @endif
 
                             </div>
                         @endforeach
