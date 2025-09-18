@@ -3910,6 +3910,7 @@ select {
 .product-desc__testimonials-rating ul li > img {
   display: inline-block;
   height: 1.25rem;
+  vertical-align: middle;
 }
 @media (max-width: 35.99875em) {
   .product-desc__testimonials-rating ul li > img {
