@@ -3903,8 +3903,22 @@ select {
   }
 }
 .product-desc__testimonials-rating ul li {
+    position: relative;
   line-height: 1;
   height: 100%;
+}
+.product-desc__testimonials-rating ul li > img:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* задняя звезда */
+}
+
+.product-desc__testimonials-rating ul li > img:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* передняя звезда */
 }
 .product-desc__testimonials-rating ul li > img {
   display: inline-block;
