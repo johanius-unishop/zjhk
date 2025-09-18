@@ -3905,6 +3905,7 @@ select {
 .product-desc__testimonials-rating ul li {
   line-height: 1;
   height: 100%;
+  position: relative;
 }
 .product-desc__testimonials-rating ul li > img {
   display: inline-block;
@@ -3944,29 +3945,7 @@ select {
   }
 }
 
-/* Новый класс для частичной звезды */
-.partial-star {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-}
 
-.filled-star {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-
-    object-fit: contain;
-}
-
-.outline-star {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-
-}
 
 .product-desc__slider {
   display: flex;
