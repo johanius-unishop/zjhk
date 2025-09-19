@@ -17,7 +17,7 @@
 
             window.addEventListener('scroll', () => {
                 let currentScroll = scrollY;
-                if (currentScroll > windowHeight * 1.1) {
+                if (currentScroll > windowHeight * 1.01) {
                     scrollBtn?.classList.add('visible')
                 } else {
                     scrollBtn?.classList.remove('visible')
