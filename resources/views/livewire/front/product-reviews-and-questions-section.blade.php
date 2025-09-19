@@ -221,16 +221,10 @@
                             <!-- Частично заполненная звезда -->
                             @if ($remainder > 0)
                                 <li>
-                                    <!-- Полная звезда с маскировкой -->
-                                    <img src="{{ asset('images/icons/star.svg') }}" alt="заполненная звезда оценки"
-                                        style="
-                         clip-path: polygon(0 0, calc({{ (1 - $remainder) * 100 }}%) 0, calc({{ (1 - $remainder) * 100 }}%) 100%, 0 100%);
-
-                         z-index: 1;">
-
-                                    <!-- Пустая звезда под маской -->
-                                    <img src="{{ asset('images/icons/star-empty.svg') }}" alt="пустая звезда оценки"
-                                        style="z-index: 0;">
+                                    <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">
+                                        <use xlink:href="#star" mask=url("#half")></use>
+                                        <use xlink:href="#star" fill="none" stroke="grey"></use>
+                                    </svg>
                                 </li>
                             @endif
 
