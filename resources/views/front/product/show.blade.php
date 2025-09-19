@@ -65,7 +65,7 @@
                                 @endfor
                             </ul>
                             <div>
-                                <a href="#">
+                                <a href="#reviews-and-questions-section">
                                     @if ($data['product']->reviews)
                                         @if (count($data['product']->reviews))
                                             {{ count($data['product']->reviews) }}
@@ -75,7 +75,7 @@
                                         @endif
                                     @endif
                                 </a> |
-                                <a href="#">
+                                <a href="#reviews-and-questions-section">
                                     @if ($data['product']->questions)
                                         @if (count($data['product']->questions))
                                             {{ count($data['product']->questions) }}
