@@ -195,12 +195,12 @@
                                             <mask id="empty">
                                                 <rect x="0" y="0" width="32" height="32" fill="white" />
                                                 <rect x="0" y="0" width="32" height="32"
-                                                    fill="grey" />
+                                                    fill="black" />
                                             </mask>
                                             <mask id="half">
                                                 <rect x="0" y="0" width="32" height="32" fill="white" />
                                                 <rect x="{{ $remainder * 100 }}%" y="0" width="32" height="32"
-                                                    fill="grey" />
+                                                    fill="black" />
                                             </mask>
 
                                             <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
@@ -218,7 +218,7 @@
                                 <li>
                                     <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">
                                         <use xlink:href="#star"></use>
-                                        <use xlink:href="#star" fill="none" stroke="grey"></use>
+                                        <use xlink:href="#star" fill="none" stroke="#feb273"></use>
                                     </svg>
                                 </li>
                             @endfor
@@ -228,7 +228,7 @@
                                 <li>
                                     <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">
                                         <use xlink:href="#star" mask=url("#half")></use>
-                                        <use xlink:href="#star" fill="none" stroke="grey"></use>
+                                        <use xlink:href="#star" fill="none" stroke="#feb273"></use>
                                     </svg>
                                 </li>
                             @endif
@@ -238,7 +238,7 @@
                                 <li>
                                     <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">
                                         <use xlink:href="#star" mask=url("#empty")></use>
-                                        <use xlink:href="#star" fill="none" stroke="grey"></use>
+                                        <use xlink:href="#star" fill="none" stroke="#feb273"></use>
                                     </svg>
                                 </li>
                             @endfor
