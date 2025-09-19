@@ -182,14 +182,6 @@
                 <div class="product-desc__item-rating-container">
                     <div class="product-desc__testimonials-rating">
                         <ul>
-                            <?php
-                            $rating = $reviewData['averageReviewRating'];
-                            $integerRating = floor($rating); // Целая часть рейтинга
-                            $remainder = $rating - $integerRating; // Дробная часть (остаток)
-                            ?>
-
-
-                            <!-- Полные звезды -->
                             @for ($i = 1; $i <= $integerRating; $i++)
                                 <li>
                                     <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">
@@ -198,8 +190,6 @@
                                     </svg>
                                 </li>
                             @endfor
-
-                            <!-- Частично заполненная звезда -->
                             @if ($remainder > 0)
                                 <li>
                                     <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">
@@ -208,8 +198,6 @@
                                     </svg>
                                 </li>
                             @endif
-
-                            <!-- Пустые звезды -->
                             @for ($k = $integerRating + ($remainder > 0 ? 1 : 0); $k < 5; $k++)
                                 <li>
                                     <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">

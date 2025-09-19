@@ -5,11 +5,11 @@
 @section('content')
     <main>
         <?php
-            $reviewData = $data['product']->getReviewStatsAttribute();
-            $rating = $reviewData['averageReviewRating'];
-            $integerRating = floor($rating); // Целая часть рейтинга
-            $remainder = $rating - $integerRating; // Дробная часть (остаток)
-            ?>
+        $reviewData = $data['product']->getReviewStatsAttribute();
+        $rating = $reviewData['averageReviewRating'];
+        $integerRating = floor($rating); // Целая часть рейтинга
+        $remainder = $rating - $integerRating; // Дробная часть (остаток)
+        ?>
         <div>
             <div>
                 <svg style="width: 0; height: 0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
@@ -40,12 +40,28 @@
                         <h2>{{ $data['product']->productType->name }} {{ $data['product']->name }}</h2>
                         <div class="product-desc__testimonials-rating">
                             <ul>
-                                @for ($i = 1; $i <= $data['product']->getAverageReviewRating(); $i++)
-                                    <li><img src="{{ asset('images/icons/star.svg') }}" alt="заполненная звезда оценки">
+                                @for ($i = 1; $i <= $integerRating; $i++)
+                                    <li>
+                                        <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">
+                                            <use xlink:href="#star"></use>
+                                            <use xlink:href="#star" fill="none" stroke="#feb273"></use>
+                                        </svg>
                                     </li>
                                 @endfor
-                                @for ($j = $data['product']->getAverageReviewRating() + 1; $j <= 5; $j++)
-                                    <li><img src="{{ asset('images/icons/star-empty.svg') }}" alt="пустая звезда оценки">
+                                @if ($remainder > 0)
+                                    <li>
+                                        <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">
+                                            <use xlink:href="#star" mask=url("#half")></use>
+                                            <use xlink:href="#star" fill="none" stroke="#feb273"></use>
+                                        </svg>
+                                    </li>
+                                @endif
+                                @for ($k = $integerRating + ($remainder > 0 ? 1 : 0); $k < 5; $k++)
+                                    <li>
+                                        <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">
+                                            <use xlink:href="#star" mask=url("#empty")></use>
+                                            <use xlink:href="#star" fill="none" stroke="#feb273"></use>
+                                        </svg>
                                     </li>
                                 @endfor
                             </ul>
