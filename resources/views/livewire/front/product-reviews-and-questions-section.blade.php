@@ -108,21 +108,6 @@
                                                     </li>
                                                 @endfor
                                             </ul>
-
-                                            <ul>
-                                                @for ($i = 1; $i <= $review_item->rating; $i++)
-                                                    <li>
-                                                        <img src="{{ asset('images/icons/star.svg') }}"
-                                                            alt="полная оценка">
-                                                    </li>
-                                                @endfor
-                                                @for ($j = $review_item->rating + 1; $j <= 5; $j++)
-                                                    <li>
-                                                        <img src="{{ asset('images/icons/star-empty.svg') }}"
-                                                            alt="пустая оценка">
-                                                    </li>
-                                                @endfor
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>
