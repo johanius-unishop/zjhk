@@ -4912,15 +4912,6 @@ select {
   overflow: unset !important;
   overflow-x: hidden !important;
 }
-@media (max-width: 35.99875em) {
-  .swiper.opt-slider {
-    width: 130%;
-  }
-}
-
-.swiper.opt-slider {
-  padding-right: 0.75rem;
-}
 
 .swiper-button-prev.common-opt-button,
 .swiper-button-next.common-opt-button {
