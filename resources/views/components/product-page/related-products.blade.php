@@ -18,7 +18,7 @@
                                     <div class="swiper-slide product-page__item">
                                         <div data-layout class="product-page__item-wrapper card-layout">
                                             <div>
-                                                <a href="#" class="swiper-slide">
+                                                <a href="{{ $related_product_item->getLinkAttribute() }}" class="swiper-slide">
                                                     @if (
                                                         $data['acceptsWebP'] &&
                                                             $related_product_item->getFirstMedia('images') &&
@@ -46,7 +46,7 @@
                                             </div>
 
                                             <div data-layout class="product-page__title-container card-layout">
-                                                <a href="#">
+                                                <a href="{{ $related_product_item->getLinkAttribute() }}">
                                                     <h5>{{ $related_product_item->name }}</h5>
                                                     <p>{{ $related_product_item->article }}</p>
                                                 </a>
