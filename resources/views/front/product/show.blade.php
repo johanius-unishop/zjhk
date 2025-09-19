@@ -160,9 +160,9 @@
                 <div class="product-desc__props-nav">
                     <ul class="product-desc__props-nav-list">
                         <li data-nav="char"><a data-char href="#technical-props" class="_target">Характеристики</a></li>
-                        <li data-nav="products"><a data-product href="#">Сопутствующие товары</a></li>
-                        <li data-nav="analog"><a data-analog href="#">Аналоги</a></li>
-                        <li data-nav="review"><a data-testimonial href="#">Отзывы</a></li>
+                        <li data-nav="products"><a data-product href="#related-products">Сопутствующие товары</a></li>
+                        <li data-nav="analog"><a data-analog href="#analogs-section">Аналоги</a></li>
+                        <li data-nav="review"><a data-testimonial href="#reviews-and-questions-section">Отзывы</a></li>
                     </ul>
                 </div>
                 <p class="product-desc__props-mobile">Характеристики:</p>
