@@ -192,6 +192,11 @@
                                     <svg style="width: 0; height: 0;" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 32 32">
                                         <defs>
+                                            <mask id="empty">
+                                                <rect x="0" y="0" width="32" height="32" fill="white" />
+                                                <rect x="0" y="0" width="32" height="32"
+                                                    fill="grey" />
+                                            </mask>
                                             <mask id="half">
                                                 <rect x="0" y="0" width="32" height="32" fill="white" />
                                                 <rect x="{{ $remainder * 100 }}%" y="0" width="32" height="32"
@@ -230,7 +235,11 @@
 
                             <!-- Пустые звезды -->
                             @for ($k = $integerRating + ($remainder > 0 ? 1 : 0); $k < 5; $k++)
-                                <li><img src="{{ asset('images/icons/star-empty.svg') }}" alt="пустая звезда оценки">
+                                <li>
+                                    <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">
+                                        <use xlink:href="#star" mask=url("#empty")></use>
+                                        <use xlink:href="#star" fill="none" stroke="grey"></use>
+                                    </svg>
                                 </li>
                             @endfor
                         </ul>
