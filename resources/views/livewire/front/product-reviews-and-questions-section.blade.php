@@ -88,6 +88,30 @@
                                             <ul>
                                                 @for ($i = 1; $i <= $review_item->rating; $i++)
                                                     <li>
+                                                        <svg class="c-star active" width="32" height="32"
+                                                            viewBox="0 0 32 32">
+                                                            <use xlink:href="#star"></use>
+                                                            <use xlink:href="#star" fill="none" stroke="#feb273">
+                                                            </use>
+                                                        </svg>
+                                                    </li>
+                                                @endfor
+
+                                                @for ($k = $review_item->rating; $k < 5; $k++)
+                                                    <li>
+                                                        <svg class="c-star active" width="32" height="32"
+                                                            viewBox="0 0 32 32">
+                                                            <use xlink:href="#star" mask=url("#empty")></use>
+                                                            <use xlink:href="#star" fill="none" stroke="#feb273">
+                                                            </use>
+                                                        </svg>
+                                                    </li>
+                                                @endfor
+                                            </ul>
+
+                                            <ul>
+                                                @for ($i = 1; $i <= $review_item->rating; $i++)
+                                                    <li>
                                                         <img src="{{ asset('images/icons/star.svg') }}"
                                                             alt="полная оценка">
                                                     </li>
