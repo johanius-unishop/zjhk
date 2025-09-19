@@ -75,6 +75,7 @@
             });
         });
 
+
         document.addEventListener('livewire:init', () => {
             Livewire.on('updateLayout', (eventData) => {
                 const layoutElArr = document.querySelectorAll('[data-layout]');

@@ -597,24 +597,24 @@ class Product extends Model implements HasMedia, Sitemapable
 
     public function getNewReviews()
     // Массив отзывов отсортированных по новизне
-        {
-            return $this->reviews()
+    {
+        return $this->reviews()
             ->orderBy('created_at', 'desc')
             ->with('media')
             ->with('user')
             ->get();
-        }
+    }
 
-        public function getBestRatedReviews()
-            // Массив отзывов отсортированных по рейтингу, затем по дате публикации
-            {
-            return $this->reviews()
+    public function getBestRatedReviews()
+    // Массив отзывов отсортированных по рейтингу, затем по дате публикации
+    {
+        return $this->reviews()
             ->orderBy('rating', 'desc')   // Первичная сортировка по рейтингу
             ->orderBy('created_at', 'desc') // Вторичная сортировка по датам публикаций
             ->with('media')
             ->with('user')
             ->get();
-            }
+    }
 
     /*$reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),

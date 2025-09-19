@@ -14,6 +14,9 @@ class ProductReviewsAndQuestionsSection extends Component
     public $reviewsSort = 'new';
     public $withPhoto = false;
     public $openAnswerReviews = [];
+    public $rating;
+    public $integerRating; // Целая часть рейтинга
+    public $remainder;
 
 
     public function setType(string $newType)
@@ -60,6 +63,9 @@ class ProductReviewsAndQuestionsSection extends Component
         foreach ($this->product->reviews as $review) { // Используем нормальный цикл
             $this->openAnswerReviews[$review->id] = false; // Присваиваем индексу review->id значение false
         }
+        $this->rating = $this->product->getAverageReviewRating();
+        $this->integerRating = floor($this->rating); // Целая часть рейтинга
+        $this->remainder = $this->rating - $this->integerRating; // Дробная часть (остаток)
     }
 
     public function openReply($reviewId)

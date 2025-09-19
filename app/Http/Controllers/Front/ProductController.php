@@ -99,27 +99,12 @@ class ProductController extends Controller
                 }
             }
         }
-        // Получаем все изображения, объединяя через flatMap
-       // $allReviewImages = $product->reviews()->with('media')->get()->flatMap(function ($review) {
-       //     return $review->getMedia('photos');
-      //  });
 
 
 
-        // Массив отзывов отсортированных по новизне
-        $newReviews = $product->reviews()
-            ->orderBy('created_at', 'desc')
-            ->with('media')
-            ->with('user')
-            ->get();
 
-        // Массив отзывов отсортированных по рейтингу, затем по дате публикации
-        $bestRatedReviews = $product->reviews()
-            ->orderBy('rating', 'desc')   // Первичная сортировка по рейтингу
-            ->orderBy('created_at', 'desc') // Вторичная сортировка по датам публикаций
-            ->with('media')
-            ->with('user')
-            ->get();
+
+
 
         $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
         $data = [
