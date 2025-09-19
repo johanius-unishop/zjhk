@@ -107,7 +107,7 @@
                                             </div>
                                             @include('components.product-page.short-description')
                                             <div class="product-desc__prop-link">
-                                                <a href="#">Все характеристики</a>
+                                                <a href="#technical-props">Все характеристики</a>
                                                 <img src="{{ asset('images/icons/arrow-right.svg') }}"
                                                     alt="все характеристики">
                                             </div>
@@ -159,7 +159,7 @@
             <div class="product-desc__container container">
                 <div class="product-desc__props-nav">
                     <ul class="product-desc__props-nav-list">
-                        <li data-nav="char"><a data-char href="#" class="_target">Характеристики</a></li>
+                        <li data-nav="char"><a data-char href="#technical-props" class="_target">Характеристики</a></li>
                         <li data-nav="products"><a data-product href="#">Сопутствующие товары</a></li>
                         <li data-nav="analog"><a data-analog href="#">Аналоги</a></li>
                         <li data-nav="review"><a data-testimonial href="#">Отзывы</a></li>
@@ -170,7 +170,7 @@
                     <img src="/images/content/presentation.jpg" alt="представление товара">
                 </div>
                 @include('components.product-page.description')
-                <div class="product-desc__props-wrapper">
+                <div class="product-desc__props-wrapper" id="technical-props">
                     @include('components.product-page.technical-specifications')
 
                     <div class="product-desc__props-options">
