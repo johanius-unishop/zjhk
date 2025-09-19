@@ -5,7 +5,7 @@
 @section('content')
     <main>
         <?php
-            $reviewData = $data['$product']->getReviewStatsAttribute();
+            $reviewData = $data['product']->getReviewStatsAttribute();
             $rating = $reviewData['averageReviewRating'];
             $integerRating = floor($rating); // Целая часть рейтинга
             $remainder = $rating - $integerRating; // Дробная часть (остаток)
