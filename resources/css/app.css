@@ -3907,16 +3907,35 @@ select {
   height: 100%;
 }
 
+.c-star {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  vertical-align: middle;
+  fill: lightgrey;
+
+  &.active {
+    fill: #fed94b;
+  }
+}
+
 .product-desc__testimonials-rating ul li > img {
   display: inline-block;
   height: 1.25rem;
   vertical-align: middle;
 }
 @media (max-width: 35.99875em) {
-  .product-desc__testimonials-rating ul li > img {
-    height: 1rem;
-    vertical-align: middle;
+  .c-star {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  fill: lightgrey;
+
+  &.active {
+    fill: #fed94b;
   }
+}
 }
 .product-desc__testimonials-rating p {
   font-weight: 700;
