@@ -1,4 +1,4 @@
-<div class="product-desc__connection">
+<div class="product-desc__connection" id="reviews-and-questions-section">
     <div class="product-desc__connection-select">
         <!-- Отзывы -->
         <button wire:click="setType('reviews')" @if ($type === 'reviews') class="_active" @endif>

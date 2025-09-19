@@ -1,4 +1,4 @@
-<section class="product-desc__analog">
+<section class="product-desc__analog" id="analogs-section">
     <div class="product-desc__container container">
         <div class="product-desc__analog-wrapper">
             <h2 class="product-desc__analog-title">Аналоги</h2>

@@ -3,7 +3,7 @@
 @endphp
 
 @if (!empty($data['related']))
-    <section class="product-desc__products">
+    <section class="product-desc__products" id="related-products">
         <div class="products-desc__container container">
             <h2 class="product-desc__products-title">
                 Сопутствующие товары
