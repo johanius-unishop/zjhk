@@ -80,6 +80,10 @@ class ProductReviewsAndQuestionsSection extends Component
         $reviewData = $product->getReviewStatsAttribute();
         $starReviewCount = $product->getStarReviewsCount();
 
+        $this->rating = $this->product->getAverageReviewRating();
+        $this->integerRating = floor($this->rating); // Целая часть рейтинга
+        $this->remainder = $this->rating - $this->integerRating; // Дробная часть (остаток)
+
         $reviews = null;
         // Получаем коллекцию отзывов исходя из выбранного режима сортировки
         switch ($this->reviewsSort) {
