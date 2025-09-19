@@ -10,6 +10,30 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const scrollBtn = document.querySelector('#scroll-btn')
+            const windowHeight = document.documentElement.clientHeight;
+
+            window.addEventListener('scroll', () => {
+                let currentScroll = scrollY;
+                if (currentScroll > windowHeight * 1.1) {
+                    scrollBtn?.classList.add('visible')
+                } else {
+                    scrollBtn?.classList.remove('visible')
+                }
+            })
+
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "smooth"
+                })
+            })
+            console.log('Scrollbar has been connected...')
+        })
+    </script>
 </head>
 
 <body class="body">
@@ -24,8 +48,8 @@
             <use href="{{ asset('images/icons/scroll-up.svg') }}"></use>
         </svg>
     </div>
-        @include('partials.login')
-        @yield('scripts')
+    @include('partials.login')
+    @yield('scripts')
 </body>
 
 </html>
