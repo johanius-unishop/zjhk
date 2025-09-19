@@ -12,7 +12,7 @@
                 @foreach ($data['related'] as $related_item)
                     <div class="opt__body">
                         <h4>{{ $related_item['type']->name }}</h4>
-                        <div class="swiper opt-slider{{ $sliderCounter }}">
+                        <div class="swiper opt-slider{{ $sliderCounter }} opt-slider">
                             <div class="swiper-wrapper opt-swiper-wrapper">
                                 @foreach ($related_item['relatedProducts'] as $related_product_item)
                                     <div class="swiper-slide product-page__item">

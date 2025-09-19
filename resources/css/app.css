@@ -4922,20 +4922,6 @@ select {
   padding-right: 0.75rem;
 }
 
-.swiper.opt-slider2 {
-  overflow: unset !important;
-  overflow-x: hidden !important;
-}
-@media (max-width: 35.99875em) {
-  .swiper.opt-slider2 {
-    width: 130%;
-  }
-}
-
-.swiper.opt-slider2 {
-  padding-right: 0.75rem;
-}
-
 .swiper-button-prev.common-opt-button,
 .swiper-button-next.common-opt-button {
   width: 2.875rem !important;
