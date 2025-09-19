@@ -4,6 +4,12 @@
 
 @section('content')
     <main>
+        <?php
+            $reviewData = $data['$product']->getReviewStatsAttribute();
+            $rating = $reviewData['averageReviewRating'];
+            $integerRating = floor($rating); // Целая часть рейтинга
+            $remainder = $rating - $integerRating; // Дробная часть (остаток)
+            ?>
         <div>
             <div>
                 <svg style="width: 0; height: 0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
