@@ -11,20 +11,20 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Получаем настройки компании
-        $company = $this->getCompanySettings();
+        // Получаем настройки главной страницы
+        $mainPageSettings = $this->getSettings();
 
-        dd($company);
+        dd($mainPageSettings);
         // Возвращаем представление с данными
-        return view('home', compact('company'));
+        return view('home', compact('mainPageSettings '));
     }
 
-    private function getCompanySettings()
+    private function getSettings()
     {
         // Получаем все записи из таблицы settings, где group = "company"
-        $companySettings = Setting::where('group', 'company')->pluck('value', 'key');
+        $settings = Setting::where('group', 'mainPage')->pluck('value', 'key');
 
         // Преобразуем результат в массив
-        return $companySettings->toArray();
+        return $settings->toArray();
     }
 }
