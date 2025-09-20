@@ -17,13 +17,6 @@
 
 @section('css')
 
-<link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.css') }}">
-
-
-<link rel="stylesheet" href="{{ asset('vendor/bootstrap4-toggle/bootstrap4-toggle.min.css') }}">
-{{-- просмотр фото --}}
-<link href="{{ asset('vendor/venobox/venobox.min.css') }}" rel="stylesheet">
-{{-- просмотр фото --}}
 @stop
 
 @yield('scripts')
