@@ -22,6 +22,8 @@
 @yield('scripts')
 <script src="{{ asset('js/home/newsSlider.js') }}"></script>
 <script src="{{ asset('js/home/articlesSlider.js') }}"></script>
+<script src="{{ asset('js/home/documentsSlider.js') }}"></script>
+<script src="{{ asset('js/home/brandsSlider.js') }}"></script>
 
 @section('js')
 
