@@ -11,9 +11,9 @@ use App\Http\Controllers\Front\QuestionController;
 use App\Http\Controllers\Front\ReviewsController;
 use App\Http\Controllers\Front\FileController;
 use App\Http\Controllers\Front\{HomeController, PageController, CategoryController, ProductController ,CartController, FaqController ,SearchController , VendorController};
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+//Route::get('/', function () { return view('home'); })->name('home');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
