@@ -14,6 +14,7 @@ class HomeController extends Controller
         // Получаем настройки компании
         $company = $this->getCompanySettings();
 
+        dd($company);
         // Возвращаем представление с данными
         return view('home', compact('company'));
     }
