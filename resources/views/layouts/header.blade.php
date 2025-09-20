@@ -7,6 +7,3 @@
     @include('components.header.header-mobile-bottom')
 </div>
 
-@push('scripts')
-    <script src="{{ asset('js/header.js') }}"></script>
-@endpush

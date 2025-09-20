@@ -27,6 +27,8 @@
     </div>
     @include('partials.login')
     @yield('scripts')
+    <script src="{{ asset('js/scroll.js') }}"></script>
+    <script src="{{ asset('js/header.js') }}"></script>
 </body>
 
 </html>
