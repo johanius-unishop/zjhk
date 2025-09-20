@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nextEl: ".swiper-button-next.news",
             prevEl: ".swiper-button-prev.news",
         },
-        loop: true,
+        loop: false,
         breakpoints: {
             360: {
                 slidesPerView: 2,
