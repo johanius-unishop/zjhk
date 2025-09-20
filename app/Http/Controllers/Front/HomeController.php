@@ -14,9 +14,8 @@ class HomeController extends Controller
         // Получаем настройки главной страницы
         $mainPageSettings = $this->getSettings();
 
-        dd($mainPageSettings);
         // Возвращаем представление с данными
-        return view('home', compact('mainPageSettings '));
+        return view('home', compact('mainPageSettings'));
     }
 
     private function getSettings()

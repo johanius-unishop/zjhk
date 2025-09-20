@@ -3,16 +3,32 @@
 @section('title', 'Главная страница')
 
 @section('content')
-<main>
-   @include('components.main-page.banner')
-   @include('components.main-page.benefits')
-   @include('components.main-page.popular')
-   @include('components.main-page.about')
-   @include('components.main-page.news')
-   @include('components.main-page.articles')
-   @include('components.main-page.documents')
-   @include('components.main-page.brands')
-</main>
+    <main>
+        @if ($mainPageSettings['displayBannerSection'])
+            { @include('components.main-page.banner') }
+        @endif
+        @if ($mainPageSettings['displayBenefitsSection'])
+            { @include('components.main-page.benefits') }
+        @endif
+        @if ($mainPageSettings['displayPopularSection'])
+            @include('components.main-page.popular')
+        @endif
+        @if ($mainPageSettings['displayAboutSection'])
+            @include('components.main-page.about')
+        @endif
+        @if ($mainPageSettings['displayNewsSection'])
+            @include('components.main-page.news')
+        @endif
+        @if ($mainPageSettings['displayArticlesSection'])
+            @include('components.main-page.articles')
+        @endif
+        @if ($mainPageSettings['displayDocsSection'])
+            @include('components.main-page.documents')
+        @endif
+        @if ($mainPageSettings['displayBrandsSection'])
+            @include('components.main-page.brands')
+        @endif
+    </main>
 @endsection
 
 @section('css')
@@ -29,14 +45,14 @@
 @section('js')
 
 
-@if($errors->has('email') || $errors->has('password'))
-<script>
-   $(function() {
-      $('#loginModal').modal({
-         show: true
-      });
-   });
-</script>
-@endif
+    @if ($errors->has('email') || $errors->has('password'))
+        <script>
+            $(function() {
+                $('#loginModal').modal({
+                    show: true
+                });
+            });
+        </script>
+    @endif
 
 @stop
