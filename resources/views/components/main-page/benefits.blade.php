@@ -27,7 +27,7 @@
                            <h3 class="benefits__title">Доставка</h3>
                         </div>
                         <p class="benefits__text">
-                           Самовывоз, СДЭК - отправка в любой регион России и страны ЕАС</p>
+                           Самовывоз, CDEK - отправка в любой регион России и страны ЕАС</p>
                      </div>
                      <div class="benefits__item">
                         <div class="benefits__title-container">

@@ -20,6 +20,7 @@
 @stop
 
 @yield('scripts')
+<script src="{{ asset('js/newsSlider.js') }}"></script>
 
 @section('js')
 
