@@ -3,7 +3,7 @@ import {
     removeClass,
     toggleClass,
     isTargetElement,
-} from "./js/functions.js";
+} from "./functions.js";
 
 const headerBottom = document.querySelector(".header__bottom");
 const catalogueBtn = document.querySelector(".header__catalogue-btn");
