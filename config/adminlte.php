@@ -449,7 +449,7 @@ return [
             'url' => 'log-viewer',
             'icon' => 'fas fa-fw fa-bug ',
             'target' => '_blank',
-            'can' => 'manage users',
+
         ],
         // ['header' => 'labels'],
         // [
