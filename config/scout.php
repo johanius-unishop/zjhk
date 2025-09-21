@@ -141,12 +141,19 @@ return [
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
             'products' => [
-                'filterableAttributes' => ['article', 'name'],
-                'typoTolerance' => ['enabled' => false],
+                'filterableAttributes' => ['article', 'name'], // Фильтрация по двум ключевым полям
+                'typoTolerance' => ['enabled' => false],        // Полностью отключаем опечатки
+                'rankingRules' => [
+                    'words',                 // Основополагающее правило: точное совпадение слов
+                    'exactness',             // Гарантия абсолютной точности
+                ],
+                'searchableAttributes' => ['name'], // Единственное поле для поиска
+                'minWordSizeForTypos' => [
+                    'oneTypo' => 10,        // Длинные слова могут допускать небольшие отклонения
+                    'twoTypos' => 20,       // Ещё большая длина для двух опечаток
+                ],
             ],
-
         ],
-
     ],
 
     /*
