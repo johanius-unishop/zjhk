@@ -9,10 +9,12 @@ use App\Models\Product;
 
 class SearchResult extends Component
 {
+
+    public $search;
     public function render()
     {
+        $searchResults = null;
 
-
-        return view('livewire.front.search-result');
+        return view('livewire.front.search-result', compact($searchResults));
     }
 }
