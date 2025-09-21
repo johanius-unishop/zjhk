@@ -13,7 +13,7 @@ class SearchResult extends Component
 
     public function render()
     {
-        if (strlen(trim(str_replace([' ', '-'], '',$this->search))) > 2) {
+        if (strlen(trim(str_replace([' ', '-', '(', ')'], '',$this->search))) > 2) {
             $this->visible = true;
             $scoutBuilder = Product::search(trim(str_replace([' ', '-'], '',$this->search)));
             $this->searchResults = $scoutBuilder->get();
