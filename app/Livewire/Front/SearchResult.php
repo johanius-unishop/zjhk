@@ -7,15 +7,24 @@ use App\Models\Product;
 
 class SearchResult extends Component
 {
-    public $search = '';   // Поле ввода поиска
-    public $searchResults; // Результаты поиска
-    public $visible = false; // Видимость результатов
+    /** @var string Поле ввода поиска */
+    public $search = '';
+
+    /** @var Collection|null Результаты поиска */
+    public $searchResults;
+
+    /** @var bool Видимость результатов */
+    public $visible = false;
 
     public function render()
     {
-        if (strlen(trim(str_replace([' ', '-', '(', ')'], '',$this->search))) > 2) {
+        // Подготовим строку поиска, удалив ненужные символы
+        $cleanedSearch = trim(str_replace([' ', '-', '(', ')'], '', $this->search));
+
+        // Проверяем длину очищенной строки
+        if (mb_strlen($cleanedSearch) >= 3) {
             $this->visible = true;
-            $scoutBuilder = Product::search(trim(str_replace([' ', '-'], '',$this->search)));
+            $scoutBuilder = Product::search($cleanedSearch);
             $this->searchResults = $scoutBuilder->get();
         } else {
             $this->visible = false;
