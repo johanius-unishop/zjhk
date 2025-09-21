@@ -141,10 +141,14 @@ return [
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
             'products' => [
-                'typoTolerance' => ['enabled' => false],        // Полностью отключаем опечатки
+                'searchableAttributes' => ['name', 'article', 'fullInfo', 'analogies'], // Список полей для поиска
+                'typoTolerance' => ['enabled' => false],                                  // Полностью отключаем опечатки
                 'rankingRules' => [
-                    'words',                 // Основополагающее правило: точное совпадение слов
-                    'exactness',             // Гарантия абсолютной точности
+                    'words',                 // Первое правило: точное совпадение слов
+                    'proximity',             // Второе правило: близость слов
+                    'attribute',             // Третье правило: важность атрибута
+                    'sort',                  // Четвертое правило: сортировка
+                    'exactness',             // Пятое правило: точность
                 ],
             ],
         ],

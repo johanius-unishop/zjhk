@@ -618,34 +618,41 @@ class Product extends Model implements HasMedia, Sitemapable
 
     public function toSearchableArray(): array
     {
-        // Собираем основную информацию о товаре
+        // Функцию очистки выносим в отдельное замыкание
+        $cleanString = fn($string) => trim(str_replace([' ', '-'], '', $string));
+
+        // Базовая информация о продукте
         $array = $this->only(['id', 'name', 'article']);
 
         // Чистим поля name и article
-        $array['name'] = trim(str_replace([' ', '-'], '', $array['name']));
-        $array['article'] = trim(str_replace([' ', '-'], '', $array['article']));
+        $array['name'] = $cleanString($array['name']);
+        $array['article'] = $cleanString($array['article']);
 
-        // Добавляем новое значение fullInfo, состоящее из объединения name и article
+        // Формируем объединённое поле fullInfo
         $array['fullInfo'] = $array['name'] . '(' . $array['article'] . ')';
-
-        // Массив готов
-        var_dump($array);
 
         // Массив для хранения аналогов
         $analogies = [];
 
-        // Цикл для сбора аналогов
+        // Сбор аналогов
         foreach ($this->analogs()->with('vendor')->get() as $analog) {
-            // Если есть имя или артикул и производитель опубликован
-            if (($analog->name || $analog->article) && $analog->vendor->published) {
-                // Формируем строку "название (артикул)"
-                $analogies[$analog->vendor->name] = $analog->name
-                    ? ($analog->article ? "$analog->name ($analog->article)" : trim(str_replace([' ', '-'], '', $analog->name)))
-                    : trim(str_replace([' ', '-'], '', $analog->article));
+            // Проверяем, есть ли хотя бы один обязательный атрибут
+            if ($analog->vendor->published && ($analog->name || $analog->article)) {
+                // Объединяем доступные данные аналога
+                $value = '';
+                if ($analog->name) {
+                    $value .= $cleanString($analog->name);
+                }
+                if ($analog->article) {
+                    $value .= ($value !== '') ? ' (' . $cleanString($analog->article) . ')' : $cleanString($analog->article);
+                }
+
+                // Сохраняем аналог в виде пары ключ-значение
+                $analogies[$analog->vendor->name] = $value;
             }
         }
 
-        // Добавляем собранные аналоги в индексируемый массив
+        // Добавляем аналогичные товары в массив
         $array['analogies'] = $analogies;
 
         return $array;
