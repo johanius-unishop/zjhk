@@ -4,7 +4,7 @@
     <button class="header__search-submit">
         <img src={{ asset('images/icons/zoom-glass.svg') }} alt="поиск">
     </button>
-    <div id="search__result" class="header__result" style="display: none">
+    <div id="search__result" class="header__result" {{ $visible ? '' : 'style="display: none"' }}>
         @if (!$searchResults->isEmpty())
             <ul class="header__result-wrapper">
                 @foreach ($searchResults as $searchResultsItem)
