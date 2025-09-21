@@ -619,7 +619,7 @@ class Product extends Model implements HasMedia, Sitemapable
     public function toSearchableArray(): array
     {
         // Функцию очистки выносим в отдельное замыкание
-        $cleanString = fn($string) => trim(str_replace([' ', '-'], '', $string));
+        $cleanString = fn($string) => trim(str_replace([' ', '-', '(', ')'], '', $string));
 
         // Базовая информация о продукте
         $array = $this->only(['id', 'name', 'article']);
@@ -629,7 +629,7 @@ class Product extends Model implements HasMedia, Sitemapable
         $array['article'] = $cleanString($array['article']);
 
         // Формируем объединённое поле fullInfo
-        $array['fullInfo'] = $array['name'] . '(' . $array['article'] . ')';
+        $array['fullInfo'] = $array['name'] . $array['article'];
 
         // Массив для хранения аналогов
         $analogies = [];
@@ -644,7 +644,7 @@ class Product extends Model implements HasMedia, Sitemapable
                     $value .= $cleanString($analog->name);
                 }
                 if ($analog->article) {
-                    $value .= ($value !== '') ? ' (' . $cleanString($analog->article) . ')' : $cleanString($analog->article);
+                    $value .= $cleanString($analog->article);
                 }
 
                 // Сохраняем аналог в виде пары ключ-значение
