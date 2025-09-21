@@ -13,13 +13,13 @@ class SearchResult extends Component
 
     public function render()
     {
-        // Проверяем длину очищенного поискового запроса
         if (strlen(trim($this->search)) > 2) {
             $this->visible = true;
-            $this->searchResults = Product::search($this->search)->get();
+            $scoutBuilder = Product::search($this->search);
+            $this->searchResults = $scoutBuilder->get();
         } else {
             $this->visible = false;
-            $this->searchResults = null;
+            $this->searchResults = collect([]);
         }
 
         return view('livewire.front.search-result');
