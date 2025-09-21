@@ -20,7 +20,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Carbon\Carbon;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
-use Maize\Searchable\HasSearch;
+use Laravel\Scout\Searchable;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 
 class Product extends Model implements HasMedia, Sitemapable
@@ -28,7 +28,7 @@ class Product extends Model implements HasMedia, Sitemapable
 
     use HasFactory;
 
-    use HasSearch;
+    use Searchable;
     use InteractsWithMedia;
     use HasSEO;
     use HasSlug;
