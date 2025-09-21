@@ -15,9 +15,11 @@ class SearchResult extends Component
     {
         if (strlen(trim($this->search)) > 2) {
             $this->visible = true;
-            $scoutBuilder = Product::search($this->search, ['rankingScoreThreshold' => 1.0]);
+            $scoutBuilder = Product::search($this->search, [
+                'matchingStrategy' => 'all', // Обязательное точное совпадение всех слов
+                'attributesToHighlight' => [] // Ничего не выделяем
+            ]);
             $this->searchResults = $scoutBuilder->get();
-
         } else {
             $this->visible = false;
             $this->searchResults = collect([]);
