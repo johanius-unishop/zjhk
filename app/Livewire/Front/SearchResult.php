@@ -2,19 +2,24 @@
 
 namespace App\Livewire\Front;
 
-use Livewire\WithPagination;
+
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
-use App\Models\Product;
+use App\Models\Product as ModelsProduct;
 
 class SearchResult extends Component
 {
+    public $search = '';
+    public $searchResults;
 
-    public $search;
     public function render()
     {
-        $searchResults = null;
+        if (empty($this->search)) {
+            $this->searchResults = ModelsProduct::get();
+        } else {
+            $this->searchResults = ModelsProduct::search($this->search)->get();
+        }
 
-        return view('livewire.front.search-result', compact('searchResults'));
+        return view('livewire.front.search-result');
     }
 }
