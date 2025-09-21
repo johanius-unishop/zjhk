@@ -1,5 +1,5 @@
 <div class="header__search-field">
-    <input wire:model="search" type="search" name="search" id="search" placeholder="Поиск по каталогу" autocomplete="off"
+    <input wire:model.debounce.300ms="search" type="search" name="search" id="search" placeholder="Поиск по каталогу" autocomplete="off"
         class="header__search-input">
     <button class="header__search-submit">
         <img src={{ asset('images/icons/zoom-glass.svg') }} alt="поиск">
