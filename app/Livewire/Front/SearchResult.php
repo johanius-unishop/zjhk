@@ -7,7 +7,7 @@ use App\Models\Product;
 
 class SearchResult extends Component
 {
-    public $search = 'HA-004-M';   // Поле ввода поиска
+    public $search = '';   // Поле ввода поиска
     public $searchResults; // Результаты поиска
     public $visible = false; // Видимость результатов
 

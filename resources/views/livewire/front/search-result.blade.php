@@ -46,7 +46,7 @@
                     </li>
                 @endforeach
             </ul>
-            <a class="header__result-btn" href="#">Посмотреть все товары <span>(115)</span></a>
+            <a class="header__result-btn" href="#">Посмотреть все товары <span>({{count($searchResults)}})</span></a>
         @endif
     </div>
 </div>
