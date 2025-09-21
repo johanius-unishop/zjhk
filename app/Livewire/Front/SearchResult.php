@@ -17,6 +17,7 @@ class SearchResult extends Component
             $this->visible = true;
             $scoutBuilder = Product::search($this->search);
             $this->searchResults = $scoutBuilder->get();
+            dd($this->searchResults);
         } else {
             $this->visible = false;
             $this->searchResults = collect([]);
