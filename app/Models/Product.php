@@ -616,6 +616,16 @@ class Product extends Model implements HasMedia, Sitemapable
             ->get();
     }
 
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'article' => $this->article
+        ];
+    }
+
+
     /*$reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
             'roundedAverageRating' => round($product->reviews()->avg('rating'), 0),
