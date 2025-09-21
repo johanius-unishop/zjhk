@@ -15,7 +15,7 @@ class SearchResult extends Component
     {
         if (strlen(trim($this->search)) > 2) {
             $this->visible = true;
-            $scoutBuilder = Product::search($this->search);
+            $scoutBuilder = Product::search($this->search, ['rankingScoreThreshold' => 1.0]);
             $this->searchResults = $scoutBuilder->get();
 
         } else {
