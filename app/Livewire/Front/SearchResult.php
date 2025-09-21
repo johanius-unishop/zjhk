@@ -15,6 +15,6 @@ class SearchResult extends Component
     {
         $searchResults = null;
 
-        return view('livewire.front.search-result', compact($searchResults));
+        return view('livewire.front.search-result', compact('searchResults'));
     }
 }
