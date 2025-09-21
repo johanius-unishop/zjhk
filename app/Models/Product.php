@@ -637,7 +637,7 @@ class Product extends Model implements HasMedia, Sitemapable
         // Сбор аналогов
         foreach ($this->analogs()->with('vendor')->get() as $analog) {
             // Проверяем, есть ли хотя бы один обязательный атрибут
-            if ($analog->vendor->published && ($analog->name || $analog->article)) {
+            if ($analog->name || $analog->article) {
                 // Объединяем доступные данные аналога
                 $value = '';
                 if ($analog->name) {
