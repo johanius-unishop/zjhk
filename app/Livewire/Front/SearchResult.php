@@ -19,7 +19,7 @@ class SearchResult extends Component
             $this->searchResults = Product::search($this->search)->get();
         } else {
             $this->visible = false;
-            $this->searchResults = [];
+            $this->searchResults = null;
         }
 
         return view('livewire.front.search-result');
