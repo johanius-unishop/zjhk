@@ -7,7 +7,7 @@ use App\Models\Product;
 
 class SearchResult extends Component
 {
-    public $search = '';   // Поле ввода поиска
+    public $search = 'HA-004-M';   // Поле ввода поиска
     public $searchResults; // Результаты поиска
     public $visible = false; // Видимость результатов
 
@@ -17,6 +17,7 @@ class SearchResult extends Component
         if (strlen(trim($this->search)) > 2) {
             $this->visible = true;
             $this->searchResults = Product::search($this->search)->get();
+            dd($this->searchResults);
         } else {
             $this->visible = false;
             $this->searchResults = null;
