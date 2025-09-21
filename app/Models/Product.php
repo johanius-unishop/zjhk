@@ -621,6 +621,16 @@ class Product extends Model implements HasMedia, Sitemapable
         // Собираем основную информацию о товаре
         $array = $this->only(['id', 'name', 'article']);
 
+        // Чистим поля name и article
+        $array['name'] = trim(str_replace([' ', '-'], '', $array['name']));
+        $array['article'] = trim(str_replace([' ', '-'], '', $array['article']));
+
+        // Добавляем новое значение fullInfo, состоящее из объединения name и article
+        $array['fullInfo'] = $array['name'] . '(' . $array['article'] . ')';
+
+        // Массив готов
+        var_dump($array);
+
         // Массив для хранения аналогов
         $analogies = [];
 
@@ -630,8 +640,8 @@ class Product extends Model implements HasMedia, Sitemapable
             if (($analog->name || $analog->article) && $analog->vendor->published) {
                 // Формируем строку "название (артикул)"
                 $analogies[$analog->vendor->name] = $analog->name
-                    ? ($analog->article ? "$analog->name ($analog->article)" : $analog->name)
-                    : $analog->article;
+                    ? ($analog->article ? "$analog->name ($analog->article)" : trim(str_replace([' ', '-'], '', $analog->name)))
+                    : trim(str_replace([' ', '-'], '', $analog->article));
             }
         }
 
