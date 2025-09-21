@@ -5,17 +5,16 @@
         <img src={{ asset('images/icons/zoom-glass.svg') }} alt="поиск">
     </button>
     <div id="search__result" class="header__result" @if(!$visible) style="display: none" @endif>
-        @dd({{count($searchResults)}})
         @if (!is_null($searchResults) && !$searchResults->isEmpty())
             <ul class="header__result-wrapper">
-                @foreach ($searchResults as $searchResultsItem)
+                @foreach ($searchResults as $item)
                     <li>
                         <a href="#">
                             <p><img src={{ asset('images/products/example.png') }} alt="пример товара">
-                                <span>HA-003-F</span>
-                                <span>09200032711</span>
+                                <span>{{ $item->name }}</span>
+                                <span>{{ $item->article }}</span>
                             </p>
-                            <span>380 ₽</span>
+                            <span>{{ $item->getUserPrice() }}</span>
                         </a>
                         <div class="product__example">
                             <div class="product__example-wrapper">
