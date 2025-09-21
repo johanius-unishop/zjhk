@@ -142,6 +142,7 @@ return [
         'index-settings' => [
             'products' => [
                 'filterableAttributes' => ['article', 'name'],
+                'typoTolerance' => ['enabled' => false],
             ],
 
         ],
