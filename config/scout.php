@@ -141,7 +141,6 @@ return [
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
             'products' => [
-                'filterableAttributes' => ['article', 'name'], // Фильтрация по двум ключевым полям
                 'typoTolerance' => ['enabled' => false],        // Полностью отключаем опечатки
                 'rankingRules' => [
                     'words',                 // Основополагающее правило: точное совпадение слов
