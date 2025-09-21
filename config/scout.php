@@ -140,9 +140,26 @@ return [
         'host' => env('MEILISEARCH_HOST', 'http://localhost:7700'),
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
-             'products' => [
-                 'filterableAttributes'=> ['article', 'name'],
+            'products' => [
+                'filterableAttributes' => ['article', 'name'],
             ],
+
+        ],
+        'settings' => [
+            'typotolerance' => [
+                'enabled' => false, // Полностью запрещаем учёт опечаток
+            ],
+            'rankingrules' => [
+                'words',                   // Совпадение слов важнее всего
+                'proximity',               // Следующая по важности — близость слов
+                'attribute',               // Значимость атрибута
+                'sort',                    // Возможность сортировки
+                'exactness',               // Полное соответствие
+            ],
+            'distinctattribute' => null,  // Нет уникальных ключей
+            'filters' => [],              // Никаких фильтров
+            'facetssorting' => [],        // Никакой сортировки по фасетам
+            'synonyms' => [],             // Нет синонимов
         ],
     ],
 
