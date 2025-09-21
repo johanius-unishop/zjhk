@@ -5,6 +5,7 @@
         <img src={{ asset('images/icons/zoom-glass.svg') }} alt="поиск">
     </button>
     <div id="search__result" class="header__result" @if(!$visible) style="display: none" @endif>
+        @dd({{count($searchResults)}});
         @if (!is_null($searchResults) && !$searchResults->isEmpty())
             <ul class="header__result-wrapper">
                 @foreach ($searchResults as $searchResultsItem)
