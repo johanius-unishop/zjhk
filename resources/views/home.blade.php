@@ -5,10 +5,10 @@
 @section('content')
     <main>
         @if ($mainPageSettings['displayBannerSection'])
-            { @include('components.main-page.banner') }
+            @include('components.main-page.banner')
         @endif
         @if ($mainPageSettings['displayBenefitsSection'])
-            { @include('components.main-page.benefits') }
+            @include('components.main-page.benefits')
         @endif
         @if ($mainPageSettings['displayPopularSection'])
             @include('components.main-page.popular')
@@ -36,6 +36,7 @@
 @stop
 
 @yield('scripts')
+@livewireScriptConfig
 <script src="{{ asset('js/home/bannersSlider.js') }}"></script>
 <script src="{{ asset('js/home/newsSlider.js') }}"></script>
 <script src="{{ asset('js/home/articlesSlider.js') }}"></script>
