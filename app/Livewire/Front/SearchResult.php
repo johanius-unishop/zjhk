@@ -17,7 +17,6 @@ class SearchResult extends Component
         if (strlen(trim($this->search)) > 2) {
             $this->visible = true;
             $this->searchResults = Product::search($this->search)->get();
-            dd($this->searchResults);
         } else {
             $this->visible = false;
             $this->searchResults = null;
