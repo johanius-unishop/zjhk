@@ -618,11 +618,27 @@ class Product extends Model implements HasMedia, Sitemapable
 
     public function toSearchableArray(): array
     {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'article' => $this->article
-        ];
+        // Собираем основную информацию о товаре
+        $array = $this->only(['id', 'name', 'article']);
+
+        // Массив для хранения аналогов
+        $analogies = [];
+
+        // Цикл для сбора аналогов
+        foreach ($this->analogs()->with('vendor')->get() as $analog) {
+            // Если есть имя или артикул и производитель опубликован
+            if (($analog->name || $analog->article) && $analog->vendor->published) {
+                // Формируем строку "название (артикул)"
+                $analogies[$analog->vendor->name] = $analog->name
+                    ? ($analog->article ? "$analog->name ($analog->article)" : $analog->name)
+                    : $analog->article;
+            }
+        }
+
+        // Добавляем собранные аналоги в индексируемый массив
+        $array['analogies'] = $analogies;
+
+        return $array;
     }
 
 
