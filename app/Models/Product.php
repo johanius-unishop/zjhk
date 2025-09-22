@@ -37,7 +37,7 @@ class Product extends Model implements HasMedia, Sitemapable
     protected $guarded = ['id'];
 
 
-    protected static function boot()
+   /* protected static function boot()
     {
         parent::boot();
 
@@ -57,9 +57,7 @@ class Product extends Model implements HasMedia, Sitemapable
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug')
-            ->doNotGenerateSlugsOnUpdate()
-            ->preventOverwrite();
+            ->saveSlugsTo('slug');
     }
 
 
