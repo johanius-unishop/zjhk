@@ -1125,7 +1125,7 @@ blockquote {
 }
 
 .header__result-wrapper li > div > div > div > img {
-    max-height: 250px;
+    max-height: 180px;
     width: auto;
 }
 

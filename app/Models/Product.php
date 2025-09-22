@@ -22,6 +22,7 @@ use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 use Laravel\Scout\Searchable;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
+use Illuminate\Support\Facades\Log;
 
 class Product extends Model implements HasMedia, Sitemapable
 {
@@ -33,12 +34,8 @@ class Product extends Model implements HasMedia, Sitemapable
     use HasSEO;
     use HasSlug;
     protected $table = 'products';
+    protected $guarded = ['id'];
 
-    protected $fillable = [
-        'name',
-        'article',
-        'slug'
-    ];
 
     protected static function boot()
     {
@@ -50,6 +47,7 @@ class Product extends Model implements HasMedia, Sitemapable
                     $model->$field = trim($model->$field);
                 }
             }
+            Log::info('Model saving', ['model' => $model->toArray()]);
         });
     }
     /**
