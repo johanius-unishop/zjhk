@@ -35,7 +35,7 @@
                         <div class="product__example">
                             <div class="product__example-wrapper">
                                 <div>
-                                    <a href="{{ $item->frontUrl() }}">
+                                    <a href="{{ $item->getLinkAttribute() }}">
                                         @if (
                                             $acceptsWebP &&
                                                 $item->getMedia('images')->first() &&
@@ -60,7 +60,7 @@
                                     </button>
                                 </div>
                                 <div class="product__title-container">
-                                    <a href="{{ $item->frontUrl() }}">
+                                    <a href="{{ $item->getLinkAttribute() }}">
                                         <h5>{{ $item->name }}</h5>
                                         <p>{{ $item->article }}</p>
                                     </a>
