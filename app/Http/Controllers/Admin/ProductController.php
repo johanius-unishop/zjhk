@@ -110,7 +110,7 @@ class ProductController extends Controller
         if ($request->action == 'save-exit') {
             return redirect(route('admin.product.index'));
         }
-        return redirect(route('admin.product.edit', $record->id));
+        return redirect(route('admin.product.edit', $record->slug));
 
     }
 
@@ -120,7 +120,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        if (!Auth::check() || !Auth::user()->isAdmin())
+        if (!Gate::allows('admin-content'))
         {
             return abort(401);
         }
@@ -172,7 +172,7 @@ class ProductController extends Controller
         if ($request->action == 'save-exit') {
             return redirect(route('admin.product.index'));
         }
-        return redirect(route('admin.product.edit', $product->id));
+        return redirect(route('admin.product.edit', $product->slug));
     }
 
     //
