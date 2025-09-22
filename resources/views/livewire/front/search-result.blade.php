@@ -14,14 +14,14 @@
                                 @if (
                                     $acceptsWebP &&
                                         $item->getMedia('images')->first() &&
-                                        $$item->getMedia('images')->first()->hasGeneratedConversion('webp-thumb'))
-                                    <img src="{{ $item->getMedia('images')->first()->getUrl('webp-thumb') }}"
+                                        $$item->getMedia('images')->first()->hasGeneratedConversion('search-webp-thumb'))
+                                    <img src="{{ $item->getMedia('images')->first()->getUrl('search-webp-thumb') }}"
                                         alt="{{ $item->getAltAttribute() }}" loading="lazy">
                                 @elseif (
                                     !$acceptsWebP &&
                                         $item->getMedia('images')->first() &&
-                                        $item->getMedia('images')->first()->hasGeneratedConversion('thumb'))
-                                    <img src="{{ $item->getMedia('images')->first()->getUrl('thumb') }}"
+                                        $item->getMedia('images')->first()->hasGeneratedConversion('search-thumb'))
+                                    <img src="{{ $item->getMedia('images')->first()->getUrl('search-thumb') }}"
                                         alt="{{ $item->getAltAttribute() }}" loading="lazy">
                                 @else
                                     <img src="{{ $item->getMedia('images')->first() ? $item->getMedia('images')->first()->getUrl() : asset('/images/default_image.jpg') }}"
