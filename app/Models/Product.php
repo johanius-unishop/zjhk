@@ -36,6 +36,19 @@ class Product extends Model implements HasMedia, Sitemapable
     protected $table = 'products';
     protected $guarded = ['id'];
 
+    use HasSlug;
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug')
+            ->doNotGenerateSlugsOnUpdate();
+    }
+
 
    /* protected static function boot()
     {
@@ -53,13 +66,6 @@ class Product extends Model implements HasMedia, Sitemapable
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug1');
-    }
-
 
 
     // public function getRouteKeyName()
