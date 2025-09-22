@@ -33,7 +33,12 @@ class Product extends Model implements HasMedia, Sitemapable
     use HasSEO;
     use HasSlug;
     protected $table = 'products';
-    protected $guarded = ['id'];
+
+    protected $fillable = [
+        'name',
+        'article',
+        'slug'
+    ];
 
     protected static function boot()
     {
