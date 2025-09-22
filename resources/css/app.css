@@ -1119,7 +1119,7 @@ blockquote {
   transition: all 0.2s ease-out;
   position: relative;
 }
-.header__result-wrapper li > a {
+.header__result-wrapper li {
     width: 3.5rem;
     height: auto;
     padding-left: 0.5rem;
