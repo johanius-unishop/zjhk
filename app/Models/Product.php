@@ -24,7 +24,7 @@ use Laravel\Scout\Searchable;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Support\Facades\Log;
 
-class Product extends Model implements HasMedia, Sitemapable
+class Product extends Model implements HasMedia, Sitemapable, HasSlug
 {
 
     use HasFactory;

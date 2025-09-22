@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\{PriceSegment, Product, ProductClass, ProductStyle, Filter};
+use App\Models\{PriceSegment, Product, ProductClass, ProductStyle, Filter, User};
 
 use App\Http\Requests\Admin\StoreProductRequest;
 use App\Http\Requests\Admin\UpdateProductRequest;
@@ -17,6 +17,7 @@ use App\Models\Order;
 use App\Models\OrderComposition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -119,7 +120,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        if (!Gate::allows('admin-content')) {
+        if (!Auth::check() || !Auth::user()->isAdmin())
+        {
             return abort(401);
         }
         // !!!Fix to seeded records
