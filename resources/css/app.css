@@ -446,6 +446,8 @@ blockquote {
     border: 1px solid rgb(213, 215, 218);
     transition: transform 0.2s ease-out;
   }
+
+
   .product__example-wrapper {
     padding: 1.5rem;
     display: inline-flex;
@@ -1117,6 +1119,11 @@ blockquote {
   transition: all 0.2s ease-out;
   position: relative;
 }
+.header__result-wrapper img {
+    width: 30px;
+    height: auto;
+}
+
 @media (any-hover: hover) {
   .header__result-wrapper li:hover > .product__example {
     opacity: 1;
