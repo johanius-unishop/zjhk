@@ -35,22 +35,24 @@
                         <div class="product__example">
                             <div class="product__example-wrapper">
                                 <div>
-                                    @if (
-                                        $acceptsWebP &&
-                                            $item->getMedia('images')->first() &&
-                                            $$item->getMedia('images')->first()->hasGeneratedConversion('small-webp'))
-                                        <img src="{{ $item->getMedia('images')->first()->getUrl('small-webp') }}"
-                                            alt="{{ $item->getAltAttribute() }}" loading="lazy">
-                                    @elseif (
-                                        !$acceptsWebP &&
-                                            $item->getMedia('images')->first() &&
-                                            $item->getMedia('images')->first()->hasGeneratedConversion('small'))
-                                        <img src="{{ $item->getMedia('images')->first()->getUrl('small') }}"
-                                            alt="{{ $item->getAltAttribute() }}" loading="lazy">
-                                    @else
-                                        <img src="{{ $item->getMedia('images')->first() ? $item->getMedia('images')->first()->getUrl() : asset('/images/default_image.jpg') }}"
-                                            alt="{{ $item->getAltAttribute() }}" loading="lazy">
-                                    @endif
+                                    <a href="{{ item->frontUrl() }}">
+                                        @if (
+                                            $acceptsWebP &&
+                                                $item->getMedia('images')->first() &&
+                                                $$item->getMedia('images')->first()->hasGeneratedConversion('small-webp'))
+                                            <img src="{{ $item->getMedia('images')->first()->getUrl('small-webp') }}"
+                                                alt="{{ $item->getAltAttribute() }}" loading="lazy">
+                                        @elseif (
+                                            !$acceptsWebP &&
+                                                $item->getMedia('images')->first() &&
+                                                $item->getMedia('images')->first()->hasGeneratedConversion('small'))
+                                            <img src="{{ $item->getMedia('images')->first()->getUrl('small') }}"
+                                                alt="{{ $item->getAltAttribute() }}" loading="lazy">
+                                        @else
+                                            <img src="{{ $item->getMedia('images')->first() ? $item->getMedia('images')->first()->getUrl() : asset('/images/default_image.jpg') }}"
+                                                alt="{{ $item->getAltAttribute() }}" loading="lazy">
+                                        @endif
+                                    </a>
                                     <button>
                                         <img src={{ asset('images/icons/label-gray.svg') }} alt="избранное">
                                         <img src={{ asset('images/icons/bookmark.svg') }} style="display: none"
@@ -58,17 +60,17 @@
                                     </button>
                                 </div>
                                 <div class="product__title-container">
-                                    <h5>HA-004-F</h5>
-                                    <p>09200042711</p>
+                                    <a href="{{ item->frontUrl() }}">
+                                        <h5>{{ $item->name }}</h5>
+                                        <p>{{ $item->article }}</p>
+                                    </a>
                                 </div>
                                 <div class="product__info-container">
-                                    <p>380 ₽</p>
-                                    <p>В наличии 192 шт.</p>
+                                    <p>{{ $item->getUserPrice() }}</p>
+                                    <p>{{ $item->getUserStock() }}</p>
                                 </div>
                                 <p>
-                                    Контактная вставка – розетка (“мама”), типоразмер 3A, винтовое соединение,
-                                    3+PE
-                                    (10A/400V)
+                                    {{ $item->short_description }}
                                 </p>
                                 <button class="product-page__add-cart">В корзину</button>
 
