@@ -35,7 +35,22 @@
                         <div class="product__example">
                             <div class="product__example-wrapper">
                                 <div>
-                                    <img src={{ asset('images/products/item_photo.png') }} alt="товар">
+                                    @if (
+                                        $acceptsWebP &&
+                                            $item->getMedia('images')->first() &&
+                                            $$item->getMedia('images')->first()->hasGeneratedConversion('small-webp'))
+                                        <img src="{{ $item->getMedia('images')->first()->getUrl('small-webp') }}"
+                                            alt="{{ $item->getAltAttribute() }}" loading="lazy">
+                                    @elseif (
+                                        !$acceptsWebP &&
+                                            $item->getMedia('images')->first() &&
+                                            $item->getMedia('images')->first()->hasGeneratedConversion('small'))
+                                        <img src="{{ $item->getMedia('images')->first()->getUrl('small') }}"
+                                            alt="{{ $item->getAltAttribute() }}" loading="lazy">
+                                    @else
+                                        <img src="{{ $item->getMedia('images')->first() ? $item->getMedia('images')->first()->getUrl() : asset('/images/default_image.jpg') }}"
+                                            alt="{{ $item->getAltAttribute() }}" loading="lazy">
+                                    @endif
                                     <button>
                                         <img src={{ asset('images/icons/label-gray.svg') }} alt="избранное">
                                         <img src={{ asset('images/icons/bookmark.svg') }} style="display: none"

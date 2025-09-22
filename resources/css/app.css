@@ -1124,6 +1124,11 @@ blockquote {
     height: auto;
 }
 
+.header__result-wrapper li > div > div > div > img {
+    max-height: 250px;
+    width: auto;
+}
+
 @media (any-hover: hover) {
   .header__result-wrapper li:hover > .product__example {
     opacity: 1;
