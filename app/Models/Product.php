@@ -23,6 +23,7 @@ use Spatie\Sitemap\Tags\Url;
 use Laravel\Scout\Searchable;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class Product extends Model implements HasMedia, Sitemapable
 {
@@ -41,7 +42,7 @@ class Product extends Model implements HasMedia, Sitemapable
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')
@@ -50,7 +51,7 @@ class Product extends Model implements HasMedia, Sitemapable
     }
 
 
-   /* protected static function boot()
+    protected static function boot()
     {
         parent::boot();
 
@@ -58,6 +59,9 @@ class Product extends Model implements HasMedia, Sitemapable
             foreach ($model->getFillable() as $field) {
                 if (is_string($model->$field)) {
                     $model->$field = trim($model->$field);
+                }
+                if (!$model->slug) {
+                    $model->slug = Str::slug($model->name); // Генератор slug по вашему выбору
                 }
             }
             Log::info('Model saving', ['model' => $model->toArray()]);
@@ -81,7 +85,7 @@ class Product extends Model implements HasMedia, Sitemapable
      */
     public function getRouteKeyName()
     {
-       return 'slug';
+        return 'slug';
     }
 
 

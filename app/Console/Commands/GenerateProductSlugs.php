@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Product;
+use Illuminate\Support\Str;
 
 class GenerateProductSlugs extends Command
 {
@@ -15,6 +16,7 @@ class GenerateProductSlugs extends Command
         $productsWithoutSlug = Product::whereNull('slug')->get();
 
         foreach ($productsWithoutSlug as $product) {
+            //$product->slug = Str::slug($product->name);
             $product->save(); // При сохранении модели slug будет сгенерирован автоматически
         }
 
