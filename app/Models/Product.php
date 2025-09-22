@@ -169,12 +169,12 @@ class Product extends Model implements HasMedia, Sitemapable
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('search-thumb')
-            ->fit(FIT::Fill, 24, 24)   // Сохраняем пропорцию, максимум ширина или высота 300px
+            ->fit(FIT::Fill, 56, 56)   // Сохраняем пропорцию, максимум ширина или высота 300px
             ->format('jpg')                              // Устанавливаем формат сохранения изображения
             ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
             ->nonQueued();
         $this->addMediaConversion('search-webp-thumb')
-            ->fit(FIT::Fill, 24, 24)   // Сохраняем пропорцию, максимум ширина или высота 300px
+            ->fit(FIT::Fill, 56, 56)   // Сохраняем пропорцию, максимум ширина или высота 300px
             ->format('webp')                              // Устанавливаем формат сохранения изображения
             ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
             ->nonQueued();
