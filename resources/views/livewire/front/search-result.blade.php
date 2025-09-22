@@ -1,16 +1,32 @@
 <div class="header__search-field">
-    <input wire:model.live="search" type="search" name="search" id="search" placeholder="Поиск по каталогу" autocomplete="off"
-        class="header__search-input">
+    <input wire:model.live="search" type="search" name="search" id="search" placeholder="Поиск по каталогу"
+        autocomplete="off" class="header__search-input">
     <button class="header__search-submit">
         <img src={{ asset('images/icons/zoom-glass.svg') }} alt="поиск">
     </button>
-    <div id="search__result" class="header__result" @if(!$visible) style="display: none" @endif>
+    <div id="search__result" class="header__result" @if (!$visible) style="display: none" @endif>
         @if (!is_null($searchResults) && !$searchResults->isEmpty())
             <ul class="header__result-wrapper">
                 @foreach ($searchResults as $item)
                     <li>
                         <a href="#">
-                            <p><img src={{ asset('images/products/example.png') }} alt="пример товара">
+                            <p>
+                                @if (
+                                    $acceptsWebP &&
+                                        $item->getMedia('images')->first() &&
+                                        $$item->getMedia('images')->first()->hasGeneratedConversion('webp-thumb'))
+                                    <img src="{{ $item->getMedia('images')->first()->getUrl('webp-thumb') }}"
+                                        alt="{{ $item->getAltAttribute() }}" loading="lazy">
+                                @elseif (
+                                    !$acceptsWebP &&
+                                        $item->getMedia('images')->first() &&
+                                        $item->getMedia('images')->first()->hasGeneratedConversion('thumb'))
+                                    <img src="{{ $item->getMedia('images')->first()->getUrl('thumb') }}"
+                                        alt="{{ $item->getAltAttribute() }}" loading="lazy">
+                                @else
+                                    <img src="{{ $item->getMedia('images')->first() ? $item->getMedia('images')->first()->getUrl() : asset('/images/default_image.jpg') }}"
+                                        alt="{{ $item->getAltAttribute() }}" loading="lazy">
+                                @endif
                                 <span>{{ $item->name }}</span>
                                 <span>{{ $item->article }}</span>
                             </p>
@@ -46,7 +62,8 @@
                     </li>
                 @endforeach
             </ul>
-            <a class="header__result-btn" href="#">Посмотреть все товары <span>({{count($searchResults)}})</span></a>
+            <a class="header__result-btn" href="#">Посмотреть все товары
+                <span>({{ count($searchResults) }})</span></a>
         @endif
     </div>
 </div>

@@ -155,12 +155,6 @@ class Product extends Model implements HasMedia, Sitemapable
             ->format('jpg')                              // Устанавливаем формат сохранения изображения
             ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
             ->nonQueued();
-        // $this
-        //     ->addMediaConversion('responsive')
-        //     ->format('webp')
-        //     ->quality(80)
-        //     ->withResponsiveImages()
-        //     ->nonQueued();
         $this->addMediaConversion('webp-thumb')
             ->fit(FIT::Fill, 300, 300)   // Сохраняем пропорцию, максимум ширина или высота 300px
             ->format('webp')                              // Устанавливаем формат сохранения изображения
@@ -618,6 +612,11 @@ class Product extends Model implements HasMedia, Sitemapable
 
     public function toSearchableArray(): array
     {
+        // Если товар не опубликован, возвращаем пустой массив
+        if (!$this->published) {
+            return [];
+        }
+
         // Функцию очистки выносим в отдельное замыкание
         $cleanString = fn($string) => trim(str_replace([' ', '-', '(', ')'], '', $string));
 

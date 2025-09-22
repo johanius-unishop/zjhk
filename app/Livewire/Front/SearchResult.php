@@ -16,11 +16,14 @@ class SearchResult extends Component
     /** @var bool Видимость результатов */
     public $visible = false;
 
+    public $acceptsWebP = false;
+
     public function render()
     {
         // Подготовим строку поиска, удалив ненужные символы
         $cleanedSearch = trim(str_replace([' ', '-', '(', ')'], '', $this->search));
 
+        $this->acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
         // Проверяем длину очищенной строки
         if (mb_strlen($cleanedSearch) >= 3) {
             $this->visible = true;
