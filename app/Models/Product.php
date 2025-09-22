@@ -57,7 +57,9 @@ class Product extends Model implements HasMedia, Sitemapable
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
+            ->saveSlugsTo('slug')
+            ->doNotGenerateSlugsOnUpdate()
+            ->preventOverwrite();
     }
 
 
@@ -72,10 +74,10 @@ class Product extends Model implements HasMedia, Sitemapable
      *
      * @return string
      */
-    // public function getRouteKeyName()
-    // {
-    //     return 'slug';
-    // }
+    public function getRouteKeyName()
+    {
+       return 'slug';
+    }
 
 
 
