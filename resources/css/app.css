@@ -1124,7 +1124,7 @@ blockquote {
     height: auto;
 }
 
-.header__result-wrapper li > div > div > div > img {
+.header__result-wrapper li > div > div > div > a > img {
     max-height: 180px;
     width: auto;
 }
