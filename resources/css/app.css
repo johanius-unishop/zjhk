@@ -1119,13 +1119,17 @@ blockquote {
   transition: all 0.2s ease-out;
   position: relative;
 }
-.header__result-wrapper li > a > p > img {
+.header__result-wrapper li > a {
     width: 3.5rem;
     height: auto;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+}
+.header__result-wrapper li > a > p > img {
+    width: 3.5rem;
+    height: auto;
 }
 
 .header__result-wrapper li > div > div > div > a > img {
