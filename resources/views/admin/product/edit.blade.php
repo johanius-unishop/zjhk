@@ -34,7 +34,7 @@
             <div class="card-body">
                 <div class="tab-content" id="custom-tabs-four-tabContent">
                     <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-                        <form action="{{ route('admin.product.update', $product->id) }}" method="POST">
+                        <form action="{{ route('admin.product.update', $product->slug) }}" method="POST">
                         @csrf
                         @method('PATCH')
                         <input type="hidden" name="id" value="{{ $product->id }}">
