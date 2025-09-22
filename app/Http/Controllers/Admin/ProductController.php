@@ -118,8 +118,9 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit($slug)
     {
+        $product = Product::where('slug', $slug)->firstOrFail();
         if (!Gate::allows('admin-content'))
         {
             return abort(401);
