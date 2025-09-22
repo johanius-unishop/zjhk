@@ -56,14 +56,18 @@ class Product extends Model implements HasMedia, Sitemapable
         parent::boot();
 
         static::saving(function ($model) {
+            // Очистка полей (обрезка пробелов)
             foreach ($model->getFillable() as $field) {
                 if (is_string($model->$field)) {
                     $model->$field = trim($model->$field);
                 }
-                if (!$model->slug) {
-                    $model->slug = Str::slug($model->name); // Генератор slug по вашему выбору
-                }
             }
+
+            // Отдельная проверка и генерация slug
+            if (!$model->slug && isset($model->name)) {
+                $model->slug = Str::slug($model->name); // Генератор slug по вашему выбору
+            }
+
             Log::info('Model saving', ['model' => $model->toArray()]);
         });
     }
