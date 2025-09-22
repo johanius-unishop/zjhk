@@ -498,7 +498,7 @@ blockquote {
   }
   .product__title-container > a > p {
     color: rgb(196, 50, 10);
-    font-weight: 300;
+    font-weight: 100;
   }
   .product__info-container p:first-child {
     font-size: 1.5rem;
