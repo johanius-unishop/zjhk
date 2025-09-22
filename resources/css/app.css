@@ -498,7 +498,7 @@ blockquote {
   }
   .product__title-container > a > p {
     color: rgb(196, 50, 10);
-    font-weight: 100;
+    font-weight: 300;
   }
   .product__info-container p:first-child {
     font-size: 1.5rem;
@@ -1095,9 +1095,9 @@ blockquote {
   flex-direction: column;
   gap: 0.25rem;
 }
-.product__title-container > p {
+.product__title-container > a > p {
   color: rgb(196, 50, 10);
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .product__info-container p:first-child {
