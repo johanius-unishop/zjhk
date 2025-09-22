@@ -1056,7 +1056,7 @@ blockquote {
 }
 .product__example-wrapper div:first-child {
   object-fit: contain;
-  height: 11.25rem;
+  height: 15.625rem;
   position: relative;
 }
 .product__example-wrapper div:first-child button {
