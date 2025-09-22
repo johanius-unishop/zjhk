@@ -7,7 +7,7 @@
     <div id="search__result" class="header__result" @if (!$visible) style="display: none" @endif>
         @if (!is_null($searchResults) && !$searchResults->isEmpty())
             <ul class="header__result-wrapper">
-                @foreach ($searchResults as $item)
+                @foreach ($searchResults->take(8) as $item)
                     <li>
                         <a href="#">
                             <p>

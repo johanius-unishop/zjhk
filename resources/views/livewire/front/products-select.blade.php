@@ -54,7 +54,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
 
         <div id="layout" data-layout
             class="product-page__grid {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }} hide-subsequent-rows">
-            @foreach ($products as $product_item)
+            @foreach ($products->take as $product_item)
                 <div class="product-page__item">
                     <div data-layout
                         class="product-page__item-wrapper {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
