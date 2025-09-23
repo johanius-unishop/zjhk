@@ -18,8 +18,6 @@ window.Autoplay = Autoplay
 
 
 
-
-
 import './front/functions'
 
 
