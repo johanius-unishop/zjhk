@@ -1035,7 +1035,7 @@ blockquote {
   min-width: 100%;
   width: max-content;
 }
-@media (max-width: 66.99875em) {
+@media (max-width: 74.375em) {
   .header__result  {
   position: absolute;
   top: 100%;
