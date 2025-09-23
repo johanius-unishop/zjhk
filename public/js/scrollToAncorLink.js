@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Обработчик события клик на внутренние ссылки
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (event) {
             event.preventDefault(); // предотвращаем стандартное поведение браузера
@@ -8,21 +7,25 @@ document.addEventListener("DOMContentLoaded", () => {
             const targetElement = document.querySelector(targetId); // находим целевой элемент
             if (!targetElement) return; // проверяем существование элемента
 
-            const HEADER_HEIGHT = 60; // Предположим, что высота равна 60px
+            const HEADER_FULL_HEIGHT = 140;
+            const HEADER_SCROLL_HEIGHT = 64;
             let scrollOffset = 0; // начальное значение смещения
 
-            const bottomHeader = document.querySelector(".header__bottom");
-            if (bottomHeader) {
-                scrollOffset = 100; // высота нижней части хидера
+            // Для начала смотрим, активирована ли фиксация хидера (_scroll)
+            if (bottomHeader && bottomHeader.classList.contains("_scroll")) {
+                scrollOffset = HEADER_SCROLL_HEIGHT;
+            }
+            else{
+                scrollOffset = HEADER_FULL_HEIGHT;
             }
 
-            // Рассчитываем итоговую позицию с учетом смещения
+            // Итоговая позиция должна учитывать смещение
             const targetPosition = targetElement.offsetTop - scrollOffset;
 
-            // Программно выполняем плавный скроллинг
+            // Переводим страницу в нужное положение
             window.scrollTo({
                 top: targetPosition,
-                behavior: "smooth", // гладкий скролл
+                behavior: "smooth", // Гладкий скролл
             });
         });
     });
