@@ -18,7 +18,7 @@ window.Autoplay = Autoplay
 
 
 
-import '../../vendor/power-components/livewire-powergrid/dist/powergrid'
+
 
 import './front/functions'
 
