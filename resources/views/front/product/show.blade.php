@@ -196,6 +196,9 @@
 
 @section('scripts')
     @livewireScriptConfig
+
+    <script src="{{ asset('js/scrollToAncorLinks.js') }}"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const swiper = new Swiper('.thumbSwiper', {
