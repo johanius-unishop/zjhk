@@ -11,10 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const HEADER_HEIGHT = 60; // Предположим, что высота равна 60px
             let scrollOffset = 0; // начальное значение смещения
 
-            // Проверяем наличие класса "_scroll" у нижнего слоя хидера
             const bottomHeader = document.querySelector(".header__bottom");
             if (bottomHeader) {
-                scrollOffset = 64; // высота нижней части хидера
+                scrollOffset = 100; // высота нижней части хидера
             }
 
             // Рассчитываем итоговую позицию с учетом смещения
