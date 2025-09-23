@@ -8,12 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const targetElement = document.querySelector(targetId); // находим целевой элемент
             if (!targetElement) return; // проверяем существование элемента
 
+            const HEADER_HEIGHT = 60; // Предположим, что высота равна 60px
             let scrollOffset = 0; // начальное значение смещения
 
             // Проверяем наличие класса "_scroll" у нижнего слоя хидера
             const bottomHeader = document.querySelector(".header__bottom");
-            if (bottomHeader && bottomHeader.classList.contains("_scroll")) {
-                scrollOffset = bottomHeader.offsetHeight; // высота нижней части хидера
+            if (bottomHeader) {
+                scrollOffset = 64; // высота нижней части хидера
             }
 
             // Рассчитываем итоговую позицию с учетом смещения
