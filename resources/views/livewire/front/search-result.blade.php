@@ -16,7 +16,7 @@
                 <ul class="header__result-wrapper">
                     @foreach ($searchResults->take(8) as $item)
                         <li>
-                            <a href="#">
+                            <a href="{{ $item->getLinkAttribute() }}">
                                 <p>
                                     @if (
                                         $acceptsWebP &&

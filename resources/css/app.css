@@ -1138,7 +1138,7 @@ blockquote {
   margin-bottom: 1.25rem;
   color: rgb(10, 13, 18);
   font-weight: 500;
-  font-size: 0.9    rem;
+  font-size: 0.875rem;
   transition: all 0.2s ease-out;
   position: relative;
 }
