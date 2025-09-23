@@ -1034,7 +1034,6 @@ blockquote {
   height: 65vh;
   min-width: 100%;
   width: max-content;
-  overflow-y: auto;
 }
 @media (max-width: 61.99875em) {
   .header__result  {
@@ -1052,7 +1051,6 @@ blockquote {
   height: 65vh;
   min-width: 100%;
   width: max-content;
-  overflow-y: auto;
 }
 }
 
