@@ -28,8 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 top: targetPosition,
                 behavior: "smooth", // Гладкий скролл
             });
-            console.log("Scroll to Link...");
         });
     });
-    console.log("Scroll to Link has been connected...");
 });
