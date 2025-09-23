@@ -1031,7 +1031,7 @@ blockquote {
   box-shadow: 0 0 10px 0 rgba(6, 44, 65, 0.16);
   border-radius: 0.25rem;
   border: 1px solid rgb(213, 215, 218);
-  height: 60vh;
+  height: 70vh;
   min-width: 100%;
   width: max-content;
 }
@@ -1049,6 +1049,7 @@ blockquote {
   border-radius: 0.25rem;
   border: 1px solid rgb(213, 215, 218);
   transition: transform 0.2s ease-out;
+  height: 70vh;
 }
 
 .product__example-wrapper {
@@ -1091,6 +1092,7 @@ blockquote {
 .product__example-wrapper > p {
   margin-bottom: 0.25rem;
   font-weight: 400;
+  overflow: hidden;
 }
 
 .product__title-container {
