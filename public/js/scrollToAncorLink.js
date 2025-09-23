@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const HEADER_SCROLL_HEIGHT = 64;
             let scrollOffset = 0; // начальное значение смещения
 
+            const bottomHeader = document.querySelector(".header__bottom");
             // Для начала смотрим, активирована ли фиксация хидера (_scroll)
             if (bottomHeader && bottomHeader.classList.contains("_scroll")) {
                 scrollOffset = HEADER_SCROLL_HEIGHT;
