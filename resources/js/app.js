@@ -16,14 +16,4 @@ window.Navigation = Navigation
 window.Thumbs = Thumbs
 window.Autoplay = Autoplay
 
-
-
 import './front/functions'
-
-
-
-
-
-
-
-
