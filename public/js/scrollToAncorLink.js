@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const targetElement = document.querySelector(targetId); // находим целевой элемент
             if (!targetElement) return; // проверяем существование элемента
 
-            const HEADER_FULL_HEIGHT = 164;
+            const HEADER_FULL_HEIGHT = 100;
             const HEADER_SCROLL_HEIGHT = 64;
             let scrollOffset = 0; // начальное значение смещения
 
