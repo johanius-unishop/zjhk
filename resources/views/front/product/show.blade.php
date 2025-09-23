@@ -197,7 +197,7 @@
 @section('scripts')
     @livewireScriptConfig
 
-    <script src="{{ asset('js/scrollToAncorLinks.js') }}"></script>
+    <script src="{{ asset('js/scrollToAncorLink.js') }}"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
