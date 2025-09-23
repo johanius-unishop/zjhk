@@ -1034,6 +1034,26 @@ blockquote {
   height: 65vh;
   min-width: 100%;
   width: max-content;
+  overflow-y: auto;
+}
+@media (max-width: 61.99875em) {
+  .header__result  {
+  position: absolute;
+  top: 100%;
+  left: -9.2rem;
+  right: 0;
+  background-color: rgb(255, 255, 255);
+  transform: translateY(10px);
+  transition: all 0.2s ease-out;
+  padding: 0.75rem 0 1rem;
+  box-shadow: 0 0 10px 0 rgba(6, 44, 65, 0.16);
+  border-radius: 0.25rem;
+  border: 1px solid rgb(213, 215, 218);
+  height: 65vh;
+  min-width: 100%;
+  width: max-content;
+  overflow-y: auto;
+}
 }
 
 .product__example {
