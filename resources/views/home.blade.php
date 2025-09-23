@@ -36,7 +36,6 @@
 @stop
 
 @yield('scripts')
-@livewireScriptConfig
 <script src="{{ asset('js/home/bannersSlider.js') }}"></script>
 <script src="{{ asset('js/home/newsSlider.js') }}"></script>
 <script src="{{ asset('js/home/articlesSlider.js') }}"></script>
