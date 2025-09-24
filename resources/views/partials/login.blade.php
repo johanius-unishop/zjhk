@@ -2,7 +2,7 @@
     <div data-close="true" class="modal__overlay">
         <div class="modal__body">
             <span data-close="true" class="modal__close">&#10006;</span>
-            <div class="modal__content form-signin active">
+            <div class="modal__content form-signin">
                 <h1 class="modal__title">Войти</h1>
                 <form method="POST" action="{{ route('login') }}" class="modal__form">
                     @csrf
