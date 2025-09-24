@@ -2,32 +2,55 @@ document.addEventListener("DOMContentLoaded", () => {
     const modals = document.querySelectorAll("[data-modal]");
 
     const modalCallBtns = document.querySelectorAll("[data-modal-link]");
-    console.log(modalCallBtns);
+
     const body = document.body;
 
-    const passwordInputs = document.querySelectorAll(".input-password");
-    const toggleButtons = document.querySelectorAll(".password-toggle");
-    const passwordIcons = document.querySelectorAll(".password-toggle img");
+    // Пароли для входа
+    const passwordLogin = document.getElementById("input-password-login");
+    const toggleButtonLogin = document.getElementById("toggle-password-login");
+    const visibleEyeLogin = toggleButtonLogin.querySelector(".visible-icon");
+    const hiddenEyeLogin = toggleButtonLogin.querySelector(".hidden-icon");
 
-    passwordInputs.forEach((input, index) => {
-        const toggleButton = toggleButtons[index];
-        const icon = passwordIcons[index];
+    // Пароли для регистрации
+    const passwordReg = document.getElementById("input-password-reg");
+    const toggleButtonReg = document.getElementById("toggle-password-reg");
+    const visibleEyeReg = toggleButtonReg.querySelector(".visible-icon");
+    const hiddenEyeReg = toggleButtonReg.querySelector(".hidden-icon");
 
-        input.addEventListener("input", function () {
-            if (input.value.length > 0) {
-                toggleButton.classList.add("_active");
-            } else {
-                toggleButton.classList.remove("_active");
-            }
-        });
+    // Обработчик для входа
+    passwordLogin.addEventListener("input", function () {
+        if (passwordLogin.value.length > 0) {
+            toggleButtonLogin.classList.add("_active");
+        } else {
+            toggleButtonLogin.classList.remove("_active");
+        }
+    });
 
-        toggleButton.addEventListener("click", function () {
-            const isPassword = input.type === "password";
-            input.type = isPassword ? "text" : "password";
-            icon.src = isPassword
-                ? "{{ asset('images/icons/password-eye.svg') }}"
-                : "{{ asset('images/icons/password-eye-cross.svg') }}";
-        });
+    toggleButtonLogin.addEventListener("click", function () {
+        const isPasswordType = passwordLogin.type === "password";
+        passwordLogin.type = isPasswordType ? "text" : "password";
+        visibleEyeLogin.style.display = isPasswordType
+            ? "none"
+            : "inline-block";
+        hiddenEyeLogin.style.display = !isPasswordType
+            ? "none"
+            : "inline-block";
+    });
+
+    // Обработчик для регистрации
+    passwordReg.addEventListener("input", function () {
+        if (passwordReg.value.length > 0) {
+            toggleButtonReg.classList.add("_active");
+        } else {
+            toggleButtonReg.classList.remove("_active");
+        }
+    });
+
+    toggleButtonReg.addEventListener("click", function () {
+        const isPasswordType = passwordReg.type === "password";
+        passwordReg.type = isPasswordType ? "text" : "password";
+        visibleEyeReg.style.display = isPasswordType ? "none" : "inline-block";
+        hiddenEyeReg.style.display = !isPasswordType ? "none" : "inline-block";
     });
 
     const getScrollbarWidth = () => {

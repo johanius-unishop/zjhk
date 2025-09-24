@@ -24,7 +24,8 @@
                             <input type="password" id="input-password-login" name="password"
                                 placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
                             <button type="button" id="toggle-password-login" class="password-toggle">
-                                <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Показать пароль" />
+                                <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль" class="visible-icon">
+                                <img src="{{ asset('images/icons/password-eye.svg') }}" alt="Видимый пароль" class="hidden-icon">
                             </button>
                             <p class="modal__error">
                                 @if ($errors->has('password'))
@@ -96,16 +97,17 @@
                             <input type="password" id="input-password-reg" name="input-password-reg"
                                 placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
                             <button type="button" id="toggle-password-reg" class="password-toggle">
-                                <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Показать пароль" />
+                                <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль" class="visible-icon">
+                                <img src="{{ asset('images/icons/password-eye.svg') }}" alt="Видимый пароль" class="hidden-icon">
                             </button>
                             <p class="modal__error">
                                 <span hidden>Неверный логин или пароль</span>
                             </p>
                         </div>
                     </div>
-                    <button data-close class="modal__btn">Продолжить</button>
+                    <button data-close class="modal__btn">Зарегистрироваться</button>
                     <p class="modal__policy">
-                        Нажимая кнопку «Продолжить», вы соглашаетесь c условиями
+                        Нажимая кнопку «Продолжить», Вы соглашаетесь c условиями
                         <a href="#">политики конфиденциальности</a>
                     </p>
                     @if ($loginSocial['loginGoogle'] || $loginSocial['loginYandex'] || $loginSocial['loginVk'])
