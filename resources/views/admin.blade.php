@@ -26,7 +26,7 @@
     <link href="{{ asset('vendor/venobox/venobox.min.css') }}" rel="stylesheet">
 
     <!-- Application CSS -->
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    @vite(['resources/js/app.js', 'resources/css/appAdmin.css'])
 @stop
 
 @section('js')
