@@ -74,7 +74,8 @@
                     @endif
                     <p class="not-account">
                         Еще нет аккаунта?
-                        <a href="#" class="modal__account-link switch-to-signup no-scroll-to-handle"> Зарегистрироваться </a>
+                        <a href="#" class="modal__account-link switch-to-signup no-scroll-to-handle">
+                            Зарегистрироваться </a>
                     </p>
                 </form>
             </div>
@@ -107,27 +108,35 @@
                         Нажимая кнопку «Продолжить», вы соглашаетесь c условиями
                         <a href="#">политики конфиденциальности</a>
                     </p>
-                    <p class="modal__select-social">Зарегистрироваться с помощью</p>
-                    <div class="register-social__wrapper">
-                        <button data-close class="register-social__btn">
-                            <span>Google</span>
-                            <svg width="24" height="24">
-                                <use href="{{ asset('images/icons/googl.svg') }}"></use>
-                            </svg>
-                        </button>
-                        <button data-close class="register-social__btn">
-                            <span>Яндекс</span>
-                            <svg width="24" height="20">
-                                <use href="{{ asset('images/icons/yandex.svg') }}"></use>
-                            </svg>
-                        </button>
-                        <button data-close class="register-social__btn">
-                            <span>VK</span>
-                            <svg width="23" height="23">
-                                <use href="{{ asset('images/icons/vk.svg') }}"></use>
-                            </svg>
-                        </button>
-                    </div>
+                    @if ($loginSocial['loginGoogle'] || $loginSocial['loginYandex'] || $loginSocial['loginVk'])
+                        <p class="modal__select-social">Зарегистрироваться с помощью</p>
+                        <div class="register-social__wrapper">
+                            @if ($loginSocial['loginGoogle'])
+                                <button data-close class="register-social__btn">
+                                    <span>Google</span>
+                                    <svg width="24" height="24">
+                                        <use href="{{ asset('images/icons/googl.svg') }}"></use>
+                                    </svg>
+                                </button>
+                            @endif
+                            @if ($loginSocial['loginYandex'])
+                                <button data-close class="register-social__btn">
+                                    <span>Яндекс</span>
+                                    <svg width="24" height="20">
+                                        <use href="{{ asset('images/icons/yandex.svg') }}"></use>
+                                    </svg>
+                                </button>
+                            @endif
+                            @if ($loginSocial['loginVk'])
+                                <button data-close class="register-social__btn">
+                                    <span>VK</span>
+                                    <svg width="23" height="23">
+                                        <use href="{{ asset('images/icons/vk.svg') }}"></use>
+                                    </svg>
+                                </button>
+                            @endif
+                        </div>
+                    @endif
                     <p class="not-account">
                         <a href="#" class="modal__account-link switch-to-signin no-scroll-to-handle">
                             У меня уже есть аккаунт
