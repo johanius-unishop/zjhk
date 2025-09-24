@@ -64,7 +64,7 @@
                                 <span>{{ Auth::user()->name }}</span>
                             </a>
                         @else
-                            <a data-modal-link="account" href="#" style="display: flex" class="no-scroll-to-handle">
+                            <a data-modal-link="account" href="{{ route('home') }}" style="display: flex" class="no-scroll-to-handle">
                                 <img src="{{ asset('images/icons/login.svg') }}" alt="Логин">
                                 <span>Войти</span>
                             </a>
