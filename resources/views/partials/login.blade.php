@@ -4,10 +4,12 @@
             <span data-close="true" class="modal__close">&#10006;</span>
             <div class="modal__content">
                 <h1 class="modal__title">Войти</h1>
-                <form action="#" class="modal__form">
+                <form method="POST" action="{{ route('login') }}" class="modal__form">
+                    @csrf
                     <div class="modal__input-container">
                         <div>
-                            <label for="input-email" class="visually-hidden"></label>
+                            <x-input-label for="input-email" :value="__('Email')" class="visually-hidden">/>
+
                             <input type="email" id="input-email" name="input-email" class="modal__input"
                                 placeholder="Введите email" required autocomplete="username" />
                             <p class="modal__error" aria-live="polite">
