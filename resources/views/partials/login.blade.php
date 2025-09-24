@@ -9,9 +9,8 @@
                     <div class="modal__input-container">
                         <div>
                             <x-input-label for="input-email" :value="__('Email')" class="visually-hidden"/>
+                            <x-text-input id="input-email" class="modal__input" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Введите email"/>
 
-                            <input type="email" id="input-email" name="input-email" class="modal__input"
-                                placeholder="Введите email" required autocomplete="username" />
                             <p class="modal__error" aria-live="polite">
                                 <span hidden>Email содержит некорректные символы</span>
                             </p>
