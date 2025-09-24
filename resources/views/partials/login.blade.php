@@ -19,7 +19,7 @@
                                 @endif
                             </p>
                         </div>
-                        <div>
+                        <div class="password-field">
                             <label for="password" class="visually-hidden"></label>
                             <input type="password" id="input-password-login" name="password"
                                 placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
@@ -107,7 +107,7 @@
                                 @endif
                             </p>
                         </div>
-                        <div>
+                        <div class="password-field">
                             <label for="input-password-reg" class="visually-hidden"></label>
                             <input type="password" id="input-password-reg" name="password"
                                 placeholder="Введите пароль" class="input-password" />
@@ -123,7 +123,7 @@
                                 @endif
                             </p>
                         </div>
-                        <div>
+                        <div class="password-field">
                             <label for="input-password-reg-confirmation" class="visually-hidden"></label>
                             <input type="password" id="input-password-reg-confirmation" name="password_confirmation"
                                 placeholder="Повторите пароль" class="input-password" />

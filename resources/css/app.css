@@ -1883,8 +1883,8 @@ blockquote {
   flex-direction: column;
   margin-bottom: 0.25rem;
 }
-.modal__input-container div:last-child {
-  position: relative;
+.password-field {
+    position: relative;
 }
 .modal__input-container div:last-child .password-toggle {
   display: none;
@@ -1898,6 +1898,28 @@ blockquote {
 }
 .modal__input-container div:last-child .password-toggle._active {
   display: block;
+}
+
+/* Общая кнопка переключения */
+.password-toggle {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-100%);
+    right: 1rem;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+}
+
+/* Активная кнопка (видимая) */
+.password-toggle._active {
+    display: block;
+}
+
+/* Применяется для любого input[type=password], относящегося к кнопке переключения */
+.input-password + .password-toggle {
+    display: block;
 }
 
 #input-email,
