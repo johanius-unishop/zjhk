@@ -1905,10 +1905,7 @@ blockquote {
     display: block;
 }
 
-/* Применяется для любого input[type=password], относящегося к кнопке переключения */
-.input-password + .password-toggle {
-    display: block;
-}
+
 
 #input-email,
 .input-password,
