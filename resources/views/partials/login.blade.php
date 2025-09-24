@@ -123,6 +123,22 @@
                                 @endif
                             </p>
                         </div>
+                        <div>
+                            <label for="input-password-reg-confirmation" class="visually-hidden"></label>
+                            <input type="password" id="input-password-reg-confirmation" name="password_confirmation"
+                                placeholder="Повторите пароль" class="input-password" />
+                            <button type="button" id="toggle-password-reg-confirmation" class="password-toggle">
+                                <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль"
+                                    class="visible-icon">
+                                <img src="{{ asset('images/icons/password-eye.svg') }}" alt="Видимый пароль"
+                                    class="hidden-icon">
+                            </button>
+                            <p class="modal__error">
+                                @if ($errors->has('password_confirmation'))
+                                    <span hidden>{{ $errors->first('password_confirmation') }}</span>
+                                @endif
+                            </p>
+                        </div>
                     </div>
                     <button data-close class="modal__btn">Зарегистрироваться</button>
                     <p class="modal__policy">
