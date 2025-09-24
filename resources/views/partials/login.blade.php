@@ -8,14 +8,18 @@
                     @csrf
                     <div class="modal__input-container">
                         <div>
-                            <x-input-label for="input-email" :value="__('Email')" class="visually-hidden"/>
-                            <x-text-input id="input-email" class="modal__input" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Введите email"/>
-                            <x-input-error :messages="$errors->get('email')" class="modal__error" aria-live="polite"/>
+
+                            <label for="email" :value="__('Email')" class="visually-hidden"></label>
+                            <input type="email" id="input-email" name="input-email" class="modal__input"
+                                placeholder="Введите email" required autocomplete="username" />
+                            <p class="modal__error" aria-live="polite">
+                                <span hidden>Email содержит некорректные символы</span>
+                            </p>
                         </div>
                         <div>
-                            <x-input-label for="input-password-login" :value="__('Пароль')" class="visually-hidden"/>
-
-                            <input        id="input-password-login" class="input-password" type="password" name="input-password-login"                               placeholder="Введите пароль" autocomplete="current-password"  />
+                            <label for="input-password-login" class="visually-hidden"></label>
+                            <input type="password" id="input-password-login" name="input-password-login"
+                                placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
                             <button type="button" id="toggle-password-login" class="password-toggle">
                                 <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Показать пароль" />
                             </button>
