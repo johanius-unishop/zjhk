@@ -24,8 +24,10 @@
                             <input type="password" id="input-password-login" name="password"
                                 placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
                             <button type="button" id="toggle-password-login" class="password-toggle">
-                                <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль" class="visible-icon">
-                                <img src="{{ asset('images/icons/password-eye.svg') }}" alt="Видимый пароль" class="hidden-icon">
+                                <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль"
+                                    class="visible-icon">
+                                <img src="{{ asset('images/icons/password-eye.svg') }}" alt="Видимый пароль"
+                                    class="hidden-icon">
                             </button>
                             <p class="modal__error">
                                 @if ($errors->has('password'))
@@ -83,31 +85,48 @@
             <div class="modal__content form-signup" style="display: none">
                 <h1 class="modal__title">Зарегистрироваться</h1>
                 <form method="POST" action="{{ route('register') }}" class="modal__form">
+                    @csrf
                     <div class="modal__input-container">
+                        <div>
+                            <label for="name" class="visually-hidden"></label>
+                            <input type="text" id="input-name-reg" name="name" class="modal__input"
+                                placeholder="Введите имя" required />
+                            <p class="modal__error">
+                                @if ($errors->has('name'))
+                                    <span hidden>{{ $errors->first('name') }}</span>
+                                @endif
+                            </p>
+                        </div>
                         <div>
                             <label for="email" class="visually-hidden"></label>
                             <input type="email" id="input-email-reg" name="email" class="modal__input"
-                                placeholder="Введите email" required autocomplete="username" />
+                                placeholder="Введите email" required />
                             <p class="modal__error" aria-live="polite">
-                                <span hidden>Email содержит некорректные символы</span>
+                                @if ($errors->has('email'))
+                                    <span hidden>{{ $errors->first('email') }}</span>
+                                @endif
                             </p>
                         </div>
                         <div>
                             <label for="input-password-reg" class="visually-hidden"></label>
-                            <input type="password" id="input-password-reg" name="input-password-reg"
-                                placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
+                            <input type="password" id="input-password-reg" name="password"
+                                placeholder="Введите пароль" class="input-password" />
                             <button type="button" id="toggle-password-reg" class="password-toggle">
-                                <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль" class="visible-icon">
-                                <img src="{{ asset('images/icons/password-eye.svg') }}" alt="Видимый пароль" class="hidden-icon">
+                                <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль"
+                                    class="visible-icon">
+                                <img src="{{ asset('images/icons/password-eye.svg') }}" alt="Видимый пароль"
+                                    class="hidden-icon">
                             </button>
                             <p class="modal__error">
-                                <span hidden>Неверный логин или пароль</span>
+                                @if ($errors->has('password'))
+                                    <span hidden>{{ $errors->first('password') }}</span>
+                                @endif
                             </p>
                         </div>
                     </div>
                     <button data-close class="modal__btn">Зарегистрироваться</button>
                     <p class="modal__policy">
-                        Нажимая кнопку «Продолжить», Вы соглашаетесь c условиями
+                        Нажимая кнопку «Зарегистрироваться», Вы соглашаетесь c условиями
                         <a href="#">политики конфиденциальности</a>
                     </p>
                     @if ($loginSocial['loginGoogle'] || $loginSocial['loginYandex'] || $loginSocial['loginVk'])
