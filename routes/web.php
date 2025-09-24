@@ -10,8 +10,9 @@ use App\Http\Controllers\Front\DocumentationController;
 use App\Http\Controllers\Front\QuestionController;
 use App\Http\Controllers\Front\ReviewsController;
 use App\Http\Controllers\Front\FileController;
+use App\Http\Controllers\Front\AccountController;
 use App\Http\Controllers\Front\{HomeController, PageController, CategoryController, ProductController ,CartController, FaqController ,SearchController , VendorController};
-//Route::get('/', function () { return view('home'); })->name('home');
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -30,6 +31,8 @@ Route::get('/documentation', [DocumentationController::class, 'index'])->name('d
 Route::get('/question', [QuestionController::class, 'index'])->name('question');
 
 Route::resource('/reviews', ReviewsController::class);
+
+Route::get('/account', [AccountController::class, 'index'])->name('account');
 
 
 Route::get('/pages/{slug}', [PageController::class, 'show'])->name('page.show');

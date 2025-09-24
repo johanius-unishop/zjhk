@@ -59,12 +59,12 @@
                 <ul class="header__actions-list">
                     <li class="header__actions-item">
                         @auth()
-                            <a href="#" style="display: inline-flex">
+                            <a href="{{ route('home') }}" style="display: inline-flex">
                                 <img src="{{ asset('images/icons/account.svg') }}" alt="Аккаунт">
                                 <span>{{ Auth::user()->name }}</span>
                             </a>
                         @else
-                            <a data-modal-link="account" href="#" style="display: inline-flex" data-toggle="modal"
+                            <a data-modal-link="account" href="" style="display: inline-flex" data-toggle="modal"
                                 data-target="#loginModal">
                                 <img src="{{ asset('images/icons/login.svg') }}" alt="Логин">
                                 <span>Войти</span>
