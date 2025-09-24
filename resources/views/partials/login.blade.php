@@ -19,7 +19,7 @@
                             <input type="password" id="input-password-login" name="input-password-login"
                                 placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
                             <button type="button" id="toggle-password-login" class="password-toggle">
-                                <img src="./img/icons/password-eye-cross.svg" alt="Показать пароль" />
+                                <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Показать пароль" />
                             </button>
                             <p class="modal__error">
                                 <span hidden>Неверный логин или пароль</span>
@@ -39,19 +39,19 @@
                         <button data-close class="register-social__btn">
                             <span>Войти через</span>
                             <svg width="24" height="24">
-                                <use href="img/icons/googl.svg"></use>
+                                <use href="{{ asset('images/icons/googl.svg') }}"></use>
                             </svg>
                         </button>
                         <button data-close class="register-social__btn">
                             <span>Войти через</span>
                             <svg width="24" height="20">
-                                <use href="img/icons/yandex.svg"></use>
+                                <use href="{{ asset('images/icons/yandex.svg') }}"></use>
                             </svg>
                         </button>
                         <button data-close class="register-social__btn">
                             <span>Войти через</span>
                             <svg width="23" height="23">
-                                <use href="img/icons/vk.svg"></use>
+                                <use href="{{ asset('images/icons/vk.svg') }}"></use>
                             </svg>
                         </button>
                     </div>
@@ -78,7 +78,7 @@
                             <input type="password" id="input-password-reg" name="input-password-reg"
                                 placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
                             <button type="button" id="toggle-password-reg" class="password-toggle">
-                                <img src="./img/icons/password-eye-cross.svg" alt="Показать пароль" />
+                                <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Показать пароль" />
                             </button>
                             <p class="modal__error">
                                 <span hidden>Неверный логин или пароль</span>
@@ -95,19 +95,19 @@
                         <button data-close class="register-social__btn">
                             <span>Google</span>
                             <svg width="24" height="24">
-                                <use href="img/icons/googl.svg"></use>
+                                <use href="{{ asset('images/icons/googl.svg') }}"></use>
                             </svg>
                         </button>
                         <button data-close class="register-social__btn">
                             <span>Яндекс</span>
                             <svg width="24" height="20">
-                                <use href="img/icons/yandex.svg"></use>
+                                <use href="{{ asset('images/icons/yandex.svg') }}"></use>
                             </svg>
                         </button>
                         <button data-close class="register-social__btn">
                             <span>VK</span>
                             <svg width="23" height="23">
-                                <use href="img/icons/vk.svg"></use>
+                                <use href="{{ asset('images/icons/vk.svg') }}"></use>
                             </svg>
                         </button>
                     </div>
