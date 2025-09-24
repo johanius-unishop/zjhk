@@ -8,7 +8,7 @@
                     @csrf
                     <div class="modal__input-container">
                         <div>
-                            <x-input-label for="input-email" :value="__('Email')" class="visually-hidden">/>
+                            <x-input-label for="input-email" :value="__('Email')" class="visually-hidden"/>
 
                             <input type="email" id="input-email" name="input-email" class="modal__input"
                                 placeholder="Введите email" required autocomplete="username" />
