@@ -51,7 +51,7 @@
 
 @section('scripts')
     @parent
-    <script src="{{ asset('js/modal/modal.js') }}"></script>
+
 
 
 

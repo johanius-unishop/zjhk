@@ -31,6 +31,7 @@
     <script type="module" src="{{ asset('js/header.js') }}"></script>
     <script type="module" src="{{ asset('js/headerMobile.js') }}"></script>
     <script src="{{ asset('js/scrollToAncorLink.js') }}"></script>
+    <script src="{{ asset('js/modal/modal.js') }}"></script>
 </body>
 
 </html>
