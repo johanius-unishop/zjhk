@@ -1,9 +1,6 @@
 <div class="header__search-field">
     <input wire:model.live="search" type="search" name="search" id="search" placeholder="Поиск по каталогу"
         autocomplete="off" class="header__search-input">
-    <button class="header__search-submit">
-        <img src={{ asset('images/icons/zoom-glass.svg') }} alt="поиск">
-    </button>
     <div id="search__result" class="header__result" @if (!$visible) style="display: none" @endif>
         @if (!is_null($searchResults) && !$searchResults->isEmpty())
             @if ($searchResults->isEmpty())
