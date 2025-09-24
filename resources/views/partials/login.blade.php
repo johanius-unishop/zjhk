@@ -15,7 +15,7 @@
                         <div>
                             <x-input-label for="input-password-login" :value="__('Пароль')" class="visually-hidden"/>
                             <x-text-input id="input-password-login" class="input-password" type="password" name="input-password-login" required autocomplete="current-password" placeholder="Введите пароль"/>
-
+                            <input        id="input-password-login" class="input-password" type="password" name="input-password-login"                               placeholder="Введите пароль" autocomplete="current-password"  />
                             <button type="button" id="toggle-password-login" class="password-toggle">
                                 <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Показать пароль" />
                             </button>
