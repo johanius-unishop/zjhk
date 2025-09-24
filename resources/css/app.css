@@ -1886,19 +1886,7 @@ blockquote {
 .password-field {
     position: relative;
 }
-.modal__input-container div:last-child .password-toggle {
-  display: none;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-100%);
-  right: 1rem;
-  cursor: pointer;
-  background: none;
-  padding: 0;
-}
-.modal__input-container div:last-child .password-toggle._active {
-  display: block;
-}
+
 
 /* Общая кнопка переключения */
 .password-toggle {
