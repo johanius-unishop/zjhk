@@ -2,7 +2,7 @@
 
 @section('content')
     <main>
-        <div data-modal="account" class="modal">
+        <div data-modal="account" class="modal _open">
             <div data-close="true" class="modal__overlay">
                 <div class="modal__body">
                     <span data-close="true" class="modal__close">&#10006;</span>
