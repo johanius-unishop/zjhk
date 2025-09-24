@@ -42,9 +42,17 @@ class AppServiceProvider extends ServiceProvider
                 $mainContacts['companyMainPhonePurified'] = preg_replace('/[^+\d]/', '', $mainContacts['companyMainPhone']);
             }
 
+            $loginSocial = Setting::where('group','=','loginModal')
+                ->get()
+                ->mapWithKeys(function ($item){
+                    return [$item['key'] => $item['value']];
+                })
+                ->all();
+
             // Передаем данные в шаблон
             $view->with('categories_catalog', $categories_catalog)
-                ->with('mainContacts', $mainContacts);
+                ->with('mainContacts', $mainContacts)
+                ->with('loginSocial', $loginSocial);
         });
         // VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
         //     return (new MailMessage)
