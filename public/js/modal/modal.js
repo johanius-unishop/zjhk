@@ -17,6 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const visibleEyeReg = toggleButtonReg.querySelector(".visible-icon");
     const hiddenEyeReg = toggleButtonReg.querySelector(".hidden-icon");
 
+    // Пароли для регистрации (подтверждение пароля)
+    const passwordRegConf = document.getElementById("input-password-reg-confirmation");
+    const toggleButtonRegConf = document.getElementById("toggle-password-reg-confirmation");
+    const visibleEyeRegConf = toggleButtonRegConf.querySelector(".visible-icon");
+    const hiddenEyeRegConf = toggleButtonRegConf.querySelector(".hidden-icon");
+
     // Обработчик для входа
     passwordLogin.addEventListener("input", function () {
         if (passwordLogin.value.length > 0) {
@@ -51,6 +57,22 @@ document.addEventListener("DOMContentLoaded", () => {
         passwordReg.type = isPasswordType ? "text" : "password";
         visibleEyeReg.style.display = isPasswordType ? "none" : "inline-block";
         hiddenEyeReg.style.display = !isPasswordType ? "none" : "inline-block";
+    });
+
+    // Обработчик для регистрации повтор пароля
+    passwordRegConf.addEventListener("input", function () {
+        if (passwordRegConf.value.length > 0) {
+            toggleButtonRegConf.classList.add("_active");
+        } else {
+            toggleButtonRegConf.classList.remove("_active");
+        }
+    });
+
+    toggleButtonRegConf.addEventListener("click", function () {
+        const isPasswordType = passwordRegConf.type === "password";
+        passwordReg.type = isPasswordType ? "text" : "password";
+        visibleEyeRegConf.style.display = isPasswordType ? "none" : "inline-block";
+        hiddenEyeRegConf.style.display = !isPasswordType ? "none" : "inline-block";
     });
 
     const getScrollbarWidth = () => {
