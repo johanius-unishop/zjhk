@@ -2,7 +2,7 @@
     <div data-close="true" class="modal__overlay">
         <div class="modal__body">
             <span data-close="true" class="modal__close">&#10006;</span>
-            <div class="modal__content" style="display: none">
+            <div class="modal__content">
                 <h1 class="modal__title">Войти</h1>
                 <form action="#" class="modal__form">
                     <div class="modal__input-container">
@@ -61,7 +61,7 @@
                     </p>
                 </form>
             </div>
-            <div class="modal__content">
+            <div class="modal__content" style="display: none">
                 <h1 class="modal__title">Зарегистрироваться</h1>
                 <form action="#" class="modal__form">
                     <div class="modal__input-container">
@@ -121,4 +121,4 @@
         </div>
     </div>
 </div>
-</div>
+
