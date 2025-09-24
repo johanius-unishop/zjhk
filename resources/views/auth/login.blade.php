@@ -1,69 +1,129 @@
-@extends('layouts.guest')
+@extends('layouts.app')
 
 @section('content')
-    <!-- Validation Errors -->
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+<div data-modal="account" class="modal">
+    <div data-close="true" class="modal__overlay">
+        <div class="modal__body">
+            <span data-close="true" class="modal__close">&#10006;</span>
+            <div class="modal__content" style="display: none">
+                <h1 class="modal__title">Войти</h1>
+                <form action="#" class="modal__form">
+                    <div class="modal__input-container">
+                        <div>
+                            <label for="input-email" class="visually-hidden"></label>
+                            <input type="email" id="input-email" name="input-email" class="modal__input"
+                                placeholder="Введите email" required autocomplete="username" />
+                            <p class="modal__error" aria-live="polite">
+                                <span hidden>Email содержит некорректные символы</span>
+                            </p>
+                        </div>
+                        <div>
+                            <label for="input-password-login" class="visually-hidden"></label>
+                            <input type="password" id="input-password-login" name="input-password-login"
+                                placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
+                            <button type="button" id="toggle-password-login" class="password-toggle">
+                                <img src="./img/icons/password-eye-cross.svg" alt="Показать пароль" />
+                            </button>
+                            <p class="modal__error">
+                                <span hidden>Неверный логин или пароль</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#" class="modal__forget-password">Забыли пароль?</a>
+                    </div>
+                    <button data-close class="modal__btn">Войти</button>
+                    <p class="modal__policy">
+                        Нажимая кнопку «Войти», вы соглашаетесьc условиями
+                        <a href="#">политики конфиденциальности</a>
+                    </p>
+                    <p class="modal__select-social">или</p>
+                    <div class="register-social__wrapper">
+                        <button data-close class="register-social__btn">
+                            <span>Войти через</span>
+                            <svg width="24" height="24">
+                                <use href="img/icons/googl.svg"></use>
+                            </svg>
+                        </button>
+                        <button data-close class="register-social__btn">
+                            <span>Войти через</span>
+                            <svg width="24" height="20">
+                                <use href="img/icons/yandex.svg"></use>
+                            </svg>
+                        </button>
+                        <button data-close class="register-social__btn">
+                            <span>Войти через</span>
+                            <svg width="23" height="23">
+                                <use href="img/icons/vk.svg"></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="not-account">
+                        Еще нет аккаунта?
+                        <a href="/" class="modal__account-link"> Зарегистрироваться </a>
+                    </p>
+                </form>
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Пароль')" />
-
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <div class="modal__content">
+                <h1 class="modal__title">Зарегистрироваться</h1>
+                <form action="#" class="modal__form">
+                    <div class="modal__input-container">
+                        <div>
+                            <label for="input-email" class="visually-hidden"></label>
+                            <input type="email" id="input-email-reg" name="input-email" class="modal__input"
+                                placeholder="Введите email" required autocomplete="username" />
+                            <p class="modal__error" aria-live="polite">
+                                <span hidden>Email содержит некорректные символы</span>
+                            </p>
+                        </div>
+                        <div>
+                            <label for="input-password-reg" class="visually-hidden"></label>
+                            <input type="password" id="input-password-reg" name="input-password-reg"
+                                placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
+                            <button type="button" id="toggle-password-reg" class="password-toggle">
+                                <img src="./img/icons/password-eye-cross.svg" alt="Показать пароль" />
+                            </button>
+                            <p class="modal__error">
+                                <span hidden>Неверный логин или пароль</span>
+                            </p>
+                        </div>
+                    </div>
+                    <button data-close class="modal__btn">Продолжить</button>
+                    <p class="modal__policy">
+                        Нажимая кнопку «Продолжить», вы соглашаетесь c условиями
+                        <a href="#">политики конфиденциальности</a>
+                    </p>
+                    <p class="modal__select-social">Зарегистрироваться с помощью</p>
+                    <div class="register-social__wrapper">
+                        <button data-close class="register-social__btn">
+                            <span>Google</span>
+                            <svg width="24" height="24">
+                                <use href="img/icons/googl.svg"></use>
+                            </svg>
+                        </button>
+                        <button data-close class="register-social__btn">
+                            <span>Яндекс</span>
+                            <svg width="24" height="20">
+                                <use href="img/icons/yandex.svg"></use>
+                            </svg>
+                        </button>
+                        <button data-close class="register-social__btn">
+                            <span>VK</span>
+                            <svg width="23" height="23">
+                                <use href="img/icons/vk.svg"></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="not-account">
+                        <a href="/" class="modal__account-link">
+                            У меня уже есть аккаунт
+                        </a>
+                    </p>
+                </form>
             </div>
+        </div>
+    </div>
+</div>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Запомнить меня') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Забыли пароль?') }}
-                    </a>
-                @endif
-
-                <x-primary-button class="ms-3">
-                    {{ __('Войти') }}
-                </x-primary-button>
-            </div>
-
-            <!-- Ссылка на регистрацию -->
-            <div class="text-center mt-4">
-                <a href="{{ route('register') }}" class="text-sm text-gray-600 hover:text-gray-900 underline">
-                    {{ __('Не зарегистрированы? Регистрация') }}
-                </a>
-            </div>
-            @if ($allowAdminRegistration == true)
-            <div class="text-center mt-4">
-                <a href="{{ route('admin.register') }}" class="text-sm text-gray-600 hover:text-gray-900 underline">
-                    {{ __('Регистрация администратора') }}
-                </a>
-            </div>
-            @endif
-            @if ($allowAdminLogin == true)
-            <div class="text-center mt-4">
-                <a href="{{ route('admin.login') }}" class="text-sm text-gray-600 hover:text-gray-900 underline">
-                    {{ __('Вход для администратора') }}
-                </a>
-            </div>
-            @endif
-        </form>
 @endsection

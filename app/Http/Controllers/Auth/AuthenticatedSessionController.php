@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\App;
 class AuthenticatedSessionController extends Controller
 {
 
-   
+
     /**
      * Display the login view.
      */
     public function create(): View
     {
         App::setLocale('ru');
-        
-        return view('partials.login');
+
+        return view('auth.login');
     }
 
     /**
@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
     {
         App::setLocale('ru'); // установка локали
         $credentials = $request->only('email', 'password');
-        
+
         if (Auth::attempt($credentials)) { // Попытка аутентификации
             // Если проверка прошла успешно, перенаправляем на домашнюю страницу
 
@@ -64,49 +64,49 @@ class AuthenticatedSessionController extends Controller
 
     protected function loadAllowAdminRegistration(): bool
     {
-        
+
         // Получаем запись из базы данных
         $setting = Setting::where('group', 'admin')
             ->where('key', 'allowAdminRegistration')
             ->first();
-        
+
         if ($setting === null) {
             // Если записи нет, создаем новую с значением 0
             $newSetting = new Setting();
             $newSetting->group = 'admin';
             $newSetting->key = 'allowAdminRegistration';
             $newSetting->value = 0;
-            
+
             // Сохраняем новую запись
             $newSetting->save();
-            
+
             return false;
         }
-        
+
         // Преобразуем значение в целое число и возвращаем
         return (bool)$setting->value;
     }
     protected function loadAllowAdminLogin(): bool
     {
-        
+
         // Получаем запись из базы данных
         $setting = Setting::where('group', 'admin')
             ->where('key', 'allowAdminLogin')
             ->first();
-        
+
         if ($setting === null) {
             // Если записи нет, создаем новую с значением 0
             $newSetting = new Setting();
             $newSetting->group = 'admin';
             $newSetting->key = 'allowAdminLogin';
             $newSetting->value = 0;
-            
+
             // Сохраняем новую запись
             $newSetting->save();
-            
+
             return false;
         }
-        
+
         // Преобразуем значение в целое число и возвращаем
         return (bool)$setting->value;
     }
