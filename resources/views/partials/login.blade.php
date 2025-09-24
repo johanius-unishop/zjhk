@@ -8,12 +8,15 @@
                     @csrf
                     <div class="modal__input-container">
                         <div>
+                            <label for="email" value="{{ __('Email') }}" class="visually-hidden"></label>
+                            <input type="email" id="email" name="email" class="modal__input"
+                                value="{{ old('email') }}" placeholder="Введите email" required autofocus
+                                autocomplete="username" />
 
-                            <label for="email" :value="__('Email')" class="visually-hidden"></label>
-                            <input type="email" id="input-email" name="input-email" class="modal__input"
-                                placeholder="Введите email" required autocomplete="username" />
                             <p class="modal__error" aria-live="polite">
-                                <span hidden>Email содержит некорректные символы</span>
+                                @if ($errors->has('email'))
+                                    <span hidden>{{ $errors->first('email') }}</span>
+                                @endif
                             </p>
                         </div>
                         <div>
