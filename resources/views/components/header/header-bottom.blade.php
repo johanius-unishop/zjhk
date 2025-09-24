@@ -65,7 +65,7 @@
                             </a>
                         @else
                             <a data-modal-link="account" href="#" style="display: flex" data-toggle="modal"
-                                data-target="#loginModal" class="no-scroll-to-handle">>
+                                data-target="#loginModal" class="no-scroll-to-handle">
                                 <img src="{{ asset('images/icons/login.svg') }}" alt="Логин">
                                 <span>Войти</span>
                             </a>
