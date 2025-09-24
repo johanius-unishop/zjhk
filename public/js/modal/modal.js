@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 const modals = document.querySelectorAll('[data-modal]')
+console.log(modals)
 const modalCallBtns = document.querySelectorAll('[data-modal-link]')
 const body = document.body
 
