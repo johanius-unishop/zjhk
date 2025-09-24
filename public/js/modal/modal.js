@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", () => {
 const modals = document.querySelectorAll('[data-modal]')
 const modalCallBtns = document.querySelectorAll('[data-modal-link]')
 const body = document.body
@@ -88,3 +89,4 @@ if (modals.length > 0) {
 }
 
 console.log('Modal is ready...')
+});
