@@ -10,15 +10,12 @@
                         <div>
                             <x-input-label for="input-email" :value="__('Email')" class="visually-hidden"/>
                             <x-text-input id="input-email" class="modal__input" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Введите email"/>
-
-                            <p class="modal__error" aria-live="polite">
-                                <span hidden>Email содержит некорректные символы</span>
-                            </p>
+                            <x-input-error :messages="$errors->get('email')" class="modal__error" aria-live="polite"/>
                         </div>
                         <div>
-                            <label for="input-password-login" class="visually-hidden"></label>
-                            <input type="password" id="input-password-login" name="input-password-login"
-                                placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
+                            <x-input-label for="input-password-login" :value="__('Пароль')" class="visually-hidden"/>
+                            <x-text-input id="input-password-login" class="input-password" type="password" name="input-password-login" required autocomplete="current-password" placeholder="Введите пароль"/>
+
                             <button type="button" id="toggle-password-login" class="password-toggle">
                                 <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Показать пароль" />
                             </button>

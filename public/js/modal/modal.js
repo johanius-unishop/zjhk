@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const isPassword = input.type === "password";
             input.type = isPassword ? "text" : "password";
             icon.src = isPassword
-                ? "./img/icons/password-eye.svg"
-                : "./img/icons/password-eye-cross.svg";
+                ? "{{ asset('images/icons/password-eye.svg') }}"
+                : "{{ asset('images/icons/password-eye-cross.svg') }}";
         });
     });
 
