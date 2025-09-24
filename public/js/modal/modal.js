@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     toggleButtonRegConf.addEventListener("click", function () {
         const isPasswordType = passwordRegConf.type === "password";
-        passwordReg.type = isPasswordType ? "text" : "password";
+        passwordRegConf.type = isPasswordType ? "text" : "password";
         visibleEyeRegConf.style.display = isPasswordType ? "none" : "inline-block";
         hiddenEyeRegConf.style.display = !isPasswordType ? "none" : "inline-block";
     });
