@@ -20,23 +20,27 @@
                             </p>
                         </div>
                         <div>
-                            <label for="input-password-login" class="visually-hidden"></label>
-                            <input type="password" id="input-password-login" name="input-password-login"
+                            <label for="password" class="visually-hidden"></label>
+                            <input type="password" id="input-password-login" name="password"
                                 placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
                             <button type="button" id="toggle-password-login" class="password-toggle">
                                 <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Показать пароль" />
                             </button>
                             <p class="modal__error">
-                                <span hidden>Неверный логин или пароль</span>
+                                @if ($errors->has('password'))
+                                    <span hidden>{{ $errors->first('password') }}</span>
+                                @endif
                             </p>
                         </div>
                     </div>
                     <div>
-                        <a href="#" class="modal__forget-password">Забыли пароль?</a>
+                        @if (Route::has('password.request'))
+                            <a href="{{ route('password.request') }}" class="modal__forget-password">Забыли пароль?</a>
+                        @endif
                     </div>
                     <button data-close class="modal__btn">Войти</button>
                     <p class="modal__policy">
-                        Нажимая кнопку «Войти», вы соглашаетесьc условиями
+                        Нажимая кнопку «Войти», Вы соглашаетесь c условиями
                         <a href="#">политики конфиденциальности</a>
                     </p>
                     @if ($loginSocial['loginGoogle'] || $loginSocial['loginYandex'] || $loginSocial['loginVk'])
