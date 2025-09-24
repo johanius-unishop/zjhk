@@ -2,7 +2,7 @@
     <div data-close="true" class="modal__overlay">
         <div class="modal__body">
             <span data-close="true" class="modal__close">&#10006;</span>
-            <div class="modal__content">
+            <div class="modal__content form-signin active">
                 <h1 class="modal__title">Войти</h1>
                 <form method="POST" action="{{ route('login') }}" class="modal__form">
                     @csrf
@@ -74,17 +74,17 @@
                     @endif
                     <p class="not-account">
                         Еще нет аккаунта?
-                        <a href="/" class="modal__account-link"> Зарегистрироваться </a>
+                        <a href="#" class="modal__account-link switch-to-signup no-scroll-to-handle"> Зарегистрироваться </a>
                     </p>
                 </form>
             </div>
-            <div class="modal__content" style="display: none">
+            <div class="modal__content form-signup" style="display: none">
                 <h1 class="modal__title">Зарегистрироваться</h1>
-                <form action="#" class="modal__form">
+                <form method="POST" action="{{ route('register') }}" class="modal__form">
                     <div class="modal__input-container">
                         <div>
-                            <label for="input-email" class="visually-hidden"></label>
-                            <input type="email" id="input-email-reg" name="input-email" class="modal__input"
+                            <label for="email" class="visually-hidden"></label>
+                            <input type="email" id="input-email-reg" name="email" class="modal__input"
                                 placeholder="Введите email" required autocomplete="username" />
                             <p class="modal__error" aria-live="polite">
                                 <span hidden>Email содержит некорректные символы</span>
@@ -129,7 +129,7 @@
                         </button>
                     </div>
                     <p class="not-account">
-                        <a href="/" class="modal__account-link">
+                        <a href="#" class="modal__account-link switch-to-signin no-scroll-to-handle">
                             У меня уже есть аккаунт
                         </a>
                     </p>
