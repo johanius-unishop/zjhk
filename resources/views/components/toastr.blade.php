@@ -1,7 +1,7 @@
 <!-- resources/views/components/toastr.blade.php -->
 <div id="toastr-container"></div>
 
-@push('scripts')
+@section('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Проверяем наличие сообщения в сессии
@@ -29,4 +29,4 @@
             }
         });
     </script>
-@endpush
+@endsection
