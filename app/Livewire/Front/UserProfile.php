@@ -43,6 +43,7 @@ class UserProfile extends Component
                 'acceptButtonText' => 'Да, удалить!',
             ]
         );
+       dd("1");
     }
 
     // Основной метод удаления пользователя
