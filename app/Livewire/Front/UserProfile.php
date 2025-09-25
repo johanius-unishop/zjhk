@@ -23,4 +23,9 @@ class UserProfile extends Component
     {
         return view('livewire.front.user-profile');//, compact('user'));
     }
+
+    public function selectPanel(string $panel)
+    {
+        $this->activePanel = $panel;
+    }
 }
