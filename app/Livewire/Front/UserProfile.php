@@ -2,27 +2,19 @@
 
 namespace App\Livewire\Front;
 
-use Livewire\WithPagination;
 use Livewire\Component;
-use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class UserProfile extends Component
 {
-    use WithPagination;
+    use LivewireAlert;
 
-    public $user;
     public string $activePanel = 'profile'; // По умолчанию активная панель - профиль
-
-
-   // public function mount($user)
-   // {
-     //   $this->user = $user;
-    //}
 
     public function render()
     {
-        return view('livewire.front.user-profile');//, compact('user'));
+        return view('livewire.front.user-profile');
     }
 
     public function selectPanel(string $panel)
@@ -39,6 +31,21 @@ class UserProfile extends Component
         return redirect()->route('home'); // Перенаправление на главную страницу
     }
 
+    // Метод для запуска окна подтверждения удаления профиля
+    public function showDeleteModal()
+    {
+        $this->confirm(
+            'Вы действительно хотите удалить свою учетную запись?',
+            [
+                'onConfirmed' => 'deleteUser', // Указываем метод, который будет вызван при подтверждении
+                'showCancelButton' => true,
+                'cancelButtonText' => 'Нет',
+                'acceptButtonText' => 'Да, удалить!',
+            ]
+        );
+    }
+
+    // Основной метод удаления пользователя
     public function deleteUser()
     {
         // Получаем текущего авторизованного пользователя
