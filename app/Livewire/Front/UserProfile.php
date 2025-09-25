@@ -43,7 +43,7 @@ class UserProfile extends Component
     {
         // Получаем текущего авторизованного пользователя
         $user = Auth::user();
-
+dd($user);
         // Удаляем аккаунт пользователя
         $user->delete();
 
