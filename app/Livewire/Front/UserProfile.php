@@ -38,4 +38,19 @@ class UserProfile extends Component
         session()->regenerateToken(); // Генерирует новый CSRF-токен
         return redirect()->route('home'); // Перенаправление на главную страницу
     }
+
+    public function deleteUser()
+    {
+        // Получаем текущего авторизованного пользователя
+        $user = Auth::user();
+
+        // Удаляем аккаунт пользователя
+        $user->delete();
+
+        // Завершаем сеанс
+        Auth::logout();
+
+        // Перенаправляем на главную страницу
+        return redirect()->route('home');
+    }
 }
