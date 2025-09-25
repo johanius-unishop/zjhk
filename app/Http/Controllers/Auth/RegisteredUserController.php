@@ -55,8 +55,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        return redirect()->route('verification.notice')
+                     ->with('message', __('Перед началом использования сайта, пожалуйста, подтвердите ваш email.'));
 
-        return redirect()->route('home');
+//        return redirect()->route('home');
     }
 }
