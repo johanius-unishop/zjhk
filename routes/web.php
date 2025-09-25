@@ -11,6 +11,7 @@ use App\Http\Controllers\Front\QuestionController;
 use App\Http\Controllers\Front\ReviewsController;
 use App\Http\Controllers\Front\FileController;
 use App\Http\Controllers\Front\AccountController;
+use App\Http\Controllers\Front\UserProfileController;
 use App\Http\Controllers\Front\{HomeController, PageController, CategoryController, ProductController ,CartController, FaqController ,SearchController , VendorController};
 
 
@@ -83,7 +84,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
+Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.index');
 
 
 require __DIR__ . '/auth.php';
