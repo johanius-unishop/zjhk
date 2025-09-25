@@ -34,9 +34,6 @@ class SearchResult extends Component
             $this->searchResults = collect([]);
         }
 
-        if (session()->has('toast_message_user_delete')){
-            $this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
-        }
 
         return view('livewire.front.search-result');
     }
