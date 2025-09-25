@@ -39,15 +39,19 @@ class UserProfile extends Component
         $user = Auth::user();
 
         // Удаляем аккаунт пользователя
-       // $user->delete();
+        // $user->delete();
 
         // Завершаем сеанс
-       // Auth::logout();
+        // Auth::logout();
         //session()->invalidate(); // Инвалидирует сессионные данные
         //session()->regenerateToken(); // Генерирует новый CSRF-токен
 
+        // Сохраняем flash-сообщение
+        //session()->flash('toast_message', 'Аккаунт успешно удалён.');
+        //session()->flash('toast_type', 'success');
 
         $this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
+        sleep(5);
         // Перенаправляем на главную страницу
         return redirect()->route('home');
     }
