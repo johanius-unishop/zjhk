@@ -1,8 +1,8 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const toastMessage = '{!! session('toast_message') !!}';
-    const toastType = '{!! session('toast_type') !!}'; // Определяйте типы уведомлений: success, error, info и др.
+    const toastMessage = "{!! session('toast_message') !!}";
+    const toastType = "{!! session('toast_type') !!}"; // Определяйте типы уведомлений: success, error, info и др.
 
     if (toastMessage && toastType) {
         Swal.fire({
