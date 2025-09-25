@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     const toastMessage = "Ваша учетная запись удалена!";
-    const toastType = "warning"; // Определяйте типы уведомлений: success, error, info и др.
+    const toastType = "info"; // Определяйте типы уведомлений: success, error, info и др.
 
     if (toastMessage && toastType) {
         Swal.fire({
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
             type: toastType,
             title: toastMessage,
             showConfirmButton: false,
-            timer: 3000
+            timer: 5000
         });
     }
 });
