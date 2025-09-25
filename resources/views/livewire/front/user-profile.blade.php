@@ -140,8 +140,7 @@
                             </button>
                         </div>
                         <button data-modal-link="delete-profile-modal" wire:click.prevent="showDeleteModal"
-
-                            wire:confirm.promt="Вы уверены, что хотите удалить профиль?\n\nType DELETE to confirm|DELETE"
+                            wire:confirm="Вы уверены, что хотите удалить профиль?"
                             class="account-profile__btn-delete">Удалить профиль</button>
                     </div>
                 </form>
