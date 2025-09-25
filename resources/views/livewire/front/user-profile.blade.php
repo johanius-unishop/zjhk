@@ -2,10 +2,12 @@
     <nav class="account-profile__control">
         <ul class="account-profile__control-list">
             <li class="account-profile__control-item">
-                <button data-target="profile-card" wire:click="selectPanel('profile')" class="{{ $activePanel === 'profile' ? '_active' : '' }}">Настройки профиля</button>
+                <button data-target="profile-card" wire:click="selectPanel('profile')"
+                    class="{{ $activePanel === 'profile' ? '_active' : '' }}">Настройки профиля</button>
             </li>
             <li class="account-profile__control-item">
-                <button data-target="order-list-card" wire:click="selectPanel('orders')" class="{{ $activePanel === 'orders' ? '_active' : '' }}">Мои заказы</button>
+                <button data-target="order-list-card" wire:click="selectPanel('orders')"
+                    class="{{ $activePanel === 'orders' ? '_active' : '' }}">Мои заказы</button>
             </li>
             <li class="account-profile__control-item">
                 <a href="#" wire:click.prevent="logout">Выйти</a>
@@ -18,7 +20,8 @@
         </ul>
     </nav>
     <div class="account-profile__action">
-        <div id="profile-card" class="account-profile__action-card profile-card {{ $activePanel === 'profile' ? '_active' : '' }}">
+        <div id="profile-card"
+            class="account-profile__action-card profile-card {{ $activePanel === 'profile' ? '_active' : '' }}">
             <div class="account-profile__card-container">
                 <h3 class="account-profile__card-title">Настройки профиля</h3>
                 <form action="" class="account-profile__form">
@@ -131,16 +134,21 @@
                                     </div>
                                 </li>
                             </ul>
-                            <button data-modal-link="address" class="account-profile__address-add"><span>Добавить
-                                    адрес
-                                    доставки</span><img src="img/icons/plus.svg" alt="добавить адрес"></button>
+                            <button data-modal-link="address" class="account-profile__address-add">
+                                <span>Добавить адрес доставки</span>
+                                <img src="img/icons/plus.svg" alt="добавить адрес">
+                            </button>
                         </div>
-                        <button data-modal-link="delete-profile-modal" wire:click.prevent="showDeleteModal" wire:confirm="Вы уверены, что хотите удалить профиль?" class="account-profile__btn-delete">Удалить профиль</button>
+                        <button data-modal-link="delete-profile-modal" wire:click.prevent="showDeleteModal"
+
+                            wire:confirm.promt="Вы уверены, что хотите удалить профиль?\n\nType DELETE to confirm|DELETE"
+                            class="account-profile__btn-delete">Удалить профиль</button>
                     </div>
                 </form>
             </div>
         </div>
-        <div id="order-list-card" class="account-profile__action-card order-list-card {{ $activePanel === 'orders' ? '_active' : '' }}">
+        <div id="order-list-card"
+            class="account-profile__action-card order-list-card {{ $activePanel === 'orders' ? '_active' : '' }}">
             <div class="account-profile__card-container">
                 <h3 class="account-profile__card-title">Мои заказы</h3>
                 <div class="order-list__top-wrapper">
