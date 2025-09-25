@@ -35,7 +35,7 @@
     <script src="{{ asset('js/modal/changeModal.js') }}"></script>
 
     @if (session('toast_message'))
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7"></script>
         <script src="{{ asset('js/toastMessage.js') }}"></script>
     @endif
 
