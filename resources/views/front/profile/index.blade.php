@@ -27,7 +27,6 @@
 @stop
 
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     @if ($errors->has('email') || $errors->has('password'))
         <script>
             $(function() {

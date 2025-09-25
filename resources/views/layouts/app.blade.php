@@ -26,7 +26,7 @@
         </svg>
     </div>
     @include('partials.login')
-    @include('components.toastr')
+
     @yield('scripts')
     <script src="{{ asset('js/scroll.js') }}"></script>
     <script type="module" src="{{ asset('js/header.js') }}"></script>
@@ -34,11 +34,6 @@
     <script src="{{ asset('js/scrollToAncorLink.js') }}"></script>
     <script src="{{ asset('js/modal/modal.js') }}"></script>
     <script src="{{ asset('js/modal/changeModal.js') }}"></script>
-
-    @if (session('toast_message_user_delete'))
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7"></script>
-        <script src="{{ asset('js/toastMessage.js') }}"></script>
-    @endif
 
 </body>
 

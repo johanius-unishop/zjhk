@@ -2,8 +2,7 @@ import * as Popper from '@popperjs/core'
 window.Popper = Popper
 import 'bootstrap'
 
-import toastr from 'toastr';
-import 'toastr/build/toastr.css';
+
 
 import Swiper from 'swiper'
 import { EffectFade, Pagination, Navigation, Autoplay, Thumbs } from 'swiper/modules'
