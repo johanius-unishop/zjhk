@@ -46,8 +46,8 @@ class UserProfile extends Component
         //session()->invalidate(); // Инвалидирует сессионные данные
         //session()->regenerateToken(); // Генерирует новый CSRF-токен
 
-        //$this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
-
+        $this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
+        sleep(5);
         // Перенаправляем на главную страницу
         return redirect()->route('home');
     }
