@@ -33,7 +33,11 @@
     <script src="{{ asset('js/scrollToAncorLink.js') }}"></script>
     <script src="{{ asset('js/modal/modal.js') }}"></script>
     <script src="{{ asset('js/modal/changeModal.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7"></script>
+
+    @if (session('toast_message_delete'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7"></script>
+        <script src="{{ asset('js/toastMessage.js') }}"></script>
+    @endif
 
 </body>
 
