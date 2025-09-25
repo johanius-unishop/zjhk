@@ -59,7 +59,7 @@
                 <ul class="header__actions-list">
                     <li class="header__actions-item">
                         @auth()
-                            <a href="{{ route('home') }}" style="display: flex">
+                            <a href="{{ route('profile.index') }}" style="display: flex">
                                 <img src="{{ asset('images/icons/account.svg') }}" alt="Аккаунт">
                                 <span>{{ Auth::user()->name }}</span>
                             </a>
