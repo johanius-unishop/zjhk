@@ -48,7 +48,7 @@ class UserProfile extends Component
 
         // Сохраняем flash-сообщение
         session()->flash('toast_message_user_delete', '1');
-
+        session()->flash('toast_message', 'Учетная запись успешно создана!');
         //$this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
 
         // Перенаправляем на главную страницу

@@ -90,5 +90,11 @@ Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.i
 require __DIR__ . '/auth.php';
 
 
+Route::post('/clear-toast-message', function () {
+    session()->forget('toast_message');
+    return response()->noContent();
+})->middleware('web')->name('clear.toast.message');
+
+
 
 

@@ -26,6 +26,7 @@
         </svg>
     </div>
     @include('partials.login')
+    @include('components.toastr')
     @yield('scripts')
     <script src="{{ asset('js/scroll.js') }}"></script>
     <script type="module" src="{{ asset('js/header.js') }}"></script>
