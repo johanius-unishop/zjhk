@@ -47,11 +47,11 @@ class UserProfile extends Component
         //session()->regenerateToken(); // Генерирует новый CSRF-токен
 
         // Сохраняем flash-сообщение
-        //session()->flash('toast_message', 'Аккаунт успешно удалён.');
-        //session()->flash('toast_type', 'success');
+        session()->flash('toast_message', 'Аккаунт успешно удалён.');
+        session()->flash('toast_type', 'success');
 
-        $this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
-        sleep(5);
+        //$this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
+
         // Перенаправляем на главную страницу
         return redirect()->route('home');
     }

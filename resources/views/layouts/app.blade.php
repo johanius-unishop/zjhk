@@ -34,6 +34,10 @@
     <script src="{{ asset('js/modal/modal.js') }}"></script>
     <script src="{{ asset('js/modal/changeModal.js') }}"></script>
 
+    @if (session('toast_message'))
+        <script src="{{ asset('js/toastMessage.js') }}"></script>
+    @endif
+
 </body>
 
 </html>
