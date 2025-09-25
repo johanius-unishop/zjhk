@@ -41,7 +41,8 @@
         "spatie/laravel-permission": "^6.9",
         "spatie/laravel-sitemap": "^7.2",
         "spatie/laravel-sluggable": "^3.6",
-        "twbs/bootstrap": "5.0.2"
+        "twbs/bootstrap": "5.0.2",
+        "yoeunes/toastr": "^3.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",
