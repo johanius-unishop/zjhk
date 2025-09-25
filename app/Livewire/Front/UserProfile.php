@@ -43,12 +43,14 @@ class UserProfile extends Component
     {
         // Получаем текущего авторизованного пользователя
         $user = Auth::user();
-dd($user);
+
         // Удаляем аккаунт пользователя
         $user->delete();
 
         // Завершаем сеанс
         Auth::logout();
+        session()->invalidate(); // Инвалидирует сессионные данные
+        session()->regenerateToken(); // Генерирует новый CSRF-токен
 
         // Перенаправляем на главную страницу
         return redirect()->route('home');
