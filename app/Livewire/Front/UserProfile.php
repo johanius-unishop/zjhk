@@ -46,10 +46,6 @@ class UserProfile extends Component
         //session()->invalidate(); // Инвалидирует сессионные данные
         //session()->regenerateToken(); // Генерирует новый CSRF-токен
 
-        // Сохраняем flash-сообщение
-        session()->flash('toast_message', 'Аккаунт успешно удалён.');
-        session()->flash('toast_type', 'success');
-
         //$this->dispatch('toast', ['message' => 'Запись удалена.', 'notify' => 'success']);
 
         // Перенаправляем на главную страницу
