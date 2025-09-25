@@ -139,7 +139,7 @@
                                 <img src="img/icons/plus.svg" alt="добавить адрес">
                             </button>
                         </div>
-                        <button data-modal-link="delete-profile-modal" wire:click.prevent="showDeleteModal"
+                        <button data-modal-link="delete-profile-modal" wire:click.prevent="deleteUser"
                             wire:confirm="Вы уверены, что хотите удалить профиль?"
                             class="account-profile__btn-delete">Удалить профиль</button>
                     </div>
