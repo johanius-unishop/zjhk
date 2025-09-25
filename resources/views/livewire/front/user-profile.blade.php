@@ -135,7 +135,7 @@
                                     адрес
                                     доставки</span><img src="img/icons/plus.svg" alt="добавить адрес"></button>
                         </div>
-                        <button data-modal-link="delete-profile-modal" wire:click.prevent="showDeleteModal" class="account-profile__btn-delete">Удалить профиль</button>
+                        <button data-modal-link="delete-profile-modal" wire:click.prevent="showDeleteModal" wire:confirm="Вы уверены, что хотите удалить профиль?" class="account-profile__btn-delete">Удалить профиль</button>
                     </div>
                 </form>
             </div>
