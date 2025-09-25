@@ -5,6 +5,7 @@ namespace App\Livewire\Front;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class UserProfile extends Component
 {
@@ -27,5 +28,14 @@ class UserProfile extends Component
     public function selectPanel(string $panel)
     {
         $this->activePanel = $panel;
+    }
+
+    // Новый метод для выхода
+    public function logout()
+    {
+        Auth::logout(); // Выход из системы
+        session()->invalidate(); // Инвалидирует сессионные данные
+        session()->regenerateToken(); // Генерирует новый CSRF-токен
+        return redirect()->route('home'); // Перенаправление на главную страницу
     }
 }

@@ -8,7 +8,7 @@
                 <button data-target="order-list-card" wire:click="selectPanel('orders')" class="{{ $activePanel === 'orders' ? '_active' : '' }}">Мои заказы</button>
             </li>
             <li class="account-profile__control-item">
-                <a href="#">Выйти</a>
+                <a href="#" wire:click.prevent="logout">Выйти</a>
             </li>
             <li class="account-profile__control-item">
                 <button class="account-profile__control-btn">
