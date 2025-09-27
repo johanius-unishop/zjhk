@@ -43,39 +43,38 @@
 
     <script>
         toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-top-center",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
         }
 
-        @session("success")
-        toastr.success('{{ session("success") }}');
-        @endsession
+        @if (session('success'))
+            toastr.success('{{ session('success') }}');
+        @endif
 
-         @session("info")
-        toastr.info('{{ session("info") }}');
-        @endsession
+        @if (session('info'))
+            toastr.info('{{ session('info') }}');
+        @endif
 
-         @session("error")
-        toastr.error('{{ session("error") }}');
-        @endsession
+        @if (session('error'))
+            toastr.error('{{ session('error') }}');
+        @endif
 
-         @session("warning")
-        toastr.warning('{{ session("warning") }}');
-        @endsession
-
+        @if (session('warning'))
+            toastr.warning('{{ session('warning') }}');
+        @endif
     </script>
 </body>
 
