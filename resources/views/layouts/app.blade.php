@@ -35,6 +35,48 @@
     <script src="{{ asset('js/modal/modal.js') }}"></script>
     <script src="{{ asset('js/modal/changeModal.js') }}"></script>
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+        }
+
+        @session("success")
+        toastr.success('{{ session("success") }}');
+        @endsession
+
+         @session("info")
+        toastr.info('{{ session("info") }}');
+        @endsession
+
+         @session("error")
+        toastr.error('{{ session("error") }}');
+        @endsession
+
+         @session("warning")
+        toastr.warning('{{ session("warning") }}');
+        @endsession
+
+    </script>
 </body>
 
 </html>
