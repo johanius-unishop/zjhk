@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
     {
         App::setLocale('ru');
 
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255', // Новое правило для last_name
             'email' => 'required|email|lowercase|max:255|unique:' . User::class,
@@ -56,6 +56,9 @@ class RegisteredUserController extends Controller
         }
 
         event(new Registered($user));
+
+        return redirect()->route('home')
+            ->with('message', __('Регистрация прошла успешно.')); // Только сообщение при удаче
 
         return redirect()->route('verification.notice')
             ->with('message', __('Перед началом использования сайта, пожалуйста, подтвердите ваш email.'));
