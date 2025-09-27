@@ -38,13 +38,15 @@ class RegisteredUserController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255', // Новое правило для last_name
             'email' => 'required|email|lowercase|max:255|unique:' . User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         try {
             $user = User::create([
                 'name' => $request->name,
+                'last_name' => $request->last_name, // Новая фамилия
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
@@ -56,8 +58,8 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         return redirect()->route('verification.notice')
-                     ->with('message', __('Перед началом использования сайта, пожалуйста, подтвердите ваш email.'));
+            ->with('message', __('Перед началом использования сайта, пожалуйста, подтвердите ваш email.'));
 
-//        return redirect()->route('home');
+        //        return redirect()->route('home');
     }
 }

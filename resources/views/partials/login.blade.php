@@ -90,10 +90,20 @@
                         <div>
                             <label for="name" class="visually-hidden"></label>
                             <input type="text" id="input-name-reg" name="name" class="modal__input"
-                                placeholder="Введите имя" required />
+                                placeholder="Введите имя" required autofocus />
                             <p class="modal__error">
                                 @if ($errors->has('name'))
                                     <span hidden>{{ $errors->first('name') }}</span>
+                                @endif
+                            </p>
+                        </div>
+                        <div>
+                            <label for="last_name" class="visually-hidden"></label>
+                            <input type="text" id="input-last-name-reg" name="last_name" class="modal__input"
+                                placeholder="Введите фамилию" required>
+                            <p class="modal__error">
+                                @if ($errors->has('last_name'))
+                                    <span hidden>{{ $errors->first('last_name') }}</span>
                                 @endif
                             </p>
                         </div>
