@@ -26,6 +26,9 @@
             <use href="{{ asset('images/icons/scroll-up.svg') }}"></use>
         </svg>
     </div>
+    <div>
+        @dump(session()->all())
+    </div>
     @include('partials.login')
 
     @yield('scripts')
@@ -41,7 +44,7 @@
 
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    @php dd(session()); @endphp
+
     <script>
         toastr.options = {
             "closeButton": true,
