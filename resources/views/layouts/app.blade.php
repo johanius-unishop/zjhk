@@ -49,10 +49,7 @@
                 const toggleButtonLogin = document.getElementById("toggle-password-login");
                 const visibleEyeLogin = toggleButtonLogin.querySelector(".visible-icon");
                 const hiddenEyeLogin = toggleButtonLogin.querySelector(".hidden-icon");
-                console.log(passwordLogin);
-                console.log(toggleButtonLogin);
-                console.log(visibleEyeLogin );
-                console.log(hiddenEyeLogin);
+
                 // Пароли для регистрации
                 const passwordReg = document.getElementById("input-password-reg");
                 const toggleButtonReg = document.getElementById("toggle-password-reg");
@@ -60,18 +57,13 @@
                 const hiddenEyeReg = toggleButtonReg.querySelector(".hidden-icon");
 
                 // Пароли для регистрации (подтверждение пароля)
-                const passwordRegConf = document.getElementById(
-                    "input-password-reg-confirmation"
-                );
-                const toggleButtonRegConf = document.getElementById(
-                    "toggle-password-reg-confirmation"
-                );
-                const visibleEyeRegConf =
-                    toggleButtonRegConf.querySelector(".visible-icon");
+                const passwordRegConf = document.getElementById("input-password-reg-confirmation");
+                const toggleButtonRegConf = document.getElementById("toggle-password-reg-confirmation");
+                const visibleEyeRegConf = toggleButtonRegConf.querySelector(".visible-icon");
                 const hiddenEyeRegConf = toggleButtonRegConf.querySelector(".hidden-icon");
 
                 // Обработчик для входа
-                passwordLogin.addEventListener("input", function() {
+                passwordLogin.addEventListener("input_", function() {
                     if (passwordLogin.value.length > 0) {
                         toggleButtonLogin.classList.add("_active");
                     } else {
@@ -79,7 +71,7 @@
                     }
                 });
 
-                toggleButtonLogin.addEventListener("click", function() {
+                toggleButtonLogin.addEventListener("click_", function() {
                     const isPasswordType = passwordLogin.type === "password";
                     passwordLogin.type = isPasswordType ? "text" : "password";
                     visibleEyeLogin.style.display = isPasswordType ?
