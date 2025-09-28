@@ -141,7 +141,7 @@ const modals = document.querySelectorAll("[data-modal]");
     const signInLink = document.querySelector('.switch-to-signin');
     const signUpLink = document.querySelector('.switch-to-signup');
     const formsContainer = document.querySelector('.modal__body'); // Родительский контейнер обоих форм
-    console.log(document.querySelector('.switch-to-signin'));
+
     // Переключение на форму регистрации
     signUpLink.addEventListener('click', function(event) {
         event.preventDefault();

@@ -15,7 +15,7 @@
 
                             <p class="modal__error" aria-live="polite">
                                 @if ($errors->has('email'))
-                                    <span hidden>{{ $errors->first('email') }}</span>
+                                    <span>{{ $errors->first('email') }}</span>
                                 @endif
                             </p>
                         </div>
@@ -31,7 +31,7 @@
                             </button>
                             <p class="modal__error">
                                 @if ($errors->has('password'))
-                                    <span hidden>{{ $errors->first('password') }}</span>
+                                    <span>{{ $errors->first('password') }}</span>
                                 @endif
                             </p>
                         </div>
@@ -93,7 +93,7 @@
                                 value="{{ old('name') }}" placeholder="Введите имя" required autofocus />
                             <p class="modal__error">
                                 @if ($errors->has('name'))
-                                    <span hidden>{{ $errors->first('name') }}</span>
+                                    <span>{{ $errors->first('name') }}</span>
                                 @endif
                             </p>
                         </div>
@@ -103,7 +103,7 @@
                                 value="{{ old('last_name') }}" placeholder="Введите фамилию" required>
                             <p class="modal__error">
                                 @if ($errors->has('last_name'))
-                                    <span hidden>{{ $errors->first('last_name') }}</span>
+                                    <span>{{ $errors->first('last_name') }}</span>
                                 @endif
                             </p>
                         </div>
@@ -113,7 +113,7 @@
                                 value="{{ old('email') }}" placeholder="Введите email" required />
                             <p class="modal__error" aria-live="polite">
                                 @if ($errors->has('email'))
-                                    <span hidden>{{ $errors->first('email') }}</span>
+                                    <span>{{ $errors->first('email') }}</span>
                                 @endif
                             </p>
                         </div>
@@ -129,7 +129,7 @@
                             </button>
                             <p class="modal__error">
                                 @if ($errors->has('password'))
-                                    <span hidden>{{ $errors->first('password') }}</span>
+                                    <span>{{ $errors->first('password') }}</span>
                                 @endif
                             </p>
                         </div>
@@ -145,7 +145,7 @@
                             </button>
                             <p class="modal__error">
                                 @if ($errors->has('password_confirmation'))
-                                    <span hidden>{{ $errors->first('password_confirmation') }}</span>
+                                    <span>{{ $errors->first('password_confirmation') }}</span>
                                 @endif
                             </p>
                         </div>
