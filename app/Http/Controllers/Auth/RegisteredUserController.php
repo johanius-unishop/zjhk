@@ -56,8 +56,8 @@ class RegisteredUserController extends Controller
         }
 
         event(new Registered($user));
-        session()->flash('success', 'Form submitted successfully!');
-       // toastr()->success('Регистрация прошла успешно.');
+       // session()->flash('success', 'Form submitted successfully!');
+        toastr()->success('Регистрация прошла успешно.');
        // toastr()->info('На указанную при регистрации почту отправлено письмо, для входа на сайт необходимо подтвердить электронную почту.');
         return redirect()->route('home');
             //->with('message', __('Регистрация прошла успешно.')) // Только сообщение при удаче
