@@ -40,20 +40,17 @@
         document.addEventListener("DOMContentLoaded", function() {
             // Проверяем наличие ошибок валидации
             @if (count($errors) > 0)
+                // Получить коллекцию модальных окон
+                const modals = document.querySelectorAll("[data-modal]");
 
-                openModal(modals[0]);
-                const formSource = "{{ session('form_error_source') }}";
-
-                if (formSource === 'registration') {
-                    // Открываем модальное окно регистрации
-
-                } else if (formSource === 'authentication') {
-
-                    $('#loginModal').modal('show');
+                // Если коллекция пуста, выведем предупреждение
+                if (modals.length === 0) {
+                    console.error("Нет ни одного модального окна!");
+                } else {
+                    // Открыть первое модальное окно из коллекции
+                    openModal(modals[0]);
                 }
             @endif
-
-            // Остальной ваш код...
         });
     </script>
 
