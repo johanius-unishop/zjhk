@@ -44,6 +44,85 @@
                 const accountModal = document.querySelector('[data-modal="account"]');
                 const body = document.body;
 
+                // Пароли для входа
+                const passwordLogin = document.getElementById("input-password-login");
+                const toggleButtonLogin = document.getElementById("toggle-password-login");
+                const visibleEyeLogin = toggleButtonLogin.querySelector(".visible-icon");
+                const hiddenEyeLogin = toggleButtonLogin.querySelector(".hidden-icon");
+
+                // Пароли для регистрации
+                const passwordReg = document.getElementById("input-password-reg");
+                const toggleButtonReg = document.getElementById("toggle-password-reg");
+                const visibleEyeReg = toggleButtonReg.querySelector(".visible-icon");
+                const hiddenEyeReg = toggleButtonReg.querySelector(".hidden-icon");
+
+                // Пароли для регистрации (подтверждение пароля)
+                const passwordRegConf = document.getElementById(
+                    "input-password-reg-confirmation"
+                );
+                const toggleButtonRegConf = document.getElementById(
+                    "toggle-password-reg-confirmation"
+                );
+                const visibleEyeRegConf =
+                    toggleButtonRegConf.querySelector(".visible-icon");
+                const hiddenEyeRegConf = toggleButtonRegConf.querySelector(".hidden-icon");
+
+                // Обработчик для входа
+                passwordLogin.addEventListener("input", function() {
+                    if (passwordLogin.value.length > 0) {
+                        toggleButtonLogin.classList.add("_active");
+                    } else {
+                        toggleButtonLogin.classList.remove("_active");
+                    }
+                });
+
+                toggleButtonLogin.addEventListener("click", function() {
+                    const isPasswordType = passwordLogin.type === "password";
+                    passwordLogin.type = isPasswordType ? "text" : "password";
+                    visibleEyeLogin.style.display = isPasswordType ?
+                        "none" :
+                        "inline-block";
+                    hiddenEyeLogin.style.display = !isPasswordType ?
+                        "none" :
+                        "inline-block";
+                });
+
+                // Обработчик для регистрации
+                passwordReg.addEventListener("input", function() {
+                    if (passwordReg.value.length > 0) {
+                        toggleButtonReg.classList.add("_active");
+                    } else {
+                        toggleButtonReg.classList.remove("_active");
+                    }
+                });
+
+                toggleButtonReg.addEventListener("click", function() {
+                    const isPasswordType = passwordReg.type === "password";
+                    passwordReg.type = isPasswordType ? "text" : "password";
+                    visibleEyeReg.style.display = isPasswordType ? "none" : "inline-block";
+                    hiddenEyeReg.style.display = !isPasswordType ? "none" : "inline-block";
+                });
+
+                // Обработчик для регистрации повтор пароля
+                passwordRegConf.addEventListener("input", function() {
+                    if (passwordRegConf.value.length > 0) {
+                        toggleButtonRegConf.classList.add("_active");
+                    } else {
+                        toggleButtonRegConf.classList.remove("_active");
+                    }
+                });
+
+                toggleButtonRegConf.addEventListener("click", function() {
+                    const isPasswordType = passwordRegConf.type === "password";
+                    passwordRegConf.type = isPasswordType ? "text" : "password";
+                    visibleEyeRegConf.style.display = isPasswordType ?
+                        "none" :
+                        "inline-block";
+                    hiddenEyeRegConf.style.display = !isPasswordType ?
+                        "none" :
+                        "inline-block";
+                });
+
                 const getScrollbarWidth = () => {
                     return window.innerWidth - document.documentElement.clientWidth;
                 };
