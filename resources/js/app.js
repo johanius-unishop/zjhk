@@ -19,3 +19,4 @@ window.Thumbs = Thumbs
 window.Autoplay = Autoplay
 
 import './front/functions'
+import './front/modal_'
