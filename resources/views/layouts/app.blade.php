@@ -43,6 +43,10 @@
                 // Получить коллекцию модальных окон
                 const accountModal = document.querySelector('[data-modal="account"]');
 
+                const getScrollbarWidth = () => {
+                    return window.innerWidth - document.documentElement.clientWidth;
+                };
+
                 const setBodyStyle = () => {
                     const scrollbarWidth = getScrollbarWidth();
                     body.style.overflowY = "hidden";
