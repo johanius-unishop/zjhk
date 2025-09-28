@@ -59,7 +59,7 @@ class RegisteredUserController extends Controller
         // session()->flash('success', 'Form submitted successfully!');
         toastr()
             ->persistent()
-            ->closeButton()
+            ->closeButton(false)
             ->success('Регистрация прошла успешно.');
         // toastr()->info('На указанную при регистрации почту отправлено письмо, для входа на сайт необходимо подтвердить электронную почту.');
         return redirect()->route('home');
