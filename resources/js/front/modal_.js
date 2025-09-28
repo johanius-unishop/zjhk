@@ -10,11 +10,15 @@ const modals = document.querySelectorAll("[data-modal]");
     const visibleEyeLogin = toggleButtonLogin.querySelector(".visible-icon");
     const hiddenEyeLogin = toggleButtonLogin.querySelector(".hidden-icon");
 
+    checkPasswordState(passwordLogin, toggleButtonLogin);
+
     // Пароли для регистрации
     const passwordReg = document.getElementById("input-password-reg");
     const toggleButtonReg = document.getElementById("toggle-password-reg");
     const visibleEyeReg = toggleButtonReg.querySelector(".visible-icon");
     const hiddenEyeReg = toggleButtonReg.querySelector(".hidden-icon");
+
+    checkPasswordState(passwordReg, toggleButtonReg);
 
     // Пароли для регистрации (подтверждение пароля)
     const passwordRegConf = document.getElementById(
@@ -26,6 +30,8 @@ const modals = document.querySelectorAll("[data-modal]");
     const visibleEyeRegConf =
         toggleButtonRegConf.querySelector(".visible-icon");
     const hiddenEyeRegConf = toggleButtonRegConf.querySelector(".hidden-icon");
+
+    checkPasswordState(passwordRegConf, toggleButtonRegConf);
 
     // Обработчик для входа
     passwordLogin.addEventListener("input", function () {
@@ -63,6 +69,8 @@ const modals = document.querySelectorAll("[data-modal]");
         hiddenEyeReg.style.display = !isPasswordType ? "none" : "inline-block";
     });
 
+
+
     // Обработчик для регистрации повтор пароля
     passwordRegConf.addEventListener("input", function () {
         if (passwordRegConf.value.length > 0) {
@@ -82,6 +90,15 @@ const modals = document.querySelectorAll("[data-modal]");
             ? "none"
             : "inline-block";
     });
+
+    // Вспомогательная функция для проверки состояния поля
+    function checkPasswordState(inputField, buttonToggle) {
+        if (inputField.value.trim().length > 0) {
+            buttonToggle.classList.add("_active");
+        } else {
+            buttonToggle.classList.remove("_active");
+        }
+    }
 
     const getScrollbarWidth = () => {
         return window.innerWidth - document.documentElement.clientWidth;
