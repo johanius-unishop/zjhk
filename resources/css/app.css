@@ -11841,3 +11841,7 @@ h2.benefits__title {
 .hidden-icon {
     display: none;
 }
+
+.toast-top-right {
+    top:100px;
+    right:12px}
