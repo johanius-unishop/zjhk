@@ -41,15 +41,11 @@
             // Проверяем наличие ошибок валидации
             @if (count($errors) > 0)
                 // Получить коллекцию модальных окон
-                const modals = document.querySelectorAll("[data-modal]");
+                const accountModal = document.querySelector('[data-modal="account"]');
 
-                // Если коллекция пуста, выведем предупреждение
-                if (modals.length === 0) {
-                    console.error("Нет ни одного модального окна!");
-                } else {
-                    // Открыть первое модальное окно из коллекции
-                    openModal(modals[0]);
-                }
+                console.log(accountModal);
+                openModal(accountModal);
+
             @endif
         });
     </script>
