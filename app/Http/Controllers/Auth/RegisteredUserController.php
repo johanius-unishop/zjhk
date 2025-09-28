@@ -36,36 +36,51 @@ class RegisteredUserController extends Controller
     {
         App::setLocale('ru');
 
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255', // Новое правило для last_name
-            'email' => 'required|email|lowercase|max:255|unique:' . User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
+        // Пробуем провести валидацию
         try {
-            $user = User::create([
-                'name' => $request->name,
-                'last_name' => $request->last_name, // Новая фамилия
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'email' => 'required|email|lowercase|max:255|unique:' . User::class,
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
             ]);
+
+            // Если дошли сюда, значит, данные валидные
+            $user = User::create([
+                'name' => $validatedData['name'],
+                'last_name' => $validatedData['last_name'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password']),
+            ]);
+
+            event(new Registered($user));
+
+            // Успешная регистрация, выдача уведомления
+            toastr()
+                ->persistent()
+                ->closeButton(false)
+                ->title('Поздравляем!')
+                ->success('Регистрация прошла успешно.');
+
+            toastr()
+                ->persistent()
+                ->closeButton(false)
+                ->info('На указанную при регистрации почту отправлено письмо, для входа на сайт необходимо подтвердить электронную почту.');
+
+            return redirect()->route('home');
+        } catch (\Illuminate\Validation\ValidationException $validationException) {
+            // Записываем ошибку валидации в логи
+            Log::error('Ошибка валидации данных при регистрации пользователя', [
+                'errors' => $validationException->errors(),
+                'inputs' => $request->except('password')
+            ]);
+            dd($validationException->errors());
+            // Возвращаем пользователя обратно с ошибками
+            return back()->withErrors($validationException->errors())->withInput();
         } catch (\Throwable $exception) {
-            Log::error('Error creating user: ', [$exception->getMessage()]);
+            // Все остальные ошибки (кроме валидации)
+            Log::error('Ошибка при создании пользователя: ', [$exception->getMessage()]);
             throw new ValidationException(__('Registration failed.'));
         }
-
-        event(new Registered($user));
-        // session()->flash('success', 'Form submitted successfully!');
-        toastr()
-            ->persistent()
-            ->closeButton(false)
-            ->title('Поздравляем!')
-            ->success('Регистрация прошла успешно.');
-        toastr()
-            ->persistent()
-            ->closeButton(false)
-            ->info('На указанную при регистрации почту отправлено письмо, для входа на сайт необходимо подтвердить электронную почту.');
-        return redirect()->route('home');
     }
 }
