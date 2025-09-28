@@ -18,9 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const hiddenEyeReg = toggleButtonReg.querySelector(".hidden-icon");
 
     // Пароли для регистрации (подтверждение пароля)
-    const passwordRegConf = document.getElementById("input-password-reg-confirmation");
-    const toggleButtonRegConf = document.getElementById("toggle-password-reg-confirmation");
-    const visibleEyeRegConf = toggleButtonRegConf.querySelector(".visible-icon");
+    const passwordRegConf = document.getElementById(
+        "input-password-reg-confirmation"
+    );
+    const toggleButtonRegConf = document.getElementById(
+        "toggle-password-reg-confirmation"
+    );
+    const visibleEyeRegConf =
+        toggleButtonRegConf.querySelector(".visible-icon");
     const hiddenEyeRegConf = toggleButtonRegConf.querySelector(".hidden-icon");
 
     // Обработчик для входа
@@ -71,8 +76,12 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleButtonRegConf.addEventListener("click", function () {
         const isPasswordType = passwordRegConf.type === "password";
         passwordRegConf.type = isPasswordType ? "text" : "password";
-        visibleEyeRegConf.style.display = isPasswordType ? "none" : "inline-block";
-        hiddenEyeRegConf.style.display = !isPasswordType ? "none" : "inline-block";
+        visibleEyeRegConf.style.display = isPasswordType
+            ? "none"
+            : "inline-block";
+        hiddenEyeRegConf.style.display = !isPasswordType
+            ? "none"
+            : "inline-block";
     });
 
     const getScrollbarWidth = () => {
@@ -140,24 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Переменные для селекторов
-    var signInLink = document.querySelector('.switch-to-signin');
-    var signUpLink = document.querySelector('.switch-to-signup');
-    var formsContainer = document.querySelector('.modal__body'); // Родительский контейнер обоих форм
 
-    // Переключение на форму регистрации
-    signUpLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        formsContainer.querySelector('.form-signin').style.display = 'none'; // Прячем форму входа
-        formsContainer.querySelector('.form-signup').style.display = 'block'; // Показываем форму регистрации
-    });
-
-    // Переключение обратно на форму входа
-    signInLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        formsContainer.querySelector('.form-signin').style.display = 'block'; // Показываем форму входа
-        formsContainer.querySelector('.form-signup').style.display = 'none'; // Прячем форму регистрации
-    });
 
     console.log("Modal is ready...");
 });
