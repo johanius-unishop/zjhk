@@ -74,7 +74,7 @@ class RegisteredUserController extends Controller
                 'errors' => $validationException->errors(),
                 'inputs' => $request->except('password')
             ]);
-            dd($validationException->errors());
+
             // Возвращаем пользователя обратно с ошибками
             return back()->withErrors($validationException->errors())->withInput();
         } catch (\Throwable $exception) {
