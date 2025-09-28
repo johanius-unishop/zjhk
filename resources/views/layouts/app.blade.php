@@ -26,9 +26,6 @@
             <use href="{{ asset('images/icons/scroll-up.svg') }}"></use>
         </svg>
     </div>
-    <div>
-        @dump(session()->all())
-    </div>
     @include('partials.login')
 
     @yield('scripts')
