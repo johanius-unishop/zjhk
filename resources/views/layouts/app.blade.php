@@ -82,8 +82,28 @@
                     window.scrollTo(0, scrollPosition);
                 };
 
+                const formSource = "{{ session('form_error_source') }}";
+                // Переключение на форму регистрации
+                function switchToSignup() {
+                    formsContainer.querySelector('.form-signin').style.display = 'none';
+                    formsContainer.querySelector('.form-signup').style.display = 'block';
+                }
+
+                // Переключение на форму входа
+                function switchToSignin() {
+                    formsContainer.querySelector('.form-signin').style.display = 'block';
+                    formsContainer.querySelector('.form-signup').style.display = 'none';
+                }
+
                 console.log(accountModal);
                 openModal(accountModal);
+                if (formSource === 'registration') {
+                    // Открываем модальное окно регистрации
+                    switchToSignup();
+                } else if (formSource === 'authentication') {
+                    // Открываем модальное окно входа
+                    switchTosignIn();
+                }
             @endif
         });
     </script>
