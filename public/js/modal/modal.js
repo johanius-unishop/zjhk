@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const signInLink = document.querySelector('.switch-to-signin');
     const signUpLink = document.querySelector('.switch-to-signup');
     const formsContainer = document.querySelector('.modal__body'); // Родительский контейнер обоих форм
-
+    console.log(signUpLink)
     // Переключение на форму регистрации
     signUpLink.addEventListener('click', function(event) {
         event.preventDefault();
