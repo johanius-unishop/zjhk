@@ -40,17 +40,19 @@
         document.addEventListener("DOMContentLoaded", function() {
             // Проверяем наличие ошибок валидации
             @if (count($errors) > 0)
-                console.log(body);
-                // Получить коллекцию модальных окон
-                const accountModal = document.querySelector('[data-modal="account"]');
+
                 const body = document.body;
+                const accountModal = document.querySelector('[data-modal="account"]');
 
                 // Пароли для входа
                 const passwordLogin = document.getElementById("input-password-login");
                 const toggleButtonLogin = document.getElementById("toggle-password-login");
                 const visibleEyeLogin = toggleButtonLogin.querySelector(".visible-icon");
                 const hiddenEyeLogin = toggleButtonLogin.querySelector(".hidden-icon");
-
+                console.log(passwordLogin);
+                console.log(toggleButtonLogin);
+                console.log(visibleEyeLogin );
+                console.log(hiddenEyeLogin);
                 // Пароли для регистрации
                 const passwordReg = document.getElementById("input-password-reg");
                 const toggleButtonReg = document.getElementById("toggle-password-reg");
