@@ -69,6 +69,8 @@ class RegisteredUserController extends Controller
 
             return redirect()->route('home');
         } catch (\Illuminate\Validation\ValidationException $validationException) {
+            session()->flash('form_error_source', 'registration');
+
             // Записываем ошибку валидации в логи
             Log::error('Ошибка валидации данных при регистрации пользователя', [
                 'errors' => $validationException->errors(),
