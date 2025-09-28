@@ -65,7 +65,6 @@ class RegisteredUserController extends Controller
         toastr()
             ->persistent()
             ->closeButton(false)
-            ->newestOnTop(false)
             ->info('На указанную при регистрации почту отправлено письмо, для входа на сайт необходимо подтвердить электронную почту.');
         return redirect()->route('home');
     }

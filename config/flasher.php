@@ -13,7 +13,7 @@ return [
             ],
             'options' => [
                 // Optional: Add global options here
-                // 'closeButton' => true
+                'newestOnTop' => false
             ],
         ],
     ],
