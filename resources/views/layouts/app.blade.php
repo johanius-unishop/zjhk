@@ -83,6 +83,8 @@
                 };
 
                 const formSource = "{{ session('form_error_source') }}";
+
+                const formsContainer = document.querySelector('.modal__body');
                 // Переключение на форму регистрации
                 function switchToSignup() {
                     formsContainer.querySelector('.form-signin').style.display = 'none';
