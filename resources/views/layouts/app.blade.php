@@ -40,6 +40,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             // Проверяем наличие ошибок валидации
             @if (count($errors) > 0)
+                console.log(body);
                 // Получить коллекцию модальных окон
                 const accountModal = document.querySelector('[data-modal="account"]');
                 const body = document.body;
