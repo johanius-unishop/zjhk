@@ -60,7 +60,8 @@ class RegisteredUserController extends Controller
         toastr()
             ->persistent()
             ->closeButton(false)
-            ->success('Регистрация прошла успешно.','Поздравляем!');
+            ->title('Поздравляем!')
+            ->success('Регистрация прошла успешно.');
         toastr()
             ->persistent()
             ->closeButton(false)
