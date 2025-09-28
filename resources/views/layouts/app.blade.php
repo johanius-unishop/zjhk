@@ -40,14 +40,15 @@
         document.addEventListener("DOMContentLoaded", function() {
             // Проверяем наличие ошибок валидации
             @if (count($errors) > 0)
-                // Проверяем, какая форма вызвала ошибку
+
+                openModal(modals[0]);
                 const formSource = "{{ session('form_error_source') }}";
 
                 if (formSource === 'registration') {
                     // Открываем модальное окно регистрации
-                    $('#registerModal').modal('show');
+
                 } else if (formSource === 'authentication') {
-                    // Открываем модальное окно авторизации
+
                     $('#loginModal').modal('show');
                 }
             @endif
