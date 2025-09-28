@@ -42,6 +42,7 @@
             @if (count($errors) > 0)
                 // Получить коллекцию модальных окон
                 const accountModal = document.querySelector('[data-modal="account"]');
+                const body = document.body;
 
                 const getScrollbarWidth = () => {
                     return window.innerWidth - document.documentElement.clientWidth;
