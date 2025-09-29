@@ -35,7 +35,7 @@ class AuthenticatedSessionController extends Controller
                 ->title('Внимание!')
                 ->warning('Для входа на сайт необходимо подтвердить email!');
 
-                session()->flash('form_error_source', 'authentication');
+
 
                 return back()->withInput(); // Сохраняем введённые данные
             }
@@ -49,7 +49,7 @@ class AuthenticatedSessionController extends Controller
             // Авторизация пройдена успешно, пользователь с подтвержденной почтой направляется на главную страницу
             return redirect()->route('home');
         } else {
-            dd('Не получилось авторизоваться');
+            session()->flash('form_error_source', 'authentication');
             return back()
                 ->withErrors(['email' => __('Неверная комбинация Email / Пароль')])
                 ->withInput(); // Если аутентификация неуспешна, возвращаем назад с ошибкой
