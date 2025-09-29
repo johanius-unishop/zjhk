@@ -99,7 +99,7 @@
                     formsContainer.querySelector('.form-signup').style.display = 'none';
                 }
 
-                console.log(accountModal);
+
                 openModal(accountModal);
                 if (formSource === 'registration') {
                     // Открываем модальное окно регистрации
