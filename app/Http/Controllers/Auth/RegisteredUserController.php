@@ -63,6 +63,7 @@ class RegisteredUserController extends Controller
                 ->success('Регистрация прошла успешно.');
 
             toastr()
+                ->timeOut(30000)
                 ->info('На указанную при регистрации почту отправлено письмо, для входа на сайт необходимо подтвердить электронную почту.');
 
             return redirect()->route('home');
