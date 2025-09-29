@@ -38,12 +38,22 @@ class RegisteredUserController extends Controller
 
         // Пробуем провести валидацию
         try {
-            $validatedData = $request->validate([
-                'name' => 'required|string|max:255',
-                'last_name' => 'required|string|max:255',
-                'email' => 'required|email|lowercase|max:255|unique:' . User::class,
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            ]);
+            $validatedData = $request->validate(
+                [
+                    'name' => 'required|string|max:255',
+                    'last_name' => 'required|string|max:255',
+                    'email' => 'required|email|lowercase|max:255|unique:' . User::class,
+                    'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                ],
+                [
+                    // Кастомные сообщения об ошибках
+                    'name.required' => 'Поле "Имя" для регистрации обязательно!',
+                    'last_name.required' => 'Поле "Фамилия" для регисрации обязательно!',
+                    'email.email' => 'Введите корректный электронный адрес!',
+                    'email.unique' => 'Указанный email уже зарегистрирован!',
+                    'password.confirmed' => 'Пароли не совпадают!',
+                ]
+            );
 
             // Если дошли сюда, значит, данные валидные
             $user = User::create([
