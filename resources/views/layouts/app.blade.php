@@ -39,7 +39,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Проверяем наличие ошибок валидации
-            @if (count($errors) > 0)
+            @if (session('form_error_source') == 'registration' || session('form_error_source') == 'autentification')
 
                 const body = document.body;
                 const accountModal = document.querySelector('[data-modal="account"]');

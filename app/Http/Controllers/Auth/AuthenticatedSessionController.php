@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\App;
 class AuthenticatedSessionController extends Controller
 {
 
+    /**
+     * Display the login view.
+     */
+    public function create()
+    {
+        App::setLocale('ru');
+
+        session()->flash('form_error_source', 'authentication');
+        return redirect('/');
+    }
+
 
     /**
      * Handle an incoming authentication request.
