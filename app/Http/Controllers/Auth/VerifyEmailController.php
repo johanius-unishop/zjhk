@@ -2,24 +2,43 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class VerifyEmailController extends Controller
 {
     /**
-     * Mark the authenticated user's email address as verified.
+     * Маркерайт email пользователя как подтвержденный.
      */
     public function __invoke(EmailVerificationRequest $request): RedirectResponse
     {
-        App::setLocale('ru');
+        try {
+            // Определяем пользователя без необходимости быть авторизованным
+            $user = User::findOrFail($request->route('id'));
 
-        $request->fulfill();
+            // Проверяем валидность hash-токена
+            if (!$this->isValidHash($user, $request->route('hash'))) {
+                abort(403, 'Invalid verification link.');
+            }
 
-        return redirect('/')
-            ->with('verified', true);
+            // Устанавливаем флаг подтверждения
+            $user->markEmailAsVerified();
+
+            event(new Verified($user)); // Отправляем событие успешного подтверждения
+
+            return redirect('/')->with('verified', true);
+        } catch (\Throwable $exception) {
+            report($exception); // Отчёт об ошибке
+            return back()->withErrors(['error' => 'Error during email verification process. Please try again later.']);
+        }
+    }
+
+    protected function isValidHash(User $user, string $hash): bool
+    {
+        return hash_equals((string)$user->getEmailVerificationToken(), $hash);
     }
 }
