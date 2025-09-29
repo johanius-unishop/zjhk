@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
             return redirect(route('home')); // Направляем на главную страницу
         }
 
-        dd($request);
+
         return $next($request);
     }
 }
