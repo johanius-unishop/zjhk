@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
-use App\Models\Setting;
 use Illuminate\Support\Facades\App;
 
 class AuthenticatedSessionController extends Controller
@@ -33,7 +30,7 @@ class AuthenticatedSessionController extends Controller
 
                 toastr()
                 ->title('Внимание!')
-                ->warning('Для входа на сайт необходимо подтвердить email!');
+                ->warning('Для входа на сайт необходимо подтвердить e-mail!');
 
 
 

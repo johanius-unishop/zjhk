@@ -39,11 +39,10 @@ Route::middleware('auth')->group(function () {
         return view('auth.verify');
     })->middleware('auth')->name('verification.notice');
 
-    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-        $request->fulfill();
-
-        return redirect('/');
-    })->middleware(['auth', 'signed'])->name('verification.verify');
+    // Маршрут для подтверждения email
+    Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+        ->middleware(['signed', 'throttle:6,1'])
+        ->name('verification.verify');
 
     Route::post('/email/verification-notification', function (Request $request) {
         $request->user()->sendEmailVerificationNotification();
@@ -51,5 +50,3 @@ Route::middleware('auth')->group(function () {
         return back()->with('message', 'Verification link sent!');
     })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 });
-
-
