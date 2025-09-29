@@ -26,7 +26,6 @@ class AuthenticatedSessionController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) { // Попытка аутентификации
-            dd('1');
             $user = Auth::user(); // получаем текущего залогинившегося пользователя
 
             if (!$user->email_verified_at) { // Проверяем статус подтверждения почты
@@ -35,7 +34,7 @@ class AuthenticatedSessionController extends Controller
                 toastr()
                 ->title('Внимание!')
                 ->warning('Для входа на сайт необходимо подтвердить email!');
-                dd(!$user->email_verified_at);
+
                 session()->flash('form_error_source', 'authentication');
 
                 return back()->withInput(); // Сохраняем введённые данные
