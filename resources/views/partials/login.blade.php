@@ -10,12 +10,12 @@
                         <div>
                             <label for="email" value="{{ __('Email') }}" class="visually-hidden"></label>
                             <input type="email" id="input-email" name="email" class="modal__input"
-                                value="@if(session('form_error_source') == 'login') {{ old('email') }} @endif"
+                                value="@if(session('form_error_source') == 'authentication') {{ old('email') }} @endif"
                                 placeholder="Введите email" required autofocus
                                 autocomplete="username" />
 
                             <p class="modal__error" aria-live="polite">
-                                @if ($errors->has('email') && (session('form_error_source') == 'login'))
+                                @if ($errors->has('email') && (session('form_error_source') == 'authentication'))
                                     <span>{{ $errors->first('email') }}</span>
                                 @endif
                             </p>
@@ -23,7 +23,7 @@
                         <div class="password-field">
                             <label for="password" class="visually-hidden"></label>
                             <input type="password" id="input-password-login" name="password"
-                                value="@if(session('form_error_source') == 'login') {{ old('password') }} @endif"
+                                value="@if(session('form_error_source') == 'authentication') {{ old('password') }} @endif"
                                 placeholder="Введите пароль" autocomplete="current-password" class="input-password" />
                             <button type="button" id="toggle-password-login" class="password-toggle">
                                 <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль"
@@ -32,7 +32,7 @@
                                     class="hidden-icon">
                             </button>
                             <p class="modal__error">
-                                @if ($errors->has('password') && (session('form_error_source') == 'login'))
+                                @if ($errors->has('password') && (session('form_error_source') == 'authentication'))
                                     <span>{{ $errors->first('password') }}</span>
                                 @endif
                             </p>
@@ -95,7 +95,7 @@
                                 value="@if(session('form_error_source') == 'registration') {{ old('name') }} @endif"
                                 placeholder="Введите имя" required autofocus />
                             <p class="modal__error">
-                                @if ($errors->has('name'))
+                                @if ($errors->has('name') && (session('form_error_source') == 'registration'))
                                     <span>{{ $errors->first('name') }}</span>
                                 @endif
                             </p>
@@ -106,7 +106,7 @@
                                 value="@if(session('form_error_source') == 'registration') {{ old('last_name') }} @endif"
                                 placeholder="Введите фамилию" required>
                             <p class="modal__error">
-                                @if ($errors->has('last_name'))
+                                @if ($errors->has('last_name') && (session('form_error_source') == 'registration'))
                                     <span>{{ $errors->first('last_name') }}</span>
                                 @endif
                             </p>
@@ -117,7 +117,7 @@
                                 value="@if(session('form_error_source') == 'registration') {{ old('email') }} @endif"
                                 placeholder="Введите email" required />
                             <p class="modal__error" aria-live="polite">
-                                @if ($errors->has('email'))
+                                @if ($errors->has('email') && (session('form_error_source') == 'registration'))
                                     <span>{{ $errors->first('email') }}</span>
                                 @endif
                             </p>
@@ -134,7 +134,7 @@
                                     class="hidden-icon">
                             </button>
                             <p class="modal__error">
-                                @if ($errors->has('password'))
+                                @if ($errors->has('password') && (session('form_error_source') == 'registration'))
                                     <span>{{ $errors->first('password') }}</span>
                                 @endif
                             </p>
@@ -151,7 +151,7 @@
                                     class="hidden-icon">
                             </button>
                             <p class="modal__error">
-                                @if ($errors->has('password_confirmation'))
+                                @if ($errors->has('password_confirmation') && (session('form_error_source') == 'registration'))
                                     <span>{{ $errors->first('password_confirmation') }}</span>
                                 @endif
                             </p>
