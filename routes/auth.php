@@ -37,14 +37,17 @@ Route::middleware('guest')->group(function () {
         return redirect('/home');
     })->middleware(['auth', 'signed'])->name('verification.verify');
 */
-    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
-                ->middleware(['signed', 'throttle:6,1'])
-                ->name('verification.verify');
+
 
 // Действия для авторизованных пользователей
 Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
+
+    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
+                ->middleware(['signed', 'throttle:6,1'])
+                ->name('verification.verify');
+
 
     // Маршруты для подтверждения email
     Route::get('/email/verify', function () {
