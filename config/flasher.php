@@ -13,7 +13,10 @@ return [
             ],
             'options' => [
                 // Optional: Add global options here
-                'newestOnTop' => false
+                'newestOnTop' => false,
+                'timeOut' => 30000,
+                'tapToDismiss' => true,
+                'closeButton' => false
             ],
         ],
     ],

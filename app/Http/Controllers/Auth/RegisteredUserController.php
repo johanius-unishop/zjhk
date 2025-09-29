@@ -18,14 +18,6 @@ use App\Http\Controllers\Controller;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
-    public function create(): View
-    {
-        App::setLocale('ru');
-        return view('auth.register');
-    }
 
     /**
      * Handle an incoming registration request.
@@ -67,14 +59,10 @@ class RegisteredUserController extends Controller
 
             // Успешная регистрация, выдача уведомления
             toastr()
-                ->persistent()
-                ->closeButton(false)
                 ->title('Поздравляем!')
                 ->success('Регистрация прошла успешно.');
 
             toastr()
-                ->persistent()
-                ->closeButton(false)
                 ->info('На указанную при регистрации почту отправлено письмо, для входа на сайт необходимо подтвердить электронную почту.');
 
             return redirect()->route('home');
