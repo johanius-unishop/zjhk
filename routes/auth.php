@@ -30,9 +30,11 @@ Route::middleware('guest')->group(function () {
 });
 
 // Маршрут для подтверждения email
-Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-    ->middleware(['signed', 'throttle:6,1'])
-    ->name('verification.verify');
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+
+        return redirect('/home');
+    })->middleware(['auth', 'signed'])->name('verification.verify');
 
 // Действия для авторизованных пользователей
 Route::middleware('auth')->group(function () {
