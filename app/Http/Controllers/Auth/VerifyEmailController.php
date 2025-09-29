@@ -17,6 +17,7 @@ class VerifyEmailController extends Controller
     public function __invoke(EmailVerificationRequest $request): RedirectResponse
     {
         try {
+            dd('Proverka');
             // Определяем пользователя без необходимости быть авторизованным
             $user = User::findOrFail($request->route('id'));
 
@@ -32,6 +33,7 @@ class VerifyEmailController extends Controller
 
             return redirect('/')->with('verified', true);
         } catch (\Throwable $exception) {
+            dd('Oshibka');
             report($exception); // Отчёт об ошибке
             return back()->withErrors(['error' => 'Error during email verification process. Please try again later.']);
         }
