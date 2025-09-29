@@ -18,7 +18,7 @@ class AuthenticatedSessionController extends Controller
     public function create()
     {
         App::setLocale('ru');
-
+        dd('какого хера');
         session()->flash('form_error_source', 'authentication');
         return redirect('/');
     }
