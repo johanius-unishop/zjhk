@@ -17,16 +17,6 @@ class AuthenticatedSessionController extends Controller
 
 
     /**
-     * Display the login view.
-     */
-    public function create(): View
-    {
-        App::setLocale('ru');
-
-        return view('auth.login');
-    }
-
-    /**
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request)
@@ -47,8 +37,7 @@ class AuthenticatedSessionController extends Controller
 
                 session()->flash('form_error_source', 'login');
 
-                return back()
-                    ->withInput(); // Сохраняем введённые данные
+                return back()->withInput(); // Сохраняем введённые данные
             }
 
             // Успешная регистрация, выдача уведомления
