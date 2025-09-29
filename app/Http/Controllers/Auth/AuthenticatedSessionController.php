@@ -50,6 +50,7 @@ class AuthenticatedSessionController extends Controller
             // Авторизация пройдена успешно, пользователь с подтвержденной почтой направляется на главную страницу
             return redirect()->route('home');
         } else {
+            dd('Не получилось авторизоваться');
             return back()
                 ->withErrors(['email' => __('Неверная комбинация Email / Пароль')])
                 ->withInput(); // Если аутентификация неуспешна, возвращаем назад с ошибкой
