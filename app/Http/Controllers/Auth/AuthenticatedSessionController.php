@@ -34,8 +34,8 @@ class AuthenticatedSessionController extends Controller
                 toastr()
                 ->title('Внимание!')
                 ->warning('Для входа на сайт необходимо подтвердить email!');
-
-                session()->flash('form_error_source', 'login');
+                dd(!$user->email_verified_at);
+                session()->flash('form_error_source', 'authentication');
 
                 return back()->withInput(); // Сохраняем введённые данные
             }
