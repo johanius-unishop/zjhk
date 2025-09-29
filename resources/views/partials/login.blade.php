@@ -15,7 +15,7 @@
                                 autocomplete="username" />
 
                             <p class="modal__error" aria-live="polite">
-                                @if ($errors->has('email'))
+                                @if ($errors->has('email') && (session('form_error_source') == 'login'))
                                     <span>{{ $errors->first('email') }}</span>
                                 @endif
                             </p>
@@ -32,7 +32,7 @@
                                     class="hidden-icon">
                             </button>
                             <p class="modal__error">
-                                @if ($errors->has('password'))
+                                @if ($errors->has('password') && (session('form_error_source') == 'login'))
                                     <span>{{ $errors->first('password') }}</span>
                                 @endif
                             </p>
