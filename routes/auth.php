@@ -31,6 +31,7 @@ Route::middleware('guest')->group(function () {
 
 // Маршрут для подтверждения email
     Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        dd($request);
         $request->fulfill();
 
         return redirect('/home');
