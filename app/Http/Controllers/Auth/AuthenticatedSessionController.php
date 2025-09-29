@@ -24,7 +24,7 @@ class AuthenticatedSessionController extends Controller
         App::setLocale('ru'); // Установка локали
 
         $credentials = $request->only('email', 'password');
-
+        dd('1');
         if (Auth::attempt($credentials)) { // Попытка аутентификации
             $user = Auth::user(); // получаем текущего залогинившегося пользователя
 
