@@ -16,6 +16,7 @@ class VerifyEmailController extends Controller
     public function __invoke(EmailVerificationRequest $request): RedirectResponse
     {
         App::setLocale('ru');
+        dd($request);
         $request->fulfill();
 
         return redirect('/')
