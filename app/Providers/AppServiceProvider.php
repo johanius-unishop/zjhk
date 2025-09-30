@@ -60,10 +60,12 @@ class AppServiceProvider extends ServiceProvider
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
            // App::setLocale('ru');
             return (new MailMessage)
-                ->subject(Lang::get('auth.Verify Email Address'))
-            ->line(Lang::get('auth.Please click the button below to verify your email address.'))
-            ->action(Lang::get('auth.Verify Email'), $url)
-            ->line(Lang::get('auth.If you did not create an account, no further action is required.'));
+                ->subject('Подтверждение адреса электронной почты!')
+                ->greeting('Добрый день!')
+                ->line('Пожалуйста, нажмите кнопку ниже, чтобы подтвердить свой адрес электронной почты.')
+                ->action(('Подтвердить Email'), $url)
+                ->line('Если Вы не создавали аккаунт, дальнейших действий не требуется.')
+                ->salutation('С уважением, ООО "Кевтек"');
         });
 
 

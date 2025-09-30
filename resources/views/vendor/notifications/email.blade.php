@@ -5,8 +5,6 @@
 @else
 @if ($level === 'error')
 # @lang('Что-то пошло не так!')
-@else
-# @lang('Здравствуйте!')
 @endif
 @endif
 
