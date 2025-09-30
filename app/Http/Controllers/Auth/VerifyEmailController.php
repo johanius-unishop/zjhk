@@ -15,9 +15,9 @@ use App\Http\Controllers\Controller;
 
 class VerifyEmailController extends Controller
 {
-    public function __invoke(EmailVerificationRequest $request)
+    public function __invoke(Request $request)
     {
-        dd($request->input('id'));
+        dd($request->route('id'));
         $validator = Validator::make($request->all(), [
             'id' => 'required|exists:users,id',
             'hash' => 'required|string'
