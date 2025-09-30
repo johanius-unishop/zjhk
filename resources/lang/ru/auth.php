@@ -8,8 +8,8 @@
 */
 
 return [
-    'Verify Email Address' => 'Подтвердите адрес электронной почты',
+    'Verify Email Address' => 'Подтверждение адреса электронной почты',
     'Please click the button below to verify your email address.' => 'Пожалуйста, нажмите кнопку ниже, чтобы подтвердить свой адрес электронной почты.',
-    'Verify Email Address' => 'Подтвердить адрес электронной почты',
-    'If you did not create an account, no further action is required.' => 'Если вы не создавали аккаунт, дальнейших действий не требуется.'
+    'Verify Email' => 'Подтвердить Email',
+    'If you did not create an account, no further action is required.' => 'Если Вы не создавали аккаунт, дальнейших действий не требуется.'
 ];
