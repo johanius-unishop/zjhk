@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Pagination\Paginator;
 use App\Models\Category;
 use App\Models\Setting;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Lang;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -56,11 +58,15 @@ class AppServiceProvider extends ServiceProvider
         });
 
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
+            App::setLocale('ru');
             return (new MailMessage)
-                ->subject('Verify Email Address111')
-                ->line('Click the button below to verify your email address.')
-                ->action('Verify Email Address', $url);
+                ->subject(Lang::get('auth.Verify Email Address'))
+            ->line(Lang::get('auth.Please click the button below to verify your email address.'))
+            ->action(Lang::get('auth.Verify Email Address'), $url)
+            ->line(Lang::get('auth.If you did not create an account, no further action is required.'));
         });
+
+
 
         // Event::listen(
         //     ProductStockUpdated::class,
