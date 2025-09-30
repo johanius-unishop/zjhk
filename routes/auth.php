@@ -15,10 +15,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 // Первым делом идёт маршрут подтверждения почты
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-  $request->fulfill();
-  return view('home');
-})->middleware(['signed','throttle:6,1'])->name('verification.verify');
+Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+    ->middleware(['signed', 'throttle:6,1'])
+    ->name('verification.verify');
 
 
 
