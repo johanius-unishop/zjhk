@@ -17,11 +17,11 @@ class VerifyEmailController extends Controller
     public function __invoke(Request $request)
     {
 
-        Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'id' => 'required|exists:users,id',
             'hash' => 'required|string'
-        ])->validate();
-        dd($request);
+        ]);//->validate();
+        dd($validator);
         $user = User::findOrFail($request->input('id'));
 
         if (! hash_equals(sha1($user->getEmailForVerification()), $request->input('hash'))) {
