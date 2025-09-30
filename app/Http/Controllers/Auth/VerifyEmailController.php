@@ -1,46 +1,42 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use Illuminate\Auth\Events\Verified;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class VerifyEmailController extends Controller
 {
-    /**
-     * Маркерайт email пользователя как подтвержденный.
-     */
-    public function __invoke(EmailVerificationRequest $request): RedirectResponse
+    public function __invoke(Request $request)
     {
-        try {
-            dd('Proverka');
-            // Определяем пользователя без необходимости быть авторизованным
-            $user = User::findOrFail($request->route('id'));
+        Validator::make($request->all(), [
+            'id' => 'required|exists:users,id',
+            'hash' => 'required|string'
+        ])->validate();
 
-            // Проверяем валидность hash-токена
-            if (!$this->isValidHash($user, $request->route('hash'))) {
-                abort(403, 'Invalid verification link.');
-            }
+        $user = User::findOrFail($request->input('id'));
 
-            // Устанавливаем флаг подтверждения
-            $user->markEmailAsVerified();
-
-            event(new Verified($user)); // Отправляем событие успешного подтверждения
-
-            return redirect('/')->with('verified', true);
-        } catch (\Throwable $exception) {
-            dd('Oshibka');
-            report($exception); // Отчёт об ошибке
-            return back()->withErrors(['error' => 'Error during email verification process. Please try again later.']);
+        if (! hash_equals(sha1($user->getEmailForVerification()), $request->input('hash'))) {
+            throw ValidationException::withMessages([
+                'hash' => __('The provided email verification link is invalid.')
+            ]);
         }
-    }
 
-    protected function isValidHash(User $user, string $hash): bool
-    {
-        return hash_equals((string)$user->getEmailVerificationToken(), $hash);
+        if ($user->hasVerifiedEmail()) {
+            return redirect(Route::currentRouteName());
+        }
+
+        if ($user->markEmailAsVerified()) {
+            event(new Verified($user));
+        }
+
+        Auth::logoutOtherDevices($user->password);
+
+        return redirect(Route::currentRouteName())->with('status', 'email.verification-successful');
     }
 }

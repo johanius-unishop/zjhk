@@ -16,16 +16,9 @@ use Illuminate\Http\Request;
 
 // Первым делом идёт маршрут подтверждения почты
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    if ($request->user()) {
-        return redirect('profile.index')->with('success', 'Ваш адрес электронной почты успешно подтверждён.');
-    }
-
-    return redirect('/')->with('success', 'Ваш адрес электронной почты успешно подтверждён. Теперь вы можете войти в систему.');
-})
-->middleware(['signed', 'throttle:6,1'])
-->name('verification.verify');
+  $request->fulfill();
+  return view('home');
+})->middleware(['auth','signed','throttle:6,1'])->name('verification.verify');
 
 
 
