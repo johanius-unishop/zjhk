@@ -16,7 +16,7 @@ class VerifyEmailController extends Controller
 {
     public function __invoke(Request $request)
     {
-
+        dd($request->input('id'));
         $validator = Validator::make($request->all(), [
             'id' => 'required|exists:users,id',
             'hash' => 'required|string'
