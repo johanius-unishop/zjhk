@@ -20,8 +20,13 @@ class VerifyEmailController extends Controller
         $validator = Validator::make($request->all(), [
             'id' => 'required|exists:users,id',
             'hash' => 'required|string'
-        ]);//->validate();
-        dd($validator);
+        ]); //->validate();
+
+        if ($validator->fails()) {
+            dd($validator->errors()); // Показать ошибки, если валидатор не прошел
+        }
+
+
         $user = User::findOrFail($request->input('id'));
 
         if (! hash_equals(sha1($user->getEmailForVerification()), $request->input('hash'))) {
