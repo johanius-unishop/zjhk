@@ -30,13 +30,20 @@ Route::middleware('guest')->group(function () {
 });
 
 // Маршрут для подтверждения email
-    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-        dd($request);
-        $request->fulfill();
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    // Проверяем подпись ссылки и выполним подтверждение
+    $request->fulfill();
 
-        return redirect('/home');
-    })->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
+    // Если пользователь уже авторизован, перенаправляем его на домашнюю страницу
+    if ($request->user()) {
+        return redirect('profile.index')->with('success', 'Ваш адрес электронной почты успешно подтверждён.');
+    }
 
+    // Если пользователь не авторизован, сообщаем ему об успехе
+    return redirect('/')->with('success', 'Ваш адрес электронной почты успешно подтверждён. Теперь вы можете войти в систему.');
+})
+    ->middleware(['signed', 'throttle:6,1'])
+    ->name('verification.verify');
 
 
 // Действия для авторизованных пользователей
@@ -45,8 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
     Route::get('email/verify/{id}/{hash}', VerifyEmailController::class)
-                ->middleware(['signed', 'throttle:6,1'])
-                ->name('verification.verify');
+        ->middleware(['signed', 'throttle:6,1'])
+        ->name('verification.verify');
 
 
     // Маршруты для подтверждения email
