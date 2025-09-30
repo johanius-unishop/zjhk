@@ -47,7 +47,7 @@ class VerifyEmailController extends Controller
             toastr()
                 ->title('Успех')
                 ->success('Ваша учетная запись подтверждена, теперь Вы можете войти');
-            session()->flash('form_error_source', 'authentication');
+            session()->flash('form_error_source', 'verification');
             return redirect()->route('home');
         }
     }

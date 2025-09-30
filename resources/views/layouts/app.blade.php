@@ -39,7 +39,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Проверяем наличие ошибок валидации
-            @if (session('form_error_source') == 'registration' || session('form_error_source') == 'authentication')
+            @if (session('form_error_source'))
 
                 const body = document.body;
                 const accountModal = document.querySelector('[data-modal="account"]');
@@ -106,7 +106,7 @@
                     switchToSignup();
                 } else if (formSource === 'authentication') {
                     // Открываем модальное окно входа
-                    switchTosignIn();
+                    switchToSignIn();
                 }
             @endif
         });
