@@ -21,9 +21,8 @@ class VerifyEmailController extends Controller
         $hash = $request->route('hash');
 
         $data = array_merge($request->all(),compact('id','hash'));
-        dd($data);
 
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($data, [
             'id' => 'required|exists:users,id',
             'hash' => 'required|string',
         ], [], [
