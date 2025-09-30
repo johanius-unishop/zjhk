@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +15,7 @@ use App\Http\Controllers\Controller;
 
 class VerifyEmailController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(EmailVerificationRequest $request)
     {
         dd($request->input('id'));
         $validator = Validator::make($request->all(), [
