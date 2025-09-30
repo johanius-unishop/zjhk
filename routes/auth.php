@@ -24,7 +24,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
     return redirect('/')->with('success', 'Ваш адрес электронной почты успешно подтверждён. Теперь вы можете войти в систему.');
 })
-->middleware(['auth', 'signed', 'throttle:6,1'])
+->middleware(['signed', 'throttle:6,1'])
 ->name('verification.verify');
 
 
