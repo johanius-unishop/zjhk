@@ -46,7 +46,7 @@
 @isset($actionText)
 <x-slot:subcopy>
 @lang(
-    'Если у вас возникли проблемы при нажатии кнопки "{{ $actionUrl }}", скопируйте и вставьте URL ниже\n.'
+    "Если у вас возникли проблемы при нажатии кнопки \"{{ $actionText }}\", скопируйте и вставьте URL ниже\n."
     'в свой веб-браузер:',
 ) <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
 </x-slot:subcopy>
