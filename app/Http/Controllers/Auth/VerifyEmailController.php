@@ -42,9 +42,8 @@ class VerifyEmailController extends Controller
                 ->warning('Ваша учетная запись уже подтверждена ранее!');
             return redirect()->route('home');
         }
-
+        dd($user->markEmailAsVerified());
         if ($user->markEmailAsVerified()) {
-            dd('Zdes');
             event(new Verified($user));
         }
 
