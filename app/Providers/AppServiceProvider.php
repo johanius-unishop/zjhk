@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+
 use Illuminate\Support\Facades\View;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -31,22 +32,22 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             // Получаем список категорий из базы данных
             $categories_catalog = Category::defaultOrder()
-                ->where('published','!=','0')
+                ->where('published', '!=', '0')
                 ->get()->toTree();
-            $mainContacts = Setting::where('group','=','companyContacts')
+            $mainContacts = Setting::where('group', '=', 'companyContacts')
                 ->get()
-                ->mapWithKeys(function ($item){
+                ->mapWithKeys(function ($item) {
                     return [$item['key'] => $item['value']];
                 })
                 ->all();
 
-            if(isset($mainContacts['companyMainPhone'])) { // Проверяем наличие ключа companyMainPhone
+            if (isset($mainContacts['companyMainPhone'])) { // Проверяем наличие ключа companyMainPhone
                 $mainContacts['companyMainPhonePurified'] = preg_replace('/[^+\d]/', '', $mainContacts['companyMainPhone']);
             }
 
-            $loginSocial = Setting::where('group','=','loginModal')
+            $loginSocial = Setting::where('group', '=', 'loginModal')
                 ->get()
-                ->mapWithKeys(function ($item){
+                ->mapWithKeys(function ($item) {
                     return [$item['key'] => $item['value']];
                 })
                 ->all();
@@ -58,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
-           // App::setLocale('ru');
+            // App::setLocale('ru');
             return (new MailMessage)
                 ->subject('Подтверждение адреса электронной почты!')
                 ->greeting('Добрый день!')
@@ -66,7 +67,11 @@ class AppServiceProvider extends ServiceProvider
                 ->action(('Подтвердить Email'), $url)
                 ->line('Если Вы не создавали аккаунт, дальнейших действий не требуется.')
                 ->salutation('С уважением, ООО "Кевтек"')
-                ->markdown('Если у вас возникли проблемы при нажатии кнопки "Подтвердить Email", скопируйте и вставьте URL ниже в свой веб-браузер:');
+                ->with([ // ← Тут передаёте параметры
+                    'actionText' => 'Подтвердить Email',
+                    'displayableActionUrl' => $url,
+                    'actionUrl' => $url,
+                ]);
         });
 
 
@@ -82,7 +87,7 @@ class AppServiceProvider extends ServiceProvider
 
         Paginator::defaultView('vendor.pagination.custom');
 
-       // Paginator::useBootstrapFive();
+        // Paginator::useBootstrapFive();
         Schema::defaultStringLength(191);
     }
 }
