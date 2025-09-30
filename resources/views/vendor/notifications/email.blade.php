@@ -1,54 +1,52 @@
 <x-mail::message>
-{{-- Greeting --}}
-@if (! empty($greeting))
-# {{ $greeting }}
-@else
-@if ($level === 'error')
-# @lang('Что-то пошло не так!')
+    {{-- Greeting --}}
+    @if (!empty($greeting))
+        # {{ $greeting }}
+    @else
+        @if ($level === 'error')
+            # @lang('Что-то пошло не так!')
+        @endif
+    @endif
 
-@endif
-@endif
+    {{-- Intro Lines --}}
+    @foreach ($introLines as $line)
+        {{ $line }}
+    @endforeach
 
-{{-- Intro Lines --}}
-@foreach ($introLines as $line)
-{{ $line }}
+    {{-- Action Button --}}
+    @isset($actionText)
+        <?php
+        $color = match ($level) {
+            'success', 'error' => $level,
+            default => 'primary',
+        };
+        ?>
+        <x-mail::button :url="$actionUrl" :color="$color">
+            {{ $actionText }}
+        </x-mail::button>
+    @endisset
 
-@endforeach
+    {{-- Outro Lines --}}
+    @foreach ($outroLines as $line)
+        {{ $line }}
+    @endforeach
 
-{{-- Action Button --}}
-@isset($actionText)
-<?php
-    $color = match ($level) {
-        'success', 'error' => $level,
-        default => 'primary',
-    };
-?>
-<x-mail::button :url="$actionUrl" :color="$color">
-{{ $actionText }}
-</x-mail::button>
-@endisset
+    {{-- Salutation --}}
+    @if (!empty($salutation))
+        {{ $salutation }}
+    @else
+        @lang('С уважением,')<br>
+        @lang('коллектив ООО "Кевтек"')
+    @endif
 
-{{-- Outro Lines --}}
-@foreach ($outroLines as $line)
-{{ $line }}
-
-@endforeach
-
-{{-- Salutation --}}
-@if (! empty($salutation))
-{{ $salutation }}
-@else
-@lang('С уважением,')<br>
-@lang('коллектив ООО "Кевтек"')
-@endif
-
-{{-- Subcopy --}}
-@isset($actionText)
-<x-slot:subcopy>
-@lang(
-    "Если у вас возникли проблемы при нажатии кнопки \"{{ $actionText }}\", скопируйте и вставьте URL ниже\n."
-    'в свой веб-браузер:',
-) <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
-</x-slot:subcopy>
-@endisset
+    {{-- Subcopy --}}
+    @isset($actionText)
+        <x-slot:subcopy>
+            <div style="margin-top: 1em;"> <!-- Небольшой отступ сверху -->
+                <p>Если у вас возникли проблемы при нажатии кнопки "<strong>{{ $actionText }}</strong>", скопируйте и
+                    вставьте URL ниже в свой веб-браузер:</p>
+                <pre class="break-all"><code>[{{ $displayableActionUrl }}]({{ $actionUrl }})</code></pre> <!-- Удобный контейнер для URL -->
+            </div>
+        </x-slot:subcopy>
+    @endisset
 </x-mail::message>
