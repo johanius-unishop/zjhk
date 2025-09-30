@@ -42,18 +42,13 @@ class VerifyEmailController extends Controller
                 ->warning('Ваша учетная запись уже подтверждена ранее!');
             return redirect()->route('home');
         }
-
-        if ($user->markEmailAsVerified()) {
-            dd(false);
+        else {
+            $user->markEmailAsVerified();
             toastr()
                 ->title('Успех')
                 ->success('Ваша учетная запись подтверждена, теперь Вы можете войти');
             session()->flash('form_error_source', 'authentication');
             return redirect()->route('home');
         }
-        dd(1);
-        Auth::logoutOtherDevices($user->password);
-
-        return redirect(Route::currentRouteName())->with('status', 'email.verification-successful');
     }
 }
