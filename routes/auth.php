@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
   $request->fulfill();
   return view('home');
-})->middleware(['auth','signed','throttle:6,1'])->name('verification.verify');
+})->middleware(['signed','throttle:6,1'])->name('verification.verify');
 
 
 
