@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
-        dd(1);
+
         if (Auth::check()) {
             return redirect(route('home')); // Направляем на главную страницу
         }
