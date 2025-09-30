@@ -17,7 +17,11 @@ class VerifyEmailController extends Controller
 {
     public function __invoke(Request $request)
     {
+        $id = $request->route('id');
+        $hash = $request->route('hash');
 
+        $data = array_merge($request->all(),compact('id','hash'));
+        dd($data);
 
         $validator = Validator::make($request->all(), [
             'id' => 'required|exists:users,id',
