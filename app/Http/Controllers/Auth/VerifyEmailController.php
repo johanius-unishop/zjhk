@@ -28,7 +28,8 @@ class VerifyEmailController extends Controller
         ])->validate();
 
         $user = User::findOrFail($request->route('id'));
-            dd($user);
+
+        dd(sha1($user->getEmailForVerification()), $request->route('hash'));
         if (! hash_equals(sha1($user->getEmailForVerification()), $request->input('hash'))) {
             throw ValidationException::withMessages([
                 'hash' => __('The provided email verification link is invalid.')
