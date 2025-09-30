@@ -66,12 +66,7 @@ class AppServiceProvider extends ServiceProvider
                 ->line('Пожалуйста, нажмите кнопку ниже, чтобы подтвердить свой адрес электронной почты.')
                 ->action(('Подтвердить Email'), $url)
                 ->line('Если Вы не создавали аккаунт, дальнейших действий не требуется.')
-                ->salutation('С уважением, ООО "Кевтек"')
-                ->with([ // ← Тут передаёте параметры
-                    'actionText' => 'Подтвердить Email',
-                    'displayableActionUrl' => $url,
-                    'actionUrl' => $url,
-                ]);
+                ->salutation('С уважением, ООО "Кевтек"');
         });
 
 
