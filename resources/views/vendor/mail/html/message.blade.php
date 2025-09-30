@@ -2,7 +2,7 @@
 {{-- Header --}}
 <x-slot:header>
 <x-mail::header :url="config('app.url')">
-ООО "Кевтек"
+<img src="{{ asset('images/icons/logo.png') }}" alt="Logo Kevtek" width="150" height="auto" class="logo">
 </x-mail::header>
 </x-slot:header>
 
