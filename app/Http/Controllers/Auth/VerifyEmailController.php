@@ -22,21 +22,13 @@ class VerifyEmailController extends Controller
 
         $data = array_merge($request->all(),compact('id','hash'));
 
-        $validator = Validator::make($data, [
+        Validator::make($data, [
             'id' => 'required|exists:users,id',
             'hash' => 'required|string',
-        ], [], [
-            'id' => $request->route('id'),
-            'hash' => $request->route('hash'),
-        ]); //->validate();
+        ])->validate();
 
-        if ($validator->fails()) {
-            dd($validator->errors()); // Показать ошибки, если валидатор не прошел
-        }
-        dd('No errors');
-
-        $user = User::findOrFail($request->input('id'));
-
+        $user = User::findOrFail($request->route('id'));
+            dd($user);
         if (! hash_equals(sha1($user->getEmailForVerification()), $request->input('hash'))) {
             throw ValidationException::withMessages([
                 'hash' => __('The provided email verification link is invalid.')
