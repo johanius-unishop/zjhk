@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 
 // Первым делом идёт маршрут подтверждения почты
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-    ->middleware(['signed', 'throttle:6,1'])
+    ->middleware(['signed'])
     ->name('verification.verify');
 
 
