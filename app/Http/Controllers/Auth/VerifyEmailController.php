@@ -17,17 +17,20 @@ class VerifyEmailController extends Controller
 {
     public function __invoke(Request $request)
     {
-        dd($request->all());
-        dd($request->route('id'));
+
+
         $validator = Validator::make($request->all(), [
             'id' => 'required|exists:users,id',
-            'hash' => 'required|string'
+            'hash' => 'required|string',
+        ], [], [
+            'id' => $request->route('id'),
+            'hash' => $request->route('hash'),
         ]); //->validate();
 
         if ($validator->fails()) {
             dd($validator->errors()); // Показать ошибки, если валидатор не прошел
         }
-
+        dd('No errors');
 
         $user = User::findOrFail($request->input('id'));
 
