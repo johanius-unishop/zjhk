@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -12,7 +13,7 @@ use App\Http\Controllers\Front\ReviewsController;
 use App\Http\Controllers\Front\FileController;
 use App\Http\Controllers\Front\AccountController;
 use App\Http\Controllers\Front\UserProfileController;
-use App\Http\Controllers\Front\{HomeController, PageController, CategoryController, ProductController ,CartController, FaqController ,SearchController , VendorController};
+use App\Http\Controllers\Front\{HomeController, PageController, CategoryController, ProductController, CartController, FaqController, SearchController, VendorController};
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -50,7 +51,7 @@ Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
 Route::get('search', [SearchController::class, 'search'])->name('search');
 Route::get('/vendors', [VendorController::class, 'index'])->name('vendors.index');
 
-  Route::get('/vendors/{vendor}', [VendorController::class, 'show'])->name('vendors.show');
+Route::get('/vendors/{vendor}', [VendorController::class, 'show'])->name('vendors.show');
 
 
 Route::post('make_order', [CartController::class, 'make_order'])->name('make_order');
@@ -84,13 +85,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.index');
+Route::get('/profile', [UserProfileController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('profile.index');
 
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin-auth.php';
-
-
-
-
-
