@@ -36,7 +36,7 @@
                                 @endif
                             </p>
                         </div>
-                        <div class="checkbox-container">
+                        <div class="checkbox-container-remember">
                             <input type="checkbox" name="remember" id="remember-me"
                                 {{ old('remember') ? 'checked' : '' }}>
                             <label for="remember-me">Запомнить меня</label>

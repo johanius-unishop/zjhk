@@ -13035,4 +13035,8 @@ h2.benefits__title {
     display: none;
 }
 
-
+.checkbox-container-remember {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
