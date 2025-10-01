@@ -2149,6 +2149,7 @@ blockquote {
     color: rgb(113, 118, 128);
     margin-bottom: 0.625rem;
     text-align: justify;
+    font-size: 0.75rem;
 }
 
 .modal__policy a {

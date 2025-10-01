@@ -102,7 +102,7 @@
                 }
 
                 // Переключение на форму уведомления о необходимости подтверждения почты с кнопкой повторной отправки письма
-                function switchToVerifyNotice() {
+                function switchToVerifyNotes() {
                     formsContainer.querySelector('.form-signin').style.display = 'none';
                     formsContainer.querySelector('.form-signup').style.display = 'none';
                     formsContainer.querySelector('.form-verify-email').style.display = 'block';
@@ -119,9 +119,9 @@
                         // Открываем модальное окно входа
                         switchToSignin();
                         break;
-                    case 'verify-notice':
+                    case 'verify-notes':
                         // Открываем модальное окно подтверждения почты
-                        switchToVerifyNotice();
+                        switchToVerifyNotes();
                         break;
                     default:
                         console.error(`Неизвестный источник формы "${formSource}".`);
