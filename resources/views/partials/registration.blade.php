@@ -6,7 +6,7 @@
              <div>
                  <label for="name" class="visually-hidden"></label>
                  <input type="text" id="input-name-reg" name="name" class="modal__input"
-                     value="@if (session('form_error_source') == 'registration') {{ old('name') }} @endif" placeholder="Введите имя"
+                     value="{{ session('form_error_source') == 'registration' ? old('name') : '' }}" placeholder="Введите имя"
                      required autofocus />
                  <p class="modal__error">
                      @if ($errors->has('name') && session('form_error_source') == 'registration')
@@ -17,7 +17,7 @@
              <div>
                  <label for="last_name" class="visually-hidden"></label>
                  <input type="text" id="input-last-name-reg" name="last_name" class="modal__input"
-                     value="@if (session('form_error_source') == 'registration') {{ old('last_name') }} @endif"
+                     value="{{ session('form_error_source') == 'registration' ? old('last_name') : '' }}"
                      placeholder="Введите фамилию" required>
                  <p class="modal__error">
                      @if ($errors->has('last_name') && session('form_error_source') == 'registration')
@@ -28,7 +28,7 @@
              <div>
                  <label for="email" class="visually-hidden"></label>
                  <input type="email" id="input-email-reg" name="email" class="modal__input"
-                     value="@if (session('form_error_source') == 'registration') {{ old('email') }} @endif" placeholder="Введите email"
+                     value="{{ session('form_error_source') == 'registration' ? old('email') : '' }}" placeholder="Введите email"
                      required />
                  <p class="modal__error" aria-live="polite">
                      @if ($errors->has('email') && session('form_error_source') == 'registration')
@@ -39,7 +39,7 @@
              <div class="password-field">
                  <label for="input-password-reg" class="visually-hidden"></label>
                  <input type="password" id="input-password-reg" name="password"
-                     value="@if (session('form_error_source') == 'registration') {{ old('password') }} @endif" placeholder="Введите пароль"
+                     value="{{ session('form_error_source') == 'registration' ? old('password') : '' }}" placeholder="Введите пароль"
                      class="input-password" />
                  <button type="button" id="toggle-password-reg" class="password-toggle">
                      <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль"
@@ -55,7 +55,7 @@
              <div class="password-field">
                  <label for="input-password-reg-confirmation" class="visually-hidden"></label>
                  <input type="password" id="input-password-reg-confirmation" name="password_confirmation"
-                     value="@if (session('form_error_source') == 'registration') {{ old('password_confirmation') }} @endif"
+                     value="{{ session('form_error_source') == 'registration' ? old('password_confirmation') : '' }}"
                      placeholder="Повторите пароль" class="input-password" />
                  <button type="button" id="toggle-password-reg-confirmation" class="password-toggle">
                      <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль"

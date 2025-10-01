@@ -11,7 +11,7 @@
             <div>
                 <label for="email" class="visually-hidden"></label>
                 <input type="email" id="email-verify" name="email" class="modal__input"
-                    value="@if (session('form_error_source') == 'verify-notes') {{ old('email') }} @endif" placeholder="Введите email"
+                    value="{{ session('form_error_source') == 'verify-notes' ? old('email') : '' }}" placeholder="Введите email"
                     required autofocus autocomplete="username" />
 
                 <p class="modal__error" aria-live="polite">

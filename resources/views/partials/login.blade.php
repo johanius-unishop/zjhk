@@ -6,7 +6,7 @@
             <div>
                 <label for="email" class="visually-hidden"></label>
                 <input type="email" id="input-email" name="email" class="modal__input"
-                    value="@if (session('form_error_source') == 'authentication') {{ old('email') }} @endif" placeholder="Введите email"
+                    value="{{ session('form_error_source') == 'authentication' ? old('email') : '' }}" placeholder="Введите email"
                     required autofocus autocomplete="username" />
 
                 <p class="modal__error" aria-live="polite">
@@ -18,7 +18,7 @@
             <div class="password-field">
                 <label for="password" class="visually-hidden"></label>
                 <input type="password" id="input-password-login" name="password"
-                    value="@if (session('form_error_source') == 'authentication') {{ old('password') }} @endif" placeholder="Введите пароль"
+                    value="{{ session('form_error_source') == 'authentication' ? old('password') : '' }}" placeholder="Введите пароль"
                     autocomplete="current-password" class="input-password" />
                 <button type="button" id="toggle-password-login" class="password-toggle">
                     <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль"
