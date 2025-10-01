@@ -14,10 +14,12 @@ class PasswordResetLinkController extends Controller
     /**
      * Display the password reset link request view.
      */
-    public function create(): View
+    public function create()
     {
         App::setLocale('ru');
-        return view('auth.forgot-password');
+
+        session()->flash('form_error_source', 'password-reset');
+        return redirect()->route('home')->withInput();
     }
 
     /**

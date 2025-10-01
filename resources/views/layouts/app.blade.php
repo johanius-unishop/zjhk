@@ -87,18 +87,21 @@
                 const formSource = "{{ session('form_error_source') }}";
 
                 const formsContainer = document.querySelector('.modal__body');
-                // Переключение на форму регистрации
-                function switchToSignup() {
-                    formsContainer.querySelector('.form-signin').style.display = 'none';
-                    formsContainer.querySelector('.form-signup').style.display = 'block';
-                    formsContainer.querySelector('.form-verify-email').style.display = 'none';
-                }
 
                 // Переключение на форму входа
                 function switchToSignin() {
                     formsContainer.querySelector('.form-signin').style.display = 'block';
                     formsContainer.querySelector('.form-signup').style.display = 'none';
                     formsContainer.querySelector('.form-verify-email').style.display = 'none';
+                    formsContainer.querySelector('.form-password-reset').style.display = 'none';
+                }
+
+                // Переключение на форму регистрации
+                function switchToSignup() {
+                    formsContainer.querySelector('.form-signin').style.display = 'none';
+                    formsContainer.querySelector('.form-signup').style.display = 'block';
+                    formsContainer.querySelector('.form-verify-email').style.display = 'none';
+                    formsContainer.querySelector('.form-password-reset').style.display = 'none';
                 }
 
                 // Переключение на форму уведомления о необходимости подтверждения почты с кнопкой повторной отправки письма
@@ -106,6 +109,15 @@
                     formsContainer.querySelector('.form-signin').style.display = 'none';
                     formsContainer.querySelector('.form-signup').style.display = 'none';
                     formsContainer.querySelector('.form-verify-email').style.display = 'block';
+                    formsContainer.querySelector('.form-password-reset').style.display = 'none';
+                }
+
+                 // Переключение на форму сброса пароля
+                function switchToPasswordReset() {
+                    formsContainer.querySelector('.form-signin').style.display = 'none';
+                    formsContainer.querySelector('.form-signup').style.display = 'none';
+                    formsContainer.querySelector('.form-verify-email').style.display = 'none';
+                    formsContainer.querySelector('.form-password-reset').style.display = 'block';
                 }
 
                 console.log(formSource);
@@ -122,6 +134,10 @@
                     case 'verify-notes':
                         // Открываем модальное окно подтверждения почты
                         switchToVerifyNotes();
+                        break;
+                    case 'password-reset':
+                        // Открываем модальное окно сброса пароля
+                        switchToPasswordReset();
                         break;
                     default:
                         console.error(`Неизвестный источник формы "${formSource}".`);
