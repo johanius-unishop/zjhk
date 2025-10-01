@@ -1,4 +1,4 @@
-<div class="modal__content form-verify-email">
+<div class="modal__content form-verify-email" style="display: none">
     <h1 class="modal__title">Подтверждение E-mail</h1>
     <form method="POST" action="{{ route('verification.resend') }}" class="modal__form">
         @csrf
