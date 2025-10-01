@@ -108,7 +108,7 @@
                     formsContainer.querySelector('.form-verify-email').style.display = 'block';
                 }
 
-
+                console.log(formSource);
                 openModal(accountModal);
                 switch (formSource) {
                     case 'registration':
