@@ -2058,7 +2058,7 @@ blockquote {
 .modal__input-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 0.25rem;
+    margin-bottom: 1rem;
 }
 
 .password-field {
@@ -13039,4 +13039,9 @@ h2.benefits__title {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+}
+
+.checkbox-container-label {
+    font-size: 0.825rem;
+    margin-left: 0.375rem;
 }

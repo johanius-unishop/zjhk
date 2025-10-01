@@ -39,7 +39,7 @@
                         <div class="checkbox-container-remember">
                             <input type="checkbox" name="remember" id="remember-me"
                                 {{ old('remember') ? 'checked' : '' }}>
-                            <label for="remember-me">Запомнить меня</label>
+                            <label class="checkbox-container-label" for="remember-me">Запомнить меня</label>
                         </div>
                     </div>
                     <div>
