@@ -14,10 +14,15 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-// Первым делом идёт маршрут подтверждения почты
+// Маршрут подтверждения почты
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
     ->middleware(['signed', 'throttle:6,1'])
     ->name('verification.verify');
+
+// Маршруты для вывода уведомления о необходимости подтверждения email
+    Route::get('/email/verify', function () {
+        return view('auth.verify');
+    })->name('verification.notice');
 
 // Регистрация и вход
 Route::middleware('guest')->group(function () {
@@ -39,10 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
-    // Маршруты для подтверждения email
-    Route::get('/email/verify', function () {
-        return view('auth.verify');
-    })->middleware('auth')->name('verification.notice');
+
 
     Route::post('/email/verification-notification', function (Request $request) {
         $request->user()->sendEmailVerificationNotification();
