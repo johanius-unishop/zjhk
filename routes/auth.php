@@ -20,9 +20,7 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke
     ->name('verification.verify');
 
 // Маршруты для вывода уведомления о необходимости подтверждения email
-    Route::get('/email/verify', function () {
-        return view('auth.verify');
-    })->name('verification.notice');
+Route::get('/email/verify', [VerifyEmailController::class, 'verify-email'])->name('verification.notice');
 
 // Регистрация и вход
 Route::middleware('guest')->group(function () {
