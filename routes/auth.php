@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::post('/email/verification-notification', function (Request $request) {
+        dd($request);
         $request->user()->sendEmailVerificationNotification();
 
         return back()->with('message', 'Verification link sent!');
