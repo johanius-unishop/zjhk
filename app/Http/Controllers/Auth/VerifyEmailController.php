@@ -65,7 +65,7 @@ class VerifyEmailController extends Controller
         $user = User::where('email', $email)->first();
 
         if (!$user) {
-        toastr()->danger('Учетная запись с таким e-mail не зарегистрирована!');
+        toastr()->error('Учетная запись с таким e-mail не зарегистрирована!');
 
         session()->flash('form_error_source', 'registration');
         return redirect()->route('home)')->with('email', $email);
