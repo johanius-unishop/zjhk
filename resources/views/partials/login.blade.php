@@ -4,7 +4,7 @@
         @csrf
         <div class="modal__input-container">
             <div>
-                <label for="email" value="{{ __('Email') }}" class="visually-hidden"></label>
+                <label for="email" class="visually-hidden"></label>
                 <input type="email" id="input-email" name="email" class="modal__input"
                     value="@if (session('form_error_source') == 'authentication') {{ old('email') }} @endif" placeholder="Введите email"
                     required autofocus autocomplete="username" />

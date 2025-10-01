@@ -8,6 +8,18 @@
                 <p class="notes__standard">Перед началом работы, пожалуйста, подтвердите свою электронную почту, перейдя по ссылке, которую мы отправили Вам на указанный Вами адрес электронной почты.</p>
                 <p class="notes__final">Если письмо не пришло или просрочено, Вы можете запросить повторную отправку письма с ссылкой подтверждения.</p>
             </div>
+            <div>
+                <label for="email" class="visually-hidden"></label>
+                <input type="email" id="email-verify" name="email" class="modal__input"
+                    value="@if (session('form_error_source') == 'verify-notes') {{ old('email') }} @endif" placeholder="Введите email"
+                    required autofocus autocomplete="username" />
+
+                <p class="modal__error" aria-live="polite">
+                    @if ($errors->has('email') && session('form_error_source') == 'verify-notes')
+                        <span>{{ $errors->first('email') }}</span>
+                    @endif
+                </p>
+            </div>
         </div>
         <button data-close class="modal__btn">Запросить письмо!</button>
     </form>
