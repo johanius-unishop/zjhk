@@ -87,6 +87,6 @@ class VerifyEmailController extends Controller
 
 
         session()->flash('form_error_source', 'verify-notes');
-        return redirect()->route('home)')->with('email', $email);
+        return redirect()->route('home')->with('email', $email);
     }
 }
