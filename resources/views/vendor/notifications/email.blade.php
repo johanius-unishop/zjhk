@@ -47,7 +47,7 @@
 <x-slot:subcopy>
 @lang(
     "Если у вас возникли проблемы при нажатии кнопки, скопируйте и вставьте URL ниже\n".
-    'в свой веб-браузер:')
+    'в свой веб-браузер: ')
 <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
 </x-slot:subcopy>
 @endisset

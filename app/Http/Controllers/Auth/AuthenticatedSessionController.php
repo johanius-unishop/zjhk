@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) { // Попытка аутентификации
+        if (Auth::attempt($credentials, $request->filled('remember'))) { // Попытка аутентификации
             $user = Auth::user(); // получаем текущего залогинившегося пользователя
 
             if (!$user->email_verified_at) { // Проверяем статус подтверждения почты
@@ -54,7 +54,7 @@ class AuthenticatedSessionController extends Controller
 
 
             // Авторизация пройдена успешно, пользователь с подтвержденной почтой направляется на главную страницу
-            return redirect()->route('home');
+            return back();
         } else {
             session()->flash('form_error_source', 'authentication');
             return back()
