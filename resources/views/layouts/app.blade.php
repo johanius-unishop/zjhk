@@ -26,7 +26,7 @@
             <use href="{{ asset('images/icons/scroll-up.svg') }}"></use>
         </svg>
     </div>
-    @include('partials.login')
+    @include('partials.modal')
 
     @yield('scripts')
     <script src="{{ asset('js/scroll.js') }}"></script>
