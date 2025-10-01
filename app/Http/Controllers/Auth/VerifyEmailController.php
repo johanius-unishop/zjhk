@@ -54,8 +54,12 @@ class VerifyEmailController extends Controller
 
     public function verifyEmail()
     {
-        dd('gjgfkb [p relf');
         session()->flash('form_error_source', 'verify-notes');
         return redirect()->route('home')->withInput();
+    }
+
+    public function resendEmail(Request $request)
+    {
+        dd($request);
     }
 }

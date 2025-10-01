@@ -22,6 +22,10 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke
 // Маршруты для вывода уведомления о необходимости подтверждения email
 Route::get('/email/verify', [VerifyEmailController::class, 'verifyEmail'])->name('verification.notice');
 
+Route::post('/email/verification-notification', [VerifyEmailController::class, 'resendEmail'])
+        ->middleware(['throttle:6,1'])->name('verification.resend');
+
+
 // Регистрация и вход
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
@@ -44,10 +48,5 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::post('/email/verification-notification', function (Request $request) {
-        dd($request);
-        $request->user()->sendEmailVerificationNotification();
 
-        return back()->with('message', 'Verification link sent!');
-    })->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 });
