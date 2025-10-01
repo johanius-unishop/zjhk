@@ -68,14 +68,14 @@ class VerifyEmailController extends Controller
         toastr()->error('Учетная запись с таким e-mail не зарегистрирована!');
 
         session()->flash('form_error_source', 'registration');
-        return redirect()->route('home)')->with('email', $email);
+        return redirect()->route('home')->with('email', $email);
         }
 
         if ($user->hasVerifiedEmail()) {
         toastr()->warning('Учетная запись с таким e-mail уже подтверждена!');
 
         session()->flash('form_error_source', 'authentication');
-        return redirect()->route('home)')->with('email', $email);
+        return redirect()->route('home')->with('email', $email);
         }
 
         // Генерация и отправка новой ссылки подтверждения
