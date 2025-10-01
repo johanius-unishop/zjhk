@@ -64,7 +64,8 @@ class RegisteredUserController extends Controller
                 ->timeOut(30000)
                 ->info('На указанную при регистрации почту отправлено письмо, для входа на сайт необходимо подтвердить электронную почту.');
 
-            return redirect()->route('home');
+            session()->flash('form_error_source', 'verify-notes');
+            return redirect()->route('home')->withInput();
         } catch (\Illuminate\Validation\ValidationException $validationException) {
             session()->flash('form_error_source', 'registration');
 

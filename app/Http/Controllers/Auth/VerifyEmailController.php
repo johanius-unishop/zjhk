@@ -54,6 +54,7 @@ class VerifyEmailController extends Controller
 
     public function verifyEmail()
     {
-
+        session()->flash('form_error_source', 'verify-notes');
+        return redirect()->route('home')->withInput();
     }
 }

@@ -42,9 +42,8 @@ class AuthenticatedSessionController extends Controller
                 ->title('Внимание!')
                 ->warning('Для входа на сайт необходимо подтвердить e-mail!');
 
-
-
-                return back()->withInput(); // Сохраняем введённые данные
+                session()->flash('form_error_source', 'verify-notes');
+                return redirect()->route('home')->withInput();
             }
 
             // Успешная регистрация, выдача уведомления

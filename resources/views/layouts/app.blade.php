@@ -91,22 +91,40 @@
                 function switchToSignup() {
                     formsContainer.querySelector('.form-signin').style.display = 'none';
                     formsContainer.querySelector('.form-signup').style.display = 'block';
+                    formsContainer.querySelector('.form-verify-email').style.display = 'none';
                 }
 
                 // Переключение на форму входа
                 function switchToSignin() {
                     formsContainer.querySelector('.form-signin').style.display = 'block';
                     formsContainer.querySelector('.form-signup').style.display = 'none';
+                    formsContainer.querySelector('.form-verify-email').style.display = 'none';
+                }
+
+                // Переключение на форму уведомления о необходимости подтверждения почты с кнопкой повторной отправки письма
+                function switchToVerifyNotice() {
+                    formsContainer.querySelector('.form-signin').style.display = 'none';
+                    formsContainer.querySelector('.form-signup').style.display = 'none';
+                    formsContainer.querySelector('.form-verify-email').style.display = 'block';
                 }
 
 
                 openModal(accountModal);
-                if (formSource === 'registration') {
-                    // Открываем модальное окно регистрации
-                    switchToSignup();
-                } else if (formSource === 'authentication') {
-                    // Открываем модальное окно входа
-                    switchToSignIn();
+                switch (formSource) {
+                    case 'registration':
+                        // Открываем модальное окно регистрации
+                        switchToSignup();
+                        break;
+                    case 'authentication':
+                        // Открываем модальное окно входа
+                        switchToSignin();
+                        break;
+                    case 'verify-notice':
+                        // Открываем модальное окно подтверждения почты
+                        switchToVerifyNotice();
+                        break;
+                    default:
+                        console.error(`Неизвестный источник формы "${formSource}".`);
                 }
             @endif
         });
