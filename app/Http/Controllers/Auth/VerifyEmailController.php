@@ -20,7 +20,7 @@ class VerifyEmailController extends Controller
         $id = $request->route('id');
         $hash = $request->route('hash');
 
-        $data = array_merge($request->all(),compact('id','hash'));
+        $data = array_merge($request->all(), compact('id', 'hash'));
 
         Validator::make($data, [
             'id' => 'required|exists:users,id',
@@ -41,8 +41,7 @@ class VerifyEmailController extends Controller
             toastr()
                 ->warning('Ваша учетная запись уже подтверждена ранее!');
             return redirect()->route('home');
-        }
-        else {
+        } else {
             $user->markEmailAsVerified();
             toastr()
                 ->title('Успех')
@@ -60,6 +59,34 @@ class VerifyEmailController extends Controller
 
     public function resendEmail(Request $request)
     {
-        dd($request);
+        $email = $request->input('email');
+
+        // Проверяем наличие пользователя с таким email
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+        toastr()->danger('Учетная запись с таким e-mail не зарегистрирована!');
+
+        session()->flash('form_error_source', 'registration');
+        return redirect()->route('home)')->with('email', $email);
+        }
+
+        if ($user->hasVerifiedEmail()) {
+        toastr()->warning('Учетная запись с таким e-mail уже подтверждена!');
+
+        session()->flash('form_error_source', 'authentication');
+        return redirect()->route('home)')->with('email', $email);
+        }
+
+        // Генерация и отправка новой ссылки подтверждения
+        $user->sendEmailVerificationNotification();
+
+        toastr()
+                ->timeOut(30000)
+                ->info('На указанную при регистрации почту отправлено письмо, для входа на сайт необходимо подтвердить электронную почту.');
+
+
+        session()->flash('form_error_source', 'verify-notes');
+        return redirect()->route('home)')->with('email', $email);
     }
 }
