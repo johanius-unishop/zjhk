@@ -45,12 +45,14 @@ class PasswordResetLinkController extends Controller
 
         // Проверяем результат и возвращаем соответствующее сообщение
         if ($status === Password::RESET_LINK_SENT) {
-            return back()->with('status', trans('passwords.sent')); // Используем переводчик для строки 'We have e-mailed your password reset link!'
+            session()->flash('form_error_source', 'authentication');
+            toastr()->success('Ссылка для сброса пароля отправлена на указанный Email!');
+            return redirect()->route('home')->withInput();
         }
 
         // Если произошла ошибка, возвращаем сообщение об ошибке
-        return back()->withInput($request->only('email'))->withErrors([
-            'email' => trans('passwords.user'), // Используем переводчик для строки 'We can't find a user with that e-mail address.'
-        ]);
+        session()->flash('form_error_source', 'password-reset-link');
+        toastr()->error('Учетная запись с таким Email не найдена!');
+        return redirect()->route('home')->withInput();
     }
 }
