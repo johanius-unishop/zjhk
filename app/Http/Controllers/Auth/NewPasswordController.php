@@ -35,11 +35,20 @@ class NewPasswordController extends Controller
     {
         App::setLocale('ru');
 
-        $request->validate([
-            'token' => ['required'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'token' => ['required'],
+                'email' => ['required', 'email'],
+                'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
+            ]);
+
+            // Код, исполняемый после успешной валидации
+            // Доступ к валидированным данным через $validatedData
+        } catch (\Illuminate\Validation\ValidationException $exception) {
+            // Ошибки валидации были обнаружены
+            // Можно вывести ошибки в консоль или записать в журнал
+            dd($exception->errors());
+        }
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
@@ -61,8 +70,8 @@ class NewPasswordController extends Controller
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
         return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('partials.login')->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+            ? redirect()->route('partials.login')->with('status', __($status))
+            : back()->withInput($request->only('email'))
+            ->withErrors(['email' => __($status)]);
     }
 }
