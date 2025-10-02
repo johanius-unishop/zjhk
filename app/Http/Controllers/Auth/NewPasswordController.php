@@ -24,7 +24,6 @@ class NewPasswordController extends Controller
 
         session()->flash('form_error_source', 'password-reset');
         session()->flash('token', $request->route('token'));
-        dd($request->route('token'));
         return redirect()->route('home');
     }
 

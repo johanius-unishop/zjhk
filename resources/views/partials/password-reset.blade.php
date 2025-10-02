@@ -3,7 +3,7 @@
     <form method="POST" action="{{ route('password.store') }}" class="modal__form">
         @csrf
         <div class="modal__input-container">
-            <input type="hidden" name="token" value="{{ session('form_error_source') == 'password-reset' ? ($request->route('token')) : '' }}">
+            <input type="hidden" name="token" value="{{ session('form_error_source') == 'password-reset' ? session('token') : '' }}">
             <div>
                 <label for="email" class="visually-hidden"></label>
                 <input type="email" id="email-password-reset" name="email" class="modal__input"
