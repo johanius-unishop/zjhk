@@ -3,7 +3,7 @@
     <form method="POST" action="{{ route('password.store') }}" class="modal__form">
         @csrf
         <div class="modal__input-container">
-            <input type="hidden" name="token" value="{{ $token }}">
+            <input type="hidden" name="token" value="{{ session('form_error_source') == 'password-reset' ? token : '' }}">
             <div>
                 <label for="email" class="visually-hidden"></label>
                 <input type="email" id="email-password-reset" name="email" class="modal__input"
@@ -19,7 +19,7 @@
             <div class="password-field">
                 <label for="input-password-reset" class="visually-hidden"></label>
                 <input type="password" id="input-password-reset" name="password"
-                    value="{{ session('form_error_source') == 'registration' ? old('password') : '' }}"
+                    value="{{ session('form_error_source') == 'password-reset' ? old('password') : '' }}"
                     placeholder="Введите пароль" class="input-password" />
                 <button type="button" id="toggle-password-reset" class="password-toggle">
                     <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль"
@@ -35,7 +35,7 @@
             <div class="password-field">
                 <label for="input-password-reset-confirmation" class="visually-hidden"></label>
                 <input type="password" id="input-password-reset-confirmation" name="password_confirmation"
-                    value="{{ session('form_error_source') == 'registration' ? old('password_confirmation') : '' }}"
+                    value="{{ session('form_error_source') == 'password-reset' ? old('password_confirmation') : '' }}"
                     placeholder="Повторите пароль" class="input-password" />
                 <button type="button" id="toggle-password-reset-confirmation" class="password-toggle">
                     <img src="{{ asset('images/icons/password-eye-cross.svg') }}" alt="Скрытый пароль"
