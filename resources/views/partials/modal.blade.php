@@ -6,6 +6,7 @@
             @include('partials.registration')
             @include('partials.verify-email')
             @include('partials.password-reset-link')
+            @include('partials.password-reset')
         </div>
     </div>
 </div>
