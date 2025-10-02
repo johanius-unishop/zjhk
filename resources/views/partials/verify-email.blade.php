@@ -3,6 +3,8 @@
     <form method="POST" action="{{ route('verification.resend') }}" class="modal__form">
         @csrf
         <div class="modal__input-container">
+            <input type="hidden" name="id" value="{{ $id }}">
+            <input type="hidden" name="hash" value="{{ $hash }}">
             <div>
                 <p class="notes__attention"><strong>Спасибо за регистрацию!</strong></p>
                 <p class="notes__standard">Перед началом работы, пожалуйста, подтвердите свою электронную почту, перейдя по ссылке, которую мы отправили Вам на указанный Вами адрес электронной почты.</p>

@@ -21,7 +21,7 @@ class NewPasswordController extends Controller
     public function create(Request $request)
     {
         App::setLocale('ru');
-        dd($request);
+
         session()->flash('form_error_source', 'password-reset');
         return redirect()->route('home');
     }
