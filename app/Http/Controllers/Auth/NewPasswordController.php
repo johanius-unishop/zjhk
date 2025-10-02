@@ -32,7 +32,7 @@ class NewPasswordController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         App::setLocale('ru');
 
@@ -48,8 +48,14 @@ class NewPasswordController extends Controller
         } catch (\Illuminate\Validation\ValidationException $exception) {
             // Ошибки валидации были обнаружены
             // Можно вывести ошибки в консоль или записать в журнал
-            dd($exception->errors());
+
+            foreach ($exception->errors() as $field => $messages) {
+                foreach ($messages as $message) {
+                    toastr()->warning($message);
+                }
+            }
         }
+
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
@@ -70,9 +76,14 @@ class NewPasswordController extends Controller
         // If the password was successfully reset, we will redirect the user back to
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
-        return $status == Password::PASSWORD_RESET
-            ? redirect()->route('partials.login')->with('status', __($status))
-            : back()->withInput($request->only('email'))
-            ->withErrors(['email' => __($status)]);
+        if ($status == Password::PASSWORD_RESET) {
+            session()->flash('form_error_source', 'authentication');
+            toastr()->success('Ваш пароль изменен!');
+            redirect()->route('home');
+        } else {
+            session()->flash('form_error_source', 'authentication');
+            toastr()->error('Не удалось изменить пароль!');
+            redirect()->route('home');
+        }
     }
 }
