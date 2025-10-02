@@ -18,10 +18,12 @@ class NewPasswordController extends Controller
     /**
      * Display the password reset view.
      */
-    public function create(Request $request): View
+    public function create()
     {
         App::setLocale('ru');
-        return view('auth.reset-password', ['request' => $request]);
+
+        session()->flash('form_error_source', 'password-reset');
+        return redirect()->route('home');
     }
 
     /**

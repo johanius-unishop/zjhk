@@ -2091,7 +2091,7 @@ blockquote {
 #input-name-reg,
 #input-last-name-reg,
 #email-verify,
-#email-password-reset {
+#email-password-reset-link {
     width: 100%;
     height: 2.75rem;
     border-radius: 0.25rem;
@@ -2104,7 +2104,7 @@ blockquote {
 #input-email-reg:focus,
 #input-last-name-reg:focus,
 #email-verify:focus,
-#email-password-reset:focus {
+#email-password-reset-link:focus {
     outline: none !important;
     border: 1px solid rgb(0, 134, 201);
 }

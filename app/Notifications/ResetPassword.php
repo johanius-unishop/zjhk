@@ -43,7 +43,7 @@ class ResetPassword extends NotificationsResetPassword
     {
         return (new MailMessage)
                     ->subject('Уведомление о сбросе пароля - ' . config('app.name'))
-                    ->line('Вы получаете это письмо, потому что мы получили запрос на сброс пароля для вашей учетной записи.')
+                    ->line('Вы получили это письмо, потому что мы получили запрос на сброс пароля для вашей учетной записи.')
                     ->action('Сбросить пароль', url(config('app.url').route('password.reset', ['token' => $this->token], false)))
                     ->line('Если вы не запрашивали сброс пароля, никаких дальнейших действий не требуется.');
     }

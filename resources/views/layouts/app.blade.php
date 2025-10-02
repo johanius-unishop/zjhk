@@ -93,6 +93,7 @@
                     formsContainer.querySelector('.form-signin').style.display = 'block';
                     formsContainer.querySelector('.form-signup').style.display = 'none';
                     formsContainer.querySelector('.form-verify-email').style.display = 'none';
+                    formsContainer.querySelector('.form-password-reset-link').style.display = 'none';
                     formsContainer.querySelector('.form-password-reset').style.display = 'none';
                 }
 
@@ -101,6 +102,7 @@
                     formsContainer.querySelector('.form-signin').style.display = 'none';
                     formsContainer.querySelector('.form-signup').style.display = 'block';
                     formsContainer.querySelector('.form-verify-email').style.display = 'none';
+                    formsContainer.querySelector('.form-password-reset-link').style.display = 'none';
                     formsContainer.querySelector('.form-password-reset').style.display = 'none';
                 }
 
@@ -109,14 +111,25 @@
                     formsContainer.querySelector('.form-signin').style.display = 'none';
                     formsContainer.querySelector('.form-signup').style.display = 'none';
                     formsContainer.querySelector('.form-verify-email').style.display = 'block';
+                    formsContainer.querySelector('.form-password-reset-link').style.display = 'none';
                     formsContainer.querySelector('.form-password-reset').style.display = 'none';
                 }
 
-                 // Переключение на форму сброса пароля
+                // Переключение на форму сброса пароля
+                function switchToPasswordResetLink() {
+                    formsContainer.querySelector('.form-signin').style.display = 'none';
+                    formsContainer.querySelector('.form-signup').style.display = 'none';
+                    formsContainer.querySelector('.form-verify-email').style.display = 'none';
+                    formsContainer.querySelector('.form-password-reset-link').style.display = 'block';
+                    formsContainer.querySelector('.form-password-reset').style.display = 'none';
+                }
+
+                // Переключение на форму смены пароля
                 function switchToPasswordReset() {
                     formsContainer.querySelector('.form-signin').style.display = 'none';
                     formsContainer.querySelector('.form-signup').style.display = 'none';
                     formsContainer.querySelector('.form-verify-email').style.display = 'none';
+                    formsContainer.querySelector('.form-password-reset-link').style.display = 'none';
                     formsContainer.querySelector('.form-password-reset').style.display = 'block';
                 }
 
@@ -135,8 +148,12 @@
                         // Открываем модальное окно подтверждения почты
                         switchToVerifyNotes();
                         break;
-                    case 'password-reset':
+                    case 'password-reset-link':
                         // Открываем модальное окно сброса пароля
+                        switchToPasswordResetLink();
+                        break;
+                    case 'password-reset':
+                        // Открываем модальное окно смены пароля
                         switchToPasswordReset();
                         break;
                     default:

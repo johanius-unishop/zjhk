@@ -18,7 +18,7 @@ class PasswordResetLinkController extends Controller
     {
         App::setLocale('ru');
 
-        session()->flash('form_error_source', 'password-reset');
+        session()->flash('form_error_source', 'password-reset-link');
         return redirect()->route('home')->withInput();
     }
 
