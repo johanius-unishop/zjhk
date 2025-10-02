@@ -6,14 +6,16 @@
 
             <div>
                 <p class="notes__attention"><strong>Спасибо за регистрацию!</strong></p>
-                <p class="notes__standard">Перед началом работы, пожалуйста, подтвердите свою электронную почту, перейдя по ссылке, которую мы отправили Вам на указанный Вами адрес электронной почты.</p>
-                <p class="notes__final">Если письмо не пришло или просрочено, Вы можете запросить повторную отправку письма с ссылкой подтверждения.</p>
+                <p class="notes__standard">Перед началом работы, пожалуйста, подтвердите свою электронную почту, перейдя
+                    по ссылке, которую мы отправили Вам на указанный Вами адрес электронной почты.</p>
+                <p class="notes__final">Если письмо не пришло или просрочено, Вы можете запросить повторную отправку
+                    письма с ссылкой подтверждения.</p>
             </div>
             <div>
                 <label for="email" class="visually-hidden"></label>
                 <input type="email" id="email-verify" name="email" class="modal__input"
-                    value="{{ session('form_error_source') == 'verify-notes' ? old('email') : '' }}" placeholder="Введите email"
-                    required autofocus autocomplete="username" />
+                    value="{{ session('form_error_source') == 'verify-notes' ? old('email') : '' }}"
+                    placeholder="Введите email" required autofocus autocomplete="username" />
 
                 <p class="modal__error" aria-live="polite">
                     @if ($errors->has('email') && session('form_error_source') == 'verify-notes')
@@ -23,5 +25,10 @@
             </div>
         </div>
         <button data-close class="modal__btn">Запросить письмо!</button>
+        <p class="back-account">
+            <a href="#" class="modal__account-link switch-to-signin no-scroll-to-handle">
+                Назад
+            </a>
+        </p>
     </form>
 </div>

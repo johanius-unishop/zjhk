@@ -2215,6 +2215,10 @@ blockquote {
     color: rgb(113, 118, 128);
 }
 
+.back-account {
+    color: rgb(113, 118, 128);
+}
+
 .testimonial {
     position: fixed;
     height: 100%;

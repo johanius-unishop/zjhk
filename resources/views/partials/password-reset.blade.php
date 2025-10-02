@@ -3,7 +3,8 @@
     <form method="POST" action="{{ route('password.store') }}" class="modal__form">
         @csrf
         <div class="modal__input-container">
-            <input type="hidden" name="token" value="{{ session('form_error_source') == 'password-reset' ? session('token') : '' }}">
+            <input type="hidden" name="token"
+                value="{{ session('form_error_source') == 'password-reset' ? session('token') : '' }}">
             <div>
                 <label for="email" class="visually-hidden"></label>
                 <input type="email" id="email-password-reset" name="email" class="modal__input"
@@ -50,5 +51,11 @@
             </div>
         </div>
         <button data-close class="modal__btn">Сменить пароль!</button>
+
+        <p class="back-account">
+            <a href="#" class="modal__account-link switch-to-signin no-scroll-to-handle">
+                Назад
+            </a>
+        </p>
     </form>
 </div>
