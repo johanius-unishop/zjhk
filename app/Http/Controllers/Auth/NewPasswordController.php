@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\App;
 
@@ -35,18 +35,22 @@ class NewPasswordController extends Controller
     {
         App::setLocale('ru');
 
-        $token = $request->route('token');
+        try {
+            $validatedData = $request->validate([
+                '_token' => ['required'],
+                'email' => ['required', 'email'],
+                'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
+            ]);
 
-        $data = array_merge($request->all(), compact('token'));
-        dd($data);
-        Validator::make($data, [
-            'token' => ['required'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
-        ])->validate();
+            // Код, исполняемый после успешной валидации
+            // Доступ к валидированным данным через $validatedData
+        } catch (\Illuminate\Validation\ValidationException $exception) {
+            // Ошибки валидации были обнаружены
+            // Можно вывести ошибки в консоль или записать в журнал
+            dd($exception->errors());
+        }
 
-        dd('ВСе ок!');
-
+        dd('Все ок');
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
