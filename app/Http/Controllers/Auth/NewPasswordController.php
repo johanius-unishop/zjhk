@@ -38,7 +38,7 @@ class NewPasswordController extends Controller
         $token = $request->route('token');
 
         $data = array_merge($request->all(), compact('token'));
-
+        dd($data);
         Validator::make($data, [
             'token' => ['required'],
             'email' => ['required', 'email'],
