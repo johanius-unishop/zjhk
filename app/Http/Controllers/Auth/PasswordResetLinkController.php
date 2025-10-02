@@ -45,9 +45,9 @@ class PasswordResetLinkController extends Controller
 
         // Проверяем результат и возвращаем соответствующее сообщение
         if ($status === Password::RESET_LINK_SENT) {
-            session()->flash('form_error_source', 'authentication');
+
             toastr()->success('Ссылка для сброса пароля отправлена на указанный Email!');
-            return redirect()->route('home')->withInput();
+            return redirect()->route('home');
         }
 
         // Если произошла ошибка, возвращаем сообщение об ошибке
