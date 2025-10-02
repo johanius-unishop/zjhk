@@ -48,7 +48,7 @@ class NewPasswordController extends Controller
         } catch (\Illuminate\Validation\ValidationException $exception) {
             // Ошибки валидации были обнаружены
             // Можно вывести ошибки в консоль или записать в журнал
-            dd ();
+
             foreach ($exception->errors() as $field => $messages) {
                 foreach ($messages as $message) {
                     toastr()->warning($message);
