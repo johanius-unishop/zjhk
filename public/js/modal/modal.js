@@ -28,6 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleButtonRegConf.querySelector(".visible-icon");
     const hiddenEyeRegConf = toggleButtonRegConf.querySelector(".hidden-icon");
 
+    // Пароли для Смены пароля
+    const passwordReset = document.getElementById("input-password-reset");
+    const toggleButtonReset = document.getElementById("toggle-password-reset");
+    const visibleEyeReset = toggleButtonReset.querySelector(".visible-icon");
+    const hiddenEyeReset = toggleButtonReset.querySelector(".hidden-icon");
+
+    // Пароли для Смены пароля (подтверждение пароля)
+    const passwordResetConf = document.getElementById("input-password-reset-confirmation");
+    const toggleButtonResetConf = document.getElementById("toggle-password-reset-confirmation");
+    const visibleEyeResetConf = toggleButtonResetConf.querySelector(".visible-icon");
+    const hiddenEyeResetConf = toggleButtonResetConf.querySelector(".hidden-icon");
+
+
     // Обработчик для входа
     passwordLogin.addEventListener("input", function () {
         if (passwordLogin.value.length > 0) {
@@ -80,6 +93,42 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "none"
             : "inline-block";
         hiddenEyeRegConf.style.display = !isPasswordType
+            ? "none"
+            : "inline-block";
+    });
+
+    // Обработчик для Смены пароля
+    passwordReset.addEventListener("input", function () {
+        if (passwordReset.value.length > 0) {
+            toggleButtonReset.classList.add("_active");
+        } else {
+            toggleButtonReset.classList.remove("_active");
+        }
+    });
+
+    toggleButtonReset.addEventListener("click", function () {
+        const isPasswordType = passwordReset.type === "password";
+        passwordReset.type = isPasswordType ? "text" : "password";
+        visibleEyeReset.style.display = isPasswordType ? "none" : "inline-block";
+        hiddenEyeReset.style.display = !isPasswordType ? "none" : "inline-block";
+    });
+
+    // Обработчик для Смены пароля (повтор пароля)
+    passwordResetConf.addEventListener("input", function () {
+        if (passwordResetConf.value.length > 0) {
+            toggleButtonResetConf.classList.add("_active");
+        } else {
+            toggleButtonResetConf.classList.remove("_active");
+        }
+    });
+
+    toggleButtonResetConf.addEventListener("click", function () {
+        const isPasswordType = passwordResetConf.type === "password";
+        passwordResetConf.type = isPasswordType ? "text" : "password";
+        visibleEyeResetConf.style.display = isPasswordType
+            ? "none"
+            : "inline-block";
+        hiddenEyeResetConf.style.display = !isPasswordType
             ? "none"
             : "inline-block";
     });

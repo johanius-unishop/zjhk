@@ -1,5 +1,5 @@
 <div class="modal__content form-password-reset" style="display: none">
-    <h1 class="modal__title">Установка нового пароля</h1>
+    <h1 class="modal__title">Смена пароля</h1>
     <form method="POST" action="{{ route('password.store') }}" class="modal__form">
         @csrf
         <div class="modal__input-container">
