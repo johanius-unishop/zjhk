@@ -2217,6 +2217,7 @@ blockquote {
 
 .back-account {
     color: rgb(113, 118, 128);
+    text-align: right;
 }
 
 .testimonial {
