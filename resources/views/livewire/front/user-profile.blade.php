@@ -48,8 +48,8 @@
                             </div>
                             <div class="account-profile__row-wrapper">
                                 <div class="input-group">
-                                    <input type="text" name="profile-patronymic" id="profile-patronymic" placeholder=" "
-                                        value="{{ $user->patonymic }}">
+                                    <input type="text" name="profile-patronymic" id="profile-patronymic"
+                                        placeholder=" " value="{{ $user->patonymic }}">
                                     <label for="profile-surname">Отчество</label>
                                 </div>
                             </div>
@@ -62,12 +62,12 @@
                                         <img src="./img/icons/check-green.svg" alt="Email проверен">
                                     </button>
                                 </div>
-                                <div class="input-group password">
-                                    <div class="input-group">
-                                        <input type="tel" name="profile-phone" id="profile-phone" placeholder=" "
-                                            inputmode="numeric">
-                                        <label for="profile-phone">Телефон </label>
-                                    </div>
+                            </div>
+                            <div class="account-profile__row-wrapper">
+                                <div class="input-group">
+                                    <input type="tel" name="profile-phone" id="profile-phone" placeholder=" "
+                                        inputmode="numeric">
+                                    <label for="profile-phone">Телефон </label>
                                 </div>
                             </div>
                             <div class="account-profile__row-wrapper">
