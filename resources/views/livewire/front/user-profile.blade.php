@@ -36,33 +36,28 @@
                                     </button>
                                 </div>
                                 <div class="input-group">
-                                    <input type="text" name="profile-surname" id="profile-surname" placeholder=" ">
+                                    <input type="text" name="profile-surname" id="profile-surname" placeholder=" " value="{{ $user->last_name }}">
                                     <label for="profile-surname">Фамилия</label>
                                 </div>
                             </div>
                             <div class="account-profile__row-wrapper">
                                 <div class="input-group profile-email">
-                                    <input type="email" name="profile-email" id="profile-email" placeholder=" ">
+                                    <input type="email" name="profile-email" id="profile-email" placeholder=" " value="{{ $user->email }}">
                                     <label for="profile-name">Email</label>
                                     <button type="button" id="profile-check-email" class="profile-check-tick">
                                         <img src="./img/icons/check-green.svg" alt="Email проверен">
                                     </button>
                                 </div>
                                 <div class="input-group password">
-                                    <input type="password" id="profile-password" name="profile-password"
-                                        autocomplete="new-password" placeholder=" ">
-                                    <label for="profile-password">Пароль</label>
-                                    <button type="button" id="profile-toggle-password" class="profile-password-toggle">
-                                        <img src="./img/icons/password-eye-cross.svg" alt="Показать пароль">
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="account-profile__row-wrapper">
-                                <div class="input-group">
+                                    <div class="input-group">
                                     <input type="tel" name="profile-phone" id="profile-phone" placeholder=" "
                                         inputmode="numeric">
                                     <label for="profile-phone">Телефон </label>
                                 </div>
+                                </div>
+                            </div>
+                            <div class="account-profile__row-wrapper">
+
                                 <div class="input-group">
                                     <input type="text" name="profile-city" id="profile-city" placeholder=" ">
                                     <label for="profile-city">Город</label>
