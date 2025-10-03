@@ -175,7 +175,7 @@
                                     placeholder="дд.мм.гггг" readonly>
                                 <span class="date-icon">
                                     <svg width="20" height="20">
-                                        <use href="img/icons/calendar-lines.svg"></use>
+                                        <use href="{{ asset('images/icons/calendar-lines.svg') }}"></use>
                                     </svg>
                                 </span>
                             </div>
