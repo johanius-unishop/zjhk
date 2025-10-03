@@ -10744,7 +10744,7 @@ select {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    max-width: 85%;
+    max-width: 70%;
 }
 
 @media (max-width: 61.99875em) {
@@ -11474,20 +11474,6 @@ select {
     width: 100%;
 }
 
-.account-profile__item-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    max-width: 50%;
-}
-
-@media (max-width: 61.99875em) {
-    .account-profile__item-wrapper {
-        width: 100%;
-        max-width: 100%;
-    }
-}
 
 .account-profile__left-wrapper {
     display: flex;
