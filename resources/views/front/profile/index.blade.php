@@ -24,3 +24,7 @@
 @section('css')
 @stop
 
+@section('scripts')
+    <script>https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js</script>
+@endsection
+
