@@ -25,22 +25,36 @@ class PasswordResetLinkController extends Controller
     }
 
     /**
- * Обработка запроса на получение ссылки для сброса пароля.
- *
- * @param Request $request
- * @return RedirectResponse
- */
+     * Обработка запроса на получение ссылки для сброса пароля.
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function store(Request $request): RedirectResponse
     {
         // Устанавливаем локаль на русский
         App::setLocale('ru');
 
-        // Валидируем запрос
-        $request->validate([
-            'id' => ['required', 'id'],
-            'hash' => ['required', 'hash'],
-            'email' => ['required', 'email'],
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'id' => ['required'],
+                'email' => ['required', 'email'],
+                'hash' => ['required'],
+            ]);
+
+            // Код, исполняемый после успешной валидации
+            // Доступ к валидированным данным через $validatedData
+        } catch (\Illuminate\Validation\ValidationException $exception) {
+            // Ошибки валидации были обнаружены
+            // Можно вывести ошибки в консоль или записать в журнал
+
+            foreach ($exception->errors() as $field => $messages) {
+                foreach ($messages as $message) {
+                    toastr()->warning($message);
+                }
+            }
+        }
+
 
         // Отправляем ссылку для сброса пароля
         $status = Password::sendResetLink(
