@@ -50,9 +50,6 @@
                                     <input type="text" name="profile-name" id="profile-name" placeholder=" "
                                         value="{{ $user->name }}">
                                     <label for="profile-name">Имя</label>
-                                    <button type="button" id="profile-check-name" class="profile-check-tick">
-                                        <img src="{{ asset('images/icons/check-green.svg') }}" alt="Имя проверено">
-                                    </button>
                                 </div>
                             </div>
                             <div class="account-profile__row-wrapper">
@@ -67,7 +64,8 @@
                                     <input type="email" name="profile-email" id="profile-email" placeholder=" "
                                         value="{{ $user->email }}">
                                     <label for="profile-name">Email</label>
-                                    <button type="button" id="profile-check-email" class="profile-check-tick">
+                                    <button type="button" id="profile-check-email"
+                                        class="profile-check-tick{{ $user->email_verified_at !== null ? ' _active' : '' }}">
                                         <img src="{{ asset('images/icons/check-green.svg') }}" alt="Email проверен">
                                     </button>
                                 </div>
@@ -380,8 +378,8 @@
                 <div class="product-page__pagination-content">
                     <button>
                         <img src="{{ asset('images/icons/tick-grey.svg') }}" alt="влево">
-                        <img src="{{ asset('images/icons/tick-black.svg') }}" style="display: none; transform:rotateZ(180deg)"
-                            alt="влево">
+                        <img src="{{ asset('images/icons/tick-black.svg') }}"
+                            style="display: none; transform:rotateZ(180deg)" alt="влево">
                     </button>
                     <ul class="product-page__page-list">
                         <li data-pagination><button class="_active">1</button></li>
@@ -393,8 +391,8 @@
                         <li data-pagination><button>21</button></li>
                     </ul>
                     <button>
-                        <img src="{{ asset('images/icons/tick-grey.svg') }}" style="display: none; transform:rotateZ(180deg)"
-                            alt="вправо">
+                        <img src="{{ asset('images/icons/tick-grey.svg') }}"
+                            style="display: none; transform:rotateZ(180deg)" alt="вправо">
                         <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
                     </button>
                 </div>
@@ -617,8 +615,8 @@
                 <div class="product-page__pagination-content">
                     <button>
                         <img src="{{ asset('images/icons/tick-grey.svg') }}" alt="влево">
-                        <img src="{{ asset('images/icons/tick-black.svg') }}" style="display: none; transform:rotateZ(180deg)"
-                            alt="влево">
+                        <img src="{{ asset('images/icons/tick-black.svg') }}"
+                            style="display: none; transform:rotateZ(180deg)" alt="влево">
                     </button>
                     <ul class="product-page__page-list">
                         <li data-pagination><button class="_active">1</button></li>
@@ -630,8 +628,8 @@
                         <li data-pagination><button>21</button></li>
                     </ul>
                     <button>
-                        <img src="{{ asset('images/icons/tick-grey.svg') }}" style="display: none; transform:rotateZ(180deg)"
-                            alt="вправо">
+                        <img src="{{ asset('images/icons/tick-grey.svg') }}"
+                            style="display: none; transform:rotateZ(180deg)" alt="вправо">
                         <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
                     </button>
                 </div>
