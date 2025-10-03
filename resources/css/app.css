@@ -10457,6 +10457,7 @@ select {
     display: flex;
     gap: 1rem;
     flex-direction: column;
+    padding-top: 2rem;
 }
 
 .account-profile__control-list button {
