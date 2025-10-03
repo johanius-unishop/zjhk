@@ -1,5 +1,7 @@
 <div class="account-profile__wrapper">
     <nav class="account-profile__control">
+        <p>{{ $user->last_name }} {{ $user->name }} {{ $user->patronymic ?? '' }}</p>
+
         <ul class="account-profile__control-list">
             <li class="account-profile__control-item">
                 <button data-target="profile-card" wire:click="selectPanel('profile')"
