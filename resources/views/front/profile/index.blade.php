@@ -28,7 +28,7 @@
                         <form action="#" class="modal__form">
                             <div class="modal-address__wrapper">
                                 <div class="order-list__filter-body address">
-                                    <select class="filter__select" name="sort" id="sort">
+                                    <select class="filter__select" name="recipient-country" id="recipient-country">
                                         <option value="all" placeholder>Выберите страну</option>
                                         <option value="progress">Россия</option>
                                         <option value="shipped">Казахстан</option>
@@ -38,7 +38,7 @@
                                     </select>
                                 </div>
                                 <div class="order-list__filter-body address city">
-                                    <select class="filter__select" name="sort" id="sort">
+                                    <select class="filter__select" name="recipient-city" id="recipient-city">
                                         <option value="all" placeholder>Выберите город</option>
                                         <option value="progress">Москва</option>
                                         <option value="shipped">Санкт-Петербург</option>
@@ -48,12 +48,12 @@
                                     </select>
                                 </div>
                                 <div class="input-group">
-                                    <input type="text" name="profile-city" id="profile-city" placeholder=" ">
+                                    <input type="text" name="recipient-address" id="recipient-address" placeholder=" ">
                                     <label for="profile-city">Улица, дом, квартира (офис) <span
                                             class="required">*</span></label>
                                 </div>
                                 <div class="input-group">
-                                    <input type="text" name="profile-city" id="profile-city" placeholder=" ">
+                                    <input type="text" name="recipient-name" id="recipient-name" placeholder=" ">
                                     <label for="profile-city">ФИО получателя <span class="required">*</span></label>
                                 </div>
                             </div>
