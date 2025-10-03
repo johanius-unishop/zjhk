@@ -65,7 +65,7 @@
                             </div>
                             <div class="account-profile__row-wrapper">
                                 <div class="input-group">
-                                    <input type="tel" name="profile-phone" id="profile-phone" placeholder=""
+                                    <input type="tel" name="profile-phone" id="profile-phone" placeholder=" "
                                         inputmode="numeric">
                                     <label for="profile-phone">Телефон </label>
                                 </div>

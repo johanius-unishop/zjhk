@@ -8,7 +8,8 @@
             <div class="account-profile__container container">
                 <div class="breadcrumbs">
                     <ul class="breadcrumbs__list">
-                        <li><a href="#">Главная</a><img src="{{ asset('images/icons/arrow-right.svg') }}" alt="стрелка"></li>
+                        <li><a href="#">Главная</a><img src="{{ asset('images/icons/arrow-right.svg') }}" alt="стрелка">
+                        </li>
                         <li><span>Личный кабинет</span></li>
                     </ul>
                 </div>
@@ -32,11 +33,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             var phoneNumberElement = document.getElementById('profile-phone');
             new Cleave(phoneNumberElement, {
-                prefix: '+',
-                phone: true,
-                phoneRegionCode: 'RU'
+                numericOnly: true,
+                delimiters: ['+', '7 ', '(', ') ', ' - ', ' - '],
+                blocks: [0, 0, 0, 3, 3, 2, 2],
             });
         });
     </script>
 @endsection
-
