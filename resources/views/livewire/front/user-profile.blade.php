@@ -2,7 +2,7 @@
     <nav class="account-profile__control">
         <p class="profile-full-name">{{ $user->last_name }} {{ $user->name }} {{ $user->patronymic ?? '' }}</p>
         <p class="profile-user-status">Статус: <span>{{ $user->group->name }}</span></p>
-        <p class="profile-user-discount">Скидка: <span>{{ $user->group->discount }}</span></p>
+        <p class="profile-user-discount">Скидка: <span>{{ $user->group->discount }}%</span></p>
         <ul class="account-profile__control-list">
             <li class="account-profile__control-item">
                 <button data-target="profile-card" wire:click="selectPanel('profile')"
