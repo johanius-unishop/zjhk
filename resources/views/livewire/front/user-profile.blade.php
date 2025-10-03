@@ -30,21 +30,33 @@
                     <div class="account-profile__form-container">
                         <div class="account-profile__input-wrapper">
                             <div class="account-profile__row-wrapper">
+                                <div class="input-group">
+                                    <input type="text" name="profile-surname" id="profile-surname" placeholder=" "
+                                        value="{{ $user->last_name }}">
+                                    <label for="profile-surname">Фамилия</label>
+                                </div>
+                            </div>
+                            <div class="account-profile__row-wrapper">
                                 <div class="input-group profile-name">
-                                    <input type="text" name="profile-name" id="profile-name" placeholder=" " value="{{ $user->name }}">
+                                    <input type="text" name="profile-name" id="profile-name" placeholder=" "
+                                        value="{{ $user->name }}">
                                     <label for="profile-name">Имя</label>
                                     <button type="button" id="profile-check-name" class="profile-check-tick">
                                         <img src="./img/icons/check-green.svg" alt="Имя проверено">
                                     </button>
                                 </div>
+                            </div>
+                            <div class="account-profile__row-wrapper">
                                 <div class="input-group">
-                                    <input type="text" name="profile-surname" id="profile-surname" placeholder=" " value="{{ $user->last_name }}">
-                                    <label for="profile-surname">Фамилия</label>
+                                    <input type="text" name="profile-patronymic" id="profile-patronymic" placeholder=" "
+                                        value="{{ $user->patonymic }}">
+                                    <label for="profile-surname">Отчество</label>
                                 </div>
                             </div>
                             <div class="account-profile__row-wrapper">
                                 <div class="input-group profile-email">
-                                    <input type="email" name="profile-email" id="profile-email" placeholder=" " value="{{ $user->email }}">
+                                    <input type="email" name="profile-email" id="profile-email" placeholder=" "
+                                        value="{{ $user->email }}">
                                     <label for="profile-name">Email</label>
                                     <button type="button" id="profile-check-email" class="profile-check-tick">
                                         <img src="./img/icons/check-green.svg" alt="Email проверен">
@@ -52,10 +64,10 @@
                                 </div>
                                 <div class="input-group password">
                                     <div class="input-group">
-                                    <input type="tel" name="profile-phone" id="profile-phone" placeholder=" "
-                                        inputmode="numeric">
-                                    <label for="profile-phone">Телефон </label>
-                                </div>
+                                        <input type="tel" name="profile-phone" id="profile-phone" placeholder=" "
+                                            inputmode="numeric">
+                                        <label for="profile-phone">Телефон </label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="account-profile__row-wrapper">

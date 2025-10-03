@@ -11267,7 +11267,7 @@ select {
 }
 
 .account-profile__action {
-    flex: 0 1 57.8125rem;
+    flex: 0 1 52.0rem;
 }
 
 @media (max-width: 35.99875em) {
@@ -11363,25 +11363,6 @@ select {
 }
 
 .input-group.password .profile-password-toggle._active {
-    display: block;
-}
-
-.input-group.profile-name {
-    position: relative;
-}
-
-.input-group.profile-name .profile-check-tick {
-    display: none;
-    position: absolute;
-    top: 0;
-    transform: translateY(60%);
-    right: 1rem;
-    cursor: pointer;
-    background: none;
-    padding: 0;
-}
-
-.input-group.profile-name .profile-check-tick._active {
     display: block;
 }
 
@@ -13082,5 +13063,5 @@ h2.benefits__title {
 .profile-full-name {
     font-size: 1.25rem;
     font-weight: bold;
-    padding-bottom: 1.5rem;
+    padding-bottom: 2.5rem;
 }
