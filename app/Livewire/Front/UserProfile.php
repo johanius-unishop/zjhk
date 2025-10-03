@@ -12,6 +12,13 @@ class UserProfile extends Component
 
     public string $activePanel = 'profile'; // По умолчанию активная панель - профиль
 
+    public $user;
+
+    public function mount($user)
+    {
+        $this->user = $user;
+    }
+
     public function render()
     {
         return view('livewire.front.user-profile');
