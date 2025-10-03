@@ -13,6 +13,14 @@
                     class="{{ $activePanel === 'orders' ? '_active' : '' }}">Мои заказы</button>
             </li>
             <li class="account-profile__control-item">
+                <button data-target="profile-card" wire:click="selectPanel('questions')"
+                    class="{{ $activePanel === 'questions' ? '_active' : '' }}">Мои вопросы</button>
+            </li>
+            <li class="account-profile__control-item">
+                <button data-target="profile-card" wire:click="selectPanel('reviews')"
+                    class="{{ $activePanel === 'reviews' ? '_active' : '' }}">Мои отзывы</button>
+            </li>
+            <li class="account-profile__control-item">
                 <a href="#" wire:click.prevent="logout">Выйти</a>
             </li>
             <li class="account-profile__control-item">
@@ -43,7 +51,7 @@
                                         value="{{ $user->name }}">
                                     <label for="profile-name">Имя</label>
                                     <button type="button" id="profile-check-name" class="profile-check-tick">
-                                        <img src="./img/icons/check-green.svg" alt="Имя проверено">
+                                        <img src="{{ asset('images/icons/check-green.svg') }}" alt="Имя проверено">
                                     </button>
                                 </div>
                             </div>
@@ -60,7 +68,7 @@
                                         value="{{ $user->email }}">
                                     <label for="profile-name">Email</label>
                                     <button type="button" id="profile-check-email" class="profile-check-tick">
-                                        <img src="./img/icons/check-green.svg" alt="Email проверен">
+                                        <img src="{{ asset('images/icons/check-green.svg') }}" alt="Email проверен">
                                     </button>
                                 </div>
                             </div>
@@ -120,7 +128,7 @@
                                             class="account-profile__btn-edit-address"
                                             aria-label="Редактировать адрес">
                                             <svg width="20" height="20">
-                                                <use href="img/icons/edit.svg"></use>
+                                                <use href="{{ asset('images/icons/edit.svg') }}"></use>
                                             </svg>
                                         </button>
                                     </div>
@@ -138,7 +146,7 @@
                                             class="account-profile__btn-edit-address"
                                             aria-label="Редактировать адрес">
                                             <svg width="20" height="20">
-                                                <use href="img/icons/edit.svg"></use>
+                                                <use href="{{ asset('images/icons/edit.svg') }}"></use>
                                             </svg>
                                         </button>
                                     </div>
@@ -146,7 +154,7 @@
                             </ul>
                             <button data-modal-link="address" class="account-profile__address-add">
                                 <span>Добавить адрес доставки</span>
-                                <img src="img/icons/plus.svg" alt="добавить адрес">
+                                <img src="{{ asset('images/icons/plus.svg') }}" alt="добавить адрес">
                             </button>
                         </div>
                         <button data-modal-link="delete-profile-modal" wire:click.prevent="deleteUser"
@@ -181,7 +189,7 @@
                                     placeholder="дд.мм.гггг" readonly>
                                 <span class="date-icon">
                                     <svg width="20" height="20">
-                                        <use href="img/icons/calendar-lines.svg"></use>
+                                        <use href="{{ asset('images/icons/calendar-lines.svg') }}"></use>
                                     </svg>
                                 </span>
                             </div>
@@ -371,8 +379,8 @@
             <div class="product-page__pagination">
                 <div class="product-page__pagination-content">
                     <button>
-                        <img src="./img/icons/tick-grey.svg" alt="влево">
-                        <img src="./img/icons/tick-black.svg" style="display: none; transform:rotateZ(180deg)"
+                        <img src="{{ asset('images/icons/tick-grey.svg') }}" alt="влево">
+                        <img src="{{ asset('images/icons/tick-black.svg') }}" style="display: none; transform:rotateZ(180deg)"
                             alt="влево">
                     </button>
                     <ul class="product-page__page-list">
@@ -385,13 +393,252 @@
                         <li data-pagination><button>21</button></li>
                     </ul>
                     <button>
-                        <img src="./img/icons/tick-grey.svg" style="display: none; transform:rotateZ(180deg)"
+                        <img src="{{ asset('images/icons/tick-grey.svg') }}" style="display: none; transform:rotateZ(180deg)"
                             alt="вправо">
-                        <img src="./img/icons/tick-black.svg" alt="вправо">
+                        <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
                     </button>
                 </div>
             </div>
         </div>
+
+        <div id="order-list-card"
+            class="account-profile__action-card questions-list-card {{ $activePanel === 'questions' ? '_active' : '' }}">
+            <div class="account-profile__card-container">
+                <h3 class="account-profile__card-title">Мои вопросы</h3>
+                <div class="order-list__top-wrapper">
+                    <div class="order-list__date-wrapper">
+                        <div class="order-list__date-from-wrapper">
+                            <div class="custom-date-input">
+                                <span class="date-label">От</span>
+                                <input type="text" name="date-from" id="date-from" class="date-input"
+                                    placeholder="дд.мм.гггг" readonly>
+                                <span class="date-icon">
+                                    <svg width="20" height="20">
+                                        <use href="{{ asset('images/icons/calendar-lines.svg') }}"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="order-list__date-from-wrapper">
+                            <div class="custom-date-input">
+                                <span class="date-label">До</span>
+                                <input type="text" name="date-from" id="date-until" class="date-input"
+                                    placeholder="дд.мм.гггг" readonly>
+                                <span class="date-icon">
+                                    <svg width="20" height="20">
+                                        <use href="{{ asset('images/icons/calendar-lines.svg') }}"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="order-list__filter-body">
+                        <select class="filter__select" name="sort" id="sort">
+                            <option value="all" placeholder>Все заказы</option>
+                            <option value="progress">В обработке</option>
+                            <option value="shipped">Отправлен</option>
+                            <option value="completed">Выполнен</option>
+                            <option value="canceled">Отменён</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="order-grid">
+                    <div class="grid-header">
+                        <div>Номер</div>
+                        <div>Дата</div>
+                        <div>Оплата</div>
+                        <div>Доставка</div>
+                        <div>Сумма</div>
+                        <div>Статус</div>
+                    </div>
+                    <div class="account-profile__order-item">
+                        <div class="grid-cell selector-cell">
+                            <input type="radio" name="selected-row" id="order-item_1" class="row-selector">
+                            <span class="order-number__mobile">Заказ</span> <label for="order-item_1">№
+                                2025/2356</label>
+                        </div>
+                        <div class="grid-cell date-cell">
+                            <span class="order-date__mobile">Дата:</span>
+                            <span>20.12.2025 г</span>
+                        </div>
+                        <div class="grid-cell"><span class="order-pay__mobile">Оплата:
+                            </span><span>Онлайн</span></div>
+                        <div class="grid-cell">
+                            <span class="order-delivery__mobile">Доставка: </span>
+                            <span>Деловые Линии</span>
+                        </div>
+                        <div class="grid-cell">
+                            <span class="order-price__mobile">Сумма:</span>
+                            <span>427 560 ₽</span>
+                        </div>
+
+                        <div class="grid-cell status-cell"><span class="status-dot"
+                                style="background-color: rgba(0, 134, 201, 1);"></span><span>Выполнен</span>
+                        </div>
+                    </div>
+                    <div class="account-profile__order-item">
+                        <div class="grid-cell selector-cell">
+                            <input type="radio" name="selected-row" id="order-item_2" class="row-selector">
+                            <span class="order-number__mobile">Заказ</span> <label for="order-item_2">№
+                                2025/435</label>
+                        </div>
+                        <div class="grid-cell date-cell">
+                            <span class="order-date__mobile">Дата:</span>
+                            <span>20.12.2025 г</span>
+                        </div>
+                        <div class="grid-cell"><span class="order-pay__mobile">Оплата:
+                            </span><span>Наличные</span></div>
+                        <div class="grid-cell">
+                            <span class="order-delivery__mobile">Доставка: </span>
+                            <span>СДЭК</span>
+                        </div>
+                        <div class="grid-cell">
+                            <span class="order-price__mobile">Сумма:</span>
+                            <span>7 560 ₽</span>
+                        </div>
+
+                        <div class="grid-cell status-cell"><span class="status-dot"
+                                style="background-color: rgba(247, 144, 9, 1);"></span><span>В
+                                обработке</span>
+                        </div>
+                    </div>
+                    <div class="account-profile__order-item">
+                        <div class="grid-cell selector-cell">
+                            <input type="radio" name="selected-row" id="order-item_3" class="row-selector">
+                            <span class="order-number__mobile">Заказ</span> <label for="order-item_3">№
+                                2025/456</label>
+                        </div>
+                        <div class="grid-cell date-cell">
+                            <span class="order-date__mobile">Дата:</span>
+                            <span>20.12.2025 г</span>
+                        </div>
+                        <div class="grid-cell"><span class="order-pay__mobile">Оплата:
+                            </span><span>Онлайн</span></div>
+                        <div class="grid-cell">
+                            <span class="order-delivery__mobile">Доставка: </span>
+                            <span>Самовывоз</span>
+                        </div>
+                        <div class="grid-cell">
+                            <span class="order-price__mobile">Сумма:</span>
+                            <span>2 327 560 ₽</span>
+                        </div>
+
+                        <div class="grid-cell status-cell"><span class="status-dot"
+                                style="background-color: rgba(164, 167, 174, 1);"></span><span>Отменен</span>
+                        </div>
+                    </div>
+
+                    <div class="account-profile__order-item">
+                        <div class="grid-cell selector-cell">
+                            <input type="radio" name="selected-row" id="order-item_4" class="row-selector">
+                            <span class="order-number__mobile">Заказ</span> <label for="order-item_4">№
+                                2025/12</label>
+                        </div>
+
+                        <div class="grid-cell date-cell">
+                            <span class="order-date__mobile">Дата:</span>
+                            <span>20.12.2025 г</span>
+                        </div>
+                        <div class="grid-cell"><span class="order-pay__mobile">Оплата:
+                            </span><span>Онлайн</span></div>
+                        <div class="grid-cell">
+                            <span class="order-delivery__mobile">Доставка: </span>
+                            <span>СДЭК</span>
+                        </div>
+                        <div class="grid-cell">
+                            <span class="order-price__mobile">Сумма:</span>
+                            <span>27 560 ₽</span>
+                        </div>
+
+
+                        <div class="grid-cell status-cell"><span class="status-dot"
+                                style="background-color: rgba(18, 183, 106, 1);"></span><span>Отправлен</span>
+                        </div>
+                    </div>
+                    <div class="account-profile__order-item">
+                        <div class="grid-cell selector-cell">
+                            <input type="radio" name="selected-row" id="order-item_5" class="row-selector">
+                            <span class="order-number__mobile">Заказ</span> <label for="order-item_5">№
+                                2025/456</label>
+                        </div>
+
+                        <div class="grid-cell date-cell">
+                            <span class="order-date__mobile">Дата:</span>
+                            <span>20.12.2025 г</span>
+                        </div>
+                        <div class="grid-cell"><span class="order-pay__mobile">Оплата:
+                            </span><span>Онлайн</span></div>
+                        <div class="grid-cell">
+                            <span class="order-delivery__mobile">Доставка: </span>
+                            <span>СДЭК</span>
+                        </div>
+                        <div class="grid-cell">
+                            <span class="order-price__mobile">Сумма:</span>
+                            <span>27 560 ₽</span>
+                        </div>
+
+                        <div class="grid-cell status-cell"><span class="status-dot"
+                                style="background-color: rgba(0, 134, 201, 1);"></span><span>Выполнен</span>
+                        </div>
+                    </div>
+                    <div class="account-profile__order-item">
+                        <div class="grid-cell selector-cell">
+                            <input type="radio" name="selected-row" id="order-item_6" class="row-selector">
+                            <span class="order-number__mobile">Заказ</span> <label for="order-item_6">№
+                                2025/1256</label>
+                        </div>
+                        <div class="grid-cell date-cell">
+                            <span class="order-date__mobile">Дата:</span>
+                            <span>20.12.2025 г</span>
+                        </div>
+                        <div class="grid-cell"><span class="order-pay__mobile">Оплата:
+                            </span><span>Онлайн</span></div>
+                        <div class="grid-cell">
+                            <span class="order-delivery__mobile">Доставка: </span>
+                            <span>СДЭК</span>
+                        </div>
+                        <div class="grid-cell">
+                            <span class="order-price__mobile">Сумма:</span>
+                            <span>27 560 ₽</span>
+                        </div>
+
+                        <div class="grid-cell status-cell"><span class="status-dot"
+                                style="background-color: rgba(0, 134, 201, 1);"></span><span>Выполнен</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-page__show">
+                <button>Показать еще</button>
+            </div>
+            <div class="product-page__pagination">
+                <div class="product-page__pagination-content">
+                    <button>
+                        <img src="{{ asset('images/icons/tick-grey.svg') }}" alt="влево">
+                        <img src="{{ asset('images/icons/tick-black.svg') }}" style="display: none; transform:rotateZ(180deg)"
+                            alt="влево">
+                    </button>
+                    <ul class="product-page__page-list">
+                        <li data-pagination><button class="_active">1</button></li>
+                        <li data-pagination><button>2</button></li>
+                        <li data-pagination><button>3</button></li>
+                        <li data-pagination><button>4</button></li>
+                        <li data-pagination><button>5</button></li>
+                        <li data-pagination><button>...</button></li>
+                        <li data-pagination><button>21</button></li>
+                    </ul>
+                    <button>
+                        <img src="{{ asset('images/icons/tick-grey.svg') }}" style="display: none; transform:rotateZ(180deg)"
+                            alt="вправо">
+                        <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
 
     </div>
 </div>
