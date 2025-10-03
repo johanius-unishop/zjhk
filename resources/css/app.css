@@ -13063,5 +13063,10 @@ h2.benefits__title {
 .profile-full-name {
     font-size: 1.25rem;
     font-weight: bold;
-    padding-bottom: 2.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.profile-user-status {
+    font-size: 0.75rem;
+
 }
