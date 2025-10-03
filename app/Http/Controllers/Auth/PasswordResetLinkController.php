@@ -19,9 +19,8 @@ class PasswordResetLinkController extends Controller
         App::setLocale('ru');
 
         session()->flash('form_error_source', 'password-reset-link');
-        session()->flash('id', $request->route('id'));
-        session()->flash('hash', $request->route('hash'));
-        return redirect()->route('home')->withInput();
+
+        return redirect()->route('home');
     }
 
     /**
@@ -34,7 +33,7 @@ class PasswordResetLinkController extends Controller
     {
         // Устанавливаем локаль на русский
         App::setLocale('ru');
-
+        dd($request);
         try {
             $validatedData = $request->validate([
                 'id' => ['required'],

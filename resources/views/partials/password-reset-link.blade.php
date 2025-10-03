@@ -3,10 +3,7 @@
     <form method="POST" action="{{ route('password.email') }}" class="modal__form">
         @csrf
         <div class="modal__input-container">
-            <input type="hidden" name="id"
-                value="{{ session('form_error_source') == 'password-reset-link' ? session('id') : '' }}">
-                <input type="hidden" name="hash"
-                value="{{ session('form_error_source') == 'password-reset-link' ? session('hash') : '' }}">
+
             <div>
                 <p class="notes__attention"><strong>Забыли пароль?</strong></p>
                 <p class="notes__standard">Сообщите нам свой email, и мы отправим Вам ссылку для сброса пароля, которая
