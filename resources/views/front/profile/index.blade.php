@@ -25,6 +25,18 @@
 @stop
 
 @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/addons/cleave-phone.ru.js"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var phoneNumberElement = document.getElementById('profile-phone');
+            new Cleave(phoneNumberElement, {
+                prefix: '+7',
+                phone: true,
+                phoneRegionCode: 'RU'
+            });
+        });
+    </script>
 @endsection
 
