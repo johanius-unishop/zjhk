@@ -10744,7 +10744,7 @@ select {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    max-width: 50%;
+    max-width: 85%;
 }
 
 @media (max-width: 61.99875em) {
