@@ -53,6 +53,8 @@ class PasswordResetLinkController extends Controller
                     toastr()->warning($message);
                 }
             }
+
+            return redirect()->route('home');
         }
 
 

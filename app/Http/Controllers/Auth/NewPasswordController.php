@@ -54,6 +54,8 @@ class NewPasswordController extends Controller
                     toastr()->warning($message);
                 }
             }
+
+            return redirect()->route('home');
         }
 
 
