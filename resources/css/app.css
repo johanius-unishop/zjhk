@@ -13066,7 +13066,14 @@ h2.benefits__title {
     padding-bottom: 0.5rem;
 }
 
-.profile-user-status {
+.profile-user-status,
+.profile-user-discount {
     font-size: 0.75rem;
+    font-weight: bold;
+}
 
+.profile-user-status > span,
+.profile-user-discount > span {
+    font-size: 0.75rem;
+    font-weight: 400;
 }
