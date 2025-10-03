@@ -57,17 +57,17 @@
                                 </div>
                             </div>
                             <div class="account-profile__row-wrapper">
-
                                 <div class="input-group">
                                     <input type="text" name="profile-city" id="profile-city" placeholder=" ">
                                     <label for="profile-city">Город</label>
                                 </div>
-                            </div>
-                            <div class="account-profile__row-wrapper">
                                 <div class="input-group">
                                     <input type="text" name="profile-company" id="profile-company" placeholder=" ">
                                     <label for="profile-company">Наименование организации</label>
                                 </div>
+                            </div>
+                            <div class="account-profile__row-wrapper">
+
                                 <div class="account-profile__radio-group" role="radiogroup"
                                     aria-labelledby="gender-label">
                                     <p id="gender-label" class="radio-group__label">Пол:</p>
