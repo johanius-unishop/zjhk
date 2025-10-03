@@ -14,11 +14,13 @@ class PasswordResetLinkController extends Controller
     /**
      * Display the password reset link request view.
      */
-    public function create()
+    public function create(Request $request)
     {
         App::setLocale('ru');
 
         session()->flash('form_error_source', 'password-reset-link');
+        session()->flash('id', $request->route('id'));
+        session()->flash('hash', $request->route('hash'));
         return redirect()->route('home')->withInput();
     }
 
@@ -35,6 +37,8 @@ class PasswordResetLinkController extends Controller
 
         // Валидируем запрос
         $request->validate([
+            'id' => ['required', 'id'],
+            'hash' => ['required', 'hash'],
             'email' => ['required', 'email'],
         ]);
 
