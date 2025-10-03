@@ -8,7 +8,7 @@
             <div class="account-profile__container container">
                 <div class="breadcrumbs">
                     <ul class="breadcrumbs__list">
-                        <li><a href="#">Главная</a><img src="./img/icons/arrow-right.svg" alt="стрелка"></li>
+                        <li><a href="#">Главная</a><img src="{{ asset('images/icons/arrow-right.svg') }}" alt="стрелка"></li>
                         <li><span>Личный кабинет</span></li>
                     </ul>
                 </div>
@@ -22,18 +22,5 @@
 @endsection
 
 @section('css')
-
-
 @stop
 
-@section('scripts')
-    @if ($errors->has('email') || $errors->has('password'))
-        <script>
-            $(function() {
-                $('#loginModal').modal({
-                    show: true
-                });
-            });
-        </script>
-    @endif
-@stop

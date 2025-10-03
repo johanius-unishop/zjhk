@@ -29,7 +29,7 @@
                         <div class="account-profile__input-wrapper">
                             <div class="account-profile__row-wrapper">
                                 <div class="input-group profile-name">
-                                    <input type="text" name="profile-name" id="profile-name" placeholder=" ">
+                                    <input type="text" name="profile-name" id="profile-name" placeholder=" " value="{{ $user->name }}">
                                     <label for="profile-name">Имя</label>
                                     <button type="button" id="profile-check-name" class="profile-check-tick">
                                         <img src="./img/icons/check-green.svg" alt="Имя проверено">
