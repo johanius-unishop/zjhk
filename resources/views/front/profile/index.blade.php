@@ -32,6 +32,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             var phoneNumberElement = document.getElementById('profile-phone');
             new Cleave(phoneNumberElement, {
+                prefix: '+',
                 phone: true,
                 phoneRegionCode: 'RU'
             });
