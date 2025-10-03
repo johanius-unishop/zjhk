@@ -13078,3 +13078,9 @@ h2.benefits__title {
     color: red;
     line-height: 16px;
 }
+
+.profile-full-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding-bottom: 1.5rem;
+}

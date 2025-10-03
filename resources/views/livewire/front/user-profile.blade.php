@@ -1,6 +1,6 @@
 <div class="account-profile__wrapper">
     <nav class="account-profile__control">
-        <p>{{ $user->last_name }} {{ $user->name }} {{ $user->patronymic ?? '' }}</p>
+        <p class="profile-full-name">{{ $user->last_name }} {{ $user->name }} {{ $user->patronymic ?? '' }}</p>
 
         <ul class="account-profile__control-list">
             <li class="account-profile__control-item">
