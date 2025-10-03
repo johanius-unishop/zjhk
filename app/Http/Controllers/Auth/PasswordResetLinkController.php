@@ -33,12 +33,9 @@ class PasswordResetLinkController extends Controller
     {
         // Устанавливаем локаль на русский
         App::setLocale('ru');
-        dd($request);
         try {
             $validatedData = $request->validate([
-                'id' => ['required'],
                 'email' => ['required', 'email'],
-                'hash' => ['required'],
             ]);
 
             // Код, исполняемый после успешной валидации
