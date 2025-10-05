@@ -4,7 +4,7 @@
     <div id="search__result" class="header__result" @if (!$visible) style="display: none" @endif>
         @if (is_null($searchResults) || $searchResults->isEmpty())
             <ul class="header__result-wrapper">
-                <li>
+                <li style="text-align: center; font-style: italic;">
                     <span>Ничего не найдено</span>
                 </li>
             </ul>
