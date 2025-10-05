@@ -1132,7 +1132,7 @@ blockquote {
     background-color: rgb(255, 255, 255);
     transform: translateY(10px);
     transition: all 0.2s ease-out;
-    padding: 0.75rem 0 1rem;
+    padding: 0.75rem 0 0.75rem 0;
     box-shadow: 0 0 10px 0 rgba(6, 44, 65, 0.16);
     border-radius: 0.25rem;
     border: 1px solid rgb(213, 215, 218);
@@ -1151,7 +1151,7 @@ blockquote {
         background-color: rgb(255, 255, 255);
         transform: translateY(10px);
         transition: all 0.2s ease-out;
-        padding: 0.75rem 0 1rem;
+        padding: 0.75rem 0 0.75rem 0;
         box-shadow: 0 0 10px 0 rgba(6, 44, 65, 0.16);
         border-radius: 0.25rem;
         border: 1px solid rgb(213, 215, 218);
@@ -1250,7 +1250,7 @@ blockquote {
 .header__result-wrapper {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0rem;
     color: rgb(10, 13, 18);
     font-weight: 500;
     font-size: 0.875rem;
