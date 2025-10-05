@@ -119,10 +119,11 @@
                             <div class="product-desc__about-item cart">
                                 <div class="product-desc__cart-wrapper">
                                     <div class="product-desc__cart-actions">
-                                        <button class="product-page__label-btn">
+                                        <button class="product-page__label-btn js-add-to-favorites"
+                                            data-product-id="{{ $data['product']->id }}">
                                             <img class="product-page__label"
-                                                src="{{ asset('images/icons/label-gray.svg') }}" alt="избранное">В
-                                            избранное
+                                                src="{{ asset('images/icons/label-gray.svg') }}" alt="избранное">
+                                            В избранное
                                         </button>
                                         <button><img src="{{ asset('images/icons/share.svg') }}" alt="поделиться">
                                             Поделиться
@@ -198,15 +199,26 @@
     <script src="{{ asset('js/productPage/mainSwiper.js') }}"></script>
     <script src="{{ asset('js/productPage/relatedSwipers.js') }}"></script>
 
-    @if ($errors->has('email') || $errors->has('password'))
-        <script>
-            $(function() {
-                $('#loginModal').modal({
-                    show: true
+    <script>
+        $(document).ready(function() {
+            $('.js-add-to-favorites').on('click', function(e) {
+                e.preventDefault(); // Отменяем стандартное поведение
+                var productId = $(this).data('product-id'); // Получаем идентификатор товара
+                $.ajax({
+                    type: 'POST',
+                    url: '/add-to-favorites/' + productId,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        alert(response.message); // Сообщение сервера
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', xhr.responseText);
+                    }
                 });
             });
-        </script>
-    @endif
-
+        });
+    </script>
 
 @stop

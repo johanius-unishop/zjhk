@@ -129,4 +129,9 @@ return [
         ],
     ],
 
+    'providers' => [
+        // Остальные провайдеры...
+        App\Providers\FavoriteServiceProvider::class,
+    ],
+
 ];

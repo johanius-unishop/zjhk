@@ -685,6 +685,11 @@ class Product extends Model implements HasMedia, Sitemapable
         return $array;
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
 
     /*$reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),

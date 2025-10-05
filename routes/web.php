@@ -13,6 +13,7 @@ use App\Http\Controllers\Front\ReviewsController;
 use App\Http\Controllers\Front\FileController;
 use App\Http\Controllers\Front\AccountController;
 use App\Http\Controllers\Front\UserProfileController;
+use App\Http\Controllers\Front\FavoritesController;
 use App\Http\Controllers\Front\{HomeController, PageController, CategoryController, ProductController, CartController, FaqController, SearchController, VendorController};
 
 
@@ -88,6 +89,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/profile', [UserProfileController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('profile.index');
+
+Route::group(['middleware' => ['web']], function () {
+    Route::post('/add-to-favorites/{product}', [FavoritesController::class, 'add'])->name('add_to_favorites');
+    Route::delete('/remove-from-favorites/{product}', [FavoritesController::class, 'remove'])->name('remove_from_favorites');
+    Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorites');
+});
 
 
 require __DIR__ . '/auth.php';
