@@ -200,25 +200,34 @@
     <script src="{{ asset('js/productPage/relatedSwipers.js') }}"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            $('.js-add-to-favorites').on('click', function(e) {
-                e.preventDefault(); // Отменяем стандартное поведение
-                var productId = $(this).data('product-id'); // Получаем идентификатор товара
-                $.ajax({
-                    type: 'POST',
-                    url: '/add-to-favorites/' + productId,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        alert(response.message); // Сообщение сервера
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error:', xhr.responseText);
-                    }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.js-add-to-favorites').forEach(function(button) {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // Предотвращаем стандартное поведение кнопки
+                    const productId = this.getAttribute(
+                    'data-product-id'); // Получаем идентификатор товара
+                    sendAddToFavoritesRequest(productId); // Отправляем запрос
                 });
             });
         });
+
+        function sendAddToFavoritesRequest(productId) {
+            fetch(`/add-to-favorites/${productId}`, {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                        'Accept': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message); // Сообщение сервера
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
     </script>
 
 @stop
