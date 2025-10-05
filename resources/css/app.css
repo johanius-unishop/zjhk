@@ -1335,11 +1335,10 @@ blockquote {
     font-family: inherit;
     margin-left: 0rem;
     height: 2.5rem;
-    width: 60%;
-    max-width: 15.3125rem;
+    width: 50%;
     text-align: center;
     bottom: 0rem;
-    left: 20%;
+    left: 25%;
 }
 
 .header__result-btn>span {
