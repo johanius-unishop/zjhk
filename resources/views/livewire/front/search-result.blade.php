@@ -31,7 +31,11 @@
                                         alt="{{ $item->getAltAttribute() }}" loading="lazy">
                                 @endif
                                 <span>{{ $item->name }}</span>
-                                <span>{{ $item->article }}</span>
+                                <span>
+                                    @if (strlen($item->article) <= 23)
+                                        {{ $item->article }}
+                                    @endif
+                                </span>
                             </p>
                             <span>{{ $item->getUserPrice() }}</span>
                         </a>
