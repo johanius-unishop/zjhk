@@ -11683,16 +11683,6 @@ select {
     color: rgb(0, 134, 201) !important;
 }
 
-.order-list__filter-body {
-    width: 15.8125rem;
-}
-
-@media (max-width: 61.99875em) {
-    .order-list__filter-body {
-        width: 100%;
-    }
-}
-
 .order-grid {
     width: 100%;
     display: flex;
