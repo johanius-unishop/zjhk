@@ -200,34 +200,32 @@
     <script src="{{ asset('js/productPage/relatedSwipers.js') }}"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.js-add-to-favorites').forEach(function(button) {
-                button.addEventListener('click', function(event) {
-                    event.preventDefault(); // Предотвращаем стандартное поведение кнопки
-                    const productId = this.getAttribute(
-                    'data-product-id'); // Получаем идентификатор товара
-                    sendAddToFavoritesRequest(productId); // Отправляем запрос
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('.js-add-to-favorites').forEach((btn) => {
+                btn.addEventListener('click', async (e) => {
+                    e.preventDefault(); // Отменяем стандартное поведение
+                    const productId = btn.dataset
+                    .productId; // Используем dataset для удобного извлечения атрибута data-
+
+                    try {
+                        const response = await fetch(`/add-to-favorites/${productId}`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector(
+                                    'meta[name="csrf-token"]').getAttribute(
+                                    'content'),
+                                'Content-Type': 'application/json'
+                            },
+                        });
+
+                        const result = await response.json();
+                        alert(result.message); // Сообщение сервера
+                    } catch (err) {
+                        console.error('Ошибка:', err.message);
+                    }
                 });
             });
         });
-
-        function sendAddToFavoritesRequest(productId) {
-            fetch(`/add-to-favorites/${productId}`, {
-                    method: 'POST',
-                    credentials: 'same-origin',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                        'Accept': 'application/json'
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert(data.message); // Сообщение сервера
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
     </script>
 
 @stop
