@@ -200,7 +200,7 @@
     <script src="{{ asset('js/productPage/relatedSwipers.js') }}"></script>
 
     <script>
-        $(document).ready(function() {
+        document.addEventListener("DOMContentLoaded", () => {
             $('.js-add-to-favorites').on('click', function(e) {
                 e.preventDefault(); // Отменяем стандартное поведение
                 var productId = $(this).data('product-id'); // Получаем идентификатор товара
