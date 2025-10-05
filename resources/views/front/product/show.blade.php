@@ -118,17 +118,7 @@
                             </div>
                             <div class="product-desc__about-item cart">
                                 <div class="product-desc__cart-wrapper">
-                                    <div class="product-desc__cart-actions">
-                                        <button class="product-page__label-btn js-add-to-favorites"
-                                            data-product-id="{{ $data['product']->id }}">
-                                            <img class="product-page__label"
-                                                src="{{ asset('images/icons/label-gray.svg') }}" alt="избранное">
-                                            В избранное
-                                        </button>
-                                        <button><img src="{{ asset('images/icons/share.svg') }}" alt="поделиться">
-                                            Поделиться
-                                        </button>
-                                    </div>
+                                    @livewire('add-to-favorites-button', ['productId' => $data['product']->id])
                                     <div class="product-desc__cart-item">
                                         <div class="product-desc__cart-item-wrapper">
                                             <div>
@@ -199,33 +189,6 @@
     <script src="{{ asset('js/productPage/mainSwiper.js') }}"></script>
     <script src="{{ asset('js/productPage/relatedSwipers.js') }}"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll('.js-add-to-favorites').forEach((btn) => {
-                btn.addEventListener('click', async (e) => {
-                    e.preventDefault(); // Отменяем стандартное поведение
-                    const productId = btn.dataset
-                    .productId; // Используем dataset для удобного извлечения атрибута data-
 
-                    try {
-                        const response = await fetch(`/add-to-favorites/${productId}`, {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': document.querySelector(
-                                    'meta[name="csrf-token"]').getAttribute(
-                                    'content'),
-                                'Content-Type': 'application/json'
-                            },
-                        });
-
-                        const result = await response.json();
-                        alert(result.message); // Сообщение сервера
-                    } catch (err) {
-                        console.error('Ошибка:', err.message);
-                    }
-                });
-            });
-        });
-    </script>
 
 @stop
