@@ -69,7 +69,11 @@
                                 <div class="product__title-container">
                                     <a href="{{ $item->getLinkAttribute() }}">
                                         <h5>{{ $item->name }}</h5>
-                                        <p>{{ $item->article }}</p>
+                                        <p>
+                                            @if (strlen($item->article) <= 23)
+                                                {{ $item->article }}
+                                            @endif
+                                        </p>
                                     </a>
                                 </div>
                                 <div class="product__info-container">
