@@ -5530,9 +5530,6 @@ select {
     box-sizing: border-box;
 }
 
-.product-page__label-btn._active .product-page__label {
-    filter: brightness(0) saturate(100%);
-}
 
 .product-desc__analog-wrapper {
     margin-bottom: 5rem;
