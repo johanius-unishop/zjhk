@@ -1,3 +1,4 @@
+@if ($contentType == 'productPage')
 <div class="product-desc__cart-actions" wire:ignore.self>
     <!-- Button for adding or removing from favorites -->
     <button wire:click="toggleFavorite" class="product-page__label-btn">
@@ -15,3 +16,5 @@
         Поделиться
     </button>
 </div>
+@elseif (($contentType == 'productSelectPage'))
+@endif

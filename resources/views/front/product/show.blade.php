@@ -118,7 +118,7 @@
                             </div>
                             <div class="product-desc__about-item cart">
                                 <div class="product-desc__cart-wrapper">
-                                    @livewire('front.add-to-favorites-button', ['productId' => $data['product']->id])
+                                    @livewire('front.add-to-favorites-button', ['productId' => $data['product']->id, 'contentType' => 'productPage'])
                                     <div class="product-desc__cart-item">
                                         <div class="product-desc__cart-item-wrapper">
                                             <div>

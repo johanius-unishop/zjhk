@@ -10,11 +10,13 @@ class AddToFavoritesButton extends Component
 {
     public $isInFavorites = false;
     public $productId;
+    public $contentType;
 
-    public function mount($productId)
+    public function mount($contentType, $productId)
     {
         $this->productId = $productId;
         $this->checkIfInFavorites();
+        $this->contentType = $contentType;
     }
 
     private function checkIfInFavorites()
