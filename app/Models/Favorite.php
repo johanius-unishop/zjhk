@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Favorite extends Model
 {
     protected $table = 'favorites';
+
+    protected $fillable = [
+        'product_id',
+        'user_id',
+    ];
+
     // Связываем пользователя и продукт
     public function user()
     {
