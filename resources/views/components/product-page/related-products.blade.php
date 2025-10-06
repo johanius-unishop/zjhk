@@ -39,10 +39,7 @@
                                                             loading="lazy">
                                                     @endif
                                                 </a>
-                                                <button class="product-page__label-btn">
-                                                    <img class="product-page__label" src="{{ asset('images/icons/label-gray.svg') }}"
-                                                        alt="избранное">
-                                                </button>
+                                                @livewire('front.add-to-favorites-button', ['contentType' => 'relatedProduct', 'productId' => $related_product_item->id])
                                             </div>
 
                                             <div data-layout class="product-page__title-container card-layout">
