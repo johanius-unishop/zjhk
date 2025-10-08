@@ -37,19 +37,9 @@ class CategoryController extends Controller
             ->get();
         $parents = $category->ancestors->toArray();
 
-        $filter = 1; //Вывод боковой панели фильтра отключен, чтобы включить, нужно передать 1
+        $filter = 0; //Вывод боковой панели фильтра отключен, чтобы включить, нужно передать 1
 
-        // Количество товаров на одну страницу (может передаваться параметром или фиксировано)
-        $perPage = $request->input('per_page', 8); // значение по умолчанию - 8 товаров
-
-        // Обрабатываем параметр reset_page
-        if ($request->boolean('reset_page')) {
-            $pageNumber = 1; // Сбрасываем на первую страницу
-            // Удаляем параметр reset_page из запроса
-            $request->merge(['reset_page' => null]);
-        } else {
-            $pageNumber = $request->input('page', 1);
-        }
+        $perPage = 12;
 
         $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
