@@ -58,7 +58,8 @@ class AuthenticatedSessionController extends Controller
                 $user = Auth::user();
                 $guestFavorites = session()->get('guest_favorites');
 
-                dd($guestFavorites );
+                $userFavorites = $user->favorites();
+                dd($userFavorites );
                 foreach ($guestFavorites as $productId) {
                     if (!$user->favorites()->where('product_id', $productId)->exists()) {
                         $user->favorites()->attach($productId);
