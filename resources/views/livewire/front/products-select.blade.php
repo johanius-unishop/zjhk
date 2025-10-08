@@ -59,31 +59,19 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                     <div data-layout
                         class="product-page__item-wrapper {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                         <div>
-                            <div class="swiper product-page-slider">
-                                <a href="{{ route('product.show', ['slug' => $product_item->slug]) }}">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($product_item->getMedia('images') as $product_image)
-                                            <div class="swiper-slide">
-                                                @if ($acceptsWebP && $product_image && $product_image->hasGeneratedConversion('webp-thumb'))
-                                                    <img src="{{ $product_image->getUrl('webp-thumb') }}"
-                                                    alt="{{ $product_item->getAltAttribute() }}"
-                                                        loading="lazy" class="swiper-image">
-                                                @elseif (!$acceptsWebP && $product_image && $product_image->hasGeneratedConversion('thumb'))
-                                                    <img src="{{ $product_image->getUrl('thumb') }}"
-                                                    alt="{{ $product_item->getAltAttribute() }}"
-                                                        loading="lazy" class="swiper-image">
-                                                @else
-                                                    <img src="{{ $product_image ? $product_image->getUrl() : asset('/images/default_image.jpg') }}"
-                                                    alt="{{ $product_item->getAltAttribute() }}"
-                                                        loading="lazy" class="swiper-image">
-                                                @endif
-
-                                            </div>
-                                        @endforeach
-                                    </div>
+                            <a href="#" class="swiper-slide"><img src="./img/products/item_photo.png" alt="товар">
+                                 </a>
+                                <a href="{{ route('product.show', ['slug' => $product_item->slug]) }}" class="swiper-slide">
+                                    @if ($acceptsWebP && $product_item->getMedia('images')->first && $product_item->getMedia('images')->first()->hasGeneratedConversion('webp-thumb'))
+                                        <img src="{{ $product_image->getUrl('webp-thumb') }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                    @elseif (!$acceptsWebP && $product_item->getMedia('images')->first() && $product_item->getMedia('images')->first()->hasGeneratedConversion('thumb'))
+                                        <img src="{{ $product_image->getUrl('thumb') }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                    @else
+                                        <img src="{{ $product_item->getMedia('images')->first() ? $product_item->getMedia('images')->first()->getUrl() : asset('/images/default_image.jpg') }}"
+                                             alt="{{ $product_item->getAltAttribute() }}"
+                                             loading="lazy">
+                                    @endif
                                 </a>
-                                <div class="swiper-pagination-product"></div>
-                            </div>
                             @livewire('front.add-to-favorites-button', ['contentType' => 'productSelect', 'productId' => $product_item->id])
                         </div>
                         <div data-layout
