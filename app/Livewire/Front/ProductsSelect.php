@@ -13,8 +13,8 @@ class ProductsSelect extends Component
 
     public $acceptsWebP;
     public $category;
-    public $perPage = 8; // количество товаров на странице
-    public $perPageOptions = [8, 12, 16, 20, 24];
+    public $perPage = 12; // количество товаров на странице
+    public $perPageOptions = [12, 24, 36];
     public $filter;
 
     public string $layoutType = 'card';
@@ -45,9 +45,9 @@ class ProductsSelect extends Component
     public function mount($category, $filter, $acceptsWebP)
     {
         $this->filter = $filter;
-        $this->layoutType = session('layoutType', 'card'); // По умолчанию "card"
         $this->category = $category;
         $this->acceptsWebP = $acceptsWebP;
+        $this->layoutType = session('layoutType', 'card'); // По умолчанию "card"
     }
 
     public function render()
