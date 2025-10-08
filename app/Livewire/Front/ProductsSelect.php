@@ -31,7 +31,7 @@ class ProductsSelect extends Component
     {
         $this->perPage = $newValue;
         $this->menuIsOpen = false; // Закрываем меню
-        $this->resetPage();
+        //$this->resetPage();
     }
 
 
@@ -47,7 +47,7 @@ class ProductsSelect extends Component
         $this->filter = $filter;
         $this->category = $category;
         $this->acceptsWebP = $acceptsWebP;
-        $this->layoutType = session('layoutType', 'card'); // По умолчанию "card"
+
     }
 
     public function render()
