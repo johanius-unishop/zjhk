@@ -130,9 +130,7 @@
                         data-select-page>
                         @foreach ($perPageOptions as $option)
                             <li>
-                                <button wire:click="changePerPage({{ $option }})"
-                                wire:loading.attr="disabled"
-                                    x-on:click="'{{ $scrollIntoViewJsSnippet }}'" >
+                                <button wire:click="changePerPage({{ $option }})" wire:loading.attr="disabled">
                                     {{ $option }}
                                 </button>
                             </li>
