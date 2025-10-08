@@ -64,7 +64,7 @@
 
 
 @section('scripts')
-    @livewireScriptConfig
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const layoutElArr = document.querySelectorAll('[data-layout]');
