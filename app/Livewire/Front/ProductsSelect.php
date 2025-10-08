@@ -37,10 +37,9 @@ class ProductsSelect extends Component
 
     public function switchLayout()
     {
-        $this->layoutType = $this->layoutType === 'card' ? 'list' : 'card';
-
-        // Оповещаем слушателей об изменении макета
-        $this->dispatch('updateLayout', layoutType: $this->layoutType);
+        $newLayoutType = $this->layoutType === 'card' ? 'list' : 'card';
+        $this->layoutType = $newLayoutType;
+        session(['layoutType' => $newLayoutType]);
     }
 
     public function mount($category, $filter, $acceptsWebP)
