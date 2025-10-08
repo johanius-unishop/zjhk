@@ -1,5 +1,3 @@
-
-
 <div class="product-page__content">
     <aside class="product-page__filter filter">
         @if ($filter == 1)
@@ -131,7 +129,7 @@
                     <ul class="product-page__page-count {{ $menuIsOpen === true ? '_active' : 'hidden' }}"
                         data-select-page>
                         @foreach ($perPageOptions as $option)
-                            <li><button wire:click="changePerPage({{ $option }})" x-on:click="{{ $scrollIntoViewJsSnippet }}" wire:loading.attr="disabled">
+                            <li><button wire:click="changePerPage({{ $option }})" x-on:click="{{ $scrollIntoViewJsSnippet }}">
                                     {{ $option }}
                                 </button>
                             </li>
@@ -142,3 +140,4 @@
         </div>
     </div>
 </div>
+

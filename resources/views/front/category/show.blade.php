@@ -45,7 +45,7 @@
                     @livewire('front.products-select', [
                         'category' => $data['category'],
                         'filter' => $data['filter'],
-                        'acceptsWebP' => $data['acceptsWebP']
+                        'acceptsWebP' => $data['acceptsWebP'],
                     ])
                 </div>
             </section>
@@ -109,5 +109,16 @@
             console.log('сработало!')
 
         });
+
+
+        let scrollTo = "{{ $scrollTo ?? 'body' }}";
+        const scrollIntoViewJsSnippet = () => {
+            if (scrollTo !== false) {
+                return `
+                (\$el.closest('${scrollTo}') || document.querySelector('${scrollTo}')).scrollIntoView();
+            `;
+            }
+            return '';
+        };
     </script>
 @endsection
