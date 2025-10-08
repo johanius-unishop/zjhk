@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
-use App\Models\User;
+use App\Models\Favorite;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -58,11 +58,15 @@ class AuthenticatedSessionController extends Controller
                 $user = Auth::user();
                 $guestFavorites = session()->get('guest_favorites');
 
-                $userFavorites = $user->favorites()->get();
-                dd($userFavorites );
+                // Пробегаемся по списку товаров
                 foreach ($guestFavorites as $productId) {
-                    if (!$user->favorites()->where('product_id', $productId)->exists()) {
-                        $user->favorites()->attach($productId);
+                    // Проверяем, существует ли уже пара в базе данных
+                    if (!Favorite::where('user_id', $user->id)->where('product_id', $productId)->exists()) {
+                        // Если нет, создаём новую запись
+                        Favorite::create([
+                            'user_id' => $user->id,
+                            'product_id' => $productId
+                        ]);
                     }
                 }
 
