@@ -66,49 +66,9 @@
 @section('scripts')
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const layoutElArr = document.querySelectorAll('[data-layout]');
-            const currentLayoutType = "{{ session('layoutType') ?? 'card' }}";
-            layoutElArr.forEach((element) => {
-                element.classList.toggle('card-layout', currentLayoutType === 'card');
-                element.classList.toggle('list-layout', currentLayoutType === 'list');
-            });
-        });
 
 
-        document.addEventListener('livewire:init', () => {
-            Livewire.on('updateLayout', (eventData) => {
-                const layoutElArr = document.querySelectorAll('[data-layout]');
-                const layoutType = eventData.layoutType;
 
-                layoutElArr.forEach((element) => {
-                    element.classList.toggle('card-layout', layoutType === 'card');
-                    element.classList.toggle('list-layout', layoutType === 'list');
-                });
-            });
-        });
-
-        document.addEventListener('livewire:load', event => {
-            console.log('Новая структура DOM построена!');
-
-            // Тут можно разместить ваш JavaScript-код
-            // Например, инициализация плагинов или другие действия
-
-            const swiperProduct = new Swiper('.product-page-slider', {
-                modules: [EffectFade, Pagination],
-                loop: false,
-                grabCursor: false,
-                pagination: {
-                    el: '.swiper-pagination-product',
-                    clickable: true,
-                    renderBullet: function(index, className) {
-                        return '<span class="' + className + '">' + '</span>'
-                    }
-                }
-            })
-            console.log('сработало!')
-
-        });
 
 
 
