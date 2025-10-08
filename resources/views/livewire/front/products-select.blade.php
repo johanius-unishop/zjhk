@@ -1,13 +1,8 @@
 @php
-if (! isset($scrollTo)) {
-    $scrollTo = 'body';
-}
-
-$scrollIntoViewJsSnippet = ($scrollTo !== false)
-    ? <<<JS
-       (\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()
-    JS
-    : '';
+    // Всегда перекручиваем страницу на body
+    $scrollIntoViewJsSnippet = <<<'JS'
+    document.querySelector('body').scrollIntoView();
+    JS;
 @endphp
 
 <div class="product-page__content">
@@ -59,23 +54,27 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                     <div data-layout
                         class="product-page__item-wrapper {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                         <div>
-                                <a href="{{ route('product.show', ['slug' => $product_item->slug]) }}" class="swiper-slide">
-                                    @php
-                                        $firstImage = $product_item->getMedia('images')->first(); // Получаем первое изображение продукта
-                                    @endphp
+                            <a href="{{ route('product.show', ['slug' => $product_item->slug]) }}" class="swiper-slide">
+                                @php
+                                    $firstImage = $product_item->getMedia('images')->first(); // Получаем первое изображение продукта
+                                @endphp
 
-                                    @if ($firstImage)
-                                        @if ($acceptsWebP && $firstImage->hasGeneratedConversion('webp-thumb'))
-                                            <img src="{{ $firstImage->getUrl('webp-thumb') }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
-                                        @elseif (!$acceptsWebP && $firstImage->hasGeneratedConversion('thumb'))
-                                            <img src="{{ $firstImage->getUrl('thumb') }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
-                                        @else
-                                            <img src="{{ $firstImage->getUrl() }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
-                                        @endif
+                                @if ($firstImage)
+                                    @if ($acceptsWebP && $firstImage->hasGeneratedConversion('webp-thumb'))
+                                        <img src="{{ $firstImage->getUrl('webp-thumb') }}"
+                                            alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                    @elseif (!$acceptsWebP && $firstImage->hasGeneratedConversion('thumb'))
+                                        <img src="{{ $firstImage->getUrl('thumb') }}"
+                                            alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
                                     @else
-                                        <img src="{{ asset('/images/default_image.jpg') }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                        <img src="{{ $firstImage->getUrl() }}"
+                                            alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
                                     @endif
-                                </a>
+                                @else
+                                    <img src="{{ asset('/images/default_image.jpg') }}"
+                                        alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                @endif
+                            </a>
                             @livewire('front.add-to-favorites-button', ['contentType' => 'productSelect', 'productId' => $product_item->id])
                         </div>
                         <div data-layout
@@ -85,10 +84,10 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                                 <p>{{ $product_item->article }}</p>
                             </a>
                             <div>
-                                @if ($product_item->getCountReviewsString() != "")
-                                <img src="{{ asset('images/icons/star.svg') }}"
-                                    alt="рейтинг"><span>{{ $product_item->getAverageReviewRatingString() }}</span>
-                                <a><span>{{ $product_item->getCountReviewsString() }}</span></a>
+                                @if ($product_item->getCountReviewsString() != '')
+                                    <img src="{{ asset('images/icons/star.svg') }}"
+                                        alt="рейтинг"><span>{{ $product_item->getAverageReviewRatingString() }}</span>
+                                    <a><span>{{ $product_item->getCountReviewsString() }}</span></a>
                                 @endif
                             </div>
 
@@ -96,7 +95,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                         <div data-layout
                             class="product-page__info-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                             <p>{{ $product_item->getUserPrice() }}</p>
-                            @if ( $product_item->stock > 0)
+                            @if ($product_item->stock > 0)
                                 <p style="color: #027a48;">{{ $product_item->getUserStock() }}</p>
                             @else
                                 <p style="color: #6905ec;">{{ $product_item->getUserStock() }}</p>
@@ -129,9 +128,11 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                     </p>
                     <ul class="product-page__page-count {{ $menuIsOpen === true ? '_active' : 'hidden' }}"
                         data-select-page>
-                       @foreach ($perPageOptions as $option)
+                        @foreach ($perPageOptions as $option)
                             <li>
-                                <button wire:click="changePerPage({{ $option }})" x-on:click="{{ $scrollIntoViewJsSnippet }}">
+                                <button wire:click="changePerPage({{ $option }})"
+                                wire:loading.attr="disabled"
+                                    x-on:click="'{{ $scrollIntoViewJsSnippet }}'" >
                                     {{ $option }}
                                 </button>
                             </li>
@@ -142,4 +143,3 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
         </div>
     </div>
 </div>
-
