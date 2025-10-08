@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -39,8 +40,8 @@ class AuthenticatedSessionController extends Controller
                 Auth::logout(); // Если почта не подтверждена, отменяем авторизацию
 
                 toastr()
-                ->title('Внимание!')
-                ->warning('Для входа на сайт необходимо подтвердить e-mail!');
+                    ->title('Внимание!')
+                    ->warning('Для входа на сайт необходимо подтвердить e-mail!');
 
                 session()->flash('form_error_source', 'verify-notes');
                 return redirect()->route('home')->withInput();
@@ -52,6 +53,20 @@ class AuthenticatedSessionController extends Controller
                 ->success('Вы вошли в свою учетную запись!');
 
 
+            // Начинаем проверку избранных товаров
+            if (session()->has('guest_favorites')) {
+                $user = Auth::user();
+                $guestFavorites = session()->get('guest_favorites');
+
+                foreach ($guestFavorites as $productId) {
+                    if (!$user->favorites()->where('product_id', $productId)->exists()) {
+                        $user->favorites()->attach($productId);
+                    }
+                }
+
+                // Очищаем сессию после удачного переноса
+                session()->forget('guest_favorites');
+            }
             // Авторизация пройдена успешно, пользователь с подтвержденной почтой направляется на главную страницу
             return back();
         } else {
