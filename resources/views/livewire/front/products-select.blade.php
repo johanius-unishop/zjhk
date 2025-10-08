@@ -1,10 +1,3 @@
-@php
-    // Всегда перекручиваем страницу на body
-    $scrollIntoViewJsSnippet = <<<'JS'
-    document.querySelector('body').scrollIntoView();
-    JS;
-@endphp
-
 <div class="product-page__content">
     <aside class="product-page__filter filter">
         @if ($filter == 1)
