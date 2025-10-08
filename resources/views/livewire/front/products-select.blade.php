@@ -1,3 +1,15 @@
+@php
+if (! isset($scrollTo)) {
+    $scrollTo = 'body';
+}
+
+$scrollIntoViewJsSnippet = ($scrollTo !== false)
+    ? <<<JS
+       (\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()
+    JS
+    : '';
+@endphp
+
 <div class="product-page__content">
     <aside class="product-page__filter filter">
         @if ($filter == 1)
@@ -129,7 +141,7 @@
                     <ul class="product-page__page-count {{ $menuIsOpen === true ? '_active' : 'hidden' }}"
                         data-select-page>
                         @foreach ($perPageOptions as $option)
-                            <li><button wire:click="changePerPage({{ $option }})" >
+                            <li><button wire:click="changePerPage({{ $option }})" x-on:click="{{ $scrollIntoViewJsSnippet }}">
                                     {{ $option }}
                                 </button>
                             </li>

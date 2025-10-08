@@ -111,14 +111,6 @@
         });
 
 
-        let scrollTo = "{{ $scrollTo ?? 'body' }}";
-        const scrollIntoViewJsSnippet = () => {
-            if (scrollTo !== false) {
-                return `
-                (\$el.closest('${scrollTo}') || document.querySelector('${scrollTo}')).scrollIntoView();
-            `;
-            }
-            return '';
-        };
+
     </script>
 @endsection
