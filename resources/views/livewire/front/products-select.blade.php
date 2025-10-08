@@ -84,10 +84,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                                 </a>
                                 <div class="swiper-pagination-product"></div>
                             </div>
-                            <button class="product-page__label-btn">
-                                <img class="product-page__label" src="{{ asset('images/icons/label-gray.svg') }}"
-                                    alt="избранное">
-                            </button>
+                            @livewire('front.add-to-favorites-button', ['contentType' => 'productSelect', 'productId' => $product_item->id])
                         </div>
                         <div data-layout
                             class="product-page__title-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
