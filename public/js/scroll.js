@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const scrollBtn = document.querySelector("#scroll-btn");
+    const scrollUpElements = document.querySelectorAll(".scroll-up");
     const windowHeight = document.documentElement.clientHeight;
 
     window.addEventListener("scroll", () => {
@@ -16,6 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
             top: 0,
             left: 0,
             behavior: "smooth",
+        });
+    });
+
+    scrollUpElements.forEach((element) => {
+        element.addEventListener("click", (event) => {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+            });
         });
     });
     console.log("Scrollbar has been connected...");

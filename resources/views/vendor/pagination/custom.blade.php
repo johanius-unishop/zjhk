@@ -1,21 +1,10 @@
-@php
-if (! isset($scrollTo)) {
-    $scrollTo = 'body';
-}
-
-$scrollIntoViewJsSnippet = ($scrollTo !== false)
-    ? <<<JS
-       (\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()
-    JS
-    : '';
-@endphp
 
 @if ($paginator->onFirstPage())
     <button>
         <img src="{{ asset('images/icons/tick-grey.svg') }}" alt="влево">
     </button>
 @else
-    <button wire:click="previousPage" x-on:click="{{ $scrollIntoViewJsSnippet }}" wire:loading.attr="disabled">
+    <button wire:click="previousPage" wire:loading.attr="disabled" class="scroll-up">
         <img src="{{ asset('images/icons/tick-black.svg') }}" style="transform:rotateZ(180deg)" alt="влево">
     </button>
 @endif
@@ -33,7 +22,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                 @else
                     <li data-pagination>
                         <button
-                            wire:click="setPage({{ $page }})" x-on:click="{{ $scrollIntoViewJsSnippet }}" wire:loading.attr="disabled">{{ $page }}</button>
+                            wire:click="setPage({{ $page }})" wire:loading.attr="disabled" class="scroll-up">{{ $page }} </button>
                     </li>
                 @endif
             @endforeach
@@ -48,7 +37,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
         <img src="{{ asset('images/icons/tick-grey.svg') }}" style="transform:rotateZ(180deg)" alt="вправо">
     </button>
 @else
-     <button wire:click="nextPage" x-on:click="{{ $scrollIntoViewJsSnippet }}" wire:loading.attr="disabled">
+     <button wire:click="nextPage" wire:loading.attr="disabled" class="scroll-up">
         <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
     </button>
 @endif

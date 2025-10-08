@@ -64,23 +64,4 @@
 
 
 @section('scripts')
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const layoutElArr = document.querySelectorAll('[data-layout]');
-            const currentLayoutType = "{{ session('layoutType') ?? 'card' }}";
-            layoutElArr.forEach((element) => {
-                element.classList.toggle('card-layout', currentLayoutType === 'card');
-                element.classList.toggle('list-layout', currentLayoutType === 'list');
-            });
-        });
-
-
-
-
-
-
-
-
-    </script>
 @endsection
