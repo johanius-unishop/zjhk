@@ -129,7 +129,7 @@
                     <ul class="product-page__page-count {{ $menuIsOpen === true ? '_active' : 'hidden' }}"
                         data-select-page>
                         @foreach ($perPageOptions as $option)
-                            <li><button wire:click="changePerPage({{ $option }})" x-on:click="{{ $scrollIntoViewJsSnippet }}">
+                            <li><button wire:click="changePerPage({{ $option }})" >
                                     {{ $option }}
                                 </button>
                             </li>
