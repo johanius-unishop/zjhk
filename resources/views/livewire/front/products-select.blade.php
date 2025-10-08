@@ -59,17 +59,21 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                     <div data-layout
                         class="product-page__item-wrapper {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                         <div>
-                            <a href="#" class="swiper-slide"><img src="./img/products/item_photo.png" alt="товар">
-                                 </a>
                                 <a href="{{ route('product.show', ['slug' => $product_item->slug]) }}" class="swiper-slide">
-                                    @if ($acceptsWebP && $product_item->getMedia('images')->first && $product_item->getMedia('images')->first()->hasGeneratedConversion('webp-thumb'))
-                                        <img src="{{ $product_image->getUrl('webp-thumb') }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
-                                    @elseif (!$acceptsWebP && $product_item->getMedia('images')->first() && $product_item->getMedia('images')->first()->hasGeneratedConversion('thumb'))
-                                        <img src="{{ $product_image->getUrl('thumb') }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                    @php
+                                        $firstImage = $product_item->getMedia('images')->first(); // Получаем первое изображение продукта
+                                    @endphp
+
+                                    @if ($firstImage)
+                                        @if ($acceptsWebP && $firstImage->hasGeneratedConversion('webp-thumb'))
+                                            <img src="{{ $firstImage->getUrl('webp-thumb') }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                        @elseif (!$acceptsWebP && $firstImage->hasGeneratedConversion('thumb'))
+                                            <img src="{{ $firstImage->getUrl('thumb') }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                        @else
+                                            <img src="{{ $firstImage->getUrl() }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                        @endif
                                     @else
-                                        <img src="{{ $product_item->getMedia('images')->first() ? $product_item->getMedia('images')->first()->getUrl() : asset('/images/default_image.jpg') }}"
-                                             alt="{{ $product_item->getAltAttribute() }}"
-                                             loading="lazy">
+                                        <img src="{{ asset('/images/default_image.jpg') }}" alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
                                     @endif
                                 </a>
                             @livewire('front.add-to-favorites-button', ['contentType' => 'productSelect', 'productId' => $product_item->id])
