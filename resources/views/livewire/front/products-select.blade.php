@@ -71,8 +71,12 @@
                                 @endif
                             </a>
 
-                            @livewire('front.add-to-favorites-button', ['contentType' => 'productSelect', 'productId' => $product_item->id], key($product_item->id))
-                        </div>
+                            @livewire('front.add-to-favorites-button', [
+                                'contentType' => 'productSelect',
+                                'productId' => $product_item->id
+                            ], key("favorites_button_{$product_item->id}"))
+
+                    </div>
                         <div data-layout
                             class="product-page__title-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                             <a href="{{ route('product.show', ['slug' => $product_item->slug]) }}">
