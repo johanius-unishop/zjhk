@@ -74,7 +74,7 @@
                             <button wire:click="toggleFavorite({{ $product_item->id }})" class="product-page__label-btn">
                                 <img class="product-page__label"
                                     src="
-        {{ $product_item->isInFavorites ? asset('images/icons/label-blue.svg') : asset('images/icons/label-gray.svg') }}
+        {{ $product_item->isInFavorites() ? asset('images/icons/label-blue.svg') : asset('images/icons/label-gray.svg') }}
     "
                                     alt="избранное">
                             </button>
