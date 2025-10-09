@@ -3386,7 +3386,8 @@ select {
     }
 }
 
-.product-page__item-wrapper.list-layout div:first-child .product-page-slider div>div>img {
+
+.product-page__item-wrapper.list-layout div:first-child a>img {
     max-height: 10rem;
     display: block;
     margin: 0 auto;
@@ -3395,7 +3396,7 @@ select {
 }
 
 @media (max-width: 61.99875em) {
-    .product-page__item-wrapper.list-layout div:first-child .product-page-slider div>div>img {
+    .product-page__item-wrapper.list-layout div:first-child a>img {
         max-height: 8.75rem;
     }
 }
