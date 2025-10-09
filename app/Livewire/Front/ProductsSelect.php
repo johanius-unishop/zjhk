@@ -20,7 +20,7 @@ class ProductsSelect extends Component
 
     public bool $menuIsOpen = false; // Флаг открытия меню
 
-    public function toggleMenu()
+  /*  public function toggleMenu()
     {
         $this->menuIsOpen = !$this->menuIsOpen;
     }
@@ -30,7 +30,7 @@ class ProductsSelect extends Component
         $this->perPage = $newValue;
         $this->menuIsOpen = false;
         $this->resetPage(); // Всегда возвращаемся на первую страницу
-    }
+    }*/
 
     public function switchLayout()
     {
