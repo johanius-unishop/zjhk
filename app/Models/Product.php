@@ -690,6 +690,22 @@ class Product extends Model implements HasMedia, Sitemapable
         return $this->hasMany(Favorite::class);
     }
 
+    /**
+     * Проверяет, добавлен ли продукт в избранное текущего пользователя.
+     *
+     * @return boolean
+     */
+    public function isInFavorites(): bool
+    {
+        if (!Auth::check()) { // Если пользователь не аутентифицирован
+            $sessionFaves = session()->get('guest_favorites', []); // Используем сессионные данные гостей
+            return in_array($this->id, $sessionFaves); // Проверяем наличие ID продукта среди гостевых избранных
+        }
+
+        // Пользователь аутентифицирован, используем базу данных
+        return $this->favorites()->where('user_id', Auth::id())->exists();
+    }
+
 
     /*$reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),

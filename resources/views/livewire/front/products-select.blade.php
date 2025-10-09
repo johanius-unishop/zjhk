@@ -71,12 +71,15 @@
                                 @endif
                             </a>
 
-                            @livewire('front.add-to-favorites-button', [
-                                'contentType' => 'productSelect',
-                                'productId' => $product_item->id
-                            ], key("favorites_button_{$product_item->id}"))
+                            <button wire:click="toggleFavorite({{ $product_item->id }})" class="product-page__label-btn">
+                                <img class="product-page__label"
+                                    src="
+        {{ $product_item->isInFavorites ? asset('images/icons/label-blue.svg') : asset('images/icons/label-gray.svg') }}
+    "
+                                    alt="избранное">
+                            </button>
 
-                    </div>
+                        </div>
                         <div data-layout
                             class="product-page__title-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
                             <a href="{{ route('product.show', ['slug' => $product_item->slug]) }}">
@@ -141,4 +144,3 @@
         </div>
     </div>
 </div>
-
