@@ -37,6 +37,7 @@ class ProductsSelect extends Component
         $newLayoutType = $this->layoutType === 'card' ? 'list' : 'card';
         $this->layoutType = $newLayoutType;
         session()->put('layoutType', $newLayoutType);
+        $this->refresh();
     }
 
     public function mount($category, $filter, $acceptsWebP)

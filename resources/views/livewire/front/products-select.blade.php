@@ -70,7 +70,7 @@
                                         alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
                                 @endif
                             </a>
-                            @livewire('front.add-to-favorites-button', ['contentType' => 'productSelect', 'productId' => $product_item->id])
+                            @livewire('front.add-to-favorites-button', ['contentType' => 'productSelect', 'productId' => $product_item->id], key="{$product_item->id}")
                         </div>
                         <div data-layout
                             class="product-page__title-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
