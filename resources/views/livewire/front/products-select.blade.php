@@ -21,6 +21,8 @@
     </aside>
 
     <div class="product-page__layout">
+
+
         <div class="product-page__sort-container">
             <div>
 
@@ -41,7 +43,7 @@
         </div>
 
         <div id="layout" data-layout
-            class="product-page__grid {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }} hide-subsequent-rows">
+            class="product-page__grid {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
             @foreach ($products as $product_item)
                 <div class="product-page__item">
                     <div data-layout
@@ -68,7 +70,7 @@
                                         alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
                                 @endif
                             </a>
-                            @livewire('front.add-to-favorites-button', ['contentType' => 'productSelect', 'productId' => $product_item->id])
+
                         </div>
                         <div data-layout
                             class="product-page__title-container {{ $layoutType === 'card' ? 'card-layout' : 'list-layout' }}">
