@@ -9,11 +9,13 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class FavoritesController extends Controller {
+class FavoritesController extends Controller
+{
     /**
      * Добавляет товар в избранные
      */
-    public function add(Request $request, int $productId) {
+    public function add(Request $request, int $productId)
+    {
         if ($request->user()) { // Если пользователь авторизирован
             $favorite = new Favorite();
             $favorite->user_id = Auth::id(); // ID текущего пользователя
@@ -34,7 +36,8 @@ class FavoritesController extends Controller {
     /**
      * Удаляет товар из избранных
      */
-    public function remove(Request $request, int $productId) {
+    public function remove(Request $request, int $productId)
+    {
         if ($request->user()) { // Авторизированный пользователь
             Favorite::where([
                 ['user_id', '=', Auth::id()],
@@ -50,7 +53,8 @@ class FavoritesController extends Controller {
     /**
      * Возвращает список избранных товаров пользователя
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         if ($request->user()) { // Авторизированный пользователь
             $products = Favorite::with('product')->where('user_id', Auth::id())->get();
         } else { // Гость
@@ -59,5 +63,17 @@ class FavoritesController extends Controller {
         }
 
         return view('favorites.index', compact('products'));
+    }
+
+    public function countFavoritesForCurrentUser(Request $request): int
+    {
+        if ($request->user()) {
+            $favoriteCount = Favorite::where('user_id', Auth::id())->count();
+        } else {
+            $ids = session()->get('guest_favorites', []);
+            $favoriteCount = count($ids);
+        }
+
+        return $favoriteCount;
     }
 }

@@ -77,13 +77,9 @@
                             <span>Заказы</span>
                         </a>
                     </li>
-                    <li class="header__actions-item">
-                        <span style="display: none">33</span>
-                        <a href="#">
-                            <img src={{ asset('images/icons/bookmark.svg') }} alt="Избранное">
-                            <span>Избранное</span>
-                        </a>
-                    </li>
+
+                   @livewire('front.favorites-counter')
+
                     <li class="header__actions-item">
                         <span style="display: none">5</span>
                         <a href="#">
