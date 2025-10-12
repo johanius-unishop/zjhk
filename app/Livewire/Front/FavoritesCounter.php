@@ -26,7 +26,7 @@ class FavoritesCounter extends Component
         return view('livewire.front.favorites-counter');
     }
 
-    #[On('post-created')]
+    #[On('update-favorites')]
     public function updated(FavoriteService $service)
     {
         $this->updateFavoriteCount($service);
