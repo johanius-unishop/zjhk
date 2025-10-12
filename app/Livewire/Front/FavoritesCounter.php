@@ -24,4 +24,12 @@ class FavoritesCounter extends Component
     {
         return view('livewire.front.favorites-counter');
     }
+
+    public function updated(FavoriteService $service)
+    {
+        $this->updateFavoriteCount($service);
+    }
+    protected $listeners = [
+        'update-favorites' => 'updated',
+    ];
 }

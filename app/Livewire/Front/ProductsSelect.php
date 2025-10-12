@@ -83,5 +83,7 @@ class ProductsSelect extends Component
                 session()->pull('guest_favorites.' . array_search($product->id, session()->get('guest_favorites')));
             }
         }
+
+        $this->dispatchBrowserEvent('update-favorites');
     }
 }
