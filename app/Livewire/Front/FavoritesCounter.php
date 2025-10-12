@@ -1,7 +1,7 @@
 <?php
 
 // app/Http/Livewire/Front/FavoritesCounter.php
-namespace App\Http\Livewire\Front;
+namespace App\Livewire\Front;
 
 use Livewire\Component;
 use App\Services\FavoriteService;
