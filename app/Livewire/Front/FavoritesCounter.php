@@ -5,6 +5,7 @@ namespace App\Livewire\Front;
 
 use Livewire\Component;
 use App\Services\FavoriteService;
+use Livewire\Attributes\On;
 
 class FavoritesCounter extends Component
 {
@@ -25,11 +26,9 @@ class FavoritesCounter extends Component
         return view('livewire.front.favorites-counter');
     }
 
+    #[On('post-created')]
     public function updated(FavoriteService $service)
     {
         $this->updateFavoriteCount($service);
     }
-    protected $listeners = [
-        'update-favorites' => 'updated',
-    ];
 }

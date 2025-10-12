@@ -84,6 +84,6 @@ class ProductsSelect extends Component
             }
         }
 
-        $this->dispatchBrowserEvent('update-favorites');
+        $this->dispatch('update-favorites');
     }
 }

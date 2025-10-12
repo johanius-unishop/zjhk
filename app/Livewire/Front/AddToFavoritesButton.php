@@ -52,7 +52,7 @@ class AddToFavoritesButton extends Component
 
         $this->isInFavorites = !$this->isInFavorites;
 
-        $this->dispatchBrowserEvent('update-favorites');
+        $this->dispatch('update-favorites');
     }
 
     public function render()
