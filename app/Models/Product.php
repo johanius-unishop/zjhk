@@ -453,7 +453,7 @@ class Product extends Model implements HasMedia, Sitemapable
                 foreach ($elements as $element) {
                     if ($element->compositeProduct->supplier_price && $element->compositeProduct->supplier_price > 0) {
                         dd($element);
-                        $basePrice = $basePrice + ($element->compositeProduct->supplier_price * $element->quantity * $element->price_multiplier * $element->currency->internal_rate);
+                        $basePrice = $basePrice + ($element->compositeProduct->supplier_price * $element->quantity * $element->compositeProduct->price_multiplier * $element->compositeProduct->currency->internal_rate);
                     } else {
                         return "По запросу"; // Или любое подходящее сообщение
                     }
