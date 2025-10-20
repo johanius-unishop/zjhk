@@ -440,7 +440,7 @@ class Product extends Model implements HasMedia, Sitemapable
     {
         if ($this->composite_product != 1) {
             // Базовая цена продукта
-            if ($this->composite_product != 1) {
+
                 // Если цена пустая или равна 0, возвращаем специальную надпись
                 if (!$this->supplier_price || empty($this->supplier_price)) {
                     return "По запросу"; // Или любое подходящее сообщение
@@ -457,7 +457,7 @@ class Product extends Model implements HasMedia, Sitemapable
                         }
                 }
             }
-        }
+
 
         // Если пользователь не авторизован, выдаём полную цену
         if (!Auth::check()) {
