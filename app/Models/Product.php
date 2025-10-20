@@ -439,12 +439,25 @@ class Product extends Model implements HasMedia, Sitemapable
     public function getUserPrice()
     {
         // Если цена пустая или равна 0, возвращаем специальную надпись
-        if (!$this->price || empty($this->price)) {
+        if (!$this->supplier_price || empty($this->supplier_price)) {
             return "По запросу"; // Или любое подходящее сообщение
         }
 
         // Базовая цена продукта
-        $basePrice = $this->price;
+        if ($this->composite_product != 1) {
+            $basePrice = $this->supplier_price * $this->price_multiplier * $this->currency->internal_rate;
+        } else {
+            $elements = $this->composite;
+            dd($elements);
+            if ($elements){
+                $basePrice=0;
+                foreach ($elements as $element)
+                    if ($element->supplier_price && $element->supplier_price > 0){
+                        $basePrice = $basePrice + $element->supplier_price;
+                    }
+            }
+
+        }
 
         // Если пользователь не авторизован, выдаём полную цену
         if (!Auth::check()) {
