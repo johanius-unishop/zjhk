@@ -448,7 +448,6 @@ class Product extends Model implements HasMedia, Sitemapable
             $basePrice = $this->supplier_price * $this->price_multiplier * $this->currency->internal_rate;
         } else {
             $elements = $this->composite;
-            dd($elements);
             if ($elements) {
                 $basePrice = 0;
                 foreach ($elements as $element) {
