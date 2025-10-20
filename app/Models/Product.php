@@ -442,7 +442,7 @@ class Product extends Model implements HasMedia, Sitemapable
             // Базовая цена продукта
 
             // Если цена пустая или равна 0, возвращаем специальную надпись
-            if (!$this->supplier_price || empty($this->supplier_price) || empty($this->supplier_price)) {
+            if (!$this->supplier_price || empty($this->supplier_price) || empty($this->price_multiplier)) {
                 return "По запросу"; // Или любое подходящее сообщение
             }
             $basePrice = $this->supplier_price * $this->price_multiplier * $this->currency->internal_rate;
@@ -451,7 +451,7 @@ class Product extends Model implements HasMedia, Sitemapable
             if ($elements) {
                 $basePrice = 0;
                 foreach ($elements as $element) {
-                    if ($element->compositeProduct->supplier_price && $element->compositeProduct->supplier_price > 0 && !empty($element->compositeProduct->supplier_price)) {
+                    if ($element->compositeProduct->supplier_price && $element->compositeProduct->supplier_price > 0 && !empty($element->compositeProduct->price_multiplier)) {
                         $basePrice = $basePrice + ($element->compositeProduct->supplier_price * $element->quantity * $element->compositeProduct->price_multiplier * $element->compositeProduct->currency->internal_rate);
                     } else {
                         return "По запросу"; // Или любое подходящее сообщение
