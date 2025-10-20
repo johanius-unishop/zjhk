@@ -441,22 +441,28 @@ class Product extends Model implements HasMedia, Sitemapable
         if ($this->composite_product != 1) {
             // Базовая цена продукта
 
-                // Если цена пустая или равна 0, возвращаем специальную надпись
-                if (!$this->supplier_price || empty($this->supplier_price)) {
-                    return "По запросу"; // Или любое подходящее сообщение
-                }
-                $basePrice = $this->supplier_price * $this->price_multiplier * $this->currency->internal_rate;
-            } else {
-                $elements = $this->composite;
-                dd($elements);
-                if ($elements) {
-                    $basePrice = 0;
-                    foreach ($elements as $element)
-                        if ($element->supplier_price && $element->supplier_price > 0) {
-                            $basePrice = $basePrice + $element->supplier_price;
-                        }
-                }
+            // Если цена пустая или равна 0, возвращаем специальную надпись
+            if (!$this->supplier_price || empty($this->supplier_price)) {
+                return "По запросу"; // Или любое подходящее сообщение
             }
+            $basePrice = $this->supplier_price * $this->price_multiplier * $this->currency->internal_rate;
+        } else {
+            $elements = $this->composite;
+            dd($elements);
+            if ($elements) {
+                $basePrice = 0;
+                foreach ($elements as $element) {
+                    if ($element->compositeProduct->supplier_price && $element->compositeProduct->supplier_price > 0) {
+                        $basePrice = $basePrice + $element->compositeProduct->supplier_price * $element->quantity;
+                    } else {
+                        return "По запросу"; // Или любое подходящее сообщение
+                    }
+                }
+            } else {
+                return "По запросу"; // Или любое подходящее сообщение
+            }
+        }
+
 
 
         // Если пользователь не авторизован, выдаём полную цену
