@@ -485,23 +485,43 @@ class Product extends Model implements HasMedia, Sitemapable
 
     public function getUserStock()
     {
-        // Проверяем, существует ли товар вообще (не равен null)
-        if ($this->stock === null) {
-            return '';
-        }
-
-        // Обрабатываем случай, когда товара нет в наличии или ожидаемый
-        elseif ($this->stock <= 0) {
-            if ($this->stock == 0) {
-                return "Под заказ. " . $this->vendor->delivery_time;
-            } else {
-                return "Ожидается"; // Если stock меньше нуля
+        if ($this->composite_product != 1) {
+            // Проверяем, существует ли товар вообще (не равен null)
+            if ($this->stock === null) {
+                return '';
             }
-        }
 
-        // Товар доступен в положительном количестве
-        else {
-            return "В наличии " . $this->stock . " шт.";
+            // Обрабатываем случай, когда товара нет в наличии или ожидаемый
+            elseif ($this->stock <= 0) {
+                if ($this->stock == 0) {
+                    return "Под заказ. " . $this->vendor->delivery_time;
+                } else {
+                    return "Ожидается"; // Если stock меньше нуля
+                }
+            }
+
+            // Товар доступен в положительном количестве
+            else {
+                return "В наличии " . $this->stock . " шт.";
+            }
+        } else {
+
+            $elements = $this->composite;
+
+            dd($elements);
+            if ($elements) {
+                $basePrice = 0;
+                foreach ($elements as $element) {
+                    if ($element->compositeProduct->supplier_price && $element->compositeProduct->supplier_price > 0 && !empty($element->compositeProduct->price_multiplier)) {
+                        $basePrice = $basePrice + ($element->compositeProduct->supplier_price * $element->quantity * $element->compositeProduct->price_multiplier * $element->compositeProduct->currency->internal_rate);
+                    } else {
+                        return "По запросу"; // Или любое подходящее сообщение
+                    }
+                }
+            } else {
+                return "По запросу"; // Или любое подходящее сообщение
+            }
+
         }
     }
 
