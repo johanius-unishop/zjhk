@@ -513,14 +513,14 @@ class Product extends Model implements HasMedia, Sitemapable
                 $compositeStock = [];
                 foreach ($elements as $element) {
                     if ($element->compositeProduct->stock && $element->compositeProduct->stock > 0 && $element->quantity > 0) {
-                        $compositeStock[] = floor($element->compositeProduct->stock / $element->quantity);
+                        $compositeStock[] = intdiv($element->compositeProduct->stock, $element->quantity);
                     } else {
                         $compositeStock[] = 0;
                     }
                 }
-                dd($compositeStock);
-                sort($compositeStock);
 
+                sort($compositeStock);
+                dd($compositeStock);
             } else {
                 return "Под заказ. " . $this->vendor->delivery_time;
             }
