@@ -512,9 +512,8 @@ class Product extends Model implements HasMedia, Sitemapable
             if ($elements) {
                 $compositeStock = [];
                 foreach ($elements as $element) {
-                    $compositeStock[] = $element->compositeProduct->stock / $element->quantity;
                     if ($element->compositeProduct->stock && $element->compositeProduct->stock > 0 && $element->quantity > 0) {
-                        $compositeStock[] = $element->compositeProduct->stock / $element->quantity;
+                        $compositeStock[] = floor($element->compositeProduct->stock / $element->quantity);
                     } else {
                         $compositeStock[] = 0;
                     }
