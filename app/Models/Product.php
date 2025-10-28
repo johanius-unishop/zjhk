@@ -508,18 +508,21 @@ class Product extends Model implements HasMedia, Sitemapable
 
             $elements = $this->composite;
 
-            dd($elements);
+
             if ($elements) {
-                $basePrice = 0;
+                $compositeStock = [];
                 foreach ($elements as $element) {
-                    if ($element->compositeProduct->supplier_price && $element->compositeProduct->supplier_price > 0 && !empty($element->compositeProduct->price_multiplier)) {
-                        $basePrice = $basePrice + ($element->compositeProduct->supplier_price * $element->quantity * $element->compositeProduct->price_multiplier * $element->compositeProduct->currency->internal_rate);
+                    $compositeStock[] = $element->compositeProduct->stock / $element->quantity;
+                    if ($element->compositeProduct->stock && $element->compositeProduct->stock > 0 && $element->quantity > 0) {
+                        $compositeStock[] = $element->compositeProduct->stock / $element->quantity;
                     } else {
-                        return "По запросу"; // Или любое подходящее сообщение
+                        $compositeStock[] = 0;
                     }
                 }
+                sort($compositeStock);
+                dd($compositeStock);
             } else {
-                return "По запросу"; // Или любое подходящее сообщение
+                return "Под заказ. " . $this->vendor->delivery_time;
             }
 
         }
