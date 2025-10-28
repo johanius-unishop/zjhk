@@ -519,8 +519,9 @@ class Product extends Model implements HasMedia, Sitemapable
                         $compositeStock[] = 0;
                     }
                 }
-                sort($compositeStock);
                 dd($compositeStock);
+                sort($compositeStock);
+
             } else {
                 return "Под заказ. " . $this->vendor->delivery_time;
             }
