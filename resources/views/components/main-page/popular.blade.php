@@ -12,7 +12,7 @@
                                 <img src="/images/products/photo-2.png" alt="товар">
                             </div>
                             <div>
-                                <h5>{{ $popularProduct->product->name }}<</h5>
+                                <h5>{{ $popularProduct->product->name }}</h5>
                                 <p>{{ $popularProduct->product->article }}</p>
                             </div>
                         </div>
