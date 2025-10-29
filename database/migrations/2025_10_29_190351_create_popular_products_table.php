@@ -10,7 +10,7 @@ class CreatePopularProductsTable extends Migration
     {
         Schema::create('popular_products', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('product_id'); // Внешний ключ
+            $table->unsignedBigInteger('product_id'); // Внешний ключ
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
