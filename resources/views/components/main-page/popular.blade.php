@@ -5,6 +5,7 @@
                      Популярные товары
                   </h2>
                   <div class="popular__grid hide-subsequent-rows">
+                    @foreach ($popularProductsWithDetails as $popularProduct)
                      <a href="#">
                         <div class="popular__item-wrapper">
                            <div>
@@ -12,10 +13,11 @@
                            </div>
                            <div>
                               <h5>HSB-006-SE-BK-1L-M25</h5>
-                              <p>K000001854</p>
+                              <p>{{ $popularProduct->product->article }}</p>
                            </div>
                         </div>
                      </a>
+                     @endforeach
                      <a href="#">
                         <div class="popular__item-wrapper">
                            <div>

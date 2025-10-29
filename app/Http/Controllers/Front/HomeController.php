@@ -16,9 +16,8 @@ class HomeController extends Controller
         $mainPageSettings = $this->getSettings();
         $popularProductsWithDetails = PopularProduct::with('product')->get();
 
-        dd($popularProductsWithDetails);
         // Возвращаем представление с данными
-        return view('home', compact('mainPageSettings'));
+        return view('home', compact('mainPageSettings', 'popularProductsWithDetails'));
     }
 
     private function getSettings()
