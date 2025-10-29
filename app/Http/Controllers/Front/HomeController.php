@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\PopularProduct;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class HomeController extends Controller
     {
         // Получаем настройки главной страницы
         $mainPageSettings = $this->getSettings();
+        $popularProductsWithDetails = PopularProduct::with('product')->get();
 
+        dd($popularProductsWithDetails);
         // Возвращаем представление с данными
         return view('home', compact('mainPageSettings'));
     }
