@@ -747,6 +747,11 @@ class Product extends Model implements HasMedia, Sitemapable
         return $this->favorites()->where('user_id', Auth::id())->exists();
     }
 
+    public function popularProduct()
+    {
+        return $this->hasOne(PopularProduct::class); // Один популярный товар относится к одному продукту
+    }
+
 
     /*$reviewRating = [
             'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
