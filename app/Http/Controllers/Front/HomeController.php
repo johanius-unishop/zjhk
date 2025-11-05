@@ -15,9 +15,10 @@ class HomeController extends Controller
         // Получаем настройки главной страницы
         $mainPageSettings = $this->getSettings();
         $popularProductsWithDetails = PopularProduct::with('product')->get();
+        $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
         // Возвращаем представление с данными
-        return view('home', compact('mainPageSettings', 'popularProductsWithDetails'));
+        return view('home', compact('mainPageSettings', 'popularProductsWithDetails', 'acceptsWebP'));
     }
 
     private function getSettings()
