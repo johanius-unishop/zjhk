@@ -12315,8 +12315,8 @@ h2.benefits__title {
         grid-template-columns: repeat(3, minmax(170px, 300px));
     }
 
-    .popular__grid a:nth-child(3n):nth-last-child(-n+4)~a {
-        display: none;
+    .popular__grid a:nth-child(n+10) {
+            display: none;
     }
 }
 
