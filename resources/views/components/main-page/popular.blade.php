@@ -11,22 +11,23 @@
                             <div>
                                 @php
                                     $firstImage = $popularProduct->product->getMedia('images')->first(); // Получаем первое изображение продукта
+                                    $altProduct = $popularProduct->product->getAltAttribute()
                                 @endphp
 
                                 @if ($firstImage)
                                     @if ($acceptsWebP && $firstImage->hasGeneratedConversion('webp-thumb'))
                                         <img src="{{ $firstImage->getUrl('webp-thumb') }}"
-                                            alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                            alt="{{ $altProduct }}" loading="lazy">
                                     @elseif (!$acceptsWebP && $firstImage->hasGeneratedConversion('thumb'))
                                         <img src="{{ $firstImage->getUrl('thumb') }}"
-                                            alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                            alt="{{ $altProduct }}" loading="lazy">
                                     @else
                                         <img src="{{ $firstImage->getUrl() }}"
-                                            alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                            alt="{{ $altProduct }}" loading="lazy">
                                     @endif
                                 @else
                                     <img src="{{ asset('/images/default_image.jpg') }}"
-                                        alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                        alt="{{ $altProduct }}" loading="lazy">
                                 @endif
 
 
