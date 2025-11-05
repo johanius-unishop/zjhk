@@ -12324,6 +12324,10 @@ h2.benefits__title {
     .popular__grid {
         grid-template-columns: repeat(3, minmax(150px, 225px));
     }
+
+    .popular__grid a:nth-child(n+10) {
+            display: none;
+    }
 }
 
 @media (max-width: 35.99875em) {
@@ -12331,6 +12335,9 @@ h2.benefits__title {
         grid-template-columns: repeat(2, minmax(150px, 248px));
         justify-content: center;
         gap: 0.75rem 0.5rem;
+    }
+    .popular__grid a:nth-child(n+7) {
+            display: none;
     }
 }
 
