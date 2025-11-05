@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\PopularProduct;
 use Illuminate\Console\Command;
 use App\Models\Product;
 use App\Models\Setting;
@@ -103,40 +104,35 @@ class UpdatePopularProductsFrom1C extends Command
                         return $b['pop_quantity'] <=> $a['pop_quantity'];
                     });
 
-                    $short_popular_products = array_splice($popular_products, 0, 10);
-                    dd($short_popular_products);
+                    $short_popular_products = array_splice($popular_products, 0, 12);
+
 
                     // Подготавливаем массив для массового обновления
                     $updates = [];
-                    foreach ($popular_products as $popular_product) {
-                        if ($popular_product['stock'] != $product_new_stock['new_stock']) {
-                            $updates[] = [
-                                'id' => intval($product_new_stock['id']),
-                                'stock' => intval($product_new_stock['new_stock'])
-                            ];
-                        }
+                    $counter = 1;
+                    foreach ($short_popular_products as $popular_product) {
+                        $updates [] = [
+                            'id' => $counter,
+                            'product_id' => $popular_product['id']
+                        ];
+                        $counter = $counter + 1;
                     }
 
                     if (!empty($updates)) {
                         foreach ($updates as $update) {
-                            Product::updateOrCreate(
+                            PopularProduct::updateOrCreate(
                                 ['id' => $update['id']], // Условие поиска по полю 'id'
-                                ['stock' => $update['stock']] // Данные для обновления
+                                ['product_id' => $update['product_id']] // Данные для обновления
                             );
                         }
                     }
 
 
                     $this->saveLastSuccessfulUpdateTime();
-                    if (!empty($updates)) {
-                        $this->call('products:update-composite-products-stock');
-                        $this->call('yandex:update-product-search');
-                        $this->call('ozon:update-stock');
-                        $this->call('yandexMarket:update-sales-terms');
-                    }
+
                     return 0;
                 } catch (\Exception $e) {
-                    $this->error('Произошла ошибка при обновлении остатков: ' . $e->getMessage());
+                    $this->error('Произошла ошибка при обновлении популярных товаров: ' . $e->getMessage());
                     return 1;
                 }
             } else {
