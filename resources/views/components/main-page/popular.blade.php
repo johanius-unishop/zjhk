@@ -9,7 +9,30 @@
                     <a href="{{ route('product.show', ['slug' => $popularProduct->product->slug]) }}">
                         <div class="popular__item-wrapper">
                             <div>
-                                <img src="/images/products/photo-2.png" alt="товар">
+                                @php
+                                    $firstImage = $popularProduct->product->getMedia('images')->first(); // Получаем первое изображение продукта
+                                @endphp
+
+                                @if ($firstImage)
+                                    @if ($acceptsWebP && $firstImage->hasGeneratedConversion('webp-thumb'))
+                                        <img src="{{ $firstImage->getUrl('webp-thumb') }}"
+                                            alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                    @elseif (!$acceptsWebP && $firstImage->hasGeneratedConversion('thumb'))
+                                        <img src="{{ $firstImage->getUrl('thumb') }}"
+                                            alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                    @else
+                                        <img src="{{ $firstImage->getUrl() }}"
+                                            alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                    @endif
+                                @else
+                                    <img src="{{ asset('/images/default_image.jpg') }}"
+                                        alt="{{ $product_item->getAltAttribute() }}" loading="lazy">
+                                @endif
+
+
+
+
+
                             </div>
                             <div>
                                 <h5>{{ $popularProduct->product->name }}</h5>
