@@ -58,7 +58,7 @@ class UpdateSimpleProductStockFrom1C extends Command
     {
         $this->lastSuccessfulUpdateTime = $this->loadLastSuccessfulUpdateTime();
         $this->reportFilePath = $this->loadReportFilePath();//base_path('storage/app/protected/Ostatki tovarov.xlsx');
-        
+
         if (!is_null($this->reportFilePath)) {
             // Получаем время изменения файла
             $fileModificationTime = filemtime($this->reportFilePath);
@@ -66,12 +66,12 @@ class UpdateSimpleProductStockFrom1C extends Command
             // Проверяем, был ли файл изменен после последнего успешного обновления
             if ($fileModificationTime > $this->lastSuccessfulUpdateTime) {
                 $this->info('Файл отчета изменен. Обновляем остатки товаров...');
-                
+
                 try {
-                    
+
                     // Получаем простые товары
                     $products = Product::where('composite_product', 0)->get();
-                    
+
                     // Создаем ассоциативный массив для быстрого поиска по имени и артикулу
                     $products_new_stock = [];
                     foreach ($products as $product) {
@@ -82,7 +82,7 @@ class UpdateSimpleProductStockFrom1C extends Command
                             'new_stock' => 0,
                         ];
                     }
-                    
+
                     $file = $this->reportFilePath;
                     // Загружаем файл
                     $reader = IOFactory::createReaderForFile($file);
@@ -103,7 +103,7 @@ class UpdateSimpleProductStockFrom1C extends Command
                             $products_new_stock[$key]['new_stock'] = intval($quantity);
                         }
                     }
-
+                    dd($products_new_stock);
                     // Подготавливаем массив для массового обновления
                     $updates = [];
                     foreach ($products_new_stock as $product_new_stock) {
@@ -123,7 +123,7 @@ class UpdateSimpleProductStockFrom1C extends Command
                             );
                         }
                     }
-    
+
 
                     $this->saveLastSuccessfulUpdateTime();
                     if (!empty($updates)) {
@@ -159,20 +159,20 @@ class UpdateSimpleProductStockFrom1C extends Command
         $setting = Setting::where('group', 'stockLoader')
             ->where('key', 'lastSuccesfulUpdateTime')
             ->first();
-        
+
         if ($setting === null) {
             // Если записи нет, создаем новую с значением 0
             $newSetting = new Setting();
             $newSetting->group = 'stockLoader';
             $newSetting->key = 'lastSuccesfulUpdateTime';
             $newSetting->value = 0;
-            
+
             // Сохраняем новую запись
             $newSetting->save();
-            
+
             return 0;
         }
-        
+
         // Преобразуем значение в целое число и возвращаем
         return (int)$setting->value;
     }
@@ -214,7 +214,7 @@ class UpdateSimpleProductStockFrom1C extends Command
         return $pathToFile;
     }
 
-    
+
     /**
      * Сохраняет время последнего успешного обновления в БД.
      *
