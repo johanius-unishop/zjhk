@@ -126,9 +126,9 @@ class UpdateSimpleProductStockFrom1C extends Command
 
 
                     $this->saveLastSuccessfulUpdateTime();
-                    dd($this->saveLastSuccessfulUpdateTime());
+
                     if (!empty($updates)) {
-                        $this->call('products:update-composite-products-stock');
+                        //$this->call('products:update-composite-products-stock');
                         $this->call('yandex:update-product-search');
                         $this->call('ozon:update-stock');
                         $this->call('yandexMarket:update-sales-terms');
