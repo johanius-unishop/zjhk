@@ -114,7 +114,7 @@ class UpdateSimpleProductStockFrom1C extends Command
                             ];
                         }
                     }
-                    dd($updates);
+
                     if (!empty($updates)) {
                         foreach ($updates as $update) {
                             Product::updateOrCreate(
@@ -126,6 +126,7 @@ class UpdateSimpleProductStockFrom1C extends Command
 
 
                     $this->saveLastSuccessfulUpdateTime();
+                    dd($this->saveLastSuccessfulUpdateTime());
                     if (!empty($updates)) {
                         $this->call('products:update-composite-products-stock');
                         $this->call('yandex:update-product-search');
