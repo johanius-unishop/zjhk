@@ -96,10 +96,17 @@ class UpdatePopularProductsFrom1C extends Command
                         $name = rtrim($worksheet->getCell([1, $i])->getValue(), ',  шт');
                         $quantity = $worksheet->getCell([2, $i])->getValue();
 
+                        $pattern = '/(CDSM-|CDSF-|CDGM-|CDGF-|CESM-|CESF-|CEGM-|CEGF-)/iu'; // i - case-insensitive, u - unicode
+
+                        if (preg_match($pattern, $name)) {
+                            $quantity = $quantity/100;
+                        }
+
                         if (isset($popular_products[$name])) {
                             $popular_products[$name]['pop_quantity'] = intval($quantity);
                         }
                     }
+
 
                     uasort($popular_products, function ($a, $b) {
                         return $b['pop_quantity'] <=> $a['pop_quantity'];
@@ -134,7 +141,8 @@ class UpdatePopularProductsFrom1C extends Command
                     return 0;
                 } catch (\Exception $e) {
                     $this->error('Произошла ошибка при обновлении популярных товаров: ' . $e->getMessage());
-                    Log::error("Произошла ошибка при обновлении популярных товаров: {$e->getMessage()} \n" .
+                    Log::error(
+                        "Произошла ошибка при обновлении популярных товаров: {$e->getMessage()} \n" .
                             "Trace: " . $e->getTraceAsString()
                     );
                     return 1;
