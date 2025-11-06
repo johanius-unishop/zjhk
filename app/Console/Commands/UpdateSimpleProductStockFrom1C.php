@@ -103,7 +103,7 @@ class UpdateSimpleProductStockFrom1C extends Command
                             $products_new_stock[$key]['new_stock'] = intval($quantity);
                         }
                     }
-                    dd($products_new_stock);
+
                     // Подготавливаем массив для массового обновления
                     $updates = [];
                     foreach ($products_new_stock as $product_new_stock) {
@@ -114,7 +114,7 @@ class UpdateSimpleProductStockFrom1C extends Command
                             ];
                         }
                     }
-
+                    dd($updates);
                     if (!empty($updates)) {
                         foreach ($updates as $update) {
                             Product::updateOrCreate(
