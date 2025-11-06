@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 use App\Models\Product;
 use App\Models\Setting;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UpdatePopularProductsFrom1C extends Command
 {
@@ -56,6 +56,7 @@ class UpdatePopularProductsFrom1C extends Command
      */
     public function handle()
     {
+        Log::info("Обновление ПОПУЛЯРНЫЕ ТОВАРЫ запущено.");
         $this->lastPopularSuccessfulUpdateTime = $this->loadLastSuccessfulUpdateTime();
         $this->reportPopularFilePath = $this->loadReportFilePath(); //base_path('storage/app/protected/Ostatki tovarov.xlsx');
 
@@ -77,7 +78,8 @@ class UpdatePopularProductsFrom1C extends Command
                     foreach ($products as $product) {
                         $popular_products[$product->name] = [
                             'id' => $product->id,
-                            'pop_quantity' => 0,];
+                            'pop_quantity' => 0,
+                        ];
                     }
 
                     $file = $this->reportPopularFilePath;
@@ -97,7 +99,6 @@ class UpdatePopularProductsFrom1C extends Command
                         if (isset($popular_products[$name])) {
                             $popular_products[$name]['pop_quantity'] = intval($quantity);
                         }
-
                     }
 
                     uasort($popular_products, function ($a, $b) {
@@ -111,7 +112,7 @@ class UpdatePopularProductsFrom1C extends Command
                     $updates = [];
                     $counter = 1;
                     foreach ($short_popular_products as $popular_product) {
-                        $updates [] = [
+                        $updates[] = [
                             'id' => $counter,
                             'product_id' => $popular_product['id']
                         ];
@@ -133,15 +134,20 @@ class UpdatePopularProductsFrom1C extends Command
                     return 0;
                 } catch (\Exception $e) {
                     $this->error('Произошла ошибка при обновлении популярных товаров: ' . $e->getMessage());
+                    Log::error("Произошла ошибка при обновлении популярных товаров: {$e->getMessage()} \n" .
+                            "Trace: " . $e->getTraceAsString()
+                    );
                     return 1;
                 }
             } else {
-                $this->info('Файл отчета не изменился с момента последнего обновления. Обновление не требуется.');
+                $this->info('Файл ПОПУЛЯРНЫЕ ТОВАРЫ не изменился с момента последнего обновления. Обновление не требуется.');
+                Log::info("Файл ПОПУЛЯРНЫЕ ТОВАРЫ  не изменился с момента последнего обновления. Обновление не требуется.");
             }
 
             return 0;
         } else {
             $this->error('Файл отчета с популярными товарами не найден!');
+            Log::error("Файл отчета с популярными товарами не найден!");
         }
     }
 
