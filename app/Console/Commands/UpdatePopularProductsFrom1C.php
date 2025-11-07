@@ -216,7 +216,7 @@ class UpdatePopularProductsFrom1C extends Command
 
             $pathToFile = public_path("uploads/$defaultValue");
             if (!file_exists($pathToFile)) {
-                Log::info("pathToFile: " . $pathToFile);
+
                 return null;
             }
 
@@ -225,6 +225,7 @@ class UpdatePopularProductsFrom1C extends Command
 
         $pathToFile = public_path("uploads/{$setting->value}");
         if (!file_exists($pathToFile)) {
+            Log::info("pathToFile: " . $pathToFile);
             return null;
         }
 
