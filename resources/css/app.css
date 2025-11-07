@@ -12207,6 +12207,11 @@ h2.benefits__title {
     gap: 1.25rem;
 }
 
+.benefits__item {
+    width: calc((100% - 3 * 1.25rem) / 4); /* Ширина вычисляется исходя из количества блоков и расстояния между ними */
+    box-sizing: border-box;                /* Включаем padding и border внутрь ширины блока */
+}
+
 @media (max-width: 61.99875em) {
     .benefits__wrapper {
         display: grid;
