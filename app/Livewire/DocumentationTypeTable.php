@@ -19,12 +19,13 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use Illuminate\Support\Facades\Log;
 
-final class ArticleTable extends PowerGridComponent
+final class DocumentationTypeTable extends PowerGridComponent
 {
     use LivewireAlert;
 
-    public string $tableName = 'article-table';
+
     public $delete_id;
+    public string $tableName = 'documentation-type-table';
     public function setUp(): array
     {
         return [
