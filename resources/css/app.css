@@ -12207,9 +12207,13 @@ h2.benefits__title {
     gap: 1.25rem;
 }
 
-.benefits__item {
-    width: calc((100% - 3 * 1.25rem) / 4); /* Ширина вычисляется исходя из количества блоков и расстояния между ними */
-    box-sizing: border-box;                /* Включаем padding и border внутрь ширины блока */
+@media (min-width: 61.99875em) {
+    .benefits__item {
+        width: calc((100% - 3 * 1.25rem) / 4);
+        /* Ширина вычисляется исходя из количества блоков и расстояния между ними */
+        box-sizing: border-box;
+        /* Включаем padding и border внутрь ширины блока */
+    }
 }
 
 @media (max-width: 61.99875em) {
@@ -12218,6 +12222,7 @@ h2.benefits__title {
         grid-template-columns: 1fr 1fr;
     }
 }
+
 
 @media (max-width: 35.99875em) {
     .benefits__wrapper {
@@ -12321,7 +12326,7 @@ h2.benefits__title {
     }
 
     .popular__grid a:nth-child(n+10) {
-            display: none;
+        display: none;
     }
 }
 
@@ -12331,7 +12336,7 @@ h2.benefits__title {
     }
 
     .popular__grid a:nth-child(n+10) {
-            display: none;
+        display: none;
     }
 }
 
@@ -12341,8 +12346,9 @@ h2.benefits__title {
         justify-content: center;
         gap: 0.75rem 0.5rem;
     }
+
     .popular__grid a:nth-child(n+7) {
-            display: none;
+        display: none;
     }
 }
 
