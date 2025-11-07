@@ -45,7 +45,7 @@
                         Перейти <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
-            </div>   
+            </div>
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-primary">
                     <div class="inner">
@@ -60,7 +60,7 @@
                         Перейти <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
-            </div>   
+            </div>
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-success">
                     <div class="inner">
@@ -74,7 +74,7 @@
                         Перейти <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
-            </div>     
+            </div>
 
             <div class="col-lg-3 col-6">
                 <!-- small card -->
@@ -123,7 +123,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <div class="col-lg-3 col-6">
                 <!-- small card -->
                 <div class="small-box bg-info">
@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            
+
         </div>
     </div>
 </div>
@@ -156,8 +156,8 @@
                 <!-- small card -->
                 <div class="small-box bg-primary">
                     <div class="inner">
-                        <h3>Настройки</h3>
-                        <h4>Таблица Settings</h4>
+                        <h4>Настройки</h4>
+                        <h5>Таблица Settings</h5>
                     </div>
                     <div class="icon">
                         <i class="fas fa-ruble-sign"></i>
