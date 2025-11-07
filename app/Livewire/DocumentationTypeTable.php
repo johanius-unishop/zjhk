@@ -84,7 +84,7 @@ final class DocumentationTypeTable extends PowerGridComponent
             Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.documentation-type.edit', ['article' => $row->id]),
+                ->route('admin.documentation-type.edit', ['documentation_type' => $row->id]),
             Button::add('delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
