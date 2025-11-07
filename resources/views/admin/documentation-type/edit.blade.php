@@ -11,7 +11,7 @@
 @section('content')
 @include('admin.blocks.error')
 
-<form action="{{ route('admin.documentation-type.update')  }}" method="POST">
+<form action="{{ route('admin.documentation-type.update', $documentationType->id)  }}" method="POST">
     @csrf
     <div class="row">
         <div class="col-12 ">
