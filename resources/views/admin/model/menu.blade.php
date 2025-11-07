@@ -22,7 +22,7 @@
                 <div class="small-box bg-primary">
                     <div class="inner">
                         <h4>Валюты</h4>
-                        <h5>Настройка внутреннего курса</h5>
+                        <p>Настройка внутреннего курса</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-ruble-sign"></i>
@@ -36,7 +36,7 @@
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h4>Производители</h4>
-                        <h5>Информация о производителях</h5>
+                        <p>Информация о производителях</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-industry"></i>
@@ -51,7 +51,7 @@
                     <div class="inner">
                         <h4>Тип товаров</h4>
                         {{-- <h4>{{ @$product_count }}</h4> --}}
-                        <h5>Настройка типов и характеристик </h5>
+                        <p>Настройка типов и характеристик </p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -65,7 +65,7 @@
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h4>Каталог</h4>
-                        <h5>Структура каталога (категории)</h5>
+                        <p>Структура каталога (категории)</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -82,7 +82,7 @@
                     <div class="inner">
                         <h4>Доставка</h4>
                         {{-- <h4>{{ @$product_count }}</h4> --}}
-                        <h5>Способы доставки товаров </h5>
+                        <p>Способы доставки товаров </p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -97,7 +97,7 @@
                 <div class="small-box bg-info">
                     <div class="inner">
                         <h4>Страны</h4>
-                        <h5> Страны производства </h5>
+                        <p> Страны производства </p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-globe"></i>
@@ -113,7 +113,7 @@
                     <div class="inner">
                         <h4>TODO</h4>
                         {{-- <h4>{{ @$product_count }}</h4> --}}
-                        <h5> Товары </h5>
+                        <p> Товары </p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -130,7 +130,7 @@
                     <div class="inner">
                         <h4>PDF</h4>
                         {{-- <h4>{{ @$product_count }}</h4> --}}
-                        <h5>Типы PDF-файлов для товаров </h5>
+                        <p>Типы PDF-файлов для товаров </p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -157,7 +157,7 @@
                 <div class="small-box bg-primary">
                     <div class="inner">
                         <h4>Настройки</h4>
-                        <h5>Таблица Settings</h5>
+                        <p>Таблица Settings</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-ruble-sign"></i>
@@ -173,7 +173,7 @@
                 <div class="small-box bg-primary">
                     <div class="inner">
                         <h4>Доп. настройки</h4>
-                        <h5>Таблица Additional Settings</h5>
+                        <p>Таблица Additional Settings</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-ruble-sign"></i>
@@ -239,7 +239,7 @@
                     <div class="inner">
                         <h4>TODO </h4>
                         {{-- <h4>{{ @$product_count }}</h4> --}}
-                        <h5>Маркетплейсы</h5>
+                        <p>Маркетплейсы</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -255,7 +255,7 @@
                     <div class="inner">
                         <h4>TODO </h4>
                         {{-- <h4>{{ @$product_count }}</h4> --}}
-                        <h5>Порталы и сервисы Яндекса</h5>
+                        <p>Порталы и сервисы Яндекса</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
