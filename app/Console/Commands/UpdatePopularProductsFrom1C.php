@@ -59,7 +59,7 @@ class UpdatePopularProductsFrom1C extends Command
         Log::info("Обновление ПОПУЛЯРНЫЕ ТОВАРЫ запущено.");
         $this->lastPopularSuccessfulUpdateTime = $this->loadLastSuccessfulUpdateTime();
         $this->reportPopularFilePath = $this->loadReportFilePath(); //base_path('storage/app/protected/Ostatki tovarov.xlsx');
-
+        Log::info("Путь к отчету: " . $this->reportPopularFilePath);
         if (!is_null($this->reportPopularFilePath)) {
             // Получаем время изменения файла
             $fileModificationTime = filemtime($this->reportPopularFilePath);
