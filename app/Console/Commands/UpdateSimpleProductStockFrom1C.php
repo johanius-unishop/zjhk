@@ -6,7 +6,8 @@ use Illuminate\Console\Command;
 use App\Models\Product;
 use App\Models\Setting;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 
 class UpdateSimpleProductStockFrom1C extends Command
 {
@@ -126,6 +127,7 @@ class UpdateSimpleProductStockFrom1C extends Command
 
 
                     $this->saveLastSuccessfulUpdateTime();
+                    Log::info("Остатки: Обновление ОСТАТКОВ прошло Успешно!.");
 
                     if (!empty($updates)) {
                         //$this->call('products:update-composite-products-stock');
@@ -137,15 +139,21 @@ class UpdateSimpleProductStockFrom1C extends Command
 
                 } catch (\Exception $e) {
                     $this->error('Произошла ошибка при обновлении остатков: ' . $e->getMessage());
+                    Log::error(
+                        "Остатки: Произошла ошибка при обновлении остатков: {$e->getMessage()} \n" .
+                            "Trace: " . $e->getTraceAsString()
+                    );
                     return 1;
                 }
             } else {
                 $this->info('Файл отчета не изменился с момента последнего обновления. Обновление не требуется.');
+                Log::info("Остатки: Файл отчета не изменился с момента последнего обновления. Обновление не требуется.");
             }
 
             return 0;
         } else {
             $this->error('Файл отчета с остатками не найден!');
+            Log::error("Остатки: Файл отчета с остатками не найден!");
         }
     }
 

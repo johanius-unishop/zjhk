@@ -137,6 +137,7 @@ class UpdatePopularProductsFrom1C extends Command
 
 
                     $this->saveLastSuccessfulUpdateTime();
+                    Log::info("Обновление ПОПУЛЯРНЫЕ ТОВАРЫ прошло Успешно!.");
 
                     return 0;
                 } catch (\Exception $e) {
@@ -157,7 +158,7 @@ class UpdatePopularProductsFrom1C extends Command
             $this->error('Файл отчета с популярными товарами не найден!');
             Log::error("Файл отчета с популярными товарами не найден!");
         }
-        Log::info("Обновление ПОПУЛЯРНЫЕ ТОВАРЫ прошло Успешно!.");
+
     }
 
     /**
