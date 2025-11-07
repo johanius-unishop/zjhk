@@ -29,6 +29,8 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\VendorPdfCatalogController;
 use App\Http\Controllers\Admin\ProductPdfTypeController;
 use App\Http\Controllers\Admin\ReviewsController;
+use App\Http\Controllers\Admin\DocumentationController;
+use App\Http\Controllers\Admin\DocumentationTypeController;
 
 use Illuminate\Support\Facades\Route;
 use Spatie\LaravelSettings\Settings;
@@ -80,8 +82,8 @@ Route::group(
             Route::get('/', [App\Http\Controllers\Admin\RolesController::class, 'rap'])->name('rap.list');
         }); */
 
-        Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-            ->name('logout');
+        /*Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+            ->name('logout');*/
 
         Route::get('content', [ContentController::class, 'index'])->name('content.index');
         Route::get('model', [ContentController::class, 'model'])->name('content.model');
@@ -124,6 +126,8 @@ Route::group(
         Route::resource('page', PageController::class);
         Route::resource('faq', FaqController::class);
         Route::resource('article', ArticleController::class);
+        Route::resource('documentation-type', DocumentationTypeController::class);
+        Route::resource('documentation', DocumentationController::class);
 
         Route::get('problem/product-without-type', [ProductController::class, 'showProductsWithoutType'])->name('problem.product-without-type');
         Route::get('problem/product-without-vendor', [ProductController::class, 'showProductsWithoutVendor'])->name('problem.product-without-vendor');
