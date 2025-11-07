@@ -203,7 +203,7 @@ class UpdatePopularProductsFrom1C extends Command
             ->where('key', 'reportFileName')
             ->first();
 
-        Log::info("Setting: " . $setting);
+
 
         if (!$setting) {
             // Если записи нет, создаем новую с значением по умолчанию
@@ -216,6 +216,7 @@ class UpdatePopularProductsFrom1C extends Command
 
             $pathToFile = public_path("uploads/$defaultValue");
             if (!file_exists($pathToFile)) {
+                Log::info("pathToFile: " . $pathToFile);
                 return null;
             }
 
