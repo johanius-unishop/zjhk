@@ -21,8 +21,8 @@
                 <!-- small card -->
                 <div class="small-box bg-primary">
                     <div class="inner">
-                        <h3>Валюты</h3>
-                        <h4>Настройка внутреннего курса</h4>
+                        <h4>Валюты</h4>
+                        <h5>Настройка внутреннего курса</h5>
                     </div>
                     <div class="icon">
                         <i class="fas fa-ruble-sign"></i>
@@ -35,8 +35,8 @@
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>Производители</h3>
-                        <h4>Информация о производителях</h4>
+                        <h4>Производители</h4>
+                        <h5>Информация о производителях</h5>
                     </div>
                     <div class="icon">
                         <i class="fas fa-industry"></i>
@@ -49,9 +49,9 @@
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-primary">
                     <div class="inner">
-                        <h3>Тип товаров</h3>
-                        {{-- <h3>{{ @$product_count }}</h3> --}}
-                        <h4>Настройка типов и характеристик </h4>
+                        <h4>Тип товаров</h4>
+                        {{-- <h4>{{ @$product_count }}</h4> --}}
+                        <h5>Настройка типов и характеристик </h5>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -64,8 +64,8 @@
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>Каталог</h3>
-                        <h4>Структура каталога (категории)</h4>
+                        <h4>Каталог</h4>
+                        <h5>Структура каталога (категории)</h5>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -80,9 +80,9 @@
                 <!-- small card -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>Доставка</h3>
-                        {{-- <h3>{{ @$product_count }}</h3> --}}
-                        <h4>Способы доставки товаров </h4>
+                        <h4>Доставка</h4>
+                        {{-- <h4>{{ @$product_count }}</h4> --}}
+                        <h5>Способы доставки товаров </h5>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -96,8 +96,8 @@
                 <!-- small card -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>Страны</h3>
-                        <h4> Страны производства </h4>
+                        <h4>Страны</h4>
+                        <h5> Страны производства </h5>
                     </div>
                     <div class="icon">
                         <i class="fa fa-globe"></i>
@@ -111,9 +111,9 @@
                 <!-- small card -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>TODO</h3>
-                        {{-- <h3>{{ @$product_count }}</h3> --}}
-                        <h4> Товары </h4>
+                        <h4>TODO</h4>
+                        {{-- <h4>{{ @$product_count }}</h4> --}}
+                        <h5> Товары </h5>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -128,9 +128,9 @@
                 <!-- small card -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>PDF</h3>
-                        {{-- <h3>{{ @$product_count }}</h3> --}}
-                        <h4>Типы PDF-файлов для товаров </h4>
+                        <h4>PDF</h4>
+                        {{-- <h4>{{ @$product_count }}</h4> --}}
+                        <h5>Типы PDF-файлов для товаров </h5>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -172,8 +172,8 @@
                 <!-- small card -->
                 <div class="small-box bg-primary">
                     <div class="inner">
-                        <h3>Доп. настройки</h3>
-                        <h4>Таблица Additional Settings</h4>
+                        <h4>Доп. настройки</h4>
+                        <h5>Таблица Additional Settings</h5>
                     </div>
                     <div class="icon">
                         <i class="fas fa-ruble-sign"></i>
@@ -197,7 +197,7 @@
                 <!-- small card -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>{{ $open_orders_count }}</h3>
+                        <h4>{{ $open_orders_count }}</h4>
                         <p>Заказы поставщикам</p>
                     </div>
                     <div class="icon">
@@ -212,7 +212,7 @@
                 <!-- small card -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>{{ $open_orders_count }}</h3>
+                        <h4>{{ $open_orders_count }}</h4>
                         <p>Формирование заказа поставщику</p>
                     </div>
                     <div class="icon">
@@ -237,9 +237,9 @@
                 <!-- small card -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>TODO </h3>
-                        {{-- <h3>{{ @$product_count }}</h3> --}}
-                        <h4>Маркетплейсы</h4>
+                        <h4>TODO </h4>
+                        {{-- <h4>{{ @$product_count }}</h4> --}}
+                        <h5>Маркетплейсы</h5>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -253,9 +253,9 @@
                 <!-- small card -->
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>TODO </h3>
-                        {{-- <h3>{{ @$product_count }}</h3> --}}
-                        <h4>Порталы и сервисы Яндекса</h4>
+                        <h4>TODO </h4>
+                        {{-- <h4>{{ @$product_count }}</h4> --}}
+                        <h5>Порталы и сервисы Яндекса</h5>
                     </div>
                     <div class="icon">
                         <i class="fas fa-newspaper"></i>
@@ -279,7 +279,7 @@
                 <!-- small card -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>Аналоги</h3>
+                        <h4>Аналоги</h4>
                         <p>Производители аналогов и аналоги</p>
                     </div>
                     <div class="icon">
