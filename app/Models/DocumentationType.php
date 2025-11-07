@@ -8,10 +8,7 @@ class DocumentationType extends Model
 {
 
     protected $fillable = [
-        'title',
-        'text',
-        'vendor_id',
-        'type_id',
+        'name',
     ];
 
     public function documents()
