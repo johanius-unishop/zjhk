@@ -224,10 +224,10 @@ class UpdatePopularProductsFrom1C extends Command
         }
 
         $pathToFile = public_path("uploads/{$setting->value}");
-        if (!file_exists($pathToFile)) {
+        /*if (!file_exists($pathToFile)) {
             Log::info("pathToFile: " . $pathToFile);
             return null;
-        }
+        }*/
 
         return $pathToFile;
     }
