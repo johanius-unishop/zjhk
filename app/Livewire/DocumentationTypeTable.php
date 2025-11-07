@@ -60,7 +60,6 @@ final class DocumentationTypeTable extends PowerGridComponent
     public function doc_type_delete($rowId): void
     {
         $this->delete_id = $rowId;
-        dd($this->delete_id);
         $this->confirm('Вы действительно хотите удалить этот тип документации?', [
             'onConfirmed' => 'confirmed',
             'showCancelButton' => true,

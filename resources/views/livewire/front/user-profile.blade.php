@@ -156,7 +156,7 @@
                             </button>
                         </div>
                         <button data-modal-link="delete-profile-modal" wire:click.prevent="deleteUser"
-                            wire:confirm="Вы уверены, что хотите удалить профиль?"
+
                             class="account-profile__btn-delete">Удалить профиль</button>
                     </div>
                 </form>
