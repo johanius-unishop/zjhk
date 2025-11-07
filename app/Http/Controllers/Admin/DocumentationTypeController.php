@@ -42,6 +42,7 @@ class DocumentationTypeController extends Controller
             return abort(401);
         }
         $input = $request->all();
+        dd($input);
         $record = DocumentationType::create($input);
 
         session()->flash('success', 'Запись успешно создана');
