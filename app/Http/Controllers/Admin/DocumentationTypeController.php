@@ -55,14 +55,14 @@ class DocumentationTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    /*public function edit(Faq $faq)
+    public function edit(DocumentationType $documentationType)
     {
         if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
-        return view('admin.faq.edit', ['faq' => $faq]);
-    }*/
+        return view('admin.documentation-type.edit', ['documentationType' => $documentationType]);
+    }
 
     /**
      * Update the specified resource in storage.
