@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Documentation;
+use App\Models\DocumentationType;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\StoreFaqRequest;
-use App\Http\Requests\Admin\UpdateFaqRequest;
+use App\Http\Requests\Admin\StoreDocumentationTypeRequest;
+use App\Http\Requests\Admin\UpdateDocumentationTypeRequest;
 use Illuminate\Support\Facades\Gate;
 
 class DocumentationTypeController extends Controller
@@ -36,22 +36,20 @@ class DocumentationTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    /*public function store(StoreFaqRequest $request)
+    public function store(StoreDocumentationTypeRequest $request)
     {
         if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
-        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
-        $record = Faq::create($input);
+        $record = DocumentationType::create($input);
 
         session()->flash('success', 'Запись успешно создана');
         if ($request->action == 'save-exit') {
-            return redirect(route('admin.faq.index'));
+            return redirect(route('admin.documentation-type.index'));
         }
-        return redirect(route('admin.documentation.edit', $record->id));
-
-    }*/
+        return redirect(route('admin.documentation-type.edit', $record->id));
+    }
 
     /**
      * Show the form for editing the specified resource.
