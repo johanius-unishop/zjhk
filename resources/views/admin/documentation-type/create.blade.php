@@ -21,9 +21,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Основное</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">SEO</a>
-                        </li>
                     </ul>
                 </div>
                 <div class="card-body">
@@ -41,15 +38,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
-                            <livewire:seo :record="@$category">
-                        </div>
                     </div>
                 </div>
             </div>
             <div class=" py-3 form-row justify-content-center">
-                <a class="btn   btn-success " href="{{ route('admin.documentation-type.index') }}" role="button"> <i class="fa fa-arrow-left "></i>К списку типов документации</a> &nbsp;
-                <button type="submit" class="btn btn-primary">Сохранить</button> &nbsp;
+                <a class="btn   btn-success " href="{{ route('admin.documentation-type.index') }}" role="button"> <i class="fa fa-arrow-left "></i> К списку</a> &nbsp;
                 <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и закрыть</button>
             </div>
         </div>
