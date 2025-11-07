@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DocumentationType;
-use Illuminate\Http\Request;
 use App\Http\Requests\Admin\StoreDocumentationTypeRequest;
 use App\Http\Requests\Admin\UpdateDocumentationTypeRequest;
 use Illuminate\Support\Facades\Gate;

@@ -88,12 +88,9 @@ final class DocumentationTypeTable extends PowerGridComponent
             Button::add('delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
-                ->dispatch('post_delete', ['rowId' => $row->id]),
+                ->dispatch('doc_type_delete', ['rowId' => $row->id]),
         ];
 
 
     }
-
-
-
 }
