@@ -6,7 +6,6 @@ use App\Models\DocumentationType;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
@@ -15,8 +14,6 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 final class DocumentationTypeTable extends PowerGridComponent
 {
     use LivewireAlert;
-
-
     public $delete_id;
     public string $tableName = 'documentation-type-table';
     public function setUp(): array
@@ -62,6 +59,7 @@ final class DocumentationTypeTable extends PowerGridComponent
     #[\Livewire\Attributes\On('doc_type_delete')]
     public function doc_type_delete($rowId): void
     {
+        dd("ok!");
         $this->delete_id = $rowId;
         $this->confirm('Вы действительно хотите удалить этот тип документации?', [
             'onConfirmed' => 'confirmed',
