@@ -67,22 +67,22 @@ class DocumentationTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    /*public function update(UpdateFaqRequest $request, Faq $faq)
+    public function update(UpdateDocumentationTypeRequest $request, DocumentationType $documentationType)
     {
         if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
-        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
-        $faq->update($input);
+
+        $documentationType->update($input);
 
         session()->flash('success', 'Запись успешно обновлена');
 
         if ($request->action == 'save-exit') {
-            return redirect(route('admin.faq.index'));
+            return redirect(route('admin.documentation-type.index'));
         }
-        return redirect(route('admin.faq.edit', $faq->id));
-    }*/
+        return redirect(route('admin.documentation-type.edit', $documentationType->id));
+    }
 
 
 }
