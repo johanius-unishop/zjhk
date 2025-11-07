@@ -70,7 +70,7 @@
                     <div class="modal__content">
                         <h1 class="modal__title">Удалить профиль</h1>
                         <p class="delete-profile__text">Вы уверены, что хотите удалить профиль со всеми данными?</p>
-                        <button data-close class="modal__btn del">Удалить профиль</button>
+                        <button data-close class="modal__btn del" wire:click.prevent="deleteUser">Удалить профиль</button>
                     </div>
                 </div>
             </div>
