@@ -113,6 +113,4 @@
 
 @section('scripts')
     @parent
-
-
 @endsection
