@@ -39,7 +39,6 @@
     <script src="{{ asset('/vendor/venobox/venobox.min.js') }}" type="text/javascript"></script>
 
     <!-- Livewire Alert Scripts -->
-    <x-livewire-alert::scripts />
 
     <!-- Toastr Notifications -->
     <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
