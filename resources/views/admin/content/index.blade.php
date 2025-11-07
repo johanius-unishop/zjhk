@@ -85,7 +85,7 @@
                 <div class="icon">
                     <i class="fas fa-newspaper"></i>
                 </div>
-                <a href="{{ route('admin.faq.index') }}" class="small-box-footer">
+                <a href="{{ route('admin.documentation-type.index') }}" class="small-box-footer">
                     Перейти <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -95,13 +95,13 @@
             <!-- small card -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h4> {{ $faq_count }}</h4>
-                    <p>Faq (ЧаВо)</p>
+                    <h4>Документация</h4>
+                    <p>Файлы документации</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-newspaper"></i>
                 </div>
-                <a href="{{ route('admin.faq.index') }}" class="small-box-footer">
+                <a href="{{ route('admin.documentation.index') }}" class="small-box-footer">
                     Перейти <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
