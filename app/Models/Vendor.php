@@ -94,8 +94,6 @@ class Vendor extends Model implements Sortable, HasMedia
             ->format('jpg')                              // Устанавливаем формат сохранения изображения
             ->performOnCollections('vendorLogo')
             ->nonQueued();
-
-
     }
     public function registerMediaCollections(): void
     {
@@ -152,5 +150,10 @@ class Vendor extends Model implements Sortable, HasMedia
     public function catalogs()
     {
         return $this->hasMany(VendorPdfCatalog::class);
+    }
+
+    public function documentations()
+    {
+        return $this->hasMany(Documentation::class); // Многие документы относятся к одному бренду
     }
 }

@@ -157,9 +157,7 @@ class Product extends Model implements HasMedia, Sitemapable
 
     public function toSitemapTag(): Url|string|array
     {
-        // Simple return:
-        // return route('blog.post.show', $this);
-        // Return with fine-grained control:
+
         return Url::create($this->front_url)
             ->setLastModificationDate(Carbon::create($this->updated_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
@@ -753,23 +751,4 @@ class Product extends Model implements HasMedia, Sitemapable
     }
 
 
-    /*$reviewRating = [
-            'averageReviewRating' => round($product->reviews()->avg('rating'), 2),
-            'roundedAverageRating' => round($product->reviews()->avg('rating'), 0),
-
-            // Подсчет количества отзывов каждого типа
-            'oneStarReviewsCount' => $product->reviews()->where('rating', '=', 1)->count(),
-            'twoStarReviewsCount' => $product->reviews()->where('rating', '=', 2)->count(),
-            'threeStarReviewsCount' => $product->reviews()->where('rating', '=', 3)->count(),
-            'fourStarReviewsCount' => $product->reviews()->where('rating', '=', 4)->count(),
-            'fiveStarReviewsCount' => $product->reviews()->where('rating', '=', 5)->count(),
-
-            // Процентная доля каждого типа отзыва
-            'oneStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 1)->count() / $product->reviews()->count()) * 100, 0),
-            'twoStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 2)->count() / $product->reviews()->count()) * 100, 0),
-            'threeStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 3)->count() / $product->reviews()->count()) * 100, 0),
-            'fourStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 4)->count() / $product->reviews()->count()) * 100, 0),
-            'fiveStarReviewsPercent' => round(($product->reviews()->where('rating', '=', 5)->count() / $product->reviews()->count()) * 100, 0)
-        ];
-    }*/
 }
