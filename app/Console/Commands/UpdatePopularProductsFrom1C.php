@@ -58,7 +58,7 @@ class UpdatePopularProductsFrom1C extends Command
     {
         Log::info("Обновление ПОПУЛЯРНЫЕ ТОВАРЫ запущено.");
         $this->lastPopularSuccessfulUpdateTime = $this->loadLastSuccessfulUpdateTime();
-        Log::info("Путь к отчету: " . $this->lastPopularSuccessfulUpdateTime);
+        Log::info("Время последнего обновления: " . $this->lastPopularSuccessfulUpdateTime);
         $this->reportPopularFilePath = $this->loadReportFilePath(); //base_path('storage/app/protected/Ostatki tovarov.xlsx');
         Log::info("Путь к отчету: " . $this->reportPopularFilePath);
         if (!is_null($this->reportPopularFilePath)) {
@@ -202,6 +202,8 @@ class UpdatePopularProductsFrom1C extends Command
         $setting = Setting::where('group', 'popularProducts')
             ->where('key', 'reportFileName')
             ->first();
+
+        Log::info("Setting: " . $setting);
 
         if (!$setting) {
             // Если записи нет, создаем новую с значением по умолчанию
