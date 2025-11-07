@@ -155,8 +155,7 @@
                                 <img src="{{ asset('images/icons/plus.svg') }}" alt="добавить адрес">
                             </button>
                         </div>
-                        <button data-modal-link="delete-profile-modal" wire:click.prevent="deleteUser"
-
+                        <button data-modal-link="delete-profile-modal"
                             class="account-profile__btn-delete">Удалить профиль</button>
                     </div>
                 </form>
