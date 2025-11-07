@@ -12210,9 +12210,7 @@ h2.benefits__title {
 @media (min-width: 61.99875em) {
     .benefits__item {
         width: calc((100% - 3 * 1.25rem) / 4);
-        /* Ширина вычисляется исходя из количества блоков и расстояния между ними */
         box-sizing: border-box;
-        /* Включаем padding и border внутрь ширины блока */
     }
 }
 
@@ -12222,7 +12220,6 @@ h2.benefits__title {
         grid-template-columns: 1fr 1fr;
     }
 }
-
 
 @media (max-width: 35.99875em) {
     .benefits__wrapper {
