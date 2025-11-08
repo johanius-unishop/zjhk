@@ -148,11 +148,6 @@ final class CurrencyTable extends PowerGridComponent
     public function actions(Currency $row): array
     {
         return [
-            Button::add('Edit')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.currency.edit', ['currency' => $row->id]),
-
             Button::add('delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
