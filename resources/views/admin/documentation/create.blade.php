@@ -77,36 +77,9 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6 col-12 mb-3">
-                                        <div class="form-group">
-                                            <label for="charcode">Символьное обозначение</label>
-                                            <input type="text" class="form-control" name="charcode"
-                                                value="{{ old('charcode') }}">
-                                            @error('charcode')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-12 mb-3">
-                                        <div class="form-group">
-                                            <label for="internal_rate">Внутренний курс валюты</label>
-                                            <input type="text" class="form-control" name="internal_rate"
-                                                value="{{ old('internal_rate') }}">
-                                            @error('internal_rate')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-12 mb-3">
-                                        <div class="form-group">
-                                            <label for="auto_multiplier">Множитель для расчета внутреннего курса</label>
-                                            <input type="text" class="form-control" name="auto_multiplier"
-                                                value="{{ old('auto_multiplier') }}">
-                                            @error('auto_multiplier')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
+                                    <div class="col-12">
+                                        <div class="form-group"> <label for="text">Описание документа</label>
+                                            <textarea class="form-control" name="text" row="2">{{ old('text') }}</textarea>
                                         </div>
                                     </div>
                                 </div>
