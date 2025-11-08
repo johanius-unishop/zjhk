@@ -4,13 +4,13 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-<h1>Dashboard</h1>
+    <h1>Dashboard</h1>
 @stop
 
 @section('content')
-<div class="container mt-5">
-    <!-- Content goes here -->
-</div>
+    <div class="container mt-5">
+        <!-- Content goes here -->
+    </div>
 @stop
 
 @section('css')
@@ -50,29 +50,32 @@
                 toastr[event.notify](event.message);
             });
         });
+
     </script>
 
     <!-- Flash Messages -->
     <script>
         // Success Message Popup Notification
-        @if(Session::has('success'))
-        toastr.success("{{ Session::get('success') }}");
+        @if (Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
         @endif
 
         // Info Message Popup Notification
-        @if(Session::has('info'))
-        toastr.info("{{ Session::get('info') }}");
+        @if (Session::has('info'))
+            toastr.info("{{ Session::get('info') }}");
         @endif
 
         // Warning Message Popup Notification
-        @if(Session::has('warning'))
-        toastr.warning("{{ Session::get('warning') }}");
+        @if (Session::has('warning'))
+            toastr.warning("{{ Session::get('warning') }}");
         @endif
 
         // Error Message Popup Notification
-        @if(Session::has('error'))
-        toastr.error("{{ Session::get('error') }}");
+        @if (Session::has('error'))
+            toastr.error("{{ Session::get('error') }}");
         @endif
+
+        toastr.success("QWerty");
     </script>
 
 @stop
