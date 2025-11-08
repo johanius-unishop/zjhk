@@ -11,6 +11,7 @@ use Spatie\Image\Enums\Fit;
 class Documentation extends Model
 {
 
+    protected $table = "documentation";
 
     protected $fillable = [
         'title',
