@@ -97,13 +97,13 @@
                                 </div>
                                 <div class="card card-success">
                                     <div class="card-header">
-                                        <h3 class="card-title">Изображение обложки</h3>
+                                        <h3 class="card-title">Изображение для документа</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-4 col-6">
                                                 <div class="form-group">
-                                                    <label for="imageDocument">Логотип производителя</label>
+                                                    <label for="imageDocument">Изображение для документа</label>
                                                     <input type="file" class="form-control" id="imageDocument"
                                                         name="imageDocument">
                                                     @error('imageDocument')
