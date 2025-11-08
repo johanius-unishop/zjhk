@@ -74,7 +74,7 @@ final class CurrencyTable extends PowerGridComponent
             Column::make('Курс ЦБ', 'cb_rate'),
 
             Column::make('Внутренний курс', 'internal_rate')
-            ->editOnClick(hasPermission: true, saveOnMouseOut: true),
+                ->editOnClick(hasPermission: true, saveOnMouseOut: true),
 
             Column::make('Автоматический расчет', 'auto_calc_cbrf')
                 ->toggleable(),
@@ -89,7 +89,7 @@ final class CurrencyTable extends PowerGridComponent
         ];
     }
 
-     protected function rules()
+    protected function rules()
     {
         return [
             'name.*' => [
@@ -152,17 +152,14 @@ final class CurrencyTable extends PowerGridComponent
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.currency.edit', ['currency' => $row->id]),
-            Button::add('Delete')
+
+            Button::add('delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
-                ->dispatch('currency_delete', ['rowId' => $row->id]),
+                ->confirm('Вы действительно хотите удалить эту валюту?')
+                ->dispatch('currency_delete', ['id' => $row->id]),
         ];
     }
-
-
-
-
-
 
     public function onUpdatedEditable(int|string $id, string $field, string $value): void
     {
@@ -196,26 +193,12 @@ final class CurrencyTable extends PowerGridComponent
     }
 
     #[\Livewire\Attributes\On('currency_delete')]
-    public function currency_delete(int $rowId): void
+    public function currency_delete(int $id): void
     {
-        $this->delete_id = $rowId;
-        $this->confirm(
-            'Вы действительно хотите удалить эту валюту?',
-            [
-                'onConfirmed' => 'confirmed',
-                'showCancelButton' => true,
-                'cancelButtonText' => 'Нет',
-                'confirmButtonText' => 'Да'
-            ]
-        );
-    }
+        $record = Currency::findOrFail($id);
+        $record->delete();
 
-    #[\Livewire\Attributes\On('confirmed')]
-    public function confirmed(): void
-    {
-        $deleted_record = Currency::findOrFail($this->delete_id);
-        $deleted_record->delete();
-        $this->dispatch('toast', ['message' => 'Валюта удалена.', 'notify' => 'success']);
+        $this->dispatch('toast-success', message: 'Валюта успешно удалена!');
     }
 
 

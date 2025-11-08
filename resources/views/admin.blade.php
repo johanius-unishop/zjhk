@@ -16,11 +16,8 @@
 @section('css')
     {{-- Extra stylesheets can be added here if needed --}}
 
-
     <!-- Toastr Stylesheet -->
     <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.css') }}">
-
-
 
     <!-- Venobox for Image Preview -->
     <link href="{{ asset('vendor/venobox/venobox.min.css') }}" rel="stylesheet">
@@ -30,15 +27,8 @@
 @stop
 
 @section('js')
-    <!-- SweetAlert2 Scripts -->
-
-
-
-
     <!-- Venobox Script for Image Preview -->
     <script src="{{ asset('/vendor/venobox/venobox.min.js') }}" type="text/javascript"></script>
-
-    <!-- Livewire Alert Scripts -->
 
     <!-- Toastr Notifications -->
     <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
@@ -76,5 +66,4 @@
         @endif
 
     </script>
-
 @stop

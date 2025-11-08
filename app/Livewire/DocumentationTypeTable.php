@@ -56,7 +56,6 @@ final class DocumentationTypeTable extends PowerGridComponent
         ];
     }
 
-    // Добавьте новый метод destroy(), который выполнит удаление записи
     #[\Livewire\Attributes\On('destroy')]
     public function destroy(int $id)
     {
@@ -64,8 +63,6 @@ final class DocumentationTypeTable extends PowerGridComponent
         $record->delete();
 
         $this->dispatch('toast-success', message: 'Тип документации успешно удалён!');
-        //$this->dispatch('toast', ['message' => 'Валюта удалена.', 'notify' => 'success']);
-        //$this->dispatch('toast-success', ['message' => 'Валюта удалена.']);
     }
 
     public function actions(DocumentationType $row): array
