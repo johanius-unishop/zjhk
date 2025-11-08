@@ -22,8 +22,8 @@ class StoreDocumentationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'       => 'required|min:2|max:120',
-            'text'       => 'required|min:2|max:10',
+            'title'       => 'required|min:2|max:50',
+            'text'       => 'required|min:2|max:200',
         ];
     }
 }
