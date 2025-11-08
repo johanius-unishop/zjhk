@@ -72,37 +72,22 @@ class DocumentationController extends Controller
         return redirect()->route('admin.documentation.index', $record->id);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    /*public function store(StoreFaqRequest $request)
-    {
-        if (!Gate::allows('admin-content')) {
-            return abort(401);
-        }
-        $input = $request->all();
-        $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
-        $record = Faq::create($input);
-
-        session()->flash('success', 'Запись успешно создана');
-        if ($request->action == 'save-exit') {
-            return redirect(route('admin.faq.index'));
-        }
-        return redirect(route('admin.documentation.edit', $record->id));
-
-    }*/
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    /*public function edit(Faq $faq)
+    public function edit(Documentation $documentation)
     {
         if (!Gate::allows('admin-content')) {
             return abort(401);
         }
 
-        return view('admin.faq.edit', ['faq' => $faq]);
-    }*/
+        $vendors = Vendor::select(['name', 'id'])
+                    ->orderBy('name')
+                    ->get();
+
+        $types = DocumentationType::select(['name', 'id'])
+                    ->orderBy('name')
+                    ->get();
+        return view('admin.vendor.edit', compact('documentation', 'vendors', 'types'));
+
+    }
 
     /**
      * Update the specified resource in storage.
