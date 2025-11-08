@@ -68,7 +68,7 @@
                                                 <option value="0">---Выберите тип документа---</option>
                                                 @foreach ($documentationTypes as $type)
                                                     <option value="{{ $type->id }}"
-                                                        {{ $type->id == @$documentation->type_id ? 'selected' : '' }}>
+                                                        {{ old('type_id') && old('type_id') == $type->id ? 'selected' : '' }}>
                                                         {{ $type->name }}
                                                     </option>
                                                 @endforeach
