@@ -4,12 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Currency;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\Admin\StoreCurrencyRequest;
-use App\Http\Requests\Admin\UpdateCurrencyRequest;
-
 
 class CurrencyController extends Controller
 {
@@ -35,8 +31,6 @@ class CurrencyController extends Controller
             return abort(401);
         }
         return view('admin.currency.create');
-
-
     }
 
     /**
@@ -48,17 +42,13 @@ class CurrencyController extends Controller
             return abort(401);
         }
 
-
-
         $input = $request->all();
         $request->filled('auto_calc_cbrf') ? $input['auto_calc_cbrf'] = true : $input['auto_calc_cbrf'] = false;
         $record = Currency::create($input);
 
-        session()->flash('success', 'Валюта успешно создана');
+        session()->flash('toast-success', 'Валюта успешно создана');
         if ($request->action == 'save-exit') {
             return redirect(route('admin.currency.index'));
         }
-
     }
-
 }
