@@ -31,7 +31,7 @@
 
 @section('js')
     <!-- SweetAlert2 Scripts -->
-    <script src="{{ asset('vendor/sweetalert2/sweetalert2.all.js') }}"></script>
+
 
 
 
@@ -61,18 +61,18 @@
         @endif
 
         // Info Message Popup Notification
-        @if (Session::has('info'))
-            toastr.info("{{ Session::get('info') }}");
+        @if (Session::has('toast-info'))
+            toastr.info("{{ Session::get('toast-info') }}");
         @endif
 
         // Warning Message Popup Notification
-        @if (Session::has('warning'))
-            toastr.warning("{{ Session::get('warning') }}");
+        @if (Session::has('toast-warning'))
+            toastr.warning("{{ Session::get('toast-warning') }}");
         @endif
 
         // Error Message Popup Notification
-        @if (Session::has('error'))
-            toastr.error("{{ Session::get('error') }}");
+        @if (Session::has('toast-error'))
+            toastr.error("{{ Session::get('toast-error') }}");
         @endif
 
     </script>
