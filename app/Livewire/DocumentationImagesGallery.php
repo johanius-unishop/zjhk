@@ -2,66 +2,78 @@
 
 namespace App\Livewire;
 
-use App\Models\Documentation;
 use Livewire\Component;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Validate;
+use Livewire\Attributes\On;
 
 class DocumentationImagesGallery extends Component
 {
     use WithFileUploads;
-    use LivewireAlert;
-    public $photo;
-    public $image;
-    public $record;
+    public $photos = [];
+    public $images = [];
+    public $record, $media_id;
 
-    public function mount(Documentation $record)
+    public $flag = 0;
+    public $multiple;
+
+    public function render()
     {
-        $this->record = $record;
-        $this->loadImage();
+        return view('livewire.documentation-images-gallery');
     }
 
-    public function loadImage()
+    public function mount($record = null, $multiple = false)
     {
-        // Перезагрузка модели $this->record
-        $this->record = $this->record->fresh();
-        $this->image = $this->record->getMedia('images')->first();
-
-        $this->dispatch('documentation-images-gallery','$refresh');
-
+        $this->images   = @$record->getMedia('images');//'images'
+        $this->multiple = $multiple;
     }
 
+
+    public function boot()
+    {
+        $this->images = $this->record->getMedia('images');
+        $this->dispatch('galleryModalPhoto');
+
+    }
     public function delete($media_id)
     {
-        $media = Media::find($media_id);
-        $media->delete();
-        $this->dispatch('toast', message: 'Изображение документа удалено!', notify: 'error');
-        $this->loadImage();
 
+        try {
+            $media = Media::find($media_id);
+            $media->delete();
+            $this->dispatch('toast', message: 'Изображение для документа удалено.', notify: 'error');
+        }
+        catch (\Throwable $th) {
+            $this->dispatch('toast', message: 'Изображение для документа не удалось удалить.' . $th->getMessage(), notify: 'error');
+        }
+        $this->dispatch('galleryModalPhoto');
+        $this->dispatch('$refresh');
     }
 
     public function uploadFiles()
     {
+        $this->flag = 1;
         $this->validate([
-            'photo' => 'mimes:jpeg,png,jpg|max:10240',
+            'photos.*' => 'image|mimes:jpeg,png,jpg|max:102400', // 10MB Max
         ]);
-
-        if ($this->photo) {
-            $this->record->addMedia($this->photo)->toMediaCollection('images');
-            $this->reset('photo');
-            $this->loadImage();
+        foreach ($this->photos as $photo) {
+            $this->record
+                ->addMedia($photo)
+                ->toMediaCollection('images');
             $this->dispatch('toast', message: 'Изображение для документа загружено.', notify: 'success');
         }
+
+        $this->dispatch('galleryModalPhoto');
+        $this->flag   = 0;
+        $this->photos = [];
+        $this->dispatch('$refresh');
     }
+
 
     public function download(Media $mediaItem)
     {
         return response()->download($mediaItem->getPath(), $mediaItem->file_name);
     }
 
-    public function render()
-    {
-        return view('livewire.documentation-images-gallery');
-    }
 }

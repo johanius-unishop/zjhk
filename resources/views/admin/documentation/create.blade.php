@@ -107,7 +107,7 @@
                                                 Добавьте изображение в формате JPEG или PNG.
                                                 <br>
                                                 <div>
-
+                                                    <livewire:documentation-images-gallery :record="@$documentation" />
                                                 </div>
                                             </div>
                                         </div>
