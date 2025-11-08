@@ -2,7 +2,7 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Административный раздел: Валюты системы')
+@section('title', 'Административный раздел: Документация')
 @section('content_header')
 <h1>Документация</h1>
 @stop
