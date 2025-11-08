@@ -52,7 +52,7 @@
                                                 <option value="0">---Выберите бренд---</option>
                                                 @foreach ($vendors as $vendor)
                                                     <option value="{{ $vendor->id }}"
-                                                        {{ $vendor->id == @$documentation->vendor_id ? 'selected' : '' }}>
+                                                        {{ old('vendor_id') && old('vendor_id') == $vendor->id ? 'selected' : '' }}>
                                                         {{ $vendor->name }}
                                                     </option>
                                                 @endforeach
