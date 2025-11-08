@@ -9,11 +9,9 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 final class DocumentationTypeTable extends PowerGridComponent
 {
-    use LivewireAlert;
     public $delete_id;
     public string $tableName = 'documentation-type-table';
     public function setUp(): array
