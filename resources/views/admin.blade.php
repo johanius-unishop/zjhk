@@ -56,8 +56,8 @@
     <!-- Flash Messages -->
     <script>
         // Success Message Popup Notification
-        @if (Session::has('success'))
-            toastr.success("{{ Session::get('success') }}");
+        @if (Session::has('toast-success'))
+            toastr.success("{{ Session::get('toast-success') }}");
         @endif
 
         // Info Message Popup Notification
