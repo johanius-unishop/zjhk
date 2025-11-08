@@ -92,11 +92,11 @@ final class DocumentationTypeTable extends PowerGridComponent
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
                 ->confirm('Вы действительно хотите удалить эту запись?', [
-            'onConfirmed' => 'destroy',
+
             'showCancelButton' => true,
-            'cancelButtonText' => 'Нет',
+            'cancelButtonText' => 'Нет!',
         ])
-             //   ->dispatch('destroy', ['id' => $row->id]), // Назначаем метод destroy для кнопки delete
+               ->dispatch('destroy', ['id' => $row->id]), // Назначаем метод destroy для кнопки delete
         ];
     }
 }
