@@ -75,7 +75,6 @@
             toastr.error("{{ Session::get('error') }}");
         @endif
 
-        toastr.success("QWerty");
     </script>
 
 @stop

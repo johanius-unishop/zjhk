@@ -63,11 +63,9 @@ final class DocumentationTypeTable extends PowerGridComponent
         $record = DocumentationType::findOrFail($id);
         $record->delete();
 
-        //session()->flash('success', 'Запись успешно удалена');
-        $this->alert('success', 'Тип документации успешно удалён!');
         $this->dispatch('toast-success', message: 'Тип документации успешно удалён!');
-        $this->dispatch('toast', ['message' => 'Валюта удалена.', 'notify' => 'success']);
-        $this->dispatch('toast-success', ['message' => 'Валюта удалена.']);
+        //$this->dispatch('toast', ['message' => 'Валюта удалена.', 'notify' => 'success']);
+        //$this->dispatch('toast-success', ['message' => 'Валюта удалена.']);
     }
 
     public function actions(DocumentationType $row): array
