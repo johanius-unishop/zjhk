@@ -59,6 +59,20 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-6">
+                                        <label for="type_id" class="form-label">Тип документа</label>
+                                        <select class="form-control" id="type_id" name="type_id">
+                                            <option value="0">Выберите тип документа</option>
+                                            @foreach ($documentationTypes as $type)
+                                                <option value="{{ $type->id }}"
+                                                    {{ $type->id == @$documentation->type_id ? 'selected' : '' }}>
+                                                    {{ $type->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-6 col-12 mb-3">
                                         <div class="form-group">
                                             <label for="charcode">Символьное обозначение</label>

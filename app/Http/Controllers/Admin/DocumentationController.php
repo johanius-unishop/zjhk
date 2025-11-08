@@ -8,6 +8,7 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\StoreFaqRequest;
 use App\Http\Requests\Admin\UpdateFaqRequest;
+use App\Models\DocumentationType;
 use Illuminate\Support\Facades\Gate;
 
 class DocumentationController extends Controller
@@ -33,7 +34,9 @@ class DocumentationController extends Controller
         }
 
         $vendors = Vendor::get(array('name', 'id'));
-        return view('admin.documentation.create', compact('vendors'));
+        $documentationTypes = DocumentationType::get(array('name', 'id'));
+
+        return view('admin.documentation.create', compact('vendors', 'documentationTypes'));
     }
 
     /**
