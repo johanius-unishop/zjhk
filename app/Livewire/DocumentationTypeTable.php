@@ -67,27 +67,37 @@ final class DocumentationTypeTable extends PowerGridComponent
         ]);
     }
 
-    #[\Livewire\Attributes\On('confirmed')]
-    public function confirmed()
+    // Добавьте новый метод destroy(), который выполнит удаление записи
+    #[\Livewire\Attributes\On('destroy')]
+    public function destroy(int $id)
     {
-        $deleted_record = DocumentationType::where('id', $this->delete_id)->firstOrFail();
-        $deleted_record->delete();
-        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
+        dd("Подтверждение получено!");
+        $record = DocumentationType::findOrFail($id);
+        $record->delete();
+
+        $this->dispatch('toast', message: 'Тип документации успешно удалён.', type: 'success');
     }
 
     public function actions(DocumentationType $row): array
     {
         return [
+            // Оставляем кнопку редактирования без изменений
             Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.documentation-type.edit', ['documentation_type' => $row->id]),
+
+            // Исправляем обработку удаления записи
             Button::add('delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
-                ->dispatch('doc_type_delete', ['rowId' => $row->id]),
+                ->modalConfirmBeforeSubmit(
+                    title: 'Подтверждение удаления',
+                    content: 'Вы уверены, что хотите удалить этот тип документации?',
+                    showCancelButton: true,
+                    cancelButtonText: 'Отмена'
+                )
+                ->method('destroy'), // Назначаем метод destroy для кнопки delete
         ];
-
-
     }
 }
