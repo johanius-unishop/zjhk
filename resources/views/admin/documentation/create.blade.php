@@ -101,13 +101,14 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class=" col-12">
-                                                <b> Изображение обложки</b>
-                                                <br>
-                                                Добавьте изображение в формате JPEG или PNG.
-                                                <br>
-                                                <div>
-                                                    <livewire:documentation-images-gallery :record="@$documentation" />
+                                            <div class="col-lg-4 col-6">
+                                                <div class="form-group">
+                                                    <label for="imageDocument">Логотип производителя</label>
+                                                    <input type="file" class="form-control" id="imageDocument"
+                                                        name="imageDocument">
+                                                    @error('imageDocument')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
