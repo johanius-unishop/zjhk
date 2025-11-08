@@ -44,7 +44,7 @@ class DocumentationTypeController extends Controller
         $input = $request->all();
 
         $record = DocumentationType::create($input);
-        Event::dispatch('toast-success', message: 'Тип документации успешно удалён!');
+        Event::dispatch('toast-success', message: 'Тип документации успешно создан!');
        // session()->flash('success', 'Запись успешно создана');
         if ($request->action == 'save-exit') {
             return redirect(route('admin.documentation-type.index'));
