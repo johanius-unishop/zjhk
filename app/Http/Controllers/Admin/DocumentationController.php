@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Documentation;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\StoreFaqRequest;
 use App\Http\Requests\Admin\UpdateFaqRequest;
@@ -30,7 +31,9 @@ class DocumentationController extends Controller
         if (!Gate::allows('admin-content')) {
             return abort(401);
         }
-        return view('admin.documentation.create');
+
+        $vendors = Vendor::get(array('name', 'id'));
+        return view('admin.documentation.create', compact('vendors'));
     }
 
     /**
