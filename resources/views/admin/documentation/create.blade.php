@@ -48,7 +48,7 @@
                                     <div class="col-6">
                                         <label for="vendor_id" class="form-label">Бренд</label>
                                         <select class="form-control" id="vendor_id" name="vendor_id">
-                                            <option value="0">Выберите бренд</option>
+                                            <option value="0">---Выберите бренд---</option>
                                             @foreach ($vendors as $vendor)
                                                 <option value="{{ $vendor->id }}"
                                                     {{ $vendor->id == @$documentation->vendor_id ? 'selected' : '' }}>
@@ -62,7 +62,7 @@
                                     <div class="col-6">
                                         <label for="type_id" class="form-label">Тип документа</label>
                                         <select class="form-control" id="type_id" name="type_id">
-                                            <option value="0">Выберите тип документа</option>
+                                            <option value="0">---Выберите тип документа---</option>
                                             @foreach ($documentationTypes as $type)
                                                 <option value="{{ $type->id }}"
                                                     {{ $type->id == @$documentation->type_id ? 'selected' : '' }}>
