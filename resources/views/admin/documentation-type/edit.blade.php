@@ -2,7 +2,7 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Редактирование типа документации')
+@section('title', 'Административный раздел: Редактирование типа документации')
 @section('content_header')
 <h1>Редактирование типа документации</h1>
 @stop

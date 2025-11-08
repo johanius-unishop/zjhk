@@ -2,17 +2,20 @@
 
 {{-- Customize layout sections --}}
 
-@section('title', 'Административный раздел: Создание нового типа документации')
+@section('title', 'Редактирование типа документации')
 @section('content_header')
-<h1>Создание нового типа документации</h1>
+<h1>Редактирование типа документации</h1>
 @stop
 
 {{-- Content body: main page content --}}
 @section('content')
 @include('admin.blocks.error')
 
-<form action="{{ route('admin.documentation-type.store')  }}" method="POST">
+<form action="{{ route('admin.documentation-type.update', $documentationType->id)  }}" method="POST">
     @csrf
+    @method('PATCH')
+
+    <input type="hidden" name="id" value="{{ $documentationType->id }}">
     <div class="row">
         <div class="col-12 ">
             <div class="card card-primary card-outline card-outline-tabs">
@@ -30,7 +33,7 @@
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group">
                                         <label for="name">Название типа документации</label>
-                                        <input type="text" class="form-control" name="name" value="{{  old('name') }}">
+                                        <input type="text" class="form-control" name="name" value="{{ @$documentationType->name }}">
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
