@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Event;
 use App\Http\Controllers\Controller;
 use App\Models\DocumentationType;
 use App\Http\Requests\Admin\StoreDocumentationTypeRequest;
@@ -43,8 +44,8 @@ class DocumentationTypeController extends Controller
         $input = $request->all();
 
         $record = DocumentationType::create($input);
-
-        session()->flash('success', 'Запись успешно создана');
+        Event::dispatch('toast-success', message: 'Тип документации успешно удалён!');
+       // session()->flash('success', 'Запись успешно создана');
         if ($request->action == 'save-exit') {
             return redirect(route('admin.documentation-type.index'));
         }
