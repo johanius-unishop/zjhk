@@ -95,6 +95,24 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="card card-success">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Изображение обложки</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class=" col-12">
+                                                <b> Изображение обложки</b>
+                                                <br>
+                                                Добавьте изображение в формате JPEG или PNG.
+                                                <br>
+                                                <div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
