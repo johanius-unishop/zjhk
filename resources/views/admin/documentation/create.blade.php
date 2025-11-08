@@ -114,6 +114,26 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="card card-warning">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Файл документа</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-6">
+                                                <div class="form-group">
+                                                    <label for="imageDocument">Файл документа</label>
+                                                    <input type="file" class="form-control" id="fileDocument"
+                                                        name="fileDocument">
+                                                    @error('fileDocument')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
