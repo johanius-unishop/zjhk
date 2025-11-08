@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Documentation;
 use App\Models\Vendor;
-use Illuminate\Http\Request;
 use App\Http\Requests\Admin\StoreDocumentationRequest;
-use App\Http\Requests\Admin\UpdateFaqRequest;
+use App\Http\Requests\Admin\UpdateDocumentationRequest;
 use App\Models\DocumentationType;
 use Illuminate\Support\Facades\Gate;
 
