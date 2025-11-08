@@ -97,7 +97,7 @@ final class DocumentationTypeTable extends PowerGridComponent
                     showCancelButton: true,
                     cancelButtonText: 'Отмена'
                 )*/
-                ->dispatch('destroy', ['key' => $row->id]), // Назначаем метод destroy для кнопки delete
+                ->dispatch('destroy', ['id' => $row->id]), // Назначаем метод destroy для кнопки delete
         ];
     }
 }
