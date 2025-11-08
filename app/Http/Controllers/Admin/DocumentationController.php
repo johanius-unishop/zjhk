@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Documentation;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\StoreFaqRequest;
+use App\Http\Requests\Admin\StoreDocumentationRequest;
 use App\Http\Requests\Admin\UpdateFaqRequest;
 use App\Models\DocumentationType;
 use Illuminate\Support\Facades\Gate;
@@ -37,6 +37,33 @@ class DocumentationController extends Controller
         $documentationTypes = DocumentationType::get(array('name', 'id'));
 
         return view('admin.documentation.create', compact('vendors', 'documentationTypes'));
+    }
+
+    public function store(StoreDocumentationRequest $request)
+    {
+        // Проверка прав доступа
+        if (!Gate::allows('admin-content')) {
+            return abort(401);
+        }
+
+        // Подготовка входных данных
+        $input = $request->all();
+        //$input['published'] = $request->filled('published'); // Преобразуем в boolean
+
+        // Создание записи
+        $record = Documentation::create($input);
+
+        // Обработка загрузки изображения для документа
+        if ($request->hasFile('imageDocument')) {
+            $record
+                ->addMediaFromRequest('imageDocument')
+                ->toMediaCollection('images');
+        }
+
+        // Уведомление об успехе
+        session()->flash('toast-success', 'Запись успешно создана');
+
+        return redirect()->route('admin.documentation.index', $record->id);
     }
 
     /**
