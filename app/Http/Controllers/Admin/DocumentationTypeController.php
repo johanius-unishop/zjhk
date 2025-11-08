@@ -76,13 +76,11 @@ class DocumentationTypeController extends Controller
 
         $documentationType->update($input);
 
-        session()->flash('success', 'Запись успешно обновлена');
+        session()->flash('toast-success', 'Запись успешно обновлена');
 
         if ($request->action == 'save-exit') {
             return redirect(route('admin.documentation-type.index'));
         }
         return redirect(route('admin.documentation-type.edit', $documentationType->id));
     }
-
-
 }
