@@ -71,7 +71,6 @@ final class DocumentationTypeTable extends PowerGridComponent
     #[\Livewire\Attributes\On('destroy')]
     public function destroy(int $id)
     {
-        dd("Подтверждение получено!");
         $record = DocumentationType::findOrFail($id);
         $record->delete();
 
