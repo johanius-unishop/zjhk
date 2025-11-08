@@ -56,17 +56,6 @@ final class DocumentationTypeTable extends PowerGridComponent
         ];
     }
 
-    #[\Livewire\Attributes\On('doc_type_delete')]
-    public function doc_type_delete($rowId): void
-    {
-        $this->delete_id = $rowId;
-        $this->confirm('Вы действительно хотите удалить этот тип документации?', [
-            'onConfirmed' => 'confirmed',
-            'showCancelButton' => true,
-            'cancelButtonText' => 'Нет',
-        ]);
-    }
-
     // Добавьте новый метод destroy(), который выполнит удаление записи
     #[\Livewire\Attributes\On('destroy')]
     public function destroy(int $id)
