@@ -66,13 +66,11 @@ final class DocumentationTypeTable extends PowerGridComponent
     public function actions(DocumentationType $row): array
     {
         return [
-            // Оставляем кнопку редактирования без изменений
             Button::add('view')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.documentation-type.edit', ['documentation_type' => $row->id]),
 
-            // Исправляем обработку удаления записи
             Button::add('delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
