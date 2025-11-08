@@ -65,6 +65,12 @@ final class DocumentationTypeTable extends PowerGridComponent
 
         //session()->flash('success', 'Запись успешно удалена');
         $this->alert('success', 'Тип документации успешно удалён!');
+        LivewireAlert::title('Hello World')
+   ->text('This is a demo of Livewire Alert.')
+   ->position('top-end')
+   ->timer(3000)
+   ->toast()
+   ->show();
     }
 
     public function actions(DocumentationType $row): array
