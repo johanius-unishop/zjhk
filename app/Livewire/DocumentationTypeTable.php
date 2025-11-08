@@ -67,7 +67,7 @@ final class DocumentationTypeTable extends PowerGridComponent
         $this->alert('success', 'Тип документации успешно удалён!');
         $this->dispatch('toast-success', message: 'Тип документации успешно удалён!');
         $this->dispatch('toast', ['message' => 'Валюта удалена.', 'notify' => 'success']);
-
+        $this->dispatch('toast-success', ['message' => 'Валюта удалена.']);
     }
 
     public function actions(DocumentationType $row): array

@@ -46,11 +46,11 @@
     <!-- Custom Notification Handling -->
     <script>
         document.addEventListener("livewire:init", () => {
-            Livewire.on("toast", (event) => {
-                toastr[event.notify](event.message);
-            });
+            Livewire.on("toast-success", event => toastr.success(event.message));
+            Livewire.on("toast-error", event => toastr.error(event.message));
+            Livewire.on("toast-info", event => toastr.info(event.message));
+            Livewire.on("toast-warning", event => toastr.warning(event.message));
         });
-
     </script>
 
     <!-- Flash Messages -->
