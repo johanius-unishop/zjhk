@@ -122,7 +122,7 @@
                                         <div class="row">
                                             <div class="col-lg-4 col-6">
                                                 <div class="form-group">
-                                                    <label for="imageDocument">Файл документа</label>
+                                                    <label for="imageDocument">Файл документа (PDF)</label>
                                                     <input type="file" class="form-control" id="fileDocument"
                                                         name="fileDocument">
                                                     @error('fileDocument')

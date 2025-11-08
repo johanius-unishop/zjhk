@@ -60,6 +60,12 @@ class DocumentationController extends Controller
                 ->toMediaCollection('images');
         }
 
+        if ($request->hasFile('fileDocument')) {
+            $record
+                ->addMediaFromRequest('fileDocument')
+                ->toMediaCollection('files');
+        }
+
         // Уведомление об успехе
         session()->flash('toast-success', 'Запись успешно создана');
 

@@ -42,6 +42,7 @@ class Documentation extends Model
         $this->addMediaCollection('images') //Изображения
             ->useDisk('documentation')
             ->withResponsiveImages()
+            ->singleFile()
             ->useFallbackUrl('/images/default_image.jpg')
             ->useFallbackPath(public_path('/images/default_image.jpg'))
             ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
@@ -49,6 +50,7 @@ class Documentation extends Model
 
         $this->addMediaCollection('files') //Файлы
             ->useDisk('documentation')
+            ->singleFile()
             ->acceptsMimeTypes(mimeTypes: ['application/pdf']);
     }
 
