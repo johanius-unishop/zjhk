@@ -9,7 +9,7 @@ use App\Models\ProductModel;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads; // Добавили импорт трейта
-class ProductFilesComponent extends Component
+class DocumentationFilesComponent extends Component
 {
     use LivewireAlert;
     use WithFileUploads; // Применили трейт
