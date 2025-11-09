@@ -32,7 +32,7 @@
                             <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">SEO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-four-logo-tab" data-toggle="pill" href="#custom-tabs-four-logo" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Логотип</a>
+                            <a class="nav-link" id="custom-tabs-four-logo-tab" data-toggle="pill" href="#custom-tabs-four-logo" role="tab" aria-controls="custom-tabs-four-logo" aria-selected="false">Логотип</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-four-catalogs-tab" data-toggle="pill" href="#custom-tabs-four-catalogs" role="tab" aria-controls="custom-tabs-four-catalogs" aria-selected="false">Каталоги производителя</a>
