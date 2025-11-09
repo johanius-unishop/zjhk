@@ -9,18 +9,9 @@
                                 src="{{ $image->getUrl('jpeg-images') }}" class="img-fluid my-link"
                                 alt="{{ $image->getFullUrl() }}"></a>
 
-                                <p>Размер:</p>
-                                <span>Размер: </span>
-                        <table>
-                            <tr>
-                                <td>Размер:</td>
-                                <td>{{ $image->human_readable_size }}</td>
-                            </tr>
-                            <tr>
-                                <td>Загружено:</td>
-                                <td>{{ $image->created_at }}</td>
-                            </tr>
-                        </table>
+                                <span>Размер: {{ $image->human_readable_size }}</span>
+                                <span>Загружено: {{ $image->created_at }}</span>
+
                         <figcaption class="figure-caption">
                             @if (!Auth::user()->can('manage product'))
                                 @if ($image->created_at->diffInDays(now()) < 1)
