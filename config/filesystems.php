@@ -83,6 +83,13 @@ return [
         'visibility' => 'public',
         ],
 
+        'documentation' => [
+        'driver' => 'local',
+        'root' => storage_path('app/public/documentation'),
+        'url' => env('APP_URL').'/storage/documentation',
+        'visibility' => 'public',
+        ],
+
     ],
 
     /*
