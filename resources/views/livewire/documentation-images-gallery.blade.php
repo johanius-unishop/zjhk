@@ -5,13 +5,13 @@
                 <div class="col-3 mb-4">
                     <figure class="figure">
                         <img widht="100%" height="100%" src="{{ $image->getUrl('jpeg-images') }}"
-                            class="img-fluid my-link" alt="{{ $image->getFullUrl() }}">
-                        <figcaption>
+                            class="img-fluid mb-2" alt="{{ $image->getFullUrl() }}">
+                        <figcaption class="d-flex justify-content-center">
                             @if (auth()->check() && auth()->user()->isAdmin())
                                 <a class="btn btn-danger" wire:confirm="Вы действительно хотите удалить этот файл ?"
                                     wire:click="delete({{ $image->id }})"><i class="fa fa-trash"></i></a>
                             @endif
-                            <a class="btn btn-success " wire:click="download({{ $image->id }})"><i
+                            <a class="btn btn-success" wire:click="download({{ $image->id }})"><i
                                     class="fa fa-download"></i></a>
                         </figcaption>
                     </figure>
