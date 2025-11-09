@@ -26,6 +26,7 @@ class DocumentationImagesGallery extends Component
     public function mount($record = null, $multiple = false)
     {
         $this->images   = @$record->getMedia('images');//'images'
+        dd($this->images);
         $this->multiple = $multiple;
     }
 
