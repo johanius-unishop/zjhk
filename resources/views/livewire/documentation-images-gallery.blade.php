@@ -46,21 +46,22 @@
 
     @if ($flag == 0)
         <div class="row">
+            <label for="photos">Изображение документа</label>
+        </div>
+        <div class="row">
             <div class="col-6 d-flex align-items-left">
-                <div class="form-group mr-2 w-100"> <!-- Отступ справа -->
-                    <label for="photos">Изображение документа</label>
                     <input type="file" class="form-control" id="photos" wire:model.live="photos" name="photos"
                         {{ $multiple == true ? 'multiple' : '' }}>
-                    @error('photos')
-                        <span class="error">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="col-6 d-flex align-items-left">
-                    <a class="btn {{ $flag == 0 ? 'btn-primary ' : 'btn-danger' }} ml-auto"
-                        wire:loading.attr="disabled" wire:click="uploadFiles" href="#">Загрузить фото</a>
-                </div>
-
             </div>
+            <div class="col-6 d-flex align-items-left">
+                <a class="btn {{ $flag == 0 ? 'btn-primary ' : 'btn-danger' }} ml-auto" wire:loading.attr="disabled"
+                    wire:click="uploadFiles" href="#">Загрузить фото</a>
+            </div>
+        </div>
+        <div class="row">
+            @error('photos')
+                <span class="error">{{ $message }}</span>
+            @enderror
         </div>
     @else
         <div class="col-md-12 text-center">
