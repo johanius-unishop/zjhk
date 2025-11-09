@@ -100,7 +100,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class=" col-12">
-                            <livewire:product-files-component :record="$documentation" />
+                            <livewire:documentation-files-component :record="$documentation" />
                         </div>
                     </div>
                 </div>
