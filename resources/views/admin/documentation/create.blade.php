@@ -25,7 +25,6 @@
                                     href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home"
                                     aria-selected="true">Основное</a>
                             </li>
-
                         </ul>
                     </div>
                     <div class="card-body">
@@ -35,7 +34,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="name">Название нового документа</label>
+                                            <label for="title">Название нового документа</label>
                                             <input type="text" class="form-control" name="title"
                                                 value="{{ old('title') }}">
                                             @error('title')

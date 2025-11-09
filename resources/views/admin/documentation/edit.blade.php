@@ -56,9 +56,9 @@
                                                         <div class="row">
                                                             <div class="col-6">
                                                                 <div class="form-group">
-                                                                    <label for="name">Название нового документа</label>
+                                                                    <label for="title">Название документа</label>
                                                                     <input type="text" class="form-control"
-                                                                        name="title" value="{{ old('title') }}">
+                                                                        name="title" value="{{ $documentation->title }}">
                                                                     @error('title')
                                                                         <div class="alert alert-danger">{{ $message }}
                                                                         </div>
@@ -75,7 +75,7 @@
                                                                         <option value="0">---Выберите бренд---</option>
                                                                         @foreach ($vendors as $vendor)
                                                                             <option value="{{ $vendor->id }}"
-                                                                                {{ old('vendor_id') && old('vendor_id') == $vendor->id ? 'selected' : '' }}>
+                                                                                {{ $vendor->id == @$documentation->vendor_id ? 'selected' : '' }}>
                                                                                 {{ $vendor->name }}
                                                                             </option>
                                                                         @endforeach
@@ -94,7 +94,7 @@
                                                                         </option>
                                                                         @foreach ($documentationTypes as $type)
                                                                             <option value="{{ $type->id }}"
-                                                                                {{ old('type_id') && old('type_id') == $type->id ? 'selected' : '' }}>
+                                                                                {{ $type->id == @$documentation->type_id ? 'selected' : '' }}>
                                                                                 {{ $type->name }}
                                                                             </option>
                                                                         @endforeach
@@ -116,8 +116,8 @@
                                                                     <input type="checkbox" class="form-check-input"
                                                                         name="auto_calc_cbrf" id="auto_calc_cbrf"
                                                                         data-toggle="toggle" data-onstyle="success"
-                                                                        data-offstyle="danger" data-on="Да" data-off="Нет"
-                                                                        {!! @$currency->auto_calc_cbrf ? 'checked' : '' !!}>
+                                                                        data-offstyle="danger" data-on="Да"
+                                                                        data-off="Нет" {!! @$currency->auto_calc_cbrf ? 'checked' : '' !!}>
                                                                     <label class="form-check-label"
                                                                         for="auto_calc_cbrf">Автоматический расчет
                                                                         внутреннего курса</label>

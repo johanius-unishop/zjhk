@@ -81,10 +81,10 @@ class DocumentationController extends Controller
                     ->orderBy('name')
                     ->get();
 
-        $types = DocumentationType::select(['name', 'id'])
+        $documentationTypes = DocumentationType::select(['name', 'id'])
                     ->orderBy('name')
                     ->get();
-        return view('admin.documentation.edit', compact('documentation', 'vendors', 'types'));
+        return view('admin.documentation.edit', compact('documentation', 'vendors', 'documentationTypes'));
 
     }
 
