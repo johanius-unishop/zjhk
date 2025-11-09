@@ -9,8 +9,8 @@
                                 src="{{ $image->getUrl('jpeg-images') }}" class="img-fluid my-link"
                                 alt="{{ $image->getFullUrl() }}"></a>
 
-                                <span>Размер: {{ $image->human_readable_size }}</span>
-                                <span>Загружено: {{ $image->created_at }}</span>
+                                <p>Размер: {{ $image->human_readable_size }}</p>
+                                <p>Загружено: {{ $image->created_at }}</p>
 
                         <figcaption class="figure-caption">
                             @if (!Auth::user()->can('manage product'))
