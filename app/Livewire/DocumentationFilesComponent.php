@@ -49,10 +49,10 @@ class DocumentationFilesComponent extends Component
 
     private function refreshMediaFiles()
     {
-        $mediaItem = $this->documentation->getMedia('files');
+        $mediaItems = $this->documentation->getMedia('files');
 
-        $this->mediaFile['files'] = $mediaItem
-            ? ['url' => $mediaItem->getFullUrl(), 'mime_type' => $mediaItem->mime_type]
+        $this->mediaFile['files'] = $mediaItems[0]
+            ? ['url' => $mediaItems[0]->getFullUrl(), 'mime_type' => $mediaItems[0]->mime_type]
             : null;
 
         $this->dispatch('$refresh');
