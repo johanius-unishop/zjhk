@@ -15,111 +15,109 @@
 
     <div class="row">
         <div class="col-12 ">
-            <div class="card card-primary card-outline card-outline-tabs">
-                <div class="card card-success">
-                    <div class="card-header">
-                        <h3 class="card-title">Основное</h3>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('admin.documentation.update', $documentation->id) }}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('PATCH')
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="title">Название документа</label>
-                                        <input type="text" class="form-control" name="title"
-                                            value="{{ $documentation->title }}">
-                                        @error('title')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="vendor_id" class="form-label">Бренд</label>
-                                        <select class="form-control" id="vendor_id" name="vendor_id">
-                                            <option value="0">---Выберите бренд---</option>
-                                            @foreach ($vendors as $vendor)
-                                                <option value="{{ $vendor->id }}"
-                                                    {{ $vendor->id == @$documentation->vendor_id ? 'selected' : '' }}>
-                                                    {{ $vendor->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="type_id" class="form-label">Тип документа</label>
-                                        <select class="form-control" id="type_id" name="type_id">
-                                            <option value="0">---Выберите тип документа---</option>
-                                            @foreach ($documentationTypes as $type)
-                                                <option value="{{ $type->id }}"
-                                                    {{ $type->id == @$documentation->type_id ? 'selected' : '' }}>
-                                                    {{ $type->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="text">Описание документа</label>
-                                        <textarea class="form-control" name="text" rows="2">{{ @$documentation->text }}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-12 mb-3">
-                                    <div class="form-check form-switch">
-                                        <input type="checkbox" class="form-check-input" name="auto_calc_cbrf"
-                                            id="auto_calc_cbrf" data-toggle="toggle" data-onstyle="success"
-                                            data-offstyle="danger" data-on="Да" data-off="Нет"
-                                            {{ @$currency->auto_calc_cbrf ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="auto_calc_cbrf">Автоматический расчет
-                                            внутреннего курса</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="py-3 form-row justify-content-center">
-                                <a class="btn btn-success" href="{{ route('admin.currency.index') }}" role="button">
-                                    <i class="fa fa-arrow-left"></i> К списку
-                                </a>
-                                <button type="submit" name="action" value="save-exit" class="btn btn-primary">
-                                    Сохранить и закрыть
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="card card-success">
+                <div class="card-header">
+                    <h3 class="card-title">Основное</h3>
                 </div>
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">Изображение для документа</h3>
-                    </div>
-                    <livewire:documentation-images-gallery :record="$documentation" />
-                </div>
-                <div class="card card-warning">
-                    <div class="card-header">
-                        <h3 class="card-title">Файл документа</h3>
-                    </div>
-                    <div class="card-body">
+                <div class="card-body">
+                    <form action="{{ route('admin.documentation.update', $documentation->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
                         <div class="row">
-                            <div class="col-lg-4 col-6">
+                            <div class="col-6">
                                 <div class="form-group">
-                                    <label for="fileDocument">Файл документа (PDF)</label>
-                                    <input type="file" class="form-control" id="fileDocument" name="fileDocument">
-                                    @error('fileDocument')
+                                    <label for="title">Название документа</label>
+                                    <input type="text" class="form-control" name="title"
+                                        value="{{ $documentation->title }}">
+                                    @error('title')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="vendor_id" class="form-label">Бренд</label>
+                                    <select class="form-control" id="vendor_id" name="vendor_id">
+                                        <option value="0">---Выберите бренд---</option>
+                                        @foreach ($vendors as $vendor)
+                                            <option value="{{ $vendor->id }}"
+                                                {{ $vendor->id == @$documentation->vendor_id ? 'selected' : '' }}>
+                                                {{ $vendor->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="type_id" class="form-label">Тип документа</label>
+                                    <select class="form-control" id="type_id" name="type_id">
+                                        <option value="0">---Выберите тип документа---</option>
+                                        @foreach ($documentationTypes as $type)
+                                            <option value="{{ $type->id }}"
+                                                {{ $type->id == @$documentation->type_id ? 'selected' : '' }}>
+                                                {{ $type->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="text">Описание документа</label>
+                                    <textarea class="form-control" name="text" rows="2">{{ @$documentation->text }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-12 mb-3">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" name="auto_calc_cbrf"
+                                        id="auto_calc_cbrf" data-toggle="toggle" data-onstyle="success"
+                                        data-offstyle="danger" data-on="Да" data-off="Нет"
+                                        {{ @$currency->auto_calc_cbrf ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="auto_calc_cbrf">Автоматический расчет
+                                        внутреннего курса</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-3 form-row justify-content-center">
+                            <a class="btn btn-success" href="{{ route('admin.currency.index') }}" role="button">
+                                <i class="fa fa-arrow-left"></i> К списку
+                            </a>
+                            <button type="submit" name="action" value="save-exit" class="btn btn-primary">
+                                Сохранить и закрыть
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Изображение для документа</h3>
+                </div>
+                <livewire:documentation-images-gallery :record="$documentation" />
+            </div>
+            <div class="card card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">Файл документа</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-4 col-6">
+                            <div class="form-group">
+                                <label for="fileDocument">Файл документа (PDF)</label>
+                                <input type="file" class="form-control" id="fileDocument" name="fileDocument">
+                                @error('fileDocument')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
