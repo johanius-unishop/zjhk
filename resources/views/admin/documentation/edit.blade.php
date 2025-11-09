@@ -81,7 +81,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="text">Описание документа</label>
-                                        <textarea class="form-control" name="text" rows="2">{{ old('text') }}</textarea>
+                                        <textarea class="form-control" name="text" rows="2">{{ @$documentation->text }}</textarea>
                                     </div>
                                 </div>
                             </div>
