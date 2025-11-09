@@ -31,14 +31,14 @@ class DocumentationFilesComponent extends Component
             $this->documentation->addMedia($this->newFile)->toMediaCollection('files');
             $this->reset(['newFile']);
             $this->refreshMediaFiles(); // Обновляем массив mediaFiles
-            dd($this->mediaFile);
+
         }
     }
 
     public function deleteFile()
     {
-        $documentation = Documentation::findOrFail($this->documentation->id);
-        $mediaItems = $documentation->getMedia('files');
+
+        $mediaItems = $this->documentation->getMedia('files');
 
         if ($mediaItems->isNotEmpty()) {
             foreach ($mediaItems as $mediaItem) {
@@ -51,7 +51,8 @@ class DocumentationFilesComponent extends Component
 
     private function refreshMediaFiles()
     {
-        $mediaItem = $this->documentation->getMedia('files')->first(); // Получаем первый элемент коллекции или null
+        $documentation = Documentation::findOrFail($this->documentation->id);
+        $mediaItem = $documentation->getMedia('files')->first(); // Получаем первый элемент коллекции или null
 
         if ($mediaItem) { // Проверяем, что запись существует
             $this->mediaFile['files'] = [
