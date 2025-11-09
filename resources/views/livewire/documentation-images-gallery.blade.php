@@ -49,11 +49,11 @@
             <label for="photos">Изображение документа</label>
         </div>
         <div class="row">
-            <div class="col-6 d-flex align-items-left">
+            <div class="col-6">
                     <input type="file" class="form-control" id="photos" wire:model.live="photos" name="photos"
                         {{ $multiple == true ? 'multiple' : '' }}>
             </div>
-            <div class="col-6 d-flex align-items-left">
+            <div class="col-6">
                 <a class="btn {{ $flag == 0 ? 'btn-primary ' : 'btn-danger' }} ml-auto" wire:loading.attr="disabled"
                     wire:click="uploadFiles" href="#">Загрузить фото</a>
             </div>
