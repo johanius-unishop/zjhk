@@ -1,7 +1,7 @@
 <div wire:poll.visible>
     <div class="row">
         @if (count((array)$images) > 0)
-        @foreach ($this->images as $image)
+        @foreach ($images as $image)
         <div class="col-md-2 mb-4">
             <figure class="figure">
                 <a class="my-image-links" data-gall="gallery01" data-maxwidth="1600px" data-ratio="16x9" href="#" data-href="{{ $image->getUrl() }}"><img widht="100%" height="100%" src="{{ $image->getUrl('thumb') }}" class="img-fluid my-link" alt="{{ $image->getFullUrl() }}"></a>
@@ -35,7 +35,7 @@
         @endif
     </div>
 
-    @if ( $flag== 0)
+    @if ( $flag == 0)
     <div><input type="file" wire:model.live="photos" name="photos" {{ $multiple==true ? 'multiple' : '' }}>
         @error('photos') <span class="error">{{ $message }}</span> @enderror
         <a class="btn {{ $flag==0 ? 'btn-primary ' : 'btn-danger' }} " wire:loading.attr="disabled" wire:click="uploadFiles" href="#"> Загрузить фото </a>
