@@ -23,13 +23,11 @@
                                 @if ($image->created_at->diffInDays(now()) < 1)
                                     <a class="btn btn-danger "
                                         wire:confirm="Вы действительно хотите удалить этот файл ?"
-                                        wire:click="delete({{ $image->id }})"><i
-                                            class="fa fa-trash"></i></a>
+                                        wire:click="delete({{ $image->id }})"><i class="fa fa-trash"></i></a>
                                 @endif
                             @else
                                 <a class="btn btn-danger " wire:confirm="Вы действительно хотите удалить этот файл ?"
-                                    wire:click="delete({{ $image->id }})"><i
-                                        class="fa fa-trash"></i></a>
+                                    wire:click="delete({{ $image->id }})"><i class="fa fa-trash"></i></a>
                             @endif
                             <a class="btn btn-success " wire:click="download({{ $image->id }})"><i
                                     class="fa fa-download"></i></a>
@@ -39,33 +37,34 @@
             @endforeach
         @else
             <div class="col-md-12 text-center">
-                Изображение логотипа не найдено
+                Изображение для документа не найдено
             </div>
+            @if ($flag == 0)
+                <div class="row">
+                    <label for="photos">Изображение документа</label>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <input type="file" class="form-control" id="photos" wire:model.live="photos"
+                            name="photos" {{ $multiple == true ? 'multiple' : '' }}>
+                    </div>
+                    <div class="col-6">
+                        <a class="btn {{ $flag == 0 ? 'btn-primary ' : 'btn-danger' }} ml-auto"
+                            wire:loading.attr="disabled" wire:click="uploadFiles" href="#">Загрузить фото</a>
+                    </div>
+                </div>
+                <div class="row">
+                    @error('photos')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
+                </div>
+            @else
+                <div class="col-md-12 text-center">
+                    Загрузка ...
+                </div>
+            @endif
         @endif
     </div>
 
-    @if ($flag == 0)
-        <div class="row">
-            <label for="photos">Изображение документа</label>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                    <input type="file" class="form-control" id="photos" wire:model.live="photos" name="photos"
-                        {{ $multiple == true ? 'multiple' : '' }}>
-            </div>
-            <div class="col-6">
-                <a class="btn {{ $flag == 0 ? 'btn-primary ' : 'btn-danger' }} ml-auto" wire:loading.attr="disabled"
-                    wire:click="uploadFiles" href="#">Загрузить фото</a>
-            </div>
-        </div>
-        <div class="row">
-            @error('photos')
-                <span class="error">{{ $message }}</span>
-            @enderror
-        </div>
-    @else
-        <div class="col-md-12 text-center">
-            Загрузка ...
-        </div>
-    @endif
+
 </div>
