@@ -31,6 +31,7 @@ class DocumentationFilesComponent extends Component
             $this->documentation->addMedia($this->newFile)->toMediaCollection('files');
             $this->reset(['newFile']);
             $this->refreshMediaFiles(); // Обновляем массив mediaFiles
+            dd($this->mediaFile);
         }
     }
 
