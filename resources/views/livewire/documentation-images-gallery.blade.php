@@ -1,6 +1,6 @@
 <div wire:poll.visible style="margin: 16px;">
     <div class="row">
-        @if (count((array) $this->images) > 0)
+        @if (!$images->isEmpty())
             @foreach ($images as $image)
                 <div class="col-md-2 mb-4">
                     <figure class="figure">
@@ -31,7 +31,7 @@
                                     wire:click="delete({{ $image->id }})"><i
                                         class="fa fa-trash"></i></a>
                             @endif
-                            <a class="btn btn-success " wire:click="download({{ $image->id }})" href="#"><i
+                            <a class="btn btn-success " wire:click="download({{ $image->id }})"><i
                                     class="fa fa-download"></i></a>
                         </figcaption>
                     </figure>
