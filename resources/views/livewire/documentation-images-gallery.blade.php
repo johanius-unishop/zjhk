@@ -23,12 +23,12 @@
                                 @if ($image->created_at->diffInDays(now()) < 1)
                                     <a class="btn btn-danger "
                                         wire:confirm="Вы действительно хотите удалить этот файл ?"
-                                        wire:click="delete({{ $image->id }})" href="#"><i
+                                        wire:click="delete({{ $image->id }})"><i
                                             class="fa fa-trash"></i></a>
                                 @endif
                             @else
                                 <a class="btn btn-danger " wire:confirm="Вы действительно хотите удалить этот файл ?"
-                                    wire:click="delete({{ $image->id }})" href="#"><i
+                                    wire:click="delete({{ $image->id }})"><i
                                         class="fa fa-trash"></i></a>
                             @endif
                             <a class="btn btn-success " wire:click="download({{ $image->id }})" href="#"><i
