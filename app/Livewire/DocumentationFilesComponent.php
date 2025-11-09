@@ -19,7 +19,7 @@ class DocumentationFilesComponent extends Component
     public $newFile;
 
 
-    public function mount($documentation)
+    public function mount($documentation = null)
     {
         $this->documentation = $documentation;
 
