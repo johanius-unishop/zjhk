@@ -76,18 +76,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-12 mb-3">
-                                <div class="form-check form-switch">
-                                    <input type="checkbox" class="form-check-input" name="auto_calc_cbrf"
-                                        id="auto_calc_cbrf" data-toggle="toggle" data-onstyle="success"
-                                        data-offstyle="danger" data-on="Да" data-off="Нет"
-                                        {{ @$currency->auto_calc_cbrf ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="auto_calc_cbrf">Автоматический расчет
-                                        внутреннего курса</label>
-                                </div>
-                            </div>
-                        </div>
                         <div class="py-3 form-row justify-content-center">
                             <a class="btn btn-success mx-1" href="{{ route('admin.documentation.index') }}" role="button">
                                 <i class="fa fa-arrow-left"></i> К списку
@@ -111,14 +99,8 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-4 col-6">
-                            <div class="form-group">
-                                <label for="fileDocument">Файл документа (PDF)</label>
-                                <input type="file" class="form-control" id="fileDocument" name="fileDocument">
-                                @error('fileDocument')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class=" col-12">
+                            <livewire:product-files-component :record="$documentation" />
                         </div>
                     </div>
                 </div>
