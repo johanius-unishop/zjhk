@@ -19,9 +19,9 @@ class DocumentationFilesComponent extends Component
     public $newFile;
 
 
-    public function mount($documentation = null)
+    public function mount($record = null)
     {
-        $this->documentation = $documentation;
+        $this->documentation = $record;
         dd($this->documentation);
         $this->refreshMediaFiles(); // Обновляем массив mediaFiles
     }
