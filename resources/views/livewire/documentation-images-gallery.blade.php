@@ -4,19 +4,13 @@
             @foreach ($images as $image)
                 <div class="col-md-2 mb-4">
                     <figure class="figure">
-                        <a class="my-image-links" data-gall="gallery01" data-maxwidth="1600px" data-ratio="16x9"
-                            href="#" data-href="{{ $image->getUrl() }}"><img widht="100%" height="100%"
+                        <img widht="100%" height="100%"
                                 src="{{ $image->getUrl('jpeg-images') }}" class="img-fluid my-link"
-                                alt="{{ $image->getFullUrl() }}"></a>
-
-                                <p>Размер: {{ $image->human_readable_size }}</p>
-                                <p>Загружено: {{ $image->created_at }}</p>
-
+                                alt="{{ $image->getFullUrl() }}">
                         <figcaption class="figure-caption">
                             @if (auth()->check() && auth()->user()->isAdmin())
-                                <a class="btn btn-danger "
-                                        wire:confirm="Вы действительно хотите удалить этот файл ?"
-                                        wire:click="delete({{ $image->id }})"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-danger " wire:confirm="Вы действительно хотите удалить этот файл ?"
+                                    wire:click="delete({{ $image->id }})"><i class="fa fa-trash"></i></a>
                             @endif
                             <a class="btn btn-success " wire:click="download({{ $image->id }})"><i
                                     class="fa fa-download"></i></a>
@@ -54,6 +48,4 @@
             @endif
         @endif
     </div>
-
-
 </div>
