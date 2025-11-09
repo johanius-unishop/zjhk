@@ -13,13 +13,10 @@
                                 <p>Загружено: {{ $image->created_at }}</p>
 
                         <figcaption class="figure-caption">
-                            @if (!Auth::user()->can('manage product'))
+                            @if (auth()->check() && auth()->user()->isAdmin())
                                 <a class="btn btn-danger "
                                         wire:confirm="Вы действительно хотите удалить этот файл ?"
                                         wire:click="delete({{ $image->id }})"><i class="fa fa-trash"></i></a>
-                            @else
-                                <a class="btn btn-warning " wire:confirm="Вы действительно хотите удалить этот файл ?"
-                                    wire:click="delete({{ $image->id }})"><i class="fa fa-trash"></i></a>
                             @endif
                             <a class="btn btn-success " wire:click="download({{ $image->id }})"><i
                                     class="fa fa-download"></i></a>
