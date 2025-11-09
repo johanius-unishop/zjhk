@@ -54,10 +54,12 @@
                     @error('photos')
                         <span class="error">{{ $message }}</span>
                     @enderror
-
+                </div>
+                <div class="col-6 d-flex align-items-left">
                     <a class="btn {{ $flag == 0 ? 'btn-primary ' : 'btn-danger' }} ml-auto"
                         wire:loading.attr="disabled" wire:click="uploadFiles" href="#">Загрузить фото</a>
                 </div>
+
             </div>
         </div>
     @else
