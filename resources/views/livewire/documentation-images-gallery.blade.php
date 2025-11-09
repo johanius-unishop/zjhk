@@ -1,6 +1,6 @@
 <div wire:poll.visible style="margin: 16px;">
     <div class="row">
-        @if (count((array) $images) > 0)
+        @if (count((array) $this->images) > 0)
             @foreach ($images as $image)
                 <div class="col-md-2 mb-4">
                     <figure class="figure">
