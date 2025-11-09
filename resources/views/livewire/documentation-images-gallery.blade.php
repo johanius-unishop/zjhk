@@ -7,9 +7,9 @@
                         <img widht="100%" height="100%" src="{{ $image->getUrl('jpeg-images') }}"
                             class="img-fluid my-link" alt="{{ $image->getFullUrl() }}">
                     </figure>
-                    <div>
+                    <div class="align-items-center">
                         @if (auth()->check() && auth()->user()->isAdmin())
-                            <a class="btn btn-danger " wire:confirm="Вы действительно хотите удалить этот файл ?"
+                            <a class="btn btn-danger" wire:confirm="Вы действительно хотите удалить этот файл ?"
                                 wire:click="delete({{ $image->id }})"><i class="fa fa-trash"></i></a>
                         @endif
                         <a class="btn btn-success " wire:click="download({{ $image->id }})"><i
