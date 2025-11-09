@@ -16,7 +16,7 @@
                                 <span class="me-2"><i class="fas fa-file-pdf"></i></span>
                                 <a href="{{ $mediaFile['files']['url'] }}" target="_blank">{{ basename($mediaFile['files']['url']) }}</a>
                             @else
-                                <form wire:submit="uploadFile('files')">
+                                <form wire:submit="uploadFile()">
                                     <div class="d-flex align-items-center gap-2 d-md-flex justify-content-md">
                                         <input type="file" wire:model.live="newFile" accept="application/pdf">
                                         <button type="submit" class="btn btn-outline-success btn-sm">Добавить файл</button>
@@ -26,7 +26,7 @@
                         </td>
                         <td>
                             @if(isset($mediaFile['files']) && !empty($mediaFile['files']))
-                                <button wire:click="deleteFile('files')" class="btn btn-outline-danger btn-sm">Удалить файл</button>
+                                <button wire:click="deleteFile()" class="btn btn-outline-danger btn-sm">Удалить файл</button>
                             @else
 
                             @endif
