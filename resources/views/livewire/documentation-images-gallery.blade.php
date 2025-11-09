@@ -18,8 +18,8 @@
                                         wire:confirm="Вы действительно хотите удалить этот файл ?"
                                         wire:click="delete({{ $image->id }})"><i class="fa fa-trash"></i></a>
                             @else
-                                <a class="btn btn-danger " wire:confirm="Вы действительно хотите удалить этот файл ?"
-                                    wire:click="delete1({{ $image->id }})"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-warning " wire:confirm="Вы действительно хотите удалить этот файл ?"
+                                    wire:click="delete({{ $image->id }})"><i class="fa fa-trash"></i></a>
                             @endif
                             <a class="btn btn-success " wire:click="download({{ $image->id }})"><i
                                     class="fa fa-download"></i></a>
