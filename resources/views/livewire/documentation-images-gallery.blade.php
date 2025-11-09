@@ -8,6 +8,9 @@
                             href="#" data-href="{{ $image->getUrl() }}"><img widht="100%" height="100%"
                                 src="{{ $image->getUrl('jpeg-images') }}" class="img-fluid my-link"
                                 alt="{{ $image->getFullUrl() }}"></a>
+
+                                <p>Размер:</p>
+                                <span>Размер: </span>
                         <table>
                             <tr>
                                 <td>Размер:</td>
