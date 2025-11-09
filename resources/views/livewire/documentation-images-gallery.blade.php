@@ -1,4 +1,4 @@
-<div style="margin: 16px;">
+<div wire:poll.visible style="margin: 16px;">
     <div class="row">
         @if (count((array) $images) > 0)
             @foreach ($images as $image)
