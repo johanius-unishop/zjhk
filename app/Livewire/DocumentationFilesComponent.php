@@ -52,7 +52,7 @@ class DocumentationFilesComponent extends Component
     private function refreshMediaFiles()
     {
         $mediaItem = $this->documentation->getMedia('files')->first(); // Получаем первый элемент коллекции или null
-        dd($mediaItem);
+
         if ($mediaItem) { // Проверяем, что запись существует
             $this->mediaFile['files'] = [
                 'url' => $mediaItem->getFullUrl(),
