@@ -60,7 +60,7 @@ class DocumentationFilesComponent extends Component
             $this->mediaFile['files'] = null;
         }
 
-        $this->refresh();
+        $this->dispatch('refresh');
     }
 
 
