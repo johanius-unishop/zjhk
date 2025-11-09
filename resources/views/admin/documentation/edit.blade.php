@@ -97,13 +97,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Файл документа</h3>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class=" col-12">
-                            <livewire:documentation-files-component :record="$documentation" />
-                        </div>
-                    </div>
-                </div>
+                <livewire:documentation-files-component :record="$documentation" />
             </div>
         </div>
     </div>
