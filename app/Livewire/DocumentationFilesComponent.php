@@ -37,7 +37,8 @@ class DocumentationFilesComponent extends Component
 
     public function deleteFile()
     {
-        $mediaItems = $this->documentation->getMedia('files');
+        $documentation = Documentation::findOrFail($this->documentation->id);
+        $mediaItems = $documentation->getMedia('files');
 
         if ($mediaItems->isNotEmpty()) {
             foreach ($mediaItems as $mediaItem) {
