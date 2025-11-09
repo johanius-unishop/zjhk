@@ -46,7 +46,7 @@
 
     @if ($flag == 0)
         <div class="row">
-            <div class="col-lg-4 col-6 d-flex align-items-left">
+            <div class="col-6 d-flex align-items-left">
                 <div class="form-group mr-2 w-100"> <!-- Отступ справа -->
                     <label for="photos">Изображение документа</label>
                     <input type="file" class="form-control" id="photos" wire:model.live="photos" name="photos"
