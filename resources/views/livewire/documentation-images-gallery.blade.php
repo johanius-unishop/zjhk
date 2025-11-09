@@ -2,7 +2,7 @@
     <div class="row">
         @if (!$images->isEmpty())
             @foreach ($images as $image)
-                <div class="col-2 mb-4">
+                <div class="col-3 mb-4">
                     <figure class="figure">
                         <img widht="100%" height="100%" src="{{ $image->getUrl('jpeg-images') }}"
                             class="img-fluid my-link" alt="{{ $image->getFullUrl() }}">
