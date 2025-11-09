@@ -29,13 +29,6 @@ class DocumentationImagesGallery extends Component
         $this->multiple = $multiple;
     }
 
-
-    public function boot()
-    {
-        $this->images = $this->record->getMedia('images');
-        $this->dispatch('galleryModalPhoto');
-
-    }
     public function delete($media_id)
     {
 

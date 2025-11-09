@@ -1,4 +1,4 @@
-<div wire:poll.visible style="margin: 16px;">
+<div style="margin: 16px;">
     <div class="row">
         @if (!$images->isEmpty())
             @foreach ($images as $image)
