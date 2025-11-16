@@ -79,7 +79,7 @@ class DocumentationImagesGallery extends Component
             $this->images = null;
         }
 
-        $this->images = collect([$image]);
+
         $this->dispatch('$refresh');
     }
 
