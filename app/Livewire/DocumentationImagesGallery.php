@@ -73,6 +73,12 @@ class DocumentationImagesGallery extends Component
         $document = Documentation::findOrFail($this->record->id);
         $image   = $document->getMedia('images')->first();//'images'
 
+        if ($image) { // Проверяем, что запись существует
+            $this->images = collect([$image]);
+        } else {
+            $this->images = null;
+        }
+
         $this->images = collect([$image]);
         $this->dispatch('$refresh');
     }
