@@ -18,7 +18,7 @@
                                     <h5>{{ $doc->title }}</h5>
                                     <p>{{ $doc->text }}</p>
                                 </div>
-                                <a href="{{ $doc->getMedia('files')->first()->getFullUrl() }}">Скачать</a>
+                                <a href="{{ $doc->getMedia('files')->first()->getFullUrl() }}" download>Скачать</a>
                             </div>
                         </div>
                     @endforeach
