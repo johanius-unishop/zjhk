@@ -70,7 +70,7 @@ class DocumentationImagesGallery extends Component
 
     public function galleryModalPhoto()
     {
-        $document = $documentation = Documentation::findOrFail($this->record->id);
+        $document = Documentation::findOrFail($this->record->id);
         $this->images   = $document->getMedia('images');//'images'
         $this->dispatch('$refresh');
     }
