@@ -12876,6 +12876,7 @@ h2.benefits__title {
 .articles__item h5,
 .documents__item h5 {
     margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .news__item p,
