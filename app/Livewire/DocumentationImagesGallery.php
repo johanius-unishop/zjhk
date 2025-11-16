@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Documentation;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
@@ -41,7 +42,6 @@ class DocumentationImagesGallery extends Component
             $this->dispatch('toast', message: 'Изображение для документа не удалось удалить.' . $th->getMessage(), notify: 'error');
         }
         $this->dispatch('galleryModalPhoto');
-        $this->dispatch('$refresh');
     }
 
     public function uploadFiles()
@@ -57,16 +57,22 @@ class DocumentationImagesGallery extends Component
             $this->dispatch('toast', message: 'Изображение для документа загружено.', notify: 'success');
         }
 
-        $this->dispatch('galleryModalPhoto');
         $this->flag   = 0;
         $this->photos = [];
-        $this->dispatch('$refresh');
+        $this->dispatch('galleryModalPhoto');
     }
 
 
     public function download(Media $mediaItem)
     {
         return response()->download($mediaItem->getPath(), $mediaItem->file_name);
+    }
+
+    public function galleryModalPhoto()
+    {
+        $document = $documentation = Documentation::findOrFail($this->record->id);
+        $this->images   = $document->getMedia('images');//'images'
+        $this->dispatch('$refresh');
     }
 
 }
