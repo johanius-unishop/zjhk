@@ -1,6 +1,6 @@
 <div style="margin: 16px;">
     <div class="row">
-        @if (!is_null($images))
+        @if (!is_null($images) && !$images->isEmpty())
             @foreach ($images as $image)
                 <div class="col-3">
                     <figure class="figure">
