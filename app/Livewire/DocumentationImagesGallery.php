@@ -41,7 +41,7 @@ class DocumentationImagesGallery extends Component
         catch (\Throwable $th) {
             $this->dispatch('toast', message: 'Изображение для документа не удалось удалить.' . $th->getMessage(), notify: 'error');
         }
-        $this->dispatch('galleryModalPhoto');
+        $this->galleryModalPhoto();
     }
 
     public function uploadFiles()
@@ -59,7 +59,7 @@ class DocumentationImagesGallery extends Component
 
         $this->flag   = 0;
         $this->photos = [];
-        $this->dispatch('galleryModalPhoto');
+        $this->galleryModalPhoto();
     }
 
 
