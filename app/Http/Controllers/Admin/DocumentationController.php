@@ -47,28 +47,15 @@ class DocumentationController extends Controller
 
         // Подготовка входных данных
         $input = $request->all();
-        //$input['published'] = $request->filled('published'); // Преобразуем в boolean
 
         // Создание записи
         $record = Documentation::create($input);
 
-        // Обработка загрузки изображения для документа
-        if ($request->hasFile('imageDocument')) {
-            $record
-                ->addMediaFromRequest('imageDocument')
-                ->toMediaCollection('images');
-        }
-
-        if ($request->hasFile('fileDocument')) {
-            $record
-                ->addMediaFromRequest('fileDocument')
-                ->toMediaCollection('files');
-        }
 
         // Уведомление об успехе
         session()->flash('toast-success', 'Запись успешно создана');
 
-        return redirect()->route('admin.documentation.index', $record->id);
+        return redirect()->route('admin.documentation.index');
     }
 
     public function edit(Documentation $documentation)
@@ -107,6 +94,24 @@ class DocumentationController extends Controller
         }
         return redirect(route('admin.faq.edit', $faq->id));
     }*/
+    public function update(UpdateDocumentationRequest $request)
+    {
+        // Проверка прав доступа
+        if (!Gate::allows('admin-content')) {
+            return abort(401);
+        }
+
+        // Подготовка входных данных
+        $input = $request->all();
+
+        // Создание записи
+        $record = Documentation::update($input);
+
+        // Уведомление об успехе
+        session()->flash('toast-success', 'Запись успешно сохраненана');
+
+        return redirect()->route('admin.documentation.index');
+    }
 
 
 }
