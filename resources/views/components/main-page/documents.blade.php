@@ -12,14 +12,13 @@
                             <div>
                                 <div>
                                     <img src="{{ $doc->getMedia('images')->first()->getUrl('jpeg-images') }}"
-                                        alt="документация">
+                                        alt="{{ $doc->title }}">
                                 </div>
                                 <div>
-                                    <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
-                                    <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                                        3A, 10A, 16A, 32A</p>
+                                    <h5>{{ $doc->title }}</h5>
+                                    <p>{{ $doc->text }}</p>
                                 </div>
-                                <a href="#">Скачать</a>
+                                <a href="{{ $doc->getMedia('files')->first()->getFullUrl() }}">Скачать</a>
                             </div>
                         </div>
                     @endforeach
