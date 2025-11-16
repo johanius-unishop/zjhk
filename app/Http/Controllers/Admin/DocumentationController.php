@@ -94,7 +94,7 @@ class DocumentationController extends Controller
         }
         return redirect(route('admin.faq.edit', $faq->id));
     }*/
-    public function update(UpdateDocumentationRequest $request)
+    public function update(UpdateDocumentationRequest $request, Documentation $documentation)
     {
         // Проверка прав доступа
         if (!Gate::allows('admin-content')) {
@@ -105,7 +105,7 @@ class DocumentationController extends Controller
         $input = $request->all();
 
         // Создание записи
-        $record = Documentation::update($input);
+        $documentation->update($input);
 
         // Уведомление об успехе
         session()->flash('toast-success', 'Запись успешно сохраненана');
