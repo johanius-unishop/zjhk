@@ -72,7 +72,6 @@ class DocumentationImagesGallery extends Component
     {
         $document = Documentation::findOrFail($this->record->id);
         $this->images   = $document->getMedia('images')->first();//'images'
-        dd($this->images);
         $this->dispatch('$refresh');
     }
 
