@@ -7,19 +7,22 @@
         <div class="documents__body">
             <div class="swiper documents-slider">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide documents__item">
-                        <div>
+                    @foreach ($documentations as $doc)
+                        <div class="swiper-slide documents__item">
                             <div>
-                                <img src="/images/products/doc-1.jpg" alt="документация">
+                                <div>
+                                    <img src="{{ $doc->getMedia('images')->first()->getUrl('jpeg-images') }}"
+                                        alt="документация">
+                                </div>
+                                <div>
+                                    <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
+                                    <p>Корпусы и кожухи прямоугольных промышленных разъёмов
+                                        3A, 10A, 16A, 32A</p>
+                                </div>
+                                <a href="#">Скачать</a>
                             </div>
-                            <div>
-                                <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
-                                <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                                    3A, 10A, 16A, 32A</p>
-                            </div>
-                            <a href="#">Скачать</a>
                         </div>
-                    </div>
+                    @endforeach
                     <div class="swiper-slide documents__item">
                         <div>
                             <div>
@@ -33,45 +36,6 @@
                         </div>
                     </div>
 
-                    <div class="swiper-slide documents__item">
-                        <div>
-                            <div>
-                                <img src="/images/products/doc-3.jpg" alt="документация">
-                            </div>
-                            <div>
-                                <h5>Официальная документация серии НЕ на русском языке</h5>
-                                <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                                    3A, 10A, 16A, 32A, 3A, 10A, 16A, 32A</p>
-                            </div>
-                            <a href="#">Скачать</a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide documents__item">
-                        <div>
-                            <div>
-                                <img src="/images/products/doc-4.jpg" alt="документация">
-                            </div>
-                            <div>
-                                <h5>Серия НЕЕ</h5>
-                                <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                                    3A, 10A, 16A, 32A</p>
-                            </div>
-                            <a href="#">Скачать</a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide documents__item">
-                        <div>
-                            <div>
-                                <img src="/images/products/doc-3.jpg" alt="документация">
-                            </div>
-                            <div>
-                                <h5>Официальная документация серии НЕ на русском языке</h5>
-                                <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                                    3A, 10A, 16A, 32A, 3A, 10A, 16A, 32A</p>
-                            </div>
-                            <a>Скачать</a>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="swiper-button-prev documents"></div>
