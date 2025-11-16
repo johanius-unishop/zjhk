@@ -34,6 +34,54 @@
                             <a href="#">Скачать</a>
                         </div>
                     </div>
+                    <div class="swiper-slide documents__item">
+                        <div>
+                            <div>
+                                <img src="/images/products/doc-2.jpg" alt="документация">
+                            </div>
+                            <div>
+                                <h5>Серия НА</h5>
+                                <p>Компактные контактные вставки промышленных разъемов 3A, 10A, 16A, 32A </p>
+                            </div>
+                            <a href="#">Скачать</a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide documents__item">
+                        <div>
+                            <div>
+                                <img src="/images/products/doc-2.jpg" alt="документация">
+                            </div>
+                            <div>
+                                <h5>Серия НА</h5>
+                                <p>Компактные контактные вставки промышленных разъемов 3A, 10A, 16A, 32A </p>
+                            </div>
+                            <a href="#">Скачать</a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide documents__item">
+                        <div>
+                            <div>
+                                <img src="/images/products/doc-2.jpg" alt="документация">
+                            </div>
+                            <div>
+                                <h5>Серия НА</h5>
+                                <p>Компактные контактные вставки промышленных разъемов 3A, 10A, 16A, 32A </p>
+                            </div>
+                            <a href="#">Скачать</a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide documents__item">
+                        <div>
+                            <div>
+                                <img src="/images/products/doc-2.jpg" alt="документация">
+                            </div>
+                            <div>
+                                <h5>Серия НА</h5>
+                                <p>Компактные контактные вставки промышленных разъемов 3A, 10A, 16A, 32A </p>
+                            </div>
+                            <a href="#">Скачать</a>
+                        </div>
+                    </div>
 
                 </div>
             </div>
