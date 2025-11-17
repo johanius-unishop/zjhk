@@ -521,6 +521,10 @@ class ImportController extends Controller
             if (abs($product['stock']) <= abs($product['ordered'])) {
                 $new_order_quantity = 0;
             } else {
+                if ($product['moq'] === null || $product['moq'] === 0) {
+                    $product['moq'] = 1;
+                }
+
                 $new_order_quantity = (intdiv(
                     ($product['ordered'] - $product['stock']),
                     $product['moq']
