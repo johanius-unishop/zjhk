@@ -469,6 +469,7 @@ class ImportController extends Controller
         }
 
 
+        $last_order = Order::latest()->first();
         //Получаем айдишники открытых заказов
         $open_orders = Order::where('received', '0')
             ->select('id', 'order_number') // Добавили 'order_number'
@@ -795,8 +796,8 @@ class ImportController extends Controller
         // Создаем новую рабочую книгу
         $order_spreadsheet = new Spreadsheet();
         $order_sheet = $order_spreadsheet->getActiveSheet();
-        preg_match('/\d+/', $open_orders->last()->order_number, $matches);
-        $orderNumber = $matches[0]+1; // Содержит только номер
+
+        $orderNumber = $last_order;
 
         $order_sheet->setTitle('Order ' . $orderNumber);
         // Заполнение ячейки A1 значением $orderNumber
