@@ -796,8 +796,8 @@ class ImportController extends Controller
         // Создаем новую рабочую книгу
         $order_spreadsheet = new Spreadsheet();
         $order_sheet = $order_spreadsheet->getActiveSheet();
-
-        $orderNumber = $last_order;
+        preg_match('/\d+/', $last_order->order_number, $matches);
+        $orderNumber = $matches[0]+1; // Содержит только номер
 
         $order_sheet->setTitle('Order ' . $orderNumber);
         // Заполнение ячейки A1 значением $orderNumber
