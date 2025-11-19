@@ -163,8 +163,15 @@ class UpdateYmlCatalog extends Command
                     $cdataNode = $dom->createCDATASection($description_ym);
                     $description->appendChild($cdataNode);
 
-                    $product_prop = $product->getProperties();
-                    dd($product_prop);
+                    $product_props = $product->getProperties();
+
+                    foreach ($product_props as $param) {
+                        $paramElement = $dom->createElement('param', $param->characteristic_value);
+                        $paramElement->setAttribute('name', $param->characteristic_value);
+
+                        $offer->appendChild($paramElement);
+                    }
+
 
                     $in_stock_value = $product->stock;
                     $in_stock_value = $in_stock_value < 0 ? 0 : $in_stock_value;
