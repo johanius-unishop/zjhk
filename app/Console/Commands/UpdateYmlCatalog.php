@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Setting;
 use DOMDocument;
 
@@ -96,6 +97,27 @@ class UpdateYmlCatalog extends Command
                 $version = $shop->appendChild($dom->createElement('version', '1.0'));
                 $email = $shop->appendChild($dom->createElement('email', 'info@kevtek.ru'));
 
+
+                $currencies = $shop->appendChild($dom->createElement('currencies'));
+                $currency = $currencies->appendChild($dom->createElement('currency'));
+                $currency->setAttribute('id', 'RUR');
+                $currency->setAttribute('rate', '1');
+
+                $categories = $shop->appendChild($dom->createElement('categories'));
+
+                $categories_ym = Category::all();
+
+                foreach ($categories_ym as $category_ym) {
+                    // Создаем узел category
+                    $category = $dom->createElement('category', $category_ym->name);
+                    $category->setAttribute('id', $category_ym->id);
+                    if ($category_ym->parent_id !== null) {
+                        $category->setAttribute('parentId', $category_ym->parent_id);
+                    }
+
+                    // Добавляем offer к offers
+                    $categories->appendChild($category);
+                }
 
                 // Создаем узел offers
                 $offers = $shop->appendChild($dom->createElement('offers'));
