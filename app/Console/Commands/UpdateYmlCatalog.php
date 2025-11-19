@@ -105,7 +105,7 @@ class UpdateYmlCatalog extends Command
 
                 $categories = $shop->appendChild($dom->createElement('categories'));
 
-                $categories_ym = Category::all();
+                $categories_ym = Category::whereRaw("LOWER(name) NOT LIKE '%комплекты%'")->get();
 
                 foreach ($categories_ym as $category_ym) {
                     // Создаем узел category
