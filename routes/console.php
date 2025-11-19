@@ -10,7 +10,7 @@ Schedule::command('products:update-popular-products-from-1c')
     ->everyFiveMinutes()
     ->withoutOverlapping();
 Schedule::command('yml:update-catalog')
-    ->everyFiveMinutes()
+    ->everySixHours()
     ->withoutOverlapping();
 
 Schedule::command('queue:work --stop-when-empty --queue=high,default')->everyMinute();
