@@ -166,8 +166,8 @@ class UpdateYmlCatalog extends Command
                     $product_props = $product->getProperties();
 
                     foreach ($product_props as $param) {
-                        $paramElement = $dom->createElement('param', $param->characteristic_value);
-                        $paramElement->setAttribute('name', $param->characteristic_value);
+                        $paramElement = $dom->createElement('param', $param["characteristic_value"]);
+                        $paramElement->setAttribute('name', $param["characteristic_name"]);
 
                         $offer->appendChild($paramElement);
                     }
