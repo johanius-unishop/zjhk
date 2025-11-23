@@ -6,7 +6,7 @@
         </div>
         <div class="documents__body">
             <div class="swiper documents-slider">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper documents-swiper-wrapper">
                     @foreach ($documentations as $doc)
                         <div class="swiper-slide documents__item">
                             <div class="documents__item-wrapper card-layout">

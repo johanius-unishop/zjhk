@@ -5523,7 +5523,8 @@ select {
 }
 
 
-.swiper-wrapper.opt-swiper-wrapper {
+.swiper-wrapper.opt-swiper-wrapper,
+.swiper-wrapper.documents-swiper-wrapper {
     box-sizing: border-box;
 }
 
