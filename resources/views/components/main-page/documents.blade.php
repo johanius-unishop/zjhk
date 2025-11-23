@@ -12,13 +12,13 @@
                             <div class="documents__item-wrapper card-layout">
                                 <div>
                                     @if (
-                                        $data['acceptsWebP'] &&
+                                        $acceptsWebP &&
                                             $doc->getFirstMedia('images') &&
                                             $doc->getFirstMedia('images')->hasGeneratedConversion('webp-images'))
                                         <img src="{{ $doc->getFirstMedia('images')->getUrl('webp-images') }}"
                                             alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}" loading="lazy">
                                     @elseif (
-                                        !$data['acceptsWebP'] &&
+                                        !$acceptsWebP &&
                                             $doc->getFirstMedia('images') &&
                                             $doc->getFirstMedia('images')->hasGeneratedConversion('jpeg-images'))
                                         <img src="{{ $doc->getFirstMedia('images')->getUrl('jpeg-images') }}"
