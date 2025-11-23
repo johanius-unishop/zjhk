@@ -12556,9 +12556,35 @@ h2.benefits__title {
     }
 }
 
+.documents__body {
+    position: relative;
+}
+
+.swiper-slide.product-page__item {
+    height: 100% !important;
+}
+
+.swiper.documents-slider {
+    overflow: unset !important;
+    overflow-x: hidden !important;
+}
+
+.swiper-button-prev.documents,
+.swiper-button-next.documents {
+    width: 2.875rem !important;
+    height: 2.875rem !important;
+    background-color: rgb(255, 255, 255) !important;
+    box-shadow: 0 1px 4px 0 rgba(83, 88, 98, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    top: 3.125%rem;
+    transform: translateY(-3px);
+}
+
+
+
 .news__body,
 .articles__body,
-.documents__body,
 .brands__body {
     position: relative;
 }
@@ -12566,7 +12592,6 @@ h2.benefits__title {
 .swiper.banner-slider,
 .swiper.news-slider,
 .swiper.articles-slider,
-.swiper.documents-slider,
 .swiper.brands-slider {
     overflow: unset !important;
     overflow-x: hidden !important;
@@ -12594,12 +12619,9 @@ h2.benefits__title {
 .swiper-button-next.news,
 .swiper-button-prev.articles,
 .swiper-button-next.articles,
-.swiper-button-prev.documents,
-.swiper-button-next.documents,
 .swiper-button-prev.brands,
-.swiper-button-next.brands,
-.swiper-button-prev.brands,
-.swiper-button-next.brands {
+.swiper-button-next.brands
+ {
     width: 2.875rem !important;
     height: 2.875rem !important;
     background-color: rgb(255, 255, 255) !important;
@@ -12617,8 +12639,6 @@ h2.benefits__title {
 .swiper-button-prev.documents::after,
 .swiper-button-next.documents::after,
 .swiper-button-prev.brands::after,
-.swiper-button-next.brands::after,
-.swiper-button-prev.brands::after,
 .swiper-button-next.brands::after {
     font-size: 0.875rem !important;
     font-weight: 700 !important;
@@ -12632,8 +12652,6 @@ h2.benefits__title {
     .swiper-button-next.articles,
     .swiper-button-prev.documents,
     .swiper-button-next.documents,
-    .swiper-button-prev.brands,
-    .swiper-button-next.brands,
     .swiper-button-prev.brands,
     .swiper-button-next.brands {
         display: none;
