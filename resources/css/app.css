@@ -5473,7 +5473,8 @@ select {
     position: relative;
 }
 
-.swiper-slide.product-page__item {
+.swiper-slide.product-page__item,
+.swiper-slide.ddocuments__item {
     height: 100% !important;
 }
 
