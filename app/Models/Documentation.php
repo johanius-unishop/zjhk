@@ -26,13 +26,13 @@ class Documentation extends Model implements HasMedia
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('jpeg-images')
-            ->fit(FIT::Fill, 245, 178)   // Сохраняем пропорцию, максимум ширина 245 или высота 178px
+            ->fit(FIT::Fill, 220, 220)   // Сохраняем пропорцию, максимум ширина 220 или высота 220px
             ->format('jpg')                              // Устанавливаем формат сохранения изображения
             ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
             ->nonQueued();
 
         $this->addMediaConversion('webp-images')
-            ->fit(FIT::Fill, 245, 178)   // Сохраняем пропорцию, максимум ширина 245 или высота 178px
+            ->fit(FIT::Fill, 220, 220)   // Сохраняем пропорцию, максимум ширина 220 или высота 220px
             ->format('webp')                              // Устанавливаем формат сохранения изображения
             ->performOnCollections('images')             // Применяется ко всей коллекции 'images'
             ->nonQueued();
