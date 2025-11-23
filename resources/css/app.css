@@ -3280,13 +3280,15 @@ select {
     }
 }
 
-.product-page__item {
+.product-page__item,
+.documents__item {
     border: 1px solid rgb(213, 215, 218);
     border-radius: 0.25rem;
     overflow: hidden;
 }
 
-.product-page__item-wrapper.card-layout {
+.product-page__item-wrapper.card-layout,
+.documents__item-wrapper.card-layout {
     padding: 1.5rem 1.5rem 1.75rem;
     display: flex;
     flex-direction: column;
@@ -3297,13 +3299,15 @@ select {
 }
 
 @media (max-width: 61.99875em) {
-    .product-page__item-wrapper.card-layout {
+    .product-page__item-wrapper.card-layout,
+    .documents__item-wrapper.card-layout {
         padding: 1rem;
     }
 }
 
 @media (max-width: 35.99875em) {
-    .product-page__item-wrapper.card-layout {
+    .product-page__item-wrapper.card-layout,
+    .documents__item-wrapper.card-layout {
         padding: 0.75rem;
         font-size: 0.875rem;
         line-height: 20px;
@@ -3311,7 +3315,8 @@ select {
     }
 }
 
-.product-page__item-wrapper.card-layout div:first-child {
+.product-page__item-wrapper.card-layout div:first-child,
+.documents__item-wrapper.card-layout div:first-child {
     height: 13.75rem;
     display: flex;
     align-items: center;
@@ -3319,13 +3324,15 @@ select {
 }
 
 @media (max-width: 61.99875em) {
-    .product-page__item-wrapper.card-layout div:first-child {
+    .product-page__item-wrapper.card-layout div:first-child,
+    .documents__item-wrapper.card-layout div:first-child {
         height: 12.5rem;
     }
 }
 
 @media (max-width: 35.99875em) {
-    .product-page__item-wrapper.card-layout div:first-child {
+    .product-page__item-wrapper.card-layout div:first-child,
+    .documents__item-wrapper.card-layout div:first-child {
         height: 10rem;
     }
 }
@@ -5474,7 +5481,7 @@ select {
 }
 
 .swiper-slide.product-page__item,
-.swiper-slide.ddocuments__item {
+.swiper-slide.documents__item {
     height: 100% !important;
 }
 
@@ -12743,8 +12750,7 @@ h2.benefits__title {
 }
 
 .news__item,
-.articles__item,
-.documents__item {
+.articles__item {
     display: block;
     border: 1px solid rgb(213, 215, 218);
     border-radius: 0.25rem;
@@ -12761,17 +12767,6 @@ h2.benefits__title {
     padding: 0 1.5rem;
     height: 100%;
 }
-
-.documents__item-wrapper.card-layout {
-    padding: 1.5rem 1.5rem 1.75rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
-    position: relative;
-    height: 100%;
-}
-
 
 
 @media (max-width: 61.99875em) {
