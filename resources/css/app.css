@@ -3350,6 +3350,10 @@ select {
     object-position: center;
     height: 100%;
 }
+.documents__item-wrapper.documents-description {
+    margin-top: 1rem;
+    margin-bottom: auto;
+}
 
 .product-page__item-wrapper.card-layout div:first-child .product-page__label-btn {
     background-color: transparent;
