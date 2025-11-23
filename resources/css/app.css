@@ -12867,8 +12867,7 @@ h2.benefits__title {
 }
 
 .news__item div>div,
-.articles__item div>div,
-.documents__item div>div {
+.articles__item div>div {
     max-height: 11.25rem;
     overflow: hidden;
 }
