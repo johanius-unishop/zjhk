@@ -3337,11 +3337,13 @@ select {
     }
 }
 
-.product-page__item-wrapper.card-layout div:first-child a {
+.product-page__item-wrapper.card-layout div:first-child a,
+.documents__item-wrapper.card-layout div:first-child a {
     height: 100%;
 }
 
-.product-page__item-wrapper.card-layout div:first-child a>img {
+.product-page__item-wrapper.card-layout div:first-child a>img,
+.documents__item-wrapper.card-layout div:first-child a>img {
     width: 100%;
     display: block;
     margin: 0 auto;

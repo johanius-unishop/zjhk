@@ -11,8 +11,28 @@
                         <div class="swiper-slide documents__item">
                             <div class="documents__item-wrapper card-layout">
                                 <div>
-                                    <img src="{{ $doc->getMedia('images')->first()->getUrl('jpeg-images') }}"
-                                        alt="{{ $doc->title }}">
+                                    @if (
+                                        $data['acceptsWebP'] &&
+                                            $doc->getFirstMedia('images') &&
+                                            $doc->getFirstMedia('images')->hasGeneratedConversion('webp-images'))
+                                        <img src="{{ $doc->getFirstMedia('images')->getUrl('webp-images') }}"
+                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}" loading="lazy">
+                                    @elseif (
+                                        !$data['acceptsWebP'] &&
+                                            $doc->getFirstMedia('images') &&
+                                            $doc->getFirstMedia('images')->hasGeneratedConversion('jpeg-images'))
+                                        <img src="{{ $doc->getFirstMedia('images')->getUrl('jpeg-images') }}"
+                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}" loading="lazy">
+                                    @else
+                                        <img src="{{ $doc->getFirstMedia('images') ? $doc->getFirstMedia('images')->getUrl() : asset('/images/default_image.jpg') }}"
+                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}" loading="lazy">
+                                    @endif
+
+
+
+
+
+
                                 </div>
                                 <div>
                                     <h5>{{ $doc->title }}</h5>
