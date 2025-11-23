@@ -9,7 +9,7 @@
                 <div class="swiper-wrapper">
                     @foreach ($documentations as $doc)
                         <div class="swiper-slide documents__item">
-                            <div>
+                            <div class="documents__item-wrapper card-layout">
                                 <div>
                                     <img src="{{ $doc->getMedia('images')->first()->getUrl('jpeg-images') }}"
                                         alt="{{ $doc->title }}">

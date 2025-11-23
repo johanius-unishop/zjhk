@@ -12735,14 +12735,25 @@ h2.benefits__title {
 }
 
 .news__item>div:first-child,
-.articles__item>div:first-child,
-.documents__item>div:first-child {
+.articles__item>div:first-child {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 0 1.5rem;
     height: 100%;
 }
+
+.documents__item-wrapper.card-layout {
+    padding: 1.5rem 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    position: relative;
+    height: 100%;
+}
+
+
 
 @media (max-width: 61.99875em) {
 
