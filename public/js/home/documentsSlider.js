@@ -9,14 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
         breakpoints: {
             360: {
                 slidesPerView: 2,
-                spaceBetween: 8,
+                spaceBetween: 20,
             },
             680: {
                 slidesPerView: 3,
                 spaceBetween: 20,
             },
             992: {
-                slidesPerView: 4,
+                slidesPerView: 5,
                 spaceBetween: 20,
             },
         },
