@@ -199,6 +199,9 @@
 
 @stop
 
+@yield('scripts')
+<script src="{{ asset('js/home/choices.js') }}"></script>
+
 @section('scripts')
     @if ($errors->has('email') || $errors->has('password'))
         <script>
