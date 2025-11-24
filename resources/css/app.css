@@ -5541,6 +5541,7 @@ select {
 .swiper-wrapper.opt-swiper-wrapper,
 .swiper-wrapper.documents-swiper-wrapper {
     box-sizing: border-box;
+    height: unset;
 }
 
 .product-page__add-cart.product-desc {
