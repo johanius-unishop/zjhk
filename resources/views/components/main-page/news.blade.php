@@ -2,7 +2,7 @@
     <div class="news__container container">
         <div class="news__title-container">
             <h2 class="news__title">Новости</h2>
-            <a href="{{ route('news.index') }}">
+            <a href="{{ route('news') }}">
                 <button class="title-btn btn">Показать все</button>
             </a>
         </div>
