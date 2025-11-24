@@ -201,7 +201,7 @@
 
 @yield('scripts')
 
-<script src="{{ asset('js/choices.js') }}"></script>
+<script src="{{ asset('js/choices.js') }}"> </script>
 
 @section('scripts')
     @if ($errors->has('email') || $errors->has('password'))
