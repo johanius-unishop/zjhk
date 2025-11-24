@@ -2,7 +2,9 @@
     <div class="documents__container container">
         <div class="documents__title-container">
             <h2 class="documents__title">Документация</h2>
-            <button class="title-btn btn">Показать все</button>
+            <a href="{{ route('news.index') }}">
+                <button class="title-btn btn">Показать все</button>
+            </a>
         </div>
         <div class="documents__body">
             <div class="swiper documents-slider">
@@ -16,16 +18,19 @@
                                             $doc->getFirstMedia('images') &&
                                             $doc->getFirstMedia('images')->hasGeneratedConversion('webp-images'))
                                         <img src="{{ $doc->getFirstMedia('images')->getUrl('webp-images') }}"
-                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}" loading="lazy">
+                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}"
+                                            loading="lazy">
                                     @elseif (
                                         !$acceptsWebP &&
                                             $doc->getFirstMedia('images') &&
                                             $doc->getFirstMedia('images')->hasGeneratedConversion('jpeg-images'))
                                         <img src="{{ $doc->getFirstMedia('images')->getUrl('jpeg-images') }}"
-                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}" loading="lazy">
+                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}"
+                                            loading="lazy">
                                     @else
                                         <img src="{{ $doc->getFirstMedia('images') ? $doc->getFirstMedia('images')->getUrl() : asset('/images/default_image.jpg') }}"
-                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}" loading="lazy">
+                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}"
+                                            loading="lazy">
                                     @endif
 
 
