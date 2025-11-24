@@ -200,6 +200,7 @@
 @stop
 
 @yield('scripts')
+
 <script src="{{ asset('js/choices.js') }}"></script>
 
 @section('scripts')
