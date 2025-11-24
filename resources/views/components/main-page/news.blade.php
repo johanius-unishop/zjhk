@@ -2,7 +2,9 @@
     <div class="news__container container">
         <div class="news__title-container">
             <h2 class="news__title">Новости</h2>
-            <button onclick="window.location='{{ route('news') }}'" class="title-btn btn">Показать все</button>
+            <a href="{{ route('news.index') }}">
+                <button class="title-btn btn">Показать все</button>
+            </a>
         </div>
         <div class="news__body">
             <div class="swiper news-slider">
