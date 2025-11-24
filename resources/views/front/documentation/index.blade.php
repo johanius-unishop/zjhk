@@ -6,7 +6,12 @@
     <main>
         <section class="docs">
             <div class="docs__container container">
-                @include('components.breadcrumbs')
+                <div class="breadcrumbs">
+                    <ul class="breadcrumbs__list">
+                        <li><a href="#">Главная</a><img src="./img/icons/arrow-right.svg" alt="стрелка"></li>
+                        <li><span>Документация</span></li>
+                    </ul>
+                </div>
                 <div class="docs__content">
                     <div class="news__title">
                         <h2>Документация</h2>
@@ -34,7 +39,7 @@
                         <div class="news__item">
                             <div>
                                 <div>
-                                    <img src="/images/products/doc-1.jpg" alt="документация">
+                                    <img src="./img/products/doc-1.jpg" alt="документация">
                                 </div>
                                 <div>
                                     <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
@@ -47,7 +52,7 @@
                         <div class="news__item">
                             <div>
                                 <div>
-                                    <img src="/images/products/doc-2.jpg" alt="документация">
+                                    <img src="./img/products/doc-2.jpg" alt="документация">
                                 </div>
                                 <div>
                                     <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
@@ -60,7 +65,7 @@
                         <div class="news__item">
                             <div>
                                 <div>
-                                    <img src="/images/products/doc-3.jpg" alt="документация">
+                                    <img src="./img/products/doc-3.jpg" alt="документация">
                                 </div>
                                 <div>
                                     <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
@@ -73,7 +78,7 @@
                         <div class="news__item">
                             <div>
                                 <div>
-                                    <img src="/images/products/doc-4.jpg" alt="документация">
+                                    <img src="./img/products/doc-4.jpg" alt="документация">
                                 </div>
                                 <div>
                                     <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
@@ -86,7 +91,7 @@
                         <div class="news__item">
                             <div>
                                 <div>
-                                    <img src="/images/products/doc-1.jpg" alt="документация">
+                                    <img src="./img/products/doc-1.jpg" alt="документация">
                                 </div>
                                 <div>
                                     <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
@@ -99,7 +104,7 @@
                         <div class="news__item">
                             <div>
                                 <div>
-                                    <img src="/images/products/doc-2.jpg" alt="документация">
+                                    <img src="./img/products/doc-2.jpg" alt="документация">
                                 </div>
                                 <div>
                                     <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
@@ -112,7 +117,7 @@
                         <div class="news__item">
                             <div>
                                 <div>
-                                    <img src="/images/products/doc-3.jpg" alt="документация">
+                                    <img src="./img/products/doc-3.jpg" alt="документация">
                                 </div>
                                 <div>
                                     <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
@@ -125,7 +130,7 @@
                         <div class="news__item">
                             <div>
                                 <div>
-                                    <img src="/images/products/doc-4.jpg" alt="документация">
+                                    <img src="./img/products/doc-4.jpg" alt="документация">
                                 </div>
                                 <div>
                                     <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
@@ -143,8 +148,8 @@
                     <div class="product-page__pagination">
                         <div class="product-page__pagination-content">
                             <button>
-                                <img src="{{ asset('images/icons/tick-grey.svg') }}" alt="влево">
-                                <img src="{{ asset('images/icons/tick-black.svg') }}" style="display: none; transform:rotateZ(180deg)"
+                                <img src="./img/icons/tick-grey.svg" alt="влево">
+                                <img src="./img/icons/tick-black.svg" style="display: none; transform:rotateZ(180deg)"
                                     alt="влево">
                             </button>
                             <ul class="product-page__page-list">
@@ -157,9 +162,9 @@
                                 <li data-pagination><button>21</button></li>
                             </ul>
                             <button>
-                                <img src="{{ asset('images/icons/tick-grey.svg') }}" style="display: none; transform:rotateZ(180deg)"
+                                <img src="./img/icons/tick-grey.svg" style="display: none; transform:rotateZ(180deg)"
                                     alt="вправо">
-                                <img src="{{ asset('images/icons/tick-black.svg') }}" alt="вправо">
+                                <img src="./img/icons/tick-black.svg" alt="вправо">
                             </button>
                         </div>
                         <div class="product-page__page-size" data-page-size>
@@ -168,7 +173,7 @@
                                     <span>Показывать по </span>
                                     <button class="product-page__change-btn">
                                         <span id="page-count">6</span>
-                                        <img src="{{ asset('images/icons/black-black.svg') }}" alt="список страниц">
+                                        <img src="./img/icons/tick-black.svg" alt="список страниц">
                                     </button>
                                 </p>
                                 <ul class="product-page__page-count" data-select-page>
