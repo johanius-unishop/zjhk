@@ -5534,6 +5534,9 @@ select {
     }
 }
 
+.swiper-wrapper {
+    height: unset;
+}
 
 .swiper-wrapper.opt-swiper-wrapper,
 .swiper-wrapper.documents-swiper-wrapper {
