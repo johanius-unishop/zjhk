@@ -1,7 +1,9 @@
 import * as Popper from '@popperjs/core'
 window.Popper = Popper
 
-
+import Choices from 'choices.js';
+window.Choices = Choices
+import "choices.js/public/assets/styles/choices.css";
 
 
 import Swiper from 'swiper'

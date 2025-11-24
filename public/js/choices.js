@@ -1,5 +1,4 @@
-import Choices from 'choices.js';
-import "choices.js/public/assets/styles/choices.css";
+
 
 document.addEventListener("DOMContentLoaded", () => {
 const selectElements = document.querySelectorAll('.filter__select')
