@@ -25,7 +25,7 @@ function initChoices() {
         });
 
         // Устанавливаем выбранное значение
-        selectElement._choices.setChoiceByValue(currentValue);
+        selectElement._choices.setChoiceByValue(2);
     });
 }
 
