@@ -45,11 +45,10 @@ class Docs extends Component
     public function render()
     {
         // Базовый запрос к продуктам
-        $query = Documentation::select('*')
-            ->where('category_id', $this->category->id)
-            ->where('published', 1)
-            ->orderByRaw("CASE WHEN stock > 0 THEN 0 ELSE 1 END")
-            ->orderBy('order_column');
+        $query = Documentation::select('*');
+            //->where('published', 1)
+            //->orderByRaw("CASE WHEN stock > 0 THEN 0 ELSE 1 END")
+            //->orderBy('order_column');
 
         // Выполняем пагинацию
         $docs = $query->with('media')->paginate($this->perPage)->withQueryString();
