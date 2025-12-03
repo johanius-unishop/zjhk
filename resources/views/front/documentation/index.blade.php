@@ -6,12 +6,7 @@
     <main>
         <section class="docs">
             <div class="docs__container container">
-                <div class="breadcrumbs">
-                    <ul class="breadcrumbs__list">
-                        <li><a href="#">Главная</a><img src="./img/icons/arrow-right.svg" alt="стрелка"></li>
-                        <li><span>Документация</span></li>
-                    </ul>
-                </div>
+                @include('components.breadcrumbs')
                 <div class="docs__content">
                     <div class="news__title">
                         <h2>Документация</h2>
@@ -201,7 +196,7 @@
 
 @yield('scripts')
 
-<script src="{{ asset('js/choices.js') }}"> </script>
+<script src="{{ asset('js/choices.js') }}"></script>
 
 @section('scripts')
     @if ($errors->has('email') || $errors->has('password'))
