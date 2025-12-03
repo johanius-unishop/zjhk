@@ -5,19 +5,22 @@
     </div>
     <div class="docs__filter-container">
         <div>
-            <label for="type">Бренд</label>
-            <select class="filter__select" name="type" id="type">
-                <option placeholder>Выбрать</option>
-                <option value="1">Характеристика 1</option>
-                <option value="2">Характеристика 2</option>
+            <label for="vendor">Бренд</label>
+            <select wire:model="selectedVendor" class="filter__select" name="vendor" id="vendor">
+                <option value="">Выбрать</option>
+                @foreach ($vendors as $vendor)
+                    <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                @endforeach
             </select>
         </div>
+
         <div>
             <label for="type">Тип документации</label>
-            <select class="filter__select" name="type" id="type">
-                <option placeholder>Выбрать</option>
-                <option value="1">Характеристика 1</option>
-                <option value="2">Характеристика 2</option>
+            <select wire:model="selectedType" class="filter__select" name="type" id="type">
+                <option value="">Выбрать</option>
+                @foreach ($types as $type)
+                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                @endforeach
             </select>
         </div>
     </div>

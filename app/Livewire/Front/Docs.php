@@ -1,15 +1,21 @@
 <?php
 
 namespace App\Livewire\Front;
+
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Documentation;
+use App\Models\Vendor;
+use App\Models\DocumentationType;
+
 
 class Docs extends Component
 {
     use WithPagination;
 
     public $acceptsWebP;
+    public $selectedVendor = null;
+    public $selectedType = null;
     public $perPage = 12; // Кол-во товаров на странице
     public $perPageOptions = [12, 24, 36]; // Опции кол-ва товаров
 
@@ -44,18 +50,26 @@ class Docs extends Component
 
     public function render()
     {
+        $vendors = Vendor::orderBy('name')->get();
+        $types = DocumentationType::orderBy('name')->get();
         // Базовый запрос к продуктам
         $query = Documentation::select('*');
-            //->where('published', 1)
-            //->orderByRaw("CASE WHEN stock > 0 THEN 0 ELSE 1 END")
-            //->orderBy('order_column');
+
+        // Применяем фильтр по бренду, если выбрано какое-то значение
+
+        if (!is_null($this->selectedVendor)) {
+            $query->where('vendor_id', $this->selectedVendor); // Предположим, что vendor_id существует в таблице documentation
+        }
+
+        // Аналогично применяем фильтр по типу документации
+        if (!is_null($this->selectedType)) {
+            $query->where('type_id', $this->selectedType); // Предположим, что type_id существует в таблице documentation
+        }
+
 
         // Выполняем пагинацию
         $docs = $query->with('media')->paginate($this->perPage)->withQueryString();
 
-        return view('livewire.front.docs', compact('docs'));
+        return view('livewire.front.docs', compact('docs', 'vendors', 'types'));
     }
-
-
-
 }
