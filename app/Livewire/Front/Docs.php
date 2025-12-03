@@ -10,10 +10,9 @@ class Docs extends Component
     use WithPagination;
 
     public $acceptsWebP;
-    public $category;
     public $perPage = 12; // Кол-во товаров на странице
     public $perPageOptions = [12, 24, 36]; // Опции кол-ва товаров
-    public $filter;
+
 
     public string $layoutType = 'card'; // Тип отображения
 
@@ -38,10 +37,8 @@ class Docs extends Component
         session()->put('layoutType', $newLayoutType);
     }
 
-    public function mount($category, $filter, $acceptsWebP)
+    public function mount($acceptsWebP)
     {
-        $this->filter = $filter;
-        $this->category = $category;
         $this->acceptsWebP = $acceptsWebP;
     }
 
