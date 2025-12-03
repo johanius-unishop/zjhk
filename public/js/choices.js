@@ -14,7 +14,7 @@ function initChoices() {
     selectElements.forEach((selectElement) => {
         // Текущее выбранное значение
         const currentValue = selectElement.value;
-
+        lconsole.log(currentValue);
         // Если экземпляр уже существует, уничтожаем его
         if (selectElement._choices) {
             selectElement._choices.destroy();
