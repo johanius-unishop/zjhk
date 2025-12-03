@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("livewire:init", () => {
         Livewire.on('update-docs', (event) => {
-            initChoices();
+
 
         });
     });
