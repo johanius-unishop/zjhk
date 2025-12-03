@@ -1,11 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     initChoices();
 
-    window.livewire.on('livewire:load', () => {
-        initChoices();
-    });
-
-    window.livewire.hook('component.updated', (componentName, componentInstance) => {
+    // Подписываемся на событие wired:update
+    window.addEventListener('wired:update', () => {
         initChoices();
     });
 });
