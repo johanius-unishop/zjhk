@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     initChoices();
-    console.log('1');
+
     document.addEventListener("livewire:init", () => {
         Livewire.on('update-docs', (event) => {
             initChoices();
-            console.log('2, 3...');
+
         });
     });
 });
@@ -15,7 +15,7 @@ function initChoices() {
     selectElements.forEach((el) => {
         const choices = new Choices(el, {
             searchEnabled: false,
-            itemSelectText: false,
+            itemSelectText: true,
             position: "bottom",
         });
     });
