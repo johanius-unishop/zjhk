@@ -24,7 +24,7 @@ function initChoices() {
             position: "bottom",
         });
 
-        element.addEventListener('change', function(event) {
+        selectElement.addEventListener('change', function(event) {
             console.log ('Ура!');
         });
     });
