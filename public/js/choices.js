@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-
+    initChoices();
 
     document.addEventListener("livewire:init", () => {
-        Livewire.on('update-docs', (event) => {
-            initChoices();
-
+        Livewire.on("update-docs", (event) => {
+            refreshChoices();
         });
     });
 });
@@ -21,4 +20,10 @@ function initChoices() {
     });
 }
 
-
+function refreshChoices() {
+    selectElements.forEach((selectElement) => {
+        if (selectElement._choices) {
+            selectElement._choices.refresh(true, false); // Читаем опции и не выбираем автоматически первый элемент
+        }
+    });
+}
