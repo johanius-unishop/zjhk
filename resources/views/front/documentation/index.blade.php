@@ -25,6 +25,20 @@
 <script src="{{ asset('js/choices.js') }}"></script>
 
 @section('scripts')
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initChoices();
+            console.log('инициализация');
+
+            // Подписываемся на событие обновления компонента
+            window.addEventListener('wired:update', () => {
+                initChoices();
+                console.log('обновление');
+            });
+        });
+    </script>
+
     @if ($errors->has('email') || $errors->has('password'))
         <script>
             $(function() {
