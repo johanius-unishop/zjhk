@@ -15,7 +15,7 @@ function initChoices() {
     selectElements.forEach((el) => {
         const choices = new Choices(el, {
             searchEnabled: false,
-            itemSelectText: true,
+            itemSelectText: false,
             position: "bottom",
         });
     });

@@ -9,7 +9,10 @@
             <select wire:model.live="selectedVendor" class="filter__select" name="vendor" id="vendor">
                 <option value="">Выбрать</option>
                 @foreach ($vendors as $vendor)
-                    <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                    <option value="{{ $vendor->id }}"
+                        {{ old('selectedVendor', $selectedVendor) == $vendor->id ? 'selected' : '' }}>
+                        {{ $vendor->name }}
+                    </option>
                 @endforeach
             </select>
         </div>
@@ -19,25 +22,28 @@
             <select wire:model.live="selectedType" class="filter__select" name="type" id="type">
                 <option value="">Выбрать</option>
                 @foreach ($types as $type)
-                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                    <option value="{{ $type->id }}"
+                        {{ old('selectedType', $selectedType) == $type->id ? 'selected' : '' }}>
+                        {{ $type->name }}
+                    </option>
                 @endforeach
             </select>
         </div>
     </div>
     <div class="card__item-wrapper">
         @foreach ($docs as $doc)
-        <div class="news__item">
-            <div>
+            <div class="news__item">
                 <div>
-                    <img src="./img/products/doc-1.jpg" alt="документация">
+                    <div>
+                        <img src="./img/products/doc-1.jpg" alt="документация">
+                    </div>
+                    <div>
+                        <h5>{{ $doc->title }}</h5>
+                        <p>{{ $doc->text }}</p>
+                    </div>
+                    <a href="#">Скачать</a>
                 </div>
-                <div>
-                    <h5>{{ $doc->title }}</h5>
-                    <p>{{ $doc->text }}</p>
-                </div>
-                <a href="#">Скачать</a>
             </div>
-        </div>
         @endforeach
 
 
