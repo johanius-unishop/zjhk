@@ -8,7 +8,6 @@
             <div class="docs__container container">
                 @include('components.breadcrumbs')
                 @livewire('front.documentation', [
-                        'filter' => $data['filter'],
                         'acceptsWebP' => $data['acceptsWebP'],
                     ])
             </div>

@@ -10,10 +10,6 @@ class CategoryController extends Controller
 
     public function index( Request $request)
     {
-
-
-
-
         return view('product-card', compact('viewModel'));
     }
 

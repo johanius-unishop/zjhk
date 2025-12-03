@@ -8,6 +8,7 @@ class DocumentationController extends Controller
 {
     public function index()
     {
-        return view('front.documentation.index');
+        $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
+        return view('front.documentation.index', ['acceptsWebP' => $acceptsWebP ]);
     }
 }
