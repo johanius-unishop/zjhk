@@ -32,7 +32,7 @@
             console.log('инициализация');
 
             // Подписываемся на событие обновления компонента
-            window.addEventListener('wired:update', () => {
+            document.addEventListener('wired:update', () => {
 
                 console.log('обновление');
             });
