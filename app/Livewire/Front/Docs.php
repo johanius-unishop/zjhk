@@ -5,7 +5,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Documentation;
 
-class Documentations extends Component
+class Docs extends Component
 {
     use WithPagination;
 
