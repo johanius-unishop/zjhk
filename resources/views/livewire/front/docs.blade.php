@@ -25,110 +25,21 @@
         </div>
     </div>
     <div class="card__item-wrapper">
+        @foreach ($docs as $doc)
         <div class="news__item">
             <div>
                 <div>
                     <img src="./img/products/doc-1.jpg" alt="документация">
                 </div>
                 <div>
-                    <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
-                    <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                        3A, 10A, 16A, 32A</p>
+                    <h5>{{ $doc->title }}</h5>
+                    <p>{{ $doc->text }}</p>
                 </div>
                 <a href="#">Скачать</a>
             </div>
         </div>
-        <div class="news__item">
-            <div>
-                <div>
-                    <img src="./img/products/doc-2.jpg" alt="документация">
-                </div>
-                <div>
-                    <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
-                    <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                        3A, 10A, 16A, 32A</p>
-                </div>
-                <a href="#">Скачать</a>
-            </div>
-        </div>
-        <div class="news__item">
-            <div>
-                <div>
-                    <img src="./img/products/doc-3.jpg" alt="документация">
-                </div>
-                <div>
-                    <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
-                    <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                        3A, 10A, 16A, 32A</p>
-                </div>
-                <a href="#">Скачать</a>
-            </div>
-        </div>
-        <div class="news__item">
-            <div>
-                <div>
-                    <img src="./img/products/doc-4.jpg" alt="документация">
-                </div>
-                <div>
-                    <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
-                    <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                        3A, 10A, 16A, 32A</p>
-                </div>
-                <a href="#">Скачать</a>
-            </div>
-        </div>
-        <div class="news__item">
-            <div>
-                <div>
-                    <img src="./img/products/doc-1.jpg" alt="документация">
-                </div>
-                <div>
-                    <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
-                    <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                        3A, 10A, 16A, 32A</p>
-                </div>
-                <a href="#">Скачать</a>
-            </div>
-        </div>
-        <div class="news__item">
-            <div>
-                <div>
-                    <img src="./img/products/doc-2.jpg" alt="документация">
-                </div>
-                <div>
-                    <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
-                    <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                        3A, 10A, 16A, 32A</p>
-                </div>
-                <a href="#">Скачать</a>
-            </div>
-        </div>
-        <div class="news__item">
-            <div>
-                <div>
-                    <img src="./img/products/doc-3.jpg" alt="документация">
-                </div>
-                <div>
-                    <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
-                    <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                        3A, 10A, 16A, 32A</p>
-                </div>
-                <a href="#">Скачать</a>
-            </div>
-        </div>
-        <div class="news__item">
-            <div>
-                <div>
-                    <img src="./img/products/doc-4.jpg" alt="документация">
-                </div>
-                <div>
-                    <h5>Промышленные прямоугольные разъемы “Тип A”</h5>
-                    <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                        3A, 10A, 16A, 32A</p>
-                </div>
-                <a href="#">Скачать</a>
-            </div>
-        </div>
+        @endforeach
+
 
     </div>
     <div class="product-page__show">
