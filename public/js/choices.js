@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    initChoices();
+
 
     document.addEventListener("livewire:init", () => {
         Livewire.on('update-docs', (event) => {
