@@ -26,19 +26,6 @@
 
 @section('scripts')
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-
-            console.log('инициализация');
-
-            // Подписываемся на событие обновления компонента
-            document.addEventListener('wired:update', () => {
-
-                console.log('обновление');
-            });
-        });
-    </script>
-
     @if ($errors->has('email') || $errors->has('password'))
         <script>
             $(function() {
