@@ -83,9 +83,9 @@ class Docs extends Component
     }
 
     #[On('update-value')]
-    public function updateValue($fieldName, $selectedValue)
+    public function updateValue($fieldName)
     {
-        dd ($fieldName, $selectedValue);
+        dd ($fieldName);
     }
 
 }
