@@ -7,7 +7,7 @@
         <section class="docs">
             <div class="docs__container container">
                 @include('components.breadcrumbs')
-                @livewire('front.documentation', ['acceptsWebP' => $acceptsWebP])
+                @livewire('front.documentations', ['acceptsWebP' => $acceptsWebP])
             </div>
         </section>
     </main>

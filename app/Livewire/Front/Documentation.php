@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Documentation;
 
-class ProductsSelect extends Component
+class Documentations extends Component
 {
     use WithPagination;
 
@@ -57,9 +57,9 @@ class ProductsSelect extends Component
             ->orderBy('order_column');
 
         // Выполняем пагинацию
-        $products = $query->with('media')->paginate($this->perPage)->withQueryString();
+        $docs = $query->with('media')->paginate($this->perPage)->withQueryString();
 
-        return view('livewire.front.products-select', compact('products'));
+        return view('livewire.front.documentation', compact('docs'));
     }
 
 
