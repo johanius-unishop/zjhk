@@ -39,7 +39,7 @@ Breadcrumbs::for('contact.index', function (BreadcrumbTrail $trail) {
 });
 
 // Главная > Документация
-Breadcrumbs::for('documentation.index', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('documentation', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Документация', route('documentation'));
 });
