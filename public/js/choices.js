@@ -28,7 +28,7 @@ function initChoices() {
             const fieldName = event.target.name;
             const selectedValue = event.target.value;
 
-            Livewire.dispatch('post-created', {
+            Livewire.dispatch('update-value', {
                     [fieldName]: selectedValue,
                 });
         });

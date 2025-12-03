@@ -7,6 +7,7 @@ use Livewire\WithPagination;
 use App\Models\Documentation;
 use App\Models\Vendor;
 use App\Models\DocumentationType;
+use Livewire\Attributes\On;
 
 
 class Docs extends Component
@@ -79,5 +80,13 @@ class Docs extends Component
         $this->dispatch('update-docs');
 
         return view('livewire.front.docs', compact('docs', 'vendors', 'types'));
+    }
+
+    #[On('update-value')]
+    public function updateValue(array $data)
+    {
+         foreach ($data as $fieldName => $value) {
+            dd ($fieldName);
+        }
     }
 }
