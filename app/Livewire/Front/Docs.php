@@ -20,7 +20,6 @@ class Docs extends Component
     public $perPageOptions = [12, 24, 36]; // Опции кол-ва товаров
 
 
-    public string $layoutType = 'card'; // Тип отображения
 
     public bool $menuIsOpen = false; // Флаг открытия меню
 
@@ -39,7 +38,6 @@ class Docs extends Component
     public function switchLayout()
     {
         $newLayoutType = $this->layoutType === 'card' ? 'list' : 'card';
-        $this->layoutType = $newLayoutType;
         session()->put('layoutType', $newLayoutType);
     }
 
