@@ -50,7 +50,12 @@ class Docs extends Component
 
     public function render()
     {
-        $vendors = Vendor::orderBy('name')->get();
+        $usedVendorIds = Documentation::select('vendor_id')->distinct()->pluck('vendor_id');
+
+        $vendors = Vendor::whereIn('id', $usedVendorIds)
+            ->orderBy('name')
+            ->get();
+
         $types = DocumentationType::orderBy('name')->get();
         // Базовый запрос к продуктам
         $query = Documentation::select('*');
