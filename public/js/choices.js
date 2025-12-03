@@ -24,8 +24,9 @@ function initChoices() {
             position: "bottom",
         });
 
-        // Устанавливаем выбранное значение
-        selectElement._choices.setChoiceByValue(2);
+        element.addEventListener('change', function(event) {
+            console.log ('Ура!');
+        });
     });
 }
 
