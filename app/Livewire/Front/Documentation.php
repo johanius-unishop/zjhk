@@ -57,7 +57,7 @@ class Documentations extends Component
         // Выполняем пагинацию
         $docs = $query->with('media')->paginate($this->perPage)->withQueryString();
 
-        return view('livewire.front.documentation', compact('docs'));
+        return view('livewire.front.documentations', compact('docs'));
     }
 
 
