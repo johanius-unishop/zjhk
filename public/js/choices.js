@@ -25,7 +25,12 @@ function initChoices() {
         });
 
         selectElement.addEventListener('change', function(event) {
-            console.log ('Ура!');
+            const fieldName = event.target.name;
+            const selectedValue = event.target.value;
+            console.log(fieldName,":", selectedValue);
+            $wire.dispatch('post-created', {
+                    [fieldName]: selectedValue,
+                });
         });
     });
 }
