@@ -13,12 +13,9 @@ function initChoices() {
 
     selectElements.forEach((selectElement) => {
         // Текущее выбранное значение
-        const currentValue = selectElement.value;
-        console.log(currentValue);
-        // Если экземпляр уже существует, уничтожаем его
-        if (selectElement._choices) {
-            selectElement._choices.destroy();
-        }
+        const currentName = selectElement.name;
+        console.log(currentName);
+
 
         // Создаём новый экземпляр Choices.js
         selectElement._choices = new Choices(selectElement, {
