@@ -28,12 +28,12 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            initChoices();
+
             console.log('инициализация');
 
             // Подписываемся на событие обновления компонента
             window.addEventListener('wired:update', () => {
-                initChoices();
+
                 console.log('обновление');
             });
         });
