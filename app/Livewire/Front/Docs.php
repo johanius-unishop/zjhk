@@ -83,10 +83,9 @@ class Docs extends Component
     }
 
     #[On('update-value')]
-    public function updateValue(array $data)
+    public function updateValue($fieldName, $selectedValue)
     {
-         foreach ($data as $fieldName => $value) {
-            dd ($fieldName);
-        }
+        dd ($fieldName, $selectedValue);
     }
+
 }
