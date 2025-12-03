@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Livewire\Front;
-use App\Models\Favorite;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Documentation;
@@ -63,27 +61,5 @@ class Documentations extends Component
     }
 
 
-    public function toggleFavorite($productId)
-    {
-        $product = Product::where('id', $productId)->first();
-        if (!$product->isInFavorites()) {
-            if (Auth::check()) {
-                Favorite::create([
-                    'user_id' => Auth::id(),
-                    'product_id' => $product->id
-                ]);
-            } else {
-                session()->push('guest_favorites', $this->product->id);
-            }
-        } else {
-            if (Auth::check()) {
-                Favorite::where('user_id', Auth::id())
-                    ->where('product_id', $product->id)->delete();
-            } else {
-                session()->pull('guest_favorites.' . array_search($product->id, session()->get('guest_favorites')));
-            }
-        }
 
-        $this->dispatch('update-favorites');
-    }
 }
