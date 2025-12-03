@@ -14,7 +14,7 @@ function initChoices() {
     selectElements.forEach((selectElement) => {
         // Текущее выбранное значение
         const currentValue = selectElement.value;
-        console.log(selectElement.name, '=', currentValue);
+        console.log(selectElement.name, '=', selectElement.value);
 
 
         // Создаём новый экземпляр Choices.js
