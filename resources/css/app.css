@@ -12881,7 +12881,7 @@ h2.benefits__title {
     }
 }
 
-.news__item div>div,
+.news__item div>div:first-child,
 .articles__item div>div:first-child {
     max-height: 11.25rem;
     overflow: hidden;
