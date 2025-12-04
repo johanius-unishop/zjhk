@@ -27,8 +27,9 @@ function initChoices() {
         selectElement.addEventListener('change', function(event) {
             const fieldName = event.target.name;
             const selectedValue = event.target.value;
+            const payload = [fieldName, selectedValue];
 
-            Livewire.dispatch('update-value', { name: fieldName, value: selectedValue });
+            Livewire.dispatch('update-value', pyload);
         });
     });
 }
