@@ -98,5 +98,6 @@ class Docs extends Component
                     break;
             }
         }
+        $this->resetPage();
     }
 }
