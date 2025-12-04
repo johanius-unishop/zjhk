@@ -14,8 +14,6 @@ function initChoices() {
     selectElements.forEach((selectElement) => {
         // Текущее выбранное значение
         const currentValue = selectElement.value;
-        console.log(selectElement.name, '=', selectElement.value);
-
 
         // Создаём новый экземпляр Choices.js
         selectElement._choices = new Choices(selectElement, {
@@ -29,7 +27,7 @@ function initChoices() {
             const selectedValue = event.target.value;
             const payload = [fieldName, selectedValue];
 
-            console.log(payload);
+
             Livewire.dispatch('update-value', { payload });
         });
     });

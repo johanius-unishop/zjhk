@@ -85,12 +85,12 @@ class Docs extends Component
     #[On('update-value')]
     public function updateValue(array $payload)
     {
-
-        // Данные приходят как ассоциативный массив
-        $name = $payload[0]; // Извлекаем имя поля
-        $selectedValue = $payload[1]; // Извлекаем выбранное значение
-
-        dd ($name, ': ',$selectedValue);
+        if ($payload[0] == 'vendor') {
+            $this->selectedVendor = $payload[1];
+        }
+        if ($payload[0] == 'type') {
+            $this->selectedType = $payload[1];
+        }
     }
 
 }
