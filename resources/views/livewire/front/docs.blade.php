@@ -33,7 +33,25 @@
             <div class="news__item">
                 <div>
                     <div>
-                        <img src="./img/products/doc-1.jpg" alt="документация">
+                        @if (
+                            $acceptsWebP &&
+                                $doc->getFirstMedia('images') &&
+                                $doc->getFirstMedia('images')->hasGeneratedConversion('webp-images'))
+                            <img src="{{ $doc->getFirstMedia('images')->getUrl('webp-images') }}"
+                                alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}"
+                                loading="lazy">
+                        @elseif (
+                            !$acceptsWebP &&
+                                $doc->getFirstMedia('images') &&
+                                $doc->getFirstMedia('images')->hasGeneratedConversion('jpeg-images'))
+                            <img src="{{ $doc->getFirstMedia('images')->getUrl('jpeg-images') }}"
+                                alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}"
+                                loading="lazy">
+                        @else
+                            <img src="{{ $doc->getFirstMedia('images') ? $doc->getFirstMedia('images')->getUrl() : asset('/images/default_image.jpg') }}"
+                                alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}"
+                                loading="lazy">
+                        @endif
                     </div>
                     <div>
                         <h5>{{ $doc->title }}</h5>
