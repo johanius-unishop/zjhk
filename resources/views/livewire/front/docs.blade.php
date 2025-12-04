@@ -65,43 +65,28 @@
 
     </div>
     <div class="product-page__show">
-        <button>Показать еще</button>
+
     </div>
     <div class="product-page__pagination">
         <div class="product-page__pagination-content">
-            <button>
-                <img src="./img/icons/tick-grey.svg" alt="влево">
-                <img src="./img/icons/tick-black.svg" style="display: none; transform:rotateZ(180deg)" alt="влево">
-            </button>
-            <ul class="product-page__page-list">
-                <li data-pagination><button class="_active">1</button></li>
-                <li data-pagination><button>2</button></li>
-                <li data-pagination><button>3</button></li>
-                <li data-pagination><button>4</button></li>
-                <li data-pagination><button>5</button></li>
-                <li data-pagination><button>...</button></li>
-                <li data-pagination><button>21</button></li>
-            </ul>
-            <button>
-                <img src="./img/icons/tick-grey.svg" style="display: none; transform:rotateZ(180deg)" alt="вправо">
-                <img src="./img/icons/tick-black.svg" alt="вправо">
-            </button>
-        </div>
-        <div class="product-page__page-size" data-page-size>
-            <div>
+            {{ $products->links('vendor.pagination.custom') }}
+            <div class="product-page__page-size" data-page-size>
                 <p class="product-page__page-select">
                     <span>Показывать по </span>
-                    <button class="product-page__change-btn">
-                        <span id="page-count">6</span>
-                        <img src="./img/icons/tick-black.svg" alt="список страниц">
+                    <button wire:click="toggleMenu" class="product-page__change-btn">
+                        <span id="page-count">{{ $perPage }}</span>
+                        <img src="{{ asset('images/icons/tick-black.svg') }}" alt="список страниц">
                     </button>
                 </p>
-                <ul class="product-page__page-count" data-select-page>
-                    <li><button data-page="6">6</button></li>
-                    <li><button data-page="12">12</button></li>
-                    <li><button data-page="24">24</button></li>
-                    <li><button data-page="36">36</button></li>
-                    <li><button data-page="48">48</button></li>
+                <ul class="product-page__page-count {{ $menuIsOpen === true ? '_active' : 'hidden' }}"
+                    data-select-page>
+                    @foreach ($perPageOptions as $option)
+                        <li>
+                            <button wire:click="changePerPage({{ $option }})" wire:loading.attr="disabled">
+                                {{ $option }}
+                            </button>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

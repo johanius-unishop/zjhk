@@ -110,13 +110,7 @@
             @endforeach
 
         </div>
-
-
-
         <div class="product-page__show">
-
-
-
         </div>
         <div class="product-page__pagination">
             <div class="product-page__pagination-content">
