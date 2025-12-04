@@ -6638,7 +6638,7 @@ select {
     }
 }
 
-.articles__content .news__title {
+.articles__content, .news__title {
     margin-bottom: 2.5rem;
     display: flex;
     gap: 1rem;
@@ -6646,13 +6646,13 @@ select {
 }
 
 @media (max-width: 61.99875em) {
-    .articles__content .news__title {
+    .articles__content, .news__title  {
         margin-bottom: 1.5rem;
     }
 }
 
 @media (max-width: 35.99875em) {
-    .articles__content .news__title {
+    .articles__content, .news__title  {
         margin-bottom: 1.25rem;
     }
 }
