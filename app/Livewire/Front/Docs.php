@@ -83,9 +83,13 @@ class Docs extends Component
     }
 
     #[On('update-value')]
-    public function updateValue($selectedValue)
+    public function updateValue($data)
     {
-        dd ($selectedValue);
+        if (is_object($data)) {
+            $name = $data->name;
+            $selectedValue = $data->selectedValue;
+        }
+        dd ($name, ": ",$selectedValue);
     }
 
 }
