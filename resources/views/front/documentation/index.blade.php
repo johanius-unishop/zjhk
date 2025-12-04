@@ -22,7 +22,7 @@
 
 @yield('scripts')
 
-
+<script src="{{ asset('js/choices-docs.js') }}"></script>
 
 @section('scripts')
 
