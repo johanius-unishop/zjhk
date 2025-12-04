@@ -12888,6 +12888,12 @@ h2.benefits__title {
     text-align: center;
 }
 
+.doc__description {
+    margin-top: 1rem;
+    margin-bottom: auto;
+}
+
+
 .news__item div>div img,
 .articles__item div>div img,
 .documents__item div>div img {

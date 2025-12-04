@@ -53,7 +53,7 @@
                                 loading="lazy">
                         @endif
                     </div>
-                    <div>
+                    <div class="doc__description">
                         <h5>{{ $doc->title }}</h5>
                         <p>{{ $doc->text }}</p>
                     </div>
