@@ -29,7 +29,7 @@ function initChoices() {
             const selectedValue = event.target.value;
             const payload = [fieldName, selectedValue];
 
-            Livewire.dispatch('update-value', pyload);
+            Livewire.dispatch('update-value', payload);
         });
     });
 }
