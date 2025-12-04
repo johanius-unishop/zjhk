@@ -87,7 +87,7 @@ class Docs extends Component
     {
         if (is_object($data)) {
             $name = $data->name;
-            $selectedValue = $data->selectedValue;
+            $selectedValue = $data->value;
         }
         dd ($name, ": ",$selectedValue);
     }
