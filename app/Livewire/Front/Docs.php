@@ -85,11 +85,11 @@ class Docs extends Component
     #[On('update-value')]
     public function updateValue($data)
     {
-        if (is_object($data)) {
-            $name = $data->name;
-            $selectedValue = $data->value;
-        }
-        dd ($name, ": ",$selectedValue);
+        // Данные приходят как ассоциативный массив
+        $name = $data['name']; // Извлекаем имя поля
+        $selectedValue = $data['value']; // Извлекаем выбранное значение
+
+        dd ($name, ': ',$selectedValue);
     }
 
 }
