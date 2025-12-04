@@ -32,12 +32,6 @@
                                             alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}"
                                             loading="lazy">
                                     @endif
-
-
-
-
-
-
                                 </div>
                                 <div class="documents__item-wrapper documents-description">
                                     <h5>{{ $doc->title }}</h5>
