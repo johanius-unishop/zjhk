@@ -27,7 +27,6 @@ function initChoices() {
             const selectedValue = event.target.value;
             const payload = [fieldName, selectedValue];
 
-            console.log(payload);
             Livewire.dispatch('update-value', { payload });
         });
     });

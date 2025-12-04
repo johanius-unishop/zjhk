@@ -85,12 +85,18 @@ class Docs extends Component
     #[On('update-value')]
     public function updateValue(array $payload)
     {
-        if ($payload[0] == 'vendor') {
-            $this->selectedVendor = $payload[1];
-        }
-        if ($payload[0] == 'type') {
-            $this->selectedType = $payload[1];
+        if (isset($payload[0]) && isset($payload[1])) {
+            $fieldName = $payload[0];
+            $selectedValue = $payload[1];
+
+            switch ($fieldName) {
+                case 'vendor':
+                    $this->selectedVendor = empty($selectedValue) ? null : $selectedValue;
+                    break;
+                case 'type':
+                    $this->selectedType = empty($selectedValue) ? null : $selectedValue;
+                    break;
+            }
         }
     }
-
 }
