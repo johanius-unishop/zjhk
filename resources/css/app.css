@@ -12882,10 +12882,10 @@ h2.benefits__title {
 }
 
 .news__item div>div,
-.articles__item div>div {
+.articles__item div>div:first-child {
     max-height: 11.25rem;
     overflow: hidden;
-    justify-content: center;
+    text-align: center;
 }
 
 .news__item div>div img,
