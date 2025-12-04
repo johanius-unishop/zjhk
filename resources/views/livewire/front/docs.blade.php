@@ -7,7 +7,7 @@
         <div>
             <label for="vendor">Бренд</label>
             <select wire:model.live="selectedVendor" class="filter__select" name="vendor" id="vendor">
-                <option value="">Выбрать</option>
+                <option value="">Все бренды</option>
                 @foreach ($vendors as $vendor)
                     <option value="{{ $vendor->id }}">
                         {{ $vendor->name }}
@@ -17,7 +17,7 @@
         </div>
 
         <div>
-            <label for="type">Тип документации</label>
+            <label for="type">Все типы</label>
             <select wire:model.live="selectedType" class="filter__select" name="type" id="type">
                 <option value="">Выбрать</option>
                 @foreach ($types as $type)
