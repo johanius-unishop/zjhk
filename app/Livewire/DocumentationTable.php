@@ -31,7 +31,7 @@ final class DocumentationTable extends PowerGridComponent
             PowerGrid::header()
                 ->showSearchInput(),
             PowerGrid::footer()
-                ->showPerPage()
+
                 ->showRecordCount(),
         ];
     }
@@ -132,13 +132,13 @@ final class DocumentationTable extends PowerGridComponent
             // Если документ уже внизу, делаем кнопку неактивной
             $buttons[] = Button::add('down_document')
                 ->slot('<i class="fas fa-arrow-down"></i>')
-                ->class('btn btn-warning disabled') // Добавляем класс disabled, чтобы кнопка выглядела неактивной
+                ->class('btn btn-success disabled') // Добавляем класс disabled, чтобы кнопка выглядела неактивной
                 ->attributes(['disabled' => 'disabled']); // Добавляем атрибут disabled, чтобы кнопка была интерактивно неактивной
         } else {
             // Если документ не внизу, оставляем кнопку активной
             $buttons[] = Button::add('down_document')
                 ->slot('<i class="fas fa-arrow-down"></i>')
-                ->class('btn btn-warning')
+                ->class('btn btn-success')
                 ->dispatch('down_document', ['rowId' => $row->id]);
         }
 
