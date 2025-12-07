@@ -38,7 +38,7 @@ class VendorController extends Controller
     {
 
         $vendor   = Vendor::published()->where('slug', $slug)->firstOrFail();
-        $products = $vendor->product() ->paginate(12)->withQueryString();
+        $products = $vendor->products()->paginate(12)->withQueryString();
         $products = checkInCartAndFavourites($products);
         //   dd( $products );
         $data     = [
