@@ -16,7 +16,9 @@ class HomeController extends Controller
         // Получаем настройки главной страницы
         $mainPageSettings = $this->getSettings();
         $popularProductsWithDetails = PopularProduct::with('product')->get();
-        $documentations = Documentation::where('homepage_visible', '=', 1)->orderBy('order_column', 'asc');
+        $documentations = Documentation::where('homepage_visible', '=', 1)
+                             ->orderBy('order_column', 'asc')
+                             ->get();
         $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
         // Возвращаем представление с данными
