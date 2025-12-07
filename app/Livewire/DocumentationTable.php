@@ -188,13 +188,13 @@ final class DocumentationTable extends PowerGridComponent
             $document = Documentation::findOrFail($rowId);
             $down = $document->down();
             if ($down) {
-                $this->dispatch('toast', message: 'Документ перемещен вниз.', notify: 'success');
+                $this->dispatch('toast-success', message: 'Документ перемещен вниз.', notify: 'success');
             } else {
-                $this->dispatch('toast', message: 'Документ не перемещен.', notify: 'danger');
+                $this->dispatch('toast-warning', message: 'Документ не перемещен.', notify: 'danger');
             }
         } catch (\Throwable $th) {
             Log::info($document->title . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
-            $this->dispatch('toast', message: ' Не удалось переместить документ вниз.' . $th->getMessage(), notify: 'error');
+            $this->dispatch('toast-danger', message: ' Не удалось переместить документ вниз.' . $th->getMessage(), notify: 'error');
             throw $th;
         }
         $this->dispatch('$refresh');
@@ -207,13 +207,13 @@ final class DocumentationTable extends PowerGridComponent
             $document = Documentation::findOrFail($rowId);
             $up = $document->up();
             if ($up) {
-                $this->dispatch('toast', message: 'Документ перемещен вверх.', notify: 'success');
+                $this->dispatch('toast-success', message: 'Документ перемещен вверх.', notify: 'success');
             } else {
-                $this->dispatch('toast', message: 'Документ не перемещен.', notify: 'danger');
+                $this->dispatch('toast-warning', message: 'Документ не перемещен.', notify: 'danger');
             }
         } catch (\Throwable $th) {
             Log::info($document->title . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
-            $this->dispatch('toast', message: ' Не удалось переместить документ вверх.' . $th->getMessage(), notify: 'error');
+            $this->dispatch('toast-danger', message: ' Не удалось переместить документ вверх.' . $th->getMessage(), notify: 'error');
             throw $th;
         }
         $this->dispatch('$refresh');
