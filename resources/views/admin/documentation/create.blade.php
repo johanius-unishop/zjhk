@@ -85,12 +85,12 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-12 mb-3">
                                         <div class="form-check form-switch">
-                                            <input type="checkbox" class="form-check-input" name="auto_calc_cbrf"
-                                                id="auto_calc_cbrf" data-toggle="toggle" data-onstyle="success"
+                                            <input type="checkbox" class="form-check-input" name="homepage_visible"
+                                                id="homepage_visible" data-toggle="toggle" data-onstyle="success"
                                                 data-offstyle="danger" data-on="Да" data-off="Нет"
-                                                {!! @$currency->auto_calc_cbrf ? 'checked' : '' !!}>
-                                            <label class="form-check-label" for="auto_calc_cbrf">Автоматический расчет
-                                                внутреннего курса</label>
+                                                @if (old('homepage_visible', request()->old('homepage_visible'))) checked @endif>
+                                            <label class="form-check-label" for="homepage_visible">Отображать на главной
+                                                странице</label>
                                         </div>
                                     </div>
                                 </div>

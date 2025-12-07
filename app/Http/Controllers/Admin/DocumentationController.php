@@ -45,8 +45,17 @@ class DocumentationController extends Controller
             return abort(401);
         }
 
+        // Получаем текущее максимальное значение order_column
+        $maxOrder = Documentation::max('order_column');
+
         // Подготовка входных данных
         $input = $request->all();
+
+        // Устанавливаем порядок сортировки на единицу больше максимального
+        $input['order_column'] = $maxOrder + 1;
+
+        // Устанавливаем homepage_visible, преобразовывая checkbox-вход (1 или 0)
+        $input['homepage_visible'] = $request->filled('homepage_visible') ? 1 : 0;
 
         // Создание записи
         $record = Documentation::create($input);
@@ -65,14 +74,13 @@ class DocumentationController extends Controller
         }
 
         $vendors = Vendor::select(['name', 'id'])
-                    ->orderBy('name')
-                    ->get();
+            ->orderBy('name')
+            ->get();
 
         $documentationTypes = DocumentationType::select(['name', 'id'])
-                    ->orderBy('name')
-                    ->get();
+            ->orderBy('name')
+            ->get();
         return view('admin.documentation.edit', compact('documentation', 'vendors', 'documentationTypes'));
-
     }
 
     /**
@@ -112,6 +120,4 @@ class DocumentationController extends Controller
 
         return redirect()->route('admin.documentation.index');
     }
-
-
 }
