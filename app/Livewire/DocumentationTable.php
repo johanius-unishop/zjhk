@@ -99,29 +99,40 @@ final class DocumentationTable extends PowerGridComponent
     {
         $buttons = [];
         $documentation = Documentation::find($row->id);
-        $next_siblings_count = $documentation->getNextSiblings()->count();
-        $prev_siblings_count = $documentation->getPrevSiblings()->count();
+
+        // Получаем текущий минимальный порядок сортировки
+        $minOrder = Documentation::min('order_column');
+        // Получаем текущий максимальный порядок сортировки
+        $maxOrder = Documentation::max('order_column');
+        // Текущий порядок текущего документа
+        $currentOrder = $documentation->order_column;
 
         $buttons[] = Button::add('edit')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
                 ->route('admin.documentation.edit', ['documentation' => $row->id]);
 
-        // Условие для показа кнопки перемещения вверх
-        if ($prev_siblings_count > 0) {
+        // Проверяем, находится ли документ на вершине
+        if ($currentOrder <= $minOrder) {
+            // Если документ уже наверху, делаем кнопку неактивной
+            $buttons[] = Button::add('up_document')
+                ->slot('<i class="fas fa-arrow-up"></i>')
+                ->class('btn btn-success disabled') // Добавляем класс disabled, чтобы кнопка выглядела неактивной
+                ->attributes(['disabled' => 'disabled']); // Добавляем атрибут disabled, чтобы кнопка была интерактивно неактивной
+        } else {
+        // Если документ не наверху, оставляем кнопку активной
             $buttons[] = Button::add('up_document')
                 ->slot('<i class="fas fa-arrow-up"></i>')
                 ->class('btn btn-success')
                 ->dispatch('up_document', ['rowId' => $row->id]);
         }
 
+
         // Условие для показа кнопки перемещения вниз
-        if ($next_siblings_count > 0) {
-            $buttons[] = Button::add('down_document')
+        $buttons[] = Button::add('down_document')
                 ->slot('<i class="fas fa-arrow-down"></i>')
                 ->class('btn btn-success')
                 ->dispatch('down_document', ['rowId' => $row->id]);
-        }
 
         $buttons[] = Button::add('delete')
                 ->slot('<i class="fas fa-trash"></i>')
