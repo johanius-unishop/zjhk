@@ -209,4 +209,13 @@ final class DocumentationTable extends PowerGridComponent
         }
         $this->dispatch('$refresh');
     }
+
+    public function onUpdatedToggleable(string|int $id, string $field, string $value): void
+    {
+        Documentation::query()->find($id)->update([
+            $field => e($value),
+        ]);
+
+        $this->skipRender();
+    }
 }
