@@ -36,12 +36,6 @@ class Docs extends Component
         $this->resetPage(); // Всегда возвращаемся на первую страницу
     }
 
-    public function switchLayout()
-    {
-        $newLayoutType = $this->layoutType === 'card' ? 'list' : 'card';
-        session()->put('layoutType', $newLayoutType);
-    }
-
     public function mount($acceptsWebP)
     {
         $this->acceptsWebP = $acceptsWebP;
@@ -60,7 +54,7 @@ class Docs extends Component
             ->get();
 
         // Базовый запрос к продуктам
-        $query = Documentation::select('*');
+        $query = Documentation::all()->orderBy('order_column', 'asc');
 
         // Применяем фильтр по бренду, если выбрано какое-то значение
 
