@@ -109,12 +109,13 @@ Breadcrumbs::for('page', function (BreadcrumbTrail $trail, $page): void {
 // Home > Vendors
 Breadcrumbs::for('vendors', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Производители', route('vendors.index'));
+    $trail->push('Производители', route('vendors'));
 });
 // Home > Vendor
 Breadcrumbs::for('vendor', function (BreadcrumbTrail $trail, Vendor $vendor) {
     $trail->parent('vendors');
-    $trail->push($vendor->name);
+    $vendorName = trim($vendor->short_name) ?: $vendor->name;
+    $trail->push($vendorName);
 });
 
 // Home > Contact
