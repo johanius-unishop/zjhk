@@ -44,7 +44,8 @@ final class DocumentationTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('title');
+            ->add('title')
+            ->add('homepage_visible');
     }
 
     public function columns(): array
@@ -55,6 +56,8 @@ final class DocumentationTable extends PowerGridComponent
                 ->sortable()
                 ->editOnClick(hasPermission: true, saveOnMouseOut: true)
                 ->searchable(),
+            Column::make('Показывать на главной', 'homepage_visible')
+                ->toggleable(),
 
             Column::action('Действия')
         ];
@@ -93,18 +96,39 @@ final class DocumentationTable extends PowerGridComponent
 
     public function actions(Documentation $row): array
     {
-        return [
-            Button::add('edit')
+        $buttons = [];
+        $documentation = Documentation::find($row->id);
+        $next_siblings_count = $documentation->getNextSiblings()->count();
+        $prev_siblings_count = $documentation->getPrevSiblings()->count();
+
+        $buttons[] = Button::add('edit')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.documentation.edit', ['documentation' => $row->id]),
+                ->route('admin.documentation.edit', ['documentation' => $row->id]);
 
-            Button::add('delete')
+        // Условие для показа кнопки перемещения вверх
+        if ($prev_siblings_count > 0) {
+            $buttons[] = Button::add('up_document')
+                ->slot('<i class="fas fa-arrow-up"></i>')
+                ->class('btn btn-success')
+                ->dispatch('up_document', ['rowId' => $row->id]);
+        }
+
+        // Условие для показа кнопки перемещения вниз
+        if ($next_siblings_count > 0) {
+            $buttons[] = Button::add('down_document')
+                ->slot('<i class="fas fa-arrow-down"></i>')
+                ->class('btn btn-success')
+                ->dispatch('down_document', ['rowId' => $row->id]);
+        }
+
+        $buttons[] = Button::add('delete')
                 ->slot('<i class="fas fa-trash"></i>')
                 ->class('btn btn-danger')
                 ->confirm('Вы действительно хотите удалить этот документ?')
-                ->dispatch('doc_delete', ['id' => $row->id]),
-        ];
+                ->dispatch('doc_delete', ['id' => $row->id]);
+
+        return $buttons;
     }
 
     public function onUpdatedEditable(int|string $id, string $field, string $value): void
