@@ -1,7 +1,7 @@
 <div class="docs__content">
     <div class="news__title">
         <h2>Документация</h2>
-        <p>Здесь вы можете скачать каталоги производителей, обзорные материалы</p>
+        <p>Здесь вы можете скачать каталоги производителей, обзорные материалы на товары и группы товаров</p>
     </div>
     <div class="docs__filter-container">
         <div>
@@ -19,7 +19,7 @@
         <div>
             <label for="type">Все типы</label>
             <select wire:model.live="selectedType" class="filter__select" name="type" id="type">
-                <option value="">Выбрать</option>
+                <option value="">Все типы</option>
                 @foreach ($types as $type)
                     <option value="{{ $type->id }}">
                         {{ $type->name }}
@@ -91,5 +91,3 @@
         </div>
     </div>
 </div>
-
-
