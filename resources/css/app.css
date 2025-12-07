@@ -12565,6 +12565,7 @@ h2.benefits__title {
 }
 
 .news {
+    min-height: 75vh;
     margin-bottom: 5rem;
     overflow-x: hidden;
 }

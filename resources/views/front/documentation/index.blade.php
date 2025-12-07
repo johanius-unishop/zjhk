@@ -11,8 +11,6 @@
             </div>
         </section>
     </main>
-
-
 @endsection
 
 @section('css')
