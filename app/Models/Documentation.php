@@ -97,4 +97,28 @@ class Documentation extends Model implements HasMedia
 
         return false;
     }
+
+    public function down(): bool
+    {
+        // Получаем следующий документ (тот, что ниже текущего)
+        $nextDoc = self::where('order_column', '>', $this->order_column)
+            ->orderBy('order_column')
+            ->first();
+
+        if ($nextDoc) {
+            // Меняем местами порядок сортировки
+            DB::transaction(function () use ($nextDoc) {
+                $tempOrder = $nextDoc->order_column;
+                $nextDoc->order_column = $this->order_column;
+                $this->order_column = $tempOrder;
+
+                $nextDoc->save();
+                $this->save();
+            });
+
+            return true;
+        }
+
+        return false;
+    }
 }
