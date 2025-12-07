@@ -108,9 +108,9 @@ final class DocumentationTable extends PowerGridComponent
         $currentOrder = $documentation->order_column;
 
         $buttons[] = Button::add('edit')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.documentation.edit', ['documentation' => $row->id]);
+            ->slot('<i class="fas fa-edit"></i>')
+            ->class('btn btn-primary')
+            ->route('admin.documentation.edit', ['documentation' => $row->id]);
 
         // Проверяем, находится ли документ на вершине
         if ($currentOrder <= $minOrder) {
@@ -120,25 +120,33 @@ final class DocumentationTable extends PowerGridComponent
                 ->class('btn btn-success disabled') // Добавляем класс disabled, чтобы кнопка выглядела неактивной
                 ->attributes(['disabled' => 'disabled']); // Добавляем атрибут disabled, чтобы кнопка была интерактивно неактивной
         } else {
-        // Если документ не наверху, оставляем кнопку активной
+            // Если документ не наверху, оставляем кнопку активной
             $buttons[] = Button::add('up_document')
                 ->slot('<i class="fas fa-arrow-up"></i>')
                 ->class('btn btn-success')
                 ->dispatch('up_document', ['rowId' => $row->id]);
         }
 
-
-        // Условие для показа кнопки перемещения вниз
-        $buttons[] = Button::add('down_document')
+        // Проверяем, находится ли документ в самом низу
+        if ($currentOrder >= $maxOrder) {
+            // Если документ уже внизу, делаем кнопку неактивной
+            $buttons[] = Button::add('down_document')
                 ->slot('<i class="fas fa-arrow-down"></i>')
-                ->class('btn btn-success')
+                ->class('btn btn-warning disabled') // Добавляем класс disabled, чтобы кнопка выглядела неактивной
+                ->attributes(['disabled' => 'disabled']); // Добавляем атрибут disabled, чтобы кнопка была интерактивно неактивной
+        } else {
+            // Если документ не внизу, оставляем кнопку активной
+            $buttons[] = Button::add('down_document')
+                ->slot('<i class="fas fa-arrow-down"></i>')
+                ->class('btn btn-warning')
                 ->dispatch('down_document', ['rowId' => $row->id]);
+        }
 
         $buttons[] = Button::add('delete')
-                ->slot('<i class="fas fa-trash"></i>')
-                ->class('btn btn-danger')
-                ->confirm('Вы действительно хотите удалить этот документ?')
-                ->dispatch('doc_delete', ['id' => $row->id]);
+            ->slot('<i class="fas fa-trash"></i>')
+            ->class('btn btn-danger')
+            ->confirm('Вы действительно хотите удалить этот документ?')
+            ->dispatch('doc_delete', ['id' => $row->id]);
 
         return $buttons;
     }
