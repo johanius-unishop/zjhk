@@ -25,7 +25,7 @@
         @if ($mainPageSettings['displayDocsSection'])
             @include('components.main-page.documents')
         @endif
-        @if ($mainPageSettings['displayBrandsSection'])
+        @if ($mainPageSettings['displayBrandsSection'] && $vendors->isNotEmpty())
             @include('components.main-page.brands')
         @endif
     </main>
