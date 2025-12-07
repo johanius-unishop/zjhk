@@ -44,6 +44,18 @@ Breadcrumbs::for('documentation', function (BreadcrumbTrail $trail) {
     $trail->push('Документация', route('documentation'));
 });
 
+// Главная > Производители
+Breadcrumbs::for('vendors', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Производители', route('vendors'));
+});
+// Главная > Производители > Производитель
+Breadcrumbs::for('vendor', function (BreadcrumbTrail $trail, Vendor $vendor) {
+    $trail->parent('vendors');
+    $vendorName = trim($vendor->short_name) ?: $vendor->name;
+    $trail->push($vendorName);
+});
+
 // Главная > Вопрос-ответ
 Breadcrumbs::for('question.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
@@ -106,17 +118,7 @@ Breadcrumbs::for('page', function (BreadcrumbTrail $trail, $page): void {
 //     $trail->push($vendor->name);
 // });
 
-// Home > Vendors
-Breadcrumbs::for('vendors', function (BreadcrumbTrail $trail) {
-    $trail->parent('home');
-    $trail->push('Производители', route('vendors'));
-});
-// Home > Vendor
-Breadcrumbs::for('vendor', function (BreadcrumbTrail $trail, Vendor $vendor) {
-    $trail->parent('vendors');
-    $vendorName = trim($vendor->short_name) ?: $vendor->name;
-    $trail->push($vendorName);
-});
+
 
 // Home > Contact
 Breadcrumbs::for('contact', function (BreadcrumbTrail $trail) {
