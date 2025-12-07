@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use App\Models\PopularProduct;
 use App\Models\Documentation;
+use App\Models\Vendor;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 
@@ -17,8 +18,11 @@ class HomeController extends Controller
         $mainPageSettings = $this->getSettings();
         $popularProductsWithDetails = PopularProduct::with('product')->get();
         $documentations = Documentation::where('homepage_visible', '=', 1)
-                             ->orderBy('order_column', 'asc')
-                             ->get();
+                            ->orderBy('order_column', 'asc')
+                            ->get();
+        $vendors = Vendor::query()
+                            ->orderBy('order_column', 'asc')
+                            ->get();
         $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
         // Возвращаем представление с данными
