@@ -8,6 +8,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Support\Facades\DB;
 
 
 class Documentation extends Model implements HasMedia
@@ -71,5 +72,29 @@ class Documentation extends Model implements HasMedia
     public function type()
     {
         return $this->belongsTo(DocumentationType::class, 'type_id');
+    }
+
+    public function up(): bool
+    {
+        // Получаем предыдущий документ (тот, что выше текущего)
+        $previousDoc = self::where('order_column', '<', $this->order_column)
+            ->orderByDesc('order_column')
+            ->first();
+
+        if ($previousDoc) {
+            // Меняем местами порядок сортировки
+            DB::transaction(function () use ($previousDoc) {
+                $tempOrder = $previousDoc->order_column;
+                $previousDoc->order_column = $this->order_column;
+                $this->order_column = $tempOrder;
+
+                $previousDoc->save();
+                $this->save();
+            });
+
+            return true;
+        }
+
+        return false;
     }
 }
