@@ -46,9 +46,10 @@ class VendorController extends Controller
             'products' => $products,
         ];
 
-        SEOMeta::setTitle('Производители');
-        SEOMeta::setDescription('Список производителей');
-        SEOMeta::setKeywords('Производители бренды вендоры');
+        $title = 'Производитель ' . (trim($vendor->short_name) ?: $vendor->name);
+        SEOMeta::setTitle($title);
+       // SEOMeta::setDescription('Список производителей');
+       // SEOMeta::setKeywords('Производители бренды вендоры');
         return view('front.vendor.show', ['data' => $data]);
     }
 

@@ -32,7 +32,7 @@ Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 Route::get('/documentation', [DocumentationController::class, 'index'])->name('documentation');
 
 Route::get('/vendors', [VendorController::class, 'index'])->name('vendors');
-Route::get('/vendors/{vendor}', [VendorController::class, 'show'])->name('vendors.show');
+Route::get('/vendor/{slug}', [VendorController::class, 'show'])->name('vendors.show');
 
 Route::get('/question', [QuestionController::class, 'index'])->name('question');
 

@@ -11,7 +11,7 @@
                 <div class="swiper-wrapper brand">
                     @foreach ($vendors as $vendor)
                         <div class="swiper-slide brand">
-                            <a href="{{ route('vendors.show', ['vendor' => $vendor]) }}" class="brands__slider-item">
+                            <a href="{{ route('vendors.show', ['vendor' => $vendor->slug]) }}" class="brands__slider-item">
                                 @if (
                                     $acceptsWebP &&
                                         $vendor->getFirstMedia('vendorLogo') &&
