@@ -18,18 +18,18 @@
                                             $doc->getFirstMedia('images') &&
                                             $doc->getFirstMedia('images')->hasGeneratedConversion('webp-images'))
                                         <img src="{{ $doc->getFirstMedia('images')->getUrl('webp-images') }}"
-                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}"
+                                            alt="Обложка PDF материала: {{ trim($doc->vendor->short_name) ?: $doc->vendor->name }}"
                                             loading="lazy">
                                     @elseif (
                                         !$acceptsWebP &&
                                             $doc->getFirstMedia('images') &&
                                             $doc->getFirstMedia('images')->hasGeneratedConversion('jpeg-images'))
                                         <img src="{{ $doc->getFirstMedia('images')->getUrl('jpeg-images') }}"
-                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}"
+                                            alt="Обложка PDF материала: {{ trim($doc->vendor->short_name) ?: $doc->vendor->name }}"
                                             loading="lazy">
                                     @else
                                         <img src="{{ $doc->getFirstMedia('images') ? $doc->getFirstMedia('images')->getUrl() : asset('/images/default_image.jpg') }}"
-                                            alt="Обложка PDF материала: {{ $doc->vendor->name }} {{ $doc->title }}"
+                                            alt="Обложка PDF материала: {{ trim($doc->vendor->short_name) ?: $doc->vendor->name }}"
                                             loading="lazy">
                                     @endif
                                 </div>

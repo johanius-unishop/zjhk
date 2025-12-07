@@ -2,16 +2,38 @@
     <div class="brands__container container">
         <div class="brands__title-container">
             <h2 class="brands__title">Бренды</h2>
-            <button class="title-btn btn">Показать все</button>
+            <a href="{{ route('vendors') }}">
+                <button class="title-btn btn">Показать все</button>
+            </a>
         </div>
         <div class="brands__body">
             <div class="swiper brands-slider">
                 <div class="swiper-wrapper brand">
-                    <div class="swiper-slide brand">
-                        <a href="#" class="brands__slider-item">
-                            <img src='{{ asset('images/icons/partner-logo.png') }}' alt="брэнд">
-                        </a>
-                    </div>
+                    @foreach ($vendors as $vendor)
+                        <div class="swiper-slide brand">
+                            <a href="{{ route('vendors.show', ['vendor' => $vendor]) }}" class="brands__slider-item">
+                                @if (
+                                    $acceptsWebP &&
+                                        $vendor->getFirstMedia('vendorLogo') &&
+                                        $vendor->getFirstMedia('vendorLogo')->hasGeneratedConversion('webp'))
+                                    <img src="{{ $vendor->getFirstMedia('vendorLogo')->getUrl('webp') }}"
+                                        alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}"
+                                        loading="lazy">
+                                @elseif (
+                                    !$acceptsWebP &&
+                                        $vendor->getFirstMedia('vendorLogo') &&
+                                        $vendor->getFirstMedia('vendorLogo')->hasGeneratedConversion('jpeg'))
+                                    <img src="{{ $vendor->getFirstMedia('vendorLogo')->getUrl('jpeg') }}"
+                                        alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}"
+                                        loading="lazy">
+                                @else
+                                    <img src="{{ $vendor->getFirstMedia('vendorLogo') ? $doc->getFirstMedia('vendorLogo')->getUrl() : asset('/images/default_image.jpg') }}"
+                                        alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}"
+                                        loading="lazy">
+                                @endif
+                            </a>
+                        </div>
+                        @endforeach
                 </div>
             </div>
             <div class="swiper-button-prev brands"></div>

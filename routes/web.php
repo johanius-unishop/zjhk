@@ -31,6 +31,9 @@ Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 
 Route::get('/documentation', [DocumentationController::class, 'index'])->name('documentation');
 
+Route::get('/vendors', [VendorController::class, 'index'])->name('vendors');
+Route::get('/vendors/{vendor}', [VendorController::class, 'show'])->name('vendors.show');
+
 Route::get('/question', [QuestionController::class, 'index'])->name('question');
 
 Route::resource('/reviews', ReviewsController::class);
@@ -50,9 +53,9 @@ Route::get('/download-all-files/{product}', [FileController::class, 'downloadAll
 Route::get('/faq', [FaqController::class, 'show'])->name('faq.show');
 
 Route::get('search', [SearchController::class, 'search'])->name('search');
-Route::get('/vendors', [VendorController::class, 'index'])->name('vendors.index');
 
-Route::get('/vendors/{vendor}', [VendorController::class, 'show'])->name('vendors.show');
+
+
 
 
 Route::post('make_order', [CartController::class, 'make_order'])->name('make_order');
