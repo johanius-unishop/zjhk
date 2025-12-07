@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <div class=" py-3 form-row justify-content-center">
-                    <a class="btn   btn-success " href="{{ route('admin.currency.index') }}" role="button"> <i
+                    <a class="btn   btn-success " href="{{ route('admin.documentation.index') }}" role="button"> <i
                             class="fa fa-arrow-left "></i> К списку</a> &nbsp;
 
                     <button type="submit" name="action" value="save-exit" class="btn btn-primary">Сохранить и
