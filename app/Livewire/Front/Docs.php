@@ -54,7 +54,7 @@ class Docs extends Component
             ->get();
 
         // Базовый запрос к продуктам
-        $query = Documentation::all()->orderBy('order_column', 'asc');
+        $query = Documentation::query()->orderBy('order_column', 'asc');
 
         // Применяем фильтр по бренду, если выбрано какое-то значение
 
