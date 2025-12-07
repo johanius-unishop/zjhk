@@ -14,7 +14,7 @@ class VendorController extends Controller
     public function index()
     {
 
-        $vendors = Vendor::published()->paginate(perPage: 10)->withQueryString();
+        $vendors = Vendor::published()->orderBy('order_column', 'asc')->paginate(perPage: 10)->withQueryString();
         $vendors->load('media');
         //   dd( $news);
 

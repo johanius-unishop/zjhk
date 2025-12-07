@@ -20,7 +20,7 @@ class HomeController extends Controller
         $documentations = Documentation::where('homepage_visible', '=', 1)
                             ->orderBy('order_column', 'asc')
                             ->get();
-        $vendors = Vendor::query()
+        $vendors = Vendor::where('homepage_visible', '=', 1)
                             ->orderBy('order_column', 'asc')
                             ->get();
         $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
