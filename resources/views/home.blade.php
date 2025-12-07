@@ -22,7 +22,7 @@
         @if ($mainPageSettings['displayArticlesSection'])
             @include('components.main-page.articles')
         @endif
-        @if ($mainPageSettings['displayDocsSection'])
+        @if ($mainPageSettings['displayDocsSection'] && $documentations->isNotEmpty())
             @include('components.main-page.documents')
         @endif
         @if ($mainPageSettings['displayBrandsSection'] && $vendors->isNotEmpty())
@@ -40,8 +40,14 @@
 <script src="{{ asset('js/home/bannersSlider.js') }}"></script>
 <script src="{{ asset('js/home/newsSlider.js') }}"></script>
 <script src="{{ asset('js/home/articlesSlider.js') }}"></script>
-<script src="{{ asset('js/home/documentsSlider.js') }}"></script>
-<script src="{{ asset('js/home/brandsSlider.js') }}"></script>
+
+@if ($mainPageSettings['displayDocsSection'] && $documentations->isNotEmpty())
+    <script src="{{ asset('js/home/documentsSlider.js') }}"></script>
+@endif
+
+@if ($mainPageSettings['displayBrandsSection'] && $vendors->isNotEmpty())
+    <script src="{{ asset('js/home/brandsSlider.js') }}"></script>
+@endif
 
 @section('js')
 
