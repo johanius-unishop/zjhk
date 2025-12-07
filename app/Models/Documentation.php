@@ -22,6 +22,8 @@ class Documentation extends Model implements HasMedia
         'text',
         'vendor_id',
         'type_id',
+        'order_column',
+        'homepage_visible',
     ];
 
     public function registerMediaConversions(?Media $media = null): void
