@@ -38,7 +38,7 @@ final class DocumentationTable extends PowerGridComponent
 
     public function datasource(): ?Builder
     {
-        return Documentation::query();
+        return Documentation::query()->orderBy('order_column', 'asc');
     }
 
     public function fields(): PowerGridFields
