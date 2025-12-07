@@ -13,6 +13,7 @@ class VendorController extends Controller
      */
     public function index()
     {
+        $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
         $vendors = Vendor::published()->orderBy('order_column', 'asc')->paginate(perPage: 10)->withQueryString();
         $vendors->load('media');
@@ -25,10 +26,9 @@ class VendorController extends Controller
         SEOMeta::setTitle('Производители');
         SEOMeta::setDescription('Список производителей');
         SEOMeta::setKeywords('Производители бренды вендоры');
-        return view('front.vendor.index', ['data' => $data]);
+        return view('front.vendor.index', ['data' => $data, 'acceptsWebP' => $acceptsWebP]);
 
     }
-
 
 
     /**

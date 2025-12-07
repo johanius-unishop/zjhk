@@ -11,4 +11,27 @@
             </div>
         </section>
     </main>
+
+@endsection
+
+@section('css')
+
+
+@stop
+
+@yield('scripts')
+
+
+
+@section('scripts')
+
+    @if ($errors->has('email') || $errors->has('password'))
+        <script>
+            $(function() {
+                $('#loginModal').modal({
+                    show: true
+                });
+            });
+        </script>
+    @endif
 @stop
