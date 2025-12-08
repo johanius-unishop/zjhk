@@ -30,11 +30,11 @@
                             <img src="{{ asset('images/content/vendors/zjhk/zjhk_2.jpg') }}" alt="Выставочный стенд ZJHK">
                         </div>
                     </div>
-                     <div class="vendor-page__img-container">
+                    <div class="vendor-page__img-container">
                         <div class="vendor-page__img-item full-width">
                             <img src="{{ asset('images/content/vendors/zjhk/zjhk_3.jpg') }}" alt="Соединители ZJHK">
                         </div>
-                     </div>
+                    </div>
                     <h2 class="news-page__title">Философия компании</h2>
                     <p class="news-page__main-text">Дух компании: быть практичными, инновационными и стремиться к высшему
                         качеству.</p>
@@ -49,90 +49,6 @@
                         смогли убедиться в высочайшей надежности компании ZJHK, компания в целом и отдельные ее сотрудники
                         всегда верны своему слову, готовы оказать любое содействие своим партнером и конечным потребителям
                         продукции.</p>
-                </div>
-                <div class="news-page__container ">
-                    <div class="news-page__title-container">
-                        <h2 class="news__title">Новости</h2>
-                        <button class="title-btn btn">Показать все</button>
-                    </div>
-                    <div class="news__body">
-                        <div class="swiper news-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide news__item">
-                                    <div>
-                                        <div>
-                                            <img src="./img/content/electro-2022.jpg" alt="новости">
-                                        </div>
-                                        <div>
-                                            <h5>Участие ООО «КевТек» в выставке ЭЛЕКТРО-2024</h5>
-                                            <p>Выставка состоится 6-9 июня 2024 года в Экспоцентре г. Москва</p>
-                                        </div>
-                                        <div class="news-page__btn-container">
-                                            <a href="#">Подробнее</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide news__item">
-                                    <div>
-                                        <div>
-                                            <img src="./img/content/electro-2023.jpg" alt="новости">
-                                        </div>
-                                        <div>
-                                            <h5>Haoke Electrical (ZJHK) на выставке ЭЛЕКТРО-2023</h5>
-                                            <p>Выставка состоится 6–9 июня 2023 года в Экспоцентре</p>
-                                        </div>
-                                        <div class="news-page__btn-container">
-                                            <a href="#">Подробнее</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide news__item">
-                                    <div>
-                                        <div>
-                                            <img src="./img/content/handshake.jpg" alt="новости">
-                                        </div>
-                                        <div>
-                                            <h5>Заключили новые контрактыс поставщиками</h5>
-                                            <p>Наш каталог пополнен новыми товарами</p>
-                                        </div>
-                                        <div class="news-page__btn-container">
-                                            <a href="#">Подробнее</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide news__item">
-                                    <div>
-                                        <div>
-                                            <img src="./img/content/electro-2022.jpg" alt="новости">
-                                        </div>
-                                        <div>
-                                            <h5>Участие ООО «КевТек» в выставке ЭЛЕКТРО-2024</h5>
-                                            <p>Выставка состоится 6-9 июня 2024 года в Экспоцентрег. Москва</p>
-                                        </div>
-                                        <div class="news-page__btn-container">
-                                            <a href="#">Подробнее</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide news__item">
-                                    <div>
-                                        <div>
-                                            <img src="./img/content/handshake.jpg" alt="новости">
-                                        </div>
-                                        <div>
-                                            <h5>Заключили новые контрактыс поставщиками</h5>
-                                            <p>Наш каталог пополнен новыми товарами</p>
-                                        </div>
-                                        <div class="news-page__btn-container">
-                                            <a href="#">Подробнее</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-button-prev news"></div>
-                        <div class="swiper-button-next news"></div>
-                    </div>
                 </div>
             </div>
         </section>
