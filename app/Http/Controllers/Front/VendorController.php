@@ -42,11 +42,7 @@ class VendorController extends Controller
             $title = $title . ' (' . $vendor->country->name . ')';
         }
 
-        // Теперь передаем объект модели в метод
-        Breadcrumbs::for('vendor.show', function ($trail) use ($vendor) {
-        $trail->parent('vendors.index');
-        $trail->push($vendor->name, route('vendors.show', $vendor->slug));
-    });
+
 
 
         SEOMeta::setTitle($title);
