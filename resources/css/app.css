@@ -12839,7 +12839,7 @@ h2.benefits__title {
     font-family: inherit;
     width: 9.375rem;
     text-align: center;
-    margin: 0 auto;
+    margin: 1rem auto;
 }
 
 @media (any-hover: hover) {
