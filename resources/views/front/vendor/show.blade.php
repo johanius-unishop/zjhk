@@ -6,7 +6,7 @@
     <main>
         <section class="news-page">
             <div class="news-page__container container">
-                @include('components.breadcrumbs')
+                @include('components.vendor-page.breadcrumbs')
                 <div class="news-page__content">
                     <h2 class="news-page__title">Haoke Electrical (ZJHK) на выставке ЭЛЕКТРО-2023</h2>
                     <p>С 6 по 9 июня 2023 года в Москве в ЦВК «Экспоцентр» состоялась 31-я международная выставка
