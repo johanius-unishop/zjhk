@@ -24,12 +24,17 @@
                         список Fortune 500.</p>
                     <div class="news-page__img-container">
                         <div>
-                            <img src="img/content/exhibition.jpg" alt="выставка">
+                            <img src="{{ asset('images/content/zjhk_1.jpg') }}" alt="Стенд ZJHK на выставке">
                         </div>
                         <div>
-                            <img src="img/content/stand.jpg" alt="стенд">
+                            <img src="{{ asset('images/content/zjhk_2.jpg') }}" alt="Выставочный стенд ZJHK">
                         </div>
                     </div>
+                     <div class="news-page__img-container">
+                        <div>
+                            <img src="{{ asset('images/content/zjhk_3.jpg') }}" alt="Соединители ZJHK">
+                        </div>
+                     </div>
                     <h2 class="news-page__title">Философия компании</h2>
                     <p class="news-page__main-text">Дух компании: быть практичными, инновационными и стремиться к высшему
                         качеству.</p>
