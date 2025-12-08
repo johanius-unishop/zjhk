@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Diglactic\Breadcrumbs\Breadcrumbs;
 class VendorController extends Controller
 {
     /**
@@ -28,7 +29,7 @@ class VendorController extends Controller
     public function show($slug)
     {
 
-        $vendor   = Vendor::published()->where('slug', $slug)->firstOrFail();
+        $vendor = Vendor::published()->where('slug', $slug)->firstOrFail();
         //$products = $vendor->products()->paginate(12)->withQueryString();
         //$products = checkInCartAndFavourites($products);
         //   dd( $products );
@@ -41,7 +42,11 @@ class VendorController extends Controller
             $title = $title . ' (' . $vendor->country->name . ')';
         }
 
-
+        // Теперь передаем объект модели в метод
+        Breadcrumbs::for('vendor.show', function ($trail) use ($vendor) {
+        $trail->parent('vendors.index');
+        $trail->push($vendor->name, route('vendors.show', $vendor->slug));
+    });
 
 
         SEOMeta::setTitle($title);
