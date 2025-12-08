@@ -15,19 +15,12 @@ class VendorController extends Controller
     {
         $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
-        $vendors = Vendor::published()->orderBy('order_column', 'asc')->paginate(perPage: 10)->withQueryString();
-        $vendors->load('media');
-        //   dd( $news);
-
-        $data = [
-            'items' => $vendors,
-        ];
+        $vendors = Vendor::published()->orderBy('order_column', 'asc');
 
         SEOMeta::setTitle('Производители');
-        SEOMeta::setDescription('Список производителей');
-        SEOMeta::setKeywords('Производители бренды вендоры');
-        return view('front.vendor.index', ['data' => $data, 'acceptsWebP' => $acceptsWebP]);
-
+        SEOMeta::setDescription('Список производителей, продукция которых поставляется ООО "Кевтек"');
+        SEOMeta::setKeywords('Производители, бренды, вендоры');
+        return view('front.vendor.index', ['vendors' => $vendors, 'acceptsWebP' => $acceptsWebP]);
     }
 
 
