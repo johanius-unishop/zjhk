@@ -42,13 +42,12 @@ class VendorController extends Controller
             $title = $title . ' (' . $vendor->country->name . ')';
         }
 
-
-
+        dd($vendor);
 
         SEOMeta::setTitle($title);
        // SEOMeta::setDescription('Список производителей');
        // SEOMeta::setKeywords('Производители бренды вендоры');
-        return view('front.vendor.show', ['vendor' => $vendor, 'title' => $title]);
+        return view('front.vendor.show', compact('vendor', 'title'));
     }
 
 
