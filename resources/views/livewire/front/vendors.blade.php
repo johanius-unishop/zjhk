@@ -8,7 +8,6 @@
             <div class="news__item">
                 <div>
                     <div>
-                        <a href="{{ route('vendor.show', ['slug' => $vendor->slug]) }}" class="brands__slider-item">
                             @if (
                                 $acceptsWebP &&
                                     $vendor->getFirstMedia('vendorLogo') &&
@@ -27,7 +26,6 @@
                                     alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}"
                                     loading="lazy">
                             @endif
-                        </a>
                     </div>
                     <div>
                         <h5>{{ trim($vendor->short_name) ?: $vendor->name }}</h5>
