@@ -23,10 +23,10 @@
                         компаниям, входящим в
                         список Fortune 500.</p>
                     <div class="vendor-page__img-container">
-                        <div class="vendor-page__img-item half-width>
+                        <div class="vendor-page__img-item half-width">
                             <img src="{{ asset('images/content/vendors/zjhk/zjhk_1.jpg') }}" alt="Стенд ZJHK на выставке">
                         </div>
-                        <div class="vendor-page__img-item half-width>
+                        <div class="vendor-page__img-item half-width">
                             <img src="{{ asset('images/content/vendors/zjhk/zjhk_2.jpg') }}" alt="Выставочный стенд ZJHK">
                         </div>
                     </div>
