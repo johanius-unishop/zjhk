@@ -29,19 +29,15 @@ class VendorController extends Controller
     {
 
         $vendor   = Vendor::published()->where('slug', $slug)->firstOrFail();
-        $products = $vendor->products()->paginate(12)->withQueryString();
-        $products = checkInCartAndFavourites($products);
+        //$products = $vendor->products()->paginate(12)->withQueryString();
+        //$products = checkInCartAndFavourites($products);
         //   dd( $products );
-        $data     = [
-            'vendor' => $vendor,
-            'products' => $products,
-        ];
 
         $title = 'Производитель ' . (trim($vendor->short_name) ?: $vendor->name);
         SEOMeta::setTitle($title);
        // SEOMeta::setDescription('Список производителей');
        // SEOMeta::setKeywords('Производители бренды вендоры');
-        return view('front.vendor.show', ['data' => $data]);
+        return view('front.vendor.show', ['vendor' => $vendor]);
     }
 
 
