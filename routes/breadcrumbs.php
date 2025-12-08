@@ -50,10 +50,10 @@ Breadcrumbs::for('vendors', function (BreadcrumbTrail $trail) {
     $trail->push('Производители', route('vendors'));
 });
 // Главная > Производители > Производитель
-Breadcrumbs::for('vendor.show', function (BreadcrumbTrail $trail, Vendor $vendor) {
+Breadcrumbs::for('vendor.show', function ($trail) use ($vendor) {
     $trail->parent('vendors');
     $vendorName = trim($vendor->short_name) ?: $vendor->name;
-    $trail->push($vendorName);
+    $trail->push($vendorName, route('vendors.show', $vendor->slug));
 });
 
 // Главная > Вопрос-ответ
