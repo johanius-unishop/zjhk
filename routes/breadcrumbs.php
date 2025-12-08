@@ -50,10 +50,10 @@ Breadcrumbs::for('vendors', function (BreadcrumbTrail $trail) {
     $trail->push('Производители', route('vendors'));
 });
 // Главная > Производители > Производитель
-Breadcrumbs::for('vendor.show', function (BreadcrumbTrail $trail, Vendor $vendor) {
+Breadcrumbs::for('vendor.show', function (BreadcrumbTrail $trail, Vendor $item) {
     $trail->parent('vendors');
-    $vendorName = trim($vendor->short_name) ?: $vendor->name;
-    $trail->push($vendor->name, route('vendors.show', $vendor->slug));
+    $vendorName = trim($item->short_name) ?: $item->name;
+    $trail->push($vendorName);
 });
 
 // Главная > Вопрос-ответ
@@ -71,7 +71,7 @@ Breadcrumbs::for('catalog', function (BreadcrumbTrail $trail) {
 // Home > search_result
 Breadcrumbs::for('search_result', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Результаты поиска'  );
+    $trail->push('Результаты поиска');
 });
 
 // Home > Categories
