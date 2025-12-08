@@ -22,7 +22,7 @@
                                     alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}"
                                     loading="lazy">
                             @else
-                                <img src="{{ $vendor->getFirstMedia('vendorLogo') ? $doc->getFirstMedia('vendorLogo')->getUrl() : asset('/images/default_image.jpg') }}"
+                                <img src="{{ $vendor->getFirstMedia('vendorLogo') ? $vendor->getFirstMedia('vendorLogo')->getUrl() : asset('/images/default_image.jpg') }}"
                                     alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}"
                                     loading="lazy">
                             @endif
