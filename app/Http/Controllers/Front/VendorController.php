@@ -33,11 +33,21 @@ class VendorController extends Controller
         //$products = checkInCartAndFavourites($products);
         //   dd( $products );
 
-        $title = 'Производитель ' . (trim($vendor->short_name) ?: $vendor->name);
+        $title = 'Производитель ' . $vendor->name;
+        if ($vendor->name != $vendor->short_name) {
+            $title = $title . ' - ' . $vendor->short_name . ' (' . $vendor->country->name . ')';
+        }
+        else {
+            $title = $title . ' (' . $vendor->country->name . ')';
+        }
+
+
+
+
         SEOMeta::setTitle($title);
        // SEOMeta::setDescription('Список производителей');
        // SEOMeta::setKeywords('Производители бренды вендоры');
-        return view('front.vendor.show', ['vendor' => $vendor]);
+        return view('front.vendor.show', ['vendor' => $vendor, 'title' => $title]);
     }
 
 
