@@ -4,9 +4,9 @@
 
             @foreach (Breadcrumbs::generate('vendor.show', $vendor) as $crumb)
                 @if (!$loop->last)
-                    <li><a href="{{ $crumb->url }}">{{ $crumb->name }}</a><img src="{{ asset('images/icons/arrow-right.svg') }}" alt="стрелка"></li>
+                    <li><a href="{{ $crumb->url }}">{{ $crumb->title }}</a><img src="{{ asset('images/icons/arrow-right.svg') }}" alt="стрелка"></li>
                 @else
-                    <li><span>{{ $crumb->name }}</span></li>
+                    <li><span>{{ $crumb->title }}</span></li>
                 @endif
             @endforeach
         </ul>
