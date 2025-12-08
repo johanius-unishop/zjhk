@@ -7174,12 +7174,12 @@ select {
 .vendor-page__img-container {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 @media (max-width: 61.99875em) {
     .vendor-page__img-container {
-        margin-bottom: 2rem;
+        margin-bottom: 0.75rem;
     }
 }
 
