@@ -7183,12 +7183,6 @@ select {
     }
 }
 
-@media (max-width: 35.99875em) {
-    .vendor-page__img-container {
-        gap: 0.5rem;
-    }
-}
-
 .vendor-page__img-item  {
     flex: 0 0 auto;
 }
@@ -7200,7 +7194,7 @@ select {
 }
 
 .half-width {
-    width: 50%; /* Два изображения в ряду */
+    width: calc(50% - 0.25rem); /* Два изображения в ряду */
 }
 
 .full-width {
