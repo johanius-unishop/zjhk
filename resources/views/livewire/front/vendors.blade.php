@@ -30,7 +30,7 @@
                         </a>
                     </div>
                     <div>
-                        <h5>{{ trim($vendor->short_name) ?: $vendor->name }}"</h5>
+                        <h5>{{ trim($vendor->short_name) ?: $vendor->name }}</h5>
                     </div>
                     <a href="{{ route('vendor.show', ['slug' => $vendor->slug]) }}"
                         class="brands__slider-item">Подробнее</a>
