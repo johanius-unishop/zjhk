@@ -22,16 +22,16 @@
                         международным стандартам (EAC, UL, CE, CQC, CCC и ROHS). Компания поставляет свою продукцию крупным
                         компаниям, входящим в
                         список Fortune 500.</p>
-                    <div class="news-page__img-container">
-                        <div>
+                    <div class="vendor-page__img-container">
+                        <div class="vendor-page__img-item half-width>
                             <img src="{{ asset('images/content/vendors/zjhk/zjhk_1.jpg') }}" alt="Стенд ZJHK на выставке">
                         </div>
-                        <div>
+                        <div class="vendor-page__img-item half-width>
                             <img src="{{ asset('images/content/vendors/zjhk/zjhk_2.jpg') }}" alt="Выставочный стенд ZJHK">
                         </div>
                     </div>
-                     <div class="news-page__img-container">
-                        <div>
+                     <div class="vendor-page__img-container">
+                        <div class="vendor-page__img-item full-width">
                             <img src="{{ asset('images/content/vendors/zjhk/zjhk_3.jpg') }}" alt="Соединители ZJHK">
                         </div>
                      </div>
