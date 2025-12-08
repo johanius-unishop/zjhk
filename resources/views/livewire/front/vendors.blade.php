@@ -1,19 +1,36 @@
 <div class="news__content">
     <div class="news__title-body">
-        <h2>Новости</h2>
-        <p>Информация о поставщиках и корпоративных событиях</p>
+        <h2>Производители</h2>
+        <p>Список производителей, продукция которых представлена нами в России</p>
     </div>
     <div class="card__item-wrapper">
+        @foreach ($vendors as $vendor)
         <div class="news__item">
             <div>
                 <div>
-                    <img src="./img/content/electro-2022.jpg" alt="новости">
+                    <a href="{{ route('vendor.show', ['slug' => $vendor->slug]) }}" class="brands__slider-item">
+                        @if (
+                            $acceptsWebP &&
+                                $vendor->getFirstMedia('vendorLogo') &&
+                                $vendor->getFirstMedia('vendorLogo')->hasGeneratedConversion('webp'))
+                            <img src="{{ $vendor->getFirstMedia('vendorLogo')->getUrl('webp') }}"
+                                alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}" loading="lazy">
+                        @elseif (
+                            !$acceptsWebP &&
+                                $vendor->getFirstMedia('vendorLogo') &&
+                                $vendor->getFirstMedia('vendorLogo')->hasGeneratedConversion('jpeg'))
+                            <img src="{{ $vendor->getFirstMedia('vendorLogo')->getUrl('jpeg') }}"
+                                alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}" loading="lazy">
+                        @else
+                            <img src="{{ $vendor->getFirstMedia('vendorLogo') ? $doc->getFirstMedia('vendorLogo')->getUrl() : asset('/images/default_image.jpg') }}"
+                                alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}" loading="lazy">
+                        @endif
+                    </a>
                 </div>
                 <div>
-                    <h5>Участие ООО «КевТек» в выставке ЭЛЕКТРО-2024</h5>
-                    <p>Выставка состоится 6-9 июня 2024 года в Экспоцентрег. Москва</p>
+                    <h5>{{ trim($vendor->short_name) ?: $vendor->name }}"</h5>
                 </div>
-                <a href="#">Подробнее</a>
+                <a href="{{ route('vendor.show', ['slug' => $vendor->slug]) }}" class="brands__slider-item">Подробнее</a>
             </div>
         </div>
     </div>
