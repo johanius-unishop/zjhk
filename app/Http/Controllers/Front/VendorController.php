@@ -7,6 +7,7 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Diglactic\Breadcrumbs\Breadcrumbs;
+
 class VendorController extends Controller
 {
     /**
@@ -38,22 +39,21 @@ class VendorController extends Controller
         $title = 'Производитель ' . $vendor->name;
         if ($vendor->name != $vendor->short_name) {
             $title = $title . ' - ' . $vendor->short_name . ' (' . $vendor->country->name . ')';
-        }
-        else {
+        } else {
             $title = $title . ' (' . $vendor->country->name . ')';
         }
 
         if ($vendor) {
             $vendorPage = 'front.static-page.vendors.' . strtolower($vendor->short_name);
+            if (!view()->exists($vendorPage)) {
+                abort(404); // Выдача страницы 404
+            }
         }
 
+
         SEOMeta::setTitle($title);
-       // SEOMeta::setDescription('Список производителей');
-       // SEOMeta::setKeywords('Производители бренды вендоры');
+        // SEOMeta::setDescription('Список производителей');
+        // SEOMeta::setKeywords('Производители бренды вендоры');
         return view('front.vendor.show', compact('acceptsWebP', 'vendorPage', 'vendor', 'title'));
     }
-
-
-
-
 }
