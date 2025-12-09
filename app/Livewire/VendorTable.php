@@ -203,8 +203,9 @@ final class VendorTable extends PowerGridComponent
     #[\Livewire\Attributes\On('vendor_delete')]
     public function vendor_delete(int $id): void
     {
-        dd($id);
+
         $deleted_record = Vendor::where('id', $id)->withCount('products')->firstOrFail();
+        dd($deleted_record);
         if ($deleted_record->product_count > 0) {
             $this->dispatch('toast-warning', message: 'У этого бренда есть товары. Сначала следует удалить их!', notify: 'error');
             return;
