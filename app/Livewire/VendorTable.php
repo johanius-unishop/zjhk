@@ -208,7 +208,7 @@ final class VendorTable extends PowerGridComponent
             $this->dispatch('toast-warning', message: 'У этого бренда есть товары. Сначала следует удалить их!', notify: 'error');
             return;
         }
-
+        dd($deleted_record->product_count);
         if ($deleted_record->seo()->exists()) {
             $deleted_record->seo()->delete();
         }
@@ -216,7 +216,7 @@ final class VendorTable extends PowerGridComponent
             $deleted_record->media()->delete();
         }
 
-        $deleted_record->delete();
+        //$deleted_record->delete();
 
         $this->dispatch('toast-success', message: 'Бренд успешно удалён!');
     }
