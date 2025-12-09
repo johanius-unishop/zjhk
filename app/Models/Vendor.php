@@ -18,6 +18,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use App\PathGenerators\VendorPathGenerator;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Support\Facades\DB;
 
 class Vendor extends Model implements Sortable, HasMedia
 {
@@ -156,5 +157,53 @@ class Vendor extends Model implements Sortable, HasMedia
     public function documentations()
     {
         return $this->hasMany(Documentation::class); // Многие документы относятся к одному бренду
+    }
+
+    public function up(): bool
+    {
+        // Получаем предыдущий бренд (тот, что выше текущего)
+        $previousVendor = self::where('order_column', '<', $this->order_column)
+            ->orderByDesc('order_column')
+            ->first();
+
+        if ($previousVendor) {
+            // Меняем местами порядок сортировки
+            DB::transaction(function () use ($previousVendor) {
+                $tempOrder = $previousVendor->order_column;
+                $previousVendor->order_column = $this->order_column;
+                $this->order_column = $tempOrder;
+
+                $previousVendor->save();
+                $this->save();
+            });
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function down(): bool
+    {
+        // Получаем следующий бренд (тот, что ниже текущего)
+        $nextVendor = self::where('order_column', '>', $this->order_column)
+            ->orderBy('order_column')
+            ->first();
+
+        if ($nextVendor) {
+            // Меняем местами порядок сортировки
+            DB::transaction(function () use ($nextVendor) {
+                $tempOrder = $nextVendor->order_column;
+                $nextVendor->order_column = $this->order_column;
+                $this->order_column = $tempOrder;
+
+                $nextVendor->save();
+                $this->save();
+            });
+
+            return true;
+        }
+
+        return false;
     }
 }
