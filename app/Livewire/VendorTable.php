@@ -194,7 +194,7 @@ final class VendorTable extends PowerGridComponent
         $buttons[] = Button::add('delete')
             ->slot('<i class="fas fa-trash"></i>')
             ->class('btn btn-danger')
-            ->confirm('Вы действительно хотите удалить этот документ?')
+            ->confirm('Вы действительно хотите удалить этот Бренд?')
             ->dispatch('vendor_delete', ['id' => $row->id]);
 
         return $buttons;
