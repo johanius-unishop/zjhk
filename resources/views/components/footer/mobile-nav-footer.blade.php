@@ -70,7 +70,7 @@
                 <li><a href="{{ route('news') }}" data-link="close">Новости</a></li>
                 <li><a href="{{ route('documentation') }}" data-link="close">Документация</a></li>
                 <li><a href="{{ route('articles') }}" data-link="close">Статьи</a></li>
-                <li><a href="#" data-link="close">Бренды</a></li>
+                <li><a href="{{ route('vendors') }}" data-link="close">Бренды</a></li>
             </ul>
             <h3>Покупателям</h3>
             <ul class="mobile__side-list">
