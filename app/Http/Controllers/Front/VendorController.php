@@ -43,7 +43,7 @@ class VendorController extends Controller
         }
 
         if ($vendor) {
-            $vendorPage = 'front.static-page.vendors.' . $vendor->short_name;
+            $vendorPage = 'front.static-page.vendors.' . strtolower($vendor->short_name);
         }
 
         SEOMeta::setTitle($title);
