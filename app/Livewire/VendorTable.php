@@ -203,19 +203,9 @@ final class VendorTable extends PowerGridComponent
     #[\Livewire\Attributes\On('vendor_delete')]
     public function vendor_delete(int $id): void
     {
-        $record = Vendor::findOrFail($id);
-        $record->delete();
-
-        $this->dispatch('toast-success', message: 'Бренд успешно удалён!');
-    }
-
-    #[\Livewire\Attributes\On('confirmed')]
-    public function confirmed()
-    {
-
-        $deleted_record = Vendor::where('id', $this->delete_id)->withCount('products')->firstOrFail();
+        $deleted_record = Vendor::where('id', $id)->withCount('products')->firstOrFail();
         if ($deleted_record->product_count > 0) {
-            $this->dispatch('toast', message: 'У этого производителя есть товары. Сначала следует удалить их!', notify: 'error');
+            $this->dispatch('toast-warning', message: 'У этого бренда есть товары. Сначала следует удалить их!', notify: 'error');
             return;
         }
 
@@ -225,13 +215,11 @@ final class VendorTable extends PowerGridComponent
         if ($deleted_record->media()->exists()) {
             $deleted_record->media()->delete();
         }
+
         $deleted_record->delete();
-        $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
+
+        $this->dispatch('toast-success', message: 'Бренд успешно удалён!');
     }
-
-
-
-
 
 
     public function onUpdatedEditable(int|string $id, string $field, string $value): void
