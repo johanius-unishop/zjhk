@@ -46,7 +46,7 @@ final class VendorTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Vendor::query()
+        return Vendor::query()->orderBy('order_column', 'asc')
             ->withCount('products')
             ->with('country');
     }
