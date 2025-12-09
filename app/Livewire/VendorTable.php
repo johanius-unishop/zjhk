@@ -201,18 +201,12 @@ final class VendorTable extends PowerGridComponent
     }
 
     #[\Livewire\Attributes\On('vendor_delete')]
-    public function vendor_delete($rowId): void
+    public function vendor_delete(int $id): void
     {
-        $this->delete_id = $rowId;
-        $this->confirm(
-            'Вы действительно хотите удалить этого производителя?',
-            [
-                'onConfirmed' => 'confirmed',
-                'showCancelButton' => true,
-                'cancelButtonText' => 'Нет',
-                'confirmButtonText' => 'Да'
-            ]
-        );
+        $record = Vendor::findOrFail($id);
+        $record->delete();
+
+        $this->dispatch('toast-success', message: 'Бренд успешно удалён!');
     }
 
     #[\Livewire\Attributes\On('confirmed')]
