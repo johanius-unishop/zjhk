@@ -205,7 +205,7 @@ final class VendorTable extends PowerGridComponent
     {
 
         $deleted_record = Vendor::where('id', $id)->withCount('products')->firstOrFail();
-        dd($deleted_record->products_count);
+
         if ($deleted_record->products_count > 0) {
             $this->dispatch('toast-warning', message: 'У этого бренда есть товары. Сначала следует удалить их!', notify: 'error');
             return;
