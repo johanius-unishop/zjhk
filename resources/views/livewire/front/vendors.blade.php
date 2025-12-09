@@ -1,7 +1,7 @@
 <div class="news__content">
     <div class="news__title-body">
-        <h2>Производители</h2>
-        <p>Список производителей, продукция которых представлена нами в России</p>
+        <h2>Бренды</h2>
+        <p>Список брендов, производителей, продукция которых представлена нами в России</p>
     </div>
     <div class="card__item-wrapper">
         @foreach ($vendors as $vendor)

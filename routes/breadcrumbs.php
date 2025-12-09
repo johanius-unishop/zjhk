@@ -47,7 +47,7 @@ Breadcrumbs::for('documentation', function (BreadcrumbTrail $trail) {
 // Главная > Производители
 Breadcrumbs::for('vendors', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Производители', route('vendors'));
+    $trail->push('Бренды', route('vendors'));
 });
 // Главная > Производители > Производитель
 Breadcrumbs::for('vendor.show', function (BreadcrumbTrail $trail, Vendor $item) {

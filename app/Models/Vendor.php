@@ -37,6 +37,7 @@ class Vendor extends Model implements Sortable, HasMedia
         'description',
         'slug',
         'published',
+        'homepage_visible',
         'country_id',
         'delivery_time',
         'warranty',

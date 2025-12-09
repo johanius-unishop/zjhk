@@ -3,15 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\Vendor;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Illuminate\Support\Facades\Log;
 
 final class VendorTable extends PowerGridComponent
 {
@@ -25,6 +24,7 @@ final class VendorTable extends PowerGridComponent
     public array $delivery_time;
     public array $warranty;
     public array $published;
+    public array $homepage_visible;
     public bool $showErrorBag = true;
     public $editingRowId = null;
     public $editingFieldName = '';
@@ -63,6 +63,7 @@ final class VendorTable extends PowerGridComponent
             ->add('name')
             ->add('short_name')
             ->add('published')
+            ->add('homepage_visible')
             ->add('country.name')
             ->add('delivery_time')
             ->add('warranty')
@@ -83,7 +84,12 @@ final class VendorTable extends PowerGridComponent
                 ->searchable()
                 ->editOnClick(),
 
-            Column::make('Published', 'published')
+            Column::make('Показывать на сайте', 'published')
+                ->sortable()
+                ->searchable()
+                ->toggleable(),
+
+            Column::make('Показывать на главной', 'homepage_visible')
                 ->sortable()
                 ->searchable()
                 ->toggleable(),
@@ -140,16 +146,58 @@ final class VendorTable extends PowerGridComponent
 
     public function actions(Vendor $row): array
     {
-        return [
-            Button::add('Edit')
+        $buttons = [];
+        $vendor = Vendor::find($row->id);
+
+        // Получаем текущий минимальный порядок сортировки
+        $minOrder = Vendor::min('order_column');
+        // Получаем текущий максимальный порядок сортировки
+        $maxOrder = Vendor::max('order_column');
+        // Текущий порядок текущего документа
+        $currentOrder = $vendor->order_column;
+
+        $buttons[] = Button::add('Edit')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.vendor.edit', ['vendor' => $row->id]),
-            Button::add('Delete')
-                ->slot('<i class="fas fa-trash"></i>')
-                ->class('btn btn-danger')
-                ->dispatch('vendor_delete', ['rowId' => $row->id]),
-        ];
+                ->route('admin.vendor.edit', ['vendor' => $row->id]);
+
+        // Проверяем, находится ли вендор на вершине
+        if ($currentOrder <= $minOrder) {
+            // Если вендор уже наверху, делаем кнопку неактивной
+            $buttons[] = Button::add('up_vendor')
+                ->slot('<i class="fas fa-arrow-up"></i>')
+                ->class('btn btn-success disabled') // Добавляем класс disabled, чтобы кнопка выглядела неактивной
+                ->attributes(['disabled' => 'disabled']); // Добавляем атрибут disabled, чтобы кнопка была интерактивно неактивной
+        } else {
+            // Если вендор не наверху, оставляем кнопку активной
+            $buttons[] = Button::add('up_vendor')
+                ->slot('<i class="fas fa-arrow-up"></i>')
+                ->class('btn btn-success')
+                ->dispatch('up_vendor', ['rowId' => $row->id]);
+        }
+
+        // Проверяем, находится ли вендор в самом низу
+        if ($currentOrder >= $maxOrder) {
+            // Если вендор уже внизу, делаем кнопку неактивной
+            $buttons[] = Button::add('down_vendor')
+                ->slot('<i class="fas fa-arrow-down"></i>')
+                ->class('btn btn-success disabled') // Добавляем класс disabled, чтобы кнопка выглядела неактивной
+                ->attributes(['disabled' => 'disabled']); // Добавляем атрибут disabled, чтобы кнопка была интерактивно неактивной
+        } else {
+            // Если вендор не внизу, оставляем кнопку активной
+            $buttons[] = Button::add('down_vendor')
+                ->slot('<i class="fas fa-arrow-down"></i>')
+                ->class('btn btn-success')
+                ->dispatch('down_vendor', ['rowId' => $row->id]);
+        }
+
+        $buttons[] = Button::add('delete')
+            ->slot('<i class="fas fa-trash"></i>')
+            ->class('btn btn-danger')
+            ->confirm('Вы действительно хотите удалить этот документ?')
+            ->dispatch('vendor_delete', ['id' => $row->id]);
+
+        return $buttons;
     }
 
     #[\Livewire\Attributes\On('vendor_delete')]
@@ -210,5 +258,43 @@ final class VendorTable extends PowerGridComponent
             $field => e($value),
         ]);
         $this->skipRender();
+    }
+
+    #[\Livewire\Attributes\On(event: 'down_vendor')]
+    public function down_vendor($rowId): void
+    {
+        try {
+            $vendor = Vendor::findOrFail($rowId);
+            $down = $vendor->down();
+            if ($down) {
+                $this->dispatch('toast-success', message: 'Бренд перемещен вниз.', notify: 'success');
+            } else {
+                $this->dispatch('toast-warning', message: 'Бренд не перемещен.', notify: 'danger');
+            }
+        } catch (\Throwable $th) {
+            Log::info($vendor->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
+            $this->dispatch('toast-danger', message: ' Не удалось переместить бренд вниз.' . $th->getMessage(), notify: 'error');
+            throw $th;
+        }
+        $this->dispatch('$refresh');
+    }
+
+    #[\Livewire\Attributes\On(event: 'up_vendor')]
+    public function up_vendor($rowId): void
+    {
+        try {
+            $vendor = Vendor::findOrFail($rowId);
+            $up = $vendor->up();
+            if ($up) {
+                $this->dispatch('toast-success', message: 'Бренд перемещен вверх.', notify: 'success');
+            } else {
+                $this->dispatch('toast-warning', message: 'Бренд не перемещен.', notify: 'danger');
+            }
+        } catch (\Throwable $th) {
+            Log::info($vendor->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
+            $this->dispatch('toast-danger', message: ' Не удалось переместить документ вверх.' . $th->getMessage(), notify: 'error');
+            throw $th;
+        }
+        $this->dispatch('$refresh');
     }
 }
