@@ -24,8 +24,8 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/news', [NewsController::class, 'index'])->name('news');
 //Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
-Route::get('/article', [ArticleController::class, 'index'])->name('articles');
-//Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
+Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
 
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
 

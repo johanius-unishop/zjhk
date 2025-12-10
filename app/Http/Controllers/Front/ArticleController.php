@@ -16,7 +16,7 @@ class ArticleController extends Controller
         $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
         SEOMeta::setTitle('Статьи');
-        SEOMeta::setDescription('Список производителей');
+        SEOMeta::setDescription('Список статей');
         SEOMeta::setKeywords('Производители бренды вендоры');
         return view('front.article.index', ['acceptsWebP' => $acceptsWebP]);
     }
