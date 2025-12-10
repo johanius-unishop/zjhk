@@ -27,7 +27,7 @@ Breadcrumbs::for('news.index', function (BreadcrumbTrail $trail) {
 });
 
 // Главная > Статьи
-Breadcrumbs::for('article.index', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('articles', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Статьи', route('articles'));
 });
