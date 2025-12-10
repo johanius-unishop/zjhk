@@ -1,7 +1,7 @@
 <main>
     <section class="article-page">
         <div class="article-page__container container">
-            @include('components.vendor-page.breadcrumbs')
+            @include('components.article-page.breadcrumbs')
             <div class="article-page__content">
                 <h2 class="article-page__title">Промышленные прямоугольные разъемы</h2>
                 <div class="vendor-page__img-container">
