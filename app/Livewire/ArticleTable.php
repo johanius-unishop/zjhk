@@ -69,7 +69,6 @@ final class ArticleTable extends PowerGridComponent
                 ->sortable()
                 ->toggleable(),
 
-
             Column::action('Действия'),
         ];
     }
@@ -77,10 +76,6 @@ final class ArticleTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::boolean('published')
-                ->label('✅', '❌'),
-
-
         ];
     }
 
