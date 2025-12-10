@@ -68,8 +68,7 @@
                 </div>
                 <h2 class="article-page__title">Выбор промышленного прямоугольного разъема</h2>
                 <div class="element-container">
-                    <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-02a235b"
-                        data-id="02a235b" data-element_type="column">
+                    <div class="element-column-50">
                         <div class="elementor-widget-wrap elementor-element-populated">
                             <div class="elementor-element elementor-element-426b9f5 elementor-widget elementor-widget-heading"
                                 data-id="426b9f5" data-element_type="widget" data-widget_type="heading.default">
@@ -86,8 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-34814dc"
-                        data-id="34814dc" data-element_type="column">
+                    <div class="element-column-50>
                         <div class="elementor-widget-wrap elementor-element-populated">
                             <div class="elementor-element elementor-element-44c66ba elementor-widget elementor-widget-text-editor"
                                 data-id="44c66ba" data-element_type="widget" data-widget_type="text-editor.default">

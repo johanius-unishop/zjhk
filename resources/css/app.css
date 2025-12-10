@@ -6857,6 +6857,11 @@ select {
     position:relative;
 }
 
+.element-column-50 {
+    width: 50%;
+    box-sizing: border-box;
+}
+
 
 .news-page__date {
     color: rgb(113, 118, 128);
