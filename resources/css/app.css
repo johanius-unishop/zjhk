@@ -2656,7 +2656,7 @@ blockquote {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .container {
@@ -2736,13 +2736,6 @@ select {
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.5rem;
-}
-
-.app__wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 .container {
@@ -3825,13 +3818,6 @@ select {
     line-height: 1.5rem;
 }
 
-.app__wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .container {
     max-width: 80rem;
     margin: 0 auto;
@@ -3977,13 +3963,6 @@ select {
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.5rem;
-}
-
-.app__wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 .container {
