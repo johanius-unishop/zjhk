@@ -40,7 +40,7 @@
     </div>
     <div class="product-page__pagination">
         <div class="product-page__pagination-content">
-            {{ $articles->links('article.pagination.custom') }}
+            {{ $articles->links('vendor.pagination.custom') }}
             <div class="product-page__page-size" data-page-size>
                 <p class="product-page__page-select">
                     <span>Показывать по </span>
