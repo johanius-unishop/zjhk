@@ -4,8 +4,8 @@
             @include('components.article-page.breadcrumbs')
             <div class="article-page__content">
                 <h2 class="article-page__title">Промышленные прямоугольные разъемы</h2>
-                <div class="vendor-page__img-container">
-                    <div class="vendor-page__img-item full-width">
+                <div class="article-page__img-container">
+                    <div class="article-page__img-item full-width">
                         @if ($acceptsWebP)
                             <img src="{{ asset('images/content/vendors/zjhk/zjhk_3.webp') }}" alt="Соединители ZJHK">
                         @else

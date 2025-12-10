@@ -6765,24 +6765,24 @@ select {
     }
 }
 
-.vendor-page__img-container {
+.vendor-page__img-container, .article-page__img-container {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
 @media (max-width: 61.99875em) {
-    .vendor-page__img-container {
+    .vendor-page__img-container, .article-page__img-container {
         margin-bottom: 0.75rem;
     }
 }
 
-.vendor-page__img-item  {
+.vendor-page__img-item, .article-page__img-item  {
     flex: 0 0 auto;
 }
 
 @media (max-width: 35.99875em) {
-    .vendor-page__img-item {
+    .vendor-page__img-item, .article-page__img-item {
         height: 10.25rem;
     }
 }
@@ -6808,9 +6808,9 @@ select {
     }
 }
 
-
-
-
+.article-page__bold-text {
+    font-weight: 700;
+}
 
 .news-page__date {
     color: rgb(113, 118, 128);
