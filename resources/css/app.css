@@ -6872,6 +6872,8 @@ select {
 }
 
 .element-cell {
+    width: 100%;
+    margin-bottom: 1.5rem;
 
 }
 

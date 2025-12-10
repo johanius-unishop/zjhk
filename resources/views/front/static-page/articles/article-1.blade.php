@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="element-column-50>
+                    <div class="element-column-50">
                         <div class="elementor-widget-wrap elementor-element-populated">
                             <div class="elementor-element elementor-element-44c66ba elementor-widget elementor-widget-text-editor"
                                 data-id="44c66ba" data-element_type="widget" data-widget_type="text-editor.default">
