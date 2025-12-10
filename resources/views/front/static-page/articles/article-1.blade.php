@@ -109,27 +109,21 @@
                     </div>
                 </div>
 
-                <div class="elementor-divider">
-                    <span class="elementor-divider-separator">
+                <div class="divider">
+                    <span class="divider-separator">
                     </span>
                 </div>
 
                 <h2>Расшифровка маркировки корпусов и кожухов</h2>
 
-                <section
-                    class="elementor-section elementor-inner-section elementor-element elementor-element-d24c5ce elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-                    data-id="d24c5ce" data-element_type="section">
-                    <div class="elementor-container elementor-column-gap-default">
-                        <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ec1cde4"
-                            data-id="ec1cde4" data-element_type="column">
-                            <div class="elementor-widget-wrap elementor-element-populated">
-                                <div class="elementor-element elementor-element-6b69f6e elementor-widget elementor-widget-heading"
-                                    data-id="6b69f6e" data-element_type="widget" data-widget_type="heading.default">
+                <div class="element-container">
+                        <div class="element-column-50">
+                            <div class="element-column-wrapper">
+                                <div class="element-cell">
                                     <h5 class="elementor-heading-title elementor-size-default"><a
                                             href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
                                 </div>
-                                <div class="elementor-element elementor-element-40284fe elementor-widget elementor-widget-image"
-                                    data-id="40284fe" data-element_type="widget" data-widget_type="image.default">
+                                <div class="element-cell element-cell-image">
                                     <img loading="lazy" decoding="async" width="300" height="243"
                                         src="https://kevtek.ru/wp-content/uploads/2023/03/19300161541-300x243.jpg"
                                         class="attachment-medium size-medium wp-image-2827"
@@ -139,8 +133,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-41ac47c"
-                            data-id="41ac47c" data-element_type="column">
+                        <div class="element-column-50">
                             <div class="elementor-widget-wrap elementor-element-populated">
                                 <div class="elementor-element elementor-element-56af74c elementor-widget elementor-widget-text-editor"
                                     data-id="56af74c" data-element_type="widget" data-widget_type="text-editor.default">
