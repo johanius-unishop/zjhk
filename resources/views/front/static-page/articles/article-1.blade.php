@@ -69,7 +69,7 @@
                 <h2 class="article-page__title">Выбор промышленного прямоугольного разъема</h2>
                 <div class="element-container">
                     <div class="element-column-50">
-                        <div class="elementor-widget-wrap elementor-element-populated">
+                        <div class="element-column-wrapper">
                             <div class="elementor-element elementor-element-426b9f5 elementor-widget elementor-widget-heading"
                                 data-id="426b9f5" data-element_type="widget" data-widget_type="heading.default">
                                 <h5 class="elementor-heading-title elementor-size-default"><a
