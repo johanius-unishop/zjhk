@@ -13,20 +13,12 @@ class ArticleController extends Controller
      */
     public function index()
     {
+        $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
-        $items = Article::published()->paginate(perPage: 10)->withQueryString();
-        $items->load('media');
-        //   dd( $news);
-
-        $data = [
-            'items' => $items,
-        ];
-
-        SEOMeta::setTitle('Производители');
+        SEOMeta::setTitle('Статьи');
         SEOMeta::setDescription('Список производителей');
         SEOMeta::setKeywords('Производители бренды вендоры');
-        return view('front.article.index', ['data' => $data]);
-
+        return view('front.article.index', ['acceptsWebP' => $acceptsWebP]);
     }
 
 
