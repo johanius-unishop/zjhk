@@ -79,40 +79,6 @@ final class ArticleTable extends PowerGridComponent
         ];
     }
 
-
-    #[\Livewire\Attributes\On('up')]
-    public function property_up($rowId): void
-    {
-        try {
-            $property = Article::findOrFail($rowId);
-            $property->moveOrderUp();
-            $this->dispatch('toast', message: 'Запись успешно поднята вверх.', notify: 'success');
-        }
-        catch (\Throwable $th) {
-            Log::info('Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
-            $this->dispatch('toast', message: ' Не удалось поднять  запись.' . $th->getMessage(), notify: 'error');
-            throw $th;
-        }
-        $this->dispatch('$refresh');
-    }
-
-
-    #[\Livewire\Attributes\On(event: 'down')]
-    public function property_down($rowId): void
-    {
-        try {
-            $property = Article::findOrFail($rowId);
-            $property->moveOrderDown();
-            $this->dispatch('toast', message: 'Запись успешно опущена вниз.', notify: 'success');
-        }
-        catch (\Throwable $th) {
-            Log::info($property->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
-            $this->dispatch('toast', message: ' Не удалось опустить  запись.' . $th->getMessage(), notify: 'error');
-            throw $th;
-        }
-        $this->dispatch('$refresh');
-
-    }
     #[\Livewire\Attributes\On('post_delete')]
     public function post_delete($rowId): void
     {
@@ -134,24 +100,55 @@ final class ArticleTable extends PowerGridComponent
 
     public function actions(Article $row): array
     {
-        return [
-            Button::add('view')
+        $buttons = [];
+        $article = Article::find($row->id);
+
+        // Получаем текущий минимальный порядок сортировки
+        $minOrder = Article::min('order_column');
+        // Получаем текущий максимальный порядок сортировки
+        $maxOrder = Article::max('order_column');
+        // Текущий порядок текущего документа
+        $currentOrder = $article->order_column;
+
+        $buttons[] = Button::add('Edit')
                 ->slot('<i class="fas fa-edit"></i>')
                 ->class('btn btn-primary')
-                ->route('admin.article.edit', ['article' => $row->id]),
-            Button::add('up')
+                ->route('admin.article.edit', ['article' => $row->id]);
+
+        // Проверяем, находится ли вендор на вершине
+        if ($currentOrder <= $minOrder) {
+            // Если вендор уже наверху, делаем кнопку неактивной
+            $buttons[] = Button::add('up_article')
+                ->slot('<i class="fas fa-arrow-up"></i>')
+                ->class('btn btn-success disabled') // Добавляем класс disabled, чтобы кнопка выглядела неактивной
+                ->attributes(['disabled' => 'disabled']); // Добавляем атрибут disabled, чтобы кнопка была интерактивно неактивной
+        } else {
+            // Если вендор не наверху, оставляем кнопку активной
+            $buttons[] = Button::add('up_article')
                 ->slot('<i class="fas fa-arrow-up"></i>')
                 ->class('btn btn-success')
-                ->dispatch('up', ['rowId' => $row->id]),
-            Button::add('down')
+                ->dispatch('up_article', ['rowId' => $row->id]);
+        }
+
+        if ($currentOrder >= $maxOrder) {
+            $buttons[] = Button::add('down_article')
+                ->slot('<i class="fas fa-arrow-down"></i>')
+                ->class('btn btn-success disabled')
+                ->attributes(['disabled' => 'disabled']);
+        } else {
+            $buttons[] = Button::add('down_article')
                 ->slot('<i class="fas fa-arrow-down"></i>')
                 ->class('btn btn-success')
-                ->dispatch('down', ['rowId' => $row->id]),
-            Button::add('delivery')
-                ->slot('<i class="fas fa-trash"></i>')
-                ->class('btn btn-danger')
-                ->dispatch('post_delete', ['rowId' => $row->id]),
-        ];
+                ->dispatch('down_article', ['rowId' => $row->id]);
+        }
+
+        $buttons[] = Button::add('delete')
+            ->slot('<i class="fas fa-trash"></i>')
+            ->class('btn btn-danger')
+            ->confirm('Вы действительно хотите удалить эту статью?')
+            ->dispatch('article_delete', ['id' => $row->id]);
+
+        return $buttons;
     }
 
     public function onUpdatedEditable(int|string $id, string $field, string $value): void
@@ -172,6 +169,44 @@ final class ArticleTable extends PowerGridComponent
             $field => e($value),
         ]);
         $this->skipRender();
+    }
+
+    #[\Livewire\Attributes\On(event: 'down_article')]
+    public function down_article($rowId): void
+    {
+        try {
+            $article = Article::findOrFail($rowId);
+            $down = $article->down();
+            if ($down) {
+                $this->dispatch('toast-success', message: 'Статья перемещена вниз.', notify: 'success');
+            } else {
+                $this->dispatch('toast-warning', message: 'Статья не перемещена.', notify: 'danger');
+            }
+        } catch (\Throwable $th) {
+            Log::info($article->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
+            $this->dispatch('toast-danger', message: ' Не удалось переместить статью вниз.' . $th->getMessage(), notify: 'error');
+            throw $th;
+        }
+        $this->dispatch('$refresh');
+    }
+
+    #[\Livewire\Attributes\On(event: 'up_article')]
+    public function up_article($rowId): void
+    {
+        try {
+            $article = Article::findOrFail($rowId);
+            $up = $article->up();
+            if ($up) {
+                $this->dispatch('toast-success', message: 'Статья перемещена вверх.', notify: 'success');
+            } else {
+                $this->dispatch('toast-warning', message: 'Статья не перемещена.', notify: 'danger');
+            }
+        } catch (\Throwable $th) {
+            Log::info($article->name . 'Ошибка  выполнения скрипта: ' . $th->getMessage() . ' .');
+            $this->dispatch('toast-danger', message: ' Не удалось переместить статью вверх.' . $th->getMessage(), notify: 'error');
+            throw $th;
+        }
+        $this->dispatch('$refresh');
     }
 
 }
