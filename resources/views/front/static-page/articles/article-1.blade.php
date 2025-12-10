@@ -49,11 +49,11 @@
                         также при загрязнении нефтью.
                     </li>
                 </ul>
-                <div class="elementor-divider">
-                    <span class="elementor-divider-separator">
+                <div class="divider">
+                    <span class="divider-separator">
                     </span>
                 </div>
-                <h2 class="news-page__title">Выбор промышленного прямоугольного разъема</h2>
+                <h2 class="article-page__title">Выбор промышленного прямоугольного разъема</h2>
                 <p>Чтобы выбрать прямоугольный промышленный прямоугольный разъем необходимо знать следующее:</p>
                 <ol>
                     <li>Номинальное напряжение и номинальный ток</li>
