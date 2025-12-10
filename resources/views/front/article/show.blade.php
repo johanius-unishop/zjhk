@@ -3,5 +3,5 @@
 @section('title', $title)
 
 @section('content')
-    @include($vendorPage);
+    @include($articlePage);
 @stop
