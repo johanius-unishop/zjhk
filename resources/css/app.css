@@ -6820,6 +6820,7 @@ select {
 
 .article-page__ul-circle > li {
     margin-bottom: 10px; /* Расстояние между пунктами списка */
+    list-style: circle;
 }
 
 .news-page__date {
