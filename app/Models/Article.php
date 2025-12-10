@@ -30,8 +30,6 @@ class Article extends Model implements HasMedia, Sitemapable, Sortable
     use HasSlug;
     use SortableTrait;
 
-
-
     protected $fillable = [
         'name',
         'order_column',
@@ -67,11 +65,9 @@ class Article extends Model implements HasMedia, Sitemapable, Sortable
     public function getSearchableAttributes(): array
     {
         return [
-
             'name' => 8, // Model attribute
             'body_description' => 4,
             'short_description' => 4, // All json keys of a model attribute
-
         ];
     }
 
@@ -96,29 +92,28 @@ class Article extends Model implements HasMedia, Sitemapable, Sortable
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->width(368)
-            ->height(232)
+            ->fit(FIT::Fill, 245, 178)   // Сохраняем пропорцию, максимум ширина или высота 300px
+            ->format('jpg')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('previewImage')             // Применяется ко всей коллекции 'images'
             ->nonQueued();
 
-        // $this
-        //     ->addMediaConversion('responsive')
-        //     ->format('webp')
-        //     ->quality(80)
-        //     ->withResponsiveImages()
-        //     ->nonQueued();
+        $this->addMediaConversion('webp-thumb')
+            ->fit(FIT::Fill, 245, 178)
+            ->format('webp')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('previewImage')
+            ->nonQueued();
     }
+
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('logo')
+        $this->addMediaCollection('previewImage')
             ->useFallbackUrl('/images/default_image.jpg')
             ->useFallbackPath(public_path('/images/default_image.jpg'))
             ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
             ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb')
             ->singleFile();
-
-        $this->addMediaCollection(name: 'files');//Файлы
-
     }
+
     protected function frontUrl(): Attribute
     {
         return new Attribute(

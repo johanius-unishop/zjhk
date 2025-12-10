@@ -10,25 +10,24 @@
                     <div>
                         @if (
                             $acceptsWebP &&
-                                $vendor->getFirstMedia('vendorLogo') &&
-                                $vendor->getFirstMedia('vendorLogo')->hasGeneratedConversion('webp'))
-                            <img src="{{ $vendor->getFirstMedia('vendorLogo')->getUrl('webp') }}"
-                                alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}" loading="lazy">
+                                $article->getFirstMedia('previewImage') &&
+                                $article->getFirstMedia('previewImage')->hasGeneratedConversion('webp'))
+                            <img src="{{ $article->getFirstMedia('previewImage')->getUrl('webp') }}"
+                                alt="Титульное изображение статьи {{ trim($article->name) }}" loading="lazy">
                         @elseif (
                             !$acceptsWebP &&
-                                $vendor->getFirstMedia('vendorLogo') &&
-                                $vendor->getFirstMedia('vendorLogo')->hasGeneratedConversion('jpeg'))
-                            <img src="{{ $vendor->getFirstMedia('vendorLogo')->getUrl('jpeg') }}"
-                                alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}" loading="lazy">
+                                $article->getFirstMedia('previewImage') &&
+                                $article->getFirstMedia('previewImage')->hasGeneratedConversion('jpeg'))
+                            <img src="{{ $article->getFirstMedia('previewImage')->getUrl('jpeg') }}"
+                                alt="Титульное изображение статьи {{ trim($article->name) }}" loading="lazy">
                         @else
-                            <img src="{{ $vendor->getFirstMedia('vendorLogo') ? $vendor->getFirstMedia('vendorLogo')->getUrl() : asset('/images/default_image.jpg') }}"
-                                alt="Логотип бренда {{ trim($vendor->short_name) ?: $vendor->name }}" loading="lazy">
+                            <img src="{{ $article->getFirstMedia('previewImage') ? $article->getFirstMedia('previewImage')->getUrl() : asset('/images/default_image.jpg') }}"
+                                alt="Титульное изображение статьи {{ trim($article->name) }}" loading="lazy">
                         @endif
                     </div>
                     <div>
-                        <h5>О промышленных прямоугольных разъёмах</h5>
-                        <p>Корпусы и кожухи прямоугольных промышленных разъёмов
-                            3A, 10A, 16A, 32A</p>
+                        <h5>{{ trim($article->name) }}</h5>
+                        <p>{{ trim($article->short_description) }}</p>
                     </div>
                     <a href="{{ route('article.show', ['slug' => $article->slug]) }}"
                         class="articles__slider-item">Читать</a>
