@@ -50,19 +50,24 @@ final class ArticleTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('published', closure: fn($item) => $item->published ? '✅' : '❌')
-            ->add('created_at');
+            ->add('published')
+            ->add('homepage_visible');
     }
 
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name')
+            Column::make('Название', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Опубликовано', 'published'),
-            Column::make('Создано', field: 'created_at'),
+            Column::make('Показывать на сайте', 'published')
+                ->sortable()
+                ->toggleable(),
+
+            Column::make('Показывать на главной', 'homepage_visible')
+                ->sortable()
+                ->toggleable(),
 
 
             Column::action('Действия'),

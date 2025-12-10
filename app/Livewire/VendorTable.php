@@ -86,12 +86,10 @@ final class VendorTable extends PowerGridComponent
 
             Column::make('Показывать на сайте', 'published')
                 ->sortable()
-                ->searchable()
                 ->toggleable(),
 
             Column::make('Показывать на главной', 'homepage_visible')
                 ->sortable()
-                ->searchable()
                 ->toggleable(),
 
             Column::make('Страна происхождения', 'country.name'),
