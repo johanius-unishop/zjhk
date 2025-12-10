@@ -66,8 +66,8 @@
                     <span class="divider-separator">
                     </span>
                 </div>
-                <h2 class="news-page__title">Выбор промышленного прямоугольного разъема</h2>
-                <div class="elementor-container elementor-column-gap-default">
+                <h2 class="article-page__title">Выбор промышленного прямоугольного разъема</h2>
+                <div class="element-container">
                     <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-02a235b"
                         data-id="02a235b" data-element_type="column">
                         <div class="elementor-widget-wrap elementor-element-populated">

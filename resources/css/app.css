@@ -6848,6 +6848,15 @@ select {
     list-style: decimal;
 }
 
+.element-container {
+    box-sizing: border-box;
+    display: flex;
+    max-width: 100%;
+    margin-left:auto;
+    margin-right: auto;
+    position:relative;
+}
+
 
 .news-page__date {
     color: rgb(113, 118, 128);
