@@ -28,17 +28,23 @@ class ArticleController extends Controller
      */
     public function show($slug)
     {
+        $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
-        $item   = Article::published()->where('slug', $slug)->firstOrFail();
-         //   dd( $products );
-        $data     = [
-            'item' => $item,
-         ];
+        $article = Article::published()->where('slug', $slug)->firstOrFail();
 
-        SEOMeta::setTitle('Производители');
-        SEOMeta::setDescription('Список производителей');
-        SEOMeta::setKeywords('Производители бренды вендоры');
-        return view('front.article.show', ['data' => $data]);
+        $title = 'Статья: ' . $article->name;
+
+        if ($article) {
+            $articlePage = 'front.static-page.articles.article-' . ($article->id);
+            if (!view()->exists($articlePage)) {
+                abort(404); // Выдача страницы 404
+            }
+        }
+
+        //SEOMeta::setTitle('Производители');
+        //SEOMeta::setDescription('Список производителей');
+        //SEOMeta::setKeywords('Производители бренды вендоры');
+        return view('front.article.show', compact('acceptsWebP', 'articlePage', 'article', 'title'));
     }
 
 
