@@ -6812,15 +6812,15 @@ select {
     font-weight: 700;
 }
 
-.article-page__ul-disk {
+.article-page__ul-disc {
     list-style-type: disc; /* Используем маркер в виде круга */
     color: black; /* Цвет маркера черный */
     padding-left: 2rem; /* Небольшое отступ слева для удобства чтения */
 }
 
-.article-page__ul-disk > li {
+.article-page__ul-disc > li {
     margin-bottom: 0.5rem; /* Расстояние между пунктами списка */
-    list-style: disk;
+    list-style: disc;
 }
 
 .news-page__date {
