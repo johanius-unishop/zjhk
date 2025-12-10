@@ -74,7 +74,7 @@
                                 <h5 class="elementor-heading-title elementor-size-default"><a
                                         href="https://kevtek.ru/product/he-016-m/">HE-016-M</a></h5>
                             </div>
-                            <div class="element-cell">
+                            <div class="element-cell element-cell-image">
                                 <img decoding="async" width="300" height="225"
                                     src="https://kevtek.ru/wp-content/uploads/2023/03/HE-016-M.jpg"
                                     class="attachment-medium size-medium wp-image-1533" alt="Изображение"

@@ -6874,7 +6874,11 @@ select {
 .element-cell {
     width: 100%;
     margin-bottom: 1.5rem;
+}
 
+.element-cell-image {
+    width: 100%;
+    text-align: center;
 }
 
 
