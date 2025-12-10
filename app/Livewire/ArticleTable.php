@@ -152,8 +152,26 @@ final class ArticleTable extends PowerGridComponent
                 ->class('btn btn-danger')
                 ->dispatch('post_delete', ['rowId' => $row->id]),
         ];
+    }
 
+    public function onUpdatedEditable(int|string $id, string $field, string $value): void
+    {
+        $model = is_string($id) ? Article::where('slug', $id)->firstOrFail() : Article::findOrFail($id);
 
+        $this->withValidator(function (\Illuminate\Validation\Validator $validator) use ($id, $field) {
+            if ($validator->errors()->isNotEmpty()) {
+                $this->dispatch('toggle-' . $field . '-' . $id);
+            }
+        })->validate();
+
+        $model->updateOrFail([$field => $value]);
+    }
+    public function onUpdatedToggleable(string|int $id, string $field, string $value): void
+    {
+        Article::query()->find($id)->update([
+            $field => e($value),
+        ]);
+        $this->skipRender();
     }
 
 }
