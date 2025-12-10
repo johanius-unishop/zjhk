@@ -6645,38 +6645,38 @@ select {
     }
 }
 
-.news-page {
+.news-page, .article-page {
     overflow-x: hidden;
 }
 
-.news-page__content {
+.news-page__content, .article-page__content {
     margin-bottom: 5rem;
 }
 
 @media (max-width: 61.99875em) {
-    .news-page__content {
+    .news-page__content.article-page__content {
         margin-bottom: 3.75rem;
     }
 }
 
 @media (max-width: 35.99875em) {
-    .news-page__content {
+    .news-page__content .article-page__content {
         margin-bottom: 2.25rem;
     }
 }
 
-.news-page__content>p {
+.news-page__content>p, .article-page__content>p {
     margin-bottom: 1.5rem;
 }
 
 @media (max-width: 61.99875em) {
-    .news-page__content>p {
+    .news-page__content>p, .article-page__content>p {
         margin-bottom: 1rem;
     }
 }
 
 @media (max-width: 35.99875em) {
-    .news-page__content>p {
+    .news-page__content>p, .article-page__content>p {
         margin-bottom: 0.75rem;
     }
 }
