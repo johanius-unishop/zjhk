@@ -13,11 +13,11 @@ use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Builder;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Carbon\Carbon;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 use Maize\Searchable\HasSearch;
+use Illuminate\Support\Facades\DB;
 
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
@@ -37,6 +37,7 @@ class Article extends Model implements HasMedia, Sitemapable, Sortable
         'slug',
         'published',
         'short_description',
+        'homepage_visible'
     ];
 
     protected static function boot()
@@ -125,4 +126,53 @@ class Article extends Model implements HasMedia, Sitemapable, Sortable
     {
         $query->where('published', 1);
     }
+
+    public function up(): bool
+    {
+        // Получаем предыдущий документ (тот, что выше текущего)
+        $previousArticle = self::where('order_column', '<', $this->order_column)
+            ->orderByDesc('order_column')
+            ->first();
+
+        if ($previousArticle) {
+            // Меняем местами порядок сортировки
+            DB::transaction(function () use ($previousArticle) {
+                $tempOrder = $previousArticle->order_column;
+                $previousArticle->order_column = $this->order_column;
+                $this->order_column = $tempOrder;
+
+                $previousArticle->save();
+                $this->save();
+            });
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function down(): bool
+    {
+        // Получаем следующий документ (тот, что ниже текущего)
+        $nextArticle = self::where('order_column', '>', $this->order_column)
+            ->orderBy('order_column')
+            ->first();
+
+        if ($nextArticle) {
+            // Меняем местами порядок сортировки
+            DB::transaction(function () use ($nextArticle) {
+                $tempOrder = $nextArticle->order_column;
+                $nextArticle->order_column = $this->order_column;
+                $this->order_column = $tempOrder;
+
+                $nextArticle->save();
+                $this->save();
+            });
+
+            return true;
+        }
+
+        return false;
+    }
+
 }
