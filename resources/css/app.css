@@ -6815,11 +6815,11 @@ select {
 .article-page__ul-circle {
     list-style-type: disc; /* Используем маркер в виде круга */
     color: black; /* Цвет маркера черный */
-    padding-left: 20px; /* Небольшое отступ слева для удобства чтения */
+    padding-left: 2rem; /* Небольшое отступ слева для удобства чтения */
 }
 
 .article-page__ul-circle > li {
-    margin-bottom: 10px; /* Расстояние между пунктами списка */
+    margin-bottom: 0.75rem; /* Расстояние между пунктами списка */
     list-style: circle;
 }
 
