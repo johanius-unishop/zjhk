@@ -70,13 +70,11 @@
                 <div class="element-container">
                     <div class="element-column-50">
                         <div class="element-column-wrapper">
-                            <div class="elementor-element elementor-element-426b9f5 elementor-widget elementor-widget-heading"
-                                data-id="426b9f5" data-element_type="widget" data-widget_type="heading.default">
+                            <div class="element-cell">
                                 <h5 class="elementor-heading-title elementor-size-default"><a
                                         href="https://kevtek.ru/product/he-016-m/">HE-016-M</a></h5>
                             </div>
-                            <div class="elementor-element elementor-element-f4fd7bf elementor-widget elementor-widget-image"
-                                data-id="f4fd7bf" data-element_type="widget" data-widget_type="image.default">
+                            <div class="element-cell">
                                 <img decoding="async" width="300" height="225"
                                     src="https://kevtek.ru/wp-content/uploads/2023/03/HE-016-M.jpg"
                                     class="attachment-medium size-medium wp-image-1533" alt="Изображение"
