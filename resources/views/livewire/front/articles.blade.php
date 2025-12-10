@@ -35,6 +35,7 @@
             </div>
         @endforeach
     </div>
+    @if (!$articles->isEmpty())
     <div class="product-page__show">
 
     </div>
@@ -62,4 +63,5 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
