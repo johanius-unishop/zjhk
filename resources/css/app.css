@@ -4195,13 +4195,6 @@ select {
     line-height: 1.5rem;
 }
 
-.app__wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .container {
     max-width: 80rem;
     margin: 0 auto;
