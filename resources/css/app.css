@@ -6812,6 +6812,16 @@ select {
     font-weight: 700;
 }
 
+.article-page__ul-circle {
+    list-style-type: disc; /* Используем маркер в виде круга */
+    color: black; /* Цвет маркера черный */
+    padding-left: 20px; /* Небольшое отступ слева для удобства чтения */
+}
+
+.article-page__ul-circle > li {
+    margin-bottom: 10px; /* Расстояние между пунктами списка */
+}
+
 .news-page__date {
     color: rgb(113, 118, 128);
     margin-bottom: unset !important;
