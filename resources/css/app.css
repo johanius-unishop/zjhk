@@ -6819,8 +6819,8 @@ select {
 }
 
 .article-page__ul-circle > li {
-    margin-bottom: 0.75rem; /* Расстояние между пунктами списка */
-    list-style: circle;
+    margin-bottom: 0.5rem; /* Расстояние между пунктами списка */
+    list-style: disk;
 }
 
 .news-page__date {
