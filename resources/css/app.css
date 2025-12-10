@@ -6795,14 +6795,14 @@ select {
     width: 100%; /* Одно изображение во всю ширину */
 }
 
-.vendor-page__img-item img {
+.vendor-page__img-item img, .article-page__img-item img {
     display: block;
     width: 100%;
     object-fit: contain;
 }
 
 @media (max-width: 35.99875em) {
-    .vendor-page__img-item img {
+    .vendor-page__img-item img, .article-page__img-item img {
         height: 100%;
         object-fit: cover;
     }
