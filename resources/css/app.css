@@ -13,6 +13,10 @@ html {
     box-sizing: inherit;
 }
 
+main {
+    min-height: 70vh;
+}
+
 body {
     height: 100%;
     margin: 0;
