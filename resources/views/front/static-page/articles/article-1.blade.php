@@ -81,7 +81,7 @@
                     <div class="element-column-50">
                         <div>
                             <div class="element-cell">
-                                <h5 class="elementor-heading-title elementor-size-default"><a
+                                <h5 class="article-page__h5"><a
                                         href="https://kevtek.ru/product/he-016-m/">HE-016-M</a></h5>
                             </div>
                             <div class="divider">
@@ -135,8 +135,8 @@
                     </div>
                     <div class="element-column-50">
                         <div>
-                            <div class="element-cell">
-                                <h5><a href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
+                            <div>
+                                <h5 class="article-page__h5"><a href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
                             </div>
                             <div class="divider">
                                 <span class="divider-separator">

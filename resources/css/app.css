@@ -6822,6 +6822,13 @@ select {
     }
 }
 
+.article-page__h5 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0086c9;
+    padding-top: 2rem;
+}
+
 .article-page__bold-text {
     font-weight: 700;
 }
