@@ -120,11 +120,10 @@
                     <div class="element-column-50">
                         <div class="element-column-wrapper">
                             <div class="element-cell">
-                                <h5 class="elementor-heading-title elementor-size-default"><a
-                                        href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
+                                <h5><a href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
                             </div>
                             <div class="element-cell element-cell-image">
-                                <img loading="lazy" decoding="async" width="75%" height="243"
+                                <img loading="lazy" decoding="async" max-width="75%" height="auto"
                                     src="https://kevtek.ru/wp-content/uploads/2023/03/19300161541-300x243.jpg"
                                     class="attachment-medium size-medium wp-image-2827"
                                     alt="Корпус промышленного прямоугольного разъема 19300161541"
