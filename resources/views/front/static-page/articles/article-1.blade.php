@@ -80,7 +80,7 @@
                     </div>
                     <div class="element-column-50">
                         <div>
-                            <div class="element-cell">
+                            <div>
                                 <h5 class="article-page__h5"><a
                                         href="https://kevtek.ru/product/he-016-m/">HE-016-M</a></h5>
                             </div>
