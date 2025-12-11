@@ -83,9 +83,8 @@
                         </div>
                     </div>
                     <div class="element-column-50">
-                        <div class="elementor-widget-wrap elementor-element-populated">
-                            <div class="elementor-element elementor-element-44c66ba elementor-widget elementor-widget-text-editor"
-                                data-id="44c66ba" data-element_type="widget" data-widget_type="text-editor.default">
+                        <div>
+                            <div>
                                 <ul class="article-page__ul-none">
                                     <li><strong>HE</strong> — серия контактных вставок — серия HE</li>
                                     <li><strong>016</strong> — количество контактов — 16 контактов</li>
@@ -93,8 +92,11 @@
                                         клеммы</li>
                                 </ul>
                             </div>
-                            <div class="elementor-element elementor-element-1585dc2 elementor-widget elementor-widget-text-editor"
-                                data-id="1585dc2" data-element_type="widget" data-widget_type="text-editor.default">
+                            <div class="divider">
+                                <span class="divider-separator">
+                                </span>
+                            </div>
+                            <div>
                                 <p><strong>Тип контактной вставки</strong></p>
                                 <ul class="article-page__ul-disc">
                                     <li>M/F — вилка/розетка, винтовые клеммы</li>
@@ -142,6 +144,10 @@
                                         (метрическая)
                                     </li>
                                 </ul>
+                            </div>
+                            <div class="divider">
+                                <span class="divider-separator">
+                                </span>
                             </div>
                             <div>
                                 <p><strong>Тип корпуса</strong></p>
