@@ -70,10 +70,6 @@
                 <div class="element-container">
                     <div class="element-column-50">
                         <div class="element-column-wrapper">
-                            <div class="element-cell">
-                                <h5 class="elementor-heading-title elementor-size-default"><a
-                                        href="https://kevtek.ru/product/he-016-m/">HE-016-M</a></h5>
-                            </div>
                             <div class="element-cell element-cell-image">
                                 <img decoding="async" width="300" height="225"
                                     src="https://kevtek.ru/wp-content/uploads/2023/03/HE-016-M.jpg" alt="Изображение"
@@ -84,6 +80,14 @@
                     </div>
                     <div class="element-column-50">
                         <div>
+                            <div class="element-cell">
+                                <h5 class="elementor-heading-title elementor-size-default"><a
+                                        href="https://kevtek.ru/product/he-016-m/">HE-016-M</a></h5>
+                            </div>
+                            <div class="divider">
+                                <span class="divider-separator">
+                                </span>
+                            </div>
                             <div>
                                 <ul class="article-page__ul-none">
                                     <li><strong>HE</strong> — серия контактных вставок — серия HE</li>
@@ -120,9 +124,6 @@
                 <div class="element-container">
                     <div class="element-column-50">
                         <div class="element-column-wrapper">
-                            <div class="element-cell">
-                                <h5><a href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
-                            </div>
                             <div class="element-cell element-cell-image">
                                 <img loading="lazy" decoding="async" max-width="75%" height="auto"
                                     src="https://kevtek.ru/wp-content/uploads/2023/03/19300161541-300x243.jpg"
@@ -134,6 +135,13 @@
                     </div>
                     <div class="element-column-50">
                         <div>
+                            <div class="element-cell">
+                                <h5><a href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
+                            </div>
+                            <div class="divider">
+                                <span class="divider-separator">
+                                </span>
+                            </div>
                             <div>
                                 <ul class="article-page__ul-none">
                                     <li><strong>H16B</strong>&nbsp;— серия корпусов и кожухов — серия H16B —
