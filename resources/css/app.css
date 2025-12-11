@@ -6837,6 +6837,17 @@ select {
     list-style: disc;
 }
 
+.article-page__ul-none {
+    list-style-type: none; /* Используем маркер в виде круга */
+    color: black; /* Цвет маркера черный */
+    padding-left: 2rem; /* Небольшое отступ слева для удобства чтения */
+}
+
+.article-page__ul-none > li {
+    margin-bottom: 0.5rem; /* Расстояние между пунктами списка */
+    list-style: none;
+}
+
 .article-page__ol-decimal {
     list-style-type: decimal; /* Используем маркер в виде круга */
     color: black; /* Цвет маркера черный */

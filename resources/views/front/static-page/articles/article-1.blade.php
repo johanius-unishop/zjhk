@@ -87,17 +87,17 @@
                         <div class="elementor-widget-wrap elementor-element-populated">
                             <div class="elementor-element elementor-element-44c66ba elementor-widget elementor-widget-text-editor"
                                 data-id="44c66ba" data-element_type="widget" data-widget_type="text-editor.default">
-                                <ol>
+                                <ul class="article-page__ul-none">
                                     <li><strong>HE</strong> — серия контактных вставок — серия HE</li>
                                     <li><strong>016</strong> — количество контактов — 16 контактов</li>
                                     <li><strong>M</strong> — тип контактной вставки — Male (Вилка, «папа»), винтовые
                                         клеммы</li>
-                                </ol>
+                                </ul>
                             </div>
                             <div class="elementor-element elementor-element-1585dc2 elementor-widget elementor-widget-text-editor"
                                 data-id="1585dc2" data-element_type="widget" data-widget_type="text-editor.default">
                                 <p><strong>Тип конта</strong><strong>ктной встав</strong><strong>ки</strong></p>
-                                <ul>
+                                <ul class="article-page__ul-disc">
                                     <li>M/F — вилка/розетка, винтовые клеммы</li>
                                     <li>MC/FC — вилка/розетка, обжимные контакты</li>
                                     <li>MS/FS — вилка/розетка, пружинные клеммы</li>
@@ -117,57 +117,58 @@
                 <h2>Расшифровка маркировки корпусов и кожухов</h2>
 
                 <div class="element-container">
-                        <div class="element-column-50">
-                            <div class="element-column-wrapper">
-                                <div class="element-cell">
-                                    <h5 class="elementor-heading-title elementor-size-default"><a
-                                            href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
-                                </div>
-                                <div class="element-cell element-cell-image">
-                                    <img loading="lazy" decoding="async" width="300" height="243"
-                                        src="https://kevtek.ru/wp-content/uploads/2023/03/19300161541-300x243.jpg"
-                                        class="attachment-medium size-medium wp-image-2827"
-                                        alt="Корпус промышленного прямоугольного разъема 19300161541"
-                                        srcset="https://kevtek.ru/wp-content/uploads/2023/03/19300161541-300x243.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/03/19300161541-700x568.jpg 700w, https://kevtek.ru/wp-content/uploads/2023/03/19300161541-64x52.jpg 64w, https://kevtek.ru/wp-content/uploads/2023/03/19300161541.jpg 709w"
-                                        sizes="(max-width: 300px) 100vw, 300px" title="">
-                                </div>
+                    <div class="element-column-50">
+                        <div class="element-column-wrapper">
+                            <div class="element-cell">
+                                <h5 class="elementor-heading-title elementor-size-default"><a
+                                        href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
                             </div>
-                        </div>
-                        <div class="element-column-50">
-                            <div class="elementor-widget-wrap elementor-element-populated">
-                                <div class="elementor-element elementor-element-56af74c elementor-widget elementor-widget-text-editor"
-                                    data-id="56af74c" data-element_type="widget" data-widget_type="text-editor.default">
-                                    <ol>
-                                        <li><strong>H16B</strong>&nbsp;— серия корпусов и кожухов — серия H16B —
-                                            типоразмер 16B</li>
-                                        <li><b>SE</b> — тип корпуса — кабельный корпус, ввод кабеля сбоку</li>
-                                        <li><strong>2B</strong> — тип фиксации — 2 фиксатора для защелки</li>
-                                        <li><b>M25</b> — резьба в отверстии для кабельного ввода — M25 (метрическая)
-                                        </li>
-                                    </ol>
-                                </div>
-                                <div class="elementor-element elementor-element-cb18d80 elementor-widget elementor-widget-text-editor"
-                                    data-id="cb18d80" data-element_type="widget" data-widget_type="text-editor.default">
-                                    <p><strong>Тип корпуса</strong></p>
-                                    <ul>
-                                        <li>SE — кабельный корпус, ввод кабеля сбоку</li>
-                                        <li>SEH — кабельный корпус, ввод кабеля сбоку, высокая конструкция</li>
-                                        <li>TE — кабельный корпус, ввод кабеля сверху</li>
-                                        <li>TEH — кабельный корпус, ввод кабеля сверху, высокая конструкция</li>
-                                        <li>BK — корпус на панель, рамочный (без отверстия для кабельного ввода)</li>
-                                        <li>SF — корпус на панель (с одним или двумя отверстиями для кабельного ввода)
-                                        </li>
-                                        <li>SFH — корпус на панель, высокая конструкция (1 или 2 отверстия для кабеля)
-                                        </li>
-                                        <li>CCT — кабельный корпус (кабель-кабель) с защелкой</li>
-                                        <li>CCTH — кабельный корпус (кабель-кабель) с защелкой, высокая конструкция</li>
-                                    </ul>
-                                </div>
+                            <div class="element-cell element-cell-image">
+                                <img loading="lazy" decoding="async" width="75%" height="243"
+                                    src="https://kevtek.ru/wp-content/uploads/2023/03/19300161541-300x243.jpg"
+                                    class="attachment-medium size-medium wp-image-2827"
+                                    alt="Корпус промышленного прямоугольного разъема 19300161541"
+                                    srcset="https://kevtek.ru/wp-content/uploads/2023/03/19300161541-300x243.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/03/19300161541-700x568.jpg 700w, https://kevtek.ru/wp-content/uploads/2023/03/19300161541-64x52.jpg 64w, https://kevtek.ru/wp-content/uploads/2023/03/19300161541.jpg 709w"
+                                    sizes="(max-width: 300px) 100vw, 300px" title="">
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
-        </div>
+                    <div class="element-column-50">
+                        <div class="elementor-widget-wrap elementor-element-populated">
+                            <div class="elementor-element elementor-element-56af74c elementor-widget elementor-widget-text-editor"
+                                data-id="56af74c" data-element_type="widget" data-widget_type="text-editor.default">
+                                <ul class="article-page__ul-none">
+                                    <li><strong>H16B</strong>&nbsp;— серия корпусов и кожухов — серия H16B —
+                                        типоразмер 16B</li>
+                                    <li><strong>SE</strong> — тип корпуса — кабельный корпус, ввод кабеля сбоку</li>
+                                    <li><strong>2B</strong> — тип фиксации — 2 фиксатора для защелки</li>
+                                    <li><strong>M25</strong> — резьба в отверстии для кабельного ввода — M25
+                                        (метрическая)
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="elementor-element elementor-element-cb18d80 elementor-widget elementor-widget-text-editor"
+                                data-id="cb18d80" data-element_type="widget" data-widget_type="text-editor.default">
+                                <p><strong>Тип корпуса</strong></p>
+                                <ul class="article-page__ul-disc">
+                                    <li>SE — кабельный корпус, ввод кабеля сбоку</li>
+                                    <li>SEH — кабельный корпус, ввод кабеля сбоку, высокая конструкция</li>
+                                    <li>TE — кабельный корпус, ввод кабеля сверху</li>
+                                    <li>TEH — кабельный корпус, ввод кабеля сверху, высокая конструкция</li>
+                                    <li>BK — корпус на панель, рамочный (без отверстия для кабельного ввода)</li>
+                                    <li>SF — корпус на панель (с одним или двумя отверстиями для кабельного ввода)
+                                    </li>
+                                    <li>SFH — корпус на панель, высокая конструкция (1 или 2 отверстия для кабеля)
+                                    </li>
+                                    <li>CCT — кабельный корпус (кабель-кабель) с защелкой</li>
+                                    <li>CCTH — кабельный корпус (кабель-кабель) с защелкой, высокая конструкция</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+    </div>
+    </div>
     </section>
 </main>
