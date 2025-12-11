@@ -6833,7 +6833,7 @@ select {
 }
 
 .article-page__ul-disc > li {
-    margin-bottom: 0.5rem; /* Расстояние между пунктами списка */
+    margin-bottom: 0rem; /* Расстояние между пунктами списка */
     list-style: disc;
 }
 
@@ -6844,7 +6844,7 @@ select {
 }
 
 .article-page__ul-none > li {
-    margin-bottom: 0.5rem; /* Расстояние между пунктами списка */
+    margin-bottom: 0rem; /* Расстояние между пунктами списка */
     list-style: none;
 }
 
@@ -6855,7 +6855,7 @@ select {
 }
 
 .article-page__ol-decimal > li {
-    margin-bottom: 0.5rem; /* Расстояние между пунктами списка */
+    margin-bottom: 0rem; /* Расстояние между пунктами списка */
     list-style: decimal;
 }
 
