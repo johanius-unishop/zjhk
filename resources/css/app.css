@@ -6908,6 +6908,18 @@ select {
     padding: 10px;
 }
 
+.element-column-gap > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.element-column-gap > div > img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
 .table-header-cell {
     padding: 0.5rem;
     background-color: #0086c9;
