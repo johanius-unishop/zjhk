@@ -48,10 +48,10 @@
                                         <th class="table-header-cell">
                                             <span class="data-table-header-text">Типоразмер</span>
                                         </th>
-                                        <th>
+                                        <th class="table-header-cell">
                                             <span class="data-table-header-text">Другое обозначение</span>
                                         </th>
-                                        <th>
+                                        <th class="table-header-cell">
                                             <span class="data-table-header-text">Расстояние между центрами
                                                 крепежных винтов (x - y) , мм</span>
                                         </th>
