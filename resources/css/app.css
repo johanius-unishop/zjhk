@@ -6915,7 +6915,11 @@ select {
 }
 
 .element-table > tbody > tr:nth-child(2n+1) > td {
- color: #000;
+    color: #000;
+}
+
+.element-table > tbody > tr:nth-child(2n) > td {
+    color: #f2f2f2;
 }
 
 @media (max-width: 48.75em) {
