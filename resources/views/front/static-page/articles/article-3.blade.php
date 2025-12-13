@@ -42,7 +42,7 @@
                 <div class="element-container">
                     <div class="element-column-70">
                         <div class="element-column-gap">
-                            <table>
+                            <table class="element-table">
                                 <thead>
                                     <tr class="table-header">
                                         <th class="table-header-cell">
