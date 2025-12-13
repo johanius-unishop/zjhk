@@ -101,6 +101,49 @@
                     механическим воздействиям, что делает их идеальным выбором для использования в условиях высоких
                     нагрузок и требований к надежности.</p>
 
+                <div class="divider">
+                    <span class="divider-separator">
+                    </span>
+                </div>
+
+                <h3 class="article-page__h3">Пружинные клеммы</h3>
+                <div class="element-container">
+                    <div class="element-column-30">
+                        <div class="element-column-wrapper">
+                            <div class="element-cell element-cell-image">
+                                <img loading="lazy" decoding="async" max-width="100%" height="auto"
+                                    src="https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal.jpg"
+                                    class="attachment-large size-large wp-image-5338" alt="Изображение"
+                                    srcset="https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal.jpg 550w, https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal-300x300.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal-100x100.jpg 100w, https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal-64x64.jpg 64w, https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal-150x150.jpg 150w"
+                                    sizes="(max-width: 550px) 100vw, 550px" title="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element-column-70">
+                        <div>
+                            <div>
+                                <h5 class="article-page__h5">Преимущества</h5>
+                            </div>
+                            <div>
+                                <ul class="article-page__ul-disc">
+                                    <li>Этот метод подключения требует очень небольшой подготовки провода и специальных инструментов, что приводит к низкой стоимости установки и высокой степени механической безопасности</li>
+                                    <li>Простота подключения. Проводник и отвертка находятся в одной плоскости.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p><strong>Пружинные клеммы</strong> в промышленных прямоугольных разъемах — это удобное и надежное решение для быстрого подключения проводов. Они применяются во многих отраслях промышленности, таких как электроэнергетика, автоматизация и транспорт. Преимущества использования пружинных клемм включают простой монтаж, высокую надежность соединения и возможность быстрой замены провода без необходимости распайки. Кроме того, они обеспечивают высокую степень защиты от вибрации и механического напряжения, что делает их идеальным выбором для приложений с высокой нагрузкой и надежностью</p>
+
+                <div class="divider">
+                    <span class="divider-separator">
+                    </span>
+                </div>
+
+
+
+
+
                 <div class="article-page__img-container">
                     <div class="article-page__img-item full-width">
                         @if ($acceptsWebP)
@@ -178,7 +221,8 @@
                     <div class="element-column-50">
                         <div>
                             <div>
-                                <h5 class="article-page__h5"><a href="https://kevtek.ru/product/he-016-m/">HE-016-M</a>
+                                <h5 class="article-page__h5"><a
+                                        href="https://kevtek.ru/product/he-016-m/">HE-016-M</a>
                                 </h5>
                             </div>
                             <div class="divider">
