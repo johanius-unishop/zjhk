@@ -6914,12 +6914,20 @@ select {
     color: #fff;
 }
 
+.element-table > tbody > tr > td {
+    padding: 0.5rem;
+}
+
 .element-table > tbody > tr:nth-child(2n+1) > td {
     color: #000;
 }
 
 .element-table > tbody > tr:nth-child(2n) > td {
     background-color: #f2f2f2;
+}
+
+.td-content-wrapper {
+    text-align: center;
 }
 
 @media (max-width: 48.75em) {
