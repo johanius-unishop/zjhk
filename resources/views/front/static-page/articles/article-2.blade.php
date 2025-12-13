@@ -52,6 +52,55 @@
                     </span>
                 </div>
 
+                <h3 class="article-page__h3">Обжимные контакты</h3>
+                <div class="element-container">
+                    <div class="element-column-30">
+                        <div class="element-column-wrapper">
+                            <div class="element-cell element-cell-image">
+                                <img loading="lazy" decoding="async" max-width="100%" height="auto"
+                                    src="https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal.jpg"
+                                    class="attachment-large size-large wp-image-5336" alt="Изображение"
+                                    srcset="https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal.jpg 500w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal-300x300.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal-100x100.jpg 100w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal-64x64.jpg 64w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal-150x150.jpg 150w"
+                                    sizes="(max-width: 500px) 100vw, 500px" title="">
+                                <img loading="lazy" decoding="async" max-width="100%" height="auto"
+                                    src="https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE.jpg"
+                                    class="attachment-large size-large wp-image-5337" alt="Изображение"
+                                    srcset="https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE.jpg 550w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE-300x300.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE-100x100.jpg 100w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE-64x64.jpg 64w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE-150x150.jpg 150w"
+                                    sizes="(max-width: 550px) 100vw, 550px" title="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element-column-70">
+                        <div>
+                            <div>
+                                <h5 class="article-page__h5">Преимущества</h5>
+                            </div>
+                            <div>
+                                <ul class="article-page__ul-disc">
+                                    <li>Подходят для быстрого монтажа проводки, идеальны для предварительной сборки
+                                        разъемов с большим количеством контактов</li>
+                                    <li>Используя подходящие инструменты для обжима, можно добиться стабильного качества
+                                        обжима и отличной коррозионной стойкости, почти сравнимой с холодной
+                                        сваркой.Используя подходящие инструменты для обжима, можно добиться стабильного
+                                        качества обжима и отличной коррозионной стойкости, почти сравнимой с холодной
+                                        сваркой</li>
+                                    <li>Из-за высокой плотности контактов требуется очень мало места</li>
+                                    <li>Оптимальная стоимость соединенияОптимальная стоимость соединения</li>
+                                    <li>Устойчивость к вибрации</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>Промышленные прямоугольные разъемы с <strong>обжимными контактами</strong> широко
+                    используются в электрических цепях для соединения проводов и кабелей. Обжимные контакты обеспечивают
+                    надежное соединение, которое может выдерживать высокие токи и напряжения. Это обеспечивает
+                    стабильность работы электрической цепи. Одним из основных преимуществ обжимных контактов является их
+                    быстрый и простой монтаж. Они также обеспечивают более экономичное решение по сравнению с другими
+                    типами контактов. Кроме того, обжимные контакты обладают высокой устойчивостью к вибрации и
+                    механическим воздействиям, что делает их идеальным выбором для использования в условиях высоких
+                    нагрузок и требований к надежности.</p>
+
                 <div class="article-page__img-container">
                     <div class="article-page__img-item full-width">
                         @if ($acceptsWebP)
