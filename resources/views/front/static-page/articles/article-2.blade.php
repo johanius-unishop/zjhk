@@ -4,7 +4,7 @@
             @include('components.article-page.breadcrumbs')
             <div class="article-page__content">
                 <h2 class="article-page__title">Типы клемм используемые в контактных вставках</h2>
-                <h2 class="article-page__title">Винтовые клеммы</h2>
+                <h3 class="article-page__h3">Винтовые клеммы</h3>
                 <div class="element-container">
                     <div class="element-column-30">
                         <div class="element-column-wrapper">
