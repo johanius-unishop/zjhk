@@ -3,7 +3,11 @@
         <div class="article-page__container container">
             @include('components.article-page.breadcrumbs')
             <div class="article-page__content">
-                <h2 class="article-page__title">Типы клемм используемые в контактных вставках</h2>
+                <h2 class="article-page__title">{{ $article->name }}</h2>
+                <div class="divider">
+                    <span class="divider-separator">
+                    </span>
+                </div>
                 <h3 class="article-page__h3">Винтовые клеммы</h3>
                 <div class="element-container">
                     <div class="element-column-30">
