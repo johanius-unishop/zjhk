@@ -301,7 +301,7 @@
                     <div class="elementor-column-30">
                         <div>
                             <div>
-                                <img loading="lazy" decoding="async" max-width="100%" height="auto"
+                                <img loading="lazy" decoding="async" max-height="100%" width="auto"
                                     src="https://kevtek.ru/wp-content/uploads/size.png"
                                     class="attachment-large size-large wp-image-28607" alt="Изображение"
                                     srcset="https://kevtek.ru/wp-content/uploads/size.png 347w, https://kevtek.ru/wp-content/uploads/size-300x640.png 300w, https://kevtek.ru/wp-content/uploads/size-64x136.png 64w, https://kevtek.ru/wp-content/uploads/size-141x300.png 141w"
