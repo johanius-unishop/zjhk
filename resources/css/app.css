@@ -6914,6 +6914,10 @@ select {
     color: #fff;
 }
 
+.element-table > tbody > tr:nth-child(2n+1) > td {
+ color: #000;
+}
+
 @media (max-width: 48.75em) {
     .element-container {
         flex-direction: column; /* Изменяем направление компоновки на вертикальное */
