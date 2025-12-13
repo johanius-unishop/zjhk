@@ -6915,7 +6915,7 @@ select {
 }
 
 .element-column-gap > div > img{
-    max-width: 100%;
+    width: 80%;
     max-height: 100%;
     object-fit: contain;
 }
