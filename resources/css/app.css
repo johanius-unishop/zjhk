@@ -6919,7 +6919,7 @@ select {
 }
 
 .element-table > tbody > tr:nth-child(2n) > td {
-    color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 @media (max-width: 48.75em) {
