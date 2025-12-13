@@ -30,6 +30,10 @@
                     единых стандартных, благодаря чему, например, контактная вставка HARTING может быть легко заменена
                     на аналогичную вставку Haoke, при этом габаритные размеры и электрические характеристики будут
                     такими же. Незначительная разница может наблюдаться во внешних размерах корпусов.</p>
+                <div class="divider">
+                    <span class="divider-separator">
+                    </span>
+                </div>
                 <h3 class="article-page__h3">Преимущества сверхмощных разъемов</h3>
                 <ul class="article-page__ul-disc">
                     <li>Промышленные разъемы позволяют осуществить предварительный монтаж большого количества сложных
@@ -136,7 +140,8 @@
                     <div class="element-column-50">
                         <div>
                             <div>
-                                <h5 class="article-page__h5-link"><a href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
+                                <h5 class="article-page__h5-link"><a
+                                        href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
                             </div>
                             <div class="divider">
                                 <span class="divider-separator">

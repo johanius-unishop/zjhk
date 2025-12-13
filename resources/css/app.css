@@ -6850,7 +6850,7 @@ select {
 .article-page__ul-disc {
     list-style-type: disc;
     color: black;
-    padding-left: 2rem;
+    padding-left: 1.25rem;
 }
 
 .article-page__ul-disc > li {
@@ -6872,7 +6872,7 @@ select {
 .article-page__ol-decimal {
     list-style-type: decimal;
     color: black;
-    padding-left: 2rem;
+    padding-left: 1.25rem;
 }
 
 .article-page__ol-decimal > li {
