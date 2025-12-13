@@ -6783,7 +6783,7 @@ select {
 
 @media (max-width: 35.99875em) {
     .vendor-page__img-item, .article-page__img-item {
-        height: 10.25rem;
+        height: auto;
     }
 }
 
@@ -6827,6 +6827,12 @@ select {
     font-weight: 700;
     color: #0086c9;
     padding-top: 2rem;
+}
+
+@media (max-width: 48.75em) {
+    .article-page__h5 {
+        padding-top: 0rem;
+    }
 }
 
 .article-page__bold-text {
@@ -6880,7 +6886,7 @@ select {
     box-sizing: border-box;
 }
 
-@media (max-width: 35.99875em) {
+@media (max-width: 48.75em) {
     .element-container {
         flex-direction: column; /* Изменяем направление компоновки на вертикальное */
     }
