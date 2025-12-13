@@ -45,7 +45,7 @@
                             <table>
                                 <thead>
                                     <tr class="table-header">
-                                        <th>
+                                        <th class="table-header-cell">
                                             <span class="data-table-header-text">Типоразмер</span>
                                         </th>
                                         <th>
