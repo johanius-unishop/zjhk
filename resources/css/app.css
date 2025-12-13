@@ -6904,6 +6904,10 @@ select {
     box-sizing: border-box;
 }
 
+.element-column-gap {
+    padding: 10px;
+}
+
 @media (max-width: 48.75em) {
     .element-container {
         flex-direction: column; /* Изменяем направление компоновки на вертикальное */

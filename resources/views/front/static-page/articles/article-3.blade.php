@@ -40,262 +40,258 @@
                 </div>
 
                 <div class="element-container">
-                    <div class="elementor-column-70">
-                        <div>
-                            <div>
-                                <div>
-                                    <table>
-                                        <thead>
-                                            <tr class="table-header">
-                                                <th>
-                                                    <span class="data-table-header-text">Типоразмер</span>
-                                                </th>
-                                                <th>
-                                                    <span class="data-table-header-text">Другое обозначение</span>
-                                                </th>
-                                                <th>
-                                                    <span class="data-table-header-text">Расстояние между центрами
-                                                        крепежных винтов (x - y) , мм</span>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            3A </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            21.21 </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            ( 21 x 21 ) ** </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            10A </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            49.16 </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            49,5 x 16 </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            16A </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            66.16 </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            66 x 16 </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            32A </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            66.40 </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            66 x 16 (2 вставки) </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            6B </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            44.27 </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            44 x 27 </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            10B </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            57.27 </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            57 x 27 </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            16B </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            77.27 </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            77,5 x 27 </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            24B </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            104.27 </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            104 x 27 </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            32B </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            77.62 </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            77,5 x 27 (2 вставки) </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            48B </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            104.62 </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            104 x 27 (2 вставки) </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            HC </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            32.13 </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            32 x 13 </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3" rowspan="" class="" id="">
-                                                    <div class="td-content-wrapper">
-                                                        <div class="td-content">
-                                                            ** Размеры относятся к размеру поперечного сечения
-                                                            контактной вставки, так как невозможно определить расстояние
-                                                            между центрами крепежных винтов, поскольку все контактные
-                                                            вставки типоразмера 3A (21,21) оснащены одним крепежным
-                                                            винтом. </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                    <div class="element-column-70">
+                        <div class="element-column-gap">
+                            <table>
+                                <thead>
+                                    <tr class="table-header">
+                                        <th>
+                                            <span class="data-table-header-text">Типоразмер</span>
+                                        </th>
+                                        <th>
+                                            <span class="data-table-header-text">Другое обозначение</span>
+                                        </th>
+                                        <th>
+                                            <span class="data-table-header-text">Расстояние между центрами
+                                                крепежных винтов (x - y) , мм</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    3A </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    21.21 </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    ( 21 x 21 ) ** </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    10A </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    49.16 </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    49,5 x 16 </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    16A </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    66.16 </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    66 x 16 </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    32A </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    66.40 </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    66 x 16 (2 вставки) </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    6B </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    44.27 </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    44 x 27 </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    10B </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    57.27 </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    57 x 27 </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    16B </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    77.27 </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    77,5 x 27 </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    24B </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    104.27 </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    104 x 27 </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    32B </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    77.62 </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    77,5 x 27 (2 вставки) </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    48B </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    104.62 </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    104 x 27 (2 вставки) </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    HC </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    32.13 </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    32 x 13 </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" rowspan="" class="" id="">
+                                            <div class="td-content-wrapper">
+                                                <div class="td-content">
+                                                    ** Размеры относятся к размеру поперечного сечения
+                                                    контактной вставки, так как невозможно определить расстояние
+                                                    между центрами крепежных винтов, поскольку все контактные
+                                                    вставки типоразмера 3A (21,21) оснащены одним крепежным
+                                                    винтом. </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="elementor-column-30">
