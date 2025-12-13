@@ -6923,6 +6923,9 @@ select {
 .element-cell-image {
     text-align: center;
 }
+.element-cell-image img {
+    max-width: 100%;
+}
 
 
 .news-page__date {
