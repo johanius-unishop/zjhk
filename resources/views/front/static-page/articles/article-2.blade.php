@@ -9,7 +9,7 @@
                     <div class="element-column-30">
                         <div class="element-column-wrapper">
                             <div class="element-cell element-cell-image">
-                                <img decoding="async" width="500" height="500"
+                                <img decoding="async" max-width="100%" height="auto"
                                     src="https://kevtek.ru/wp-content/uploads/2023/04/screw_terminal.jpg"
                                     class="attachment-large size-large wp-image-5335"
                                     alt="Винтовые клеммы в прямоугольных промышленных разъемах"
