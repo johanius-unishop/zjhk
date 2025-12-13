@@ -6822,15 +6822,23 @@ select {
     }
 }
 
-.article-page__h5 {
+.article-page__h5-link {
     font-size: 1.75rem;
     font-weight: 700;
     color: #0086c9;
     padding-top: 2rem;
 }
 
+.article-page__h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4a5568;
+    padding-top: 2rem;
+}
+
 @media (max-width: 48.75em) {
-    .article-page__h5 {
+    .article-page__h5-link {
+        font-size: 1.5rem;
         padding-top: 0rem;
     }
 }

@@ -3,7 +3,7 @@
         <div class="article-page__container container">
             @include('components.article-page.breadcrumbs')
             <div class="article-page__content">
-                <h2 class="article-page__title">Промышленные прямоугольные разъемы</h2>
+                <h2 class="article-page__title">{{ $article->name }}</h2>
                 <div class="article-page__img-container">
                     <div class="article-page__img-item full-width">
                         @if ($acceptsWebP)
@@ -30,7 +30,7 @@
                     единых стандартных, благодаря чему, например, контактная вставка HARTING может быть легко заменена
                     на аналогичную вставку Haoke, при этом габаритные размеры и электрические характеристики будут
                     такими же. Незначительная разница может наблюдаться во внешних размерах корпусов.</p>
-                <h2 class="article-page__title">Преимущества сверхмощных разъемов</h2>
+                <h3 class="article-page__h3">Преимущества сверхмощных разъемов</h3>
                 <ul class="article-page__ul-disc">
                     <li>Промышленные разъемы позволяют осуществить предварительный монтаж большого количества сложных
                         схем, что может значительно повысить эффективность установки оборудования и снизить количество
@@ -53,7 +53,7 @@
                     <span class="divider-separator">
                     </span>
                 </div>
-                <h2 class="article-page__title">Выбор промышленного прямоугольного разъема</h2>
+                <h3 class="article-page__h3">Выбор промышленного прямоугольного разъема</h3>
                 <p>Чтобы выбрать прямоугольный промышленный прямоугольный разъем необходимо знать следующее:</p>
                 <ol class="article-page__ol-decimal">
                     <li>Номинальное напряжение и номинальный ток</li>
@@ -66,7 +66,7 @@
                     <span class="divider-separator">
                     </span>
                 </div>
-                <h2 class="article-page__title">Выбор промышленного прямоугольного разъема</h2>
+                <h3 class="article-page__h3">Расшифровка маркировки контактных вставок/h3>
                 <div class="element-container">
                     <div class="element-column-50">
                         <div class="element-column-wrapper">
@@ -81,7 +81,7 @@
                     <div class="element-column-50">
                         <div>
                             <div>
-                                <h5 class="article-page__h5"><a
+                                <h5 class="article-page__h5-link"><a
                                         href="https://kevtek.ru/product/he-016-m/">HE-016-M</a></h5>
                             </div>
                             <div class="divider">
@@ -119,7 +119,7 @@
                     </span>
                 </div>
 
-                <h2>Расшифровка маркировки корпусов и кожухов</h2>
+                <h3 class="article-page__h3">Расшифровка маркировки корпусов и кожухов</h3>
 
                 <div class="element-container">
                     <div class="element-column-50">
@@ -136,7 +136,7 @@
                     <div class="element-column-50">
                         <div>
                             <div>
-                                <h5 class="article-page__h5"><a href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
+                                <h5 class="article-page__h5-link"><a href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
                             </div>
                             <div class="divider">
                                 <span class="divider-separator">
