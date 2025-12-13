@@ -6889,8 +6889,8 @@ select {
     position:relative;
 }
 
-.element-column-30 {
-    width: 30%;
+.element-column-25 {
+    width: 25%;
     box-sizing: border-box;
 }
 
@@ -6899,8 +6899,8 @@ select {
     box-sizing: border-box;
 }
 
-.element-column-70 {
-    width: 70%;
+.element-column-75 {
+    width: 75%;
     box-sizing: border-box;
 }
 

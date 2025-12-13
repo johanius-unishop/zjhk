@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="element-container">
-                    <div class="element-column-70">
+                    <div class="element-column-75">
                         <div class="element-column-gap">
                             <table class="element-table">
                                 <thead>
@@ -294,7 +294,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="elementor-column-30">
+                    <div class="elementor-column-25">
                         <div class="element-column-gap">
                             <div>
                                 <img loading="lazy" decoding="async" max-height="100%" width="auto"
