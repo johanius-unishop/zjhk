@@ -6911,6 +6911,7 @@ select {
 
     .element-column-30, .element-column-50, .element-column-70 {
         width: 100%; /* Ширину устанавливаем на полную ширину экрана */
+        margin-bottom: 1rem;
     }
 }
 
