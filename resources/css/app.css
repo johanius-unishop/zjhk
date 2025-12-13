@@ -6880,6 +6880,16 @@ select {
     box-sizing: border-box;
 }
 
+@media (max-width: 35.99875em) {
+    .element-container {
+        flex-direction: column; /* Изменяем направление компоновки на вертикальное */
+    }
+
+    .element-column-50 {
+        width: 100%; /* Ширину устанавливаем на полную ширину экрана */
+    }
+}
+
 .element-column-wrapper {
     padding: 0.75rem;
     align-content: flex-start;
