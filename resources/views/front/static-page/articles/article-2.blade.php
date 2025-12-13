@@ -6,7 +6,7 @@
                 <h2 class="article-page__title">Типы клемм используемые в контактных вставках</h2>
                 <h2 class="article-page__title">Винтовые клеммы</h2>
                 <div class="element-container">
-                    <div class="element-column-50">
+                    <div class="element-column-30">
                         <div class="element-column-wrapper">
                             <div class="element-cell element-cell-image">
                                 <img decoding="async" width="500" height="500"
@@ -18,7 +18,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="element-column-50">
+                    <div class="element-column-70">
                         <div>
                             <div>
                                 <h5 class="article-page__h5">Преимущества</h5>

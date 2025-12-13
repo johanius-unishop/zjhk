@@ -6881,8 +6881,18 @@ select {
     position:relative;
 }
 
+.element-column-30 {
+    width: 30%;
+    box-sizing: border-box;
+}
+
 .element-column-50 {
     width: 50%;
+    box-sizing: border-box;
+}
+
+.element-column-70 {
+    width: 10%;
     box-sizing: border-box;
 }
 
@@ -6891,7 +6901,7 @@ select {
         flex-direction: column; /* Изменяем направление компоновки на вертикальное */
     }
 
-    .element-column-50 {
+    .element-column-30, .element-column-50, .element-column-70 {
         width: 100%; /* Ширину устанавливаем на полную ширину экрана */
     }
 }
