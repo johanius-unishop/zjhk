@@ -66,7 +66,7 @@
                     <span class="divider-separator">
                     </span>
                 </div>
-                <h3 class="article-page__h3">Расшифровка маркировки контактных вставок/h3>
+                <h3 class="article-page__h3">Расшифровка маркировки контактных вставок</h3>
                 <div class="element-container">
                     <div class="element-column-50">
                         <div class="element-column-wrapper">
