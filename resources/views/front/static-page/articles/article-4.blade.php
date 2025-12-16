@@ -195,6 +195,15 @@
                     </span>
                 </div>
 
+                <div class="article-page__img-item full-width fix-height">
+                    @if ($acceptsWebP)
+                        <img src="{{ asset('images/content/articles/dependence_of_size_cable_gland_on_cable_diameter.webp') }}"
+                            alt="Подбор кабельного ввода по диаметру кабеля" loading="lazy">
+                    @else
+                        <img src="{{ asset('images/content/vendors/dependence_of_size_cable_gland_on_cable_diameter.jpg') }}"
+                            alt="Подбор кабельного ввода по диаметру кабеля" loading="lazy">
+                    @endif
+                </div>
             </div>
         </div>
     </section>
