@@ -25,6 +25,7 @@ final class ArticleTable extends PowerGridComponent
 
     public string $tableName = 'article-table';
     public $delete_id;
+    public array $name;
     public $editingRowId = null;
     public $editingFieldName = '';
     public $editingValue = '';
