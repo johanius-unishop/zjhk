@@ -29,15 +29,20 @@
                         вставке.</li>
                 </ol>
                 <p>Сальники (гермоводы) используются при монтаже как силовых кабелей, так и сигнальных линий.</p>
-                <p>В зависимости от условий эксплуатации используются <a style="color: #3182ce;" href="{{ route('category.show', ['slug' => 'metalliceskie-salniki']) }}">металлические</a> или <a style="color: #3182ce;" href="{{ route('category.show', ['slug' => 'plastikovye-salniki']) }}">пластиковые сальники</a>.</p>
-                <p>Обратите внимание на указанные <em>типоразмеры</em> и их отношение к межосевому расстоянию крепежных
-                    винтов «x — y», которые являются общими для вставок и корпусов данного <em>типоразмера</em>.</p>
-                <p>Знание <em>типоразмера</em> или умение его определить является неотъемлемой частью успешного подбора
-                    компонентов промышленных прямоугольных разъемов и обеспечивает их совместимость.</p>
+                <p>В зависимости от условий эксплуатации используются <a style="color: #3182ce;"
+                        href="{{ route('category.show', ['slug' => 'metalliceskie-salniki']) }}">металлические</a> или
+                    <a style="color: #3182ce;"
+                        href="{{ route('category.show', ['slug' => 'plastikovye-salniki']) }}">пластиковые сальники</a>.
+                </p>
+                <p>Каждый кожух прямоугольного промышленного разъема, подразумевающий ввод кабеля, имеет одно или
+                    несколько отверстий с нарезанной резьбой.</p>
+                <p>Чаще всего на кожухах нарезают два типа резьбы PG (дюймовая резьба) или M (метрическая резьба).</p>
                 <div class="divider">
                     <span class="divider-separator">
                     </span>
                 </div>
+
+                <h5 class="article-page__h5">Таблица соответствия между PG и M резьбами</h5>
 
                 <div class="element-container">
                     <div class="element-column-75">
@@ -46,14 +51,10 @@
                                 <thead>
                                     <tr class="table-header">
                                         <th class="table-header-cell">
-                                            <span class="data-table-header-text">Типоразмер</span>
+                                            <span class="data-table-header-text">PG (дюймовая резьба)</span>
                                         </th>
                                         <th class="table-header-cell">
-                                            <span class="data-table-header-text">Другое обозначение</span>
-                                        </th>
-                                        <th class="table-header-cell">
-                                            <span class="data-table-header-text">Расстояние между центрами
-                                                крепежных винтов (x - y) , мм</span>
+                                            <span class="data-table-header-text">M (метрическая резьба)</span>
                                         </th>
                                     </tr>
                                 </thead>
@@ -62,19 +63,13 @@
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    3A </div>
+                                                    PG11 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    21.21 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    ( 21 x 21 ) ** </div>
+                                                    M20 </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -82,19 +77,13 @@
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    10A </div>
+                                                    PG13.5 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    49.16 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    49,5 x 16 </div>
+                                                    M20 </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -102,19 +91,13 @@
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    16A </div>
+                                                    PG16 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    66.16 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    66 x 16 </div>
+                                                    M20 </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -122,19 +105,13 @@
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    32A </div>
+                                                    PG21 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    66.40 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    66 x 16 (2 вставки) </div>
+                                                    M25 </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -142,19 +119,13 @@
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    6B </div>
+                                                    PG29 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    44.27 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    44 x 27 </div>
+                                                    M32 </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -162,19 +133,13 @@
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    10B </div>
+                                                    PG36 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    57.27 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    57 x 27 </div>
+                                                    M40 </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -182,19 +147,13 @@
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    16B </div>
+                                                    PG42 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    77.27 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    77,5 x 27 </div>
+                                                    M50 </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -202,91 +161,13 @@
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    24B </div>
+                                                    PG48 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="td-content-wrapper">
                                                 <div class="td-content">
-                                                    104.27 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    104 x 27 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    32B </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    77.62 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    77,5 x 27 (2 вставки) </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    48B </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    104.62 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    104 x 27 (2 вставки) </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    HC </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    32.13 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    32 x 13 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3" rowspan="" class="" id="">
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    ** Размеры относятся к размеру поперечного сечения
-                                                    контактной вставки, так как невозможно определить расстояние
-                                                    между центрами крепежных винтов, поскольку все контактные
-                                                    вставки типоразмера 3A (21,21) оснащены одним крепежным
-                                                    винтом. </div>
+                                                    M63 </div>
                                             </div>
                                         </td>
                                     </tr>
