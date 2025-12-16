@@ -75,10 +75,15 @@
                     <div class="element-column-50">
                         <div class="element-column-wrapper">
                             <div class="element-cell element-cell-image">
-                                <img decoding="async" width="300" height="225"
-                                    src="https://kevtek.ru/wp-content/uploads/2023/03/HE-016-M.jpg" alt="Изображение"
-                                    srcset="https://kevtek.ru/wp-content/uploads/2023/03/HE-016-M.jpg 1212w, https://kevtek.ru/wp-content/uploads/2023/03/HE-016-M-300x225.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/03/HE-016-M-700x525.jpg 700w, https://kevtek.ru/wp-content/uploads/2023/03/HE-016-M-64x48.jpg 64w"
-                                    sizes="(max-width: 300px) 100vw, 300px" title="">
+                                    @if ($acceptsWebP)
+                                        <img src="{{ asset('images/content/articles/HE-016-M.webp') }}"
+                                            alt="Контактная вставка ZJHK HE-016-M (09330162601)"
+                                            loading="lazy">
+                                    @else
+                                        <img src="{{ asset('images/content/articles/HE-016-M.jpg') }}"
+                                            alt="Контактная вставка ZJHK HE-016-M (09330162601)"
+                                            loading="lazy">
+                                    @endif
                             </div>
                         </div>
                     </div>
@@ -86,7 +91,7 @@
                         <div>
                             <div>
                                 <h5 class="article-page__h5-link"><a
-                                        href="https://kevtek.ru/product/he-016-m/">HE-016-M</a></h5>
+                                        href="{{ route('product.show', ['slug' => 'he-016-m']) }}">HE-016-M</a></h5>
                             </div>
                             <div class="divider">
                                 <span class="divider-separator">
@@ -129,11 +134,15 @@
                     <div class="element-column-50">
                         <div class="element-column-wrapper">
                             <div class="element-cell element-cell-image">
-                                <img loading="lazy" decoding="async" max-width="75%" height="auto"
-                                    src="https://kevtek.ru/wp-content/uploads/2023/03/19300161541-300x243.jpg"
-                                    alt="Корпус промышленного прямоугольного разъема 19300161541"
-                                    srcset="https://kevtek.ru/wp-content/uploads/2023/03/19300161541-300x243.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/03/19300161541-700x568.jpg 700w, https://kevtek.ru/wp-content/uploads/2023/03/19300161541-64x52.jpg 64w, https://kevtek.ru/wp-content/uploads/2023/03/19300161541.jpg 709w"
-                                    sizes="(max-width: 300px) 100vw, 300px" title="">
+                                @if ($acceptsWebP)
+                                        <img src="{{ asset('images/content/articles/H16B-SE-2B-M25.webp') }}"
+                                            alt="Корпус промышленного разъема ZJHK H16B-SE-2B-M25 (19300161541)"
+                                            loading="lazy">
+                                    @else
+                                        <img src="{{ asset('images/content/articles/H16B-SE-2B-M25.jpg') }}"
+                                            alt="Корпус промышленного разъема ZJHK H16B-SE-2B-M25 (19300161541)"
+                                            loading="lazy">
+                                    @endif
                             </div>
                         </div>
                     </div>
@@ -141,7 +150,7 @@
                         <div>
                             <div>
                                 <h5 class="article-page__h5-link"><a
-                                        href="https://kevtek.ru/product/h16b-se-2b-m25/">H16B-SE-2B-M25</a></h5>
+                                        href="{{ route('product.show', ['slug' => 'h16b-se-2b-m25']) }}">H16B-SE-2B-M25</a></h5>
                             </div>
                             <div class="divider">
                                 <span class="divider-separator">
