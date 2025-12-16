@@ -95,19 +95,19 @@ class Article extends Model implements HasMedia, Sitemapable, Sortable
         $this->addMediaConversion('thumb')
             ->fit(FIT::Fill, 220, 220)   // Сохраняем пропорцию, максимум ширина или высота 300px
             ->format('jpg')                              // Устанавливаем формат сохранения изображения
-            ->performOnCollections('previewImage')             // Применяется ко всей коллекции 'images'
+            ->performOnCollections('previewImages')             // Применяется ко всей коллекции 'images'
             ->nonQueued();
 
         $this->addMediaConversion('webp-thumb')
             ->fit(FIT::Fill, 220, 220)
             ->format('webp')                              // Устанавливаем формат сохранения изображения
-            ->performOnCollections('previewImage')
+            ->performOnCollections('previewImages')
             ->nonQueued();
     }
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('previewImage')
+        $this->addMediaCollection('previewImages')
             ->useFallbackUrl('/images/default_image.jpg')
             ->useFallbackPath(public_path('/images/default_image.jpg'))
             ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
