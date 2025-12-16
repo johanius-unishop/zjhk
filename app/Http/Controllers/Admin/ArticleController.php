@@ -55,7 +55,10 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+         if (!Gate::allows('admin-content')) {
+            return abort(401);
+        }
+        return view('admin.article.show', ['article' => $article]);
     }
 
     /**
