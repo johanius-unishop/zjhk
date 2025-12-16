@@ -53,7 +53,7 @@ class ArticleImagesGallery extends Component
         foreach ($this->photos as $photo) {
             $this->record
                 ->addMedia($photo)
-                ->toMediaCollection('images');
+                ->toMediaCollection('previewImages');
             $this->dispatch('toast', message: 'Изображение для статьи загружено.', notify: 'success');
         }
 
@@ -71,7 +71,7 @@ class ArticleImagesGallery extends Component
     public function galleryModalPhoto()
     {
         $article = Article::findOrFail($this->record->id);
-        $image   = $article->getMedia('images')->first();//'images'
+        $image   = $article->getMedia('previewImages')->first();//'images'
 
         if ($image) { // Проверяем, что запись существует
             $this->images = collect([$image]);
