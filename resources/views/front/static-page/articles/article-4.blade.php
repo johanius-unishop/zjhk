@@ -175,7 +175,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="elementor-column-50">
+                    <div class="element-column-50">
                         <div class="element-column-gap">
                             <div class="article-page__img-item full-width">
                                 @if ($acceptsWebP)
