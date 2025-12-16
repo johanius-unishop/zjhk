@@ -45,7 +45,7 @@
                 <h5 class="article-page__h5">Таблица соответствия между PG и M резьбами</h5>
 
                 <div class="element-container">
-                    <div class="element-column-75">
+                    <div class="element-column-25">
                         <div class="element-column-gap">
                             <table class="element-table">
                                 <thead>
@@ -175,7 +175,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="elementor-column-25">
+                    <div class="elementor-column-75">
                         <div class="element-column-gap">
                             <div>
                                 <img loading="lazy" decoding="async" max-height="100%" width="auto"
