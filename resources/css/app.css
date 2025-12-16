@@ -6889,6 +6889,16 @@ select {
     position:relative;
 }
 
+.fix-height-container {
+    height: 19.75rem
+}
+
+@media (max-width: 48.75em) {
+    .fix-height-container {
+        height: auto;
+    }
+}
+
 .element-column-25 {
     width: 25%;
     box-sizing: border-box;

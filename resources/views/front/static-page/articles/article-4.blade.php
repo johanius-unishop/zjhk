@@ -45,134 +45,136 @@
                 <h5 class="article-page__h5">Таблица соответствия между PG и M резьбами</h5>
 
                 <div class="element-container">
-                    <div class="element-column-50">
-                        <div class="element-column-gap">
-                            <table class="element-table">
-                                <thead>
-                                    <tr class="table-header">
-                                        <th class="table-header-cell">
-                                            <span class="data-table-header-text">PG (дюймовая резьба)</span>
-                                        </th>
-                                        <th class="table-header-cell">
-                                            <span class="data-table-header-text">M (метрическая резьба)</span>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    PG11 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    M20 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    PG13.5 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    M20 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    PG16 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    M20 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    PG21 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    M25 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    PG29 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    M32 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    PG36 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    M40 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    PG42 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    M50 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    PG48 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="td-content-wrapper">
-                                                <div class="td-content">
-                                                    M63 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div class=fix-height-container>
+                        <div class="element-column-50">
+                            <div class="element-column-gap">
+                                <table class="element-table">
+                                    <thead>
+                                        <tr class="table-header">
+                                            <th class="table-header-cell">
+                                                <span class="data-table-header-text">PG (дюймовая резьба)</span>
+                                            </th>
+                                            <th class="table-header-cell">
+                                                <span class="data-table-header-text">M (метрическая резьба)</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        PG11 </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        M20 </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        PG13.5 </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        M20 </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        PG16 </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        M20 </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        PG21 </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        M25 </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        PG29 </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        M32 </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        PG36 </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        M40 </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        PG42 </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        M50 </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        PG48 </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="td-content-wrapper">
+                                                    <div class="td-content">
+                                                        M63 </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div class="element-column-50">
