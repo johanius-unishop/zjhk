@@ -25,6 +25,13 @@ final class ArticleTable extends PowerGridComponent
 
     public string $tableName = 'article-table';
     public $delete_id;
+    public $editingRowId = null;
+    public $editingFieldName = '';
+    public $editingValue = '';
+
+
+
+
     public function setUp(): array
     {
         return [
@@ -75,8 +82,7 @@ final class ArticleTable extends PowerGridComponent
 
     public function filters(): array
     {
-        return [
-        ];
+        return [];
     }
 
     #[\Livewire\Attributes\On('post_delete')]
@@ -111,9 +117,9 @@ final class ArticleTable extends PowerGridComponent
         $currentOrder = $article->order_column;
 
         $buttons[] = Button::add('Edit')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.article.edit', ['article' => $row->id]);
+            ->slot('<i class="fas fa-edit"></i>')
+            ->class('btn btn-primary')
+            ->route('admin.article.edit', ['article' => $row->id]);
 
         if ($currentOrder <= $minOrder) {
             $buttons[] = Button::add('up_article')
@@ -205,5 +211,4 @@ final class ArticleTable extends PowerGridComponent
         }
         $this->dispatch('$refresh');
     }
-
 }
