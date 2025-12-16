@@ -47,7 +47,7 @@
                 <div class="element-container">
                     <div class="element-column-50">
                         <div class="element-column-gap">
-                            <table class="element-table">
+                            <table style="width: 100%;" class="element-table">
                                 <thead>
                                     <tr class="table-header">
                                         <th class="table-header-cell">
