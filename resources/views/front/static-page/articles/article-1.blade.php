@@ -76,11 +76,11 @@
                         <div class="element-column-wrapper">
                             <div class="element-cell element-cell-image">
                                     @if ($acceptsWebP)
-                                        <img src="{{ asset('images/content/articles/HE-016-M.webp') }}"
+                                        <img src="{{ asset('images/content/articles/he-016-m.webp') }}"
                                             alt="Контактная вставка ZJHK HE-016-M (09330162601)"
                                             loading="lazy">
                                     @else
-                                        <img src="{{ asset('images/content/articles/HE-016-M.jpg') }}"
+                                        <img src="{{ asset('images/content/articles/he-016-m.jpg') }}"
                                             alt="Контактная вставка ZJHK HE-016-M (09330162601)"
                                             loading="lazy">
                                     @endif
@@ -135,11 +135,11 @@
                         <div class="element-column-wrapper">
                             <div class="element-cell element-cell-image">
                                 @if ($acceptsWebP)
-                                        <img src="{{ asset('images/content/articles/H16B-SE-2B-M25.webp') }}"
+                                        <img src="{{ asset('images/content/articles/h16b-se-2b-m25.webp') }}"
                                             alt="Корпус промышленного разъема ZJHK H16B-SE-2B-M25 (19300161541)"
                                             loading="lazy">
                                     @else
-                                        <img src="{{ asset('images/content/articles/H16B-SE-2B-M25.jpg') }}"
+                                        <img src="{{ asset('images/content/articles/h16b-se-2b-m25.jpg') }}"
                                             alt="Корпус промышленного разъема ZJHK H16B-SE-2B-M25 (19300161541)"
                                             loading="lazy">
                                     @endif
