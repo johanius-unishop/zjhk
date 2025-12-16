@@ -195,7 +195,7 @@
                     </span>
                 </div>
 
-                <h5 class="article-page__h5">Подбор сальника в зависимости от диаметра кабеля</h5>
+                <h2 class="article-page__title">Подбор сальника в зависимости от диаметра кабеля</h2>
                 <div class="article-page__img-item full-width">
                     @if ($acceptsWebP)
                         <img src="{{ asset('images/content/articles/dependence_of_size_cable_gland_on_cable_diameter.webp') }}"
