@@ -6889,20 +6889,21 @@ select {
     position:relative;
 }
 
-.fix-height-container {
-    height: 19.75rem
-}
-
-@media (max-width: 48.75em) {
-    .fix-height-container {
-        height: auto;
-    }
-}
-
 .element-column-25 {
     width: 25%;
     box-sizing: border-box;
 }
+
+.fix-height {
+    height: 19.75rem;
+}
+
+@media (max-width: 48.75em) {
+    .fix-height {
+        height: auto;
+    }
+}
+
 
 .element-column-50 {
     width: 50%;
