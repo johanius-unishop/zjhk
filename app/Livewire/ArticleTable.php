@@ -115,15 +115,12 @@ final class ArticleTable extends PowerGridComponent
                 ->class('btn btn-primary')
                 ->route('admin.article.edit', ['article' => $row->id]);
 
-        // Проверяем, находится ли вендор на вершине
         if ($currentOrder <= $minOrder) {
-            // Если вендор уже наверху, делаем кнопку неактивной
             $buttons[] = Button::add('up_article')
                 ->slot('<i class="fas fa-arrow-up"></i>')
-                ->class('btn btn-success disabled') // Добавляем класс disabled, чтобы кнопка выглядела неактивной
-                ->attributes(['disabled' => 'disabled']); // Добавляем атрибут disabled, чтобы кнопка была интерактивно неактивной
+                ->class('btn btn-success disabled')
+                ->attributes(['disabled' => 'disabled']);
         } else {
-            // Если вендор не наверху, оставляем кнопку активной
             $buttons[] = Button::add('up_article')
                 ->slot('<i class="fas fa-arrow-up"></i>')
                 ->class('btn btn-success')
