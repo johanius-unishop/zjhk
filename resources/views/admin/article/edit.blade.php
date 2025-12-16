@@ -31,11 +31,6 @@
                                     href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home"
                                     aria-selected="true">Основное</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill"
-                                    href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile"
-                                    aria-selected="false">SEO</a>
-                            </li>
                         </ul>
                     </div>
                     <div class="card-body">
@@ -67,23 +62,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="body_description">Описание</label>
-                                    <textarea class="form-control" name="body_description" row="5" id="summernote">{{ $article->body_description }}</textarea>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="published" id="published"
-                                        data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Да"
-                                        data-off="Нет" {!! @$article->published ? 'checked ' : ' ' !!}>
-                                    <label class="form-check-label" for="exampleCheck1">Опубликовано</label>
+                                    <label for="short_description">Описание</label>
+                                    <textarea class="form-control" name="short_description" row="5" id="summernote">{{ $article->short_description }}</textarea>
                                 </div>
                                 <div class="card mt-3">
                                     <div class="card-header">
-                                        <h3 class="card-title"><strong>Характеристики товара </strong></h3>
+                                        <h3 class="card-title"><strong>Изображение статьи</strong></h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class=" col-12">
-                                                <livewire:test-component :record="@$product" />
+                                                <livewire:gallery :record="$article" />
                                             </div>
                                         </div>
                                     </div>
@@ -93,17 +82,11 @@
                                 aria-labelledby="custom-tabs-four-profile-tab">
                                 <livewire:seo :record="@$article">
                             </div>
-
-                            <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel"
-                                aria-labelledby="custom-tabs-four-messages-tab">
-                                <livewire:gallery :record="$article" />
-
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div class=" py-3 form-row justify-content-center">
-                    <a class="btn   btn-success " href="{{ route('admin.news.index') }}" role="button"> <i
+                    <a class="btn btn-success" href="{{ route('admin.articles.index') }}" role="button"> <i
                             class="fa fa-arrow-left "></i> К списку</a> &nbsp;
                     <button type="submit" name="action" value="save" class="btn btn-primary">Сохранить</button>
                     &nbsp;
