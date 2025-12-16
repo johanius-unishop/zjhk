@@ -67,6 +67,7 @@ final class ArticleTable extends PowerGridComponent
             Column::make('Id', 'id'),
             Column::make('Название', 'name')
                 ->sortable()
+                ->editOnClick(hasPermission: true, saveOnMouseOut: true)
                 ->searchable(),
             Column::make('Показывать на сайте', 'published')
                 ->sortable()
