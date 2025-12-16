@@ -26,6 +26,7 @@ final class ArticleTable extends PowerGridComponent
     public string $tableName = 'article-table';
     public $delete_id;
     public array $name;
+    public bool $showErrorBag = true;
     public $editingRowId = null;
     public $editingFieldName = '';
     public $editingValue = '';
@@ -182,23 +183,19 @@ final class ArticleTable extends PowerGridComponent
         return $buttons;
     }
 
-    public function onUpdatedEditable(int|string $id, string $field, string $value): void
+     public function onUpdatedEditable(int|string $id, string $field, string $value): void
     {
-        $model = is_string($id) ? Article::where('slug', $id)->firstOrFail() : Article::findOrFail($id);
-
-        $this->withValidator(function (\Illuminate\Validation\Validator $validator) use ($id, $field) {
-            if ($validator->errors()->isNotEmpty()) {
-                $this->dispatch('toggle-' . $field . '-' . $id);
-            }
-        })->validate();
-
-        $model->updateOrFail([$field => $value]);
+        Article::query()->find($id)->update([
+            $field => e($value),
+        ]);
     }
+
     public function onUpdatedToggleable(string|int $id, string $field, string $value): void
     {
         Article::query()->find($id)->update([
             $field => e($value),
         ]);
+
         $this->skipRender();
     }
 
