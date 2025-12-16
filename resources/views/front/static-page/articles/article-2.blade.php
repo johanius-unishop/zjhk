@@ -13,12 +13,13 @@
                     <div class="element-column-25">
                         <div class="element-column-wrapper">
                             <div class="element-cell element-cell-image">
-                                <img decoding="async" max-width="100%" height="auto"
-                                    src="https://kevtek.ru/wp-content/uploads/2023/04/screw_terminal.jpg"
-                                    class="attachment-large size-large wp-image-5335"
-                                    alt="Винтовые клеммы в прямоугольных промышленных разъемах"
-                                    srcset="https://kevtek.ru/wp-content/uploads/2023/04/screw_terminal.jpg 500w, https://kevtek.ru/wp-content/uploads/2023/04/screw_terminal-300x300.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/04/screw_terminal-100x100.jpg 100w, https://kevtek.ru/wp-content/uploads/2023/04/screw_terminal-64x64.jpg 64w, https://kevtek.ru/wp-content/uploads/2023/04/screw_terminal-150x150.jpg 150w"
-                                    sizes="(max-width: 500px) 100vw, 500px" title="">
+                                @if ($acceptsWebP)
+                                    <img src="{{ asset('images/content/articles/screw_terminal.webp') }}"
+                                        alt="Винтовое подключение в разрезе" loading="lazy">
+                                @else
+                                    <img src="{{ asset('images/content/articles/screw_terminal.jpg') }}"
+                                        alt="Винтовое подключение в разрезе" loading="lazy">
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -57,16 +58,20 @@
                     <div class="element-column-25">
                         <div class="element-column-wrapper">
                             <div class="element-cell element-cell-image">
-                                <img loading="lazy" decoding="async" max-width="100%" height="auto"
-                                    src="https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal.jpg"
-                                    class="attachment-large size-large wp-image-5336" alt="Изображение"
-                                    srcset="https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal.jpg 500w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal-300x300.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal-100x100.jpg 100w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal-64x64.jpg 64w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal-150x150.jpg 150w"
-                                    sizes="(max-width: 500px) 100vw, 500px" title="">
-                                <img loading="lazy" decoding="async" max-width="100%" height="auto"
-                                    src="https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE.jpg"
-                                    class="attachment-large size-large wp-image-5337" alt="Изображение"
-                                    srcset="https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE.jpg 550w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE-300x300.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE-100x100.jpg 100w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE-64x64.jpg 64w, https://kevtek.ru/wp-content/uploads/2023/04/crimp_terminal_HE_HEE-150x150.jpg 150w"
-                                    sizes="(max-width: 550px) 100vw, 550px" title="">
+                                @if ($acceptsWebP)
+                                    <img src="{{ asset('images/content/articles/crimp_terminal.webp') }}"
+                                        alt="Обжимное подключение в разрезе" loading="lazy">
+                                @else
+                                    <img src="{{ asset('images/content/articles/crimp_terminal.jpg') }}"
+                                        alt="Обжимное подключение в разрезе" loading="lazy">
+                                @endif
+                                @if ($acceptsWebP)
+                                    <img src="{{ asset('images/content/articles/crimp_terminal_HE_HEE.webp') }}"
+                                        alt="Обжимное подключение в разрезе в сериях HE, HEE" loading="lazy">
+                                @else
+                                    <img src="{{ asset('images/content/articles/crimp_terminal_HE_HEE.jpg') }}"
+                                        alt="Обжимное подключение в разрезе в сериях HE, HEE" loading="lazy">
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -111,11 +116,13 @@
                     <div class="element-column-25">
                         <div class="element-column-wrapper">
                             <div class="element-cell element-cell-image">
-                                <img loading="lazy" decoding="async" max-width="100%" height="auto"
-                                    src="https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal.jpg"
-                                    class="attachment-large size-large wp-image-5338" alt="Изображение"
-                                    srcset="https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal.jpg 550w, https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal-300x300.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal-100x100.jpg 100w, https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal-64x64.jpg 64w, https://kevtek.ru/wp-content/uploads/2023/04/cage-clamp_terminal-150x150.jpg 150w"
-                                    sizes="(max-width: 550px) 100vw, 550px" title="">
+                                @if ($acceptsWebP)
+                                    <img src="{{ asset('images/content/articles/cage-clamp_terminal.webp') }}"
+                                        alt="Подключение Cage-Clamp в разрезе" loading="lazy">
+                                @else
+                                    <img src="{{ asset('images/content/articles/cage-clamp_terminal.jpg') }}"
+                                        alt="Подключение Cage-Clamp в разрезе" loading="lazy">
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -153,11 +160,13 @@
                     <div class="element-column-25">
                         <div class="element-column-wrapper">
                             <div class="element-cell element-cell-image">
-                                <img loading="lazy" decoding="async" max-width="100%" height="auto"
-                                    src="https://kevtek.ru/wp-content/uploads/2023/04/axial_screw_terminal.jpg"
-                                    class="attachment-large size-large wp-image-5339" alt="Изображение"
-                                    srcset="https://kevtek.ru/wp-content/uploads/2023/04/axial_screw_terminal.jpg 550w, https://kevtek.ru/wp-content/uploads/2023/04/axial_screw_terminal-300x300.jpg 300w, https://kevtek.ru/wp-content/uploads/2023/04/axial_screw_terminal-100x100.jpg 100w, https://kevtek.ru/wp-content/uploads/2023/04/axial_screw_terminal-64x64.jpg 64w, https://kevtek.ru/wp-content/uploads/2023/04/axial_screw_terminal-150x150.jpg 150w"
-                                    sizes="(max-width: 550px) 100vw, 550px" title="">
+                                @if ($acceptsWebP)
+                                    <img src="{{ asset('images/content/articles/axial_screw_terminal.webp') }}"
+                                        alt="Аксиальное винтовое подключение в разрезе" loading="lazy">
+                                @else
+                                    <img src="{{ asset('images/content/articles/axial_screw_terminal.jpg') }}"
+                                        alt="Аксиальное винтовое подключение в разрезе" loading="lazy">
+                                @endif
                             </div>
                         </div>
                     </div>

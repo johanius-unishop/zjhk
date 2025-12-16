@@ -42,7 +42,7 @@
                     </span>
                 </div>
 
-                <h5 class="article-page__h5">Таблица соответствия между PG и M резьбами</h5>
+                <h3 class="article-page__h3">Таблица соответствия между PG и M резьбами</h3>
 
                 <div class="element-container">
                     <div class="element-column-50">
@@ -195,7 +195,7 @@
                     </span>
                 </div>
 
-                <h5 class="article-page__h5">Подбор сальника в зависимости от диаметра кабеля</h5>
+                <h3 class="article-page__h3">Подбор сальника в зависимости от диаметра кабеля</h3>
                 <div class="article-page__img-item full-width">
                     @if ($acceptsWebP)
                         <img src="{{ asset('images/content/articles/dependence_of_size_cable_gland_on_cable_diameter.webp') }}"
