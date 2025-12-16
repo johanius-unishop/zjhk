@@ -45,8 +45,8 @@
                 <h5 class="article-page__h5">Таблица соответствия между PG и M резьбами</h5>
 
                 <div class="element-container">
-                    <div class=fix-height-container>
-                        <div class="element-column-50">
+                    <div class="element-column-50">
+                            <div class=fix-height-container>
                             <div class="element-column-gap">
                                 <table class="element-table">
                                     <thead>
