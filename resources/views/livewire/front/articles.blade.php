@@ -10,18 +10,18 @@
                     <div>
                         @if (
                             $acceptsWebP &&
-                                $article->getFirstMedia('previewImage') &&
-                                $article->getFirstMedia('previewImage')->hasGeneratedConversion('webp'))
-                            <img src="{{ $article->getFirstMedia('previewImage')->getUrl('webp') }}"
+                                $article->getFirstMedia('previewImages') &&
+                                $article->getFirstMedia('previewImages')->hasGeneratedConversion('webp'))
+                            <img src="{{ $article->getFirstMedia('previewImages')->getUrl('webp') }}"
                                 alt="Титульное изображение статьи {{ trim($article->name) }}" loading="lazy">
                         @elseif (
                             !$acceptsWebP &&
-                                $article->getFirstMedia('previewImage') &&
-                                $article->getFirstMedia('previewImage')->hasGeneratedConversion('jpeg'))
-                            <img src="{{ $article->getFirstMedia('previewImage')->getUrl('jpeg') }}"
+                                $article->getFirstMedia('previewImages') &&
+                                $article->getFirstMedia('previewImages')->hasGeneratedConversion('jpeg'))
+                            <img src="{{ $article->getFirstMedia('previewImages')->getUrl('jpeg') }}"
                                 alt="Титульное изображение статьи {{ trim($article->name) }}" loading="lazy">
                         @else
-                            <img src="{{ $article->getFirstMedia('previewImage') ? $article->getFirstMedia('previewImage')->getUrl() : asset('/images/default_image.jpg') }}"
+                            <img src="{{ $article->getFirstMedia('previewImages') ? $article->getFirstMedia('previewImages')->getUrl() : asset('/images/default_image.jpg') }}"
                                 alt="Титульное изображение статьи {{ trim($article->name) }}" loading="lazy">
                         @endif
                     </div>
