@@ -296,12 +296,14 @@
                     </div>
                     <div class="elementor-column-25">
                         <div class="element-column-gap">
-                            <div>
-                                <img loading="lazy" decoding="async" max-height="100%" width="auto"
-                                    object-fit="cover"; src="https://kevtek.ru/wp-content/uploads/size.png"
-                                    class="attachment-large size-large wp-image-28607" alt="Изображение"
-                                    srcset="https://kevtek.ru/wp-content/uploads/size.png 347w, https://kevtek.ru/wp-content/uploads/size-300x640.png 300w, https://kevtek.ru/wp-content/uploads/size-64x136.png 64w, https://kevtek.ru/wp-content/uploads/size-141x300.png 141w"
-                                    sizes="(max-width: 347px) 100vw, 347px" title="">
+                            <div class="article-page__img-item full-width">
+                                @if ($acceptsWebP)
+                                    <img src="{{ asset('images/content/articles/size.webp') }}"
+                                        alt="Типоразмер" loading="lazy">
+                                @else
+                                    <img src="{{ asset('images/content/articles/size.jpg') }}"
+                                        alt="Типоразмер" loading="lazy">
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -182,7 +182,7 @@
                                     <img src="{{ asset('images/content/articles/thread_matching.webp') }}"
                                         alt="Взаимозаменяемость размеров резьбы PG и M" loading="lazy">
                                 @else
-                                    <img src="{{ asset('images/content/vendors/thread_matching.jpg') }}"
+                                    <img src="{{ asset('images/content/articles/thread_matching.jpg') }}"
                                         alt="Взаимозаменяемость размеров резьбы PG и M" loading="lazy">
                                 @endif
                             </div>
@@ -201,7 +201,7 @@
                         <img src="{{ asset('images/content/articles/dependence_of_size_cable_gland_on_cable_diameter.webp') }}"
                             alt="Подбор кабельного ввода по диаметру кабеля" loading="lazy">
                     @else
-                        <img src="{{ asset('images/content/vendors/dependence_of_size_cable_gland_on_cable_diameter.jpg') }}"
+                        <img src="{{ asset('images/content/articles/dependence_of_size_cable_gland_on_cable_diameter.jpg') }}"
                             alt="Подбор кабельного ввода по диаметру кабеля" loading="lazy">
                     @endif
                 </div>
