@@ -81,6 +81,32 @@ final class ArticleTable extends PowerGridComponent
         ];
     }
 
+    protected function rules()
+    {
+        return [
+            'name.*' => [
+                'required',
+                'unique',
+            ],
+
+        ];
+    }
+
+    protected function validationAttributes()
+    {
+        return [
+            'name.*'       => 'Название статьи',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'name.*.required'     => 'Название статьи является обязательным полем',
+            'name.*.unique'     => 'Название статьи должно быть уникальным',
+        ];
+    }
+
     public function filters(): array
     {
         return [];
@@ -211,31 +237,5 @@ final class ArticleTable extends PowerGridComponent
             throw $th;
         }
         $this->dispatch('$refresh');
-    }
-
-        protected function rules()
-    {
-        return [
-            'name.*' => [
-                'required',
-                'unique',
-            ],
-
-        ];
-    }
-
-    protected function validationAttributes()
-    {
-        return [
-            'name.*'       => 'Название статьи',
-        ];
-    }
-
-    protected function messages()
-    {
-        return [
-            'title.*.required'     => 'Название статьи является обязательным полем',
-            'title.*.unique'     => 'Название статьи должно быть уникальным',
-        ];
     }
 }
