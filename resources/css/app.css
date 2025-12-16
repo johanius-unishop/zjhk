@@ -6919,7 +6919,6 @@ select {
     max-height: 100%;
     object-fit: contain;
     padding: 10px;
-    vertical-align: middle;
 }
 
 .table-header-cell {
