@@ -180,7 +180,7 @@ final class ArticleTable extends PowerGridComponent
         return $buttons;
     }
 
-     public function onUpdatedEditable(int|string $id, string $field, string $value): void
+    public function onUpdatedEditable(int|string $id, string $field, string $value): void
     {
         Article::query()->find($id)->update([
             $field => e($value),

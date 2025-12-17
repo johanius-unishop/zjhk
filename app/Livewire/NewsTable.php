@@ -148,4 +148,20 @@ final class NewsTable extends PowerGridComponent
 
         return $buttons;
     }
+
+    public function onUpdatedEditable(int|string $id, string $field, string $value): void
+    {
+        News::query()->find($id)->update([
+            $field => e($value),
+        ]);
+    }
+
+    public function onUpdatedToggleable(string|int $id, string $field, string $value): void
+    {
+        News::query()->find($id)->update([
+            $field => e($value),
+        ]);
+
+        $this->skipRender();
+    }
 }
