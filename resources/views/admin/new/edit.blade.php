@@ -42,18 +42,18 @@
                                     <h3 class="card-title">Основное</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form action="{{ route('admin.news.update', $news->id) }}" method="POST"
+                                    <form action="{{ route('admin.new.update', $new->id) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         @method('PATCH')
-                                        <input type="hidden" name="id" value="{{ $news->id }}">
+                                        <input type="hidden" name="id" value="{{ $new->id }}">
 
                                         <div class="row">
                                             <div class="col-lg-6 col-12">
                                                 <div class="form-group">
                                                     <label for="name">Название новости</label>
                                                     <input type="text" class="form-control" name="name"
-                                                        value="{{ $news->name }}">
+                                                        value="{{ $new->name }}">
                                                     @error('name')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
@@ -65,7 +65,7 @@
                                                 <div class="form-group">
                                                     <label for="slug">ЧПУ </label>
                                                     <input type="text" class="form-control" name="slug"
-                                                        value="{{ @$news->slug }}">
+                                                        value="{{ @$new->slug }}">
                                                     <div id="slugHelp" class="form-text">Заполняется автоматически.
                                                         Ручное заполнение не желательно.</div>
                                                     @error('slug')
@@ -78,7 +78,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="text">Краткое описание статьи</label>
-                                                    <textarea class="form-control" name="text" rows="2">{{ @$news->short_description }}</textarea>
+                                                    <textarea class="form-control" name="text" rows="2">{{ @$new->short_description }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@
                                                     <input type="checkbox" class="form-check-input" name="published"
                                                         id="published" data-toggle="toggle" data-onstyle="success"
                                                         data-offstyle="danger" data-on="Да" data-off="Нет"
-                                                        {!! @$news->published ? 'checked ' : ' ' !!}>
+                                                        {!! @$new->published ? 'checked ' : ' ' !!}>
                                                     <label class="form-check-label" for="published">Опубликовано</label>
                                                 </div>
                                             </div>
@@ -99,7 +99,7 @@
                                                     <input type="checkbox" class="form-check-input" name="homepage_visible"
                                                         id="homepage_visible" data-toggle="toggle" data-onstyle="success"
                                                         data-offstyle="danger" data-on="Да" data-off="Нет"
-                                                        {!! @$news->homepage_visible ? 'checked ' : ' ' !!}>
+                                                        {!! @$new->homepage_visible ? 'checked ' : ' ' !!}>
                                                     <label class="form-check-label" for="homepage_visible">Показывать на
                                                         главной</label>
                                                 </div>
