@@ -44,6 +44,7 @@ class NewsController extends Controller
 
         $input = $request->all();
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
+        $request->filled('homepage_visible') ? $input['homepage_visible'] = 1 : $input['homepage_visible'] = 0;
         $record = News::create($input);
 
         session()->flash('success', 'Запись успешно создана');
