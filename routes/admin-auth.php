@@ -122,7 +122,7 @@ Route::group(
         Route::get('product_type_property/createNew/{product_type}', [ProductTypePropertyController::class, 'createNew'])->name('product_type_property.createNew');
 
 
-        Route::resource('news', NewsController::class);
+        Route::resource('new', NewsController::class);
         Route::resource('page', PageController::class);
         Route::resource('faq', FaqController::class);
         Route::resource('article', ArticleController::class);
