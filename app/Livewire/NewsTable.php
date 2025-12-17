@@ -138,7 +138,7 @@ final class NewsTable extends PowerGridComponent
         $buttons[] = Button::add('Edit')
             ->slot('<i class="fas fa-edit"></i>')
             ->class('btn btn-primary')
-            ->route('admin.new.edit', ['new' => $row->id]);
+            ->route('admin.news.edit', ['new' => $row->id]);
 
         $buttons[] = Button::add('delete')
             ->slot('<i class="fas fa-trash"></i>')
