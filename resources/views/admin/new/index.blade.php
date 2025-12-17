@@ -11,20 +11,15 @@
 
 @section('content')
 <div class=" py-3  ">
-    <a class="btn btn-primary" href="{{ route('admin.news.create') }}" role="button">Добавить</a>
+    <a class="btn btn-primary" href="{{ route('admin.new.create') }}" role="button">Добавить</a>
 </div>
 <livewire:news-table />
 @stop
 
 {{-- Push extra CSS --}}
-
 @push('css')
-{{-- Add here extra stylesheets --}}
-@livewireStyles
 @endpush
 
 {{-- Push extra scripts --}}
-
 @push('js')
-@livewireScriptConfig
 @endpush
