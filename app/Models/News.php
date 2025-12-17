@@ -78,23 +78,32 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
         'short_description',
         'slug',
         'published',
+        'homepage_visible'
     ];
+
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->fit(Fit::Crop, 396, 282)
+            ->fit(FIT::Fill, 220, 220)   // Сохраняем пропорцию, максимум ширина или высота 300px
+            ->format('jpg')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('previewImages')             // Применяется ко всей коллекции 'images'
             ->nonQueued();
 
-
+        $this->addMediaConversion('webp-thumb')
+            ->fit(FIT::Fill, 220, 220)
+            ->format('webp')                              // Устанавливаем формат сохранения изображения
+            ->performOnCollections('previewImages')
+            ->nonQueued();
     }
+
     public function registerMediaCollections(): void
     {
-
-        $this->addMediaCollection('images')
+        $this->addMediaCollection('previewImages')
             ->useFallbackUrl('/images/default_image.jpg')
             ->useFallbackPath(public_path('/images/default_image.jpg'))
             ->useFallbackUrl('/images/default_image_thumb.jpg', 'thumb')
-            ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb');
+            ->useFallbackPath(public_path('/images/default_image_thumb.jpg'), 'thumb')
+            ->singleFile();
     }
 
     protected function frontUrl(): Attribute
@@ -137,5 +146,4 @@ class News extends Model implements Sortable, HasMedia, Sitemapable
     {
         $query->where('published', 1);
     }
-
 }
