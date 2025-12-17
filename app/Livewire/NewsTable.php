@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\News;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -19,15 +18,13 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 final class NewsTable extends PowerGridComponent
 {
-    use WithExport;
     use LivewireAlert;
+    public string $tableName = 'news-table';
     public $delete_id;
 
     public function setUp(): array
     {
-
         return [
-
             PowerGrid::header()->showSearchInput(),
             PowerGrid::footer()
                 ->showPerPage()
@@ -37,7 +34,7 @@ final class NewsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return News::query();
+        return News::query()->latest();
     }
 
     public function relationSearch(): array
@@ -50,34 +47,62 @@ final class NewsTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('published', closure: fn($item) => $item->published ? '✅' : '❌')
-
-            ->add('created_at');
+            ->add('published')
+            ->add('homepage_visible');
     }
 
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Наименование', 'name')
+            Column::make('Название', 'name')
+                ->sortable()
+                ->editOnClick(hasPermission: true, saveOnMouseOut: true)
                 ->searchable(),
+            Column::make('Показывать на сайте', 'published')
+                ->sortable()
+                ->toggleable(),
 
-            Column::make('Опубликовано', 'published'),
-
-            Column::make('Создано', field: 'created_at')
-                ->searchable(),
+            Column::make('Показывать на главной', 'homepage_visible')
+                ->sortable()
+                ->toggleable(),
 
             Column::action('Действия'),
+        ];
+    }
+
+    protected function rules()
+    {
+        return [
+            'name.*' => [
+                'required',
+                'unique',
+            ],
+
+        ];
+    }
+
+    protected function validationAttributes()
+    {
+        return [
+            'name.*'       => 'Название статьи',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'name.*.required'     => 'Название статьи является обязательным полем',
+            'name.*.unique'     => 'Название статьи должно быть уникальным',
         ];
     }
 
     public function filters(): array
     {
         return [
-            Filter::boolean('published')
-            ->label('✅', '❌'),
         ];
     }
+
     #[\Livewire\Attributes\On('post_delete')]
     public function post_delete($rowId): void
     {
@@ -105,17 +130,22 @@ final class NewsTable extends PowerGridComponent
         $this->dispatch('toast', message: 'Запись удалена.', notify: 'success');
 
     }
+
     public function actions(News $row): array
     {
-        return [
-            Button::add('view')
-                ->slot('<i class="fas fa-edit"></i>')
-                ->class('btn btn-primary')
-                ->route('admin.news.edit', ['news' => $row->id]),
-            Button::add('delivery')
-                ->slot('<i class="fas fa-trash"></i>')
-                ->class('btn btn-danger')
-                ->dispatch('post_delete', ['rowId' => $row->id]),
-        ];
+        $buttons = [];
+
+        $buttons[] = Button::add('Edit')
+            ->slot('<i class="fas fa-edit"></i>')
+            ->class('btn btn-primary')
+            ->route('admin.new.edit', ['new' => $row->id]);
+
+        $buttons[] = Button::add('delete')
+            ->slot('<i class="fas fa-trash"></i>')
+            ->class('btn btn-danger')
+            ->confirm('Вы действительно хотите удалить эту новость?')
+            ->dispatch('new_delete', ['id' => $row->id]);
+
+        return $buttons;
     }
 }

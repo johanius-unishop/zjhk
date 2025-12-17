@@ -31,9 +31,6 @@ final class ArticleTable extends PowerGridComponent
     public $editingFieldName = '';
     public $editingValue = '';
 
-
-
-
     public function setUp(): array
     {
         return [
