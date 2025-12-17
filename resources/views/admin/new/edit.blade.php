@@ -106,7 +106,7 @@
                                             </div>
                                         </div>
                                         <div class="py-3 form-row justify-content-center">
-                                            <a class="btn btn-success mx-1" href="{{ route('admin.article.index') }}"
+                                            <a class="btn btn-success mx-1" href="{{ route('admin.new.index') }}"
                                                 role="button">
                                                 <i class="fa fa-arrow-left"></i> К списку
                                             </a>

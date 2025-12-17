@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+use App\Models\News;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Livewire\WithFileUploads;
+
+
+class NewImagesGallery extends Component
+{
+    use WithFileUploads;
+    public $photos = [];
+    public $images = [];
+    public $record, $media_id;
+
+    public $flag = 0;
+    public $multiple;
+
+    public function render()
+    {
+        return view('livewire.new-images-gallery');
+    }
+
+    public function mount($record = null, $multiple = false)
+    {
+        $this->images   = @$record->getMedia('previewImages');//'images'
+        $this->multiple = $multiple;
+    }
+
+    public function delete($media_id)
+    {
+
+        try {
+            $media = Media::find($media_id);
+            $media->delete();
+            $this->dispatch('toast', message: 'Изображение для новости удалено.', notify: 'error');
+        }
+        catch (\Throwable $th) {
+            $this->dispatch('toast', message: 'Изображение для новости не удалось удалить.' . $th->getMessage(), notify: 'error');
+        }
+        $this->galleryModalPhoto();
+    }
+
+    public function uploadFiles()
+    {
+        $this->flag = 1;
+        $this->validate([
+            'photos.*' => 'image|mimes:jpeg,png,jpg|max:102400', // 10MB Max
+        ]);
+        foreach ($this->photos as $photo) {
+            $this->record
+                ->addMedia($photo)
+                ->toMediaCollection('previewImages');
+            $this->dispatch('toast', message: 'Изображение для новости загружено.', notify: 'success');
+        }
+
+        $this->flag   = 0;
+        $this->photos = [];
+        $this->galleryModalPhoto();
+    }
+
+
+    public function download(Media $mediaItem)
+    {
+        return response()->download($mediaItem->getPath(), $mediaItem->file_name);
+    }
+
+    public function galleryModalPhoto()
+    {
+        $new = News::findOrFail($this->record->id);
+        $image   = $new->getMedia('previewImages')->first();//'images'
+
+        if ($image) { // Проверяем, что запись существует
+            $this->images = collect([$image]);
+        } else {
+            $this->images = null;
+        }
+
+
+        $this->dispatch('$refresh');
+    }
+
+}
