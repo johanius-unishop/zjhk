@@ -18,7 +18,7 @@ class NewsController extends Controller
         if (!Gate::allows('admin-content')) {
             return abort(401);
         }
-        return view('admin.news.index');
+        return view('admin.new.index');
     }
 
     /**
@@ -29,7 +29,7 @@ class NewsController extends Controller
         if (!Gate::allows('admin-content')) {
             return abort(401);
         }
-        return view('admin.news.create');
+        return view('admin.new.create');
     }
 
     /**
@@ -49,15 +49,15 @@ class NewsController extends Controller
 
         session()->flash('success', 'Запись успешно создана');
         if ($request->action == 'save-exit') {
-            return redirect(route('admin.news.index'));
+            return redirect(route('admin.new.index'));
         }
-        return redirect(route('admin.news.edit', $record->id));
+        return redirect(route('admin.new.edit', $record->id));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(News $news)
+    public function show(News $new)
     {
         //
     }
@@ -65,32 +65,33 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(News $news)
+    public function edit(News $new)
     {
         if (!Gate::allows('admin-content')) {
             return abort(401);
         }
-        return view('admin.news.edit', ['news' => $news]);
+        return view('admin.new.edit', ['new' => $new]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateNewsRequest $request, News $news)
+    public function update(UpdateNewsRequest $request, News $new)
     {
         if (!Gate::allows('admin-content')) {
             return abort(401);
         }
         $input = $request->all();
         $request->filled('published') ? $input['published'] = 1 : $input['published'] = 0;
-        $news->update($input);
+        $request->filled('homepage_visible') ? $input['homepage_visible'] = 1 : $input['homepage_visible'] = 0;
+        $new->update($input);
 
-        session()->flash('success', 'Запись успешно обновлена');
+        session()->flash('success', 'Новость успешно обновлена');
 
         if ($request->action == 'save-exit') {
-            return redirect(route('admin.news.index'));
+            return redirect(route('admin.new.index'));
         }
-        return redirect(route('admin.news.edit', $news->id));
+        return redirect(route('admin.new.edit', $new->id));
     }
 
 
