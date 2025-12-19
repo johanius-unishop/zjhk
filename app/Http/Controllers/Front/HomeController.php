@@ -30,7 +30,7 @@ class HomeController extends Controller
         $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
         // Возвращаем представление с данными
-        return view('home', compact('mainPageSettings', 'documentations', 'vendors', 'popularProductsWithDetails', 'acceptsWebP'));
+        return view('home', compact('mainPageSettings', 'documentations', 'vendors', 'articles', 'popularProductsWithDetails', 'acceptsWebP'));
     }
 
     private function getSettings()
