@@ -25,7 +25,7 @@ class HomeController extends Controller
                             ->orderBy('order_column', 'asc')
                             ->get();
         $articles = Article::where('homepage_visible', '=', 1)
-                            ->orderBy('order_column', 'desc')
+                            ->orderBy('order_column', 'asc')
                             ->get();
         $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
