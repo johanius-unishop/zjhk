@@ -3280,7 +3280,7 @@ select {
 }
 
 .documents__item-wrapper.documents-description {
-    margin-top: 1rem;
+    margin-top: 0;
     margin-bottom: auto;
 }
 
