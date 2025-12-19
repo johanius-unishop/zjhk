@@ -31,7 +31,7 @@
                                             alt="Новость: {{ trim($article->name) }}" loading="lazy">
                                     @endif
                                 </div>
-                                <div>
+                                <div class="articles__item-wrapper articles-description">
                                     <h5>{{ trim($article->name) }}</h5>
                                     <p>Корпусы и кожухи прямоугольных промышленных разъёмов
                                         3A, 10A, 16A, 32A</p>
