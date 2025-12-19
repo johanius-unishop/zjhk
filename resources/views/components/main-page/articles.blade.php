@@ -9,10 +9,10 @@
         </div>
         <div class="articles__body">
             <div class="swiper articles-slider">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper articles-swiper-wrapper">
                     @foreach ($articles as $article)
                         <div class="swiper-slide articles__item">
-                            <div>
+                            <div class="articles__item-wrapper card-layout">
                                 <div>
                                     @if (
                                         $acceptsWebP &&
