@@ -7,6 +7,7 @@ use App\Models\Setting;
 use App\Models\PopularProduct;
 use App\Models\Documentation;
 use App\Models\Vendor;
+use App\Models\Article;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,9 @@ class HomeController extends Controller
                             ->get();
         $vendors = Vendor::where('homepage_visible', '=', 1)
                             ->orderBy('order_column', 'asc')
+                            ->get();
+        $articles = Article::where('homepage_visible', '=', 1)
+                            ->orderBy('order_column', 'desc')
                             ->get();
         $acceptsWebP = strpos(request()->header('accept'), 'image/webp') !== false;
 
