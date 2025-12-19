@@ -3271,7 +3271,8 @@ select {
 }
 
 .product-page__item-wrapper.card-layout div:first-child a>img,
-.documents__item-wrapper.card-layout div:first-child img {
+.documents__item-wrapper.card-layout div:first-child img,
+.articles__item-wrapper.card-layout div:first-child img {
     display: block;
     margin: 0 auto;
     object-fit: contain;
