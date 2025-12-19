@@ -18,7 +18,7 @@
                                         $acceptsWebP &&
                                             $article->getFirstMedia('previewImages') &&
                                             $article->getFirstMedia('previewImages')->hasGeneratedConversion('webp-thumb'))
-                                        <img src="{{ $article->getFirstMedia('previewImages')->getUrl('webp-images') }}"
+                                        <img src="{{ $article->getFirstMedia('previewImages')->getUrl('webp-thumb') }}"
                                             alt="Новость: {{ trim($article->name) }}" loading="lazy">
                                     @elseif (
                                         !$acceptsWebP &&
